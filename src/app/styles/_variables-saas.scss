@@ -1,0 +1,218 @@
+@import "functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "_variables-dark.scss";
+@import "mixins";
+@import "maps";
+@import "utilities";
+@import "fonts";
+
+$my-colors: (
+  "midnight": "#20273A",
+  "midnight-moss": "#212322",
+  "denim": "#1852C0",
+  "gossamer": "#37A685",
+  "ivory": "#F8F8F7",
+  "kilamanjaro": "#3E332E",
+  "eden": "#30615D",
+  "feijoa": "#A8DF87",
+  "lilac": "#F0EDF1",
+  "black-pearl": "#19252F",
+  "astral": "#3B7190",
+  "mantis": "#8CBE59",
+  "rum": "#EBEAD5",
+  "shuttle-grey": "#63656B",
+  "equator": "#E0BA5B",
+  "black-russian": #171725,
+  "alice-blue": "#ECF1F5",
+  "gray-300": #d0d5dd,
+  "gray-500": #667085,
+  "gray-600": #475467,
+  "gray-700": #344054,
+  "success-50": #ecfdf3,
+  "success-100": #d1fadf,
+);
+
+$theme-colors: map-merge($theme-colors, $my-colors);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "new-background": (
+      property: background-color,
+      class: bg,
+      values: (
+        "midnight": #20273a,
+        "midnight-moss": #212322,
+        "denim": #1852c0,
+        "gossamer": #37a685,
+        "ivory": #f8f8f7,
+        "kilamanjaro": #3e332e,
+        "eden": #30615d,
+        "feijoa": #a8df87,
+        "lilac": #f0edf1,
+        "black-pearl": #19252f,
+        "astral": #3b7190,
+        "mantis": #8cbe59,
+        "rum": #ebead5,
+        "shuttle-grey": #63656b,
+        "equator": #e0ba5b,
+        "alice-blue": #ecf1f5,
+        "black-russian": #171725,
+        "gray-300": #d0d5dd,
+        "gray-500": #667085,
+        "gray-600": #475467,
+        "gray-700": #344054,
+        "success-50": #ecfdf3,
+        "success-100": #d1fadf,
+      ),
+    ),
+    "new-color": (
+      property: color,
+      class: text,
+      values: (
+        "midnight": #20273a,
+        "midnight-moss": #212322,
+        "denim": #1852c0,
+        "gossamer": #37a685,
+        "ivory": #f8f8f7,
+        "kilamanjaro": #3e332e,
+        "eden": #30615d,
+        "feijoa": #a8df87,
+        "lilac": #f0edf1,
+        "black-pearl": #19252f,
+        "astral": #3b7190,
+        "mantis": #8cbe59,
+        "rum": #ebead5,
+        "shuttle-grey": #63656b,
+        "equator": #e0ba5b,
+        "alice-blue": #ecf1f5,
+        "black-russian": #171725,
+        "gray-300": #d0d5dd,
+        "gray-500": #667085,
+        "gray-600": #475467,
+        "gray-700": #344054,
+        "success-50": #ecfdf3,
+        "success-100": #d1fadf,
+      ),
+    ),
+    "new-border": (
+      property: border-color,
+      class: border-color,
+      values: (
+        "midnight": #20273a,
+        "midnight-moss": #212322,
+        "denim": #1852c0,
+        "gossamer": #37a685,
+        "ivory": #f8f8f7,
+        "kilamanjaro": #3e332e,
+        "eden": #30615d,
+        "feijoa": #a8df87,
+        "lilac": #f0edf1,
+        "black-pearl": #19252f,
+        "astral": #3b7190,
+        "mantis": #8cbe59,
+        "rum": #ebead5,
+        "shuttle-grey": #63656b,
+        "equator": #e0ba5b,
+        "alice-blue": #ecf1f5,
+        "black-russian": #171725,
+        "gray-300": #d0d5dd,
+        "gray-500": #667085,
+        "gray-600": #475467,
+        "gray-700": #344054,
+        "success-50": #ecfdf3,
+        "success-100": #d1fadf,
+      ),
+    ),
+    "line-height": (
+      property: line-height,
+      class: lh,
+      values: (
+        10: 10px,
+        20: 20px,
+        30: 30px,
+        32: 32px,
+        38: 38px,
+      ),
+    ),
+    "font-size": (
+      property: font-size,
+      class: fs,
+      values: (
+        7: 1rem,
+        8: 0.875rem,
+      ),
+    ),
+    "cursor": (
+      property: cursor,
+      class: cursor,
+      values: (
+        "pointer": pointer,
+      ),
+    ),
+    "margin-y": (
+      property: margin-top margin-bottom,
+      class: my,
+      responsive: true,
+      values: (
+        6: 4rem,
+        7: 5rem,
+        8: 6rem,
+      ),
+    ),
+    "width": (
+      property: width,
+      class: w,
+      responsive: true,
+      values: (
+        25: 25%,
+        40: 40%,
+        45: 45%,
+        50: 50%,
+        75: 75%,
+        80: 80%,
+        85: 85%,
+        90: 90%,
+        100: 100%,
+        auto: auto,
+      ),
+    ),
+    
+  )
+);
+$gray-300: #d0d5dd;
+$gray-500: #667085;
+$gray-600: #475467;
+$gray-700: #344054;
+$midnight: #20273a;
+$midnight-moss: #212322;
+$denim: #1852c0;
+$gossamer: #37a685;
+$ivory: #f8f8f7;
+$kilamanjaro: #3e332e;
+$eden: #30615d;
+$feijoa: #a8df87;
+$lilac: #f0edf1;
+$black-pearl: #19252f;
+$astral: #3b7190;
+$mantis: #8cbe59;
+$rum: #ebead5;
+$shuttle-grey: #63656b;
+$equator: #e0ba5b;
+$alice-blue: #ecf1f5;
+$black-russian: #171725;
+$success-50: #ecfdf3;
+$success-100: #d1fadf;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+@import "utilities/api";

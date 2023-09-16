@@ -1,0 +1,51 @@
+@import "../../../styles/variables-saas";
+
+.navbar-container {
+    height: 65px;
+  }
+  
+  .with-border {
+    position: relative;
+    width: fit-content;
+    overflow: hidden;
+  }
+  
+  .with-border::after {
+    content: "";
+    display: block;
+    border-bottom: 10px solid $midnight-moss;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;  // Initial width /
+    border-radius: 10px;
+  }
+  
+  @include media-breakpoint-up(lg) {
+    .with-border {
+      overflow: visible;
+      &::after {
+        content: "";
+        display: block;
+        border-bottom: 10px solid $midnight-moss;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        width: 100%; // Initial width /
+        border-radius: 10px;
+      }
+    }
+    .navbar {
+      .container-fluid {
+        padding-inline: 6%;
+      }
+    }
+  }
+  
+  .login-btn {
+    padding-block: 0.5rem;
+    padding-inline: 1.125rem;
+  }
+  .navbar {
+    border-bottom: 1px solid #E2E2EA;
+  }

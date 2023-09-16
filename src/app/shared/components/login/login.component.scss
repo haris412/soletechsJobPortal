@@ -1,0 +1,43 @@
+@import "../../../styles/variables-saas";
+
+
+.col-8 {
+  display: none
+}
+
+.left-container {
+  background: url("../../../../assets/Images/Section.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+@include media-breakpoint-up(lg) {
+  .col-8 {
+    background: url("../../../../assets/Images/Section.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .px-xl-4rem {
+    padding-inline: 4rem !important;
+  }
+  
+  .col-8 {
+    background: url("../../../../assets/Images/Section-1000.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}
+
+.field {
+  margin-bottom: 1.25rem;
+}
+
+.login-text,
+.login-btns,
+.fg-pass {
+  margin-bottom: 2rem;
+}
+

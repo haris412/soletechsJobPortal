@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-light overflow-hidden">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img width="90" height="32" src="../assets/SVG/main-logo.svg" alt="" />
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <img src="../assets/SVG/Icontoggle.svg" width="18" height="12" alt="">
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <button id="offcanvasNavbarLabel" type="button" class="btn-close btn-close-dark ms-auto"
+                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex justify-content-lg-between flex-column gap-3 gap-lg-0 flex-lg-row">
+                <ul class="navbar-nav px-2 gap-2">
+                    <li class="nav-item">
+                        <div class="nav-link d-flex align-items-center align-content-center with-border px-2 gap-1"
+                            aria-current="page">
+                            <img height="15" width="15" src="../assets/SVG/search.svg" alt="" />
+                            <p class="text-midnight-moss font-poppins-semi mb-0">
+                                Job Search
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <button type="button" class="btn bg-midnight-moss text-white rounded-3 login-btn w-100 w-lg-auto" (click)="Login()">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
