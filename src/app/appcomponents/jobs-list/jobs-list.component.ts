@@ -56,6 +56,7 @@ export class JobsListComponent implements OnInit {
     this.isActive = true;
     if (this.mobileView) {
       this.show = true;
+      this.webView = false;
     } else {
       this.webView = true;
     }
