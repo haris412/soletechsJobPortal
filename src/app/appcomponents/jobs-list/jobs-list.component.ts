@@ -14,7 +14,9 @@ export class JobsListComponent implements OnInit {
   isActive: boolean = false;
   width: number = window.innerWidth;
   minimunWidth: number = 992;
+  show:boolean = true;
   mobileView:boolean = false;
+  webView:boolean = true;
   showJobList:boolean = true;
   jobsList:Job[]= [{
     jobId:'1',
@@ -34,19 +36,49 @@ export class JobsListComponent implements OnInit {
 
   }];
   selectedJob:Job = new Object() as Job;
-
+ 
 
   constructor() { }
 
   ngOnInit(): void {
+    this.mobileView = this.width < this.minimunWidth;
+    if(this.mobileView && this.selectedJob.jobId === undefined){
+      this.show = false;
+      this.webView = false;
+    }else if(this.mobileView && this.selectedJob.jobId !== undefined) {
+      this.webView = false;
+      this.show = true;
+    }
   }
 
    OpenJob(job:Job){
     this.selectedJob = job;
     this.isActive = true;
+     if (this.mobileView) {
+       this.show = true;
+     } else {
+       this.webView = true;
+     }
+
    }
    onWindowResize(event:any) {
-    this.width = event.target.innerWidth;
-    this.mobileView = this.width < this.minimunWidth;
+     this.width = event.target.innerWidth;
+     this.mobileView = this.width < this.minimunWidth;
+     if (this.mobileView && this.selectedJob.jobId !== undefined) {
+       this.webView = false;
+       this.show = true;
+     } else if(this.mobileView && this.selectedJob.jobId === undefined){
+      this.show = false;
+      this.webView = false;
+     }else {
+       this.webView = true;
+       this.show= false;
+     }
+  }
+  BackClicked(event:boolean){
+    if(this.mobileView){
+      this.show = false;
+      this.webView = false;
+    }
   }
 }
