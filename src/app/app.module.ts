@@ -19,7 +19,8 @@ import { JobsListComponent } from './appcomponents/jobs-list/jobs-list.component
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -78,8 +78,8 @@ h4 {
     border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
   }
   .info-detail-footer {
-    right: 1.5rem;
-    left: 1.5rem;
+    right: 1.5rem !important;
+    left: 1.5rem !important;
   }
   
 }
@@ -233,4 +233,18 @@ ul li {
 
 .no-info {
   height: calc(100vh - 200px);
+}
+
+.info-detail {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
