@@ -33,7 +33,6 @@ export class JobsListComponent implements OnInit {
     dayToDay: ['Supporting a variety of creative projects that support the entire Atlassian business, ranging from design to production tasks'],
     interactionWithTeam: [' Access to slack and all Atlassian products, bi-weekly 1:1 with the manager, and weekly team meetings'],
     techSkillsNeeded: ['Adobe Creative Cloud', 'Figma', 'Keynote']
-
   }];
   selectedJob: Job = new Object() as Job;
 
