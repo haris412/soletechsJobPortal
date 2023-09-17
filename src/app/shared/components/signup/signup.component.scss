@@ -1,0 +1,45 @@
+@import "../../../styles/variables-saas";
+
+.stepper {
+  li {
+    display: flex;
+    .stepper-progression {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      p {
+        margin-bottom: 0 !important;
+        width: 8px;
+        height: 8px;
+      }
+      &:after {
+        content: "";
+        height: 34px;
+        width: 2px;
+        background-color: $midnight-moss;
+        position: absolute;
+        bottom: -38px;
+      }
+    }
+    .stepper-items {
+      display: flex;
+      flex-direction: column;
+      padding-inline: 0.75rem;
+      margin-bottom: 1.5rem;
+      p {
+        margin-bottom: 0 !important;
+        &:first-child {
+          color: $midnight-moss;
+          font-family: $font-poppins-semi;
+        }
+        &:nth-child(2) {
+          color: $gray-600;
+        }
+      }
+    }
+    
+  }
+}

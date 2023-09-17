@@ -31,7 +31,8 @@ import { AddEditProfileComponent } from './appcomponents/add-edit-profile/add-ed
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
