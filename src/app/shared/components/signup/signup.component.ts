@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-signup',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  public completed: boolean = true;
   public sidenavOpen: boolean = false;
   constructor() { }
 
@@ -19,5 +21,6 @@ export class SignupComponent implements OnInit {
   CloseSidenav() {
     this.sidenavOpen = false;
   }
-
+  title = 'angular';
+  public Editor = ClassicEditor;
 }

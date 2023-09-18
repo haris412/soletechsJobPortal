@@ -8,6 +8,7 @@ import { ForgetpasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { MaterialModule } from '../material/material.module';
 import { PasswordResetSuccessComponent } from './components/password-reset-success/password-reset-success.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -23,7 +24,8 @@ import { PasswordResetSuccessComponent } from './components/password-reset-succe
   ],
   imports: [
     MaterialModule,
-    CommonModule
+    CommonModule,
+    CKEditorModule
   ],
   exports:[ 
     HeaderComponent,
@@ -31,6 +33,8 @@ import { PasswordResetSuccessComponent } from './components/password-reset-succe
     LoginComponent,
     SignupComponent,
     ForgetpasswordComponent,
-    ResetPasswordComponent]
+    ResetPasswordComponent,
+    
+  ]
 })
 export class SharedModule { }

@@ -14,6 +14,7 @@ import { AddEditExperienceComponent } from './appcomponents/add-edit-experience/
 import { AddEditPortfolioComponent } from './appcomponents/add-edit-portfolio/add-edit-portfolio.component';
 import { AddEditSkillsComponent } from './appcomponents/add-edit-skills/add-edit-skills.component';
 import { AddEditProfileComponent } from './appcomponents/add-edit-profile/add-edit-profile.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddEditProfileComponent } from './appcomponents/add-edit-profile/add-ed
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

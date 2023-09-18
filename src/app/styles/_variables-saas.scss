@@ -32,6 +32,7 @@ $my-colors: (
   "success-50": #ecfdf3,
   "success-100": #d1fadf,
   "white-smoke": #F5F5F5,
+  "gainsboro": #DCDCDC,
 );
 
 $theme-colors: map-merge($theme-colors, $my-colors);
@@ -68,6 +69,7 @@ $utilities: map-merge(
         "success-50": #ecfdf3,
         "success-100": #d1fadf,
         "white-smoke": #F5F5F5,
+        "gainsboro": #DCDCDC,
       ),
     ),
     "new-color": (
@@ -99,6 +101,7 @@ $utilities: map-merge(
         "success-50": #ecfdf3,
         "success-100": #d1fadf,
         "white-smoke": #F5F5F5,
+        "gainsboro": #DCDCDC,
       ),
     ),
     "new-border": (
@@ -130,6 +133,7 @@ $utilities: map-merge(
         "success-50": #ecfdf3,
         "success-100": #d1fadf,
         "white-smoke": #F5F5F5,
+        "gainsboro": #DCDCDC,
       ),
     ),
     "line-height": (
@@ -146,9 +150,11 @@ $utilities: map-merge(
     "font-size": (
       property: font-size,
       class: fs,
+      responsive: true,
       values: (
         7: 1rem,
         8: 0.875rem,
+        9: 0.75rem
       ),
     ),
     "cursor": (
@@ -214,6 +220,7 @@ $whisper: #E5E5E5;
 $success-50: #ecfdf3;
 $success-100: #d1fadf;
 $white-smoke: #F5F5F5;
+$gainsboro: #DCDCDC;
 
 $grid-breakpoints: (
   xs: 0,

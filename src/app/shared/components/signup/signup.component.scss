@@ -14,6 +14,7 @@
   .stepper {
     li {
       display: flex;
+      width: 100%;
       div.stepper-progression {
         position: relative;
         display: flex;
@@ -38,8 +39,13 @@
         &.active {
           opacity: 1;
         }
+        img{
+          height: 17px;
+          width: 15px
+        }
       }
       .stepper-items {
+        width: 100%;
         display: flex;
         flex-direction: column;
         padding-inline: 0.75rem;
@@ -58,6 +64,7 @@
     }
   }
   .basic-information {
+    margin-bottom: 4.875rem;
     h4 {
       margin-bottom: 2rem;
     }
@@ -88,7 +95,10 @@
         gap: 2.5rem;
         margin-bottom: 1.25rem;
         .uploaded-files {
-          gap: 1.25rem;
+          gap: 1rem;
+          @include media-breakpoint-up (xxl) {
+            gap: 1.25rem;
+          }
           .file-details {
             width: 230px;
             display: flex;
@@ -103,7 +113,7 @@
                 font-family: $font-poppins-semi;
               }
             }
-            @include media-breakpoint-up(xl) {
+            @include media-breakpoint-up(xxl) {
               width: 276px;
             }
           }
