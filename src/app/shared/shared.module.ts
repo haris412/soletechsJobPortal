@@ -9,6 +9,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { MaterialModule } from '../material/material.module';
 import { PasswordResetSuccessComponent } from './components/password-reset-success/password-reset-success.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { UserInfoModule } from '../modules/user-info/user-info.module';
 
 
 

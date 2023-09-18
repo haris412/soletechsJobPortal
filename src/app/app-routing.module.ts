@@ -13,9 +13,8 @@ const routes: Routes = [
   { path: RoutesEnum.ForgotPassword, component: ForgetpasswordComponent},
   { path: RoutesEnum.ResetPassword, component: ResetPasswordComponent},
   { path: RoutesEnum.Login, component: LoginComponent},
-  { path: RoutesEnum.SignUp, component: SignupComponent},
-  { path: RoutesEnum.ResetPasswordSuccess, component: PasswordResetSuccessComponent}
-
+  { path: RoutesEnum.ResetPasswordSuccess, component: PasswordResetSuccessComponent},
+  { path: RoutesEnum.SignUp, loadChildren: () => import('./modules/sign-up/sign-up.module').then(m => m.SignUpModule)}
  ];
 
 @NgModule({
