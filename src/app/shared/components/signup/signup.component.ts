@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-
+  public sidenavOpen: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  OpenSidenav() {
+    this.sidenavOpen = true;
+  }
+
+  CloseSidenav() {
+    this.sidenavOpen = false;
   }
 
 }

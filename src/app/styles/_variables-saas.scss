@@ -23,13 +23,15 @@ $my-colors: (
   "shuttle-grey": "#63656B",
   "equator": "#E0BA5B",
   "black-russian": #171725,
-  "alice-blue": "#ECF1F5",
+  "alice-blue": #ECF1F5,
+  "whisper": #E5E5E5,
   "gray-300": #d0d5dd,
   "gray-500": #667085,
   "gray-600": #475467,
   "gray-700": #344054,
   "success-50": #ecfdf3,
   "success-100": #d1fadf,
+  "white-smoke": #F5F5F5,
 );
 
 $theme-colors: map-merge($theme-colors, $my-colors);
@@ -56,14 +58,16 @@ $utilities: map-merge(
         "rum": #ebead5,
         "shuttle-grey": #63656b,
         "equator": #e0ba5b,
-        "alice-blue": #ecf1f5,
+        "alice-blue": #ECF1F5,
         "black-russian": #171725,
+        "whisper": #E5E5E5,
         "gray-300": #d0d5dd,
         "gray-500": #667085,
         "gray-600": #475467,
         "gray-700": #344054,
         "success-50": #ecfdf3,
         "success-100": #d1fadf,
+        "white-smoke": #F5F5F5,
       ),
     ),
     "new-color": (
@@ -85,14 +89,16 @@ $utilities: map-merge(
         "rum": #ebead5,
         "shuttle-grey": #63656b,
         "equator": #e0ba5b,
-        "alice-blue": #ecf1f5,
+        "alice-blue": #ECF1F5,
         "black-russian": #171725,
+        "whisper": #E5E5E5,
         "gray-300": #d0d5dd,
         "gray-500": #667085,
         "gray-600": #475467,
         "gray-700": #344054,
         "success-50": #ecfdf3,
         "success-100": #d1fadf,
+        "white-smoke": #F5F5F5,
       ),
     ),
     "new-border": (
@@ -114,14 +120,16 @@ $utilities: map-merge(
         "rum": #ebead5,
         "shuttle-grey": #63656b,
         "equator": #e0ba5b,
-        "alice-blue": #ecf1f5,
+        "alice-blue": #ECF1F5,
         "black-russian": #171725,
+        "whisper": #E5E5E5,
         "gray-300": #d0d5dd,
         "gray-500": #667085,
         "gray-600": #475467,
         "gray-700": #344054,
         "success-50": #ecfdf3,
         "success-100": #d1fadf,
+        "white-smoke": #F5F5F5,
       ),
     ),
     "line-height": (
@@ -166,6 +174,7 @@ $utilities: map-merge(
       responsive: true,
       values: (
         25: 25%,
+        30: 30%,
         40: 40%,
         45: 45%,
         50: 50%,
@@ -199,10 +208,12 @@ $mantis: #8cbe59;
 $rum: #ebead5;
 $shuttle-grey: #63656b;
 $equator: #e0ba5b;
-$alice-blue: #ecf1f5;
+$alice-blue: #ECF1F5;
 $black-russian: #171725;
+$whisper: #E5E5E5;
 $success-50: #ecfdf3;
 $success-100: #d1fadf;
+$white-smoke: #F5F5F5;
 
 $grid-breakpoints: (
   xs: 0,
