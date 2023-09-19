@@ -167,6 +167,7 @@ p {
 
 .ck-editor__editable {
   background-color: $white-smoke !important;
+  min-height: 90px;
   @include media-breakpoint-up(lg) {
     min-height: 126px;
   }
