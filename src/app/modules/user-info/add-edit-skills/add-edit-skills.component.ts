@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-edit-skills.component.scss']
 })
 export class AddEditSkillsComponent {
-
+  
 }

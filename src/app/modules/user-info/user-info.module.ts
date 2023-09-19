@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { AddEditProfileComponent } from './add-edit-profile/add-edit-profile.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MaterialModule } from 'src/app/material/material.module';
@@ -23,7 +24,8 @@ import { AddEditSkillsComponent } from './add-edit-skills/add-edit-skills.compon
   ],
   imports: [
     MaterialModule,
-    CKEditorModule
+    CKEditorModule,
+    CommonModule
   ],
   exports:[
     AddEditBasicinformationComponent,

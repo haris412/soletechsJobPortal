@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-edit-education.component.scss']
 })
 export class AddEditEducationComponent {
+  public completed: boolean = true;
+  public sidenavOpen: boolean = false;
+  title = 'angular';
 
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  OpenSidenav() {
+    this.sidenavOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  CloseSidenav() {
+    this.sidenavOpen = false;
+    document.body.style.overflow = 'auto';
+  }
 }

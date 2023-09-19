@@ -1,0 +1,31 @@
+@import "../../../styles/variables-saas";
+
+.education {
+  margin-bottom: 4.875rem;
+  .education-item-container {
+    margin-bottom: 1.25rem;
+    gap: 1.75rem;
+    .education-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 0.813rem;
+      padding-inline: 1rem;
+      background-color: $white-smoke;
+      .error {
+        background-color: #fde6e4;
+        .badge {
+          background-color: #D92D20;
+        }
+        span {
+          color: #B42318;
+          font-size: 0.75rem;
+          font-family: $font-poppins-medium;
+        }
+      }
+    }
+  }
+  .add-education {
+    padding-block: 0.75rem;
+  }
+}

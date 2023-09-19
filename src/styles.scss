@@ -117,6 +117,12 @@ p {
   }
 }
 
+.text-area {
+  .mat-mdc-text-field-wrapper {
+    height: auto;
+  }
+}
+
 .py-12_5 {
   padding-block: 12.5rem;
 }
@@ -165,10 +171,58 @@ p {
   }
 }
 
+.sign-up-info-div {
+  padding: 2rem;
+  background-color: white;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  .heading {
+    font-size: 1.25rem;
+    font-family: $font-poppins-bold;
+  }
+}
+
 .ck-editor__editable {
   background-color: $white-smoke !important;
   min-height: 90px;
   @include media-breakpoint-up(lg) {
     min-height: 126px;
+  }
+}
+
+.sidenav {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  box-shadow: 0px 1px 22px 0px rgba(0, 0, 0, 0.18);
+  overflow-y: scroll;
+  z-index: 2;
+  .heading {
+    font-size: 1.25rem;
+    font-family: $font-poppins-bold;
+  }
+  &.close {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  &.open {
+    transform: translateX(0%);
+    transition: transform 0.3s ease-in-out;
+  }
+  form {
+    margin-top: 3.375rem;
+    margin-bottom: 2rem;
+    p {
+      font-family: $font-poppins-bold;
+    }
+  }
+  .action-btns {
+    .btn {
+      width: 111px;
+      &:nth-child(2) {
+        padding-inline: 0.313rem;
+      }
+    }
   }
 }
