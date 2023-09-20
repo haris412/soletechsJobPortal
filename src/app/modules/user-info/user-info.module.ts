@@ -12,12 +12,16 @@ import { AddEditSkillsComponent } from './add-edit-skills/add-edit-skills.compon
 import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { AddressComponent } from './address/address.component';
 import { IdentificationComponent } from './identification/identification.component';
+import { UserInfoComponent } from './user-info.component';
+import { UserInfoRoutes } from './user-info-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
 
 @NgModule({
   declarations: [
+    UserInfoComponent,
     AddEditBasicinformationComponent,
     AddEditEducationComponent,
     AddEditExperienceComponent,
@@ -29,6 +33,7 @@ import { IdentificationComponent } from './identification/identification.compone
     IdentificationComponent
   ],
   imports: [
+    RouterModule.forChild(UserInfoRoutes),
     MaterialModule,
     CKEditorModule,
     CommonModule
