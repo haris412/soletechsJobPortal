@@ -9,6 +9,8 @@ import { AddEditEducationComponent } from './add-edit-education/add-edit-educati
 import { AddEditExperienceComponent } from './add-edit-experience/add-edit-experience.component';
 import { AddEditPortfolioComponent } from './add-edit-portfolio/add-edit-portfolio.component';
 import { AddEditSkillsComponent } from './add-edit-skills/add-edit-skills.component';
+import { ContactInfoComponent } from './contact-info/contact-info.component';
+import { AddressComponent } from './address/address.component';
 
 
 
@@ -20,7 +22,9 @@ import { AddEditSkillsComponent } from './add-edit-skills/add-edit-skills.compon
     AddEditExperienceComponent,
     AddEditPortfolioComponent,
     AddEditSkillsComponent,
-    AddEditProfileComponent
+    AddEditProfileComponent,
+    ContactInfoComponent,
+    AddressComponent
   ],
   imports: [
     MaterialModule,
