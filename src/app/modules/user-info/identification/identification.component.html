@@ -1,1 +1,46 @@
-<p>identification works!</p>
+<div class="main-container">
+  <div class="sign-up-info-div">
+    <form class="row" action="">
+      <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Identification Type</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="card">Card</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Identification Number</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Issue Date</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput [matDatepicker]="issueDate">
+          <mat-datepicker-toggle matIconSuffix [for]="issueDate"></mat-datepicker-toggle>
+          <mat-datepicker #issueDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Expiry Date</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput [matDatepicker]="expiryDate">
+          <mat-datepicker-toggle matIconSuffix [for]="expiryDate"></mat-datepicker-toggle>
+          <mat-datepicker #expiryDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="d-flex browse-file">
+        <button
+          type="button"
+          class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-sm-auto w-lg-50 w-100 position-relative"
+        >
+          Attach Document
+          <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file" id="formFile">
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

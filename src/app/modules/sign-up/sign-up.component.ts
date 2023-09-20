@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
@@ -13,7 +14,7 @@ export class SignUpComponent implements OnInit {
     title = 'angular';
     public Editor = ClassicEditor;
     index:Number = 1;
-    constructor() { }
+    constructor(private router:Router) { }
 
     ngOnInit(): void {
     }
@@ -42,4 +43,7 @@ export class SignUpComponent implements OnInit {
     Back(index:Number){
 
     }
+		RouteToProfile() {
+			this.router.navigate(['/profile']);
+		}
 }

@@ -1,6 +1,7 @@
 @import "./../../styles/variables-saas";
 
 .container-fluid {
+  padding-block: 4.875rem;
   @include media-breakpoint-down(xl) {
     padding-inline: 1rem !important;
   }
@@ -11,55 +12,45 @@
   .back-button {
     margin-block: 1.875rem;
   }
-  .stepper {
-    li {
-      display: flex;
-      width: 100%;
-      div.stepper-progression {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-        opacity: 0.1;
-        p {
-          margin-bottom: 0 !important;
-          width: 8px;
-          height: 8px;
-        }
-        &:not(.last-step)::after {
-          content: "";
-          height: 34px;
-          width: 2px;
-          background-color: $midnight-moss;
-          position: absolute;
-          bottom: -38px;
-        }
-        &.active {
-          opacity: 1;
-        }
-        img{
-          position: absolute;
-          top: 5px;
-          height: 17px;
-          width: 15px
-        }
+  .sign-up-info-div {
+    .upload-profile-pic {
+      .profile {
+        width: 70px;
+        height: 70px;
+        margin-right: 1.25rem;
+        border-radius: 50%;
+        overflow: hidden;
       }
-      .stepper-items {
+      img {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        padding-inline: 0.75rem;
-        margin-bottom: 1.5rem;
-        p {
-          margin-bottom: 0 !important;
-          &:first-child {
-            color: $midnight-moss;
-            font-family: $font-poppins-semi;
+        height: auto;
+        display: block;
+      }
+    }
+    .files-div {
+      gap: 2.5rem;
+      margin-bottom: 1.25rem;
+      .uploaded-files {
+        gap: 1rem;
+        @include media-breakpoint-up(xxl) {
+          gap: 1.25rem;
+        }
+        .file-details {
+          width: 230px;
+          display: flex;
+          justify-content: space-between;
+          padding: 0.75rem;
+          background-color: rgba(20, 129, 96, 0.1);
+          .file-name-type {
+            display: flex;
+            flex-direction: column;
+            .file-name {
+              font-size: 0.75rem;
+              font-family: $font-poppins-semi;
+            }
           }
-          &:nth-child(2) {
-            color: $gray-600;
+          @include media-breakpoint-up(xxl) {
+            width: 276px;
           }
         }
       }
