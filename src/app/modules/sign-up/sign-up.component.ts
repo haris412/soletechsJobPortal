@@ -24,5 +24,6 @@ export class SignUpComponent implements OnInit {
     CloseSidenav() {
         this.sidenavOpen = false;
     }
-
+    
+    Next(){}
 }
