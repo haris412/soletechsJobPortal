@@ -14,7 +14,7 @@ import { SignupRoutes } from './sign-up-routing';
   imports: [
     RouterModule.forChild(SignupRoutes),
     CommonModule,
-    UserInfoModule,
+    // UserInfoModule,
     MaterialModule,
     CKEditorModule
   ],
