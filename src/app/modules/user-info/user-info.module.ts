@@ -11,6 +11,7 @@ import { AddEditPortfolioComponent } from './add-edit-portfolio/add-edit-portfol
 import { AddEditSkillsComponent } from './add-edit-skills/add-edit-skills.component';
 import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { AddressComponent } from './address/address.component';
+import { IdentificationComponent } from './identification/identification.component';
 
 
 
@@ -24,7 +25,8 @@ import { AddressComponent } from './address/address.component';
     AddEditSkillsComponent,
     AddEditProfileComponent,
     ContactInfoComponent,
-    AddressComponent
+    AddressComponent,
+    IdentificationComponent
   ],
   imports: [
     MaterialModule,
