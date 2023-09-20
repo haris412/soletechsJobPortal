@@ -39,7 +39,10 @@ import { IdentificationComponent } from './identification/identification.compone
     AddEditExperienceComponent,
     AddEditPortfolioComponent,
     AddEditSkillsComponent,
-    AddEditProfileComponent
+    AddEditProfileComponent,
+    ContactInfoComponent,
+    AddressComponent,
+    IdentificationComponent
   ],
   providers: [],
 })

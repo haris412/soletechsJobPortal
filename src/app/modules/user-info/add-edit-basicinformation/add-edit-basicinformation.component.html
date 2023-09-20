@@ -1,6 +1,110 @@
-<div class="basic-information">
-  
-  <div class="sign-up-info-div profile-div">
+<div class="main-container">
+  <div class="sign-up-info-div">
+    <form class="row" action="">
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Name</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Date of Birth</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Nationality</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="pakistan">Pakistan</mat-option>
+            <mat-option value="india">India</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Gender</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Marital Status</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="single">Single</mat-option>
+            <mat-option value="married">Married</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Ethnic Origin</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="asian">Asian</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Native Language</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="english">English</mat-option>
+            <mat-option value="russian">Russian</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Previous Employer</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Current Salary</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input type="number" matInput />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Current Job Title</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Highest Degree</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="BS">BS</mat-option>
+            <mat-option value="MS">MS</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Reason Code</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select >
+            <mat-option value="english">English</mat-option>
+            <mat-option value="russian">Russian</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="sign-up-info-div profile-div">
     <span class="heading">Profile Picture</span>
     <div class="d-flex align-items-center upload-profile-pic mt-3">
       <div class="profile">
@@ -85,10 +189,10 @@
         (click)="OpenSidenav()"
       />
     </div>
-  </div>
+  </div> -->
 </div>
 
-<div
+<!-- <div
   class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-30 w-lg-45 w-md-75 w-100"
   [ngClass]="sidenavOpen ? 'open' : 'close'"
 >
@@ -127,7 +231,7 @@
     <div class="d-flex flex-column">
       <p>Gender</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select panelClass="gender">
+        <mat-select >
           <mat-option value="male">Male</mat-option>
           <mat-option value="female">Female</mat-option>
         </mat-select>
@@ -164,4 +268,4 @@
       Save
     </button>
   </div>
-</div>
+</div> -->

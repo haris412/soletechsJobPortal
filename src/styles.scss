@@ -102,9 +102,14 @@ p {
   }
   .mdc-text-field {
     align-items: center;
+    background-color: $white-smoke;
+    border-radius: 0.375rem;
   }
   .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: $gray-500;
+  }
+  .mdc-text-field--focused {
+    border: 1px solid $midnight-moss;
   }
   .mat-mdc-form-field-hint-wrapper,
   .mat-mdc-form-field-error-wrapper {
@@ -114,6 +119,23 @@ p {
     font-family: "Poppins-Regular";
     color: $gray-600;
     font-size: 0.875rem;
+  }
+  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: black;
+  }
+  .mdc-text-field .mdc-text-field__input {
+    caret-color: $gossamer;
+  }
+  .mat-mdc-select-arrow-wrapper {
+    display: none;
+  }
+  .mat-mdc-form-field-icon-suffix {
+    padding-right: 10px;
+  }
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border: none;
   }
 }
 
@@ -149,40 +171,17 @@ p {
   }
 }
 
-.sidenav {
-  .mat-mdc-form-field {
-    .mdc-text-field {
-      background-color: $white-smoke;
-      border-radius: 0.375rem;
+.main-container {
+  margin-bottom: 4.875rem;
+  .sign-up-info-div {
+    padding: 2rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    .heading {
+      font-size: 1.25rem;
+      font-family: $font-poppins-bold;
     }
-  }
-  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
-    color: black;
-  }
-  .mdc-text-field .mdc-text-field__input {
-    caret-color: $gossamer;
-  }
-  .mat-mdc-select-arrow-wrapper {
-    display: none;
-  }
-  .mat-mdc-form-field-icon-suffix {
-    padding-right: 10px;
-  }
-  .mdc-notched-outline__leading,
-  .mdc-notched-outline__notch,
-  .mdc-notched-outline__trailing {
-    border: none;
-  }
-}
-
-.sign-up-info-div {
-  padding: 2rem;
-  background-color: white;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  .heading {
-    font-size: 1.25rem;
-    font-family: $font-poppins-bold;
   }
 }
 
@@ -191,6 +190,12 @@ p {
   min-height: 90px;
   @include media-breakpoint-up(lg) {
     min-height: 126px;
+  }
+}
+
+form {
+  p {
+    font-family: $font-poppins-bold;
   }
 }
 
@@ -229,4 +234,8 @@ p {
       }
     }
   }
+}
+
+.action-btns {
+  margin-bottom: 2rem;
 }

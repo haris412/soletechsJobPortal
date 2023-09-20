@@ -1,16 +1,7 @@
 @import "../../../styles/variables-saas";
 
 .basic-information {
-  margin-bottom: 4.875rem;
   .sign-up-info-div {
-    padding: 2rem;
-    background-color: white;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    .heading {
-      font-size: 1.25rem;
-      font-family: $font-poppins-bold;
-    }
     .upload-profile-pic {
       .profile {
         width: 70px;
@@ -30,7 +21,7 @@
       margin-bottom: 1.25rem;
       .uploaded-files {
         gap: 1rem;
-        @include media-breakpoint-up (xxl) {
+        @include media-breakpoint-up(xxl) {
           gap: 1.25rem;
         }
         .file-details {
