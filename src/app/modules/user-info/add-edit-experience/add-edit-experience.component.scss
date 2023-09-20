@@ -1,31 +1,33 @@
 @import "../../../styles/variables-saas";
 
-.education {
+.experience {
   margin-bottom: 4.875rem;
-  .education-item-container {
+  .experience-item-container {
     margin-bottom: 1.25rem;
     gap: 1.75rem;
-    .education-item {
+    .experience-item {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       padding-block: 0.813rem;
       padding-inline: 1rem;
       background-color: $white-smoke;
       .error {
-        background-color: #fde6e4;
+        background-color: $error-50;
+        margin-left: -2px;
+        width: fit-content;
         .badge {
-          background-color: #D92D20;
+          background-color: $error-600;
         }
         span {
-          color: #B42318;
+          color: $error-700;
           font-size: 0.75rem;
           font-family: $font-poppins-medium;
         }
       }
     }
   }
-  .add-education {
+  .add-experience {
     padding-block: 0.75rem;
+    
   }
 }
