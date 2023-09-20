@@ -65,12 +65,12 @@
 
         <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections">
             <h4 class="font-poppins-bold">Sign up</h4>
-            <!-- <app-add-edit-basicinformation *ngIf=""></app-add-edit-basicinformation>
-            <app-add-edit-education *ngIf=""></app-add-edit-education> -->
-            <app-add-edit-experience ></app-add-edit-experience>
-            <!-- <app-add-edit-portfolio *ngIf=""></app-add-edit-portfolio>
-            <app-add-edit-skills *ngIf=""></app-add-edit-skills>
-            <app-add-edit-profile *ngIf=""></app-add-edit-profile> -->
+            <app-add-edit-basicinformation *ngIf = "index === 1"></app-add-edit-basicinformation>
+            <app-add-edit-education *ngIf = "index === 2"></app-add-edit-education>
+            <app-add-edit-experience *ngIf = "index === 3" ></app-add-edit-experience>
+            <app-add-edit-portfolio *ngIf = "index === 4"></app-add-edit-portfolio>
+            <app-add-edit-skills *ngIf = "index === 5"></app-add-edit-skills>
+            <app-add-edit-profile *ngIf = "index === 6"></app-add-edit-profile>
             <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
                 <button type="button"
                     class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3">
