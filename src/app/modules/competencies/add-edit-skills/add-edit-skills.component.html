@@ -19,7 +19,7 @@
       <div
         class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
       >
-        <img src="assets/SVG/trash-01.svg" alt="" />
+        <img src="assets/SVG/trash-01.svg" alt="" (click)="DeleteModal()"/>
       </div>
     </div>
       <div class="d-flex align-items-center w-100 skills-item-container">
@@ -72,43 +72,50 @@
   class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-30 w-lg-45 w-md-75 w-100"
   [ngClass]="sidenavOpen ? 'open' : 'close'"
 >
-  <span class="heading">skills</span>
+  <span class="heading">Skills</span>
   <form class="d-flex flex-column w-100" action="">
     <div class="d-flex flex-column">
-      <p>Company</p>
+      <p>Skill ID</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-select >
+          <mat-option value="pakistan">Pakistan</mat-option>
+          <mat-option value="india">India</mat-option>
+        </mat-select>
+        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column">
+      <p>Level</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-select >
+          <mat-option value="pakistan">Pakistan</mat-option>
+          <mat-option value="india">India</mat-option>
+        </mat-select>
+        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column">
+      <p>Level Date</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column">
+      <p>Year of Experience</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput />
       </mat-form-field>
     </div>
-    <div class="d-flex flex-column">
-      <p>Title</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput />
-      </mat-form-field>
-    </div>
-    <div class="row mx-0 justify-content-between">
-      <div class="d-flex flex-column p-0 col-lg-5">
-        <p>Started On</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div class="d-flex flex-column p-0 col-lg-5">
-        <p>Ended On</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="d-flex flex-column">
-      <p>Description</p>
-      <mat-form-field appearance="outline" class="text-area w-100">
-        <textarea rows="2" matInput></textarea>
-      </mat-form-field>
+    <div class="browse-file">
+      <button
+        type="button"
+        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-100 position-relative"
+      >
+        Attachment
+        <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file" id="formFile">
+      </button>
     </div>
   </form>
   <div

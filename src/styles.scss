@@ -98,7 +98,7 @@ p {
   color: $gray-500;
   font-family: "Poppins-Regular";
   .mat-mdc-text-field-wrapper {
-    height: 2.75rem;
+    height: 2.75rem !important;
   }
   .mdc-text-field {
     align-items: center;
@@ -145,7 +145,7 @@ p {
 
 .text-area {
   .mat-mdc-text-field-wrapper {
-    height: auto;
+    height: auto !important;
   }
 }
 
@@ -242,4 +242,13 @@ form {
 
 .action-btns {
   margin-bottom: 2rem;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 0.5rem !important;
+}
+
+.cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.87);
+  backdrop-filter: blur(5px); /* Customize the background color and opacity */
 }

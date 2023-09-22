@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MaterialModule } from 'src/app/material/material.module';
 
+
 @NgModule({
   declarations: [
     CoursesComponent,
@@ -26,7 +27,7 @@ import { MaterialModule } from 'src/app/material/material.module';
     RouterModule.forChild(CompetenciesRoutes),
     MaterialModule,
     CKEditorModule,
-    CommonModule
+    CommonModule,
   ],
   exports: [
     AddEditEducationComponent,

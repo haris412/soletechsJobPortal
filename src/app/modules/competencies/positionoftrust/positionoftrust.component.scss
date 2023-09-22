@@ -1,0 +1,33 @@
+@import "../../../styles/variables-saas";
+
+.main-container {
+  
+  .position-item-container {
+    margin-bottom: 1.25rem;
+    gap: 1.75rem;
+    .position-item {
+      display: flex;
+      flex-direction: column;
+      padding-block: 0.813rem;
+      padding-inline: 1rem;
+      background-color: $white-smoke;
+      .error {
+        background-color: $error-50;
+        margin-left: -2px;
+        width: fit-content;
+        .badge {
+          background-color: $error-600;
+        }
+        span {
+          color: $error-700;
+          font-size: 0.75rem;
+          font-family: $font-poppins-medium;
+        }
+      }
+    }
+  }
+  .add-position {
+    padding-block: 0.75rem;
+    
+  }
+}
