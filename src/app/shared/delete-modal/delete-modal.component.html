@@ -1,21 +1,22 @@
 <div class="parent-container">
-  <img height="26" width="26" src="assets/SVG/delete.svg" alt="delete" />
+  <div class="p-2"><img height="26" width="26" src="assets/SVG/delete.svg" alt="delete" /></div>
   <div>
     <h6 class="text-midnight-moss font-poppins-bold">Delete entry</h6>
     <p class="text-shuttle-grey">
       Are you sure you want to delete this? This action cannot be undone.
     </p>
   </div>
-  <div class="d-flex align-items-center justify-content-end w-100">
+  <div class="row mx-0 gap-2">
     <button
       type="button"
-      class="btn border border-color-gray-300 text-gray-700 rounded font-poppins-medium"
+      class="btn border border-color-gray-300 text-gray-700 rounded font-poppins-medium col-lg-6"
+      (click)="closeDialog()"
     >
       Cancel
     </button>
     <button
       type="button"
-      class="btn text-white bg-error-600 rounded font-poppins-medium"
+      class="btn text-white bg-error-600 rounded font-poppins-medium col-lg-6"
     >
       Delete
     </button>

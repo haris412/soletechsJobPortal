@@ -11,6 +11,7 @@ import { PasswordResetSuccessComponent } from './components/password-reset-succe
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { UserInfoModule } from '../modules/user-info/user-info.module';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { SignupModalComponent } from './signup-modal/signup-modal.component';
 
 
 
@@ -23,6 +24,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     ForgetpasswordComponent,
     ResetPasswordComponent,
     PasswordResetSuccessComponent,
+    SignupModalComponent,
   ],
   imports: [
     MaterialModule,

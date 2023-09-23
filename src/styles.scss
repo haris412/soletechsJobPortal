@@ -252,3 +252,22 @@ form {
   background-color: rgba(0, 0, 0, 0.87);
   backdrop-filter: blur(5px); /* Customize the background color and opacity */
 }
+
+.delete-modal {
+  width: 340px !important;
+  height: 256px !important;
+  border-radius: 0.75rem;
+  @include media-breakpoint-up(sm) {
+    height: 244px !important;
+    width: 400px !important;
+  }
+}
+
+.signup-modal {
+  width: 342px !important;
+  height: 524px !important;
+  border-radius: 0.75rem;
+  @include media-breakpoint-up(sm) {
+    width: 400px !important;
+  }
+}

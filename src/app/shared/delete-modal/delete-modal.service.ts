@@ -11,8 +11,13 @@ export class DeleteModalComponentService {
   openDialog(message: string): MatDialogRef<DeleteModalComponent> {
     return this.dialog.open(DeleteModalComponent, {
       data: { message },
-      width: '375',
       disableClose: true,
+      panelClass: 'delete-modal',
+      enterAnimationDuration: 300,
+      exitAnimationDuration: 300
     });
+  }
+  closeDialog(dialogRef: MatDialogRef<DeleteModalComponent>) {
+    dialogRef.close();
   }
 }
