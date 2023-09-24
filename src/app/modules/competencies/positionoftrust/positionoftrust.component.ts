@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./positionoftrust.component.scss']
 })
 export class PositionoftrustComponent {
+  public completed: boolean = true;
+  public sidenavOpen: boolean = false;
+  title = 'angular';
 
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  OpenSidenav() {
+    this.sidenavOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  CloseSidenav() {
+    this.sidenavOpen = false;
+    document.body.style.overflow = 'auto';
+  }
 }

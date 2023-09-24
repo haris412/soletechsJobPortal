@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Job } from 'src/app/models/job.model';
+import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-modal.service';
 
 @Component({
   selector: 'app-jobs',
@@ -18,7 +19,7 @@ export class JobsComponent implements OnInit {
   show: boolean = false;;
   mobileView: boolean = false;
   webView: boolean = true;
-  constructor() { }
+  constructor(private signUp: SignupModalComponentService) { }
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
@@ -43,5 +44,7 @@ export class JobsComponent implements OnInit {
   Back() {
     this.backClicked.emit(true);
   }
-
+  SignUpModal() {
+    const dialogRef = this.signUp.openDialog('');
+  }
 }

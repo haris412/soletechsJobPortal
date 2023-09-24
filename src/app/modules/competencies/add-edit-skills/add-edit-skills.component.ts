@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {DeleteModalComponentService} from '../../../shared/delete-modal/delete-modal.service'
 
 @Component({
   selector: 'app-add-edit-skills',
@@ -10,7 +11,9 @@ export class AddEditSkillsComponent {
   public sidenavOpen: boolean = false;
   title = 'angular';
 
-  constructor() { }
+  constructor(
+    private deleteModal: DeleteModalComponentService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -23,5 +26,9 @@ export class AddEditSkillsComponent {
   CloseSidenav() {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
+  }
+
+  DeleteModal() {
+    const dialogRef = this.deleteModal.openDialog('Are you sure you want to proceed?');
   }
 }

@@ -1,0 +1,17 @@
+
+@import "../../styles/variables-saas";
+.parent-container {
+  .lower-container {
+    padding-top: 2rem;
+      padding-bottom: 0.5rem;
+      .btn-container {
+        .btn {
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+    .seperator {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

@@ -10,6 +10,8 @@ import { MaterialModule } from '../material/material.module';
 import { PasswordResetSuccessComponent } from './components/password-reset-success/password-reset-success.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { UserInfoModule } from '../modules/user-info/user-info.module';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { SignupModalComponent } from './signup-modal/signup-modal.component';
 
 
 
@@ -21,7 +23,8 @@ import { UserInfoModule } from '../modules/user-info/user-info.module';
     SignupComponent,
     ForgetpasswordComponent,
     ResetPasswordComponent,
-    PasswordResetSuccessComponent
+    PasswordResetSuccessComponent,
+    SignupModalComponent,
   ],
   imports: [
     MaterialModule,
@@ -35,7 +38,6 @@ import { UserInfoModule } from '../modules/user-info/user-info.module';
     SignupComponent,
     ForgetpasswordComponent,
     ResetPasswordComponent,
-    
   ]
 })
 export class SharedModule { }

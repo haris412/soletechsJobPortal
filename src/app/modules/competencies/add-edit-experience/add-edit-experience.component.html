@@ -76,40 +76,46 @@
   class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-30 w-lg-45 w-md-75 w-100"
   [ngClass]="sidenavOpen ? 'open' : 'close'"
 >
-  <span class="heading">experience</span>
+  <span class="heading">Professional Experience</span>
   <form class="d-flex flex-column w-100" action="">
     <div class="d-flex flex-column">
-      <p>Company</p>
+      <p>Employer</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput />
       </mat-form-field>
     </div>
     <div class="d-flex flex-column">
-      <p>Title</p>
+      <p>Position</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput />
       </mat-form-field>
     </div>
-    <div class="row mx-0 justify-content-between">
-      <div class="d-flex flex-column p-0 col-lg-5">
+    <div class="d-flex flex-column">
+      <p>Internet Address</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput />
+      </mat-form-field>
+    </div>
+    <div class="d-flex">
+      <div class="d-flex flex-column p-0 w-50 me-2">
         <p>Started On</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput [matDatepicker]="picker1">
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column p-0 col-lg-5">
+      <div class="d-flex flex-column p-0 w-50">
         <p>Ended On</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput [matDatepicker]="picker2">
+          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
     <div class="d-flex flex-column">
-      <p>Description</p>
+      <p>Notes</p>
       <mat-form-field appearance="outline" class="text-area w-100">
         <textarea rows="2" matInput></textarea>
       </mat-form-field>
