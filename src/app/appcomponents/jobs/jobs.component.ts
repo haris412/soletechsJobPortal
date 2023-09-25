@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Job } from 'src/app/models/job.model';
 import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-modal.service';
 
@@ -16,10 +17,13 @@ export class JobsComponent implements OnInit {
   @Output() backClicked: EventEmitter<boolean> = new EventEmitter();
   width: number = window.innerWidth;
   minimunWidth: number = 992;
-  show: boolean = false;;
+  show: boolean = false;
   mobileView: boolean = false;
   webView: boolean = true;
-  constructor(private signUp: SignupModalComponentService) { }
+  constructor(
+    private signUp: SignupModalComponentService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
@@ -47,4 +51,4 @@ export class JobsComponent implements OnInit {
   SignUpModal() {
     const dialogRef = this.signUp.openDialog('');
   }
-}
+  }
