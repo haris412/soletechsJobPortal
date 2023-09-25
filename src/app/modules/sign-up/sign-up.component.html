@@ -6,16 +6,11 @@
         <img src="assets/Images/Profile.png" alt="" />
       </div>
       <div class="d-flex flex-column flex-lg-row upload-btns gap-2">
-        <button
-          type="button"
-          class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8"
-        >
+        <button type="button" class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8">
           Change Avatar
         </button>
-        <button
-          type="button"
-          class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-        >
+        <button type="button"
+          class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8">
           Remove Avatar
         </button>
       </div>
@@ -23,9 +18,7 @@
   </div>
   <div class="sign-up-info-div cv-div">
     <span class="heading">CV File</span>
-    <div
-      class="p-3 d-flex flex-column flex-xl-row files-div rounded border border-color-whisper mt-3"
-    >
+    <div class="p-3 d-flex flex-column flex-xl-row files-div rounded border border-color-whisper mt-3">
       <div class="uploaded-files d-flex align-items-center">
         <div class="file-details rounded">
           <div class="file-name-type">
@@ -36,9 +29,7 @@
             <img src="assets/SVG/pdf-icon.svg" alt="" />
           </div>
         </div>
-        <div
-          class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
-        >
+        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
           <img src="assets/SVG/trash-01.svg" alt="" />
         </div>
       </div>
@@ -52,18 +43,14 @@
             <img src="assets/SVG/doc-icon.svg" alt="" />
           </div>
         </div>
-        <div
-          class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
-        >
+        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
           <img src="assets/SVG/trash-01.svg" alt="" />
         </div>
       </div>
     </div>
     <div class="d-flex flex-sm-row flex-column align-items-sm-center browse-file gap-4">
-      <button
-        type="button"
-        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-sm-auto w-100 position-relative"
-      >
+      <button type="button"
+        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-sm-auto w-100 position-relative">
         Browse
         <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file" id="formFile">
       </button>
@@ -72,28 +59,18 @@
   </div>
   <div class="sign-up-info-div about-me">
     <span class="heading">About Me</span>
-      <ckeditor [editor]="Editor"></ckeditor>
+    <ckeditor [editor]="Editor"></ckeditor>
   </div>
   <div class="sign-up-info-div">
     <div class="d-flex align-items-center justify-content-between">
       <span class="heading">Profile</span>
-      <img
-        src="assets/SVG/edit-icon.svg"
-        alt=""
-        class="cursor-pointer"
-        (click)="RouteToProfile()"
-      />
+      <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToProfile()" />
     </div>
   </div>
   <div class="sign-up-info-div">
     <div class="d-flex align-items-center justify-content-between">
       <span class="heading">Competencies</span>
-      <img
-        src="assets/SVG/edit-icon.svg"
-        alt=""
-        class="cursor-pointer"
-        (click)="RouteToCompetencies()"
-      />
+      <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToCompetencies()" />
     </div>
   </div>
 </div>
