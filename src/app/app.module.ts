@@ -9,12 +9,14 @@ import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './material/material.module';
 import { JobsListComponent } from './appcomponents/jobs-list/jobs-list.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     JobsComponent,
     JobsListComponent,
+    QuickApplyComponent,
     
   ],
   imports: [
