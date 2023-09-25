@@ -23,7 +23,7 @@ export class JobsComponent implements OnInit {
   constructor(
     private signUp: SignupModalComponentService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
@@ -51,4 +51,7 @@ export class JobsComponent implements OnInit {
   SignUpModal() {
     const dialogRef = this.signUp.openDialog('');
   }
+  QuickApply() {
+    this.router.navigate(['/quick-apply']);
   }
+}

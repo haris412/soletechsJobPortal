@@ -12,7 +12,9 @@ export class SignupModalComponentService {
     return this.dialog.open(SignupModalComponent, {
       data: { message },
       disableClose: true,
-      panelClass: 'signup-modal'
+      panelClass: 'signup-modal',
+      enterAnimationDuration: 300,
+      exitAnimationDuration: 300
     });
   }
   closeDialog() {

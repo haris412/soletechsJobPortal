@@ -1,4 +1,5 @@
 export enum RoutesEnum {
+    QuickApply = 'quick-apply',
     Login = 'login',
     SignUp = 'sign-up',
     Profile = 'profile',

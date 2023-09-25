@@ -1,4 +1,4 @@
-<div class="d-flex d-lg-none align-items-center gap-2 px-0" (click)="Back()" *ngIf="show">
+<div class="d-flex d-lg-none align-items-center gap-2 px-0 cursor-pointer" (click)="Back()" *ngIf="show">
     <img src="assets/SVG/Iconback.svg" alt="">
     <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
 </div>
@@ -31,11 +31,11 @@
             </p>
         </div>
         <div class="d-lg-flex d-none align-items-center gap-3 application-buttons mb-3">
-            <button type="button" class="btn rounded-3 text-secondary">
+            <button type="button" class="btn rounded-3 text-secondary" (click)="SignUpModal()">
                 Sign Up
             </button>
 
-            <button type="button" class="btn btn-dark rounded-3">
+            <button type="button" class="btn btn-dark rounded-3" (click)="QuickApply()">
                 Quick Apply
             </button>
         </div>
@@ -104,7 +104,7 @@
                         Sign Up
                     </button>
 
-                    <button type="button" class="btn btn-dark rounded-3">
+                    <button type="button" class="btn btn-dark rounded-3" (click)="QuickApply()">
                         Quick Apply
                     </button>
                 </div>

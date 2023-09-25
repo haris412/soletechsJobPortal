@@ -6,9 +6,11 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import { PasswordResetSuccessComponent } from './shared/components/password-reset-success/password-reset-success.component';
 import { JobsListComponent } from './appcomponents/jobs-list/jobs-list.component';
+import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.component';
 
 const routes: Routes = [
   { path: '', component: JobsListComponent },
+  { path: RoutesEnum.QuickApply, component: QuickApplyComponent },
   { path: RoutesEnum.ForgotPassword, component: ForgetpasswordComponent},
   { path: RoutesEnum.ResetPassword, component: ResetPasswordComponent},
   { path: RoutesEnum.Login, component: LoginComponent},

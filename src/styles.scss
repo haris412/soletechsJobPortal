@@ -149,6 +149,10 @@ p {
   }
 }
 
+.text-arabic {
+  direction: rtl;
+}
+
 .py-12_5 {
   padding-block: 12.5rem;
 }
@@ -200,6 +204,20 @@ p {
 form {
   p {
     font-family: $font-poppins-bold;
+  }
+  .linkedin-profile {
+    .linkedin-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $white-smoke;
+    }
+  }
+  .checkbox-field {
+    height: 97px;
   }
 }
 

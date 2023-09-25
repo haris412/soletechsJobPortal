@@ -1,4 +1,6 @@
 <div
-    class="footer d-none w-100 fixed-bottom d-lg-flex align-items-center justify-content-center py-2 bg-midnight-moss text-white">
+    class="footer d-none w-100  d-lg-flex align-items-center justify-content-center py-2 bg-midnight-moss text-white"
+    [ngClass]="isPositionAbsolute ? '' : 'fixed-bottom'"
+    >
     <p class="mb-0">&copy; 2023 JOBFINDER. All rights reserved.</p>
 </div>
