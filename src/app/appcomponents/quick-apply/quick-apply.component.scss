@@ -48,12 +48,29 @@
         }
       }
     }
-    .upload-cv {
-      font-size: 0.75rem;
-      font-family: $font-poppins-medium;
-      padding: 0.5rem 0.75rem;
-      .choose-file {
-        padding: 4px 12px;
+    .cv-div {
+      .upload-cv-view {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 120px;
+        width: 120px;
+        border: 1px dashed $echo-blue;
+      }
+      .upload-cv-text {
+        .file-size {
+          font-size: 0.75rem !important;
+          color: $storm-grey !important;
+          font-family: $font-poppins-medium !important;
+        }
+      }
+      .upload-cv {
+        font-size: 0.75rem;
+        font-family: $font-poppins-medium;
+        padding: 0.5rem 0.75rem;
+        .choose-file {
+          padding: 4px 12px;
+        }
       }
     }
   }

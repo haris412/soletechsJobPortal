@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="job-listings" *ngFor="let job of jobsList">
-                <div class="my-3 job-listing-detail light-border border-radius-8 overflow-hidden position-relative p-3 cursor-pointer"
+                <div class="my-3 job-listing-detail light-border border-radius-8 overflow-hidden position-relative p-3 cursor-pointer bg-white"
                     [ngClass]="{ 'bg-alice-blue': isActive }" (click) = OpenJob(job)>
                     <div class="d-flex flex-column align-items-start listing-detail-inner ps-1">
                         <div class="d-flex align-items-center justify-content-between w-100">

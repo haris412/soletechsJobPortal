@@ -52,6 +52,8 @@ h1 {
 }
 
 h2 {
+  font-size: 2.25rem !important; //36px
+  font-family: $font-poppins-semi !important;
 }
 
 h3 {
@@ -91,6 +93,15 @@ p {
 
 .font-poppins-bold {
   font-family: $font-poppins-bold !important;
+}
+
+.container-fluid {
+  @include media-breakpoint-up(xl) {
+    padding-inline: 6% !important;
+  }
+  @include media-breakpoint-down(xl) {
+    padding-inline: 1rem !important;
+  }
 }
 
 .mat-mdc-form-field {

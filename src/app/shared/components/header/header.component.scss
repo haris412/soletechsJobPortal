@@ -38,6 +38,9 @@
     .navbar {
       .container-fluid {
         padding-inline: 6%;
+        @include media-breakpoint-down(xl) {
+          padding-inline: 1rem;
+        }
       }
     }
   }
