@@ -277,7 +277,7 @@ form {
   border-radius: 0.5rem !important;
 }
 
-.cdk-overlay-backdrop {
+.cdk-overlay-backdrop:not(.mat-overlay-transparent-backdrop) {
   background-color: rgba(0, 0, 0, 0.87);
   backdrop-filter: blur(5px); /* Customize the background color and opacity */
 }
