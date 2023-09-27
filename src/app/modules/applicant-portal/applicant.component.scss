@@ -1,0 +1,10 @@
+@import "../../styles/variables-saas";
+@include media-breakpoint-up(xl) {
+  .col-xl-2 {
+    width: 18%;
+  }
+  
+  .col-xl-10 {
+    width: 82%;
+  }
+}

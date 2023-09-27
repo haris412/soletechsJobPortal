@@ -1,6 +1,6 @@
 @import "../../styles/variables-saas";
 
-.container-fluid {
+
   .back-button {
     margin-top: 4rem;
   }
@@ -74,16 +74,5 @@
       }
     }
   }
-}
 
-@include media-breakpoint-down(xl) {
-  .container-fluid {
-    padding-inline: 1rem !important;
-  }
-}
 
-@include media-breakpoint-up(xl) {
-  .container-fluid {
-    padding-inline: 6%;
-  }
-}

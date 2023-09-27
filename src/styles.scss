@@ -46,6 +46,7 @@ $my-theme: mat.define-light-theme(
 body {
   --bs-body-font-family: "Poppins-Regular" !important;
   background-color: $ivory !important;
+  height: 100vh;
 }
 
 h1 {

@@ -38,7 +38,8 @@ $my-colors: (
   "error-700": #b42318,
   "echo-blue": #aeb5c3,
   "storm-grey": #7D8088,
-  "pastel-green-dark": #00CE45
+  "pastel-green-dark": #00CE45,
+  "gray-200": #EAECF0
 );
 
 $theme-colors: map-merge($theme-colors, $my-colors);
@@ -81,7 +82,8 @@ $utilities: map-merge(
         "error-700": #b42318,
         "echo-blue": #aeb5c3,
         "storm-grey": #7D8088,
-        "pastel-green-dark": #00CE45
+        "pastel-green-dark": #00CE45,
+        "gray-200": #EAECF0
       ),
     ),
     "new-color": (
@@ -119,7 +121,8 @@ $utilities: map-merge(
         "error-700": #b42318,
         "echo-blue": #aeb5c3,
         "storm-grey": #7D8088,
-        "pastel-green-dark": #00CE45
+        "pastel-green-dark": #00CE45,
+        "gray-200": #EAECF0
       ),
     ),
     "new-border": (
@@ -157,7 +160,8 @@ $utilities: map-merge(
         "error-700": #b42318,
         "echo-blue": #aeb5c3,
         "storm-grey": #7D8088,
-        "pastel-green-dark": #00CE45
+        "pastel-green-dark": #00CE45,
+        "gray-200": #EAECF0
       ),
     ),
     "line-height": (
@@ -218,6 +222,7 @@ $utilities: map-merge(
     ),
   )
 );
+$gray-200: #EAECF0;
 $gray-300: #d0d5dd;
 $gray-500: #667085;
 $gray-600: #475467;

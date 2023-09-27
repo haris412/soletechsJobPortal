@@ -20,6 +20,8 @@ export class JobsComponent implements OnInit {
   show: boolean = false;
   mobileView: boolean = false;
   webView: boolean = true;
+  public sidenavOpen: boolean = false;
+
   constructor(
     private signUp: SignupModalComponentService,
     private router: Router
@@ -51,7 +53,13 @@ export class JobsComponent implements OnInit {
   SignUpModal() {
     const dialogRef = this.signUp.openDialog('');
   }
-  QuickApply() {
-    this.router.navigate(['/quick-apply']);
+  OpenSidenav() {
+    this.sidenavOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  CloseSidenav() {
+    this.sidenavOpen = false;
+    document.body.style.overflow = 'auto';
   }
 }

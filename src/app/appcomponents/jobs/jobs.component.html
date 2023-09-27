@@ -35,7 +35,7 @@
                 Sign Up
             </button>
 
-            <button type="button" class="btn btn-dark rounded-3" (click)="QuickApply()">
+            <button type="button" class="btn btn-dark rounded-3" (click)="OpenSidenav()">
                 Quick Apply
             </button>
         </div>
@@ -104,7 +104,7 @@
                         Sign Up
                     </button>
 
-                    <button type="button" class="btn btn-dark rounded-3" (click)="QuickApply()">
+                    <button type="button" class="btn btn-dark rounded-3" (click)="OpenSidenav()" >
                         Quick Apply
                     </button>
                 </div>
@@ -115,4 +115,19 @@
         <img height="185px" src="assets/SVG/illustration.svg" alt="" />
         <h6 class="text-black">Select a job to see it’s details</h6>
     </div>
+</div>
+
+<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
+  [ngClass]="sidenavOpen ? 'open' : 'close'">
+  <span class="heading">Quick Apply</span>
+  <app-quick-apply></app-quick-apply>
+  <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+      (click)="CloseSidenav()">
+      Cancel
+    </button>
+    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8" (click)="CloseSidenav()">
+      Apply now
+    </button>
+  </div>
 </div>
