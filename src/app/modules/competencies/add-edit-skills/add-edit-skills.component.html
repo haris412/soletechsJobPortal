@@ -2,43 +2,21 @@
   <div class="sign-up-info-div">
     <span class="heading">Skills</span>
     <div class="skills-list d-flex flex-column mt-3 col-sm-8 col-12">
-      <div class="d-flex align-items-center w-100 skills-item-container">
+      <div class="d-flex align-items-center w-100 skills-item-container" *ngFor="let skill of skillList">
         <div class="skills-item rounded w-100">
           <div class="d-flex align-items-center justify-content-between">
-            <h6 class="mb-1 font-poppins-bold">Skill 1</h6>
-            <img (click)="OpenSidenav()" src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" />
+            <h6 class="mb-1 font-poppins-bold">{{skill.skillId}}</h6>
+            <img (click)="EditSkill(skill)" src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" />
           </div>
         </div>
         <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-          <img src="assets/SVG/trash-01.svg" alt="" (click)="DeleteModal()" />
-        </div>
-      </div>
-      <div class="d-flex align-items-center w-100 skills-item-container">
-        <div class="skills-item rounded w-100">
-          <div class="d-flex align-items-center justify-content-between">
-            <h6 class="mb-1 font-poppins-bold">Skill 2</h6>
-            <img (click)="OpenSidenav()" src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" />
-          </div>
-        </div>
-        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-          <img src="assets/SVG/trash-01.svg" alt="" />
-        </div>
-      </div>
-      <div class="d-flex align-items-center w-100 skills-item-container">
-        <div class="skills-item rounded w-100">
-          <div class="d-flex align-items-center justify-content-between">
-            <h6 class="mb-1 font-poppins-bold">Skill 3</h6>
-            <img (click)="OpenSidenav()" src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" />
-          </div>
-        </div>
-        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-          <img src="assets/SVG/trash-01.svg" alt="" />
+          <img src="assets/SVG/trash-01.svg" alt="" (click)="DeleteModal(skill.skillId)" />
         </div>
       </div>
       <div
-        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-skills gap-2 cursor-pointer">
+        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-skills gap-2 cursor-pointer" (click)="OpenSidenav()">
         <img src="assets/SVG/plus-icon.svg" alt="" />
-        <h6 class="mb-0 font-poppins-medium">Add Another Skill</h6>
+        <h6 class="mb-0 font-poppins-medium" >Add Skill</h6>
       </div>
     </div>
   </div>
@@ -47,13 +25,13 @@
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-30 w-lg-45 w-md-75 w-100"
   [ngClass]="sidenavOpen ? 'open' : 'close'">
   <span class="heading">Skills</span>
-  <form class="d-flex flex-column w-100" action="">
+  <form class="d-flex flex-column w-100" action="" [formGroup]="form">
     <div class="d-flex flex-column">
       <p>Skill ID</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select>
-          <mat-option value="pakistan">HTML</mat-option>
-          <mat-option value="india">JAVASCRIPT</mat-option>
+        <mat-select [formControlName]="'skillId'">
+          <mat-option value="html">HTML</mat-option>
+          <mat-option value="javascript">JAVASCRIPT</mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
       </mat-form-field>
@@ -61,7 +39,7 @@
     <div class="d-flex flex-column">
       <p>Level</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select>
+        <mat-select [formControlName]="'level'">
           <mat-option value="pakistan">BEGINER</mat-option>
           <mat-option value="india">INTERMEDIATE</mat-option>
         </mat-select>
@@ -71,7 +49,7 @@
     <div class="d-flex flex-column">
       <p>Level Date</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker">
+        <input matInput [matDatepicker]="picker" [formControlName]="'levelDate'">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -79,14 +57,14 @@
     <div class="d-flex flex-column">
       <p>Year of Experience</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput />
+        <input matInput [formControlName]="'yearOfExperience'" />
       </mat-form-field>
     </div>
     <div class="browse-file">
       <button type="button"
         class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-100 position-relative">
         Attachment
-        <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file" id="formFile">
+        <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file" id="formFile" (change)="handleFileInputChange($event)">
       </button>
     </div>
   </form>
@@ -100,8 +78,9 @@
       (click)="CloseSidenav()">
       Save add new
     </button>
-    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSidenav()">
+    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="AddSkill()">
       Save
     </button>
   </div>
+
 </div>

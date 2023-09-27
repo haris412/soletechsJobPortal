@@ -8,5 +8,7 @@ export enum RoutesEnum {
     ResetPassword = 'reset-password',
     ResetPasswordSuccess = 'reset-password-success',
     App = 'app',
-    Applicant = 'applicant'
+    Applicant = 'applicant',
+    ApplicantDashboard = 'dashboard'
+
 }
