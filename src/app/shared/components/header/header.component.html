@@ -1,35 +1,151 @@
-<nav class="navbar navbar-expand-lg bg-light overflow-hidden">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img width="90" height="32" src="../assets/SVG/main-logo.svg" alt="" />
-        </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-            <img src="../assets/SVG/Icontoggle.svg" width="18" height="12" alt="">
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <button id="offcanvasNavbarLabel" type="button" class="btn-close btn-close-dark ms-auto"
-                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<nav class="navbar navbar-expand-lg bg-white py-0 border-0">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img width="90" height="32" src="../assets/SVG/main-logo.svg" alt="" />
+    </a>
+    <button
+      class="navbar-toggler border-0"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+    >
+      <img src="../assets/SVG/Icontoggle.svg" width="18" height="12" alt="" />
+    </button>
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <button
+          id="offcanvasNavbarLabel"
+          type="button"
+          class="btn-close btn-close-dark ms-auto"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div
+        class="offcanvas-body d-flex justify-content-lg-between flex-column gap-3 gap-lg-0 flex-lg-row"
+      >
+        <ul class="navbar-nav px-2 gap-4">
+          <li class="nav-item">
+            <div
+              class="nav-link d-flex align-items-center align-content-center active px-2 gap-1"
+              aria-current="page"
+            >
+              <img height="15" width="15" src="assets/SVG/home.svg" alt="" />
+              <p class="text-midnight-moss font-poppins-semi mb-0">Home</p>
             </div>
-            <div class="offcanvas-body d-flex justify-content-lg-between flex-column gap-3 gap-lg-0 flex-lg-row">
-                <ul class="navbar-nav px-2 gap-2">
-                    <li class="nav-item">
-                        <div class="nav-link d-flex align-items-center align-content-center with-border px-2 gap-1"
-                            aria-current="page">
-                            <img height="15" width="15" src="../assets/SVG/search.svg" alt="" />
-                            <p class="text-midnight-moss font-poppins-semi mb-0">
-                                Job Search
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-                <div>
-                    <button type="button" class="btn bg-midnight-moss text-white rounded-3 login-btn w-100 w-lg-auto" (click)="Login()">
-                        Login
-                    </button>
-                </div>
+          </li>
+          <li class="nav-item">
+            <div
+              class="nav-link d-flex align-items-center align-content-center px-2 gap-1"
+              aria-current="page"
+            >
+              <img
+                height="15"
+                width="15"
+                src="assets/SVG/ic_Dashboard Copy.svg"
+                alt=""
+              />
+              <p class="text-midnight-moss font-poppins-semi mb-0">
+                Saved Jobs
+              </p>
             </div>
+          </li>
+          <li class="nav-item">
+            <div
+              class="nav-link d-flex align-items-center align-content-center px-2 gap-1"
+              aria-current="page"
+            >
+              <img height="15" width="15" src="assets/SVG/search.svg" alt="" />
+              <p class="text-midnight-moss font-poppins-semi mb-0">
+                Job Search
+              </p>
+            </div>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center gap-4">
+          <div class="notification">
+            <img
+              width="20px"
+              src="assets/SVG/notification.svg"
+              alt="notification"
+            />
+            <div>02</div>
+          </div>
+          <div class="d-flex align-items-center profile-navigation gap-2">
+            <div class="profile">
+              <img src="assets/Images/Profile.png" alt="" />
+            </div>
+            <div class="dropdown">
+              <div
+                class="d-flex align-items-center gap-1"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span>Omar Mouneer</span
+                ><img
+                  width="20"
+                  src="assets/SVG/chevron-down.svg"
+                  alt="expand-down"
+                />
+              </div>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#"> <p>Action</p></a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><p>Another action</p></a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><p>Something else here</p></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="dropdown">
+							<div
+								class="d-flex align-items-center dropdown-toggle gap-1"
+								role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+							>
+								<span>Omar Mouneer</span
+								><img
+									width="20"
+									src="assets/SVG/chevron-down.svg"
+									alt="expand-down"
+								/>
+							</div>
+						</div>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul> -->
+          </div>
         </div>
+        <!-- <div>
+          <button
+            type="button"
+            class="btn bg-midnight-moss text-white rounded-3 login-btn w-100 w-lg-auto"
+            (click)="Login()"
+          >
+            Login
+          </button>
+        </div> -->
+      </div>
     </div>
+  </div>
 </nav>

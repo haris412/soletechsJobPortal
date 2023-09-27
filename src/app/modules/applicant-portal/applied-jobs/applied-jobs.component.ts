@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-applied-jobs',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppliedJobsComponent {
   public completed: boolean = false;
+  constructor(private router: Router) {
+
+  }
+  toJobActions() {
+    this.router.navigate(['/applicant/job-actions'])
+  }
 }

@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { ApplicantComponent } from './applicant.component';
 import { RoutesEnum } from 'src/app/shared/enums/routes.enum';
 import { ApplicantDashboardComponent } from './applicant-dashboard/applicant-dashboard.component';
+import { AppliedJobActionsComponent } from './applied-job-actions/applied-job-actions.component';
 
 
 export const applicatRoutes: Route[] = [
@@ -14,6 +15,10 @@ export const applicatRoutes: Route[] = [
                 path: RoutesEnum.ApplicantDashboard,
                 component: ApplicantDashboardComponent,
             },
+            {
+                path: RoutesEnum.JobActions,
+                component: AppliedJobActionsComponent
+            }
         ]
     }
 

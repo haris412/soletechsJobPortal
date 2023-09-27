@@ -1,4 +1,8 @@
-<app-header></app-header>
-<router-outlet [@routeTransition]="getState(o)"></router-outlet>
-
-<app-footer [isPositionAbsolute]="isPositionAbsolute"></app-footer>
+<div class="d-flex flex-column justify-content-between parent-container">
+  <div class="d-flex flex-column">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </div>
+  
+  <app-footer></app-footer>
+</div>

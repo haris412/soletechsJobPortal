@@ -46,7 +46,6 @@ $my-theme: mat.define-light-theme(
 body {
   --bs-body-font-family: "Poppins-Regular" !important;
   background-color: $ivory !important;
-  height: 100vh;
 }
 
 h1 {
@@ -97,10 +96,10 @@ p {
 }
 
 .container-fluid {
-  @include media-breakpoint-up(xl) {
+  @include media-breakpoint-up(xxl) {
     padding-inline: 6% !important;
   }
-  @include media-breakpoint-down(xl) {
+  @include media-breakpoint-down(xxl) {
     padding-inline: 1rem !important;
   }
 }

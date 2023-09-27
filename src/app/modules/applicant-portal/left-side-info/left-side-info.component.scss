@@ -27,7 +27,9 @@
 
 .next-actions {
   .job-details {
-    margin-bottom: 2.375rem;
+    @include media-breakpoint-up(xxl) {
+      margin-bottom: 2.375rem;
+    }
   }
   .month-date {
     .month {

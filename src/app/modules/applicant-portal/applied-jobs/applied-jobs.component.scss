@@ -24,6 +24,16 @@
     align-items: center;
     flex: 1;
     color: $gray-200;
+    @include media-breakpoint-up(md) {
+      p {
+        display: none;
+      }
+    }
+    @include media-breakpoint-down(md) {
+      h6 {
+        display: none;
+      }
+    }
   }
 
   .stepper-item::after {
@@ -49,6 +59,7 @@
     margin-bottom: 6px;
     background-color: white;
     p {
+      display: block;
       width: 8px;
       height: 8px;
       margin-bottom: 0;

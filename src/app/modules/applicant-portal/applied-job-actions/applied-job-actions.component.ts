@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./applied-job-actions.component.scss']
 })
 export class AppliedJobActionsComponent {
-
+  public completed: boolean = false;
 }
