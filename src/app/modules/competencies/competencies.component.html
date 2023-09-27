@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer">
+  <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
     <img src="assets/SVG/Iconback.svg" alt="" />
     <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
   </div>
@@ -7,9 +7,7 @@
   <div class="row mx-0">
     <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
       <li>
-        <div
-          class="stepper-progression active rounded-circle border border-color-midnight-moss"
-        >
+        <div class="stepper-progression active rounded-circle border border-color-midnight-moss">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
@@ -19,9 +17,7 @@
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
         <div class="stepper-items">
@@ -30,9 +26,7 @@
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
         <div class="stepper-items">
@@ -41,9 +35,7 @@
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
         <div class="stepper-items">
@@ -52,9 +44,7 @@
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
         <div class="stepper-items">
@@ -63,9 +53,7 @@
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
-        >
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
         <div class="stepper-items">
@@ -77,27 +65,20 @@
 
     <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections">
       <h4 class="font-poppins-bold">Competencies</h4>
-      <app-add-edit-skills *ngIf = "index === 1"></app-add-edit-skills>
-      <app-add-edit-experience *ngIf = "index === 2"></app-add-edit-experience>
-      <app-add-edit-education *ngIf = "index === 3"></app-add-edit-education>
-      <app-certificates *ngIf = "index === 4"></app-certificates>
-      <app-courses *ngIf = "index === 5"></app-courses>
-      <app-positionoftrust *ngIf = "index === 6"></app-positionoftrust>
+      <app-add-edit-skills *ngIf="index === 1"></app-add-edit-skills>
+      <app-add-edit-experience *ngIf="index === 2"></app-add-edit-experience>
+      <app-add-edit-education *ngIf="index === 3"></app-add-edit-education>
+      <app-certificates *ngIf="index === 4"></app-certificates>
+      <app-courses *ngIf="index === 5"></app-courses>
+      <app-positionoftrust *ngIf="index === 6"></app-positionoftrust>
 
-      <div
-        class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns"
-      >
-        <button
-          type="button"
-          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
-        >
+      <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
+        <button type="button"
+          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3" (click)="Back(index)">
           Discard
         </button>
-        <button
-          type="button"
-          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-          (click)="Next()"
-        >
+        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          (click)="Next()">
           Next
         </button>
       </div>
