@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-applied-job-actions',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppliedJobActionsComponent {
   public completed: boolean = false;
+  constructor(
+    private router: Router
+  ) {
+
+  }
+  toOnboarding() {
+    this.router.navigate(['/applicant/onboarding'])
+  }
 }

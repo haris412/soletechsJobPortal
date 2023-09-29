@@ -14,6 +14,9 @@ import { DependentComponent } from './applicant-onboarding/dependent/dependent.c
 import { AddressComponent } from './applicant-onboarding/address/address.component';
 import { EmergencyContactComponent } from './applicant-onboarding/emergency-contact/emergency-contact.component';
 import { applicatRoutes } from './applicat.routing';
+import { ApplicantOnboardingModule } from './applicant-onboarding/applicant-onboarding.module';
+import { MaterialModule } from 'src/app/material/material.module';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -25,16 +28,13 @@ import { applicatRoutes } from './applicat.routing';
     SavedJobsComponent, 
     ApplicantDashboardComponent, 
     AppliedJobActionsComponent, 
-    IdentificationComponent, 
-    DocumentsComponent, 
-    MedicalCheckUpComponent, 
-    DependentComponent, 
-    AddressComponent, 
-    EmergencyContactComponent
   ],
   imports: [
     RouterModule.forChild(applicatRoutes),
-    CommonModule
+    CommonModule,
+    ApplicantOnboardingModule,
+    MaterialModule,
+    CKEditorModule,
   ]
 })
 export class ApplicantPortalModule { }

@@ -10,5 +10,6 @@ export enum RoutesEnum {
     App = 'app',
     Applicant = 'applicant',
     ApplicantDashboard = 'dashboard',
-    JobActions = 'job-actions'
+    JobActions = 'job-actions',
+    Onboarding = 'onboarding',
 }

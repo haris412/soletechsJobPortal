@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./identification.component.scss']
 })
 export class IdentificationComponent {
-
+  public isFile: boolean = false;
 }

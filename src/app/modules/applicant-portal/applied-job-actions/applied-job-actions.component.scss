@@ -35,6 +35,9 @@
         display: none;
       }
     }
+    p {
+      font-size: 0.75rem !important;
+    }
   }
 
   .stepper-item::after {
@@ -139,7 +142,7 @@
     font-size: 0.75rem;
     font-family: $font-poppins-medium;
   }
-  .confirm-reschedule {
+  .btns-container {
     .btn {
       padding-inline: 1.25rem;
       padding-block: 0.5rem;
