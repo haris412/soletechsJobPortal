@@ -1,90 +1,113 @@
 <div class="container-fluid">
-  <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
-      <img src="assets/SVG/Iconback.svg" alt="" />
-      <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
+  <div
+    class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer"
+    (click)="GoBack()"
+  >
+    <img src="assets/SVG/Iconback.svg" alt="" />
+    <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
   </div>
   <div class="row mx-0">
-      <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
-          <li>
-              <div class="stepper-progression active rounded-circle border border-color-midnight-moss">
-                  <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-                  <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
-              </div>
-              <div class="stepper-items">
-                  <img src="assets/SVG/fingerprint.svg" alt="">
-                  <p class="text-nowrap">Identification</p>
-              </div>
-          </li>
-          <li>
-              <div class="stepper-progression rounded-circle border border-color-midnight-moss">
-                  <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-                  <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
-              </div>
-              <div class="stepper-items">
-                  <img src="assets/SVG/documents.svg" alt="">
-                  <p>Documents</p>
-              </div>
-          </li>
-          <li>
-              <div class="stepper-progression rounded-circle border border-color-midnight-moss">
-                  <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-                  <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
-              </div>
-              <div class="stepper-items">
-                  <img src="assets/SVG/medical-checkup.svg" alt="">
-                  <p>Medical Checkup</p>
-              </div>
-          </li>
-          <li>
-              <div class="stepper-progression rounded-circle border border-color-midnight-moss">
-                  <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-                  <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
-              </div>
-              <div class="stepper-items">
-                  <img src="assets/SVG/dependent.svg" alt="">
-                  <p>Dependents</p>
-              </div>
-          </li>
-          <li>
-            <div class="stepper-progression rounded-circle border border-color-midnight-moss">
-                <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-                <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
-            </div>
-            <div class="stepper-items">
-                <img src="assets/SVG/address.svg" alt="">
-                <p>Address</p>
-            </div>
-        </li>
-        <li>
-          <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step">
-              <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-              <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
-          </div>
-          <div class="stepper-items">
-              <img src="assets/SVG/emergency.svg" alt="">
-              <p>Emergency Contact
-              </p>
-          </div>
+    <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
+      <li>
+        <div
+          class="stepper-progression active rounded-circle border border-color-midnight-moss"
+        >
+          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        </div>
+        <div class="stepper-items">
+          <img src="assets/SVG/fingerprint.svg" alt="" />
+          <p class="text-nowrap">Identification</p>
+        </div>
       </li>
-      </ul>
+      <li>
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+        >
+          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        </div>
+        <div class="stepper-items">
+          <img src="assets/SVG/documents.svg" alt="" />
+          <p>Documents</p>
+        </div>
+      </li>
+      <li>
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+        >
+          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        </div>
+        <div class="stepper-items">
+          <img src="assets/SVG/medical-checkup.svg" alt="" />
+          <p>Medical Checkup</p>
+        </div>
+      </li>
+      <li>
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+        >
+          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        </div>
+        <div class="stepper-items">
+          <img src="assets/SVG/dependent.svg" alt="" />
+          <p>Dependents</p>
+        </div>
+      </li>
+      <li>
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+        >
+          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        </div>
+        <div class="stepper-items">
+          <img src="assets/SVG/address.svg" alt="" />
+          <p>Address</p>
+        </div>
+      </li>
+      <li>
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
+        >
+          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        </div>
+        <div class="stepper-items">
+          <img src="assets/SVG/emergency.svg" alt="" />
+          <p>Emergency Contact</p>
+        </div>
+      </li>
+    </ul>
 
-      <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections">
-          <h4 class="font-poppins-bold">Profile</h4>
-          <app-identification *ngIf="index === 1"></app-identification>
-          <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
-              <button type="button"
-                  class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3" (click)="Back(index)">
-                  Discard
-              </button>
-              <button type="button"
-                  class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3">
-                  Back
-              </button>
-              <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-                  (click)="Next()">
-                  Next
-              </button>
-          </div>
+    <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections">
+      <app-identification *ngIf="index === 1"></app-identification>
+      <div
+        class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns"
+      >
+        <button
+          type="button"
+          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
+          (click)="Back(index)"
+        >
+          Discard
+        </button>
+        <button
+          type="button"
+          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          (click)="Next()"
+        >
+          Next
+        </button>
       </div>
+    </div>
   </div>
 </div>
