@@ -11,7 +11,7 @@
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click) ="GoToTab(1)">
           <p>Skills</p>
           <p class="text-nowrap">Please provide your skills</p>
         </div>
@@ -20,7 +20,7 @@
         <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click) ="GoToTab(2)">
           <p>Professional Experience</p>
           <p>Please provide your professional experience</p>
         </div>
@@ -29,7 +29,7 @@
         <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click) ="GoToTab(3)">
           <p>Education</p>
           <p>Please provide your education</p>
         </div>
@@ -38,7 +38,7 @@
         <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click) ="GoToTab(4)">
           <p>Certificates</p>
           <p>Please provide your certificates</p>
         </div>
@@ -47,7 +47,7 @@
         <div class="stepper-progression rounded-circle border border-color-midnight-moss">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click) ="GoToTab(5)">
           <p>Courses</p>
           <p>Please provide your courses</p>
         </div>
@@ -56,7 +56,7 @@
         <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step">
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click) ="GoToTab(6)">
           <p>Position of trust</p>
           <p>Please provide your position of trust</p>
         </div>
@@ -74,20 +74,16 @@
 
       <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
         <button type="button"
-          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3" (click)="Back(index)">
+          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3">
           Discard
         </button>
-        <button
-          type="button"
+        <button type="button"
           class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
-        >
+          (click)="Back(index)">
           Back
         </button>
-        <button
-          type="button"
-          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-          (click)="Next()"
-        >
+        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          (click)="Next()">
           Next
         </button>
       </div>

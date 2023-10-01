@@ -10,7 +10,7 @@
                     <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
                     <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
                 </div>
-                <div class="stepper-items">
+                <div class="stepper-items" (click) ="GoToTab(1)">
                     <p>Basic Information</p>
                     <p class="text-nowrap">Please provide your name and email</p>
                 </div>
@@ -20,7 +20,7 @@
                     <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
                     <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
                 </div>
-                <div class="stepper-items">
+                <div class="stepper-items" (click) ="GoToTab(2)">
                     <p>Contact Info</p>
                     <p>Please provide your contact info</p>
                 </div>
@@ -30,7 +30,7 @@
                     <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
                     <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
                 </div>
-                <div class="stepper-items">
+                <div class="stepper-items" (click) ="GoToTab(3)">
                     <p>Address</p>
                     <p>Please provide your address</p>
                 </div>
@@ -40,7 +40,7 @@
                     <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
                     <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
                 </div>
-                <div class="stepper-items">
+                <div class="stepper-items" (click) ="GoToTab(4)">
                     <p>Identification</p>
                     <p>Please provide ID information</p>
                 </div>
@@ -55,11 +55,11 @@
             <app-identification *ngIf="index === 4"></app-identification>
             <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
                 <button type="button"
-                    class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3" (click)="Back(index)">
+                    class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3" >
                     Discard
                 </button>
                 <button type="button"
-                    class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3">
+                    class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3" (click)="Back(index)">
                     Back
                 </button>
                 <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"

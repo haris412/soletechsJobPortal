@@ -10,6 +10,7 @@ import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.com
 
 const routes: Routes = [
   { path: '', component: JobsListComponent },
+  { path: RoutesEnum.Jobs, component: JobsListComponent },
   { path: RoutesEnum.QuickApply, component: QuickApplyComponent },
   { path: RoutesEnum.ForgotPassword, component: ForgetpasswordComponent},
   { path: RoutesEnum.ResetPassword, component: ResetPasswordComponent},
