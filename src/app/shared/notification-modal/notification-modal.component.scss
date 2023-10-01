@@ -1,0 +1,53 @@
+@import "../../styles/variables-saas";
+
+.parent-container {
+  padding: 1.5rem;
+  .notification-list {
+    display: flex;
+    flex-direction: column;
+    .notification-item {
+      display: flex;
+      justify-content: space-between;
+      .notification-detail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-grow: 0;
+          flex-shrink: 0;
+          flex-basis: 32px;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background-color: $alice-blue;
+          img {
+            height: 15px;
+            width: 15px;
+          }
+        }
+        .notification-text {
+          display: flex;
+          flex-direction: column;
+          p {
+            margin-bottom: 0.375rem;
+          }
+          span {
+            color: $shuttle-grey;
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+    hr {
+      opacity: 1;
+      border: 1px solid #F0F0F0;
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+}

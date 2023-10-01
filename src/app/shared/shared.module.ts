@@ -12,6 +12,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { UserInfoModule } from '../modules/user-info/user-info.module';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { SignupModalComponent } from './signup-modal/signup-modal.component';
+import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 
 
 
@@ -25,6 +26,7 @@ import { SignupModalComponent } from './signup-modal/signup-modal.component';
     ResetPasswordComponent,
     PasswordResetSuccessComponent,
     SignupModalComponent,
+    NotificationModalComponent,
   ],
   imports: [
     MaterialModule,

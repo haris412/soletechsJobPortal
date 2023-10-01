@@ -300,3 +300,19 @@ form {
     width: 400px !important;
   }
 }
+
+.notification-modal {
+  width: 350px;
+  max-height: 530px;
+  @include media-breakpoint-up(sm) {
+    width: 450px !important;
+  }
+}
+
+.row-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
