@@ -48,4 +48,7 @@ export class UserInfoComponent implements OnInit {
     GoBack() {
         this.location.back();
     }
+    GoToTab(index:number){
+        this.index = index;
+    }
 }

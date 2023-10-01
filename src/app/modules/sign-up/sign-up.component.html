@@ -3,11 +3,12 @@
     <span class="heading">Profile Picture</span>
     <div class="d-flex align-items-center upload-profile-pic mt-3">
       <div class="profile">
-        <img src="assets/Images/Profile.png" alt="" />
+        <img [src]= "imageAvatar ? imageAvatar : defaultUrl" alt="" />
       </div>
       <div class="d-flex flex-column flex-lg-row upload-btns gap-2">
-        <button type="button" class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8">
+        <button type="file" class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8"  (change)="selectFile($event)">
           Change Avatar
+          <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file" id="formFile">
         </button>
         <button type="button"
           class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8">
@@ -20,12 +21,12 @@
     <span class="heading">CV File</span>
     <div class="p-3 d-flex flex-column flex-xl-row files-div rounded border border-color-whisper mt-3">
       <div class="uploaded-files d-flex align-items-center">
-        <div class="file-details rounded">
+        <div class="file-details rounded" *ngFor="let file of fileList">
           <div class="file-name-type">
-            <span class="file-name">Omar_cv_2023</span>
+            <span class="file-name">{{file.name}}</span>
             <h6 class="file-type font-poppins-bold">PDF</h6>
           </div>
-          <div class="file-icon">
+          <div class="file-icon" (click)="DeleteFile(file)">
             <img src="assets/SVG/pdf-icon.svg" alt="" />
           </div>
         </div>

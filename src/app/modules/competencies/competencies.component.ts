@@ -56,4 +56,7 @@ export class CompetenciesComponent implements OnInit {
     GoBack(){
         this.location.back();
     }
+    GoToTab(index:number){
+        this.index = index;
+    }
 }
