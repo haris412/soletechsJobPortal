@@ -13,4 +13,5 @@ export enum RoutesEnum {
     ApplicantDashboard = 'dashboard',
     JobActions = 'job-actions',
     Onboarding = 'onboarding',
+    UserProfile = 'user-profile'
 }

@@ -18,7 +18,9 @@ import { SignupRoutes } from './sign-up-routing';
     MaterialModule,
     CKEditorModule
   ],
-  exports:[],
+  exports:[
+    SignUpComponent
+  ],
   providers: [],
 })
 export class SignUpModule { }

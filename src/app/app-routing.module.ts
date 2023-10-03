@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: RoutesEnum.Competencies, loadChildren: () => import('./modules/competencies/competencies.module').then(m => m.CompetenciesModule)},
   { path: RoutesEnum.Profile, loadChildren: () => import('./modules/user-info/user-info.module').then(m => m.UserInfoModule)},
   { path: RoutesEnum.Applicant, loadChildren: () => import('./modules/applicant-portal/applicant-portal.module').then(m => m.ApplicantPortalModule)},
+  { path: RoutesEnum.UserProfile, loadChildren: () => import('./modules/user-profile/user-profile.module').then(m => m.UserProfileModule)},
 
   
  ];
