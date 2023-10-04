@@ -69,16 +69,21 @@
           </li>
         </ul>
         <div class="d-flex align-items-center gap-4">
-          <div 
+          <div
             class="notification"
-            (click)="OpenNotificationModal()"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
             <img
               width="20px"
               src="assets/SVG/notification.svg"
               alt="notification"
             />
-            <div>02</div>
+            <div class="notification-counter">02</div>
+            <div class="notification-menu dropdown-menu">
+              <app-notification-modal></app-notification-modal>
+            </div>
           </div>
           <div class="d-flex align-items-center profile-navigation gap-2">
             <div class="profile">

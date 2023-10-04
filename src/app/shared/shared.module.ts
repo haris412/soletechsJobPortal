@@ -13,6 +13,7 @@ import { UserInfoModule } from '../modules/user-info/user-info.module';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { SignupModalComponent } from './signup-modal/signup-modal.component';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
+import { RescheduleModalComponent } from './reschedule-modal/reschedule-modal.component';
 
 
 
@@ -27,6 +28,7 @@ import { NotificationModalComponent } from './notification-modal/notification-mo
     PasswordResetSuccessComponent,
     SignupModalComponent,
     NotificationModalComponent,
+    RescheduleModalComponent,
   ],
   imports: [
     MaterialModule,

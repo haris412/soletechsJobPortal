@@ -1,0 +1,19 @@
+@import "../../../styles/variables-saas";
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  li {
+    border-radius: 0.25rem;
+    padding-left: 1rem;
+    padding-block: 0.75rem;
+    h6 {
+      font-family: $font-poppins-medium;
+      color: $midnight-moss;
+      margin-bottom: 0;
+    }
+    &.selected {
+      background-color: rgba(99, 101, 107, 0.12);
+    }
+  }
+}

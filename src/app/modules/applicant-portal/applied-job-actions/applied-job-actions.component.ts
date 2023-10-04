@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
 
 @Component({
   selector: 'app-applied-job-actions',
@@ -9,11 +10,15 @@ import { Router } from '@angular/router';
 export class AppliedJobActionsComponent {
   public completed: boolean = false;
   constructor(
-    private router: Router
+    private router: Router,
+    private dialog: RescheduleModalComponentService
   ) {
 
   }
   toOnboarding() {
     this.router.navigate(['/applicant/onboarding'])
+  }
+  OpenReschedule() {
+    const dialogRef = this.dialog.openDialog('');
   }
 }

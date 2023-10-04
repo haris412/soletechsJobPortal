@@ -17,7 +17,7 @@ export class NotificationModalComponentService {
       exitAnimationDuration: 300
     });
   }
-  closeDialog(dialogRef: MatDialogRef<NotificationModalComponent>) {
-    dialogRef.close();
+  closeDialog() {
+    this.dialog.closeAll();
   }
 }

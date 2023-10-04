@@ -62,7 +62,7 @@
 .notification {
   position: relative;
   cursor: pointer;
-  div {
+  .notification-counter {
     position: absolute;
     top: -2px;
     right: -5px;
@@ -76,6 +76,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .notification-menu {
+    width: 350px;
+    @include media-breakpoint-up(lg) {
+      width: 400px;
+      transform: translate(-325px, 10px);
+    }
   }
 }
 
