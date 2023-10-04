@@ -330,6 +330,12 @@ form {
   }
 }
 
+.reschedule-modal {
+  width: 728px;
+  height: 500px;
+  overflow-y: scroll;
+}
+
 .row-truncate {
   display: -webkit-box;
   -webkit-line-clamp: 2;
