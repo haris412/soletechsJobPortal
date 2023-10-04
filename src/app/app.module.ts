@@ -10,6 +10,7 @@ import { MaterialModule } from './material/material.module';
 import { JobsListComponent } from './appcomponents/jobs-list/jobs-list.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.component';
+import { LinkedInRedirectComponent } from './modules/linkedIn-redirect/linkedIn-redirect.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.com
     JobsComponent,
     JobsListComponent,
     QuickApplyComponent,
-    
+    LinkedInRedirectComponent,
   ],
   imports: [
     BrowserModule,
