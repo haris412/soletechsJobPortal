@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   linkedInCredentials = {
-    clientId: "777bzfj95l5sli",
+    clientId: "86ykg7fe4magrl",
     redirectUrl: "http://localhost:4200/linkedin-redirect",
-    scope: "" // To read basic user profile data and email
+    scope: ['openid', 'profile', 'email']
   };
 
   constructor(private router:Router) { }
