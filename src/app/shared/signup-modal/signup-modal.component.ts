@@ -11,7 +11,7 @@ export class SignupModalComponent {
   linkedInCredentials = {
     clientId: "86ykg7fe4magrl",
     redirectUrl: "http://localhost:4200/applicant/dashboard",
-    scope: ['openid', 'profile', 'email' , 'r_liteprofile','r_basicprofile']
+    scope: ['openid', 'profile', 'email' ]
   };
 
   constructor(
