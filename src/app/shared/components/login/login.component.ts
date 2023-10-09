@@ -24,10 +24,5 @@ export class LoginComponent implements OnInit {
   SignUp(){
     this.router.navigate(['/sign-up']);
   }
-  loginWithLinkedIn() {
-    let url = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${
-      this.linkedInCredentials.clientId
-    }&redirect_uri=${this.linkedInCredentials.redirectUrl}&scope=${this.linkedInCredentials.scope}`;
-    window.open(url, "_blank");
-  }
+  
 }
