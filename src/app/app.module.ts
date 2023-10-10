@@ -11,6 +11,7 @@ import { JobsListComponent } from './appcomponents/jobs-list/jobs-list.component
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.component';
 import { LinkedInRedirectComponent } from './modules/linkedIn-redirect/linkedIn-redirect.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { LinkedInRedirectComponent } from './modules/linkedIn-redirect/linkedIn-
     MaterialModule,
     CKEditorModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
