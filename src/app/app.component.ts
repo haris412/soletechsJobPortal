@@ -29,6 +29,9 @@ export class AppComponent implements OnInit {
         else this.isPositionAbsolute = true;
       }
     });
+    if (!localStorage.getItem('token')) {
+      this.router.navigate(['/']);
+    }
   }
   getState(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData;

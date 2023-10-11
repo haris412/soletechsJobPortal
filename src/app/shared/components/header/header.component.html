@@ -20,8 +20,8 @@
               <p class="text-midnight-moss font-poppins-semi mb-0">Home</p>
             </div>
           </li>
-          <li class="nav-item">
-            <div class="nav-link d-flex align-items-center align-content-center px-2 gap-1" aria-current="page">
+          <li class="nav-item" *ngIf="isLogin">
+            <div class="nav-link d-flex align-items-center align-content-center px-2 gap-1" aria-current="page" (click)="SavedJobs()">
               <img height="15" width="15" src="assets/SVG/ic_Dashboard Copy.svg" alt="" />
               <p class="text-midnight-moss font-poppins-semi mb-0">
                 Saved Jobs
@@ -37,7 +37,7 @@
             </div>
           </li>
         </ul>
-        <div class="d-flex align-items-center gap-4">
+        <div class="d-flex align-items-center gap-4" *ngIf="isLogin">
           <div class="notification" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img width="20px" src="assets/SVG/notification.svg" alt="notification" />
             <div class="notification-counter">02</div>
@@ -53,9 +53,15 @@
               <div class="d-flex align-items-center gap-1" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <span>Omar Mouneer</span><img width="20" src="assets/SVG/chevron-down.svg" alt="expand-down" />
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" (click)="OpenProfile()">Profile</a></li>
+                  <li><a class="dropdown-item" href="#"(click) ="LogOut()">Logout</a></li>
+                  <!-- <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li> -->
+                </ul>
               </div>
-
-              <!--                             -->
             </div>
             <!-- <div class="dropdown">
 							<div
@@ -82,7 +88,7 @@
               </ul> -->
           </div>
         </div>
-        <!-- <div>
+        <div *ngIf="!isLogin"> 
           <button
             type="button"
             class="btn bg-midnight-moss text-white rounded-3 login-btn w-100 w-lg-auto"
@@ -90,7 +96,7 @@
           >
             Login
           </button>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>

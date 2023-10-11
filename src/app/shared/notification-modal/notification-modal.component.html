@@ -9,7 +9,7 @@
         <div class="icon">
           <img src="assets/SVG/ic_Notification.svg" alt="notification" />
         </div>
-        <div class="notification-text">
+        <div class="notification-text" (click)="GoToJob()">
           <p class="font-poppins-semi">Job Status Changed</p>
           <span class="row-truncate"
             ><span class="font-poppins-medium">{{ "{job name}" }}</span> you applied on status changed to
@@ -20,7 +20,7 @@
       <div class="time text-shuttle-grey">14.36</div>
     </div>
     <hr>
-    <div class="notification-item">
+    <div class="notification-item" (click)="GoToProfile()">
       <div class="notification-detail">
         <div class="icon">
           <img src="assets/SVG/user.svg" alt="user-icon" />

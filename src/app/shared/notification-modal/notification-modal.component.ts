@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class NotificationModalComponent {
 
+  constructor(private router:Router){}
+  GoToJob(){
+    this.router.navigate(['/applicant']);
+  }
+  GoToProfile(){
+    this.router.navigate(['/user-profile']);
+  }
 }

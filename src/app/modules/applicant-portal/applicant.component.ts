@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ApplicantDataService } from './services/applicant-shared.service';
 
 @Component({
     selector     : 'app-applicant',
@@ -8,5 +9,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class ApplicantComponent
 {
-    constructor(){}
+    constructor(private applicantDataService:ApplicantDataService){}
+
+    ngOnInit(): void {
+        let token = localStorage.getItem('token');
+        if (token) {
+            this.applicantDataService.loginEmitter.emit(true);
+        }
+    }
+
 }
