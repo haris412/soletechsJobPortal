@@ -18,6 +18,7 @@ export class JobsListComponent implements OnInit {
   mobileView: boolean = false;
   webView: boolean = true;
   showJobList: boolean = true;
+  public showOutline: boolean = false;
   jobsList: Job[] = [{
     jobId: '1',
     jobTitle: 'Lead Product Design',

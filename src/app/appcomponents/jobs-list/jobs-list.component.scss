@@ -75,13 +75,13 @@ h4 {
     }
   }
   .border-lg-top {
-    border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    border-top: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
   }
   .info-detail-footer {
     right: 1.5rem;
     left: 1.5rem;
   }
-  
 }
 
 @include media-breakpoint-between(xs, lg) {
@@ -151,10 +151,6 @@ h4 {
   top: 0;
   height: 100%;
 }
-
-// .job-listing-detail:nth-of-type(1) {
-//   background: $alice-blue;
-// }
 
 .job-location-info .material-symbols-outlined,
 .listing-detail-inner .header-icons .material-symbols-outlined,
@@ -233,4 +229,13 @@ ul li {
 
 .no-info {
   height: calc(100vh - 200px);
+}
+
+.job-title {
+  input {
+    border: none;
+    &:focus-visible {
+      outline: 0;
+    }
+  }
 }
