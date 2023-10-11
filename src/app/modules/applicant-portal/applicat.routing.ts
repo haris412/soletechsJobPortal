@@ -4,6 +4,7 @@ import { RoutesEnum } from 'src/app/shared/enums/routes.enum';
 import { ApplicantDashboardComponent } from './applicant-dashboard/applicant-dashboard.component';
 import { AppliedJobActionsComponent } from './applied-job-actions/applied-job-actions.component';
 import { ApplicantOnboardingComponent } from './applicant-onboarding/applicant-onboarding.component';
+import { JobOfferComponent } from './job-offer/job-offer.component';
 
 
 export const applicatRoutes: Route[] = [
@@ -23,6 +24,10 @@ export const applicatRoutes: Route[] = [
             {
                 path: RoutesEnum.Onboarding,
                 component: ApplicantOnboardingComponent
+            },
+            {
+                path: RoutesEnum.JobOffer,
+                component: JobOfferComponent
             }
         ]
     }

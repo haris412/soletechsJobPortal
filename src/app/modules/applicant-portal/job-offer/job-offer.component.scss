@@ -1,0 +1,77 @@
+@import "../.././../styles/variables-saas";
+
+.container-fluid {
+  .error {
+    background-color: $error-50;
+    margin-left: -2px;
+    width: fit-content;
+    .badge {
+      background-color: $error-600;
+    }
+    span {
+      color: $error-700;
+      font-size: 0.75rem;
+      font-family: $font-poppins-medium;
+    }
+  }
+  .offer-types {
+    margin-block: 1.5rem;
+    
+    @include media-breakpoint-up(md) {
+      .col-md-4 {
+        width: 32.33333%;
+      }
+    }
+    
+    .basic-information,
+    .finance-information,
+    .benefits {
+      padding-block: 1.5rem;
+      padding-left: 1.5rem;
+      background-color: white;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+      .heading {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        h5 {
+          font-family: $font-poppins-semi;
+          color: $midnight-moss;
+          margin-bottom: 0;
+        }
+      }
+      .offer-info {
+        display: flex;
+        flex-direction: column;
+        .offer-detail {
+          margin-bottom: 1rem;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+          p {
+            color: $gray-500;
+            margin-bottom: 0.5rem;
+          }
+          h6 {
+            font-family: $font-poppins-medium;
+            color: $gray-700;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  .btns-container {
+    margin-bottom: 2rem;
+    .btn {
+      padding-inline: 1.25rem;
+      padding-block: 0.5rem;
+      width: 120.5px;
+    }
+  }
+}

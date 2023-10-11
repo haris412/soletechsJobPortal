@@ -11,6 +11,7 @@ import { applicatRoutes } from './applicat.routing';
 import { ApplicantOnboardingModule } from './applicant-onboarding/applicant-onboarding.module';
 import { MaterialModule } from 'src/app/material/material.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { JobOfferComponent } from './job-offer/job-offer.component';
 
 
 
@@ -21,7 +22,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     AppliedJobsComponent, 
     SavedJobsComponent, 
     ApplicantDashboardComponent, 
-    AppliedJobActionsComponent, 
+    AppliedJobActionsComponent, JobOfferComponent, 
   ],
   imports: [
     RouterModule.forChild(applicatRoutes),

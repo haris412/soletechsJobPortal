@@ -15,10 +15,16 @@ export class AppliedJobActionsComponent {
   ) {
 
   }
+
   toOnboarding() {
     this.router.navigate(['/applicant/onboarding'])
   }
+
   OpenReschedule() {
     const dialogRef = this.dialog.openDialog('');
+  }
+
+  toJobOffer() {
+    this.router.navigate(['/applicant/job-offer']);
   }
 }
