@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Identification } from 'src/app/models/identification.model';
 
 @Component({
@@ -12,6 +13,7 @@ export class IdentificationComponent {
   identificationList: Identification[] = [];
   selectedIdentification!:Identification;
 
+  constructor(private toastrService: ToastrService){}
   OpenSidenav() {
     this.selectedIdentification = new Object() as Identification;
     this.sidenavOpen = true;
@@ -22,6 +24,7 @@ export class IdentificationComponent {
     document.body.style.overflow = 'auto';
   }
   IdentificationAdded(identification:Identification){
+    this.toastrService.success('Identification Added Successfully');
     this.identificationList.push(identification);
     this.CloseSidenav();
   }

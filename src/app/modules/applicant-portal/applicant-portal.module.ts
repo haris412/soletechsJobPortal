@@ -12,6 +12,7 @@ import { ApplicantOnboardingModule } from './applicant-onboarding/applicant-onbo
 import { MaterialModule } from 'src/app/material/material.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { JobOfferComponent } from './job-offer/job-offer.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -30,6 +31,7 @@ import { JobOfferComponent } from './job-offer/job-offer.component';
     ApplicantOnboardingModule,
     MaterialModule,
     CKEditorModule,
+    ToastrModule.forRoot(),
   ]
 })
 export class ApplicantPortalModule { }

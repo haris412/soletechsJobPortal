@@ -1,15 +1,11 @@
 <div class="container-fluid">
-  <div
-    class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer"
-    (click)="GoBack()"
-  >
+  <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
     <img src="assets/SVG/Iconback.svg" alt="" />
     <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
   </div>
   <div class="d-flex error align-items-center gap-1 badge rounded-pill p-1">
     <span class="badge rounded-pill text-white">Warning</span>
-    <span class="text-wrap"
-      >You need to send your final decision before 26 November 2023, else will
+    <span class="text-wrap">You need to send your final decision before 26 November 2023, else will
       be consider as rejected
     </span>
   </div>
@@ -92,16 +88,11 @@
     </div>
   </div>
   <div class="d-flex justify-content-end gap-3 btns-container">
-    <button
-      type="button"
-      class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto"
-    >
+    <button type="button" class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto" (click)="RejectOffer()">
       Reject offer
     </button>
-    <button
-      type="button"
-      class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto"
-    >
+    <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto"
+      (click)="AcceptOffer()">
       Accept offer
     </button>
   </div>

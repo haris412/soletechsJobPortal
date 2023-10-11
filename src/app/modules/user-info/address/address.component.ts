@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address.model';
 
 @Component({
@@ -11,6 +12,7 @@ export class AddressComponent {
   AddressList: Address[] = [];
   selectedAddress!:Address;
 
+  constructor(private toastrService: ToastrService){}
   OpenSidenav() {
     this.selectedAddress = new Object() as Address;
     this.sidenavOpen = true;
@@ -21,6 +23,7 @@ export class AddressComponent {
     document.body.style.overflow = 'auto';
   }
   AddressAdded(address:Address){
+    this.toastrService.success('Address Added Successfully');
     this.AddressList.push(address);
     this.CloseSidenav();
   }

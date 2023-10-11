@@ -14,22 +14,15 @@
               <img [src]="imageAvatar ? imageAvatar : defaultUrl" alt="" />
             </div>
             <div class="d-flex flex-column flex-lg-row upload-btns gap-2">
-              <button
-                type="file"
+              <button type="file"
                 class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8 position-relative"
-                (change)="selectFile($event)"
-              >
+                (change)="selectFile($event)">
                 Change Avatar
-                <input
-                  class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0"
-                  type="file"
-                  id="formFile"
-                />
+                <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file"
+                  id="formFile" />
               </button>
-              <button
-                type="button"
-                class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-              >
+              <button type="button"
+                class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8">
                 Remove Avatar
               </button>
             </div>
@@ -37,9 +30,7 @@
         </div>
         <div class="sign-up-info-div cv-div">
           <span class="heading">CV File</span>
-          <div
-            class="p-3 d-flex flex-column flex-xl-row files-div rounded border border-color-whisper mt-3"
-          >
+          <div class="p-3 d-flex flex-column flex-xl-row files-div rounded border border-color-whisper mt-3">
             <div class="uploaded-files d-flex align-items-center">
               <div class="file-details rounded" *ngFor="let file of fileList">
                 <div class="file-name-type">
@@ -50,9 +41,7 @@
                   <img src="assets/SVG/pdf-icon.svg" alt="" />
                 </div>
               </div>
-              <div
-                class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
-              >
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
                 <img src="assets/SVG/trash-01.svg" alt="" />
               </div>
             </div>
@@ -66,26 +55,17 @@
                   <img src="assets/SVG/doc-icon.svg" alt="" />
                 </div>
               </div>
-              <div
-                class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
-              >
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
                 <img src="assets/SVG/trash-01.svg" alt="" />
               </div>
             </div>
           </div>
-          <div
-            class="d-flex flex-sm-row flex-column align-items-sm-center browse-file gap-4"
-          >
-            <button
-              type="button"
-              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-sm-auto w-100 position-relative"
-            >
+          <div class="d-flex flex-sm-row flex-column align-items-sm-center browse-file gap-4">
+            <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-sm-auto w-100 position-relative">
               Browse
-              <input
-                class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0"
-                type="file"
-                id="formFile"
-              />
+              <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file"
+                id="formFile" />
             </button>
             <h6 class="mb-0 text-shuttle-grey fs-9 fs-sm-7">
               Upload file PDF, Doc, Docx
@@ -99,23 +79,13 @@
         <div class="sign-up-info-div">
           <div class="d-flex align-items-center justify-content-between">
             <span class="heading">Profile</span>
-            <img
-              src="assets/SVG/edit-icon.svg"
-              alt=""
-              class="cursor-pointer"
-              (click)="RouteToProfile()"
-            />
+            <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToProfile()" />
           </div>
         </div>
         <div class="sign-up-info-div">
           <div class="d-flex align-items-center justify-content-between">
             <span class="heading">Competencies</span>
-            <img
-              src="assets/SVG/edit-icon.svg"
-              alt=""
-              class="cursor-pointer"
-              (click)="RouteToCompetencies()"
-            />
+            <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToCompetencies()" />
           </div>
         </div>
       </div>
@@ -130,14 +100,9 @@
               name.
             </p>
             <h5 class="font-poppins-semi">Send me email notifications:</h5>
-            <mat-radio-group
-              aria-label="Select an option"
-              class="d-flex flex-column mb-4"
-            >
+            <mat-radio-group aria-label="Select an option" class="d-flex flex-column mb-4">
               <mat-radio-button value="anytime">Anytime</mat-radio-button>
-              <mat-radio-button value="once"
-                >Once a week at most</mat-radio-button
-              >
+              <mat-radio-button value="once">Once a week at most</mat-radio-button>
               <mat-radio-button value="never">Never</mat-radio-button>
             </mat-radio-group>
             <h5 class="font-poppins-semi">Email News & Updates</h5>
@@ -161,30 +126,21 @@
           <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex flex-column">
               <h6 class="font-poppins-semi">Deactivate my account</h6>
-              <p class="text-shuttle-grey mb-0">Don’t want to receive any emails or save my data on the job finder portal</p>
+              <p class="text-shuttle-grey mb-0">Don’t want to receive any emails or save my data on the job finder
+                portal</p>
             </div>
-            <button
-          type="button"
-          class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 py-2 px-5"
-        >
-        Deactivate my account
-        </button>
+            <button type="button" class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 py-2 px-5">
+              Deactivate my account
+            </button>
           </div>
         </div>
       </div>
-      <div
-        class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns"
-      >
-        <button
-          type="button"
-          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
-        >
+      <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
+        <button type="button"
+          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3">
           Discard
         </button>
-        <button
-          type="button"
-          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-        >
+        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5">
           Save changes
         </button>
       </div>

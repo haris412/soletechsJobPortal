@@ -38,8 +38,7 @@ import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
     MaterialModule,
     CKEditorModule,
     CommonModule,
-    ToastrModule.forRoot({ positionClass: 'inline' }),
-    ToastContainerModule,
+    ToastrModule.forRoot(),
   ],
   exports:[
     AddEditBasicinformationComponent,

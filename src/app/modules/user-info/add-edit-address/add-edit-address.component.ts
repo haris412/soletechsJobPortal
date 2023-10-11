@@ -41,7 +41,7 @@ export class AddEditAddressComponent {
   SaveIdentification: () => void = () => {
     if (this.addressForm.valid) {
       this.identification = this.addressForm.getRawValue();
-      this.toastrService.success('Identificatin Added Successfully');
+      
       this.addressData.emit(this.identification);
     } else {
       this.addressForm.markAllAsTouched();

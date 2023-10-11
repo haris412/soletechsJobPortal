@@ -25,8 +25,7 @@ import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ToastrModule.forRoot({ positionClass: 'inline' }),
-    ToastContainerModule,
+    ToastrModule.forRoot(),
     SharedModule,
     BrowserAnimationsModule,
     MaterialModule,

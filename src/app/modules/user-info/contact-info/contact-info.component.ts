@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ContactInfo } from 'src/app/models/contact-info.model';
 
 @Component({
@@ -10,9 +11,10 @@ export class ContactInfoComponent {
   public sidenavOpen: boolean = false;
   contactInfoList:ContactInfo[] = [];
   selectedContact!:ContactInfo;
-
+ constructor(private toastrService: ToastrService){}
   
   ContactAdded(contact:ContactInfo){
+    this.toastrService.success('Contact Added Successfully');
     this.contactInfoList.push(contact);
     this.CloseSidenav();
   }

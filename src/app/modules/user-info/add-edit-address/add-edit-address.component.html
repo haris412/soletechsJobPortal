@@ -2,13 +2,13 @@
     <div class="d-flex flex-column col-lg-6 col-12">
         <p>Name of Description</p>
         <mat-form-field appearance="outline" class="w-100">
-            <input matInput />
+            <input matInput  name = 'nameOfDescription' [formControlName]="'nameOfDescription'"/>
         </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
         <p>Country</p>
         <mat-form-field appearance="outline" class="w-100">
-            <mat-select name = 'contactNumber' [formControlName]="'contactNumber'">
+            <mat-select name = 'country' [formControlName]="'country'">
                 <mat-option value="pakistan">Pakistan</mat-option>
                 <mat-option value="india">India</mat-option>
             </mat-select>
@@ -18,7 +18,7 @@
     <div class="d-flex flex-column col-lg-6 col-12">
         <p>City</p>
         <mat-form-field appearance="outline" class="w-100">
-            <mat-select name = 'contactNumber' [formControlName]="'contactNumber'">
+            <mat-select name = 'city' [formControlName]="'city'">
                 <mat-option value="lahore">Lahore</mat-option>
                 <mat-option value="karachi">Karachi</mat-option>
             </mat-select>
@@ -28,13 +28,13 @@
     <div class="d-flex flex-column col-lg-6 col-12">
         <p>Street</p>
         <mat-form-field appearance="outline" class="w-100">
-            <input matInput name = 'contactNumber' [formControlName]="'contactNumber'"/>
+            <input matInput name = 'street' [formControlName]="'street'"/>
         </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
         <p>Zip/Postal Code</p>
         <mat-form-field appearance="outline" class="w-100">
-            <mat-select name = 'contactNumber' [formControlName]="'contactNumber'">
+            <mat-select name = 'zipCode' [formControlName]="'zipCode'">
                 <mat-option value="0514">0514</mat-option>
                 <mat-option value="8574">8574</mat-option>
             </mat-select>
@@ -44,21 +44,21 @@
     <div class="d-flex flex-column col-lg-6 col-12">
         <p>Post Box</p>
         <mat-form-field appearance="outline" class="w-100">
-            <input matInput name = 'contactNumber' [formControlName]="'contactNumber'" />
+            <input matInput name = 'postBox' [formControlName]="'postBox'" />
         </mat-form-field>
     </div>
+    <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+        <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+            (click)="Discard()">
+            Discard
+        </button>
+        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseAddressNav()">
+            Close
+        </button>
+        <button type="button"
+            class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
+            (click)="SaveIdentification()">
+            Save
+        </button>
+    </div>
 </form>
-<div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-        (click)="Discard()">
-        Discard
-    </button>
-    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseAddressNav()">
-        Close
-    </button>
-    <button type="button"
-        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-        (click)="SaveIdentification()">
-        Save
-    </button>
-</div>
