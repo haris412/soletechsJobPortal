@@ -1,22 +1,75 @@
 <div class="main-container">
   <div class="sign-up-info-div">
-    <form class="row" action="">
-      <div class="d-flex flex-column col-lg-6 col-12">
-        <p>Type</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-select >
-            <mat-option value="home">Home</mat-option>
-            <mat-option value="office">Office</mat-option>
-          </mat-select>
-          <img matSuffix src="../../../../assets/SVG/chevron-down.svg" alt="" />
-        </mat-form-field>
+    <span class="heading">Contact</span>
+    <div class="contact-list d-flex flex-column align-items-center mt-3 col-sm-8 col-12">
+      <div class="d-flex align-items-center w-100 contact-item-container">
+        <div class="contact-item rounded w-100">
+          <h6 class="mb-0 font-poppins-bold">Contact 1</h6>
+          <img class="cursor-pointer" (click)="OpenSidenav()" src="assets/SVG/edit-icon.svg" alt="" />
+        </div>
+        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+          <img src="assets/SVG/trash-01.svg" alt="" />
+        </div>
       </div>
-      <div class="d-flex flex-column col-lg-6 col-12">
-        <p>Contact Number</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input matInput />
-        </mat-form-field>
+      <div class="d-flex align-items-center w-100 contact-item-container">
+        <div class="contact-item rounded w-100">
+          <h6 class="mb-0 font-poppins-bold">Contact 2</h6>
+          <img class="cursor-pointer" (click)="OpenSidenav()" src="assets/SVG/edit-icon.svg" alt="" />
+        </div>
+        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+          <img src="assets/SVG/trash-01.svg" alt="" />
+        </div>
       </div>
-    </form>
+      <div class="d-flex align-items-center w-100 contact-item-container">
+        <div class="contact-item rounded w-100">
+          <h6 class="mb-0 font-poppins-bold">Contact 3</h6>
+          <img class="cursor-pointer" (click)="OpenSidenav()" src="assets/SVG/edit-icon.svg" alt="" />
+        </div>
+        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+          <img src="assets/SVG/trash-01.svg" alt="" />
+        </div>
+      </div>
+      <div
+        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white w-100 add-contact gap-2 cursor-pointer" (click)="OpenSidenav()">
+        <img src="assets/SVG/plus-icon.svg" alt="">
+        <h6 class="mb-0 font-poppins-medium">Add Another Contact</h6>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100"
+  [ngClass]="sidenavOpen ? 'open' : 'close'">
+  <span class="heading">Contact</span>
+  <form class="row" action="">
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>Type</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-select >
+          <mat-option value="home">Home</mat-option>
+          <mat-option value="office">Office</mat-option>
+        </mat-select>
+        <img matSuffix src="../../../../assets/SVG/chevron-down.svg" alt="" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>Contact Number</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput />
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+      (click)="CloseSidenav()">
+      Discard
+    </button>
+    <button type="button"
+      class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
+      (click)="CloseSidenav()">
+      Save add new
+    </button>
+    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSidenav()">
+      Save
+    </button>
   </div>
 </div>

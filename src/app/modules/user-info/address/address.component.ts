@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./address.component.scss']
 })
 export class AddressComponent {
+  public sidenavOpen: boolean = false;
+  OpenSidenav() {
+    this.sidenavOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
 
+  CloseSidenav() {
+    this.sidenavOpen = false;
+    document.body.style.overflow = 'auto';
+  }
 }

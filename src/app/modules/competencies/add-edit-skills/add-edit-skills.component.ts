@@ -11,6 +11,7 @@ import { Skills } from 'src/app/models/skills.model';
 export class AddEditSkillsComponent {
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
+  public isFile: boolean = false;
   title = 'angular';
   private _formBuilder = inject(UntypedFormBuilder);
   form: UntypedFormGroup;

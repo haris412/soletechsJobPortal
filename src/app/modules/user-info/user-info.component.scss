@@ -26,18 +26,10 @@
           width: 8px;
           height: 8px;
         }
-        &:not(.last-step)::after {
-          content: "";
-          height: 34px;
-          width: 2px;
-          background-color: $midnight-moss;
-          position: absolute;
-          bottom: -38px;
-        }
         &.active {
           opacity: 1;
         }
-        img{
+        img {
           position: absolute;
           top: 5px;
           height: 17px;
@@ -50,6 +42,7 @@
         flex-direction: column;
         padding-inline: 0.75rem;
         margin-bottom: 1.5rem;
+        cursor: pointer;
         p {
           margin-bottom: 0 !important;
           &:first-child {

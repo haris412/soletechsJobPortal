@@ -64,6 +64,7 @@
       </div>
       <div
         class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-experience gap-2 cursor-pointer"
+        (click)="OpenSidenav()"
       >
         <img src="../../../../assets/SVG/plus-icon.svg" alt="" />
         <h6 class="mb-0 font-poppins-medium">Add Another Experience</h6>
@@ -73,48 +74,47 @@
 </div>
 
 <div
-  class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-30 w-lg-45 w-md-75 w-100"
+  class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100"
   [ngClass]="sidenavOpen ? 'open' : 'close'"
 >
   <span class="heading">Professional Experience</span>
-  <form class="d-flex flex-column w-100" action="">
-    <div class="d-flex flex-column">
+  <form class="row" action="">
+    <div class="d-flex flex-column col-lg-6 col-12">
       <p>Employer</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput />
       </mat-form-field>
     </div>
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column col-lg-6 col-12">
       <p>Position</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput />
       </mat-form-field>
     </div>
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column col-lg-6 col-12">
       <p>Internet Address</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput />
       </mat-form-field>
     </div>
-    <div class="d-flex">
-      <div class="d-flex flex-column p-0 w-50 me-2">
-        <p>Started On</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker1">
-          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div class="d-flex flex-column p-0 w-50">
-        <p>Ended On</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker2">
-          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-      </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>Started On</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker1">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
     </div>
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>Ended On</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker2">
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    
+    <div class="d-flex flex-column col-lg-6 col-12">
       <p>Notes</p>
       <mat-form-field appearance="outline" class="text-area w-100">
         <textarea rows="2" matInput></textarea>

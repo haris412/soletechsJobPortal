@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class PositionoftrustComponent {
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
+  public isFile: boolean = false;
   title = 'angular';
 
   constructor() { }

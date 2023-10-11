@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./identification.component.scss']
 })
 export class IdentificationComponent {
+  public sidenavOpen: boolean = false;
+  public isFile: boolean = false;
+  OpenSidenav() {
+    this.sidenavOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
 
+  CloseSidenav() {
+    this.sidenavOpen = false;
+    document.body.style.overflow = 'auto';
+  }
 }

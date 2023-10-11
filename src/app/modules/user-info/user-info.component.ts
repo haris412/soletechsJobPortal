@@ -9,7 +9,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class UserInfoComponent implements OnInit {
 
-    public completed: boolean = true;
+    public completed: boolean = false;
     public sidenavOpen: boolean = false;
     title = 'angular';
     public Editor = ClassicEditor;
