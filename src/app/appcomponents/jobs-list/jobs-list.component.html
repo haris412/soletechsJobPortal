@@ -12,6 +12,7 @@
 					type="text" 
 					class="w-100"
 					placeholder="Enter job title"
+					[(ngModel)]="inputText" (keyup.enter)="onEnterPressed()"
 					/>
       </div>
     </div>
