@@ -1,0 +1,71 @@
+<form class="row" action="" [formGroup]="identificationForm">
+    <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Identification Type</p>
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-select name = 'identifcationType' [formControlName]="'identifcationType'">
+                <mat-option value="card">Card</mat-option>
+            </mat-select>
+            <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Identification Number</p>
+        <mat-form-field appearance="outline" class="w-100">
+            <input matInput  name = 'identificationNumber' [formControlName]="'identificationNumer'"/>
+        </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Issue Date</p>
+        <mat-form-field appearance="outline" class="w-100">
+            <input matInput [matDatepicker]="issueDate" name = 'issueDate' [formControlName]="'issueDate'">
+            <mat-datepicker-toggle matIconSuffix [for]="issueDate"></mat-datepicker-toggle>
+            <mat-datepicker #issueDate></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Expiry Date</p>
+        <mat-form-field appearance="outline" class="w-100">
+            <input matInput [matDatepicker]="expiryDate" name = 'expiryDate' [formControlName]="'expiryDate'">
+            <mat-datepicker-toggle matIconSuffix [for]="expiryDate"></mat-datepicker-toggle>
+            <mat-datepicker #expiryDate></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="p-3 d-flex files-div col-lg-6 col-12 rounded">
+        <div *ngIf="isFile" class="uploaded-files d-flex align-items-center mt-3">
+            <div class="file-details rounded">
+                <div class="file-name-type">
+                    <span class="file-name">Omar_cv_2023</span>
+                    <h6 class="file-type font-poppins-bold">PDF</h6>
+                </div>
+                <div class="file-icon">
+                    <img src="assets/SVG/pdf-icon.svg" alt="" />
+                </div>
+            </div>
+            <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+                <img src="assets/SVG/trash-01.svg" alt="" />
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 cv-div w-100">
+            <div
+                class="d-flex align-items-center rounded upload-cv border border-whisper position-relative gap-2 w-100">
+                <span class="bg-whisper text-midnight-moss rounded choose-file">Choose file</span>
+                <span class="text-gray-500">No file chosen</span>
+                <input class="form-control position-absolute w-100 h-100 opacity-0 start-0" type="file" id="formFile">
+            </div>
+        </div>
+    </div>
+</form>
+<div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+        (click)="Discard()">
+        Discard
+    </button>
+    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseIdentificationNav()">
+        Close
+    </button>
+    <button type="button"
+        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
+        (click)="SaveIdentification()">
+        Save 
+    </button>
+</div>

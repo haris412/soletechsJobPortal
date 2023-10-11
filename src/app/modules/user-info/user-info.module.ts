@@ -12,6 +12,11 @@ import { IdentificationComponent } from './identification/identification.compone
 import { UserInfoComponent } from './user-info.component';
 import { UserInfoRoutes } from './user-info-routing.module';
 import { RouterModule } from '@angular/router';
+import { AddEditContactInfoComponent } from './add-edit-contact-info/add-edit-contact-info.component';
+import { AddEditAddressComponent } from './add-edit-address/add-edit-address.component';
+import { AddEditIdentificationComponent } from './add-edit-identification/add-edit-identification.component';
+import { BasicInfoComponent } from './basic-info/basic-info.component';
+import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
 
 
 
@@ -20,16 +25,21 @@ import { RouterModule } from '@angular/router';
   declarations: [
     UserInfoComponent,
     AddEditBasicinformationComponent,
-    
     ContactInfoComponent,
     AddressComponent,
-    IdentificationComponent
+    IdentificationComponent,
+    AddEditContactInfoComponent,
+    AddEditAddressComponent,
+    AddEditIdentificationComponent,
+    BasicInfoComponent
   ],
   imports: [
     RouterModule.forChild(UserInfoRoutes),
     MaterialModule,
     CKEditorModule,
-    CommonModule
+    CommonModule,
+    ToastrModule.forRoot({ positionClass: 'inline' }),
+    ToastContainerModule,
   ],
   exports:[
     AddEditBasicinformationComponent,

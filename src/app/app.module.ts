@@ -12,6 +12,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.component';
 import { LinkedInRedirectComponent } from './modules/linkedIn-redirect/linkedIn-redirect.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ToastrModule.forRoot({ positionClass: 'inline' }),
+    ToastContainerModule,
     SharedModule,
     BrowserAnimationsModule,
     MaterialModule,
