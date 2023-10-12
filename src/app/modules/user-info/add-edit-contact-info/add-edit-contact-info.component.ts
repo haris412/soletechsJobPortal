@@ -37,7 +37,6 @@ export class AddEditContactInfoComponent {
   SaveContact: () => void = () => {
     if (this.contactForm.valid) {
       this.contact = this.contactForm.getRawValue();
-      this.toastrService.success('contact Added Successfully');
       this.contactData.emit(this.contact);
     } else {
       this.contactForm.markAllAsTouched();
