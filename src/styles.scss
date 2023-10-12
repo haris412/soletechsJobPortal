@@ -236,6 +236,9 @@ p {
       font-size: 1.25rem;
       font-family: $font-poppins-bold;
     }
+    .add-info {
+      padding: 0.75rem;
+    }
   }
 }
 
@@ -404,6 +407,25 @@ form {
       .choose-file {
         padding: 4px 12px;
       }
+    }
+  }
+}
+
+.add-info {
+  transition: all 0.3s ease-in-out;
+  width: 46px;
+  overflow: hidden;
+  h6 {
+    position: fixed;
+    transform: translateX(100%);
+    text-wrap: nowrap;
+  }
+  &:hover {
+    width: 187.63px;
+    h6 {
+      position: static;
+      transform: translateX(0%);
+      
     }
   }
 }

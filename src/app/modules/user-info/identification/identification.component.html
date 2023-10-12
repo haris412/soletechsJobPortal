@@ -1,6 +1,15 @@
 <div class="main-container">
   <div class="sign-up-info-div">
-    <span class="heading">Identification</span>
+    <div class="d-flex align-items-center justify-content-between">
+      <span class="heading">Identification</span>
+      <div
+        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
+        (click)="OpenSidenav()"
+      >
+        <img src="assets/SVG/plus-icon.svg" alt="" />
+        <h6 class="mb-0">Add Information</h6>
+      </div>
+    </div>
     <div class="identification-list d-flex flex-column align-items-center mt-3 col-sm-8 col-12">
       <div class="d-flex align-items-center w-100 identification-item-container"
         *ngFor="let identification of identificationList">
@@ -12,12 +21,6 @@
         <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
           <img src="assets/SVG/trash-01.svg" alt="" (click)="DeleteIdentification(identification)" />
         </div>
-      </div>
-      <div
-        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white w-100 add-identification gap-2 cursor-pointer"
-        (click)="OpenSidenav()">
-        <img src="assets/SVG/plus-icon.svg" alt="">
-        <h6 class="mb-0 font-poppins-medium">Add Identification</h6>
       </div>
     </div>
   </div>

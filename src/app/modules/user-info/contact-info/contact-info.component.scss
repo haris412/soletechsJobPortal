@@ -13,7 +13,15 @@
       background-color: $white-smoke;
     }
   }
-  .add-contact {
-    padding-block: 0.75rem;
+  .add-info {
+    transition: all 0.3s ;
+    h6 {
+      display: none;
+    }
+    &:hover {
+      h6 {
+        display: block;
+      }
+    }
   }
 }
