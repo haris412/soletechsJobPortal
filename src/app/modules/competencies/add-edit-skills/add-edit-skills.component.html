@@ -11,9 +11,9 @@
       </div>
     </div>
     <div class="row mx-0">
-      <div class="skills-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" *ngFor="let skill of skillList">
-        <div class="d-flex align-items-center w-100 skills-item-container" >
-          <div class="skills-item rounded w-100">
+      <div class="skills-list flex-column d-flex align-items-center mt-3 col-sm-6 col-12" >
+        <div class="align-items-center w-100 skills-item-container" >
+          <div class="skills-item rounded w-100" *ngFor="let skill of skillList; index as i" style="margin-top: 10px;">
             <h6 class="mb-0 font-poppins-bold">{{skill.skillId}}</h6>
             <div class="d-flex align-items-center gap-1">
               <div
@@ -21,7 +21,7 @@
               >
                 <img
                   class="cursor-pointer"
-                  (click)="EditSkill(skill)"
+                  (click)="EditSkill(i)"
                   src="assets/SVG/edit-icon.svg"
                   alt=""
                 />
@@ -31,7 +31,7 @@
               >
                 <img
                   src="assets/SVG/trash-01.svg"
-                  (click)="DeleteModal(skill.skillId)"
+                  (click)="DeleteModal(i)"
                   alt=""
                 />
               </div>
@@ -47,12 +47,12 @@
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100"
   [ngClass]="sidenavOpen ? 'open' : 'close'">
   <span class="heading">Skills</span>
-  <form class="row" action="" [formGroup]="form">
+  <form class="row" action="">
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Skill ID</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select [formControlName]="'skillId'">
-          <mat-option value="html">HTML</mat-option>
+        <mat-select name="skillid" [(ngModel)]="this.skillList[this.activeIndex].skillId">
+          <mat-option value="HTML">HTML</mat-option>
           <mat-option value="javascript">JAVASCRIPT</mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
@@ -61,7 +61,7 @@
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Level</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select [formControlName]="'level'">
+        <mat-select >
           <mat-option value="pakistan">BEGINER</mat-option>
           <mat-option value="india">INTERMEDIATE</mat-option>
         </mat-select>
@@ -71,7 +71,7 @@
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Level Date</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker" [formControlName]="'levelDate'">
+        <input matInput [matDatepicker]="picker" >
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -79,7 +79,7 @@
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Year of Experience</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput [formControlName]="'yearOfExperience'" />
+        <input matInput />
       </mat-form-field>
     </div>
     <div class="cv-div">
@@ -112,15 +112,15 @@
   </form>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="CloseSidenav()">
+      (click)="Discard()">
       Discard
     </button>
     <button type="button"
       class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-      (click)="CloseSidenav()">
+      (click)="closeAndNew()">
       Save add new
     </button>
-    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="AddSkill()">
+    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSidenav()">
       Save
     </button>
   </div>

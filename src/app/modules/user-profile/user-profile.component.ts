@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -14,11 +14,10 @@ export class UserProfileComponent {
 	title = 'angular';
 	public Editor = ClassicEditor;
 	index: Number = 1;
-	fileData: any;
     imageAvatar:any;
 	defaultUrl:string = 'assets/Images/Profile.png';
 	fileList:any[] = [];
-	constructor(private router: Router) { }
+	constructor(private router: Router, public ref: ChangeDetectorRef) { }
 
 	ngOnInit(): void {
 	}
@@ -53,20 +52,24 @@ export class UserProfileComponent {
 	RouteToCompetencies() {
 		this.router.navigate(['/competencies']);
 	}
-	selectFile(event:any){
-	if (this.fileData.type == 'image/jpeg' || this.fileData.type == 'image/png') {
-		this.fileData = event.target.files[0];
+	selectFile(event:any) {
 		const reader = new FileReader();
-		reader.readAsDataURL(this.fileData);
-		reader.onload = () => {
-		this.imageAvatar = reader.result;
-		};
-	} else {
-		alert("file type should be image of jpeg or png")
-		return;
-	}
- }
-	DeleteFile(file:any){
+		reader.readAsDataURL(event.target.files[0]);
+      	reader.onload = (event) => {
+        	this.imageAvatar = event?.target?.result;
+		}
+ 	}
 
+	DeleteFile(file:any) {
+		this.fileList = [];
+	}
+
+	removeAvtar() {
+		this.imageAvatar = this.defaultUrl;
+	}
+
+	uploadCV(files: any) {
+		this.fileList.push(files.target.files[0]);
+		this.ref.detectChanges();
 	}
 }
