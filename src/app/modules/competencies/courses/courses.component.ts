@@ -9,6 +9,7 @@ export class CoursesComponent {
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
+  fileList:any[]=[]
   title = 'angular';
 
   constructor() { }

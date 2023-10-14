@@ -15,6 +15,7 @@ export class AddEditIdentificationComponent {
   @Output() identificationData: EventEmitter<Identification> = new EventEmitter();
   identificationForm: UntypedFormGroup;
   isFile:boolean = false;
+	fileList:any[] = [];
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Identification
   constructor(private toastrService: ToastrService) {

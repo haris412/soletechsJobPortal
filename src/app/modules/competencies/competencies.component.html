@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
+  <div
+    class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer"
+    (click)="GoBack()"
+  >
     <img src="assets/SVG/Iconback.svg" alt="" />
     <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
   </div>
@@ -7,56 +10,74 @@
   <div class="row mx-0">
     <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
       <li>
-        <div class="stepper-progression active rounded-circle border border-color-midnight-moss">
+        <div
+          class="stepper-progression active rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': completed, 'active': isActive }"
+        >
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items" (click) ="GoToTab(1)">
+        <div class="stepper-items" (click)="GoToTab(1)">
           <p>Skills</p>
           <p class="text-nowrap">Please provide your skills</p>
         </div>
       </li>
       <li>
-        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': completed, 'active': isActive }"
+        >
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items" (click) ="GoToTab(2)">
+        <div class="stepper-items" (click)="GoToTab(2)">
           <p>Professional Experience</p>
           <p>Please provide your professional experience</p>
         </div>
       </li>
       <li>
-        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': completed, 'active': isActive }"
+        >
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items" (click) ="GoToTab(3)">
+        <div class="stepper-items" (click)="GoToTab(3)">
           <p>Education</p>
           <p>Please provide your education</p>
         </div>
       </li>
       <li>
-        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': completed, 'active': isActive }"
+        >
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items" (click) ="GoToTab(4)">
+        <div class="stepper-items" (click)="GoToTab(4)">
           <p>Certificates</p>
           <p>Please provide your certificates</p>
         </div>
       </li>
       <li>
-        <div class="stepper-progression rounded-circle border border-color-midnight-moss">
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': completed, 'active': isActive }"
+        >
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items" (click) ="GoToTab(5)">
+        <div class="stepper-items" (click)="GoToTab(5)">
           <p>Courses</p>
           <p>Please provide your courses</p>
         </div>
       </li>
       <li>
-        <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step">
+        <div
+          class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
+          [ngClass]="{ 'completed': completed, 'active': isActive }"
+        >
           <p class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items" (click) ="GoToTab(6)">
+        <div class="stepper-items" (click)="GoToTab(6)">
           <p>Position of trust</p>
           <p>Please provide your position of trust</p>
         </div>
@@ -64,7 +85,7 @@
     </ul>
 
     <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections">
-      <h4 class="font-poppins-bold">{{stepperTitle}}</h4>
+      <h4 class="font-poppins-bold">{{ stepperTitle }}</h4>
       <app-add-edit-skills *ngIf="index === 1"></app-add-edit-skills>
       <app-add-edit-experience *ngIf="index === 2"></app-add-edit-experience>
       <app-add-edit-education *ngIf="index === 3"></app-add-edit-education>
@@ -72,18 +93,27 @@
       <app-courses *ngIf="index === 5"></app-courses>
       <app-positionoftrust *ngIf="index === 6"></app-positionoftrust>
 
-      <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
-        <button type="button"
-          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3">
+      <div
+        class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns"
+      >
+        <button
+          type="button"
+          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
+        >
           Discard
         </button>
-        <button type="button"
+        <button
+          type="button"
           class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
-          (click)="Back(index)">
+          (click)="Back(index)"
+        >
           Back
         </button>
-        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-          (click)="Next()">
+        <button
+          type="button"
+          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          (click)="Next()"
+        >
           Next
         </button>
       </div>

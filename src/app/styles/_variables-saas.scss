@@ -37,9 +37,10 @@ $my-colors: (
   "error-600": #d92d20,
   "error-700": #b42318,
   "echo-blue": #aeb5c3,
-  "storm-grey": #7D8088,
-  "pastel-green-dark": #00CE45,
-  "gray-200": #EAECF0
+  "storm-grey": #7d8088,
+  "pastel-green-dark": #00ce45,
+  "gray-200": #eaecf0,
+  "rock-blue": #98a2b3,
 );
 
 $theme-colors: map-merge($theme-colors, $my-colors);
@@ -81,9 +82,10 @@ $utilities: map-merge(
         "error-600": #d92d20,
         "error-700": #b42318,
         "echo-blue": #aeb5c3,
-        "storm-grey": #7D8088,
-        "pastel-green-dark": #00CE45,
-        "gray-200": #EAECF0
+        "storm-grey": #7d8088,
+        "pastel-green-dark": #00ce45,
+        "gray-200": #eaecf0,
+        "rock-blue": #98a2b3,
       ),
     ),
     "new-color": (
@@ -120,9 +122,10 @@ $utilities: map-merge(
         "error-600": #d92d20,
         "error-700": #b42318,
         "echo-blue": #aeb5c3,
-        "storm-grey": #7D8088,
-        "pastel-green-dark": #00CE45,
-        "gray-200": #EAECF0
+        "storm-grey": #7d8088,
+        "pastel-green-dark": #00ce45,
+        "gray-200": #eaecf0,
+        "rock-blue": #98a2b3,
       ),
     ),
     "new-border": (
@@ -159,9 +162,10 @@ $utilities: map-merge(
         "error-600": #d92d20,
         "error-700": #b42318,
         "echo-blue": #aeb5c3,
-        "storm-grey": #7D8088,
-        "pastel-green-dark": #00CE45,
-        "gray-200": #EAECF0
+        "storm-grey": #7d8088,
+        "pastel-green-dark": #00ce45,
+        "gray-200": #eaecf0,
+        "rock-blue": #98a2b3,
       ),
     ),
     "line-height": (
@@ -222,7 +226,7 @@ $utilities: map-merge(
     ),
   )
 );
-$gray-200: #EAECF0;
+$gray-200: #eaecf0;
 $gray-300: #d0d5dd;
 $gray-500: #667085;
 $gray-600: #475467;
@@ -253,8 +257,9 @@ $error-50: #fef3f2;
 $error-600: #d92d20;
 $error-700: #b42318;
 $echo-blue: #aeb5c3;
-$storm-grey: #7D8088;
-$pastel-green-dark: #00CE45;
+$storm-grey: #7d8088;
+$pastel-green-dark: #00ce45;
+$rock-blue: #98a2b3;
 
 $grid-breakpoints: (
   xs: 0,

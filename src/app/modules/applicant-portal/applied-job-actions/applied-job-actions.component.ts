@@ -9,6 +9,7 @@ import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal
 })
 export class AppliedJobActionsComponent {
   public completed: boolean = false;
+  jobList:any[]=[];
   constructor(
     private router: Router,
     private dialog: RescheduleModalComponentService

@@ -11,6 +11,7 @@ export class UserInfoComponent implements OnInit {
 
     public completed: boolean = false;
     public sidenavOpen: boolean = false;
+    public isActive: boolean = false;
     title = 'soletech';
     public Editor = ClassicEditor;
     index: Number = 1;

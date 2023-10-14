@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppliedJobsComponent {
   public completed: boolean = false;
+  jobList:any[]=[];
   constructor(private router: Router) {
 
   }

@@ -1,6 +1,26 @@
 <div>
   <h4>Applied Jobs</h4>
-  <div class="job-detail rounded-3 cursor-pointer" (click)="toJobActions()">
+  <div
+    *ngIf="jobList.length === 0"
+    class="job-detail justify-content-center rounded-3"
+  >
+    <div class="no-info">
+      <img src="assets/SVG/no-applied.svg" alt="" />
+      <p class="text-shuttle-grey">You didnt apply for any job</p>
+      <button
+          type="button"
+          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          
+        >
+          Browse Jobs
+        </button>
+    </div>
+  </div>
+  <div
+    *ngIf="jobList.length > 0"
+    class="job-detail rounded-3 cursor-pointer"
+    (click)="toJobActions()"
+  >
     <div class="d-flex align-items-center justify-content-between">
       <h5>Lead Product Design</h5>
       <div
@@ -41,7 +61,7 @@
     </div>
     <div class="stepper-wrapper">
       <div class="stepper-item completed">
-        <div class="step-counter ">
+        <div class="step-counter">
           <img src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="completed"></p>
         </div>
@@ -74,7 +94,11 @@
       </div>
     </div>
   </div>
-  <div class="job-detail rounded-3 cursor-pointer" (click)="toJobActions()">
+  <div
+    *ngIf="jobList.length > 0"
+    class="job-detail rounded-3 cursor-pointer"
+    (click)="toJobActions()"
+  >
     <div class="d-flex align-items-center justify-content-between">
       <h5>Lead Product Design</h5>
       <div
@@ -115,9 +139,9 @@
     </div>
     <div class="stepper-wrapper">
       <div class="stepper-item">
-        <div class="step-counter ">
+        <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p ></p>
+          <p></p>
         </div>
         <h6 class="text-gray-700 font-poppins-medium">Screening</h6>
       </div>

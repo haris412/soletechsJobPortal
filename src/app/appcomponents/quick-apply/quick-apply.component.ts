@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class QuickApplyComponent {
   public isFile: boolean = false;
-  public files: any[] = [];
+  public fileList: any[] = [];
   constructor(
     private router: Router
   ) {}
@@ -18,10 +18,10 @@ export class QuickApplyComponent {
   }
 
   onFileUpload(files: any) {
-    this.files = files.target.files;
+    this.fileList = files.target.files;
   }
 
   deleteFile() {
-    this.files = [];
+    this.fileList = [];
   }
 }

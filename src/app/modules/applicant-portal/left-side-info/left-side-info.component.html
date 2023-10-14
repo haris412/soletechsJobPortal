@@ -18,7 +18,23 @@
 </div>
 <div class="next-actions">
   <h4>Next actions</h4>
-  <div class="actions info-container rounded-3">
+  <div
+    *ngIf="jobList.length === 0"
+    class="actions info-container rounded-3"
+  >
+    <div class="no-info">
+      <img src="assets/SVG/no-action.svg" alt="" />
+      <p class="text-shuttle-grey">Search your next job</p>
+      <button
+          type="button"
+          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          
+        >
+          Search Jobs
+        </button>
+    </div>
+  </div>
+  <div *ngIf="jobList.length > 0" class="actions info-container rounded-3">
     <div class="d-flex flex-xl-column flex-sm-row flex-column gap-2 justify-content-sm-between">
       <div class="job-details">
         <div class="d-flex align-items-center gap-xxl-3 gap-2">

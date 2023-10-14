@@ -9,7 +9,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class CompetenciesComponent implements OnInit {
 
-    public completed: boolean = true;
+    public completed: boolean = false;
+    public isActive: boolean = false;
     public sidenavOpen: boolean = false;
     title = 'angular';
     public Editor = ClassicEditor;

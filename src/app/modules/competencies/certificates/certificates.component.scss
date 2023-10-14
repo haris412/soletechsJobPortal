@@ -7,7 +7,8 @@
     gap: 1.75rem;
     .certificate-item {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
       padding-block: 0.813rem;
       padding-inline: 1rem;
       background-color: $white-smoke;

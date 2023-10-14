@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./saved-jobs.component.scss']
 })
 export class SavedJobsComponent {
-
+  jobList:any[]=[];
 }

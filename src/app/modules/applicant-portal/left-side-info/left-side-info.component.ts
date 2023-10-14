@@ -9,6 +9,7 @@ import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal
 })
 export class LeftSideInfoComponent {
   isDisable:boolean = false;
+  jobList:any[]=[];
   constructor(private dialog: RescheduleModalComponentService,
               private toastrService: ToastrService
   ) {}

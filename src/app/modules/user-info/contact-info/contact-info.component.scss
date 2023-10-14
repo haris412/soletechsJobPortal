@@ -2,7 +2,7 @@
 
 .main-container {
   .contact-item-container {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     gap: 1.75rem;
     .contact-item {
       display: flex;
@@ -13,15 +13,5 @@
       background-color: $white-smoke;
     }
   }
-  .add-info {
-    transition: all 0.3s ;
-    h6 {
-      display: none;
-    }
-    &:hover {
-      h6 {
-        display: block;
-      }
-    }
-  }
+  
 }

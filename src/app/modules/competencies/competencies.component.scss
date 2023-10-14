@@ -34,8 +34,12 @@
           position: absolute;
           bottom: -38px;
         }
-        &.active {
+        &.active, 
+        &.completed {
           opacity: 1;
+        }
+        &.completed {
+          background-color: $feijoa;
         }
         img{
           position: absolute;

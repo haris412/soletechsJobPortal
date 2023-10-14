@@ -7,20 +7,39 @@
         (click)="OpenSidenav()"
       >
         <img src="assets/SVG/plus-icon.svg" alt="" />
-        <h6 class="mb-0">Add Information</h6>
+        <h6 class="mb-0">Add New</h6>
       </div>
     </div>
-    <div class="address-list d-flex flex-column align-items-center mt-3 col-sm-8 col-12">
-      <div class="d-flex align-items-center w-100 address-item-container" *ngFor="let address of AddressList">
-        <div class="address-item rounded w-100">
-          <h6 class="mb-0 font-poppins-bold">{{address.nameOfDescription}}</h6>
-          <img class="cursor-pointer" (click)="EditAddress(address)" src="assets/SVG/edit-icon.svg" alt="" />
+    <div class="row mx-0">
+      <div class="address-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" *ngFor="let address of AddressList">
+        <div class="d-flex align-items-center w-100 address-item-container" >
+          <div class="address-item rounded w-100">
+            <h6 class="mb-0 font-poppins-bold">{{address.nameOfDescription}}</h6>
+            <div class="d-flex align-items-center gap-1">
+              <div
+                class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
+              >
+                <img
+                  class="cursor-pointer"
+                  (click)="EditAddress(address)"
+                  src="assets/SVG/edit-icon.svg"
+                  alt=""
+                />
+              </div>
+              <div
+                class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
+              >
+                <img
+                  src="assets/SVG/trash-01.svg"
+                  (click)="DeleteAddress(address)"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-          <img src="assets/SVG/trash-01.svg" (click)="DeleteAddress(address)" alt="" />
-        </div>
-      </div>
       
+      </div>
     </div>
   </div>
 </div>

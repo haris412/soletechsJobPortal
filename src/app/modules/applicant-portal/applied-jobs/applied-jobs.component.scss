@@ -116,4 +116,11 @@
     padding-inline: 0.75rem;
     width: fit-content;
   }
+  .no-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-block: 2rem;
+  }
 }

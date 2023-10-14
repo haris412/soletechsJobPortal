@@ -26,8 +26,12 @@
           width: 8px;
           height: 8px;
         }
-        &.active {
+        &.active, 
+        &.completed {
           opacity: 1;
+        }
+        &.completed {
+          background-color: $feijoa;
         }
         img {
           position: absolute;

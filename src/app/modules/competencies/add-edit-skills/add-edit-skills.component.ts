@@ -17,6 +17,7 @@ export class AddEditSkillsComponent {
   form: UntypedFormGroup;
   skillList: Skills[] = [];
   file_store!: FileList;
+  fileList:any[]=[];
   file:any;
   constructor(
     private deleteModal: DeleteModalComponentService,
