@@ -11,6 +11,12 @@
       </div>
     </div>
     <div class="row mx-0">
+      <div *ngIf="contactInfoList.length === 0" class="contact-list">
+        <div class="no-information">
+          <img src="assets/SVG/no-info.svg" alt="no-info">
+          <p class="text-shuttle-grey">You haven't added any information</p>
+        </div>
+      </div>
       <div
         class="contact-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12"
         *ngFor="let contact of contactInfoList"

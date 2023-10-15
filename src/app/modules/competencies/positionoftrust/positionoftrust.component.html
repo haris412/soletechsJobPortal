@@ -76,8 +76,8 @@
       </mat-form-field>
     </div>
     <div class="cv-div">
-      <div *ngIf="fileList.length===0" class="upload-file">
-        <img src="assets/SVG/upload.svg" alt="">
+      <div *ngIf="fileList.length === 0" class="upload-file">
+        <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
         <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
         <span>PDF or DOC (max. size 6MB)</span>
       </div>

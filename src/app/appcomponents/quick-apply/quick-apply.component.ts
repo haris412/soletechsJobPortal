@@ -21,12 +21,10 @@ export class QuickApplyComponent {
   }
 
   onFileUpload(files: any) {
-    debugger;
     this.fileList = files.target.files;
   }
 
   DeleteFile(selectedFile:File) {
-    debugger;
     //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
     this.fileList = [];
   }

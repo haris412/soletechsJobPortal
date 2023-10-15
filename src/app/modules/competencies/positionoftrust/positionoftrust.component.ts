@@ -26,4 +26,12 @@ export class PositionoftrustComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
+  onFileUpload(files: any) {
+    this.fileList = files.target.files;
+  }
+
+  DeleteFile(selectedFile:File) {
+    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
+    this.fileList = [];
+  }
 }
