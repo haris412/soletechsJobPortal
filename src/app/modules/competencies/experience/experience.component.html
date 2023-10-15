@@ -44,6 +44,6 @@
   </div>
   <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
     <span class="heading">Professional Experience</span>
-    <app-add-edit-experience  (closeSideNav)="CloseSidenav()" [selectedExperience]="selectedExperience"
+    <app-add-edit-experience (closeSideNav)="CloseSidenav()" [selectedExperience]="selectedExperience"
     (experienceData)="ExperienceAdded($event)"></app-add-edit-experience>
   </div>

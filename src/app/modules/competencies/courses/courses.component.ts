@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Course } from 'src/app/models/courses.model';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
 @Component({
   selector: 'app-courses',
@@ -8,11 +11,10 @@ import { Component } from '@angular/core';
 export class CoursesComponent {
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
-  public isFile: boolean = false;
-  fileList:any[]=[]
-  title = 'angular';
-  public courses: any[]=[];
-  constructor() { }
+  public courses: Course[]=[];
+  selectedCourse!:Course;
+  constructor(private toastrService: ToastrService,
+    private deleteModal: DeleteModalComponentService) { }
 
   ngOnInit(): void {
   }
@@ -26,12 +28,24 @@ export class CoursesComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
-  onFileUpload(files: any) {
-    this.fileList = files.target.files;
+  EditCourse(certificate:Course){
+    this.selectedCourse = certificate;
+    this.OpenSidenav();
   }
 
-  DeleteFile(selectedFile:File) {
-    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
-    this.fileList = [];
+  CourseAdded(certificate:Course){
+    this.toastrService.success('course Added Successfully');
+    this.courses.push(certificate);
+    this.CloseSidenav();
+  }
+
+  Delete(selectedcourse:Course) {
+    const data = `Are you sure you want to do delete this course?`;
+    const dialogRef = this.deleteModal.openDialog(data);
+    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+      if (dialogResult) {
+        this.courses = this.courses.filter((course:Course) => course.courses !== selectedcourse.courses);
+      }
+    });
   }
 }

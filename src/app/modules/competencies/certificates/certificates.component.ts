@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Certificates } from 'src/app/models/certificates.model';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
 @Component({
   selector: 'app-certificates',
@@ -10,13 +13,12 @@ export class CertificatesComponent {
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
   fileList:any[]=[]
-  title = 'angular';
-  public certificates: any[]=[];
+  public certificates: Certificates[]=[];
+  selectedCertificate!:Certificates
+  constructor(private toastrService: ToastrService,
+    private deleteModal: DeleteModalComponentService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   OpenSidenav() {
     this.sidenavOpen = true;
@@ -27,12 +29,24 @@ export class CertificatesComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
-  onFileUpload(files: any) {
-    this.fileList = files.target.files;
+  EditCertificate(certificate:Certificates){
+    this.selectedCertificate = certificate;
+    this.OpenSidenav();
   }
 
-  DeleteFile(selectedFile:File) {
-    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
-    this.fileList = [];
+  CertificateAdded(certificate:Certificates){
+    this.toastrService.success('certificate Added Successfully');
+    this.certificates.push(certificate);
+    this.CloseSidenav();
+  }
+
+  Delete(selectedcertificate:Certificates) {
+    const data = `Are you sure you want to do delete this certificate?`;
+    const dialogRef = this.deleteModal.openDialog(data);
+    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+      if (dialogResult) {
+        this.certificates = this.certificates.filter((certificate:Certificates) => certificate.certificate !== selectedcertificate.certificate);
+      }
+    });
   }
 }

@@ -12,7 +12,6 @@ import { Experience } from '../models/experience';
 export class ExperienceComponent {
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
-  public isFile: boolean = false;
   experienceList: Experience[] = [];
   selectedExperience!:Experience;
   constructor(

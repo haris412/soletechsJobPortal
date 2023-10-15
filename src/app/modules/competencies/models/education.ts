@@ -1,4 +1,5 @@
 export class Education {
+    id:string = '';
     education: string = '';
     description: string = '';
     levelOfEducation: string = '';

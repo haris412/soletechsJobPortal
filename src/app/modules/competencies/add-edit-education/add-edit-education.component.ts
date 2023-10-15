@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Education } from '../models/education';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit-education',
@@ -7,73 +8,64 @@ import { Education } from '../models/education';
   styleUrls: ['./add-edit-education.component.scss']
 })
 export class AddEditEducationComponent {
-  public completed: boolean = true;
-  public sidenavOpen: boolean = false;
-  public isFile: boolean = false;
-  fileList:any[]=[]
-  title = 'angular';
-  educations: Education[] = [];
-  activeIndex: number = -1;
-  isEdit: boolean = false;
-
-  constructor() { }
-
-  ngOnInit(): void {
+  @Input() selectedEducation:Education = new Object() as Education;
+  @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
+  @Output() educationData: EventEmitter<Education> = new EventEmitter();
+  educationForm: UntypedFormGroup;
+  private _formBuilder = inject(UntypedFormBuilder);
+  skill!: Education;
+  fileList:any[]=[];
+  file:any;
+  constructor(){
+    this.educationForm = this._formBuilder.group({
+      id:[''],
+      education: ['',[Validators.required]],
+      description: ['', [Validators.required]],
+      levelOfEducation: ['', [Validators.required]],
+      Emphasis:[''],
+      Institution: [''],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      average:[''],
+      scale:[''],
+      credits: [''],
+      hoursbasis: [''],
+      hourscompleted:['' ],
+      hoursrequired:['', ],
+      notes:[''],
+      attachment:['']
+    });
+    
   }
-
-  OpenSidenav() {
-    this.educations.push(new Education());
-    this.activeIndex = this.educations.length - 1;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-    this.isEdit = false;
-  }
-
-  closeAndNew() {
-    this.educations.push(new Education());
-    this.activeIndex = this.educations.length - 1;
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  CloseSidenav() {
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.activeIndex = -1;
-  }
-
-  edit(index: number) {
-    this.isEdit = true;
-    this.activeIndex = index;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  delete(index: number) {
-    this.educations.splice(index, 1);
-    this.isEdit = false;
-    this.activeIndex = -1;
-  }
-
-  Discard() {
-    if (!this.isEdit) {
-      this.educations.splice(this.educations.length-1, 1);
+  ngOnInIt(){
+    if(this.selectedEducation.education !== ''){
+      this.educationForm.patchValue({
+        ...this.selectedEducation
+      });
     }
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.activeIndex = -1;
-  }
-  onFileUpload(files: any) {
-    this.fileList = files.target.files;
-  }
-
-  DeleteFile(selectedFile:File) {
-    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
-    this.fileList = [];
-  }
+   }
+    CloseSideNav: () => void = () => {
+      this.closeSideNav.emit(true);
+    }
+  
+    SaveEducation: () => void = () => {
+      if (this.educationForm.valid) {
+        this.selectedEducation = this.educationForm.getRawValue();
+        this.educationData.emit(this.selectedEducation);
+      } else {
+        this.educationForm.markAllAsTouched();
+      }
+    }
+    Discard: () => void = () => {
+      this.educationForm.reset();
+      this.fileList = [];
+    }
+    onFileUpload(files: any) {
+      this.fileList = files.target.files;
+    }
+  
+    DeleteFile: (selectedFile:File) => void = () => {
+      //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
+      this.fileList = [];
+    }
 }

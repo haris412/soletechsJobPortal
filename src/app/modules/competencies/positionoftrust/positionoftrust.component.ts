@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
 @Component({
   selector: 'app-positionoftrust',
@@ -9,10 +12,10 @@ export class PositionoftrustComponent {
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
-  fileList:any[]=[]
-  title = 'angular';
-  public positions: any[]=[];
-  constructor() { }
+  positionTrustList: PositionOfTrust[] = [];
+  selectedPositionTrust!:PositionOfTrust;
+  constructor(private toastrService: ToastrService,
+    private deleteModal: DeleteModalComponentService) { }
 
   ngOnInit(): void {
   }
@@ -26,12 +29,25 @@ export class PositionoftrustComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
-  onFileUpload(files: any) {
-    this.fileList = files.target.files;
+
+  EditPositionOfTrust(position:PositionOfTrust){
+    this.selectedPositionTrust = position;
+    this.OpenSidenav();
   }
 
-  DeleteFile(selectedFile:File) {
-    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
-    this.fileList = [];
+  PositionTrustAdded(positionOfTrust:PositionOfTrust){
+    this.toastrService.success('Position Of Trust Added Successfully');
+    this.positionTrustList.push(positionOfTrust);
+    this.CloseSidenav();
+  }
+
+  Delete(selectedpositionOfTrust:PositionOfTrust) {
+    const data = `Are you sure you want to do delete this position Of Trust?`;
+    const dialogRef = this.deleteModal.openDialog(data);
+    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+      if (dialogResult) {
+        this.positionTrustList = this.positionTrustList.filter((position:PositionOfTrust) => position.employer !== selectedpositionOfTrust.employer);
+      }
+    });
   }
 }

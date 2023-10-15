@@ -2,7 +2,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Skill ID</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="skillid" name='skillId' [formControlName]="'skillId'">
+      <mat-select  name='skillId' [formControlName]="'skillId'">
         <mat-option value="HTML">HTML</mat-option>
         <mat-option value="javascript">JAVASCRIPT</mat-option>
       </mat-select>
@@ -45,7 +45,7 @@
         <div class="file-details rounded">
           <div class="d-flex align-items-center gap-2">
             <div class="file-icon">
-              <img src="assets/SVG/pdf-icon.svg" alt="" (click)="DeleteFile(file)"/>
+              <img src="assets/SVG/pdf-icon.svg" alt="" (click)="DeleteFile(file)" />
             </div>
             <div class="file-name-type">
               <span class="file-name">{{file.name}}</span>
@@ -69,10 +69,10 @@
   </button>
   <button type="button"
     class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-    (click)="SaveSkill()">
-    Save add new
+    (click)="CloseSideNav()">
+    Close
   </button>
-  <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSideNav()">
+  <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="SaveSkill()">
     Close
   </button>
 </div>
