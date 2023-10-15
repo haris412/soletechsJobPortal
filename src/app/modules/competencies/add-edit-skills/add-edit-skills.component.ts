@@ -50,21 +50,13 @@ export class AddEditSkillsComponent {
     }
     Discard: () => void = () => {
       this.skillForm.reset();
-    }
-    handleFileInputChange(event: any) {
-      let files = event?.target.files[0];
-      this.file = event?.target.files[0];
-      this.file_store = event;
-      if (files) {
-      } else {
-  
-      }
+      this.fileList = [];
     }
     onFileUpload(files: any) {
       this.fileList = files.target.files;
     }
   
-    DeleteFile(selectedFile:File) {
+    DeleteFile: (selectedFile:File) => void = () => {
       //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
       this.fileList = [];
     }

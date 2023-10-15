@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Experience } from '../models/experience';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit-experience',
@@ -7,63 +8,56 @@ import { Experience } from '../models/experience';
   styleUrls: ['./add-edit-experience.component.scss']
 })
 export class AddEditExperienceComponent {
-  public completed: boolean = true;
-  public sidenavOpen: boolean = false;
-  title = 'angular';
-  experiences: Experience[] = [];
-  activeIndex: number = -1;
-  isEdit: boolean = false;
+  @Input() selectedExperience: Experience = new Object() as Experience;
+  @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
+  @Output() experienceData: EventEmitter<Experience> = new EventEmitter();
+  experienceForm: UntypedFormGroup;
+  private _formBuilder = inject(UntypedFormBuilder);
+  skill!: Experience;
+  fileList: any[] = [];
+  file_store!: FileList;
+  file: any;
+  constructor() {
+    this.experienceForm = this._formBuilder.group({
+      id: [''],
+      employer: ['', [Validators.required]],
+      position: ['', [Validators.required]],
+      internetAddress: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      notes: [''],
+      attachment: ['']
+    });
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
-
-  OpenSidenav() {
-    this.experiences.push(new Experience());
-    this.activeIndex = this.experiences.length - 1;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-    this.isEdit = false;
-  }
-
-  closeAndNew() {
-    this.experiences.push(new Experience());
-    this.activeIndex = this.experiences.length - 1;
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  CloseSidenav() {
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.activeIndex = -1;
-  }
-
-  edit(index: number) {
-    this.isEdit = true;
-    this.activeIndex = index;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  delete(index: number) {
-    this.experiences.splice(index, 1);
-    this.isEdit = false;
-    this.activeIndex = -1;
-  }
-
-  Discard() {
-    if (!this.isEdit) {
-      this.experiences.splice(this.experiences.length-1, 1);
+  ngOnInIt() {
+    this.experienceForm.reset();
+    if (this.selectedExperience.id !== '') {
+      this.experienceForm.patchValue({
+        ...this.selectedExperience
+      });
     }
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.activeIndex = -1;
+  }
+  CloseSideNav: () => void = () => {
+    this.closeSideNav.emit(true);
+  }
+
+  SaveExperience: () => void = () => {
+    if (this.experienceForm.valid) {
+      this.selectedExperience = this.experienceForm.getRawValue();
+      this.experienceData.emit(this.selectedExperience);
+    } else {
+      this.experienceForm.markAllAsTouched();
+    }
+  }
+  Discard: () => void = () => {
+    this.experienceForm.reset();
+    this.fileList = [];
+  }
+  onFileUpload(files: any) {
+    this.fileList = files.target.files;
+  }
+  DeleteFile: (selectedFile: File) => void = () => {
+    this.fileList = [];
   }
 }
