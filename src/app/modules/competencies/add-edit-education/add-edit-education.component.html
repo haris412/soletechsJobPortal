@@ -10,22 +10,30 @@
       </div>
     </div>
     <div class="row mx-0">
-      <div class="education-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12">
-        <div class="align-items-center w-100 education-item-container">
-          <div class="education-item rounded w-100" *ngFor="let edu of this.educations; index as i"
-            style="margin-top: 10px;">
-            <h6 class="mb-0 font-poppins-bold">{{edu.description}}</h6>
-            <div class="d-flex align-items-center gap-1">
-              <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img class="cursor-pointer" (click)="edit(i)" src="assets/SVG/edit-icon.svg" alt="" />
-              </div>
-              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img src="assets/SVG/trash-01.svg" (click)="delete(i)" alt="" />
+      <div *ngIf="educations.length === 0; else educationList" class="education-list">
+        <div class="no-information">
+          <img src="assets/SVG/no-info.svg" alt="no-info">
+          <p class="text-shuttle-grey">You haven't added any information</p>
+        </div>
+      </div>
+      <ng-template #educationList>
+        <div class="education-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12">
+          <div class="align-items-center w-100 education-item-container">
+            <div class="education-item rounded w-100" *ngFor="let edu of this.educations; index as i"
+              style="margin-top: 10px;">
+              <h6 class="mb-0 font-poppins-bold">{{edu.description}}</h6>
+              <div class="d-flex align-items-center gap-1">
+                <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                  <img class="cursor-pointer" (click)="edit(i)" src="assets/SVG/edit-icon.svg" alt="" />
+                </div>
+                <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                  <img src="assets/SVG/trash-01.svg" (click)="delete(i)" alt="" />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </ng-template>
     </div>
   </div>
 </div>

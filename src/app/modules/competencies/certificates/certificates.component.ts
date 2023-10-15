@@ -6,11 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./certificates.component.scss']
 })
 export class CertificatesComponent {
-  public completed: boolean = true;
+  public completed: boolean = false;
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
   fileList:any[]=[]
   title = 'angular';
+  public certificates: any[]=[];
 
   constructor() { }
 
