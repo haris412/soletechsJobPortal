@@ -27,7 +27,7 @@ export class QuickApplyComponent {
 
   DeleteFile(selectedFile:File) {
     debugger;
-    this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
-    //this.fileList = [];
+    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
+    this.fileList = [];
   }
 }
