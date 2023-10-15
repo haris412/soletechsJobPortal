@@ -4,7 +4,8 @@
       <span class="heading">Courses</span>
       <div
         class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
-        (click)="OpenSidenav()">
+        (click)="OpenSidenav()"
+      >
         <img src="assets/SVG/plus-icon.svg" alt="" />
         <h6 class="mb-0">Add New</h6>
       </div>
@@ -12,20 +13,30 @@
     <div class="row mx-0">
       <div *ngIf="courses.length === 0; else coursesList" class="courses-list">
         <div class="no-information">
-          <img src="assets/SVG/no-info.svg" alt="no-info">
+          <img src="assets/SVG/no-info.svg" alt="no-info" />
           <p class="text-shuttle-grey">You haven't added any information</p>
         </div>
       </div>
       <ng-template #coursesList>
-        <div class="courses-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12">
+        <div
+          class="courses-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12"
+        >
           <div class="d-flex align-items-center w-100 courses-item-container">
             <div class="courses-item rounded w-100">
               <h6 class="mb-0 font-poppins-bold">Course 1</h6>
               <div class="d-flex align-items-center gap-1">
-                <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                  <img class="cursor-pointer" src="assets/SVG/edit-icon.svg" alt="" />
+                <div
+                  class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
+                >
+                  <img
+                    class="cursor-pointer"
+                    src="assets/SVG/edit-icon.svg"
+                    alt=""
+                  />
                 </div>
-                <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                <div
+                  class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
+                >
                   <img src="assets/SVG/trash-01.svg" alt="" />
                 </div>
               </div>
@@ -37,39 +48,47 @@
   </div>
 </div>
 
-<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
+<div
+  class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100"
+  [ngClass]="sidenavOpen ? 'open' : 'close'"
+>
   <span class="heading">Courses</span>
-  <form class="d-flex flex-column w-100" action="">
-    <div class="d-flex flex-column">
+  <form class="row" action="">
+    <div class="d-flex flex-column col-lg-6 col-12">
       <p>Course Type</p>
       <mat-form-field appearance="outline" class="w-100">
         <mat-select>
-          <mat-option value="yes">
-            Yes
-          </mat-option>
+          <mat-option value="yes"> Yes </mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
       </mat-form-field>
     </div>
-    <div class="d-flex">
-      <div class="d-flex flex-column p-0 w-50 me-2">
+    <div class="d-flex align-items-center row px-0 mx-0">
+      <div class="d-flex flex-column col-lg-6 col-12">
         <p>Start Date</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker1">
-          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="picker1" />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column p-0 w-50">
+      <div class="d-flex flex-column col-lg-6 col-12">
         <p>End Date</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker2">
-          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="picker2" />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
-    <div class="d-flex flex-column">
+
+    <div class="d-flex flex-column col-lg-6 col-12">
       <p>Location</p>
       <mat-form-field appearance="outline" class="text-area w-100">
         <textarea rows="2" matInput></textarea>
@@ -77,41 +96,67 @@
     </div>
     <div class="cv-div">
       <div *ngIf="fileList.length === 0" class="upload-file">
-          <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
-          <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
-          <span>PDF or DOC (max. size 6MB)</span>
-        </div>
-        <div *ngIf="fileList.length > 0" class="p-3 row col-md-6 col-12 mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
-          <div class="uploaded-files col-12 px-0 d-flex align-items-center" *ngFor="let file of fileList">
-            <div class="file-details rounded" >
-              <div class="d-flex align-items-center gap-2">
-                <div class="file-icon">
-                  <img src="assets/SVG/pdf-icon.svg" alt="" />
-                </div>
-                <div class="file-name-type">
-                  <span class="file-name">{{file.name}}</span>
-                  <h6 class="file-type font-poppins-bold">PDF</h6>
-                </div>
+        <input type="file" (change)="onFileUpload($event)" /><img
+          src="assets/SVG/upload.svg"
+          alt=""
+        />
+        <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+        <span>PDF or DOC (max. size 6MB)</span>
+      </div>
+      <div
+        *ngIf="fileList.length > 0"
+        class="p-3 row col-lg-6 col-12 mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2"
+      >
+        <div
+          class="uploaded-files col-12 px-0 d-flex align-items-center"
+          *ngFor="let file of fileList"
+        >
+          <div class="file-details rounded">
+            <div class="d-flex align-items-center gap-2">
+              <div class="file-icon">
+                <img src="assets/SVG/pdf-icon.svg" alt="" />
               </div>
-              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-                <img src="assets/SVG/trash-01.svg" alt="" (click)="DeleteFile(file)"/>
+              <div class="file-name-type">
+                <span class="file-name">{{ file.name }}</span>
+                <h6 class="file-type font-poppins-bold">PDF</h6>
               </div>
+            </div>
+            <div
+              class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
+            >
+              <img
+                src="assets/SVG/trash-01.svg"
+                alt=""
+                (click)="DeleteFile(file)"
+              />
             </div>
           </div>
         </div>
+      </div>
     </div>
   </form>
-  <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="CloseSidenav()">
+  <div
+    class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns"
+  >
+    <button
+      type="button"
+      class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+      (click)="CloseSidenav()"
+    >
       Discard
     </button>
-    <button type="button"
+    <button
+      type="button"
       class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-      (click)="CloseSidenav()">
+      (click)="CloseSidenav()"
+    >
       Save add new
     </button>
-    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSidenav()">
+    <button
+      type="button"
+      class="btn text-white bg-midnight-moss rounded font-poppins-semi"
+      (click)="CloseSidenav()"
+    >
       Save
     </button>
   </div>
