@@ -39,7 +39,6 @@
 </div>
 
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
-  <span>{{this.activeIndex}}</span>
   <span class="heading">Education</span>
   <form class="row" action="">
     <div class="d-flex flex-column col-lg-6 col-12">
@@ -156,8 +155,8 @@
         <span>PDF or DOC (max. size 6MB)</span>
       </div>
       <div *ngIf="fileList.length > 0"
-        class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
-        <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center" *ngFor="let file of fileList">
+        class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2 col-lg-6 col-12">
+        <div class="uploaded-files col-12 px-0  d-flex align-items-center" *ngFor="let file of fileList">
           <div class="file-details rounded">
             <div class="d-flex align-items-center gap-2">
               <div class="file-icon">
