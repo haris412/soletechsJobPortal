@@ -31,18 +31,18 @@
         <div class="sign-up-info-div cv-div">
           <div class="heading mb-3">CV File</div>
           <p class="font-poppins-bold">Upload</p>
-          <div *ngIf="fileList.length===0" class="upload-file">
+          <div *ngIf="fileList.length === 0" class="upload-file">
             <img src="assets/SVG/upload.svg" alt="">
             <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
             <span>PDF or DOC (max. size 6MB)</span>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile" (change)="uploadCV($event)">
           </div>
           <div *ngIf="fileList.length > 0" class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
             <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center" *ngFor="let file of fileList">
               <div class="file-details rounded" >
                 <div class="d-flex align-items-center gap-2">
                   <div class="file-icon">
-                    <img src="assets/SVG/pdf-icon.svg" alt="" />
+                    <img src="assets/SVG/pdf-icon.svg" alt=""/>
                   </div>
                   <div class="file-name-type">
                     <span class="file-name">{{file.name}}</span>
@@ -51,7 +51,7 @@
                 </div>
                 
                 <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-                  <img src="assets/SVG/trash-01.svg" alt="" />
+                  <img src="assets/SVG/trash-01.svg" alt="" (click)="DeleteFile(file)"/>
                 </div>
               </div>
               

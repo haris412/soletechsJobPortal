@@ -15,9 +15,9 @@ export class SignUpComponent implements OnInit {
 	public Editor = ClassicEditor;
 	index: Number = 1;
 	fileData: any;
-    imageAvatar:any;
-	defaultUrl:string = 'assets/Images/Profile.png';
-	fileList:any[] = [];
+	imageAvatar: any;
+	defaultUrl: string = 'assets/Images/Profile.png';
+	fileList: any[] = [];
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
@@ -53,20 +53,25 @@ export class SignUpComponent implements OnInit {
 	RouteToCompetencies() {
 		this.router.navigate(['/competencies']);
 	}
-	selectFile(event:any){
-	if (this.fileData.type == 'image/jpeg' || this.fileData.type == 'image/png') {
-		this.fileData = event.target.files[0];
-		const reader = new FileReader();
-		reader.readAsDataURL(this.fileData);
-		reader.onload = () => {
-		this.imageAvatar = reader.result;
-		};
-	} else {
-		alert("file type should be image of jpeg or png")
-		return;
+	selectFile(event: any) {
+		if (event.target.files[0].type == 'image/jpeg' || event.target.files[0].type == 'image/png') {
+			this.fileData = event.target.files[0];
+			const reader = new FileReader();
+			reader.readAsDataURL(this.fileData);
+			reader.onload = () => {
+				this.imageAvatar = reader.result;
+			};
+		} else {
+			alert("file type should be image of jpeg or png")
+			return;
+		}
 	}
- }
-	DeleteFile(file:any){
+	onFileUpload(files: any) {
+		this.fileList = files.target.files;
+	}
 
+	DeleteFile(selectedFile: File) {
+		//this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
+		this.fileList = [];
 	}
 }

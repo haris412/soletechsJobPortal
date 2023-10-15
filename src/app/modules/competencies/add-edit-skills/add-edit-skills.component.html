@@ -1,114 +1,77 @@
-<div class="main-container">
-  <div class="sign-up-info-div">
-    <div class="d-flex align-items-center justify-content-between">
-      <span class="heading">Skills</span>
-      <div
-        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
-        (click)="OpenSidenav()">
-        <img src="assets/SVG/plus-icon.svg" alt="" />
-        <h6 class="mb-0">Add New</h6>
-      </div>
+<form class="row" action="" [formGroup]="skillForm">
+  <div class="d-flex flex-column col-lg-6 col-12">
+    <p>Skill ID</p>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-select name="skillid" name='skillId' [formControlName]="'skillId'">
+        <mat-option value="HTML">HTML</mat-option>
+        <mat-option value="javascript">JAVASCRIPT</mat-option>
+      </mat-select>
+      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+    </mat-form-field>
+  </div>
+  <div class="d-flex flex-column col-lg-6 col-12">
+    <p>Level</p>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-select name='level' [formControlName]="'level'">
+        <mat-option value="pakistan">BEGINER</mat-option>
+        <mat-option value="india">INTERMEDIATE</mat-option>
+      </mat-select>
+      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+    </mat-form-field>
+  </div>
+  <div class="d-flex flex-column col-lg-6 col-12">
+    <p>Level Date</p>
+    <mat-form-field appearance="outline" class="w-100">
+      <input matInput [matDatepicker]="picker" name='levelDate' [formControlName]="'levelDate'">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="d-flex flex-column col-lg-6 col-12">
+    <p>Year of Experience</p>
+    <mat-form-field appearance="outline" class="w-100">
+      <input matInput name='yearOfExperience' [formControlName]="'yearOfExperience'" />
+    </mat-form-field>
+  </div>
+  <div class="cv-div">
+    <div *ngIf="fileList.length === 0" class="upload-file">
+      <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
+      <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+      <span>PDF or DOC (max. size 6MB)</span>
     </div>
-    <div class="row mx-0">
-      <div class="skills-list flex-column d-flex align-items-center mt-3 col-sm-6 col-12">
-        <div class="align-items-center w-100 skills-item-container">
-          <div class="skills-item rounded w-100" *ngFor="let skill of skillList; index as i" style="margin-top: 10px;">
-            <h6 class="mb-0 font-poppins-bold">{{skill.skillId}}</h6>
-            <div class="d-flex align-items-center gap-1">
-              <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img class="cursor-pointer" (click)="EditSkill(i)" src="assets/SVG/edit-icon.svg" alt="" />
-              </div>
-              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img src="assets/SVG/trash-01.svg" (click)="DeleteModal(i)" alt="" />
-              </div>
+    <div *ngIf="fileList.length > 0"
+      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
+      <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center" *ngFor="let file of fileList">
+        <div class="file-details rounded">
+          <div class="d-flex align-items-center gap-2">
+            <div class="file-icon">
+              <img src="assets/SVG/pdf-icon.svg" alt="" (click)="DeleteFile(file)"/>
+            </div>
+            <div class="file-name-type">
+              <span class="file-name">{{file.name}}</span>
+              <h6 class="file-type font-poppins-bold">PDF</h6>
             </div>
           </div>
-        </div>
 
+          <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+            <img src="assets/SVG/trash-01.svg" alt="" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
-  <span class="heading">Skills</span>
-  <form class="row" action="">
-    <div class="d-flex flex-column col-lg-6 col-12">
-      <p>Skill ID</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-select name="skillid" [(ngModel)]="this.skillList[this.activeIndex].skillId">
-          <mat-option value="HTML">HTML</mat-option>
-          <mat-option value="javascript">JAVASCRIPT</mat-option>
-        </mat-select>
-        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      </mat-form-field>
-    </div>
-    <div class="d-flex flex-column col-lg-6 col-12">
-      <p>Level</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-select>
-          <mat-option value="pakistan">BEGINER</mat-option>
-          <mat-option value="india">INTERMEDIATE</mat-option>
-        </mat-select>
-        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      </mat-form-field>
-    </div>
-    <div class="d-flex flex-column col-lg-6 col-12">
-      <p>Level Date</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="d-flex flex-column col-lg-6 col-12">
-      <p>Year of Experience</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput />
-      </mat-form-field>
-    </div>
-    <div class="cv-div">
-      <div *ngIf="fileList.length === 0" class="upload-file">
-        <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
-        <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
-        <span>PDF or DOC (max. size 6MB)</span>
-      </div>
-      <div *ngIf="fileList.length > 0"
-        class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
-        <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center" *ngFor="let file of fileList">
-          <div class="file-details rounded">
-            <div class="d-flex align-items-center gap-2">
-              <div class="file-icon">
-                <img src="assets/SVG/pdf-icon.svg" alt="" />
-              </div>
-              <div class="file-name-type">
-                <span class="file-name">{{file.name}}</span>
-                <h6 class="file-type font-poppins-bold">PDF</h6>
-              </div>
-            </div>
-
-            <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-              <img src="assets/SVG/trash-01.svg" alt="" />
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </form>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
       (click)="Discard()">
       Discard
     </button>
+    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSideNav()">
+      Close
+    </button>
     <button type="button"
       class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-      (click)="closeAndNew()">
+      (click)="SaveSkill()">
       Save add new
     </button>
-    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSidenav()">
-      Save
-    </button>
   </div>
-
-</div>
+</form>

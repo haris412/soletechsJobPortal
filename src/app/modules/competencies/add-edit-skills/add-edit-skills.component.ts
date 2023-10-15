@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { DeleteModalComponentService } from '../../../shared/delete-modal/delete-modal.service'
 import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Skills } from 'src/app/models/skills.model';
@@ -10,100 +10,65 @@ import { DeleteModalComponent } from 'src/app/shared/delete-modal/delete-modal.c
   styleUrls: ['./add-edit-skills.component.scss']
 })
 export class AddEditSkillsComponent {
-  public completed: boolean = true;
-  public sidenavOpen: boolean = false;
-  public isFile: boolean = false;
-  title = 'angular';
+  @Input() selectedSkill:Skills = new Object() as Skills;
+  @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
+  @Output() skillData: EventEmitter<Skills> = new EventEmitter();
+  skillForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
-  form: UntypedFormGroup;
-  file_store!: FileList;
+  skill!: Skills;
   fileList:any[]=[];
+  file_store!: FileList;
   file:any;
-  skillList: Skills[] = [];
-  activeIndex: number = -1;
-  isEdit: boolean = false;
-  constructor(
-    private deleteModal: DeleteModalComponentService,
-  ) {
-    this.form = this._formBuilder.group({
+  constructor(){
+    this.skillForm = this._formBuilder.group({
       skillId: [''],
       level: ['', [Validators.required]],
       levelDate: ['', [Validators.required]],
-      yearOfExperience: ['', [Validators.required]],
-      attachment: [''],
+      yearOfExperience:['', [Validators.required]],
+      attachment:['']
     });
+    
   }
-
-  ngOnInit(): void {
-  }
-
-  OpenSidenav() {
-    this.skillList.push(new Skills());
-    this.activeIndex = this.skillList.length - 1;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-    this.isEdit = false;
-  }
-
-  closeAndNew() {
-    this.skillList.push(new Skills());
-    this.activeIndex = this.skillList.length - 1;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-    this.isEdit = false;
-  }
-
-  EditSkill(index: number) {
-    this.isEdit = true;
-    this.activeIndex = index;
-    this.sidenavOpen = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  CloseSidenav() {
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.activeIndex = -1;
-  }
-
-  DeleteModal(index: number) {
-    const data = `Are you sure you want to do this skill?`;
-    const dialogRef = this.deleteModal.openDialog(data);
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
-      if (dialogResult) {
-        this.skillList.splice(index, 1);
-        this.isEdit = false;
-        this.activeIndex = -1;
-      }
-    });
-  }
-
-  handleFileInputChange(event: any) {
-    let files = event?.target.files[0];
-    this.file = event?.target.files[0];
-    this.file_store = event;
-    if (files) {
-    } else {
-
+  ngOnInIt(){
+    if(this.selectedSkill.skillId !== ''){
+      this.skillForm.patchValue({
+        ...this.selectedSkill
+      });
     }
-  }
+   }
+    CloseSideNav: () => void = () => {
+      this.closeSideNav.emit(true);
+    }
   
-  Discard() {
-    if (!this.isEdit) {
-      this.skillList.splice(this.skillList.length - 1, 1);
+    SaveSkill: () => void = () => {
+      if (this.skillForm.valid) {
+        this.selectedSkill = this.skillForm.getRawValue();
+        this.skillData.emit(this.selectedSkill);
+      } else {
+        this.skillForm.markAllAsTouched();
+      }
     }
-    this.sidenavOpen = false;
-    document.body.style.overflow = 'auto';
-    this.isEdit = false;
-    this.activeIndex = -1;
-  }
-  onFileUpload(files: any) {
-    this.fileList = files.target.files;
-  }
-
-  DeleteFile(selectedFile:File) {
-    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
-    this.fileList = [];
-  }
+    Discard: () => void = () => {
+      this.skillForm.reset();
+    }
+    handleFileInputChange(event: any) {
+      let files = event?.target.files[0];
+      this.file = event?.target.files[0];
+      this.file_store = event;
+      if (files) {
+      } else {
+  
+      }
+    }
+    onFileUpload(files: any) {
+      this.fileList = files.target.files;
+    }
+  
+    DeleteFile(selectedFile:File) {
+      //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
+      this.fileList = [];
+    }
 }
+
+
+

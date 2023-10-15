@@ -1,0 +1,20 @@
+@import "../../../styles/variables-saas";
+
+.main-container {
+  margin-bottom: 4.875rem;
+  .skills-item-container {
+    margin-bottom: 1.25rem;
+    gap: 1.75rem;
+    .skills-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 0.813rem;
+      padding-inline: 1rem;
+      background-color: $white-smoke;
+    }
+  }
+  .add-skills {
+    padding-block: 0.75rem;
+  }
+}
