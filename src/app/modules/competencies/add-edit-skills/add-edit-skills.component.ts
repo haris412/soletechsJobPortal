@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { DeleteModalComponentService } from '../../../shared/delete-modal/delete-modal.service'
 import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Skills } from 'src/app/models/skills.model';
+import { DeleteModalComponent } from 'src/app/shared/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-add-edit-skills',
@@ -67,9 +68,15 @@ export class AddEditSkillsComponent {
   }
 
   DeleteModal(index: number) {
-    this.skillList.splice(index, 1);
-    this.isEdit = false;
-    this.activeIndex = -1;
+    const data = `Are you sure you want to do this skill?`;
+    const dialogRef = this.deleteModal.openDialog(data);
+    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+      if (dialogResult) {
+        this.skillList.splice(index, 1);
+        this.isEdit = false;
+        this.activeIndex = -1;
+      }
+    });
   }
 
   handleFileInputChange(event: any) {
@@ -84,7 +91,7 @@ export class AddEditSkillsComponent {
   
   Discard() {
     if (!this.isEdit) {
-      this.skillList.splice(this.skillList.length-1, 1);
+      this.skillList.splice(this.skillList.length - 1, 1);
     }
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';

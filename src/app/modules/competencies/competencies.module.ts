@@ -11,6 +11,12 @@ import { CompetenciesRoutes } from './competencies-routing.module';
 import { RouterModule } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MaterialModule } from 'src/app/material/material.module';
+import { SkillsComponent } from './skills/skills.component';
+import { EducationComponent } from './education/education.component';
+import { ExperienceComponent } from './experience/experience.component';
+import { AddEditCertificatesComponent } from './add-edit-certificates/add-edit-certificates.component';
+import { AddEditPositionOfTrustComponent } from './add-edit-position-of-trust/add-edit-position-of-trust.component';
+import { AddEditCoursesComponent } from './add-edit-courses/add-edit-courses.component';
 
 
 @NgModule({
@@ -22,6 +28,12 @@ import { MaterialModule } from 'src/app/material/material.module';
     AddEditEducationComponent,
     AddEditExperienceComponent,
     AddEditSkillsComponent,
+    SkillsComponent,
+    EducationComponent,
+    ExperienceComponent,
+    AddEditCertificatesComponent,
+    AddEditPositionOfTrustComponent,
+    AddEditCoursesComponent,
   ],
   imports: [
     RouterModule.forChild(CompetenciesRoutes),

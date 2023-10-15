@@ -1,6 +1,5 @@
 import { Component, Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DeleteModalComponentService } from './delete-modal.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-modal',
@@ -12,5 +11,8 @@ export class DeleteModalComponent {
   constructor(private dialog: MatDialogRef<DeleteModalComponent>) {}
   closeDialog() {
     const dialogRef = this.dialog.close();
+  }
+  Delete(){
+    this.dialog.close(true);
   }
 }
