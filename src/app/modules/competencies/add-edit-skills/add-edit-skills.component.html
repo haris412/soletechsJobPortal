@@ -10,22 +10,29 @@
       </div>
     </div>
     <div class="row mx-0">
-      <div class="skills-list flex-column d-flex align-items-center mt-3 col-sm-6 col-12">
-        <div class="align-items-center w-100 skills-item-container">
-          <div class="skills-item rounded w-100" *ngFor="let skill of skillList; index as i" style="margin-top: 10px;">
-            <h6 class="mb-0 font-poppins-bold">{{skill.skillId}}</h6>
-            <div class="d-flex align-items-center gap-1">
-              <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img class="cursor-pointer" (click)="EditSkill(i)" src="assets/SVG/edit-icon.svg" alt="" />
-              </div>
-              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img src="assets/SVG/trash-01.svg" (click)="DeleteModal(i)" alt="" />
+      <div *ngIf="skillList.length === 0; else skills" class="skills-list">
+        <div class="no-information">
+          <img src="assets/SVG/no-info.svg" alt="no-info">
+          <p class="text-shuttle-grey">You haven't added any information</p>
+        </div>
+      </div>
+      <ng-template #skills>
+        <div class="skills-list flex-column d-flex align-items-center mt-3 col-sm-6 col-12">
+          <div class="align-items-center w-100 skills-item-container">
+            <div class="skills-item rounded w-100" *ngFor="let skill of skillList; index as i" style="margin-top: 10px;">
+              <h6 class="mb-0 font-poppins-bold">{{skill.skillId}}</h6>
+              <div class="d-flex align-items-center gap-1">
+                <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                  <img class="cursor-pointer" (click)="EditSkill(i)" src="assets/SVG/edit-icon.svg" alt="" />
+                </div>
+                <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                  <img src="assets/SVG/trash-01.svg" (click)="DeleteModal(i)" alt="" />
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
+      </ng-template>
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@ export class PositionoftrustComponent {
   public isFile: boolean = false;
   fileList:any[]=[]
   title = 'angular';
-
+  public positions: any[]=[];
   constructor() { }
 
   ngOnInit(): void {

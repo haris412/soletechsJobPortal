@@ -1,32 +1,47 @@
 <form class="row" action="" [formGroup]="contactForm">
-    <div class="d-flex flex-column col-lg-6 col-12">
-        <p>Type</p>
-        <mat-form-field appearance="outline" class="w-100">
-            <mat-select  name = 'contactType' [formControlName]="'contactType'">
-                <mat-option value="home">Home</mat-option>
-                <mat-option value="office">Office</mat-option>
-            </mat-select>
-            <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-        </mat-form-field>
-    </div>
-    <div class="d-flex flex-column col-lg-6 col-12">
-        <p>Contact Number</p>
-        <mat-form-field appearance="outline" class="w-100">
-            <input matInput  name = 'contactNumber' [formControlName]="'contactNumber'"/>
-        </mat-form-field>
-    </div>
-    <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-        <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-            (click)="Discard()">
-            Discard
-        </button>
-        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseIdentificationNav()">
-            Close
-        </button>
-        <button type="button"
-            class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-            (click)="SaveContact()">
-            Save
-        </button>
-    </div>
+  <div class="d-flex flex-column col-lg-6 col-12">
+    <p>Type</p>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-select name="contactType" [formControlName]="'contactType'">
+        <mat-option value="home">Home</mat-option>
+        <mat-option value="office">Office</mat-option>
+      </mat-select>
+      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+    </mat-form-field>
+  </div>
+  <div class="d-flex flex-column col-lg-6 col-12">
+    <p>Contact Number</p>
+    <mat-form-field appearance="outline" class="w-100">
+      <input
+        matInput
+        name="contactNumber"
+        [formControlName]="'contactNumber'"
+      />
+    </mat-form-field>
+  </div>
+  <div
+    class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns"
+  >
+    <button
+      type="button"
+      class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+      (click)="Discard()"
+    >
+      Discard
+    </button>
+    <button
+      type="button"
+      class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+      (click)="CloseIdentificationNav()"
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      class="btn bg-midnight-moss border-color-midnight-moss text-white rounded font-poppins-semi fs-8 text-nowrap"
+      (click)="SaveContact()"
+    >
+      Save
+    </button>
+  </div>
 </form>

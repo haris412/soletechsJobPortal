@@ -11,7 +11,7 @@ export class CoursesComponent {
   public isFile: boolean = false;
   fileList:any[]=[]
   title = 'angular';
-
+  public courses: any[]=[];
   constructor() { }
 
   ngOnInit(): void {
