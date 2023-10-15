@@ -58,12 +58,7 @@
         <input matInput name="position" [(ngModel)]="this.experiences[this.activeIndex].position" />
       </mat-form-field>
     </div>
-    <div class="d-flex flex-column col-lg-6 col-12">
-      <p>Internet Address</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput />
-      </mat-form-field>
-    </div>
+    
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Started On</p>
       <mat-form-field appearance="outline" class="w-100">
@@ -80,8 +75,13 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
     </div>
-
     <div class="d-flex flex-column col-lg-6 col-12">
+      <p>Internet Address</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-12">
       <p>Notes</p>
       <mat-form-field appearance="outline" class="text-area w-100">
         <textarea rows="2" matInput></textarea>
