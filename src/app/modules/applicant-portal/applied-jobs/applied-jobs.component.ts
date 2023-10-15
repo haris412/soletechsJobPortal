@@ -12,7 +12,10 @@ export class AppliedJobsComponent {
   constructor(private router: Router) {
 
   }
-  toJobActions() {
-    this.router.navigate(['/applicant/job-actions'])
+  GoToJobActions() {
+    this.router.navigate(['/applicant/job-actions']);
+  }
+  GoToJobs(){
+    this.router.navigate(['/jobs']);
   }
 }

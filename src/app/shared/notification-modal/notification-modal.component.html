@@ -12,10 +12,9 @@
         </div>
         <div class="notification-text" (click)="GoToJob()">
           <p class="font-poppins-semi">Job Status Changed</p>
-          <span class="row-truncate"
-            ><span class="font-poppins-medium">{{ "{job name}" }}</span> you applied on status changed to
-            interview stage</span
-          >
+          <span class="row-truncate"><span class="font-poppins-medium">{{ "{job name}" }}</span> you applied on status
+            changed to
+            interview stage</span>
         </div>
       </div>
       <div class="time text-shuttle-grey">14.36</div>
@@ -28,8 +27,7 @@
         </div>
         <div class="notification-text">
           <p class="font-poppins-semi">Missing profile information</p>
-          <span class="row-truncate">Update your account</span
-          >
+          <span class="row-truncate">Update your account</span>
         </div>
       </div>
       <div class="time text-shuttle-grey">14.36</div>
@@ -42,19 +40,16 @@
         </div>
         <div class="notification-text">
           <p class="font-poppins-semi">Update your account </p>
-          <span class="row-truncate">You have received an offer letter from a <span class="font-poppins-medium">{{'{company name}'}}</span></span
-          >
+          <span class="row-truncate">You have received an offer letter from a <span
+              class="font-poppins-medium">{{'{company name}'}}</span></span>
         </div>
       </div>
       <div class="time text-shuttle-grey">14.36</div>
     </div>
     <hr>
   </div>
-  <button
-          type="button"
-          class="btn border text-midnight-moss rounded bg-alice-blue font-poppins-medium fs-8 py-2 px-3 w-100"
-          
-        >
-        See all notifications
-        </button>
+  <button type="button"
+    class="btn border text-midnight-moss rounded bg-alice-blue font-poppins-medium fs-8 py-2 px-3 w-100" (click)="SeeAllNotification()">
+    See all notifications
+  </button>
 </div>

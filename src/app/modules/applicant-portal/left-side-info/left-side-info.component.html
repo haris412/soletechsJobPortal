@@ -18,20 +18,13 @@
 </div>
 <div class="next-actions">
   <h4>Next actions</h4>
-  <div
-    *ngIf="jobList.length === 0"
-    class="actions info-container rounded-3"
-  >
+  <div *ngIf="jobList.length === 0" class="actions info-container rounded-3">
     <div class="no-information">
       <img src="assets/SVG/no-action.svg" alt="" />
       <p class="text-shuttle-grey">Search your next job</p>
-      <button
-          type="button"
-          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-          
-        >
-          Search Jobs
-        </button>
+      <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5" (click)="GoToJobs()">
+        Search Jobs
+      </button>
     </div>
   </div>
   <div *ngIf="jobList.length > 0" class="actions info-container rounded-3">
@@ -66,7 +59,8 @@
         </div>
       </div>
       <div class="d-flex align-items-center gap-xxl-3 gap-2 confirm-reschedule">
-        <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8" [disabled]="isDisable" (click)="Confirm()">
+        <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8"
+          [disabled]="isDisable" (click)="Confirm()">
           Confirm
         </button>
         <button type="button" class="btn text-error-600 border border-color-error-600 rounded font-poppins-semi fs-8"

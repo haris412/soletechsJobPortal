@@ -8,6 +8,7 @@ import { PasswordResetSuccessComponent } from './shared/components/password-rese
 import { JobsListComponent } from './appcomponents/jobs-list/jobs-list.component';
 import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.component';
 import { LinkedInRedirectComponent } from './modules/linkedIn-redirect/linkedIn-redirect.component';
+import { NotificationModalComponent } from './shared/notification-modal/notification-modal.component';
 
 const routes: Routes = [
   { path: '', component: JobsListComponent },
@@ -23,8 +24,7 @@ const routes: Routes = [
   { path: RoutesEnum.Profile, loadChildren: () => import('./modules/user-info/user-info.module').then(m => m.UserInfoModule)},
   { path: RoutesEnum.Applicant, loadChildren: () => import('./modules/applicant-portal/applicant-portal.module').then(m => m.ApplicantPortalModule)},
   { path: RoutesEnum.UserProfile, loadChildren: () => import('./modules/user-profile/user-profile.module').then(m => m.UserProfileModule)},
-
-  
+  { path: RoutesEnum.notifications, component: NotificationModalComponent},
  ];
 
 @NgModule({

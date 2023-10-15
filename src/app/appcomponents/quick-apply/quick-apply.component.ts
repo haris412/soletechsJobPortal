@@ -13,7 +13,7 @@ export class QuickApplyComponent {
     private router: Router
   ) {}
 
-  OnInIt(){
+  ngOnInit(){
     this.fileList = [];
   }
   Back() {

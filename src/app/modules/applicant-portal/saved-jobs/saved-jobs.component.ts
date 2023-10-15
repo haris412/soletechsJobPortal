@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-saved-jobs',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class SavedJobsComponent {
   jobList:any[]=[];
+  constructor(private router:Router){}
+  GoToJobs() {
+    this.router.navigate(['/jobs']);
+  }
 }

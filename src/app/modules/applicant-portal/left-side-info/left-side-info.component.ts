@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
 
@@ -8,17 +9,21 @@ import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal
   styleUrls: ['./left-side-info.component.scss']
 })
 export class LeftSideInfoComponent {
-  isDisable:boolean = false;
-  jobList:any[]=[];
+  isDisable: boolean = false;
+  jobList: any[] = [];
   constructor(private dialog: RescheduleModalComponentService,
-              private toastrService: ToastrService
-  ) {}
+    private toastrService: ToastrService,
+    private router: Router
+  ) { }
 
   OpenReschedule() {
     const dialogRef = this.dialog.openDialog('');
   }
-  Confirm(){
+  Confirm() {
     this.toastrService.success('Your Interview Has Been Scheduled');
     this.isDisable = true;
+  }
+  GoToJobs() {
+    this.router.navigate(['/jobs']);
   }
 }

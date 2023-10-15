@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
     if(token){
       this.isLogin = true;
     }
-
   }
 
   Login(){
@@ -33,6 +32,7 @@ export class HeaderComponent implements OnInit {
   }
   LogOut(){
     localStorage.clear();
+    this.isLogin = false;
     this.router.navigate(['/']);
   }
   SavedJobs(){

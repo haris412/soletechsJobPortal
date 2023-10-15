@@ -16,4 +16,7 @@ export class NotificationModalComponent {
   GoToProfile(){
     this.router.navigate(['/user-profile']);
   }
+  SeeAllNotification(){
+    this.router.navigate(['/notifications']);
+  }
 }

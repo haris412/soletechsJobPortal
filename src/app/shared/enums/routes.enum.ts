@@ -15,5 +15,6 @@ export enum RoutesEnum {
     Onboarding = 'onboarding',
     LinkedInRedirect = 'linkedin-redirect',
     UserProfile = 'user-profile',
-    JobOffer = 'job-offer'
+    JobOffer = 'job-offer',
+    notifications = 'notifications'
 }

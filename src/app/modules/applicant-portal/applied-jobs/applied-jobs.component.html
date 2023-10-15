@@ -1,46 +1,24 @@
 <div>
   <h4>Applied Jobs</h4>
-  <div
-    *ngIf="jobList.length === 0"
-    class="job-detail justify-content-center rounded-3"
-  >
+  <div *ngIf="jobList.length === 0" class="job-detail justify-content-center rounded-3">
     <div class="no-information">
       <img src="assets/SVG/no-applied.svg" alt="" />
       <p class="text-shuttle-grey">You didnt apply for any job</p>
-      <button
-          type="button"
-          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-          
-        >
-          Browse Jobs
-        </button>
+      <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+        (click)="GoToJobs()">
+        Browse Jobs
+      </button>
     </div>
   </div>
-  <div
-    *ngIf="jobList.length > 0"
-    class="job-detail rounded-3 cursor-pointer"
-    (click)="toJobActions()"
-  >
+  <div *ngIf="jobList.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
     <div class="d-flex align-items-center justify-content-between">
       <h5>Lead Product Design</h5>
-      <div
-        class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1"
-      >
+      <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <div>
-          <img
-            height="26px"
-            src="assets/SVG/saved-job.svg"
-            alt="saved"
-            class="cursor-pointer"
-          />
+          <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer" />
         </div>
         <div>
-          <img
-            height="26px"
-            src="assets/SVG/Share.svg"
-            alt="share"
-            class="cursor-pointer"
-          />
+          <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer" />
         </div>
       </div>
     </div>
@@ -94,31 +72,15 @@
       </div>
     </div>
   </div>
-  <div
-    *ngIf="jobList.length > 0"
-    class="job-detail rounded-3 cursor-pointer"
-    (click)="toJobActions()"
-  >
+  <div *ngIf="jobList.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
     <div class="d-flex align-items-center justify-content-between">
       <h5>Lead Product Design</h5>
-      <div
-        class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1"
-      >
+      <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <div>
-          <img
-            height="26px"
-            src="assets/SVG/saved-job.svg"
-            alt="saved"
-            class="cursor-pointer"
-          />
+          <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer" />
         </div>
         <div>
-          <img
-            height="26px"
-            src="assets/SVG/Share.svg"
-            alt="share"
-            class="cursor-pointer"
-          />
+          <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer" />
         </div>
       </div>
     </div>
