@@ -10,7 +10,7 @@ import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal
 })
 export class LeftSideInfoComponent {
   isDisable: boolean = false;
-  jobList: any[] = [];
+  jobList: any[] = [{name:'Designer', type:'Full Time'}];
   constructor(private dialog: RescheduleModalComponentService,
     private toastrService: ToastrService,
     private router: Router
@@ -25,5 +25,8 @@ export class LeftSideInfoComponent {
   }
   GoToJobs() {
     this.router.navigate(['/jobs']);
+  }
+  GoToProfile(){
+    this.router.navigate(['/user-profile']);
   }
 }
