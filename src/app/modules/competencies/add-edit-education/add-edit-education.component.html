@@ -4,54 +4,42 @@
       <span class="heading">Education</span>
       <div
         class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
-        (click)="OpenSidenav()"
-      >
+        (click)="OpenSidenav()">
         <img src="assets/SVG/plus-icon.svg" alt="" />
         <h6 class="mb-0">Add New</h6>
       </div>
     </div>
     <div class="row mx-0">
       <div class="education-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12">
-        <div class="d-flex align-items-center w-100 education-item-container" >
-          <div class="education-item rounded w-100">
-            <h6 class="mb-0 font-poppins-bold">Education 1</h6>
+        <div class="align-items-center w-100 education-item-container">
+          <div class="education-item rounded w-100" *ngFor="let edu of this.educations; index as i"
+            style="margin-top: 10px;">
+            <h6 class="mb-0 font-poppins-bold">{{edu.description}}</h6>
             <div class="d-flex align-items-center gap-1">
-              <div
-                class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
-              >
-                <img
-                  class="cursor-pointer"
-                  
-                  src="assets/SVG/edit-icon.svg"
-                  alt=""
-                />
+              <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                <img class="cursor-pointer" (click)="edit(i)" src="assets/SVG/edit-icon.svg" alt="" />
               </div>
-              <div
-                class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
-              >
-                <img
-                  src="assets/SVG/trash-01.svg"
-                  
-                  alt=""
-                />
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                <img src="assets/SVG/trash-01.svg" (click)="delete(i)" alt="" />
               </div>
             </div>
           </div>
         </div>
-      
+
       </div>
     </div>
   </div>
 </div>
 
-<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100"
-  [ngClass]="sidenavOpen ? 'open' : 'close'">
+<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
+  <span>{{this.activeIndex}}</span>
   <span class="heading">Education</span>
   <form class="row" action="">
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Education</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-select >
+      <mat-form-field appearance="outline" class="w-100" name="education"
+        [(ngModel)]="this.educations[this.activeIndex].education">
+        <mat-select>
           <mat-option value="pakistan">Pakistan</mat-option>
           <mat-option value="india">India</mat-option>
         </mat-select>
@@ -61,13 +49,13 @@
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Description</p>
       <mat-form-field appearance="outline" class="text-area w-100">
-        <textarea matInput></textarea>
+        <textarea matInput name="description" [(ngModel)]="this.educations[this.activeIndex].description"></textarea>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Level of Education</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select >
+        <mat-select>
           <mat-option value="pakistan">Pakistan</mat-option>
           <mat-option value="india">India</mat-option>
         </mat-select>
@@ -83,7 +71,7 @@
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Institution</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select >
+        <mat-select>
           <mat-option value="pakistan">Pakistan</mat-option>
           <mat-option value="india">India</mat-option>
         </mat-select>
@@ -106,7 +94,7 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
     </div>
-    
+
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Average</p>
       <mat-form-field appearance="outline" class="w-100">
@@ -128,7 +116,7 @@
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>Credit Hour Basis</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select >
+        <mat-select>
           <mat-option value="pakistan">Pakistan</mat-option>
           <mat-option value="india">India</mat-option>
         </mat-select>
@@ -155,40 +143,41 @@
     </div>
     <div class="cv-div">
       <div *ngIf="fileList.length===0" class="upload-file">
-          <img src="assets/SVG/upload.svg" alt="">
-          <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
-          <span>PDF or DOC (max. size 6MB)</span>
-        </div>
-        <div *ngIf="fileList.length > 0" class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
-          <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center" *ngFor="let file of fileList">
-            <div class="file-details rounded" >
-              <div class="d-flex align-items-center gap-2">
-                <div class="file-icon">
-                  <img src="assets/SVG/pdf-icon.svg" alt="" />
-                </div>
-                <div class="file-name-type">
-                  <span class="file-name">{{file.name}}</span>
-                  <h6 class="file-type font-poppins-bold">PDF</h6>
-                </div>
+        <img src="assets/SVG/upload.svg" alt="">
+        <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+        <span>PDF or DOC (max. size 6MB)</span>
+      </div>
+      <div *ngIf="fileList.length > 0"
+        class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
+        <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center" *ngFor="let file of fileList">
+          <div class="file-details rounded">
+            <div class="d-flex align-items-center gap-2">
+              <div class="file-icon">
+                <img src="assets/SVG/pdf-icon.svg" alt="" />
               </div>
-              
-              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-                <img src="assets/SVG/trash-01.svg" alt="" />
+              <div class="file-name-type">
+                <span class="file-name">{{file.name}}</span>
+                <h6 class="file-type font-poppins-bold">PDF</h6>
               </div>
             </div>
-            
+
+            <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+              <img src="assets/SVG/trash-01.svg" alt="" />
+            </div>
           </div>
+
         </div>
+      </div>
     </div>
   </form>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="CloseSidenav()">
+      (click)="Discard()">
       Discard
     </button>
     <button type="button"
       class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-      (click)="CloseSidenav()">
+      (click)="closeAndNew()">
       Save add new
     </button>
     <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="CloseSidenav()">

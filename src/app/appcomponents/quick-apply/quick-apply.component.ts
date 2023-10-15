@@ -8,20 +8,26 @@ import { Router } from '@angular/router';
 })
 export class QuickApplyComponent {
   public isFile: boolean = false;
-  public fileList: any[] = [];
+  public fileList: File[] = [];
   constructor(
     private router: Router
   ) {}
 
+  OnInIt(){
+    this.fileList = [];
+  }
   Back() {
     this.router.navigate(['/'])
   }
 
   onFileUpload(files: any) {
+    debugger;
     this.fileList = files.target.files;
   }
 
-  deleteFile() {
+  DeleteFile(selectedFile:File) {
+    debugger;
+    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
     this.fileList = [];
   }
 }

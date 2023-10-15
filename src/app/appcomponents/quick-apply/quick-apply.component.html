@@ -154,8 +154,8 @@
         </mat-form-field>
       </div>
       <div class="cv-div">
-        <div *ngIf="fileList.length===0" class="upload-file">
-            <img src="assets/SVG/upload.svg" alt="">
+        <div *ngIf="fileList.length === 0" class="upload-file">
+            <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
             <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
             <span>PDF or DOC (max. size 6MB)</span>
           </div>
@@ -171,12 +171,10 @@
                     <h6 class="file-type font-poppins-bold">PDF</h6>
                   </div>
                 </div>
-                
                 <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-                  <img src="assets/SVG/trash-01.svg" alt="" />
+                  <img src="assets/SVG/trash-01.svg" alt="" (click)="DeleteFile(file)"/>
                 </div>
               </div>
-              
             </div>
           </div>
       </div>

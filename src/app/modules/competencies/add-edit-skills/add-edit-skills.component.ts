@@ -15,10 +15,12 @@ export class AddEditSkillsComponent {
   title = 'angular';
   private _formBuilder = inject(UntypedFormBuilder);
   form: UntypedFormGroup;
-  skillList: Skills[] = [];
   file_store!: FileList;
   fileList:any[]=[];
   file:any;
+  skillList: Skills[] = [];
+  activeIndex: number = -1;
+  isEdit: boolean = false;
   constructor(
     private deleteModal: DeleteModalComponentService,
   ) {
@@ -35,14 +37,24 @@ export class AddEditSkillsComponent {
   }
 
   OpenSidenav() {
+    this.skillList.push(new Skills());
+    this.activeIndex = this.skillList.length - 1;
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';
+    this.isEdit = false;
   }
 
-  EditSkill(skill: Skills) {
-    this.form.patchValue({
-      ...skill
-    })
+  closeAndNew() {
+    this.skillList.push(new Skills());
+    this.activeIndex = this.skillList.length - 1;
+    this.sidenavOpen = true;
+    document.body.style.overflow = 'hidden';
+    this.isEdit = false;
+  }
+
+  EditSkill(index: number) {
+    this.isEdit = true;
+    this.activeIndex = index;
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';
   }
@@ -50,28 +62,16 @@ export class AddEditSkillsComponent {
   CloseSidenav() {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
+    this.isEdit = false;
+    this.activeIndex = -1;
   }
 
-  DeleteModal(skillId: string) {
-    const dialogRef = this.deleteModal.openDialog('Are you sure you want to proceed?');
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.skillList = this.skillList.filter((skill: Skills) => skill.skillId !== skillId);
-      }
-    });
+  DeleteModal(index: number) {
+    this.skillList.splice(index, 1);
+    this.isEdit = false;
+    this.activeIndex = -1;
   }
-  AddSkill() {
-    if (this.form.valid) {
-      let skills: Skills = {
-         ...this.form.getRawValue(),
-         attachment :this.file
-      };
-      this.skillList.push(skills);
-      this.CloseSidenav();
-    } else {
 
-    }
-  }
   handleFileInputChange(event: any) {
     let files = event?.target.files[0];
     this.file = event?.target.files[0];
@@ -81,4 +81,15 @@ export class AddEditSkillsComponent {
 
     }
   }
+  
+  Discard() {
+    if (!this.isEdit) {
+      this.skillList.splice(this.skillList.length-1, 1);
+    }
+    this.sidenavOpen = false;
+    document.body.style.overflow = 'auto';
+    this.isEdit = false;
+    this.activeIndex = -1;
+  }
+
 }
