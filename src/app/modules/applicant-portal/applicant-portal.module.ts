@@ -14,6 +14,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LinkedInService } from './services/linkedin.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -27,6 +28,7 @@ import { LinkedInService } from './services/linkedin.service';
     AppliedJobActionsComponent, JobOfferComponent, 
   ],
   imports: [
+    HttpClientModule,
     RouterModule.forChild(applicatRoutes),
     CommonModule,
     ApplicantOnboardingModule,
@@ -34,6 +36,6 @@ import { LinkedInService } from './services/linkedin.service';
     CKEditorModule,
     ToastrModule.forRoot(),
   ],
-  providers:[LinkedInService]
+  providers:[]
 })
 export class ApplicantPortalModule { }
