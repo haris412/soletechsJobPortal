@@ -2,84 +2,150 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Employer</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput name="employer" name="employer" name="employer" [formControlName]="'employer'" />
+      <input
+        matInput
+        name="employer"
+        name="employer"
+        name="employer"
+        [formControlName]="'employer'"
+      />
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Internet Address</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput name="internetAddress" name="internetAddress" name="internetAddress"
-        [formControlName]="'internetAddress'" />
+      <input
+        matInput
+        name="internetAddress"
+        name="internetAddress"
+        name="internetAddress"
+        [formControlName]="'internetAddress'"
+      />
     </mat-form-field>
   </div>
-
 
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Started On</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker1" name="startDate" name="startDate" [formControlName]="'startDate'" />
-      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        name="startDate"
+        name="startDate"
+        [formControlName]="'startDate'"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker1"
+      ></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Ended On</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker2" name="endDate" name="endDate" [formControlName]="'endDate'" />
-      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        name="endDate"
+        name="endDate"
+        [formControlName]="'endDate'"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker2"
+      ></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Position</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput name="position" name="position" name="position" [formControlName]="'position'" />
+      <input
+        matInput
+        name="position"
+        name="position"
+        name="position"
+        [formControlName]="'position'"
+      />
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Notes</p>
     <mat-form-field appearance="outline" class="text-area w-100">
-      <textarea rows="2" matInput name="notes" name="notes" [formControlName]="'notes'"></textarea>
+      <textarea
+        rows="2"
+        matInput
+        name="notes"
+        name="notes"
+        [formControlName]="'notes'"
+      ></textarea>
     </mat-form-field>
   </div>
   <div class="cv-div">
     <div *ngIf="fileList.length === 0" class="upload-file">
-      <input type="file" (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg" alt="" />
+      <input type="file" (change)="onFileUpload($event)" /><img
+        src="assets/SVG/upload.svg"
+        alt=""
+      />
       <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
       <span>PDF or DOC (max. size 6MB)</span>
     </div>
-    <div *ngIf="fileList.length > 0"
-      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2 col-lg-6 col-12">
-      <div class="uploaded-files col-12 px-0  d-flex align-items-center" *ngFor="let file of fileList">
+    <div
+      *ngIf="fileList.length > 0"
+      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2 col-lg-6 col-12"
+    >
+      <div
+        class="uploaded-files col-12 px-0 d-flex align-items-center"
+        *ngFor="let file of fileList"
+      >
         <div class="file-details rounded">
           <div class="d-flex align-items-center gap-2">
             <div class="file-icon">
-              <img src="assets/SVG/pdf-icon.svg" alt="" (click)="DeleteFile(file)" />
+              <img
+                src="assets/SVG/pdf-icon.svg"
+                alt=""
+                (click)="DeleteFile(file)"
+              />
             </div>
             <div class="file-name-type">
               <span class="file-name">{{ file.name }}</span>
               <h6 class="file-type font-poppins-bold">PDF</h6>
             </div>
           </div>
-          <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+          <div
+            class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
+          >
             <img src="assets/SVG/trash-01.svg" alt="" />
           </div>
         </div>
       </div>
     </div>
   </div>
-</form>
-<div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-  <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-    (click)="Discard()">
+  <div
+  class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns"
+>
+  <button
+    type="button"
+    class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+    (click)="Discard()"
+  >
     Discard
   </button>
-  <button type="button"
+  <button
+    type="button"
     class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-    (click)="CloseSideNav()">
+    (click)="CloseSideNav()"
+  >
     Close
   </button>
-  <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="SaveExperience()">
+  <button
+    type="button"
+    class="btn text-white bg-midnight-moss rounded font-poppins-semi"
+    (click)="SaveExperience()"
+  >
     Save
   </button>
 </div>
+</form>
+

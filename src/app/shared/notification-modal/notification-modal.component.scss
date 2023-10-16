@@ -44,7 +44,35 @@
     }
     hr {
       opacity: 1;
-      border: 1px solid #F0F0F0;
+      border: 1px solid #f0f0f0;
+    }
+  }
+  &.notification-page {
+    background-color: white;
+    margin-block: 5%;
+    margin-inline: 1rem;
+    @include media-breakpoint-up(lg) {
+      margin-inline: 10%;
+      
+      .icon {
+        flex-basis: 50px !important;
+        width: 50px !important;
+        height: 50px !important;
+      }
+      .notification-detail {
+        gap: 15px !important;
+        .notification-text {
+          span {
+            font-size: 0.875rem !important;
+          }
+        }
+      }
+    }
+
+    hr {
+      &:last-child {
+        opacity: 0;
+      }
     }
   }
 }

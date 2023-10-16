@@ -1,7 +1,10 @@
-<div class="parent-container">
+<div
+  class="parent-container"
+  [ngClass]="{ 'notification-page': isNotificationPage }"
+>
   <div class="d-flex align-items-baseline justify-content-between">
     <h4 class="text-midnight-moss font-poppins-medium mb-4">Notification</h4>
-    <img src="assets/SVG/x-circle.svg" alt="">
+    <img *ngIf="!isNotificationPage" src="assets/SVG/x-circle.svg" alt="" />
   </div>
   <h6 class="text-midnight-moss font-poppins-medium">Today</h6>
   <div class="notification-list">
@@ -11,15 +14,17 @@
           <img src="assets/SVG/ic_Notification.svg" alt="notification" />
         </div>
         <div class="notification-text" (click)="GoToJob()">
-          <p class="font-poppins-semi">Job Status Changed</p>
-          <span class="row-truncate"><span class="font-poppins-medium">{{ "{job name}" }}</span> you applied on status
-            changed to
-            interview stage</span>
+          <p *ngIf="!isNotificationPage" class="font-poppins-semi">Job Status Changed</p>
+          <h6 *ngIf="isNotificationPage" class="font-poppins-semi">Job Status Changed</h6>
+          <span class="row-truncate"
+            ><span class="font-poppins-medium">{{ "{job name}" }}</span> you
+            applied on status changed to interview stage</span
+          >
         </div>
       </div>
       <div class="time text-shuttle-grey">14.36</div>
     </div>
-    <hr>
+    <hr />
     <div class="notification-item" (click)="GoToProfile()">
       <div class="notification-detail">
         <div class="icon">
@@ -32,24 +37,32 @@
       </div>
       <div class="time text-shuttle-grey">14.36</div>
     </div>
-    <hr>
+    <hr />
     <div class="notification-item">
       <div class="notification-detail">
         <div class="icon">
           <img src="assets/SVG/list.svg" alt="checklist" />
         </div>
         <div class="notification-text">
-          <p class="font-poppins-semi">Update your account </p>
-          <span class="row-truncate">You have received an offer letter from a <span
-              class="font-poppins-medium">{{'{company name}'}}</span></span>
+          <p class="font-poppins-semi">Update your account</p>
+          <span class="row-truncate"
+            >You have received an offer letter from a
+            <span class="font-poppins-medium">{{
+              "{company name}"
+            }}</span></span
+          >
         </div>
       </div>
       <div class="time text-shuttle-grey">14.36</div>
     </div>
-    <hr>
+    <hr />
   </div>
-  <button type="button"
-    class="btn border text-midnight-moss rounded bg-alice-blue font-poppins-medium fs-8 py-2 px-3 w-100" (click)="SeeAllNotification()">
+  <button
+    *ngIf="!isNotificationPage"
+    type="button"
+    class="btn border text-midnight-moss rounded bg-alice-blue font-poppins-medium fs-8 py-2 px-3 w-100"
+    (click)="SeeAllNotification()"
+  >
     See all notifications
   </button>
 </div>

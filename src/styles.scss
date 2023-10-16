@@ -209,6 +209,10 @@ p {
   }
 }
 
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: $feijoa;
+}
+
 .text-arabic {
   direction: rtl;
 }
@@ -313,17 +317,11 @@ form {
     }
   }
   .action-btns {
+    margin-top: 2rem;
     .btn {
       width: 111px;
-      &:nth-child(2) {
-        padding-inline: 0.313rem;
-      }
     }
   }
-}
-
-.action-btns {
-  margin-bottom: 2rem;
 }
 
 .back-button {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -8,15 +8,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./notification-modal.component.scss']
 })
 export class NotificationModalComponent {
+  public isNotificationPage: boolean = false;
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/notifications') {
+          this.isNotificationPage = true;
+        }
+        else this.isNotificationPage = false;
+      }
 
-  constructor(private router:Router){}
-  GoToJob(){
+    }
+    )
+  }
+  GoToJob() {
     this.router.navigate(['/applicant']);
   }
-  GoToProfile(){
+  GoToProfile() {
     this.router.navigate(['/user-profile']);
   }
-  SeeAllNotification(){
+  SeeAllNotification() {
     this.router.navigate(['/notifications']);
   }
 }
