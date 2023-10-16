@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-identification',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class IdentificationComponent {
   public isFile: boolean = false;
+  constructor(private router:Router){}
+
+  GoToJobDetail(){
+    this.router.navigate(['/jobs']);
+
+  }
 }

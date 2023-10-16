@@ -13,6 +13,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { ToastrModule } from 'ngx-toastr';
+import { LinkedInService } from './services/linkedin.service';
 
 
 
@@ -32,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     MaterialModule,
     CKEditorModule,
     ToastrModule.forRoot(),
-  ]
+  ],
+  providers:[LinkedInService]
 })
 export class ApplicantPortalModule { }
