@@ -36,6 +36,5 @@ import { HttpClientModule } from '@angular/common/http';
     CKEditorModule,
     ToastrModule.forRoot(),
   ],
-  providers:[]
 })
 export class ApplicantPortalModule { }
