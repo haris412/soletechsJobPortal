@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-identification',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./identification.component.scss']
 })
 export class IdentificationComponent {
-  public isFile: boolean = false;
+  fileList:any[]=[];
+  public identificationForm: UntypedFormGroup | undefined;
+
+  onFileUpload(files: any) {
+    this.fileList = files.target.files;
+  }
+
+  DeleteFile: (selectedFile:File) => void = () => {
+    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
+    this.fileList = [];
+  }
 }

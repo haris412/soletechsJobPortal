@@ -1,1 +1,109 @@
-<p>medical-check-up works!</p>
+<div class="container-div">
+  <div class="inner-detail">
+    <div class="left-detail">
+      <h4 class="text-shuttle-grey">Congratulations...!</h4>
+      <p class="text-shuttle-grey">
+        You were accepted to this follow the onboarding process with dead line
+        below
+      </p>
+      <h6 class="text-midnight-moss font-poppins-semi">Lead Product Design</h6>
+      <div class="d-flex align-items-center gap-4 mb-1">
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <img src="assets/SVG/ic_Location.svg" alt="" />
+            <p class="text-midnight-moss font-poppins-medium mb-0">
+              Dubai, UAE
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <img src="assets/SVG/ic_Job.svg" alt="" />
+            <p class="text-midnight-moss font-poppins-medium mb-0">Job Type</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <img src="assets/SVG/redirect.svg" alt="" />
+          <a class="cursor-pointer mb-0">Job details</a>
+        </div>
+      </div>
+    </div>
+    <div class="right-detail">
+      <p class="rounded-pill mb-0 text-midnight-moss font-poppins-medium">
+        accepted
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="sign-up-info-div cv-div">
+    <form class="row" action="">
+      <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Last Checkup</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            matInput
+            [matDatepicker]="lastCheckup"
+            name="lastCheckup"
+            
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="lastCheckup"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #lastCheckup></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-lg-6 col-12">
+        <p>Any Surgeries</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput name="identificationNumber" />
+        </mat-form-field>
+      </div>
+
+      <div class="cv-div">
+        <p class="font-poppins-bold">Upload Medical Documents
+        </p>
+        <div *ngIf="fileList.length === 0" class="upload-file">
+          <input type="file" (change)="onFileUpload($event)" /><img
+            src="assets/SVG/upload.svg"
+            alt=""
+          />
+          <p class="upload-text">
+            <span>Click to Upload </span>or drag and drop
+          </p>
+          <span>PDF or DOC (max. size 6MB)</span>
+        </div>
+        <div
+          *ngIf="fileList.length > 0"
+          class="p-3 row col-lg-6 col-12 mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2"
+        >
+          <div
+            class="uploaded-files col-12 px-0 px-0 d-flex align-items-center"
+            *ngFor="let file of fileList"
+          >
+            <div class="file-details rounded">
+              <div class="d-flex align-items-center gap-2">
+                <div class="file-icon">
+                  <img src="assets/SVG/pdf-icon.svg" alt="" />
+                </div>
+                <div class="file-name-type">
+                  <span class="file-name">{{ file.name }}</span>
+                  <h6 class="file-type font-poppins-bold">PDF</h6>
+                </div>
+              </div>
+              <div
+                class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
+              >
+                <img
+                  src="assets/SVG/trash-01.svg"
+                  alt=""
+                  (click)="DeleteFile(file)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
