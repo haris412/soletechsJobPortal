@@ -16,7 +16,7 @@ export class SignupModalComponent {
 
   constructor(
     private deleteModal: MatDialogRef<SignupModalComponent>
-  ) {}
+  ) { }
   closeDialog() {
     const dialogRef = this.deleteModal.close();
   }
