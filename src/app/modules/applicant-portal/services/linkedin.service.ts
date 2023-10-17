@@ -16,4 +16,10 @@ export class LinkedInService {
     const headers = new HttpHeaders({ 'Accept':'*/*' , 'grant_type' : 'authorization_code','redirect_uri':redirectUrl, 'client_id': this.clientId , 'client_secret': this.clientSecret ,'code': code  });
     return this.http.get(url,{headers} ).pipe(map(res => console.log(res)));
   }
+
+  public GetUserInfoLinkedIn(accessToken:string){
+    const headers = new HttpHeaders({ 'Accept':'*/*' , 'Bearer' : accessToken });
+    let url ='https://api.linkedin.com/v2/userinfo';
+    return this.http.get(url,{headers} ).pipe(map(res => console.log(res)));
+  }
 }

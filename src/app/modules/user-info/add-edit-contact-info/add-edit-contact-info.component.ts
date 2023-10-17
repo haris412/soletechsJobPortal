@@ -24,11 +24,13 @@ export class AddEditContactInfoComponent {
     });
   }
  ngOnInIt(){
-  if(this.selectedContact.contactId !== ''){
-    this.contactForm.patchValue({
-      ...this.selectedContact
-    });
-  }
+   if (this.selectedContact.contactType !== '') {
+     this.contactForm.patchValue({
+       ...this.selectedContact
+     });
+   } else {
+     this.contactForm.reset();
+   }
  }
   CloseIdentificationNav: () => void = () => {
     this.closeSideNav.emit(true);
