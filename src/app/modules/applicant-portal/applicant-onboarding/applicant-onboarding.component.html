@@ -84,6 +84,11 @@
 
     <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections">
       <app-identification *ngIf="index === 1"></app-identification>
+      <app-documents *ngIf="index === 2"></app-documents>
+      <app-medical-check-up *ngIf="index === 3"></app-medical-check-up>
+      <app-dependent *ngIf="index === 4"></app-dependent>
+      <app-address *ngIf="index === 5"></app-address>
+      <app-emergency-contact *ngIf="index === 6"></app-emergency-contact>
       <div
         class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns"
       >

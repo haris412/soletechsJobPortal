@@ -7,6 +7,7 @@ import { EmergencyContactComponent } from './emergency-contact/emergency-contact
 import { IdentificationComponent } from './identification/identification.component';
 import { MedicalCheckUpComponent } from './medical-check-up/medical-check-up.component';
 import { ApplicantOnboardingComponent } from './applicant-onboarding.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 
@@ -21,7 +22,8 @@ import { ApplicantOnboardingComponent } from './applicant-onboarding.component';
     ApplicantOnboardingComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   exports: [
     AddressComponent,

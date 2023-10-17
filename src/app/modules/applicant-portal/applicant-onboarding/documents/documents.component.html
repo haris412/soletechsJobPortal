@@ -1,1 +1,94 @@
-<p>documents works!</p>
+<div class="container-div">
+  <div class="inner-detail">
+    <div class="left-detail">
+      <h4 class="text-shuttle-grey">Congratulations...!</h4>
+      <p class="text-shuttle-grey">
+        You were accepted to this follow the onboarding process with dead line
+        below
+      </p>
+      <h6 class="text-midnight-moss font-poppins-semi">Lead Product Design</h6>
+      <div class="d-flex align-items-center gap-4 mb-1">
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <img src="assets/SVG/ic_Location.svg" alt="" />
+            <p class="text-midnight-moss font-poppins-medium mb-0">
+              Dubai, UAE
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <img src="assets/SVG/ic_Job.svg" alt="" />
+            <p class="text-midnight-moss font-poppins-medium mb-0">Job Type</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <img src="assets/SVG/redirect.svg" alt="" />
+          <a class="cursor-pointer mb-0">Job details</a>
+        </div>
+      </div>
+    </div>
+    <div class="right-detail">
+      <p class="rounded-pill mb-0 text-midnight-moss font-poppins-medium">accepted</p>
+    </div>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="sign-up-info-div cv-div">
+    <div class="row mx-0">
+      <div class="col-lg-6 ps-0">
+        <p class="font-poppins-bold">Upload CNIC</p>
+        <div *ngIf="fileList.length===0" class="upload-file">
+          <img src="assets/SVG/upload.svg" alt="">
+          <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+          <span>PDF or DOC (max. size 6MB)</span>
+          <input class="form-control" type="file" id="formFile" (change)="onFileUpload($event)">
+        </div>
+        <div *ngIf="fileList.length > 0" class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
+          <div class="uploaded-files col-12 d-flex align-items-center" *ngFor="let file of fileList">
+            <div class="file-details rounded" >
+              <div class="d-flex align-items-center gap-2">
+                <div class="file-icon">
+                  <img src="assets/SVG/pdf-icon.svg" alt="" />
+                </div>
+                <div class="file-name-type">
+                  <span class="file-name">{{file.name}}</span>
+                  <h6 class="file-type font-poppins-bold">PDF</h6>
+                </div>
+              </div>
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+                <img  height="20" src="assets/SVG/delete.svg" alt="" (click)="DeleteFile(file)"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 ps-0">
+        <p class="font-poppins-bold">Upload Passport</p>
+        <div *ngIf="fileList.length===0" class="upload-file">
+          <img src="assets/SVG/upload.svg" alt="">
+          <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+          <span>PDF or DOC (max. size 6MB)</span>
+          <input class="form-control" type="file" id="formFile" (change)="onFileUpload($event)">
+        </div>
+        <div *ngIf="fileList.length > 0" class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
+          <div class="uploaded-files col-12 d-flex align-items-center" *ngFor="let file of fileList">
+            <div class="file-details rounded" >
+              <div class="d-flex align-items-center gap-2">
+                <div class="file-icon">
+                  <img src="assets/SVG/pdf-icon.svg" alt="" />
+                </div>
+                <div class="file-name-type">
+                  <span class="file-name">{{file.name}}</span>
+                  <h6 class="file-type font-poppins-bold">PDF</h6>
+                </div>
+              </div>
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+                <img  height="20" src="assets/SVG/delete.svg" alt="" (click)="DeleteFile(file)"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

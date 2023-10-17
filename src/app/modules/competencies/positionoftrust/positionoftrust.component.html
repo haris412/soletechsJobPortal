@@ -8,6 +8,39 @@
         <img src="assets/SVG/plus-icon.svg" alt="" />
         <h6 class="mb-0">Add New</h6>
       </div>
+      <div
+        class="d-flex cursor-pointer new-button"
+        (click)="OpenSidenav()">
+        <div class="d-flex align-items-center border border-end-0 border-color-midnight-moss justify-content-center rounded-start-3 px-2">
+          <mat-icon class="text-midnight-moss">add</mat-icon>
+        </div>
+        <h6 class="d-flex align-items-center justify-content-center bg-midnight-moss text-white mb-0 px-2 rounded-end-3">Add New</h6>
+      </div>
+      <div
+        class="d-flex cursor-pointer new-button"
+        (click)="OpenSidenav()">
+        <div class="d-flex align-items-center border border-end-0  justify-content-center bg-gainsboro rounded-start-3 px-2">
+          <mat-icon class="text-midnight-moss">add</mat-icon>
+        </div>
+        <h6 class="d-flex align-items-center justify-content-center bg-shuttle-grey text-white border-start mb-0 px-2 rounded-end-3">Add New</h6>
+      </div>
+      <div
+        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info new-hover gap-2 cursor-pointer"
+        (click)="OpenSidenav()">
+        <img src="assets/SVG/plus-icon.svg" alt="" />
+        <h6 class="mb-0">Add New</h6>
+      </div>
+      <div
+        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
+        (click)="OpenSidenav()">
+        <h6 class="mb-0">Add</h6>
+        <img src="assets/SVG/plus-icon.svg" alt="" />
+      </div>
+      <div
+        class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
+        (click)="OpenSidenav()">
+        <h6 class="mb-0">Add New</h6>
+      </div>
     </div>
     <div class="row mx-0">
       <div *ngIf="positionTrustList.length === 0; else positionList" class="position-list">
@@ -27,14 +60,10 @@
                     <img class="cursor-pointer" src="assets/SVG/edit-icon.svg" alt="" (click)="EditPositionOfTrust(position)"/>
                   </div>
                   <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                    <img src="assets/SVG/trash-01.svg" alt="" (click)="Delete(position)"/>
+                    <img  height="20" src="assets/SVG/delete.svg" alt="" (click)="Delete(position)"/>
                   </div>
                 </div>
               </div>
-              <!-- <div class="d-flex error align-items-center gap-1 badge rounded-pill p-1">
-                <span class="badge rounded-pill text-white">Error</span>
-                <span>There is missing data</span>
-              </div> -->
             </div>
           </div>
         </div>
