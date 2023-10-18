@@ -5,7 +5,7 @@
 }
 
 .navbar {
-  box-shadow: 0px -0.8999999761581421px 0px 0px #E2E2EA inset;
+  box-shadow: 0px -0.8999999761581421px 0px 0px #e2e2ea inset;
   .nav-item {
     padding-block: 0.5rem;
     overflow: hidden;
@@ -103,9 +103,35 @@
   }
   .dropdown-menu {
     padding-block: 0;
+    box-shadow: 0px 1px 2px 0px #00000014;
+    li {
+      .dropdown-item {
+        font-size: 0.875rem;
+        padding-block: 0.5rem;
+        &:hover {
+          color: $midnight-moss;
+          background-color: $gray-200;
+        }
+        &:active {
+          color: white;
+          background-color: $midnight-moss;
+        }
+      }
+      &:first-of-type {
+        .dropdown-item {
+          border-top-left-radius: 0.375rem;
+          border-top-right-radius: 0.375rem;
+        }
+      }
+      &:last-of-type {
+        .dropdown-item {
+          border-bottom-left-radius: 0.375rem;
+          border-bottom-right-radius: 0.375rem;
+        }
+      }
+    }
     p {
       margin-bottom: 0;
     }
   }
 }
-

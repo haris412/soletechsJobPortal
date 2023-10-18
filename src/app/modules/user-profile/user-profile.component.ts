@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -17,7 +17,11 @@ export class UserProfileComponent {
     imageAvatar:any;
 	defaultUrl:string = 'assets/Images/Profile.png';
 	fileList:any[] = [];
-	constructor(private router: Router, public ref: ChangeDetectorRef) { }
+	constructor(
+		private router: Router, 
+		public ref: ChangeDetectorRef,
+		private renderer: Renderer2, 
+		private el: ElementRef) { }
 
 	ngOnInit(): void {
 	}
@@ -72,4 +76,10 @@ export class UserProfileComponent {
 		this.fileList.push(files.target.files[0]);
 		this.ref.detectChanges();
 	}
+	ScrollToTarget(event: any) {
+    const targetElement = this.el.nativeElement.querySelector(event);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
