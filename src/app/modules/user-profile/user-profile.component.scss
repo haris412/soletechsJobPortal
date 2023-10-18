@@ -1,7 +1,7 @@
 @import "./../../styles/variables-saas";
 
 .container-fluid {
-  padding-block: 4.875rem;
+  padding-top: 4.875rem;
   .main-container {
     .sign-up-info-div {
       .upload-profile-pic {
@@ -20,10 +20,23 @@
       }
       
     }
-    .sign-up-sections {
-      h4 {
-        margin-bottom: 2rem;
-      }
+    
+  }
+  .sign-up-sections {
+    max-height: calc(100vh - 215px);
+    overflow-y: auto;
+    h4 {
+      margin-bottom: 2rem;
+    }
+    &::-webkit-scrollbar {
+      background: $gray-400;
+      border-radius: 5px;
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $midnight-moss;
+      border-radius: 5px;
+
     }
   }
 }
