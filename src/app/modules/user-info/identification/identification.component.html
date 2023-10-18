@@ -16,9 +16,8 @@
           <p class="text-shuttle-grey">You haven't added any information</p>
         </div>
       </div>
-      <div class="identification-list d-flex flex-column align-items-center mt-3 col-sm-8 col-12">
-        <div class="d-flex align-items-center w-100 identification-item-container"
-          *ngFor="let identification of identificationList">
+      <div class="identification-list d-flex flex-column align-items-center mt-3 col-sm-8 col-12" *ngFor="let identification of identificationList">
+        <div class="d-flex align-items-center w-100 identification-item-container">
           <div class="identification-item rounded w-100">
             <h6 class="mb-0 font-poppins-bold">{{identification.identifcationType}}</h6>
             <div class="d-flex align-items-center gap-1">
