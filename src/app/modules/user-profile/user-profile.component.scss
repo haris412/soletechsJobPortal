@@ -18,15 +18,18 @@
           display: block;
         }
       }
-      
     }
-    
   }
   .sign-up-sections {
     max-height: calc(100vh - 215px);
     overflow-y: auto;
-    h4 {
-      margin-bottom: 2rem;
+    h2 {
+      @include media-breakpoint-down(lg) {
+        font-size: 1.75rem !important;
+      }
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 2rem;
+      }
     }
     &::-webkit-scrollbar {
       background: $gray-400;
@@ -36,7 +39,6 @@
     &::-webkit-scrollbar-thumb {
       background-color: $midnight-moss;
       border-radius: 5px;
-
     }
   }
 }
