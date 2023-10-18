@@ -4,8 +4,7 @@
       <span class="heading">Identification</span>
       <div
         class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
-        (click)="OpenSidenav()"
-      >
+        (click)="OpenSidenav()">
         <img src="assets/SVG/plus-icon.svg" alt="" />
         <h6 class="mb-0">Add New</h6>
       </div>
@@ -18,29 +17,16 @@
         </div>
       </div>
       <div class="identification-list d-flex flex-column align-items-center mt-3 col-sm-8 col-12" *ngFor="let identification of identificationList">
-        <div class="d-flex align-items-center w-100 identification-item-container"
-          >
+        <div class="d-flex align-items-center w-100 identification-item-container">
           <div class="identification-item rounded w-100">
             <h6 class="mb-0 font-poppins-bold">{{identification.identifcationType}}</h6>
             <div class="d-flex align-items-center gap-1">
-              <div
-                class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
-              >
-                <img
-                  class="cursor-pointer"
-                  (click)="EditIdentification(identification)"
-                  src="assets/SVG/edit-icon.svg"
-                  alt=""
-                />
+              <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                <img class="cursor-pointer" (click)="EditIdentification(identification)" src="assets/SVG/edit-icon.svg"
+                  alt="" />
               </div>
-              <div
-                class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
-              >
-                <img
-                   height="20" src="assets/SVG/delete.svg"
-                  (click)="DeleteIdentification(identification)"
-                  alt=""
-                />
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                <img height="20" src="assets/SVG/delete.svg" (click)="DeleteIdentification(identification)" alt="" />
               </div>
             </div>
           </div>

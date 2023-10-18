@@ -29,11 +29,13 @@ export class AddEditIdentificationComponent {
     });
   }
  ngOnInIt(){
-  if(this.selectedIdentification.identificationId !== ''){
-    this.identificationForm.patchValue({
-      ...this.selectedIdentification
-    });
-  }
+   if (this.selectedIdentification.identifcationType !== '') {
+     this.identificationForm.patchValue({
+       ...this.selectedIdentification
+     });
+   } else {
+     this.identificationForm.reset();
+   }
  }
   CloseIdentificationNav: () => void = () => {
     this.closeSideNav.emit(true);

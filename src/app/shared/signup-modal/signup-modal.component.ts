@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -22,6 +23,7 @@ export class SignupModalComponent {
   }
 
   loginWithLinkedIn() {
+    localStorage.setItem('token', 'ewr74#$43$#$#@@#');
     let url = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${
       this.linkedInCredentials.clientId
     }&redirect_uri=${this.linkedInCredentials.redirectUrl}&scope=${this.linkedInCredentials.scope}`;

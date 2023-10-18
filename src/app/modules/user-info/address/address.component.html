@@ -4,8 +4,7 @@
       <span class="heading">Address</span>
       <div
         class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
-        (click)="OpenSidenav()"
-      >
+        (click)="OpenSidenav()">
         <img src="assets/SVG/plus-icon.svg" alt="" />
         <h6 class="mb-0">Add New</h6>
       </div>
@@ -17,34 +16,22 @@
           <p class="text-shuttle-grey">You haven't added any information</p>
         </div>
       </div>
-      <div class="address-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" *ngFor="let address of AddressList">
-        <div class="d-flex align-items-center w-100 address-item-container" >
+      <div class="address-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12"
+        *ngFor="let address of AddressList">
+        <div class="d-flex align-items-center w-100 address-item-container">
           <div class="address-item rounded w-100">
             <h6 class="mb-0 font-poppins-bold">{{address.nameOfDescription}}</h6>
             <div class="d-flex align-items-center gap-1">
-              <div
-                class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
-              >
-                <img
-                  class="cursor-pointer"
-                  (click)="EditAddress(address)"
-                  src="assets/SVG/edit-icon.svg"
-                  alt=""
-                />
+              <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                <img class="cursor-pointer" (click)="EditAddress(address)" src="assets/SVG/edit-icon.svg" alt="" />
               </div>
-              <div
-                class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
-              >
-                <img
-                   height="20" src="assets/SVG/delete.svg"
-                  (click)="DeleteAddress(address)"
-                  alt=""
-                />
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
+                <img height="20" src="assets/SVG/delete.svg" (click)="DeleteAddress(address)" alt="" />
               </div>
             </div>
           </div>
         </div>
-      
+
       </div>
     </div>
   </div>

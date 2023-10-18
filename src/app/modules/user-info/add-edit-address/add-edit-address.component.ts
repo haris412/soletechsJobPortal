@@ -28,11 +28,13 @@ export class AddEditAddressComponent {
     });
   }
  ngOnInIt(){
-  if(this.selectedAddress.addressId !== ''){
-    this.addressForm.patchValue({
-      ...this.selectedAddress
-    });
-  }
+   if (this.selectedAddress.nameOfDescription !== '') {
+     this.addressForm.patchValue({
+       ...this.selectedAddress
+     });
+   } else {
+     this.addressForm.reset();
+   }
  }
   CloseAddressNav: () => void = () => {
     this.closeSideNav.emit(true);
