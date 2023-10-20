@@ -31,14 +31,16 @@
     </mat-form-field>
   </div>
   <div class="cv-div">
-    <div *ngIf="fileList.length === 0" class="upload-file">
+    <p class="text-midnight-moss font-poppins-bold">Attachment</p>
+    <div  class="upload-file">
       <input type="file" (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg" alt="" />
       <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
       <span>PDF or DOC (max. size 6MB)</span>
     </div>
     <div *ngIf="fileList.length > 0"
-      class="p-3 row col-lg-6 col-12 mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
-      <div class="uploaded-files col-12 px-0 px-0 d-flex align-items-center" *ngFor="let file of fileList">
+      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
+      
+      <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2" *ngFor="let file of fileList">
         <div class="file-details rounded">
           <div class="d-flex align-items-center gap-2">
             <div class="file-icon">

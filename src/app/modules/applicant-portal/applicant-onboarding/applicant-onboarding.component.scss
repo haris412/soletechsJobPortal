@@ -27,8 +27,12 @@
         position: absolute;
         bottom: -21px;
       }
+      &.completed,
       &.active {
         opacity: 1;
+      }
+      &.completed {
+        background-color: $pastel-green-dark;
       }
       img {
         position: absolute;

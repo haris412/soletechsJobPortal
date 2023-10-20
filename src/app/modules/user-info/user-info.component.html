@@ -7,7 +7,7 @@
     <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
       <li>
         <div class="stepper-progression active rounded-circle border border-color-midnight-moss"
-          [ngClass]="{ 'completed': completed, 'active': isActive }">
+          [ngClass]="{ 'completed': basicCompleted, 'active': isBasicActive }">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
@@ -18,7 +18,7 @@
       </li>
       <li>
         <div class="stepper-progression rounded-circle border border-color-midnight-moss"
-          [ngClass]="{ 'completed': completed, 'active': isActive }">
+          [ngClass]="{ 'completed': contactCompleted, 'active': isContactActive }">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
@@ -29,7 +29,7 @@
       </li>
       <li>
         <div class="stepper-progression rounded-circle border border-color-midnight-moss"
-          [ngClass]="{ 'completed': completed, 'active': isActive }">
+          [ngClass]="{ 'completed': addressCompleted, 'active': isAddressActive }">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
@@ -40,7 +40,7 @@
       </li>
       <li>
         <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
-          [ngClass]="{ 'completed': completed, 'active': isActive }">
+          [ngClass]="{ 'completed': identificationCompleted, 'active': isIdentificationActive }">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
         </div>

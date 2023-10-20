@@ -53,7 +53,7 @@ export class AddEditSkillsComponent {
       this.fileList = [];
     }
     onFileUpload(files: any) {
-      this.fileList = files.target.files;
+      this.fileList.push(files.target.files);
     }
   
     DeleteFile: (selectedFile:File) => void = () => {
