@@ -1,79 +1,70 @@
 <div class="container-fluid">
-  <div
-    class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer"
-    (click)="GoBack()"
-  >
+  <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
     <img src="assets/SVG/Iconback.svg" alt="" />
     <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
   </div>
   <div class="row mx-0">
     <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
       <li>
-        <div
-          class="stepper-progression active rounded-circle border border-color-midnight-moss"
-        >
-          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        <div class="stepper-progression active rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': identificationCompleted, 'active': identificationisActive }">
+          <img *ngIf="identificationCompleted" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="!identificationCompleted" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click)="GoToTab(1)">
           <img src="assets/SVG/fingerprint.svg" alt="" />
           <p class="text-nowrap">Identification</p>
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
-          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': identificationCompleted, 'active': documentsisActive }">
+          <img *ngIf="documentsCompleted" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="!documentsCompleted" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click)="GoToTab(2)">
           <img src="assets/SVG/documents.svg" alt="" />
           <p>Documents</p>
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
-          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': identificationCompleted, 'active': medicalisActive }">
+          <img *ngIf="medicalCompleted" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="!medicalCompleted" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click)="GoToTab(3)">
           <img src="assets/SVG/medical-checkup.svg" alt="" />
           <p>Medical Checkup</p>
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
-          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': identificationCompleted, 'active': dependentsisActive }">
+          <img *ngIf="dependentsCompleted" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="!dependentsCompleted" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click)="GoToTab(4)">
           <img src="assets/SVG/dependent.svg" alt="" />
           <p>Dependents</p>
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss"
-        >
-          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+          [ngClass]="{ 'completed': identificationCompleted, 'active': addressisActive }">
+          <img *ngIf="addressCompleted" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="!addressCompleted" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items">
+        <div class="stepper-items" (click)="GoToTab(5)">
           <img src="assets/SVG/address.svg" alt="" />
           <p>Address</p>
         </div>
       </li>
       <li>
-        <div
-          class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
-        >
-          <img *ngIf="!completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="completed" class="bg-midnight-moss rounded-circle"></p>
+        <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
+          [ngClass]="{ 'completed': identificationCompleted, 'active': emergencyContactisActive }">
+          <img *ngIf="emergencyContactCompleted" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="!emergencyContactCompleted" class="bg-midnight-moss rounded-circle"></p>
         </div>
         <div class="stepper-items">
           <img src="assets/SVG/emergency.svg" alt="" />
@@ -89,27 +80,18 @@
       <app-dependent *ngIf="index === 4"></app-dependent>
       <app-address *ngIf="index === 5"></app-address>
       <app-emergency-contact *ngIf="index === 6"></app-emergency-contact>
-      <div
-        class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns"
-      >
-        <button
-          type="button"
+      <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
+        <button type="button"
           class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
-          (click)="Back(index)"
-        >
+          (click)="Discard()">
           Discard
         </button>
-        <button
-          type="button"
-          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3"
-        >
+        <button type="button"
+          class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3" (click)="Back(index)">
           Back
         </button>
-        <button
-          type="button"
-          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-          (click)="Next()"
-        >
+        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          (click)="Next()">
           Next
         </button>
       </div>

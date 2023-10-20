@@ -13,8 +13,8 @@ export class LinkedInService {
   clientId:string = '86ykg7fe4magrl';
   clientSecret:string = '9WRk82y2qSNdOKej';
   public GetAccessToken(url:any, code:string,redirectUrl:string): Observable<any> {
-    const headers = new HttpHeaders({ 'Accept':'*/*' , 'grant_type' : 'authorization_code','redirect_uri':redirectUrl, 'client_id': this.clientId , 'client_secret': this.clientSecret ,'code': code  });
-    return this.http.get(url,{headers} ).pipe(map(res => console.log(res)));
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Accept':'*/*' , 'grant_type' : 'client_credentials','redirect_uri':redirectUrl, 'client_id': this.clientId , 'client_secret': this.clientSecret ,'code': code  });
+    return this.http.post(url,{headers} ).pipe(map(res => console.log(res)));
   }
 
   public GetUserInfoLinkedIn(accessToken:string){
