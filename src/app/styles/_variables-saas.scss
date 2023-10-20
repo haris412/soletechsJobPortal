@@ -6,9 +6,13 @@
 @import "utilities";
 @import "fonts";
 
+:root {
+  --theme-color: #212322
+}
+
 $my-colors: (
   "midnight": "#20273A",
-  "midnight-moss": "#212322",
+  "midnight-moss": "var(--theme-color)",
   "denim": "#1852C0",
   "gossamer": "#37A685",
   "ivory": "#F8F8F7",
@@ -54,7 +58,7 @@ $utilities: map-merge(
       class: bg,
       values: (
         "midnight": #20273a,
-        "midnight-moss": #212322,
+        "midnight-moss": var(--theme-color),
         "denim": #1852c0,
         "gossamer": #37a685,
         "ivory": #f8f8f7,
@@ -95,7 +99,7 @@ $utilities: map-merge(
       class: text,
       values: (
         "midnight": #20273a,
-        "midnight-moss": #212322,
+        "midnight-moss": var(--theme-color),
         "denim": #1852c0,
         "gossamer": #37a685,
         "ivory": #f8f8f7,
@@ -136,7 +140,7 @@ $utilities: map-merge(
       class: border-color,
       values: (
         "midnight": #20273a,
-        "midnight-moss": #212322,
+        "midnight-moss": var(--theme-color),
         "denim": #1852c0,
         "gossamer": #37a685,
         "ivory": #f8f8f7,
@@ -236,7 +240,7 @@ $gray-500: #667085;
 $gray-600: #475467;
 $gray-700: #344054;
 $midnight: #20273a;
-$midnight-moss: #212322;
+$midnight-moss: var(--theme-color);
 $denim: #1852c0;
 $gossamer: #37a685;
 $ivory: #f8f8f7;
