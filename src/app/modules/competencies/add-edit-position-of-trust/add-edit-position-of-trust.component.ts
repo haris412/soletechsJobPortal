@@ -53,7 +53,7 @@ export class AddEditPositionOfTrustComponent {
       this.fileList = [];
     }
     onFileUpload(files: any) {
-      this.fileList = files.target.files;
+      this.fileList.push(files.target.files[0]);
     }
   
     DeleteFile: (selectedFile:File) => void = () => {
