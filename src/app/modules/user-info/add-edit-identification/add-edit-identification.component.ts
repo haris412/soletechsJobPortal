@@ -54,7 +54,7 @@ export class AddEditIdentificationComponent {
     this.identificationForm.reset();
   }
   onFileUpload(files: any) {
-    this.fileList.push(files.target.files);
+    this.fileList.push(files.target.files[0]);
   }
 
   DeleteFile(selectedFile:File) {
