@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
+import { LinkedInService } from '../services/linkedin.service';
 
 @Component({
   selector: 'app-left-side-info',
@@ -13,7 +14,8 @@ export class LeftSideInfoComponent {
   jobList: any[] = [{name:'Designer', type:'Full Time'}];
   constructor(private dialog: RescheduleModalComponentService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    public linkedInServive: LinkedInService
   ) { }
 
   OpenReschedule() {

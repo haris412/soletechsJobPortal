@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  clientId: '86ykg7fe4magrl',
+  clientSecret: '9WRk82y2qSNdOKej',
+  redirect_uri: 'https://localhost:4200/applicant/dashboard',
+  scope: ['openid', 'profile', 'email' ],
+  authorizationUrl: 'https://www.linkedin.com/oauth/v2/authorization',
+  accessTokenUrl: 'https://www.linkedin.com/oauth/v2/accessToken',
+  apiUrl: 'https://localhost:7247/api'
 };
 
 /*
