@@ -124,7 +124,7 @@ h4 {
 .with-border::after {
   content: "";
   display: block;
-  border-bottom: 8px solid #000000;
+  border-bottom: 8px solid $midnight-moss;
   position: absolute;
   bottom: -26px;
   left: 0;
@@ -145,7 +145,7 @@ h4 {
 .job-listing-detail:nth-of-type(1):after {
   content: "";
   display: block;
-  border-left: 8px solid black;
+  border-left: 8px solid $midnight-moss;
   position: absolute;
   left: 0;
   top: 0;
