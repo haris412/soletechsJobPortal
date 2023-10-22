@@ -90,5 +90,26 @@ export class UserInfoComponent implements OnInit {
     }
     GoToTab(index: number) {
         this.index = index;
+        if (index === 2) {
+            this.isBasicActive = false;
+            this.isContactActive = true;
+            this.isAddressActive = false;
+            this.isIdentificationActive = false;
+        } else if (index === 3) {
+            this.isBasicActive = false;
+            this.isContactActive = false;
+            this.isAddressActive = true;
+            this.isIdentificationActive = false;
+        } else if (index === 4) {
+            this.isBasicActive = false;
+            this.isContactActive = false;
+            this.isAddressActive = false;
+            this.isIdentificationActive = true;
+        }else if (index === 1) {
+            this.isBasicActive = true;
+            this.isContactActive = false;
+            this.isAddressActive = false;
+            this.isIdentificationActive = false;
+        }
     }
 }

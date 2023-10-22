@@ -1,5 +1,5 @@
 <div>
-  <h4>Applied Jobs</h4>
+  <h4 class="text-midnight-moss">Applied Jobs</h4>
   <div *ngIf="jobList.length === 0" class="job-detail justify-content-center rounded-3">
     <div class="no-information">
       <img src="assets/SVG/no-applied.svg" alt="" />
@@ -12,13 +12,13 @@
   </div>
   <div *ngIf="jobList.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
     <div class="d-flex align-items-center justify-content-between">
-      <h5>Lead Product Design</h5>
+      <h5 class="text-midnight-moss">Lead Product Design</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <div>
-          <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer" />
+          <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
         </div>
         <div>
-          <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer" />
+          <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer green-filter" />
         </div>
       </div>
     </div>
@@ -43,44 +43,44 @@
           <img src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="completed"></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Screening</h6>
-        <p class="text-gray-700 font-poppins-medium">Screening</p>
+        <h6 class="text-midnight-moss font-poppins-medium">Screening</h6>
+        <p class="text-midnight-moss font-poppins-medium">Screening</p>
       </div>
       <div class="stepper-item active">
         <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Interview</h6>
-        <p class="text-gray-700 font-poppins-medium">Interview</p>
+        <h6 class="text-midnight-moss font-poppins-medium">Interview</h6>
+        <p class="text-midnight-moss font-poppins-medium">Interview</p>
       </div>
       <div class="stepper-item">
         <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Offer</h6>
-        <p class="text-gray-700 font-poppins-medium">Offer</p>
+        <h6 class="text-midnight-moss font-poppins-medium">Offer</h6>
+        <p class="text-midnight-moss font-poppins-medium">Offer</p>
       </div>
       <div class="stepper-item">
         <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Onboarding</h6>
-        <p class="text-gray-700 font-poppins-medium">Onboarding</p>
+        <h6 class="text-midnight-moss font-poppins-medium">Onboarding</h6>
+        <p class="text-midnight-moss font-poppins-medium">Onboarding</p>
       </div>
     </div>
   </div>
   <div *ngIf="jobList.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
     <div class="d-flex align-items-center justify-content-between">
-      <h5>Lead Product Design</h5>
+      <h5 class="text-midnight-moss">Lead Product Design</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <div>
-          <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer" />
+          <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
         </div>
         <div>
-          <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer" />
+          <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer green-filter" />
         </div>
       </div>
     </div>
@@ -105,28 +105,28 @@
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Screening</h6>
+        <h6 class="text-midnight-moss font-poppins-medium">Screening</h6>
       </div>
       <div class="stepper-item">
         <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Interview</h6>
+        <h6 class="text-midnight-moss font-poppins-medium">Interview</h6>
       </div>
       <div class="stepper-item">
         <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Offer</h6>
+        <h6 class="text-midnight-moss font-poppins-medium">Offer</h6>
       </div>
       <div class="stepper-item">
         <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-gray-700 font-poppins-medium">Onboarding</h6>
+        <h6 class="text-midnight-moss font-poppins-medium">Onboarding</h6>
       </div>
     </div>
   </div>

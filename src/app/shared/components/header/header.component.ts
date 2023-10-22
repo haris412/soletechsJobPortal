@@ -38,4 +38,7 @@ export class HeaderComponent implements OnInit {
   SavedJobs(){
     this.router.navigate(['/applicant/dashboard']);
   }
+  GoToJobs(){
+    this.router.navigate(['/']);
+  }
 }
