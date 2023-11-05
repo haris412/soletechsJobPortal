@@ -21,7 +21,7 @@
     }
   }
   .sign-up-sections {
-    max-height: calc(100vh - 215px);
+    max-height: calc(100vh - 225px);
     overflow-y: auto;
     h2 {
       @include media-breakpoint-down(lg) {

@@ -1,14 +1,14 @@
 <div class="parent-container" [ngClass]="{ 'notification-page': isNotificationPage }">
   <div class="d-flex align-items-baseline justify-content-between">
     <h4 class="text-midnight-moss font-poppins-medium mb-4">Notification</h4>
-    <img *ngIf="!isNotificationPage" class="green-filter" src="assets/SVG/x-circle.svg" alt="" />
+    <img *ngIf="!isNotificationPage" class="purple-filter" src="assets/SVG/x-circle.svg" alt="" />
   </div>
   <h6 class="text-midnight-moss font-poppins-medium">Today</h6>
   <div class="notification-list">
     <div class="notification-item">
       <div class="notification-detail">
         <div class="icon">
-          <img src="assets/SVG/ic_Notification.svg" class="green-filter" alt="notification" />
+          <img src="assets/SVG/ic_Notification.svg" class="purple-filter" alt="notification" />
         </div>
         <div class="notification-text" (click)="GoToJob()">
           <p *ngIf="!isNotificationPage" class="font-poppins-semi text-midnight-moss">Job Status Changed</p>
@@ -23,7 +23,7 @@
     <div class="notification-item" (click)="GoToProfile()">
       <div class="notification-detail">
         <div class="icon">
-          <img src="assets/SVG/user.svg" class="green-filter" alt="user-icon" />
+          <img src="assets/SVG/user.svg" class="purple-filter" alt="user-icon" />
         </div>
         <div class="notification-text">
           <p class="font-poppins-semi text-midnight-moss">Missing profile information</p>
@@ -36,7 +36,7 @@
     <div class="notification-item">
       <div class="notification-detail">
         <div class="icon">
-          <img src="assets/SVG/list.svg" class="green-filter" alt="checklist" />
+          <img src="assets/SVG/list.svg" class="purple-filter" alt="checklist" />
         </div>
         <div class="notification-text">
           <p class="font-poppins-semi text-midnight-moss">Update your account</p>
