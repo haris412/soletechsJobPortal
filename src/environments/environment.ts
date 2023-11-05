@@ -10,7 +10,7 @@ export const environment = {
   scope: ['openid', 'profile', 'email' ],
   authorizationUrl: 'https://www.linkedin.com/oauth/v2/authorization',
   accessTokenUrl: 'https://www.linkedin.com/oauth/v2/accessToken',
-  apiUrl: 'https://localhost:7247/api'
+  apiUrl: 'http://localhost:7247/api'
 };
 
 /*

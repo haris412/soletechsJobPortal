@@ -29,10 +29,10 @@ export class JobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.jobId === undefined) {
+    if (this.mobileView && this.selectedJob.$id === undefined) {
       this.show = true;
       this.webView = false;
-    } else if (this.mobileView && this.selectedJob.jobId !== undefined) {
+    } else if (this.mobileView && this.selectedJob.$id !== undefined) {
       this.webView = false;
       this.show = true;
     }
@@ -41,9 +41,9 @@ export class JobsComponent implements OnInit {
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.jobId !== undefined) {
+    if (this.mobileView && this.selectedJob.$id !== undefined) {
       this.show;
-    } else if (this.mobileView && this.selectedJob.jobId === undefined) {
+    } else if (this.mobileView && this.selectedJob.$id === undefined) {
 
     }
   }
