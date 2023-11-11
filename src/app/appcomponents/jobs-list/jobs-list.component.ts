@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { RecruitmentService } from 'src/app/app-services/jobs.service';
+import { jobsQueryParameters } from 'src/app/models/get-jobs-parameters.model';
+import { JobDetailParameter } from 'src/app/models/job-detail-parameter';
 import { Job } from 'src/app/models/job.model';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-jobs-list',
@@ -19,40 +23,65 @@ export class JobsListComponent implements OnInit {
   webView: boolean = true;
   showJobList: boolean = true;
   inputText: string = '';
-  jobsList: Job[] = [{
-    jobId: '1',
-    jobTitle: 'Lead Product Design',
-    jobDescription: "Your job as a UX designer is to give a world-class experience for tiket.com users. You have main responsibilities to conduct the user and/or evaluation research, do a lot of sketching, and create wireframes that have a high usability. As a UX designer you'll work closely with a team of UX, Engineers and Product Managers to design products that are simple but great for the user, focusing on developing user scenarios, task analysis, process flows and Lo-Fidesign mocks.",
-    JobRequiredSkills: ['Interaction Design', 'Graphic Design', 'User Interface', 'UI/UX Design', 'B2B'],
-    location: 'Dubai, UAE',
-    postedDate: 'Posted 3 days ago',
-    experience: 'Minimum 1 Year',
-    workLevel: 'Senior Level',
-    jobType: 'Full Time Jobs',
-    salary: '$2150,0 / Month',
-    responsibilities: ["You possess strong visual and wrtitten communication and core design skills. You have a minimum of 3-5 years of professional experiencein creativity", "You have an exciting and diverse portfolio of work that displays a deep understanding of interactive design and strong conceptual problem solving", "You are comfortable communicating with cross-functional partners in the marketing, buyer-experience, and product design organizations", "You have a love of building brands and an understanding of the importance of their impact within an organization", "You are confident in presenting and articulating work to peers and stakeholders", "You have the ability to design for different audiences and needs", "You are able to receive and solicit feedback like a pro", "You are eager to grow and learn in an energizing and high-growth environment", "You are an expert in the Adobe suite of products, Figma, Keynote,and Microsoft Office"],
-    dayToDay: ['Supporting a variety of creative projects that support the entire Atlassian business, ranging from design to production tasks'],
-    interactionWithTeam: [' Access to slack and all Atlassian products, bi-weekly 1:1 with the manager, and weekly team meetings'],
-    techSkillsNeeded: ['Adobe Creative Cloud', 'Figma', 'Keynote']
-  }];
+  jobsList: Job[] = [];
   selectedJob: Job = new Object() as Job;
 
 
-  constructor() { }
+  constructor(private recruitmentService: RecruitmentService,
+              private sharedService:SharedService) { }
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.jobId === undefined) {
+    if (this.mobileView && this.selectedJob.$id === undefined) {
       this.show = false;
       this.webView = false;
-    } else if (this.mobileView && this.selectedJob.jobId !== undefined) {
+    } else if (this.mobileView && this.selectedJob.$id !== undefined) {
       this.webView = false;
       this.show = true;
+    }
+    // if(!localStorage.getItem('token')){
+     this.GetToken();
+    // }else{
+    //   this.GetJobs(localStorage.getItem('token') ?? '');
+    // }
+  }
+
+  async GetJobs(token: string) {
+    let params: jobsQueryParameters = {
+      _dataAreaId: 'USMF',
+      _languageId: "en-us"
+    }
+    let jobsResponseObj = await this.recruitmentService.GetRecruitmentInformationList(token);
+    if (jobsResponseObj?.statusCode === 200) {
+      console.log(jobsResponseObj);
+    }
+  }
+
+  async getRecruitmentProjectsList(token:string){
+    let params: jobsQueryParameters = {
+      _dataAreaId: 'USMF',
+      _languageId: "en-us"
+    }
+    let jobsResponseObj = await this.recruitmentService.GetRecruitmentProjectsList(params,token);
+    if (jobsResponseObj) {
+      this.jobsList = jobsResponseObj.parmRecruitmentProjectsList;
+      console.log(this.jobsList);
+    }
+  }
+  async GetToken() {
+    let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');
+    if (accessTokenResponse) {
+      this.sharedService.SetToken(accessTokenResponse.access_token);
+      localStorage.setItem('token', accessTokenResponse.access_token);
+      if (accessTokenResponse.access_token) {
+        this.getRecruitmentProjectsList(accessTokenResponse.access_token);
+      }
     }
   }
 
   OpenJob(job: Job) {
     this.selectedJob = job;
+    this.GetJobDetail(job);
     this.isActive = true;
     if (this.mobileView) {
       this.show = true;
@@ -60,15 +89,27 @@ export class JobsListComponent implements OnInit {
     } else {
       this.webView = true;
     }
-
   }
+
+  async GetJobDetail(job:Job){
+    let jobDetailParam: JobDetailParameter = {
+      _jobRecid: job.recruitingId,
+      _dataAreaId: 'USMF',
+      _languageId: 'En-us'
+    }
+    let jobDetailResponse = await this.recruitmentService.GetJobDetail(jobDetailParam);
+    if (jobDetailResponse) {
+      console.log(jobDetailResponse);
+    }
+  }
+
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.jobId !== undefined) {
+    if (this.mobileView && this.selectedJob.$id !== undefined) {
       this.webView = false;
       this.show = true;
-    } else if (this.mobileView && this.selectedJob.jobId === undefined) {
+    } else if (this.mobileView && this.selectedJob.$id === undefined) {
       this.show = false;
       this.webView = false;
     } else {
@@ -83,7 +124,7 @@ export class JobsListComponent implements OnInit {
     }
   }
 
-  
+
   onEnterPressed() {
     const inputText = this.inputText;
     console.log(inputText);

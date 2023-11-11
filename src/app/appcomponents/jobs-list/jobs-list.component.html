@@ -63,8 +63,8 @@
       </div>
       <div class="job-listings" *ngFor="let job of jobsList">
         <div
-          class="my-3 job-listing-detail light-border border-radius-8 overflow-hidden position-relative p-3 cursor-pointer bg-white"
-          [ngClass]="{ 'bg-alice-blue': isActive }"
+          class="my-3  light-border border-radius-8 overflow-hidden position-relative p-3 cursor-pointer bg-white"
+          [ngClass] = "selectedJob.$id === job.$id ? 'job-listing-detail bg-alice-blue': ''"
           (click)="OpenJob(job)"
         >
           <div
@@ -74,12 +74,12 @@
               class="d-flex align-items-center justify-content-between w-100"
             >
               <h5 class="mb-0 d-lg-block d-none text-midnight-moss">
-                {{ job.jobTitle }}
+                {{ job.description }}
               </h5>
               <h6
                 class="mb-0 d-lg-none d-block text-midnight-moss font-poppins-semi"
               >
-                {{ job.jobTitle }}
+                {{ job.description }}
               </h6>
               <div
                 class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1"
@@ -104,17 +104,18 @@
             </div>
             <div class="d-flex align-items-center gap-1 listing-time mb-2">
               <img src="assets/SVG/clock.svg" alt="" />
-              <p class="text-shuttle-grey 14 mb-0">{{ job.postedDate }}</p>
+              <p class="text-shuttle-grey 14 mb-0">{{ job.startDate | date }}</p>
             </div>
             <div class="listing-info text-start mb-1">
               <p class="mb-0 text-shuttle-grey">
-                {{ job.jobDescription }}
+                {{ job.description }}
               </p>
             </div>
             <div class="d-flex align-items-center gap-1 job-location-info mb-2">
               <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
               <p class="text-midnight-moss mb-0">
-                {{ job.location }}
+                saudia
+                <!-- {{ job.location }} -->
               </p>
             </div>
             <div class="d-flex align-items-center gap-1 job-location-info">
