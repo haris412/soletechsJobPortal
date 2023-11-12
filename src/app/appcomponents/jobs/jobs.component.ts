@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { JobDetail } from 'src/app/models/job-detail.model';
 import { Job } from 'src/app/models/job.model';
 import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-modal.service';
 
@@ -13,7 +14,7 @@ import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-
 })
 export class JobsComponent implements OnInit {
 
-  @Input() selectedJob: Job = new Object() as Job;
+  @Input() selectedJob: any = new Object() as any;
   @Output() backClicked: EventEmitter<boolean> = new EventEmitter();
   width: number = window.innerWidth;
   minimunWidth: number = 992;
@@ -29,10 +30,10 @@ export class JobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.jobId === undefined) {
+    if (this.mobileView && this.selectedJob.$id === undefined) {
       this.show = true;
       this.webView = false;
-    } else if (this.mobileView && this.selectedJob.jobId !== undefined) {
+    } else if (this.mobileView && this.selectedJob.$id !== undefined) {
       this.webView = false;
       this.show = true;
     }
@@ -41,9 +42,9 @@ export class JobsComponent implements OnInit {
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.jobId !== undefined) {
+    if (this.mobileView && this.selectedJob.$id !== undefined) {
       this.show;
-    } else if (this.mobileView && this.selectedJob.jobId === undefined) {
+    } else if (this.mobileView && this.selectedJob.$id === undefined) {
 
     }
   }
