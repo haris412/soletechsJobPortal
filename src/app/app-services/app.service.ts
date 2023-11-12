@@ -13,9 +13,9 @@ export class LookUpService {
     async GetRecruitmentLookup(
         params: LookupParameters
     ) {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-        set('languageId', params.languageId)
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId)
         return await this.httpClient
             .get<any>(
                 apiURLs.lookUps.getRecruitmentLookup,
@@ -26,9 +26,9 @@ export class LookUpService {
     async GetCountryRegionLookup(
         params: LookupParameters
     ) {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-        set('languageId', params.languageId);
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
                 apiURLs.lookUps.getCountryRegionLookup,
@@ -36,4 +36,16 @@ export class LookUpService {
             ).toPromise();
     }
 
+    async GetHighestDegreeLookUp(
+        params: LookupParameters
+    ) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+        set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.lookUps.getHighestDegreeLookUp,
+                { params: queryParams }
+            ).toPromise();
+    }
 }

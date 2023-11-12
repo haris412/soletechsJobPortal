@@ -41,6 +41,6 @@ export class AppComponent implements OnInit {
   }
   changePrimaryColor(newColor: string) {
     const root = this.el.nativeElement.ownerDocument.documentElement;
-    console.log(this.renderer.setStyle(root, '--theme-color', newColor));
+    this.renderer.setStyle(root, '--theme-color', newColor);
   }
 }

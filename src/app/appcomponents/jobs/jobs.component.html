@@ -108,7 +108,7 @@
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
     [ngClass]="sidenavOpen ? 'open' : 'close'">
     <span class="heading">Quick Apply</span>
-    <app-quick-apply *ngIf="sidenavOpen"></app-quick-apply>
+    <app-quick-apply *ngIf="sidenavOpen" [selectedJob] = "selectedJob"></app-quick-apply>
     <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
         <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
             (click)="CloseSidenav()">

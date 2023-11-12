@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, forkJoin, map, startWith } from 'rxjs';
@@ -11,10 +11,12 @@ import { LookupParameters } from 'src/app/models/look-up.model';
   styleUrls: ['./quick-apply.component.scss']
 })
 export class QuickApplyComponent {
+  @Input() selectedJob:any =  new Object() as any;
   public isFile: boolean = false;
   public fileList: File[] = [];
   recrutmentProjects:any[] = [];
   countryRegions:any[] = [];
+  degrees:any[]=[];
   filteredOptions!: Observable<any[]>;
   countriesData!:Observable<any[]>;
   projectsCtrl = new FormControl('');
@@ -43,24 +45,30 @@ export class QuickApplyComponent {
       dataAreaId : 'USMF',
       languageId:'en-us'
     }
-    const lookups = await forkJoin({
+    const lookUps = await forkJoin({
       projects: this.lookUpService.GetRecruitmentLookup(params),
       countries: this.lookUpService.GetCountryRegionLookup(params),
+      highestDegree: this.lookUpService.GetHighestDegreeLookUp(params)
     }).toPromise();
-    console.log(lookups);
-    lookups?.projects?.parmList?.forEach((projects:any)=> {
-    let data = new Object() as any;
+    lookUps?.projects?.parmList?.forEach((projects: any) => {
+      let data = new Object() as any;
       data.name = projects.Description;
       data.value = projects.Id;
       this.recrutmentProjects.push(data);
-     }
+    }
     );
-    lookups?.countries?.parmList.forEach((countries:any)=> {
+    lookUps?.countries?.parmList.forEach((countries:any)=> {
       let data = new Object() as any;
       data.name = countries.Description;
       data.value = countries.Id;
       this.countryRegions.push(data);
     });
+    lookUps?.highestDegree.parmList.forEach((degree:any)=> {
+      let data = new Object() as any;
+      data.name = degree.Description;
+      data.value = degree.Id;
+      this.degrees.push(data);
+    })
    }
 
    private _filter(value: string): string[] {
@@ -81,7 +89,6 @@ export class QuickApplyComponent {
   }
 
   DeleteFile(selectedFile:File) {
-    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
     this.fileList = [];
   }
 }

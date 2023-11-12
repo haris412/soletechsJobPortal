@@ -45,17 +45,6 @@ export class JobsListComponent implements OnInit {
     // }
   }
 
-  async GetJobs(token: string) {
-    let params: jobsQueryParameters = {
-      _dataAreaId: 'USMF',
-      _languageId: "en-us"
-    }
-    let jobsResponseObj = await this.recruitmentService.GetRecruitmentInformationList(token);
-    if (jobsResponseObj?.statusCode === 200) {
-      console.log(jobsResponseObj);
-    }
-  }
-
   async getRecruitmentProjectsList(token: string) {
     let params: jobsQueryParameters = {
       _dataAreaId: 'USMF',
@@ -64,7 +53,6 @@ export class JobsListComponent implements OnInit {
     let jobsResponseObj = await this.recruitmentService.GetRecruitmentProjectsList(params, token);
     if (jobsResponseObj) {
       this.jobsList = jobsResponseObj.parmRecruitmentProjectsList;
-      console.log(this.jobsList);
     }
   }
   async GetToken() {
@@ -99,7 +87,6 @@ export class JobsListComponent implements OnInit {
     let jobDetailResponse = await this.recruitmentService.GetJobDetail(jobDetailParam);
     if (jobDetailResponse) {
       this.jobDetail = jobDetailResponse;
-      console.log(this.jobDetail);
     }
   }
 
