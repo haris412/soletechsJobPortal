@@ -17,7 +17,7 @@ export const apiURLs = {
         getContractWorkerLookup: `${environment.apiUrl}/MPRecruitment_Projects/getContractWorker_Lookup`,
         getRecruitmentLookup:`${environment.apiUrl}/ERPLookups/GetRecruitment_Lookup`,
         getCountryRegionLookup:`${environment.apiUrl}/ERPLookups/GetCountryRegion_Lookup`,
-        getHighestDegreeLookUp:`${environment.apiUrl}/ERPApplicant/GetHighestDegreeLookUp`,
+        getHighestDegreeLookUp:`${environment.apiUrl}/ERPApplicant/GetHighestDegreeLookUpList`,
         GetAddressLookUp:`${environment.apiUrl}/ERPApplicant/GetAddressLookUp`
     },
     application: {
