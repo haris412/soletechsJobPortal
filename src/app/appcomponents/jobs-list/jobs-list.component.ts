@@ -25,22 +25,21 @@ export class JobsListComponent implements OnInit {
   inputText: string = '';
   jobsList: Job[] = [];
   selectedJob: Job = new Object() as Job;
-
-
+  jobDetail: any = new Object() as any;
   constructor(private recruitmentService: RecruitmentService,
-              private sharedService:SharedService) { }
+    private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.$id === undefined) {
+    if (this.mobileView && this.selectedJob.id === undefined) {
       this.show = false;
       this.webView = false;
-    } else if (this.mobileView && this.selectedJob.$id !== undefined) {
+    } else if (this.mobileView && this.selectedJob.id !== undefined) {
       this.webView = false;
       this.show = true;
     }
     // if(!localStorage.getItem('token')){
-     this.GetToken();
+    this.GetToken();
     // }else{
     //   this.GetJobs(localStorage.getItem('token') ?? '');
     // }
@@ -57,12 +56,12 @@ export class JobsListComponent implements OnInit {
     }
   }
 
-  async getRecruitmentProjectsList(token:string){
+  async getRecruitmentProjectsList(token: string) {
     let params: jobsQueryParameters = {
       _dataAreaId: 'USMF',
       _languageId: "en-us"
     }
-    let jobsResponseObj = await this.recruitmentService.GetRecruitmentProjectsList(params,token);
+    let jobsResponseObj = await this.recruitmentService.GetRecruitmentProjectsList(params, token);
     if (jobsResponseObj) {
       this.jobsList = jobsResponseObj.parmRecruitmentProjectsList;
       console.log(this.jobsList);
@@ -91,25 +90,26 @@ export class JobsListComponent implements OnInit {
     }
   }
 
-  async GetJobDetail(job:Job){
+  async GetJobDetail(job: Job) {
     let jobDetailParam: JobDetailParameter = {
-      _jobRecid: job.recruitingId,
+      _jobRecid: job.job,
       _dataAreaId: 'USMF',
       _languageId: 'En-us'
     }
     let jobDetailResponse = await this.recruitmentService.GetJobDetail(jobDetailParam);
     if (jobDetailResponse) {
-      console.log(jobDetailResponse);
+      this.jobDetail = jobDetailResponse;
+      console.log(this.jobDetail);
     }
   }
 
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;
-    if (this.mobileView && this.selectedJob.$id !== undefined) {
+    if (this.mobileView && this.selectedJob.id !== undefined) {
       this.webView = false;
       this.show = true;
-    } else if (this.mobileView && this.selectedJob.$id === undefined) {
+    } else if (this.mobileView && this.selectedJob.id === undefined) {
       this.show = false;
       this.webView = false;
     } else {
@@ -124,10 +124,8 @@ export class JobsListComponent implements OnInit {
     }
   }
 
-
   onEnterPressed() {
     const inputText = this.inputText;
-    console.log(inputText);
   }
 
 }

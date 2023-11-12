@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { JobDetail } from 'src/app/models/job-detail.model';
 import { Job } from 'src/app/models/job.model';
 import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-modal.service';
 
@@ -13,7 +14,7 @@ import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-
 })
 export class JobsComponent implements OnInit {
 
-  @Input() selectedJob: Job = new Object() as Job;
+  @Input() selectedJob: any = new Object() as any;
   @Output() backClicked: EventEmitter<boolean> = new EventEmitter();
   width: number = window.innerWidth;
   minimunWidth: number = 992;

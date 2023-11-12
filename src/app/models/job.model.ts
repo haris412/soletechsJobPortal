@@ -1,5 +1,5 @@
 export interface Job {
-    $id:string;
+    id:string;
     alternateWorkerContact:string;
     endDate:string;
     estimatedStartDate:string;
@@ -8,9 +8,10 @@ export interface Job {
     description:string;
     finalDate:string;
     hiringManager:number;
+    job:number;
     qty:number;
     recruiter:number;
-    recruitingId:number;
+    recruitingId:string;
     startDate:string;
     status:number;
     webEnabled:number;

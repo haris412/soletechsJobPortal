@@ -52,11 +52,11 @@ export class RecruitmentService {
             ).toPromise();
     }
 
-    async GetJobDetail(params:JobDetailParameter){
+    async GetJobDetail(params: JobDetailParameter) {
         let queryParams = new HttpParams();
-        queryParams = queryParams.append('_jobRecid', params._jobRecid).
-        set('_dataAreaId',params._dataAreaId).
-        set('_languageId',params._languageId)
+        queryParams = queryParams.append('jobId', params._jobRecid).
+            set('dataAreaId', params._dataAreaId).
+            set('languageId', params._languageId)
         return await this.httpClient
             .get<any>(
                 apiURLs.recrutmentProjects.getJobDetails, { params: queryParams },

@@ -4,7 +4,7 @@ export const apiURLs = {
         GetRecruitmentInformationListAsync: `${environment.apiUrl}/ERPAuthentication/GetRecruitmentInformationList`,
         getRecruitmentProjectsList: `${environment.apiUrl}/ERPAuthentication/getRecruitmentProjectsList`,
         authenticationByCompanyIdAsync:`${environment.apiUrl}/ERPAuthentication/AuthenticationByCompanyId`,
-        getJobDetails:`${environment.apiUrl}ERPAuthentication/getJobDetails`
+        getJobDetails:`${environment.apiUrl}/ERPAuthentication/GetJobDetails`
     },
     lookUps: {
         getDepartmentLookup: `${environment.apiUrl}MPRecruitment_Projects/getDepartment_Lookup`,
@@ -15,6 +15,9 @@ export const apiURLs = {
         getReasonCodeLookup: `${environment.apiUrl}MPRecruitment_Projects/getReasonCode_Lookup`,
         getApplicantionLookup: `${environment.apiUrl}MPRecruitment_Projects/getApplicantion_Lookup`,
         getContractWorkerLookup: `${environment.apiUrl}MPRecruitment_Projects/getContractWorker_Lookup`,
+        getRecruitmentLookup:`${environment.apiUrl}/ERPLookups/GetRecruitment_Lookup`,
+        getCountryRegionLookup:`${environment.apiUrl}/ERPLookups/GetCountryRegion_Lookup`,
+
         
     },
     application: {

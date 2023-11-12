@@ -35,8 +35,24 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Recruitement Project</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput />
+        <input type="text"
+               placeholder="Recruitement Project"
+               aria-label="Recruitement Project"
+               matInput
+               [formControl]="projectsCtrl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let project of filteredOptions | async" [value]="project.value">
+            {{project.name}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
+      <!-- <mat-form-field appearance="outline" class="w-100">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let projects of recrutmentProjects" [value]="projects.value">{{projects.name}}</mat-option>
+        </mat-autocomplete>
+        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      </mat-form-field> -->
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Nationality</p>
@@ -85,19 +101,30 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Current Address (Local)</p>
       <mat-form-field appearance="outline" class="w-100">
+        <input type="text"
+               placeholder="Select Country"
+               aria-label="Select Country"
+               matInput
+               [formControl]="countriesCtrl"
+               [matAutocomplete]="autocountries">
+        <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete">
+          <mat-option *ngFor="let country of countriesData | async" [value]="country.value">
+            {{country.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline" class="w-100">
         <mat-select>
-          <mat-option value="mad">Madina</mat-option>
-          <mat-option value="mak">Makka</mat-option>
+          <mat-option *ngFor="let country of countryRegions" [value]="country.value">{{country.name}}</mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      </mat-form-field>
+      </mat-form-field> -->
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Current Address (Out)</p>
       <mat-form-field appearance="outline" class="w-100">
         <mat-select>
-          <mat-option value="pak">Pakistan</mat-option>
-          <mat-option value="ind">India</mat-option>
+          <mat-option *ngFor="let country of countryRegions" [value]="country.value">{{country.name}}</mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
       </mat-form-field>
