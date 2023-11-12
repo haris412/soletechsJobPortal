@@ -78,25 +78,10 @@
         <span class="text-shuttle-grey">This is the job for you if:</span>
         <ul class="mb-4">
             <div [innerHTML]="selectedJob.JobAd"></div>
-            <!-- <li *ngFor="let responsibility of selectedJob.responsibilities">
-                {{responsibility}}
-            </li> -->
         </ul>
-        <!-- <span class="text-shuttle-grey">The day to day:</span>
-        <ul class="mb-0">
-            <li *ngFor="let dailyResobility of selectedJob.dayToDay">
-                {{dailyResobility}}
-            </li>
-        </ul> -->
-        <!-- <span class="text-shuttle-grey">Interaction with the team:</span>
-        <ul class="mb-3">
-            <li *ngFor="let interaction of selectedJob.interactionWithTeam">
-                {{interaction}}
-            </li>
-        </ul> -->
         <span class="text-shuttle-grey">Tech skills needed:</span>
         <ul class="mb-lg-0 mb-4">
-            <li *ngFor="let techskills of selectedJob.techSkillsNeeded">{{techskills}}</li>
+            <li *ngFor="let techskills of selectedJob.Skills?.parmRecruitmentSkillsList">{{techskills.Skill}}</li>
         </ul>
         <div class="info-detail-footer position-absolute bottom-0 border-lg-top pt-4 pb-3">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
