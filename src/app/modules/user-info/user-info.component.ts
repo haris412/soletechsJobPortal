@@ -1,6 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { forkJoin } from 'rxjs';
+import { LookUpService } from 'src/app/app-services/app.service';
+import { LookupParameters } from 'src/app/models/look-up.model';
+import { UserInfoService } from './user-info.service';
 
 @Component({
     selector: 'app-user-info',
@@ -24,9 +28,12 @@ export class UserInfoComponent implements OnInit {
     public Editor = ClassicEditor;
     index: Number = 1;
     stepperTitle: string = 'Basic Info';
-    constructor(private location: Location) { }
+    constructor(private location: Location
+             , private lookUpService: LookUpService
+             , private userInfoService: UserInfoService) { }
 
-    ngOnInit(): void {
+    async ngOnInit() {
+        await this.GetLookups();
     }
 
     OpenSidenav() {
@@ -111,5 +118,62 @@ export class UserInfoComponent implements OnInit {
             this.isAddressActive = false;
             this.isIdentificationActive = false;
         }
+    }
+
+    async GetLookups() {
+        let params:LookupParameters = {
+          dataAreaId : 'USMF',
+          languageId:'en-us'
+        }
+        const lookUps = await forkJoin({
+          countries: this.lookUpService.GetCountryRegionLookup(params),
+          ethnic: this.lookUpService.GetEthnicOriginLookup(params),
+          nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
+          highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
+          reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
+          identificationType: this.lookUpService.GetIdentificationTypeLookup(params),
+        }).toPromise();
+        lookUps?.countries?.parmList?.forEach((projects: any) => {
+          let data = new Object() as any;
+          data.name = projects.Description;
+          data.value = projects.Id;
+          this.userInfoService.countryRegions.push(data);
+        }
+        );
+        lookUps?.ethnic?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.userInfoService.ethnic.push(data);
+          }
+        );
+        lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.userInfoService.nativeLanguage.push(data);
+          }
+        );
+        lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.userInfoService.highestDegree.push(data);
+          }
+        );
+        lookUps?.reasonCodes?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.userInfoService.reasonCodes.push(data);
+          }
+        );
+        lookUps?.identificationType?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.userInfoService.identificationType.push(data);
+          }
+        );
     }
 }

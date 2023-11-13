@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address.model';
+import { UserInfoService } from '../user-info.service';
+import { forkJoin } from 'rxjs';
+import { LookUpService } from 'src/app/app-services/app.service';
+import { LookupParameters } from 'src/app/models/look-up.model';
 
 @Component({
   selector: 'app-add-edit-address',
@@ -16,7 +20,9 @@ export class AddEditAddressComponent {
   addressForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Address
-  constructor(private toastrService: ToastrService) {
+  constructor(private toastrService: ToastrService
+            , public userInfoService: UserInfoService
+            , public lookupService: LookUpService) {
     this.addressForm = this._formBuilder.group({
       addressId: [''],
       nameOfDescription: ['', [Validators.required]],
@@ -51,5 +57,23 @@ export class AddEditAddressComponent {
   }
   Discard: () => void = () => {
     this.addressForm.reset();
+  }
+
+  async changeCountry() {
+    var countryid = this.addressForm.controls.country?.value?.value;
+    let params:LookupParameters = {
+      dataAreaId : 'USMF',
+      languageId:'en-us'
+    }
+    const lookUps = await forkJoin({
+      cities: this.lookupService.GetCityLookup(params, countryid)
+    }).toPromise();
+    lookUps?.cities?.parmList?.forEach((projects: any) => {
+      let data = new Object() as any;
+      data.name = projects.Description;
+      data.value = projects.Id;
+      this.userInfoService.cities.push(data);
+    }
+    );
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address.model';
+import { UserInfoService } from '../user-info.service';
 
 @Component({
   selector: 'app-address',
@@ -12,7 +13,8 @@ export class AddressComponent {
   AddressList: Address[] = [];
   selectedAddress!:Address;
 
-  constructor(private toastrService: ToastrService){}
+  constructor(private toastrService: ToastrService
+           , private userInfoService: UserInfoService){}
   OpenSidenav() {
     this.selectedAddress = new Object() as Address;
     this.sidenavOpen = true;

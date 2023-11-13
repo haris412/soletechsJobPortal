@@ -48,4 +48,82 @@ export class LookUpService {
                 { params: queryParams }
             ).toPromise();
     }
+
+    async GetEthnicOriginLookup(
+        params: LookupParameters
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.lookUps.GetEthnicOriginLookup,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async GetNativeLanguageCodeLookup(
+        params: LookupParameters
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.lookUps.GetNativeLanguageCodeLookup,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async GetHighestDegreeLookups(
+        params: LookupParameters
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.lookUps.GetHighestDegreeLookups,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async GetReasonCodeLookups(
+        params: LookupParameters
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.lookUps.GetReasonCodeLookups,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async GetIdentificationTypeLookup(
+        params: LookupParameters
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.lookUps.GetIdentificationTypeLookup,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async GetCityLookup(
+        params: LookupParameters, countryId: string
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('countryId', countryId).set('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.lookUps.GetCityLookup,
+                { params: queryParams }
+            ).toPromise();
+    }
 }

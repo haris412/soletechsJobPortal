@@ -3,7 +3,7 @@
     <p>Identification Type</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="identifcationType" [formControlName]="'identifcationType'">
-        <mat-option value="card">Card</mat-option>
+        <mat-option *ngFor="let identification of this.userInfoService.identificationType">{{identification.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
