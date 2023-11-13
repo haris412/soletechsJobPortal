@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Identification } from 'src/app/models/identification.model';
+import { UserInfoService } from '../user-info.service';
 
 @Component({
   selector: 'app-add-edit-identification',
@@ -18,7 +19,8 @@ export class AddEditIdentificationComponent {
 	fileList:any[] = [];
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Identification
-  constructor(private toastrService: ToastrService) {
+  constructor(private toastrService: ToastrService
+            , public userInfoService: UserInfoService) {
     this.identificationForm = this._formBuilder.group({
       identifcationType: ['', [Validators.required]],
       identificationNumer: ['', [Validators.required]],

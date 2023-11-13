@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { UserInfoService } from '../user-info.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class AddEditBasicinformationComponent {
   public sidenavOpen: boolean = false;
   title = 'angular';
   public Editor = ClassicEditor;
-  constructor() { }
+  constructor(public userInfoService: UserInfoService) { }
 
   ngOnInit(): void {
   }

@@ -18,7 +18,13 @@ export const apiURLs = {
         getRecruitmentLookup:`${environment.apiUrl}/ERPLookups/GetRecruitment_Lookup`,
         getCountryRegionLookup:`${environment.apiUrl}/ERPLookups/GetCountryRegion_Lookup`,
         getHighestDegreeLookUp:`${environment.apiUrl}/ERPApplicant/GetHighestDegreeLookUpList`,
-        GetAddressLookUp:`${environment.apiUrl}/ERPApplicant/GetAddressLookUp`
+        GetAddressLookUp:`${environment.apiUrl}/ERPApplicant/GetAddressLookUp`,
+        GetEthnicOriginLookup:`${environment.apiUrl}/ERPLookups/GetEthnicOrigin_Lookup`,
+        GetNativeLanguageCodeLookup:`${environment.apiUrl}/ERPLookups/GetNativeLanguageCode_Lookup`,
+        GetHighestDegreeLookups:`${environment.apiUrl}/ERPLookups/GetHighestDegree_Lookup`,
+        GetReasonCodeLookups:`${environment.apiUrl}/ERPLookups/GetReasonCode_Lookup`,
+        GetIdentificationTypeLookup:`${environment.apiUrl}/ERPLookups/GetIdentificationType_Lookup`,
+        GetCityLookup:`${environment.apiUrl}/ERPLookups/GetCity_Lookup`,
     },
     application: {
         createApplication: `${environment.apiUrl}MPRecruitment_Application/createApplication`,

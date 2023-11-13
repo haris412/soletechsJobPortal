@@ -49,7 +49,7 @@
         <p>Ethnic Origin</p>
         <mat-form-field appearance="outline" class="w-100">
           <mat-select>
-            <mat-option value="asian">Asian</mat-option>
+            <mat-option *ngFor="let ethnic of this.userInfoService.ethnic">{{ethnic.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
@@ -58,8 +58,7 @@
         <p>Native Language</p>
         <mat-form-field appearance="outline" class="w-100">
           <mat-select>
-            <mat-option value="english">English</mat-option>
-            <mat-option value="russian">Russian</mat-option>
+            <mat-option *ngFor="let nlanguage of this.userInfoService.nativeLanguage">{{nlanguage.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
@@ -86,8 +85,7 @@
         <p>Highest Degree</p>
         <mat-form-field appearance="outline" class="w-100">
           <mat-select>
-            <mat-option value="BS">BS</mat-option>
-            <mat-option value="MS">MS</mat-option>
+            <mat-option *ngFor="let hDegree of this.userInfoService.highestDegree">{{hDegree.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
@@ -96,8 +94,7 @@
         <p>Reason Code</p>
         <mat-form-field appearance="outline" class="w-100">
           <mat-select>
-            <mat-option value="english">English</mat-option>
-            <mat-option value="russian">Russian</mat-option>
+            <mat-option *ngFor="let reasonCode of this.userInfoService.reasonCodes">{{reasonCode.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
