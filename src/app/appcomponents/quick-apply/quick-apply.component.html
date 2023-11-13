@@ -19,61 +19,55 @@
 </div>
 <div class="quick-apply-fields mb-0">
   <h5 class="text-midnight-moss">Information</h5>
-  <form class="row" action="">
+  <form class="row" action="" [formGroup]="quickApplyForm">
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Name</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput />
+        <input matInput [formControlName]="'name'"/>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Name(AR)</p>
       <mat-form-field appearance="outline" class="w-100 text-arabic">
-        <input matInput />
+        <input matInput [formControlName]="'nameAr'"/>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Recruitement Project</p>
       <mat-form-field appearance="outline" class="w-100">
         <input type="text"
-               placeholder="Recruitement Project"
-               aria-label="Recruitement Project"
                matInput
-               [formControl]="projectsCtrl"
-               [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let project of filteredOptions | async" [value]="project.value">
-            {{project.name}}
-          </mat-option>
-        </mat-autocomplete>
+               [formControlName]="'recruitmentProject'">
       </mat-form-field>
-      <!-- <mat-form-field appearance="outline" class="w-100">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let projects of recrutmentProjects" [value]="projects.value">{{projects.name}}</mat-option>
-        </mat-autocomplete>
-        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      </mat-form-field> -->
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Nationality</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select>
-          <mat-option value="pakistan">Pakistan</mat-option>
-          <mat-option value="india">India</mat-option>
-        </mat-select>
-        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        <input type="text"
+               placeholder="Select Nationality"
+               aria-label="Select Nationality"
+               matInput
+               [formControl]="nationalityCtrl"
+               [matAutocomplete]="autoNationality"
+               [formControlName]="'nationality'">
+        <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete">
+          <mat-option *ngFor="let nationality of nationalityData | async" [value]="nationality.value" (selectionChange)="OnNationlaityChange($event)">
+            {{nationality.name}}
+          </mat-option>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        </mat-autocomplete>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Email</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input type="email" matInput />
+        <input type="email" matInput [formControlName]="'email'"/>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Mobile</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input type="tel" matInput />
+        <input type="tel" matInput [formControlName]="'mobile'"/>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12 linkedin-profile">
@@ -83,19 +77,25 @@
           <img src="assets/SVG/linkedin-black.svg" alt="">
         </div>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput />
+          <input matInput [formControlName]="'linkedIn'"/>
         </mat-form-field>
       </div>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Highest Degree</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select>
-          <mat-option value="bs">BS</mat-option>
-          <mat-option value="ms">MS</mat-option>
-          <mat-option value="phd">PhD.</mat-option>
-        </mat-select>
-        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        <input type="text"
+               placeholder="Select Degree"
+               aria-label="Select Degree"
+               matInput
+               [formControl]="degreeCtrl"
+               [matAutocomplete]="autodegrees"
+               [formControlName]="'highestDegree'">
+        <mat-autocomplete autoActiveFirstOption #autodegrees="matAutocomplete">
+          <mat-option *ngFor="let degree of degreeOptions | async" [value]="degree.value">
+            {{degree.name}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
@@ -106,7 +106,8 @@
                aria-label="Select Country"
                matInput
                [formControl]="countriesCtrl"
-               [matAutocomplete]="autocountries">
+               [matAutocomplete]="autocountries"
+               [formControlName]="'currentAddressLocal'">
         <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete">
           <mat-option *ngFor="let country of countriesData | async" [value]="country.value">
             {{country.name}}
@@ -123,7 +124,7 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Current Address (Out)</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select>
+        <mat-select [formControlName]="'currentAddressOut'">
           <mat-option *ngFor="let country of countryRegions" [value]="country.value">{{country.name}}</mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
@@ -132,7 +133,7 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Date of Birth</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker">
+        <input matInput [matDatepicker]="picker" >
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -142,16 +143,16 @@
         <p class="mb-0">Has resident identity</p>
       </mat-checkbox>
     </div>
-    <div class="d-flex flex-column col-md-6 col-12">
+    <!-- <div class="d-flex flex-column col-md-6 col-12">
       <p>Resident Identity Professional</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput />
       </mat-form-field>
-    </div>
+    </div> -->
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Period to Join</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select>
+        <mat-select [formControlName]="'periodToJoin'">
           <mat-option value="immediately">Immediately</mat-option>
           <mat-option value="onew">One week</mat-option>
           <mat-option value="twow">Two weeks</mat-option>
