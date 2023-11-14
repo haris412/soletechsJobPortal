@@ -15,6 +15,7 @@ import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-
 export class JobsComponent implements OnInit {
 
   @Input() selectedJob: any = new Object() as any;
+  @Input() recruitmentProject:Job = new Object() as Job;
   @Output() backClicked: EventEmitter<boolean> = new EventEmitter();
   width: number = window.innerWidth;
   minimunWidth: number = 992;
