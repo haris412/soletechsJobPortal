@@ -27,7 +27,6 @@ export const apiURLs = {
         GetCityLookup:`${environment.apiUrl}/ERPLookups/GetCity_Lookup`,
     },
     application: {
-        createApplication: `${environment.apiUrl}MPRecruitment_Application/createApplication`,
         createApplicant: `${environment.apiUrl}/ERPApplicant/CreateApplicant`,
         createApplication: `${environment.apiUrl}/ERPApplication/CreateApplication`,
     }
