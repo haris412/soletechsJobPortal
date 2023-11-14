@@ -43,6 +43,7 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Nationality</p>
       <mat-form-field appearance="outline" class="w-100">
+        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         <input type="text"
                placeholder="Select Nationality"
                aria-label="Select Nationality"
@@ -54,7 +55,6 @@
           <mat-option *ngFor="let nationality of nationalityData | async" [value]="nationality.value" (selectionChange)="OnNationlaityChange($event)">
             {{nationality.name}}
           </mat-option>
-          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-autocomplete>
       </mat-form-field>
     </div>
@@ -84,6 +84,7 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Highest Degree</p>
       <mat-form-field appearance="outline" class="w-100">
+        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         <input type="text"
                placeholder="Select Degree"
                aria-label="Select Degree"
@@ -101,6 +102,7 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Current Address (Local)</p>
       <mat-form-field appearance="outline" class="w-100">
+        <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         <input type="text"
                placeholder="Select Country"
                aria-label="Select Country"
