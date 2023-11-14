@@ -67,6 +67,7 @@ export class JobsListComponent implements OnInit {
   }
 
   OpenJob(job: Job) {
+    debugger;
     this.selectedJob = job;
     this.GetJobDetail(job);
     this.isActive = true;

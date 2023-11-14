@@ -1,8 +1,12 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, forkJoin, map, startWith } from 'rxjs';
 import { LookUpService } from 'src/app/app-services/app.service';
+import { ApplicationService } from 'src/app/app-services/application.service';
+import { Application } from 'src/app/models/applicatiom.model';
+import { Job } from 'src/app/models/job.model';
 import { LookupParameters } from 'src/app/models/look-up.model';
 
 @Component({
@@ -12,6 +16,9 @@ import { LookupParameters } from 'src/app/models/look-up.model';
 })
 export class QuickApplyComponent {
   @Input() selectedJob:any =  new Object() as any;
+  @Input() recruitmentProject:Job = new Object() as Job;
+  @Output() closeClicked: EventEmitter<boolean> = new EventEmitter();
+
   public isFile: boolean = false;
   public fileList: File[] = [];
   recrutmentProjects:any[] = [];
@@ -29,7 +36,10 @@ export class QuickApplyComponent {
   separateDialCode = false;
   constructor(
     private router: Router,
-    private lookUpService:LookUpService
+    private lookUpService:LookUpService,
+    private applicationService:ApplicationService,
+    private toastrService: ToastrService,
+
   ) {
     this.quickApplyForm = this._formBuilder.group({
       name:[''],
@@ -50,6 +60,7 @@ export class QuickApplyComponent {
   }
 
   ngOnInit(){
+    console.log(this.selectedJob);
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.selectedJob?.jobId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.fileList = [];
@@ -124,5 +135,45 @@ export class QuickApplyComponent {
 
   DeleteFile(selectedFile:File) {
     this.fileList = [];
+  }
+  CloseSidenav() {
+    this.closeClicked.emit(true);
+  }
+  async QuickApply(){
+    let applicationData: Application = {
+      correspondanceAction: 4,
+      dateOfReception: '2015-10-03T12:00:00',
+      createdSource: 0,
+      skipRecruitingStatusCheck: 0,
+      travelCost: 0.0,
+      Status: 1,
+      startDatetime: '2015-10-15T07:00:00Z',
+      reasonCode: 0,
+      rating: 2,
+      otherCost: 0.0,
+      job: this.recruitmentProject?.job,
+      mediaId: 'Weekly New',
+      applicationId: '00026',
+      hiringManager: this.recruitmentProject?.hiringManager,
+      expireDate: this.recruitmentProject?.EndDate,
+      departmentRecId: this.recruitmentProject.department,
+      expectedSalary: 0.0,
+      currentSalary: 0.0,
+      referrer: '',
+      lodgingCostMST: 0.0,
+      RecruitingId: this.recruitmentProject.recruitingId,
+      HcmApplicantId: '000015'
+    }
+    try {
+      let applicationResponse = await this.applicationService.SaveApplication(applicationData);
+      if (applicationResponse.Status) {
+        this.toastrService.success(applicationResponse?.Message);
+        this.closeClicked.emit(true);
+      } else {
+        this.toastrService.error(applicationResponse?.Message);
+      }
+    } catch (ex) {
+      console.error();
+    }
   }
 }

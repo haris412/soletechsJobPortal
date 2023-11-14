@@ -1,10 +1,10 @@
 export interface Job {
     id:string;
     alternateWorkerContact:string;
-    endDate:string;
+    EndDate:string;
     estimatedStartDate:string;
     approvedDate:string;
-    department:string;
+    department:number;
     description:string;
     finalDate:string;
     hiringManager:number;
