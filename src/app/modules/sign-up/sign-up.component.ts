@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { User } from 'src/app/models/user';
+import { UserInfoService } from '../user-info/user-info.service';
+import { LookUpService } from 'src/app/app-services/app.service';
 
 @Component({
 	selector: 'app-signup',
@@ -18,9 +22,20 @@ export class SignUpComponent implements OnInit {
 	imageAvatar: any;
 	defaultUrl: string = 'assets/Images/Profile.png';
 	fileList: any[] = [];
-	constructor(private router: Router) { }
+	private _formBuilder = inject(UntypedFormBuilder);
+	userForm: UntypedFormGroup;
+	user: User = new User();
 
-	ngOnInit(): void {
+	constructor(private router: Router,
+				public userInfo: UserInfoService,
+				public lookupService: LookUpService) {
+		this.userForm = this._formBuilder.group({
+			email:['',[Validators.required]],
+			password:['',[Validators.required]]
+		  });
+	}
+
+	ngOnInit(): void { 
 	}
 
 	OpenSidenav() {
@@ -73,5 +88,16 @@ export class SignUpComponent implements OnInit {
 	DeleteFile(selectedFile: File) {
 		//this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
 		this.fileList = [];
+	}
+
+	async Signup() {
+		if (this.userInfo.applicantForm.valid) {
+			this.userInfo.applicant = this.userInfo.applicantForm.value;
+			this.user = this.userForm.value;
+			this.userInfo.applicant.birthDate = new Date();
+			var data  = await this.lookupService.CreateApplicant(this.userInfo.applicant);
+		} else {			
+			alert(this.user.password);
+		}
 	}
 }

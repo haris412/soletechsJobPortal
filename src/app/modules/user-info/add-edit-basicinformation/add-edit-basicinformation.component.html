@@ -1,10 +1,22 @@
 <div class="main-container">
   <div class="sign-up-info-div">
-    <form class="row" action="">
+    <form class="row" action="" [formGroup]="this.userInfoService.applicantForm">
       <div class="d-flex flex-column col-md-6 col-12">
-        <p>Name</p>
+        <p>First Name</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput />
+          <input matInput  [formControlName]="'firstName'"/>
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Last Name</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput  [formControlName]="'lastName'" />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column col-md-6 col-12">
+        <p>Middle Name</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput  [formControlName]="'middleName'" />
         </mat-form-field>
       </div>
       <div class="d-flex flex-column col-md-6 col-12">
@@ -18,7 +30,7 @@
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Nationality</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-select>
+          <mat-select  [formControlName]="'nationality'">
             <mat-option value="pakistan">Pakistan</mat-option>
             <mat-option value="india">India</mat-option>
           </mat-select>
@@ -28,7 +40,7 @@
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Gender</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-select>
+          <mat-select  [formControlName]="'gender'">
             <mat-option value="male">Male</mat-option>
             <mat-option value="female">Female</mat-option>
           </mat-select>
@@ -38,7 +50,7 @@
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Marital Status</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-select>
+          <mat-select [formControlName]="'maritalStatus'">
             <mat-option value="single">Single</mat-option>
             <mat-option value="married">Married</mat-option>
           </mat-select>
@@ -48,8 +60,8 @@
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Ethnic Origin</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-select>
-            <mat-option *ngFor="let ethnic of this.userInfoService.ethnic">{{ethnic.name}}</mat-option>
+          <mat-select [formControlName]="'ethnicOriginId'">
+            <mat-option *ngFor="let ethnic of this.userInfoService.ethnic" [value]="ethnic.value">{{ethnic.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
@@ -57,8 +69,8 @@
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Native Language</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-select>
-            <mat-option *ngFor="let nlanguage of this.userInfoService.nativeLanguage">{{nlanguage.name}}</mat-option>
+          <mat-select [formControlName]="'nativeLanguageId'">
+            <mat-option *ngFor="let nlanguage of this.userInfoService.nativeLanguage" [value]="nlanguage.value">{{nlanguage.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
@@ -72,20 +84,20 @@
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Current Salary</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput />
+          <input matInput [formControlName]="'currentSalary'" />
         </mat-form-field>
       </div>
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Current Job Title</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput />
+          <input matInput [formControlName]="'currentJobTitle'" />
         </mat-form-field>
       </div>
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Highest Degree</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-select>
-            <mat-option *ngFor="let hDegree of this.userInfoService.highestDegree">{{hDegree.name}}</mat-option>
+          <mat-select [formControlName]="'highestDegree'">
+            <mat-option *ngFor="let hDegree of this.userInfoService.highestDegree"  [value]="hDegree.value">{{hDegree.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
@@ -93,8 +105,8 @@
       <div class="d-flex flex-column col-md-6 col-12">
         <p>Reason Code</p>
         <mat-form-field appearance="outline" class="w-100">
-          <mat-select>
-            <mat-option *ngFor="let reasonCode of this.userInfoService.reasonCodes">{{reasonCode.name}}</mat-option>
+          <mat-select [formControlName]="'reasonCode'">
+            <mat-option *ngFor="let reasonCode of this.userInfoService.reasonCodes"  [value]="reasonCode.value">{{reasonCode.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>

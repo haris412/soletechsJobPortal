@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { jobsQueryParameters } from "../models/get-jobs-parameters.model";
 import { apiURLs } from "../app.settings";
 import { LookupParameters } from "../models/look-up.model";
+import { Applicant } from "../models/applicant";
 
 @Injectable({
     providedIn: 'root',
@@ -124,6 +125,21 @@ export class LookUpService {
             .get<any>(
                 apiURLs.lookUps.GetCityLookup,
                 { params: queryParams }
+            ).toPromise();
+    }
+
+
+
+
+    //// Application Services
+
+    async CreateApplicant(
+        applicant: Applicant
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.application.createApplicant,
+                applicant
             ).toPromise();
     }
 }

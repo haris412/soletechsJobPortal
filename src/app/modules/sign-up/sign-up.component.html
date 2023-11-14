@@ -50,7 +50,7 @@
     <ckeditor [editor]="Editor"></ckeditor>
   </div>
   <div class="sign-up-info-div">
-    <form class="row" action="">
+    <form class="row" action="" [formGroup]="this.userForm">
       <div class="d-flex flex-column col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Email</p>
         <mat-form-field appearance="outline" class="w-100">
@@ -86,5 +86,8 @@
       <span class="heading">Competencies</span>
       <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToCompetencies()" />
     </div>
+  </div>
+  <div>
+    <input type="button" (click)="Signup()" value="Sign Up" />
   </div>
 </div>

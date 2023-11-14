@@ -13,7 +13,7 @@
     <p>Country</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="country" [formControlName]="'country'" (valueChange)="changeCountry()">
-        <mat-option *ngFor="let country of this.userInfoService.countryRegions" [value]="country">{{country.name}}</mat-option>
+        <mat-option *ngFor="let country of this.userInfoService.countryRegions" [value]="country.value">{{country.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
@@ -22,7 +22,7 @@
     <p>City</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="city" [formControlName]="'city'">
-        <mat-option *ngFor="let city of this.userInfoService.cities" [value]="city">{{city.name}}</mat-option>
+        <mat-option *ngFor="let city of this.userInfoService.cities" [value]="city.value">{{city.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
