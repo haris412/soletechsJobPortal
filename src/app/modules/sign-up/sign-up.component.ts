@@ -97,7 +97,7 @@ export class SignUpComponent implements OnInit {
 			this.userInfo.applicant.birthDate = new Date();
 			var data  = await this.lookupService.CreateApplicant(this.userInfo.applicant);
 		} else {			
-			alert(this.user.password);
+			alert("Sign up form is not valid. Please fill all mandatory fields.");
 		}
 	}
 }
