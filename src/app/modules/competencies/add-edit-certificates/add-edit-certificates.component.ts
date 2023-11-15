@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Certificates } from 'src/app/models/certificates.model';
+import { CompetenciesCommonService } from '../services/competencies-common.service';
 
 @Component({
   selector: 'app-add-edit-certificates',
@@ -16,7 +17,7 @@ export class AddEditCertificatesComponent {
   certificate!: Certificates;
   fileList:any[]=[];
   file:any;
-  constructor(){
+  constructor(private competenciesService:CompetenciesCommonService){
     this.certiifcateForm = this._formBuilder.group({
       id:[''],
       certificate: ['',[Validators.required]],

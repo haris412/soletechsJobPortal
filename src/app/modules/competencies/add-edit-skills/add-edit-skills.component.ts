@@ -3,6 +3,7 @@ import { DeleteModalComponentService } from '../../../shared/delete-modal/delete
 import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Skills } from 'src/app/models/skills.model';
 import { DeleteModalComponent } from 'src/app/shared/delete-modal/delete-modal.component';
+import { CompetenciesCommonService } from '../services/competencies-common.service';
 
 @Component({
   selector: 'app-add-edit-skills',
@@ -19,7 +20,7 @@ export class AddEditSkillsComponent {
   fileList:any[]=[];
   file_store!: FileList;
   file:any;
-  constructor(){
+  constructor(private competenciesService:CompetenciesCommonService){
     this.skillForm = this._formBuilder.group({
       skillId: [''],
       level: ['', [Validators.required]],

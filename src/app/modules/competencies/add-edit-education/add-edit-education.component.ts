@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Education } from '../models/education';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { CompetenciesCommonService } from '../services/competencies-common.service';
 
 @Component({
   selector: 'app-add-edit-education',
@@ -16,7 +17,7 @@ export class AddEditEducationComponent {
   skill!: Education;
   fileList:any[]=[];
   file:any;
-  constructor(){
+  constructor(private competenciesService:CompetenciesCommonService){
     this.educationForm = this._formBuilder.group({
       id:[''],
       education: ['',[Validators.required]],
