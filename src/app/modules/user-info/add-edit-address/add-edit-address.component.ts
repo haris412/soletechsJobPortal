@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address.model';
 import { UserInfoService } from '../user-info.service';
 import { forkJoin } from 'rxjs';
-import { LookUpService } from 'src/app/app-services/app.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 
 @Component({
@@ -22,7 +22,7 @@ export class AddEditAddressComponent {
   identification!: Address
   constructor(private toastrService: ToastrService
             , public userInfoService: UserInfoService
-            , public lookupService: LookUpService) {
+            , public lookupService: AppLookUpService) {
     this.addressForm = this._formBuilder.group({
       addressId: [''],
       nameOfDescription: ['', [Validators.required]],

@@ -17,4 +17,5 @@ export class UserInfoService {
     highestDegree: any[] = [];
     reasonCodes: any[] = [];
     identificationType: any[] = [];
+    nationality:any[] = [];
 }
