@@ -60,7 +60,8 @@ export class AddEditAddressComponent {
   }
 
   async changeCountry() {
-    var countryid = this.addressForm.controls.country?.value?.value;
+    var address = this.addressForm.value;
+    var countryid = address.country;
     let params:LookupParameters = {
       dataAreaId : 'USMF',
       languageId:'en-us'

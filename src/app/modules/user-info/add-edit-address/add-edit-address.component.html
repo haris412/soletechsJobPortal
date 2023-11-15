@@ -12,7 +12,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Country</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="country" [formControlName]="'country'" (valueChange)="changeCountry()">
+      <mat-select name="country" [formControlName]="'country'" (selectionChange)="changeCountry()">
         <mat-option *ngFor="let country of this.userInfoService.countryRegions" [value]="country.value">{{country.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />

@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { forkJoin } from 'rxjs';
 import { LookUpService } from 'src/app/app-services/app.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { UserInfoService } from './user-info.service';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-user-info',
@@ -28,9 +29,15 @@ export class UserInfoComponent implements OnInit {
     public Editor = ClassicEditor;
     index: Number = 1;
     stepperTitle: string = 'Basic Info';
+
     constructor(private location: Location
              , private lookUpService: LookUpService
-             , private userInfoService: UserInfoService) { }
+             , private userInfoService: UserInfoService) { 
+        
+        if (this.userInfoService.applicantForm == undefined) {
+            this.userInfoService.prepareApplicantFormGroup();
+        }
+    }
 
     async ngOnInit() {
         await this.GetLookups();

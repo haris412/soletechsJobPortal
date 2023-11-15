@@ -5,6 +5,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { User } from 'src/app/models/user';
 import { UserInfoService } from '../user-info/user-info.service';
 import { LookUpService } from 'src/app/app-services/app.service';
+import Swal from "sweetalert2";
 
 @Component({
 	selector: 'app-signup',
@@ -33,6 +34,9 @@ export class SignUpComponent implements OnInit {
 			email:['',[Validators.required]],
 			password:['',[Validators.required]]
 		  });
+		if (this.userInfo.applicantForm == undefined) {
+			this.userInfo.prepareApplicantFormGroup();
+        }
 	}
 
 	ngOnInit(): void { 
@@ -91,13 +95,34 @@ export class SignUpComponent implements OnInit {
 	}
 
 	async Signup() {
-		if (this.userInfo.applicantForm.valid) {
+		if (this.userInfo?.applicantForm?.valid) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
-			this.userInfo.applicant.birthDate = new Date();
+			this.userInfo.applicant.personRecid = '22565424329';
 			var data  = await this.lookupService.CreateApplicant(this.userInfo.applicant);
+			if (data != null && data.Status) {
+				this.userInfo.prepareApplicantFormGroup();
+				Swal.fire({
+					title: 'Success',
+					icon: 'success',
+					text: 'Applicant Created - ' + data?.Recid,
+					confirmButtonText: 'Ok'
+			  });
+			} else {
+				Swal.fire({
+					title: 'Error',
+					icon: 'error',
+					text: data?.Message,
+					confirmButtonText: 'Ok'
+				});
+			}
 		} else {			
-			alert("Sign up form is not valid. Please fill all mandatory fields.");
+			Swal.fire({
+				title: "Alert",
+				icon: 'error',
+				text: 'Please fill all fields of profile.',
+				confirmButtonText: 'Ok'
+			});
 		}
 	}
 }
