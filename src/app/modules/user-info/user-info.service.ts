@@ -18,6 +18,7 @@ export class UserInfoService {
     highestDegree: any[] = [];
     reasonCodes: any[] = [];
     identificationType: any[] = [];
+    nationality:any[] = [];
 
     prepareApplicantFormGroup() {
 		this.applicantForm = this._applicantFormBuilder.group({

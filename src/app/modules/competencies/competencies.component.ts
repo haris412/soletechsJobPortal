@@ -1,6 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { forkJoin } from 'rxjs';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { LookupParameters } from 'src/app/models/look-up.model';
+import { CompetenciesCommonService } from './services/competencies-common.service';
 
 @Component({
     selector: 'app-competencies',
@@ -12,7 +16,7 @@ export class CompetenciesComponent implements OnInit {
     public skillCompleted: boolean = false;
     public skillsisActive: boolean = true;
     public experienceCompleted: boolean = false;
-    public experienceisActive: boolean = false; 
+    public experienceisActive: boolean = false;
     public educationCompleted: boolean = false;
     public educationisActive: boolean = false;
     public coursesCompleted: boolean = false;
@@ -27,9 +31,69 @@ export class CompetenciesComponent implements OnInit {
     index: Number = 1;
     stepperTitle: string = 'Skills';
 
-    constructor(private location:Location) { }
+    constructor(private location: Location,
+        private lookUpService: AppLookUpService,
+        private competenciesService: CompetenciesCommonService) { }
 
     ngOnInit(): void {
+        this.GetLookUps();
+    }
+
+    async GetLookUps() {
+        let params: LookupParameters = {
+            dataAreaId: 'USMF',
+            languageId: 'en-us'
+        }
+        const lookUps = await forkJoin({
+            skills: this.lookUpService.GetSkillLookup(params),
+            skillLevel: this.lookUpService.GetRatingLevelLookupList(params),
+            educationDiscipline: this.lookUpService.GetEducationDisciplineLookupList(params),
+            certificateTypes: this.lookUpService.getCertificateTypeLookUpList(params),
+            personalTitle: this.lookUpService.GetPersonalTitleLookupList(params),
+            educationLevel: this.lookUpService.GetEducationLevelLookupList(params),
+        }).toPromise();
+        lookUps?.skills?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.competenciesService.skillsList.push(data);
+        }
+        );
+        lookUps?.skillLevel?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.competenciesService.skillLevelList.push(data);
+        }
+        );
+        lookUps?.educationDiscipline?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.competenciesService.educationDesciplineList.push(data);
+        }
+        );
+        lookUps?.certificateTypes?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.competenciesService.certificateTypesList.push(data);
+        }
+        );
+        lookUps?.personalTitle?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.competenciesService.personalTitleList.push(data);
+        }
+        );
+        lookUps?.educationLevel?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.competenciesService.educationLevelList.push(data);
+        }
+                                                                        );
     }
 
     OpenSidenav() {
@@ -58,7 +122,7 @@ export class CompetenciesComponent implements OnInit {
             this.index = 4;
         } else if (this.index === 4) {
             this.certificatescompleted = true;
-            this.coursesisActive =true;
+            this.coursesisActive = true;
             this.stepperTitle = 'Courses';
             this.index = 5;
         } else if (this.index === 5) {
@@ -78,18 +142,18 @@ export class CompetenciesComponent implements OnInit {
         } else if (index === 4) {
             this.stepperTitle = 'Education';
             this.index = 3;
-        }else if(this.index === 5){
+        } else if (this.index === 5) {
             this.stepperTitle = 'Certificates';
             this.index = 4;
-        }else if(this.index === 6){
+        } else if (this.index === 6) {
             this.stepperTitle = 'Courses';
             this.index = 5;
         }
     }
-    GoBack(){
+    GoBack() {
         this.location.back();
     }
-    GoToTab(index:number){
+    GoToTab(index: number) {
         this.index = index;
     }
 }

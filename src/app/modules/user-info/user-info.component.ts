@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { forkJoin } from 'rxjs';
-import { LookUpService } from 'src/app/app-services/app.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { UserInfoService } from './user-info.service';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -31,7 +31,7 @@ export class UserInfoComponent implements OnInit {
     stepperTitle: string = 'Basic Info';
 
     constructor(private location: Location
-             , private lookUpService: LookUpService
+             , private lookUpService: AppLookUpService
              , private userInfoService: UserInfoService) { 
         
         if (this.userInfoService.applicantForm == undefined) {

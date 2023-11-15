@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { User } from 'src/app/models/user';
 import { UserInfoService } from '../user-info/user-info.service';
-import { LookUpService } from 'src/app/app-services/app.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import Swal from "sweetalert2";
 
 @Component({
@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
 
 	constructor(private router: Router,
 				public userInfo: UserInfoService,
-				public lookupService: LookUpService) {
+				public lookupService: AppLookUpService) {
 		this.userForm = this._formBuilder.group({
 			email:['',[Validators.required]],
 			password:['',[Validators.required]]

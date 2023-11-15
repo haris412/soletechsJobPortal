@@ -3,7 +3,7 @@ import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, forkJoin, map, startWith } from 'rxjs';
-import { LookUpService } from 'src/app/app-services/app.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ApplicationService } from 'src/app/app-services/application.service';
 import { Application } from 'src/app/models/applicatiom.model';
 import { Job } from 'src/app/models/job.model';
@@ -36,7 +36,7 @@ export class QuickApplyComponent {
   separateDialCode = false;
   constructor(
     private router: Router,
-    private lookUpService:LookUpService,
+    private lookUpService:AppLookUpService,
     private applicationService:ApplicationService,
     private toastrService: ToastrService,
 
