@@ -46,6 +46,16 @@ export const apiURLs = {
         createCertificate:`${environment.apiUrl}/ERPApplicant/CreateCertificate`, 
         createCourse:`${environment.apiUrl}/ERPApplicant/CreateCourse`, 
         createTrustedPosition:`${environment.apiUrl}/ERPApplicant/createTrustedPosition`,
-
+        editSkill:`${environment.apiUrl}/ERPApplicant/EditSkill`,
+        editProfessional:`${environment.apiUrl}/ERPApplicant/EditProfessional`,
+        editEducation:`${environment.apiUrl}/ERPApplicant/EditEducation`,
+        editCertificate:`${environment.apiUrl}/ERPApplicant/ EditCertificate`,
+        editCourse:`${environment.apiUrl}/ERPApplicant/EditCourse`,
+        editTrustedPosition:`${environment.apiUrl}/ERPApplicant/EditTrustedPosition`,
+        deleteSkill:`${environment.apiUrl}/ERPApplicant/DeleteSkill`,
+        deleteEducation:`${environment.apiUrl}/ERPApplicant/DeleteEducation`,
+        deleteCertificate:`${environment.apiUrl}/ERPApplicant/DeleteCertificate`,
+        professionalDelete:`${environment.apiUrl}/ERPApplicant/ProfessionalDelete`,
+        courseDelete:`${environment.apiUrl}/ERPApplicant/CourseDelete`,
     }
 }

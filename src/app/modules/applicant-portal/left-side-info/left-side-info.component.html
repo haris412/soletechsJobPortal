@@ -20,6 +20,14 @@
     <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToProfile()">
   </div>
 </div>
+<div class="d-flex align-items-center justify-content-between cursor-pointer side-tab">
+  <p class="mb-0 text-denim" (click)="GoToProfile()">Profile</p>
+  <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToBasicInfo()">
+</div>
+<div class="d-flex align-items-center justify-content-between cursor-pointer side-tab">
+  <p class="mb-0 text-denim " (click)="GoToProfile()">Competencies</p>
+  <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToCompetencies()">
+</div>
 <div class="next-actions">
   <h4 class="text-midnight-moss">Next actions</h4>
   <div *ngIf="jobList.length === 0" class="actions info-container rounded-3">

@@ -1,7 +1,8 @@
 export class Skills {
-    skillId:string = '';
-    level:string = '';
-    levelDate:string = '';
-    yearOfExperience:Number = 0;
+    SkillID:string = '';
+    Skill:string = '';
+    RatingLevel:string = '';
+    RatingLevelDate:string = '';
+    Experience:Number = 0;
     attachment:any;
 }

@@ -44,7 +44,7 @@ export class CoursesComponent {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       if (dialogResult) {
-        this.courses = this.courses.filter((course:Course) => course.courses !== selectedcourse.courses);
+        this.courses = this.courses.filter((course:Course) => course.course !== selectedcourse.course);
       }
     });
   }

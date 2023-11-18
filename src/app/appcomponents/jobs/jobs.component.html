@@ -35,7 +35,7 @@
                 Sign Up
             </button>
 
-            <button type="button" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav()">
+            <button type="button" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
                 Quick Apply
             </button>
         </div>
@@ -46,33 +46,16 @@
                 {{skills.Skill}}
             </p>
         </div>
-        <div class="row m-0 d-flex align-items-center mb-3 job-benefits w-100">
+        <div  class="row m-0 align-items-center mb-3  w-100">
+        <div class="col-lg-3 col-6 job-benefits" *ngFor="let attribute of selectedJob?.JobAttribute?.parmRecruitmentJobAttributeList">
             <div
-                class="d-flex flex-column align-items-start rounded-lg-start border-2 border border-white col-lg-3 col-6">
-                <p class="text-shuttle-grey">Experience</p>
+                class="d-flex flex-column align-items-start rounded-lg-start border-2 border border-white "  *ngIf="attribute?.AttributeValue !==''">
+                <p class="text-shuttle-grey" >{{attribute?.AttributeName}}</p>
                 <h6 class="mb-0 text-midnight-moss font-poppins-medium">
-                    {{selectedJob.ExperienceYears}}
+                    {{attribute?.AttributeValue}}
                 </h6>
             </div>
-            <div class="d-flex flex-column align-items-start border-2 border border-white col-lg-3 col-6">
-                <p class="text-shuttle-grey">Work Level</p>
-                <h6 class="mb-0 text-midnight-moss font-poppins-medium">
-                    {{selectedJob.WorkLevel}}
-                </h6>
-            </div>
-            <div class="d-flex flex-column align-items-start border-2 border border-white col-lg-3 col-6">
-                <p class="text-shuttle-grey">Job Type</p>
-                <h6 class="mb-0 text-midnight-moss font-poppins-medium">
-                    {{selectedJob.jobType}}
-                </h6>
-            </div>
-            <div
-                class="d-flex flex-column align-items-start border-2 border border-white rounded-lg-end col-lg-3 col-6">
-                <p class="text-shuttle-grey">Offer Salary</p>
-                <h6 class="mb-0 text-midnight-moss font-poppins-medium">
-                    {{selectedJob.MonthlySalary}}
-                </h6>
-            </div>
+          </div>
         </div>
         <h5 class="mt-4">What you'll be working on</h5>
         <span class="text-shuttle-grey">This is the job for you if:</span>
@@ -91,7 +74,7 @@
                         Sign Up
                     </button>
 
-                    <button type="button" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav()">
+                    <button type="button" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
                         Quick Apply
                     </button>
                 </div>
@@ -107,16 +90,6 @@
 
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
     [ngClass]="sidenavOpen ? 'open' : 'close'">
-    <span class="heading">Quick Apply</span>
+    <span class="heading">Apply</span>
     <app-quick-apply *ngIf="sidenavOpen" (closeClicked) = "CloseSidenav()" [recruitmentProject] = "recruitmentProject" [selectedJob] = "selectedJob"></app-quick-apply>
-    <!-- <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-        <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-            (click)="CloseSidenav()">
-            Cancel
-        </button>
-        <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8"
-            (click)="CloseSidenav()">
-            Apply now
-        </button>
-    </div> -->
 </div>

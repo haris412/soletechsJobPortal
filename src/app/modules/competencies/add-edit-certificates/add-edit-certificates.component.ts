@@ -31,7 +31,7 @@ export class AddEditCertificatesComponent {
     
   }
   ngOnInIt(){
-    if(this.certificate.certificate !== ''){
+    if(this.certificate.Certificatetypeid !== ''){
       this.certiifcateForm.patchValue({
         ...this.selectedCertificate
       });

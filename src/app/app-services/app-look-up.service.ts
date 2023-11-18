@@ -4,6 +4,10 @@ import { jobsQueryParameters } from "../models/get-jobs-parameters.model";
 import { apiURLs } from "../app.settings";
 import { LookupParameters } from "../models/look-up.model";
 import { Applicant } from "../models/applicant";
+import { Skills } from "../models/skills.model";
+import { professionalExperience } from "../models/professional-experience.model";
+import { Education } from './../modules/competencies/models/education';
+import { Certificates } from "../models/certificates.model";
 
 @Injectable({
     providedIn: 'root',
@@ -207,7 +211,7 @@ export class AppLookUpService {
     //// Application Services
 
     async CreateApplicant(
-        applicant: Applicant
+        applicant: any
     ) {
         return await this.httpClient
             .post<any>(
@@ -217,54 +221,42 @@ export class AppLookUpService {
     }
 
     async CreateSkill(
-        params: LookupParameters
+        skill: Skills
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
-            .get<any>(
+            .post<any>(
                 apiURLs.applicant.createSkill,
-                { params: queryParams }
+                skill
             ).toPromise();
     }
 
     async CreateProfessionalExperience(
-        params: LookupParameters
+        experience: professionalExperience
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
-            .get<any>(
+            .post<any>(
                 apiURLs.applicant.createProfessionalExperience,
-                { params: queryParams }
+                experience
             ).toPromise();
     }
 
     async CreateEducation(
-        params: LookupParameters
+        education: Education
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
-            .get<any>(
+            .post<any>(
                 apiURLs.applicant.createEducation,
-                { params: queryParams }
+                education
             ).toPromise();
     }
 
     async CreateCertificate(
-        params: LookupParameters
+        certificate: Certificates
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
-            .get<any>(
+            .post<any>(
                 apiURLs.applicant.createCertificate,
-                { params: queryParams }
+                certificate
             ).toPromise();
     }
 
@@ -292,4 +284,7 @@ export class AppLookUpService {
                 { params: queryParams }
             ).toPromise();
     }
+
+
+    // getSkillsList
 }

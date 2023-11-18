@@ -12,6 +12,8 @@ export interface Job {
     qty:number;
     recruiter:number;
     recruitingId:string;
+    JobLocation:string;
+    JobType:string;
     startDate:string;
     status:number;
     webEnabled:number;

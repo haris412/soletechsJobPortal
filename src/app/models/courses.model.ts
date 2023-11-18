@@ -1,8 +1,13 @@
 export interface Course{
     id:string;
-    courses:string;
-    startDate:string;
-    endDate:string;
-    location:string;
+    course:string;
+    StartDate:string;
+    EndDate:string;
+    Location:string;
+    NoOfDay: number,
+    Venue: string,
+    HourType: string,
+    NumberOfHours: number,
+    Person: number; 
     attachment:any;
 }

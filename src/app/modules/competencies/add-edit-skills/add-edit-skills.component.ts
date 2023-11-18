@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { DeleteModalComponentService } from '../../../shared/delete-modal/delete-modal.service'
-import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Skills } from 'src/app/models/skills.model';
-import { DeleteModalComponent } from 'src/app/shared/delete-modal/delete-modal.component';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
 
 @Component({
@@ -31,7 +29,7 @@ export class AddEditSkillsComponent {
     
   }
   ngOnInIt(){
-    if(this.selectedSkill.skillId !== ''){
+    if(this.selectedSkill.SkillID !== ''){
       this.skillForm.patchValue({
         ...this.selectedSkill
       });

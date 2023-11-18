@@ -45,7 +45,7 @@ export class SkillsComponent {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       if (dialogResult) {
-        this.skillList = this.skillList.filter((skill:Skills) => skill.skillId !== selectedSkill.skillId);
+        this.skillList = this.skillList.filter((skill:Skills) => skill.SkillID !== selectedSkill.SkillID);
       }
     });
   }

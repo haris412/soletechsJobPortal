@@ -31,4 +31,10 @@ export class LeftSideInfoComponent {
   GoToProfile(){
     this.router.navigate(['/user-profile']);
   }
+  GoToBasicInfo(){
+    this.router.navigate(['/profile']);
+  }
+  GoToCompetencies(){
+    this.router.navigate(['/competencies']);
+  }
 }

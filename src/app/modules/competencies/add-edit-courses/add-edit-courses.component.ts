@@ -29,7 +29,7 @@ export class AddEditCoursesComponent {
     
   }
   ngOnInIt(){
-    if(this.selectedCourse.courses !== ''){
+    if(this.selectedCourse.course !== ''){
       this.CourseForm.patchValue({
         ...this.selectedCourse
       });

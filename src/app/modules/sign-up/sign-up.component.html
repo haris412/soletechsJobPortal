@@ -1,4 +1,5 @@
 <div class="container-fluid main-container">
+  <form class="row" action="" [formGroup]="this.userForm">
   <div class="sign-up-info-div profile-div">
     <span class="heading">Profile Picture</span>
     <div class="d-flex align-items-center upload-profile-pic mt-3">
@@ -75,72 +76,80 @@
   </div>
   <div class="sign-up-info-div">
     <span class="heading">User Info</span>
-    <form class="row" action="">
-      <div class="d-flex flex-column col-md-6 col-12">
+    <div class="d-flex flex-wrap align-items-center">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Personal Title</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
             type="text"
             matInput
             placeholder="Enter personal title"
+            [formControlName]="'personalTitle'"
           />
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column col-md-6 col-12">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">First Name</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
             type="text"
             matInput
             placeholder="Enter first name"
+            [formControlName]="'firstName'"
           />
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column col-md-6 col-12">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Middle Name</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
             type="text"
             matInput
             placeholder="Enter middle name"
+            [formControlName]="'middleName'"
           />
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column col-md-6 col-12">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Last Name Prefix</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
             type="text"
             matInput
             placeholder="Enter last name prefix"
+            [formControlName]="'lastNamePrefix'"
           />
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column col-md-6 col-12">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Last Name</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
             type="text"
             matInput
             placeholder="Enter last name"
+            [formControlName]="'lastName'"
           />
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column col-md-6 col-12">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Personal Suffix</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
             type="text"
             matInput
             placeholder="Enter personal suffix"
+            [formControlName]="'personalSuffix'"
           />
         </mat-form-field>
       </div>
-    </form>
+    </div>
+    <!-- </form> -->
   </div>
   <div class="sign-up-info-div">
-    <form class="row" action="" [formGroup]="this.userForm">
-      <div class="d-flex flex-column col-md-6 col-12">
+    <!-- <form class="row" action="" [formGroup]="this.userForm"> -->
+      <div class="d-flex flex-wrap align-items-center">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Email</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
@@ -151,7 +160,7 @@
           />
         </mat-form-field>
       </div>
-      <div class="d-flex flex-column col-md-6 col-12">
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Password</p>
         <mat-form-field appearance="outline" class="w-100">
           <input
@@ -162,7 +171,7 @@
           />
         </mat-form-field>
       </div>
-    </form>
+      </div>
   </div>
   <div class="sign-up-info-div about-me">
     <span class="heading">About Me</span>
@@ -204,4 +213,5 @@
       </button>
     </div>
   </div>
+</form>
 </div>

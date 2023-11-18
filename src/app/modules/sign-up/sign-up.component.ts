@@ -31,8 +31,16 @@ export class SignUpComponent implements OnInit {
 				public userInfo: UserInfoService,
 				public lookupService: AppLookUpService) {
 		this.userForm = this._formBuilder.group({
+			personalTitle:['',[Validators.required]],
+			firstName:['',[Validators.required]],
+			middleName:['',[Validators.required]],
+			lastName:['',[Validators.required]],
+			lastNamePrefix:[''],
+			personalSuffix:['',[Validators.required]],
 			email:['',[Validators.required]],
-			password:['',[Validators.required]]
+			password:['',[Validators.required]],
+			aboutMe:['']
+
 		  });
 		if (this.userInfo.applicantForm == undefined) {
 			this.userInfo.prepareApplicantFormGroup();
@@ -95,13 +103,14 @@ export class SignUpComponent implements OnInit {
 	}
 
 	async Signup() {
-		if (this.userInfo?.applicantForm?.valid) {
+		if (this.userForm?.valid) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
 			this.userInfo.applicant.personRecid = '22565424329';
-			var data  = await this.lookupService.CreateApplicant(this.userInfo.applicant);
+			var data  = await this.lookupService.CreateApplicant(this.user);
 			if (data != null && data.Status) {
 				this.userInfo.prepareApplicantFormGroup();
+				this.userForm.reset();
 				Swal.fire({
 					title: 'Success',
 					icon: 'success',

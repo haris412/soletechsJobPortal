@@ -1,10 +1,13 @@
 export interface Certificates{
     id:string;
-    certificate:string;
-    description	:string;
-    startDate	:string | Date;
-    endDate:string | Date;
+    Certificatetypeid:string;
+    Description	:string;
+    Issuedate	:string | Date;
+    HcmWorker:number;
+    Expirationdate:string | Date;
     requireRenewal:string;
-    notes:string;
-    attachment:any
+    Note:string;
+    attachment:any;
+    PersonCertificateRecVersion:number;
+    Workflowcomments:string
 }

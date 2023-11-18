@@ -45,7 +45,7 @@ export class CertificatesComponent {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       if (dialogResult) {
-        this.certificates = this.certificates.filter((certificate:Certificates) => certificate.certificate !== selectedcertificate.certificate);
+        this.certificates = this.certificates?.filter((certificate:Certificates) => certificate.Certificatetypeid !== selectedcertificate.Certificatetypeid);
       }
     });
   }

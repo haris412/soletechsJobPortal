@@ -3,7 +3,7 @@
 .info-container {
   padding-inline: 1.125rem;
   padding-block: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background-color: white;
   box-shadow: 0px 1px 2px 0px #00000014;
   .no-information {
@@ -69,5 +69,16 @@
       padding-block: 0.5rem;
       width: 120.5px;
     }
+  }
+}
+
+.side-tab{
+  background-color: white;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+
+  p {
+    font-weight: 600;
   }
 }
