@@ -245,6 +245,16 @@ export class AppLookUpService {
             ).toPromise();
     }
 
+    async EditSkill(
+        skill: Skills
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.editSkill,
+                skill
+            ).toPromise();
+    }
+
     async CreateProfessionalExperience(
         experience: professionalExperience
     ) {

@@ -55,13 +55,26 @@ export class SkillsComponent implements OnInit{
     let skillData: Skills = {
       ...skill,
       ratingLevelType:1,
-      recId:0,
+      RecId:0,
       applicantPersonRecId:Number(localStorage.getItem('recId'))
     }
-    let response = await this.lookUpService.CreateSkill(skillData);
+    let response;
+    var isEdit = false;
+    if (skill?.RecId > 0) {
+      skillData = skill;
+      response = await this.lookUpService.EditSkill(skillData);
+      isEdit = true;
+    } else {
+      response = await this.lookUpService.CreateSkill(skillData);
+    }
     if(response?.Status){
       this.toastrService.success(response?.Message);
-      this.skillList.push(skill);
+      if (isEdit) {
+        let index = this.skillList.findIndex(x=> x.RecId == skill.RecId)
+        this.skillList[index] = skill;
+      } else {
+        this.skillList.push(skill);
+      }
       this.CloseSidenav();
     }
     
