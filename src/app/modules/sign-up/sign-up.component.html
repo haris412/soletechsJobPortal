@@ -80,13 +80,12 @@
       <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Personal Title</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter personal title"
-            [formControlName]="'personalTitle'"
-          />
+          <mat-select  name='skillId' [formControlName]="'personalTitle'">
+            <mat-option *ngFor="let title of personalTitle" [value]="title.value">{{title.name}}</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
+        
       </div>
       <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">First Name</p>
@@ -159,12 +158,10 @@
       <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Personal Suffix</p>
         <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter personal suffix"
-            [formControlName]="'personalSuffix'"
-          />
+          <mat-select  name='skillId' [formControlName]="'personalSuffix'">
+            <mat-option *ngFor="let suffix of personalSuffix" [value]="suffix.value">{{suffix.name}}</mat-option>
+          </mat-select>
+          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>
       </div>
     </div>

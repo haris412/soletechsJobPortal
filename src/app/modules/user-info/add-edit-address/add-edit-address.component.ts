@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address.model';
@@ -12,7 +12,7 @@ import { LookupParameters } from 'src/app/models/look-up.model';
   templateUrl: './add-edit-address.component.html',
   styleUrls: ['./add-edit-address.component.scss']
 })
-export class AddEditAddressComponent {
+export class AddEditAddressComponent implements OnInit{
 
   @Input() selectedAddress:Address = new Object() as Address;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
@@ -24,17 +24,16 @@ export class AddEditAddressComponent {
             , public userInfoService: UserInfoService
             , public lookupService: AppLookUpService) {
     this.addressForm = this._formBuilder.group({
-      addressId: [''],
-      nameOfDescription: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      street: ['',[Validators.required]],
+      Address: ['', [Validators.required]],
+      CountryRegionId: ['', [Validators.required]],
+      City: ['', [Validators.required]],
+      streetName: ['',[Validators.required]],
       zipCode: ['', [Validators.required]],
       postBox: ['']
     });
   }
- ngOnInIt(){
-   if (this.selectedAddress.nameOfDescription !== '') {
+  ngOnInit(){
+   if (this.selectedAddress?.Address !== '') {
      this.addressForm.patchValue({
        ...this.selectedAddress
      });

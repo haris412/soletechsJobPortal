@@ -24,7 +24,7 @@ export class AddEditContactInfoComponent {
     });
   }
  ngOnInIt(){
-   if (this.selectedContact.contactType !== '') {
+   if (this.selectedContact?.Type) {
      this.contactForm.patchValue({
        ...this.selectedContact
      });

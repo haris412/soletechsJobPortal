@@ -8,6 +8,8 @@ import { Education } from './../modules/competencies/models/education';
 import { Certificates } from "../models/certificates.model";
 import { Course } from "../models/courses.model";
 import { PositionOfTrust } from "../models/position-of-trust.model";
+import { Address } from "../models/address.model";
+import { ContactInfo } from "../models/contact-info.model";
 
 @Injectable({
     providedIn: 'root',
@@ -44,9 +46,9 @@ export class AppLookUpService {
     async GetHighestDegreeLookUp(
         params: LookupParameters
     ) {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-        set('languageId', params.languageId);
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getHighestDegreeLookUp,
@@ -208,7 +210,7 @@ export class AppLookUpService {
                 { params: queryParams }
             ).toPromise();
     }
-    
+
     async GetPersonalTitleLookupList(
         params: LookupParameters
     ) {
@@ -312,7 +314,7 @@ export class AppLookUpService {
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getCertificateList,
-                {params:queryParams}
+                { params: queryParams }
             ).toPromise();
     }
     async GetCourseList(
@@ -323,7 +325,7 @@ export class AppLookUpService {
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getCourseList,
-                {params:queryParams}
+                { params: queryParams }
             ).toPromise();
     }
 
@@ -335,7 +337,7 @@ export class AppLookUpService {
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getTrustedPositionList,
-                {params:queryParams}
+                { params: queryParams }
             ).toPromise();
     }
     async GetProfessionalList(
@@ -346,7 +348,7 @@ export class AppLookUpService {
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getProfessionalList,
-                {params:queryParams}
+                { params: queryParams }
             ).toPromise();
     }
     async GetEducationList(
@@ -357,7 +359,7 @@ export class AppLookUpService {
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getEducationList,
-                {params:queryParams}
+                { params: queryParams }
             ).toPromise();
     }
     async GetSkillsList(
@@ -368,7 +370,45 @@ export class AppLookUpService {
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getSkillsList,
-                {params:queryParams}
+                { params: queryParams }
+            ).toPromise();
+    }
+    async GetPersonalSuffixLookup(
+    ) {
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getPersonalSuffixLookup,
+
+            ).toPromise();
+    }
+    async GetPersonalTitleLookup(
+    ) {
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getPersonalTitleLookup,
+            ).toPromise();
+    }
+    async GetUpdateApplicantProfileContact(contact:ContactInfo
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.getUpdateApplicantProfileContact,
+                contact
+            ).toPromise();
+    }
+
+    async GetUpdateApplicantProfileAddress(data: any) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.getUpdateApplicantProfileAddress,
+                data
+            ).toPromise();
+    }
+    async UpdateApplicantProfileIdentification(address: Address) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.updateApplicantProfileIdentification,
+                address
             ).toPromise();
     }
 }

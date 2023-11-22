@@ -1,6 +1,8 @@
 export interface ContactInfo{
 
-    contactId:string;
-    contactType:string;
-    contactNumber:string;
+    ContactNumber:string;
+    applicantPersonRecId:number;
+    Type:number;
+    message:string;
+    racid?:number;
 }

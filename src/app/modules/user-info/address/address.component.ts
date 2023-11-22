@@ -30,7 +30,7 @@ export class AddressComponent {
     this.CloseSidenav();
   }
   DeleteAddress(selectedAddress:Address){
-    this.AddressList = this.AddressList.filter((address:Address) => address.addressId !== selectedAddress.addressId);
+    this.AddressList = this.AddressList.filter((address:Address) => address.Address !== selectedAddress.Address);
   }
   EditAddress(address:Address){
     this.selectedAddress = address;

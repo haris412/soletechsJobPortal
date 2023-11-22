@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { User } from 'src/app/models/user';
 import { UserInfoService } from '../user-info/user-info.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import Swal from "sweetalert2";
+import { forkJoin } from 'rxjs';
 
 @Component({
 	selector: 'app-signup',
@@ -26,32 +27,53 @@ export class SignUpComponent implements OnInit {
 	private _formBuilder = inject(UntypedFormBuilder);
 	userForm: UntypedFormGroup;
 	user: User = new User();
-
+	personalTitle: any[] = [];
+	personalSuffix: any[] = [];
 	constructor(private router: Router,
-				public userInfo: UserInfoService,
-				public lookupService: AppLookUpService) {
+		public userInfo: UserInfoService,
+		public lookupService: AppLookUpService) {
 		this.userForm = this._formBuilder.group({
-			personalTitle:['',[Validators.required]],
-			firstName:['',[Validators.required]],
-			firstNamAr:[''],
-			middleNameAr:[''],
-			middleName:['',[Validators.required]],
-			lastName:['',[Validators.required]],
-			lastNamePrefix:[''],
-			personalSuffix:['',[Validators.required]],
-			email:['',[Validators.required]],
-			password:['',[Validators.required]],
-			aboutMe:['']
+			personalTitle: ['', [Validators.required]],
+			firstName: ['', [Validators.required]],
+			firstNamAr: [''],
+			middleNameAr: [''],
+			middleName: ['', [Validators.required]],
+			lastName: ['', [Validators.required]],
+			lastNamePrefix: [''],
+			personalSuffix: ['', [Validators.required]],
+			email: ['', [Validators.required]],
+			password: ['', [Validators.required]],
+			aboutMe: ['']
 
-		  });
+		});
 		if (this.userInfo.applicantForm == undefined) {
 			this.userInfo.prepareApplicantFormGroup();
-        }
+		}
 	}
 
-	ngOnInit(): void { 
+	ngOnInit(): void {
+		this.GetLookups();
 	}
 
+	async GetLookups() {
+		const lookUps = await forkJoin({
+			personalTitle: this.lookupService.GetPersonalTitleLookup(),
+			personalSuffix: this.lookupService.GetPersonalSuffixLookup(),
+		}).toPromise();
+
+		lookUps?.personalTitle?.parmList?.forEach((personalTitle: any) => {
+			let data = new Object() as any;
+			data.name = personalTitle.Id;
+			data.value = personalTitle.Id;
+			this.personalTitle.push(data);
+		});
+		lookUps?.personalSuffix?.parmList?.forEach((personalSuffix: any) => {
+			let data = new Object() as any;
+			data.name = personalSuffix.Id;
+			data.value = personalSuffix.Id;
+			this.personalSuffix.push(data);
+		});
+	}
 	OpenSidenav() {
 		this.sidenavOpen = true;
 	}
@@ -108,18 +130,18 @@ export class SignUpComponent implements OnInit {
 		if (this.userForm?.valid) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
-			var data  = await this.lookupService.CreateApplicant(this.user);
+			var data = await this.lookupService.CreateApplicant(this.user);
 			if (data != null && data.Status) {
 				this.userInfo.prepareApplicantFormGroup();
 				this.userForm.reset();
-				localStorage.setItem('applicantId',data?.applicantId);
-				localStorage.setItem('recId',data?.Recid);
+				localStorage.setItem('applicantId', data?.applicantId);
+				localStorage.setItem('recId', data?.Recid);
 				Swal.fire({
 					title: 'Success',
 					icon: 'success',
 					text: 'Applicant Created - ' + data?.applicantId,
 					confirmButtonText: 'Ok'
-			  });
+				});
 			} else {
 				Swal.fire({
 					title: 'Error',
@@ -128,7 +150,7 @@ export class SignUpComponent implements OnInit {
 					confirmButtonText: 'Ok'
 				});
 			}
-		} else {			
+		} else {
 			Swal.fire({
 				title: "Alert",
 				icon: 'error',

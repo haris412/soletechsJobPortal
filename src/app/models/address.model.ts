@@ -1,9 +1,16 @@
 export interface Address {
-    addressId:string;
-    nameOfDescription:string;
-    country:string;
-    city:String;
-    street:string;
-    zipCode:string;
-    postBox:string;
+    Address:string;
+    Addressname:string;
+    Primary:string;
+    City:string;
+    Private:string;
+    Purpose:string;
+    streetName:string;
+    CountryRegionId:string;
+    PostalCode:string;
+    PostBox:string;
+    ApplicantPersonRecid:number;
+    recid?:number;
+    zipCode:String;
 }
+

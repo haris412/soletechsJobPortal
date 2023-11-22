@@ -19,7 +19,7 @@ export class ContactInfoComponent {
     this.CloseSidenav();
   }
   DeleteContact(contact:ContactInfo){
-    this.contactInfoList = this.contactInfoList.filter((identity:ContactInfo) => identity.contactId !== contact.contactId);
+    this.contactInfoList = this.contactInfoList.filter((identity:ContactInfo) => identity.ContactNumber !== contact.ContactNumber);
   }
   EditContact(contact:ContactInfo){
     this.selectedContact = contact;
