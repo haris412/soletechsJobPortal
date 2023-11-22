@@ -27,7 +27,7 @@ export class AddEditCertificatesComponent implements OnInit {
       ExpirationDate:['',[Validators.required]],
       renewal: [''],
       Note: [''],
-      recid:[this.certificate?.recid ? this.certificate?.recid : 0],
+      recid:[this.selectedCertificate?.recid ? this.selectedCertificate?.recid : 0],
       attachment: [''],
     });
     
