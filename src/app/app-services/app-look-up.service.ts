@@ -1,13 +1,13 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { jobsQueryParameters } from "../models/get-jobs-parameters.model";
 import { apiURLs } from "../app.settings";
 import { LookupParameters } from "../models/look-up.model";
-import { Applicant } from "../models/applicant";
 import { Skills } from "../models/skills.model";
 import { professionalExperience } from "../models/professional-experience.model";
 import { Education } from './../modules/competencies/models/education';
 import { Certificates } from "../models/certificates.model";
+import { Course } from "../models/courses.model";
+import { PositionOfTrust } from "../models/position-of-trust.model";
 
 @Injectable({
     providedIn: 'root',
@@ -157,6 +157,19 @@ export class AppLookUpService {
             ).toPromise();
     }
 
+    async GetEducationInstitutionLookupList(
+        params: LookupParameters
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
+            set('languageId', params.languageId);
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getEducationInstitutionLookupList,
+                { params: queryParams }
+            ).toPromise();
+    }
+
     async GetEducationDisciplineLookupList(
         params: LookupParameters
     ) {
@@ -260,31 +273,102 @@ export class AppLookUpService {
             ).toPromise();
     }
 
+    async EditCertificate(
+        certificate: Certificates
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.editCertificate,
+                certificate
+            ).toPromise();
+    }
+
     async CreateCourse(
-        params: LookupParameters
+        course: Course
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
-            .get<any>(
+            .post<any>(
                 apiURLs.applicant.createCourse,
-                { params: queryParams }
+                course
             ).toPromise();
     }
+
     async CreateTrustedPosition(
-        params: LookupParameters
+        trustedPosition: PositionOfTrust
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.createTrustedPosition,
+                trustedPosition
+            ).toPromise();
+    }
+
+
+    async GetCertificateList(
+        personRecId: number
     ) {
         let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
+        queryParams = queryParams.append('personRecId', personRecId)
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.createTrustedPosition,
-                { params: queryParams }
+                apiURLs.applicant.getCertificateList,
+                {params:queryParams}
+            ).toPromise();
+    }
+    async GetCourseList(
+        personRecId: number
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('personRecId', personRecId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getCourseList,
+                {params:queryParams}
             ).toPromise();
     }
 
-
-    // getSkillsList
+    async GetTrustedPositionList(
+        personRecId: number
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('personRecId', personRecId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getTrustedPositionList,
+                {params:queryParams}
+            ).toPromise();
+    }
+    async GetProfessionalList(
+        personRecId: number
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('personRecId', personRecId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getProfessionalList,
+                {params:queryParams}
+            ).toPromise();
+    }
+    async GetEducationList(
+        personRecId: number
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('personRecId', personRecId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getEducationList,
+                {params:queryParams}
+            ).toPromise();
+    }
+    async GetSkillsList(
+        personRecId: number
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('personRecId', personRecId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getSkillsList,
+                {params:queryParams}
+            ).toPromise();
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Certificates } from 'src/app/models/certificates.model';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
@@ -8,7 +8,7 @@ import { CompetenciesCommonService } from '../services/competencies-common.servi
   templateUrl: './add-edit-certificates.component.html',
   styleUrls: ['./add-edit-certificates.component.scss']
 })
-export class AddEditCertificatesComponent {
+export class AddEditCertificatesComponent implements OnInit {
   @Input() selectedCertificate:Certificates = new Object() as Certificates;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
   @Output() educationData: EventEmitter<Certificates> = new EventEmitter();
@@ -17,25 +17,28 @@ export class AddEditCertificatesComponent {
   certificate!: Certificates;
   fileList:any[]=[];
   file:any;
+  certificateTypeList:any[] = [];
   constructor(private competenciesService:CompetenciesCommonService){
     this.certiifcateForm = this._formBuilder.group({
       id:[''],
-      certificate: ['',[Validators.required]],
-      description: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      endDate:['',[Validators.required]],
-      requireRenewal: [''],
-      Notes: [''],
+      CertificateTypeId: ['',[Validators.required]],
+      Description: [''],
+      IssueDate: ['', [Validators.required]],
+      ExpirationDate:['',[Validators.required]],
+      renewal: [''],
+      Note: [''],
+      recid:[this.certificate?.recid ? this.certificate?.recid : 0],
       attachment: [''],
     });
     
   }
-  ngOnInIt(){
-    if(this.certificate.Certificatetypeid !== ''){
+  ngOnInit(){
+    if(this.certificate?.CertificateTypeId !== ''){
       this.certiifcateForm.patchValue({
         ...this.selectedCertificate
       });
     }
+    this.certificateTypeList = this.competenciesService.certificateTypesList;
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);

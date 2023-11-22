@@ -5,8 +5,8 @@ export interface professionalExperience{
     qualificationPosition: string,
     endDate: string,
     notes: string,
-    personRecid: number,
+    applicantPersonRecId: number,
     phone: string,
     startDate: string,
-    URL: string
+    recId:number;
 }

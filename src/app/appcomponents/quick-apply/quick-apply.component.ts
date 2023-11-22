@@ -47,20 +47,20 @@ export class QuickApplyComponent {
       recruitmentProject: [this.selectedJob?.jobId, [Validators.required]],
       nationality: ['', [Validators.required]],
       email:['',[Validators.required]],
-      mobile:['',[Validators.required]],
+      phone:['',[Validators.required]],
       linkedIn: [''],
       highestDegree:[''],
-      currentAddressLocal:['',[Validators.required]],
+      address:['',[Validators.required]],
       currentAddressOut: [''],
       dateOfBirth: [''],
-      hasResidentIdentity:[''],
-      periodToJoin:[''],
+      residentIdentity:[0],
+      residentIdentityProfessional:[''],
+      periodJoin:[''],
       attachment: [''],
     });
   }
 
   ngOnInit(){
-    console.log(this.selectedJob);
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.selectedJob?.jobId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.fileList = [];
@@ -123,8 +123,8 @@ export class QuickApplyComponent {
   }
 
   OnNationlaityChange(event:any){
-    console.log(event);
   }
+
   Back() {
     this.router.navigate(['/'])
   }
@@ -139,30 +139,16 @@ export class QuickApplyComponent {
   CloseSidenav() {
     this.closeClicked.emit(true);
   }
+  SelectionChnage(event:any){
+    console.log(event);
+  }
+
   async QuickApply(){
+    console.log(this.quickApplyForm.controls['periodJoin']?.value);
     let applicationData: Application = {
-      correspondanceAction: 4,
-      dateOfReception: '2015-10-03T12:00:00',
-      createdSource: 0,
-      skipRecruitingStatusCheck: 0,
-      travelCost: 0.0,
-      Status: 1,
-      startDatetime: '2015-10-15T07:00:00Z',
-      reasonCode: 0,
-      rating: 2,
-      otherCost: 0.0,
-      job: this.recruitmentProject?.job,
-      mediaId: 'Weekly New',
-      applicationId: '00026',
-      hiringManager: this.recruitmentProject?.hiringManager,
-      expireDate: this.recruitmentProject?.EndDate,
-      departmentRecId: this.recruitmentProject.department,
-      expectedSalary: 0.0,
-      currentSalary: 0.0,
-      referrer: '',
-      lodgingCostMST: 0.0,
-      RecruitingId: this.recruitmentProject.recruitingId,
-      HcmApplicantId: '000015'
+      ...this.quickApplyForm.getRawValue(),
+      periodJoin:Number(this.quickApplyForm.controls['periodJoin']?.value),
+      applicantIdRecid:Number(localStorage.getItem('recId'))
     }
     try {
       let applicationResponse = await this.applicationService.SaveApplication(applicationData);

@@ -2,6 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
+import { LoginService } from '../../services/login.service';
+import { Login } from 'src/app/models/login.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,10 @@ export class LoginComponent implements OnInit {
   };
   loginForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
-  constructor(private router:Router , private service:ApplicantDataService) {
+  constructor(private router:Router , 
+              private service:ApplicantDataService,
+              private loginService:LoginService,
+              private toastrService: ToastrService) {
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -33,15 +39,26 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/sign-up']);
   }
 
-  Login:() => void = () => {
-    if(this.loginForm.valid){
-    localStorage.setItem('token', '3232132#3233#$$#$#%#$3$#@$');
-    localStorage.setItem('userInfo', this.loginForm.getRawValue());
-    this.service.loginEmitter.emit(true);
-    this.router.navigate(['/applicant']);
+  async Login(){
+
+    if (this.loginForm.valid) {
+      let loginData: Login = {
+        ...this.loginForm.value,
+        loginType: 0
+      }
+      let response = await this.loginService.Login(loginData);
+      if (response?.Status) {
+        localStorage.setItem('token', '3232132#3233#$$#$#%#$3$#@$');
+        localStorage.setItem('userInfo', this.loginForm.getRawValue());
+        localStorage.setItem('recId',response?.Recid);
+        this.service.loginEmitter.emit(true);
+        this.router.navigate(['/applicant']);
+      }else{
+        this.toastrService.error(response?.Message);
+      }
     } else {
       this.loginForm.markAllAsTouched();
     }
   }
-  
+
 }

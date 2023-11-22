@@ -47,6 +47,7 @@ export class CompetenciesComponent implements OnInit {
         const lookUps = await forkJoin({
             skills: this.lookUpService.GetSkillLookup(params),
             skillLevel: this.lookUpService.GetRatingLevelLookupList(params),
+            educationInstitution: this.lookUpService.GetEducationInstitutionLookupList(params),
             educationDiscipline: this.lookUpService.GetEducationDisciplineLookupList(params),
             certificateTypes: this.lookUpService.getCertificateTypeLookUpList(params),
             personalTitle: this.lookUpService.GetPersonalTitleLookupList(params),
@@ -64,6 +65,13 @@ export class CompetenciesComponent implements OnInit {
             data.name = projects.Description;
             data.value = projects.Id;
             this.competenciesService.skillLevelList.push(data);
+        }
+        );
+        lookUps?.educationInstitution?.parmList?.forEach((projects: any) => {
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.competenciesService.educationInstitutionList.push(data);
         }
         );
         lookUps?.educationDiscipline?.parmList?.forEach((projects: any) => {
@@ -93,11 +101,12 @@ export class CompetenciesComponent implements OnInit {
             data.value = projects.Id;
             this.competenciesService.educationLevelList.push(data);
         }
-                                                                        );
+        );
     }
 
     OpenSidenav() {
         this.sidenavOpen = true;
+        
     }
 
     CloseSidenav() {

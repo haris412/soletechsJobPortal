@@ -1,28 +1,31 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Experience } from '../models/experience';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { CompetenciesCommonService } from '../services/competencies-common.service';
+import { professionalExperience } from 'src/app/models/professional-experience.model';
 
 @Component({
   selector: 'app-add-edit-experience',
   templateUrl: './add-edit-experience.component.html',
   styleUrls: ['./add-edit-experience.component.scss']
 })
-export class AddEditExperienceComponent {
-  @Input() selectedExperience: Experience = new Object() as Experience;
+export class AddEditExperienceComponent implements OnInit {
+  @Input() selectedExperience: professionalExperience = new Object() as professionalExperience;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
-  @Output() experienceData: EventEmitter<Experience> = new EventEmitter();
+  @Output() experienceData: EventEmitter<professionalExperience> = new EventEmitter();
   experienceForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
   skill!: Experience;
   fileList: any[] = [];
   file_store!: FileList;
   file: any;
-  constructor() {
+  constructor(private competenciesService: CompetenciesCommonService) {
     this.experienceForm = this._formBuilder.group({
       id: [''],
-      employer: ['', [Validators.required]],
-      position: ['', [Validators.required]],
+      employerName: ['', [Validators.required]],
+      qualificationPosition: ['', [Validators.required]],
       internetAddress: ['', [Validators.required]],
+      phone:['',[Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       notes: [''],
@@ -30,13 +33,14 @@ export class AddEditExperienceComponent {
     });
 
   }
-  ngOnInIt() {
+  ngOnInit() {
     this.experienceForm.reset();
-    if (this.selectedExperience.id !== '') {
+    if (this.selectedExperience?.employerName !== '') {
       this.experienceForm.patchValue({
         ...this.selectedExperience
       });
     }
+
   }
   CloseSideNav: () => void = () => {
     this.closeSideNav.emit(true);

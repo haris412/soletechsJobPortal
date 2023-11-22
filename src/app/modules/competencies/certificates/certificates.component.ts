@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { Certificates } from 'src/app/models/certificates.model';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
@@ -8,17 +10,31 @@ import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-
   templateUrl: './certificates.component.html',
   styleUrls: ['./certificates.component.scss']
 })
-export class CertificatesComponent {
+export class CertificatesComponent implements OnInit {
   public completed: boolean = false;
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
   fileList:any[]=[]
-  public certificates: Certificates[]=[];
-  selectedCertificate!:Certificates
+  public certificates: any[]=[];
+  selectedCertificate!:Certificates;
+  personRecId!:number;
   constructor(private toastrService: ToastrService,
-    private deleteModal: DeleteModalComponentService) { }
+    private deleteModal: DeleteModalComponentService,
+    private service:AppLookUpService,
+    private datePipe: DatePipe) { 
+      this.personRecId = Number(localStorage.getItem('recId'));
+    }
 
-  ngOnInit(): void {}
+    ngOnInit(): void {
+      this.GetCertifiates();
+    }
+
+  async GetCertifiates(){
+    let certificateResponse = await this.service.GetCertificateList(this.personRecId);
+    if(certificateResponse?.parmApplicantCertificateList.length > 0){
+      this.certificates = certificateResponse.parmApplicantCertificateList;
+    }
+  }
 
   OpenSidenav() {
     this.sidenavOpen = true;
@@ -29,15 +45,41 @@ export class CertificatesComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
-  EditCertificate(certificate:Certificates){
-    this.selectedCertificate = certificate;
-    this.OpenSidenav();
+  async EditCertificate(certificate:Certificates){
+    // let certificateResponse = await this.service.CreateCertificate(certificate);
+    // if(certificateResponse){
+      this.selectedCertificate = certificate;
+      this.OpenSidenav();
+    //}
   }
 
-  CertificateAdded(certificate:Certificates){
-    this.toastrService.success('certificate Added Successfully');
-    this.certificates.push(certificate);
-    this.CloseSidenav();
+  async CertificateAdded(certificate:Certificates){
+    let certificateResponse: any;
+    let certificateData: Certificates = {
+      ...certificate,
+      renewal: Number(certificate.renewal) ?? 0,
+      recid: certificate?.recid ? certificate?.recid : 0,
+      applicantPersonRecId: Number(localStorage.getItem('recId')),
+      IssueDate: this.datePipe.transform(certificate.IssueDate, "yyyy-MM-dd") ?? '',
+      ExpirationDate: this.datePipe.transform(certificate.ExpirationDate, "yyyy-MM-dd") ?? ''
+    }
+    try {
+      if (certificate?.recid === 0) {
+        certificateResponse = await this.service.CreateCertificate(certificateData);
+        if (certificateResponse?.Status) {
+          this.toastrService.success(certificateResponse?.Message);
+          this.GetCertifiates();
+          this.OpenSidenav();
+        }
+      } else {
+        certificateResponse = await this.service.EditCertificate(certificateData);
+        this.toastrService.success(certificateResponse?.Message);
+        this.GetCertifiates();
+        this.OpenSidenav();
+      }
+    } catch (exception) {
+      console.error();
+    }
   }
 
   Delete(selectedcertificate:Certificates) {
@@ -45,7 +87,7 @@ export class CertificatesComponent {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       if (dialogResult) {
-        this.certificates = this.certificates?.filter((certificate:Certificates) => certificate.Certificatetypeid !== selectedcertificate.Certificatetypeid);
+        this.certificates = this.certificates?.filter((certificate:Certificates) => certificate.CertificateTypeId !== selectedcertificate.CertificateTypeId);
       }
     });
   }

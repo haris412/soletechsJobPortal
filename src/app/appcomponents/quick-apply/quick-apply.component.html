@@ -67,7 +67,7 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Mobile</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input type="tel" matInput [formControlName]="'mobile'"/>
+        <input type="tel" matInput [formControlName]="'phone'"/>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12 linkedin-profile">
@@ -109,7 +109,7 @@
                matInput
                [formControl]="countriesCtrl"
                [matAutocomplete]="autocountries"
-               [formControlName]="'currentAddressLocal'">
+               [formControlName]="'address'">
         <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete">
           <mat-option *ngFor="let country of countriesData | async" [value]="country.value">
             {{country.name}}
@@ -148,20 +148,20 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Resident Identity Professional</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput />
+        <input matInput  [formControlName]="'residentIdentityProfessional'"/>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Period to Join</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select [formControlName]="'periodToJoin'">
-          <mat-option value="immediately">Immediately</mat-option>
-          <mat-option value="onew">One week</mat-option>
-          <mat-option value="twow">Two weeks</mat-option>
-          <mat-option value="threew">Three weeks</mat-option>
-          <mat-option value="onem">One month</mat-option>
-          <mat-option value="twom">Two months</mat-option>
-          <mat-option value="threem">Three months</mat-option>
+        <mat-select [formControlName]="'periodJoin'"> 
+          <mat-option value="1">Immediately</mat-option>
+          <mat-option value="2">One week</mat-option>
+          <mat-option value="3">Two weeks</mat-option>
+          <mat-option value="4">Three weeks</mat-option>
+          <mat-option value="5">One month</mat-option>
+          <mat-option value="6">Two months</mat-option>
+          <mat-option value="7">Three months</mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
       </mat-form-field>

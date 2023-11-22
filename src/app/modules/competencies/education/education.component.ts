@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Education } from '../models/education';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { CompetenciesCommonService } from './../services/competencies-common.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss']
 })
-export class EducationComponent {
+export class EducationComponent implements OnInit{
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
@@ -18,9 +21,26 @@ export class EducationComponent {
   selectedEducation!:Education;
   activeIndex: number = -1;
   isEdit: boolean = false;
-  constructor(private toastrService: ToastrService,
-    private deleteModal: DeleteModalComponentService){}
+  personRecId!:number;
 
+  constructor(private toastrService: ToastrService,
+    private lookUpService:AppLookUpService,
+    private deleteModal: DeleteModalComponentService,
+    private competenciesServie:CompetenciesCommonService,
+    private datePipe: DatePipe){
+      this.personRecId = Number(localStorage.getItem('recId'));
+    }
+  
+  ngOnInit(){
+    this.GetEducationList();
+  }
+
+  async GetEducationList(){
+    let educationResponse = await this.lookUpService.GetEducationList(this.personRecId);
+    if(educationResponse?.parmApplicantEducationList?.length > 0){
+      this.educations = educationResponse.parmApplicantEducationList;
+    }
+  }
   OpenSidenav() {
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';
@@ -36,10 +56,23 @@ export class EducationComponent {
     this.OpenSidenav();
   }
 
-  EducationAdded(positionOfTrust:Education){
-    this.toastrService.success('Education Added Successfully');
-    this.educations.push(positionOfTrust);
+  async EducationAdded(education:Education){
+    let educationData :Education = {
+      ...education,
+      CreditBasis:Number(education.CreditBasis) ?? 2 ,
+      applicantPersonRecId:Number(localStorage.getItem('recId')),
+      HRMDuration:4.0,
+      recid:0,
+      PeriodUnit:"Years",
+      StartDate:this.datePipe.transform(education.StartDate,"yyyy-MM-dd") ?? '',
+      EndDate:this.datePipe.transform(education.EndDate,"yyyy-MM-dd") ?? ''
+    } 
+    let response = await this.lookUpService.CreateEducation(educationData);
+    if(response?.Status){
+    this.toastrService.success(response?.Message);
+    this.GetEducationList();
     this.CloseSidenav();
+    }
   }
 
   Delete(selectededucation:Education) {
@@ -47,7 +80,7 @@ export class EducationComponent {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       if (dialogResult) {
-        this.educations = this.educations.filter((education:Education) => education.education !== selectededucation.education);
+        this.educations = this.educations.filter((education:Education) => education.EducationDisciplineRecId !== selectededucation.EducationDisciplineRecId);
       }
     });
   }

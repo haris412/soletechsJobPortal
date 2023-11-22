@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
 
@@ -7,7 +7,7 @@ import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
   templateUrl: './add-edit-position-of-trust.component.html',
   styleUrls: ['./add-edit-position-of-trust.component.scss']
 })
-export class AddEditPositionOfTrustComponent {
+export class AddEditPositionOfTrustComponent implements OnInit{
   @Input() selectedPositionOfTrust:PositionOfTrust = new Object() as PositionOfTrust;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
   @Output() positionTrustData: EventEmitter<PositionOfTrust> = new EventEmitter();
@@ -20,17 +20,17 @@ export class AddEditPositionOfTrustComponent {
   constructor(){
     this.psitionTrustForm = this._formBuilder.group({
       id: [''],
-      employer: ['', [Validators.required]],
-      position: ['', [Validators.required]],
-      startDate:['', [Validators.required]],
-      endDate:['', [Validators.required]],
-      notes:['', [Validators.required]],
+      Employment: ['', [Validators.required]],
+      Position: ['', [Validators.required]],
+      StartDate:['', [Validators.required]],
+      EndDate:['', [Validators.required]],
+      Notes:['', [Validators.required]],
       attachment:['']
     });
     
   }
-  ngOnInIt(){
-    if(this.selectedPositionOfTrust.id !== ''){
+  ngOnInit(){
+    if(this.selectedPositionOfTrust?.Employment !== ''){
       this.psitionTrustForm.patchValue({
         ...this.selectedPositionOfTrust
       });

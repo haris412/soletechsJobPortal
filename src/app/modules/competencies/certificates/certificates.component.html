@@ -20,7 +20,7 @@
         <div class="certificate-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" *ngFor="let certificate of certificates">
           <div class="d-flex align-items-center w-100 certificate-item-container">
             <div class="certificate-item rounded w-100" >
-              <h6 class="mb-0 font-poppins-bold">{{certificate.Certificatetypeid}}</h6>
+              <h6 class="mb-0 font-poppins-bold">{{certificate.CertificateTypeId}}</h6>
               <div class="d-flex align-items-center gap-1">
                 <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
                   <img class="cursor-pointer" src="assets/SVG/edit-icon.svg" alt=""
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
+<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
   <span class="heading">Certificates</span>
   <app-add-edit-certificates (closeSideNav)="CloseSidenav()" [selectedCertificate]="selectedCertificate"
     (educationData)="CertificateAdded($event)"></app-add-edit-certificates>

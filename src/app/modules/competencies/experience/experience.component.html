@@ -22,7 +22,7 @@
               <div class="experience-item rounded w-100" 
                 style="margin-top: 10px;">
                 <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="mb-1 font-poppins-bold">{{exp.employer}}</h6>
+                  <h6 class="mb-1 font-poppins-bold">{{exp.employerName}}</h6>
                   <div class="d-flex align-items-center gap-1">
                     <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
                       <img class="cursor-pointer" (click)="EditExperience(exp)" src="assets/SVG/edit-icon.svg" alt="" />
@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
+  <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
     <span class="heading">Professional Experience</span>
     <app-add-edit-experience (closeSideNav)="CloseSidenav()" [selectedExperience]="selectedExperience"
     (experienceData)="ExperienceAdded($event)"></app-add-edit-experience>

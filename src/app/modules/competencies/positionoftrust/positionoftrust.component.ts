@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
@@ -8,16 +9,22 @@ import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-
   templateUrl: './positionoftrust.component.html',
   styleUrls: ['./positionoftrust.component.scss']
 })
-export class PositionoftrustComponent {
+export class PositionoftrustComponent implements OnInit{
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
   positionTrustList: PositionOfTrust[] = [];
   selectedPositionTrust!:PositionOfTrust;
+  personRecId!:number;
+
   constructor(private toastrService: ToastrService,
-    private deleteModal: DeleteModalComponentService) { }
+    private lookUpService:AppLookUpService,
+    private deleteModal: DeleteModalComponentService) {
+      this.personRecId = Number(localStorage.getItem('recId'));
+     }
 
   ngOnInit(): void {
+    this.GetPositionTrust();
   }
 
   OpenSidenav() {
@@ -29,16 +36,30 @@ export class PositionoftrustComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
+  async GetPositionTrust(){
+    let trustedPositionResponse = await this.lookUpService.GetTrustedPositionList(this.personRecId);
+    if(trustedPositionResponse?.parmApplicantTrustedPositionList?.length > 0){
+      this.positionTrustList = trustedPositionResponse.parmApplicantTrustedPositionList;
+    }
+  }
 
   EditPositionOfTrust(position:PositionOfTrust){
     this.selectedPositionTrust = position;
     this.OpenSidenav();
   }
 
-  PositionTrustAdded(positionOfTrust:PositionOfTrust){
-    this.toastrService.success('Position Of Trust Added Successfully');
-    this.positionTrustList.push(positionOfTrust);
-    this.CloseSidenav();
+  async PositionTrustAdded(positionOfTrust:PositionOfTrust){
+    let positionData: PositionOfTrust = {
+      ...positionOfTrust,
+      Recid:0,
+      applicantPersonRecid: Number(localStorage.getItem('recId'))
+    }
+    let response = await this.lookUpService.CreateTrustedPosition(positionData);
+    if (response?.Status) {
+      this.toastrService.success(response?.Message);
+      this.GetPositionTrust();
+      this.CloseSidenav();
+    }
   }
 
   Delete(selectedpositionOfTrust:PositionOfTrust) {
@@ -46,7 +67,7 @@ export class PositionoftrustComponent {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       if (dialogResult) {
-        this.positionTrustList = this.positionTrustList.filter((position:PositionOfTrust) => position.employer !== selectedpositionOfTrust.employer);
+        this.positionTrustList = this.positionTrustList.filter((position:PositionOfTrust) => position.Employment !== selectedpositionOfTrust.Employment);
       }
     });
   }

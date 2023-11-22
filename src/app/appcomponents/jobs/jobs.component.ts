@@ -56,9 +56,13 @@ export class JobsComponent implements OnInit {
     const dialogRef = this.signUp.openDialog('');
   }
   OpenSidenav(selectedJob:any) {
-    this.router.navigate(['/login']);
-    // this.sidenavOpen = true;
-    // document.body.style.overflow = 'hidden';
+    if (localStorage.getItem('applicantId')) {
+      this.sidenavOpen = true;
+      document.body.style.overflow = 'hidden';
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
   }
 
   CloseSidenav() {

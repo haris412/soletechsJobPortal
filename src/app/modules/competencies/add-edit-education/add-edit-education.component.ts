@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular/core';
 import { Education } from '../models/education';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
@@ -8,7 +8,7 @@ import { CompetenciesCommonService } from '../services/competencies-common.servi
   templateUrl: './add-edit-education.component.html',
   styleUrls: ['./add-edit-education.component.scss']
 })
-export class AddEditEducationComponent {
+export class AddEditEducationComponent implements OnInit{
   @Input() selectedEducation:Education = new Object() as Education;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
   @Output() educationData: EventEmitter<Education> = new EventEmitter();
@@ -17,33 +17,39 @@ export class AddEditEducationComponent {
   skill!: Education;
   fileList:any[]=[];
   file:any;
+  educationInstitution:any[] = [];
+  educationLevel:any[] = [];
+  educationDiscipline:any[] = [];
   constructor(private competenciesService:CompetenciesCommonService){
     this.educationForm = this._formBuilder.group({
       id:[''],
-      education: ['',[Validators.required]],
-      description: ['', [Validators.required]],
-      levelOfEducation: ['', [Validators.required]],
-      Emphasis:[''],
-      Institution: [''],
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
-      average:[''],
-      scale:[''],
-      credits: [''],
-      hoursbasis: [''],
-      hourscompleted:['' ],
-      hoursrequired:['', ],
-      notes:[''],
+      Description: ['', [Validators.required]],
+      EducationDisciplineRecId: ['', [Validators.required]],
+      EducationInstitutionId:['',[Validators.required]],
+      EducationLevelId:['',[Validators.required]],
+      StartDate: ['', [Validators.required]],
+      EndDate: ['', [Validators.required]],
+      EducationScale:[''],
+      CreditBasis: [2],
+      EducationAverage:[0],
+      CreditsCompleted:['' ],
+      CreditsEarned:[0],
+      CreditsNeeded:[''],
+      EducationSecondaryEmphasis:[''],
+      Notes:[''],
       attachment:['']
     });
     
   }
-  ngOnInIt(){
-    if(this.selectedEducation.education !== ''){
+  ngOnInit(){
+    if(this.selectedEducation?.EducationDisciplineRecId !== ''){
       this.educationForm.patchValue({
         ...this.selectedEducation
       });
     }
+    this.educationInstitution = this.competenciesService.educationInstitutionList;
+    this.educationLevel = this.competenciesService.educationLevelList;
+    this.educationDiscipline  = this.competenciesService.educationDesciplineList;
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);

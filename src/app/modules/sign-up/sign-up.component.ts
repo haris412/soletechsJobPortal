@@ -33,6 +33,8 @@ export class SignUpComponent implements OnInit {
 		this.userForm = this._formBuilder.group({
 			personalTitle:['',[Validators.required]],
 			firstName:['',[Validators.required]],
+			firstNamAr:[''],
+			middleNameAr:[''],
 			middleName:['',[Validators.required]],
 			lastName:['',[Validators.required]],
 			lastNamePrefix:[''],
@@ -106,15 +108,16 @@ export class SignUpComponent implements OnInit {
 		if (this.userForm?.valid) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
-			this.userInfo.applicant.personRecid = '22565424329';
 			var data  = await this.lookupService.CreateApplicant(this.user);
 			if (data != null && data.Status) {
 				this.userInfo.prepareApplicantFormGroup();
 				this.userForm.reset();
+				localStorage.setItem('applicantId',data?.applicantId);
+				localStorage.setItem('recId',data?.Recid);
 				Swal.fire({
 					title: 'Success',
 					icon: 'success',
-					text: 'Applicant Created - ' + data?.Recid,
+					text: 'Applicant Created - ' + data?.applicantId,
 					confirmButtonText: 'Ok'
 			  });
 			} else {

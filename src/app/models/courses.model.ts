@@ -8,6 +8,7 @@ export interface Course{
     Venue: string,
     HourType: string,
     NumberOfHours: number,
-    Person: number; 
+    applicantPersonRecId: number; 
     attachment:any;
+    recid?:number;
 }

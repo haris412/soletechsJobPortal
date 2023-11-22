@@ -1,9 +1,11 @@
 export interface PositionOfTrust{
     id:string;
-    employer :string;
-    position :string;
-    startDate:string | Date;
-    endDate:string | Date;
-    notes:string;
+    Employment :string;
+    Position :string;
+    StartDate:string | Date;
+    EndDate:string | Date;
+    Notes:string;
+    applicantPersonRecid:number;
     attachment :any;
+    Recid?:number;
 }

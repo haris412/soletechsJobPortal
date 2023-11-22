@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
+<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
   <span class="heading">Courses</span>
   <app-add-edit-courses (closeSideNav)="CloseSidenav()" [selectedCourse]="selectedCourse"
   (courseData)="CourseAdded($event)"></app-add-edit-courses>

@@ -2,9 +2,8 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Skill ID</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select  name='skillId' [formControlName]="'skillId'">
-        <mat-option value="HTML">HTML</mat-option>
-        <mat-option value="javascript">JAVASCRIPT</mat-option>
+      <mat-select  name='skillId' [formControlName]="'SkillID'">
+        <mat-option *ngFor="let skill of skillList" [value]="skill.value">{{skill.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
@@ -12,9 +11,8 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Level</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name='level' [formControlName]="'level'">
-        <mat-option value="pakistan">BEGINER</mat-option>
-        <mat-option value="india">INTERMEDIATE</mat-option>
+      <mat-select name='level' [formControlName]="'ratingLevel'">
+        <mat-option *ngFor="let level of skillLevel" [value]="level.value">{{level.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
@@ -22,7 +20,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Level Date</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker" name='levelDate' [formControlName]="'levelDate'">
+      <input matInput [matDatepicker]="picker" name='ratingLevelDate' [formControlName]="'ratingLevelDate'">
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

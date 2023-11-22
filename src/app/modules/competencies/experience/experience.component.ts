@@ -1,24 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Skills } from 'src/app/models/skills.model';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 import { Experience } from '../models/experience';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { professionalExperience } from 'src/app/models/professional-experience.model';
 
 @Component({
   selector: 'app-experience',
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.scss']
 })
-export class ExperienceComponent {
+export class ExperienceComponent implements OnInit{
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
-  experienceList: Experience[] = [];
-  selectedExperience!:Experience;
+  experienceList: professionalExperience[] = [];
+  selectedExperience!:professionalExperience;
+  personRecId!:number;
+
   constructor(
     private toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
-  ) {}
-  EditExperience(experience: Experience) {
+    private lookUpService:AppLookUpService
+  ) {
+    this.personRecId = Number(localStorage.getItem('recId'));
+  }
+  ngOnInit(): void {
+    this.GetExperiences();
+  }
+  EditExperience(experience: professionalExperience) {
     this.selectedExperience = experience;
     this.OpenSidenav();
   }
@@ -30,18 +40,34 @@ export class ExperienceComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
-  ExperienceAdded(experience:Experience){
+
+  async GetExperiences(){
+    let experienceResponse = await this.lookUpService.GetProfessionalList(this.personRecId);
+    if(experienceResponse?.parmApplicantProfessionalList?.length > 0){
+      this.experienceList = experienceResponse.parmApplicantProfessionalList;
+    }
+  } 
+  async ExperienceAdded(experience:professionalExperience){
+    let experienceData :professionalExperience = {
+      ...experience,
+      employerLocation:"UK",
+      recId:0,
+      applicantPersonRecId:Number(localStorage.getItem('recId'))
+    }
+    let response = await this.lookUpService.CreateProfessionalExperience(experienceData);
+    if(response){
     this.toastrService.success('experience Added Successfully');
     this.experienceList.push(experience);
     this.CloseSidenav();
+    }
   }
 
-  DeleteExperience(selectedExperience:Experience) {
+  DeleteExperience(selectedExperience:professionalExperience) {
     const data = `Are you sure you want to do this experience?`;
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe((dialogResult: any) => {
       if (dialogResult) {
-        this.experienceList = this.experienceList.filter((experience:Experience) => experience.id !== selectedExperience.id);
+        this.experienceList = this.experienceList.filter((experience:professionalExperience) => experience.employerName !== selectedExperience.employerName);
       }
     });
   }

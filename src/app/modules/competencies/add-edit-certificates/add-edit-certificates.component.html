@@ -2,9 +2,9 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Certificate Type</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="certificate" [formControlName]="'certificate'">
-        <mat-option value="yes">Linked In</mat-option>
-        <mat-option value="yes">Coursera </mat-option>
+      <mat-select name="certificate" [formControlName]="'CertificateTypeId'">
+        <mat-option *ngFor="let certificate of certificateTypeList" [value]="certificate.value">{{certificate.name}}</mat-option>
+
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
@@ -16,7 +16,7 @@
         rows="2"
         matInput
         name="description"
-        [formControlName]="'description'"
+        [formControlName]="'Description'"
       ></textarea>
     </mat-form-field>
   </div>
@@ -28,7 +28,7 @@
         matInput
         [matDatepicker]="picker1"
         name="startDate"
-        [formControlName]="'startDate'"
+        [formControlName]="'IssueDate'"
       />
       <mat-datepicker-toggle
         matIconSuffix
@@ -44,7 +44,7 @@
         matInput
         [matDatepicker]="picker2"
         name="endDate"
-        [formControlName]="'endDate'"
+        [formControlName]="'ExpirationDate'"
       />
       <mat-datepicker-toggle
         matIconSuffix
@@ -56,9 +56,9 @@
   <div class="d-flex flex-column col-12">
     <p>Require Renewal</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="requireRenewal" [formControlName]="'requireRenewal'">
-        <mat-option value="yes">Yes</mat-option>
-        <mat-option value="no">No</mat-option>
+      <mat-select name="requireRenewal" [formControlName]="'renewal'">
+        <mat-option [value] = "0">Yes</mat-option>
+        <mat-option [value] = "1">No</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
@@ -70,7 +70,7 @@
         rows="2"
         matInput
         name="Notes"
-        [formControlName]="'Notes'"
+        [formControlName]="'Note'"
       ></textarea>
     </mat-form-field>
   </div>

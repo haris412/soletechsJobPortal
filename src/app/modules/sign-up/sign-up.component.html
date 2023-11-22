@@ -99,6 +99,19 @@
           />
         </mat-form-field>
       </div>
+      
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
+        <p class="text-midnight-moss font-poppins-medium">First Name Arabic</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            type="text"
+            matInput
+            placeholder="Enter Arabic name"
+            [formControlName]="'firstNameAr'"
+          />
+        </mat-form-field>
+      </div>
+
       <div class="d-flex flex-column fields-padding col-md-6 col-12">
         <p class="text-midnight-moss font-poppins-medium">Middle Name</p>
         <mat-form-field appearance="outline" class="w-100">
@@ -107,6 +120,17 @@
             matInput
             placeholder="Enter middle name"
             [formControlName]="'middleName'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column fields-padding col-md-6 col-12">
+        <p class="text-midnight-moss font-poppins-medium">Middle Name Arabic</p>
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            type="text"
+            matInput
+            placeholder="Enter middle name"
+            [formControlName]="'middleNameAr'"
           />
         </mat-form-field>
       </div>

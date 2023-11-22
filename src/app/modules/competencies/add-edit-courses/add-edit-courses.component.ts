@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Course } from 'src/app/models/courses.model';
+import { CompetenciesCommonService } from '../services/competencies-common.service';
 
 @Component({
   selector: 'app-add-edit-courses',
   templateUrl: './add-edit-courses.component.html',
   styleUrls: ['./add-edit-courses.component.scss']
 })
-export class AddEditCoursesComponent {
+export class AddEditCoursesComponent  implements OnInit{
   @Input() selectedCourse:Course = new Object() as Course;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
   @Output() courseData: EventEmitter<Course> = new EventEmitter();
@@ -17,18 +18,21 @@ export class AddEditCoursesComponent {
   fileList:any[]=[];
   file_store!: FileList;
   file:any;
-  constructor(){
+  constructor(private competenciesService:CompetenciesCommonService){
     this.CourseForm = this._formBuilder.group({
       id: [''],
-      courses: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      endDate:['', [Validators.required]],
-      location:['', [Validators.required]],
+      course: ['', [Validators.required]],
+      StartDate: ['', [Validators.required]],
+      EndDate:['', [Validators.required]],
+      Location:['', [Validators.required]],
+      NoOfDay:[],
+      HourType:[''],
+      NumberOfHours:[],
       attachment:['']
     });
     
   }
-  ngOnInIt(){
+  ngOnInit(){
     if(this.selectedCourse.course !== ''){
       this.CourseForm.patchValue({
         ...this.selectedCourse

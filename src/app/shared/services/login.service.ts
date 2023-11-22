@@ -1,18 +1,22 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Application } from "../models/applicatiom.model";
-import { apiURLs } from "../app.settings";
-
+import { apiURLs } from "src/app/app.settings";
+import { Login } from "src/app/models/login.model";
 
 @Injectable({
     providedIn: 'root',
 })
-export class ApplicationService {
+export class LoginService {
     constructor(private httpClient: HttpClient) { }
-    async SaveApplication(application: Application) {
+
+    
+    async Login(
+        usrInfo: Login
+    ) {
         return await this.httpClient
             .post<any>(
-                apiURLs.application.createApplication, application,
+                apiURLs.applicant.login,
+                usrInfo
             ).toPromise();
     }
 }

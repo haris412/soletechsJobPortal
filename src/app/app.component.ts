@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { routeTransition } from './app-animation';
+import { RecruitmentService } from './app-services/jobs.service';
+import { SharedService } from './shared/services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,9 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private el: ElementRef, 
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private recruitmentService: RecruitmentService,
+    private sharedService: SharedService
   ) {
 
   }
@@ -35,6 +39,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.changePrimaryColor('#005a9c');
+    this.GetToken();
   }
   getState(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData;
@@ -42,5 +47,12 @@ export class AppComponent implements OnInit {
   changePrimaryColor(newColor: string) {
     const root = this.el.nativeElement.ownerDocument.documentElement;
     this.renderer.setStyle(root, '--theme-color', newColor);
+  }
+  async GetToken() {
+    let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');
+    if (accessTokenResponse) {
+      this.sharedService.SetToken(accessTokenResponse.access_token);
+      localStorage.setItem('token', accessTokenResponse.access_token);
+    }
   }
 }

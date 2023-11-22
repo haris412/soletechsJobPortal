@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { CoursesComponent } from './courses/courses.component';
 import { PositionoftrustComponent } from './positionoftrust/positionoftrust.component';
 import { CertificatesComponent } from './certificates/certificates.component';
@@ -46,6 +46,6 @@ import { AddEditCoursesComponent } from './add-edit-courses/add-edit-courses.com
     AddEditExperienceComponent,
     AddEditSkillsComponent,
   ],
-  providers: [],
+  providers: [DatePipe],
 })
 export class CompetenciesModule { }
