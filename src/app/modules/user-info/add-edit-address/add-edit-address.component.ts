@@ -20,13 +20,14 @@ export class AddEditAddressComponent implements OnInit{
   addressForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Address
+  cities:any[]=[];
   constructor(private toastrService: ToastrService
             , public userInfoService: UserInfoService
             , public lookupService: AppLookUpService) {
     this.addressForm = this._formBuilder.group({
       Address: ['', [Validators.required]],
       CountryRegionId: ['', [Validators.required]],
-      City: ['', [Validators.required]],
+      City: [''],
       streetName: ['',[Validators.required]],
       zipCode: ['', [Validators.required]],
       postBox: ['']
@@ -59,8 +60,9 @@ export class AddEditAddressComponent implements OnInit{
   }
 
   async changeCountry() {
+    debugger;
     var address = this.addressForm.value;
-    var countryid = address.country;
+    let countryid = address.CountryRegionId;
     let params:LookupParameters = {
       dataAreaId : 'USMF',
       languageId:'en-us'
@@ -68,11 +70,11 @@ export class AddEditAddressComponent implements OnInit{
     const lookUps = await forkJoin({
       cities: this.lookupService.GetCityLookup(params, countryid)
     }).toPromise();
-    lookUps?.cities?.parmList?.forEach((projects: any) => {
+    lookUps?.cities?.parmList?.forEach((cities: any) => {
       let data = new Object() as any;
-      data.name = projects.Description;
-      data.value = projects.Id;
-      this.userInfoService.cities.push(data);
+      data.name = cities?.Id;
+      data.value = cities.Id;
+      this.cities.push(data);
     }
     );
   }

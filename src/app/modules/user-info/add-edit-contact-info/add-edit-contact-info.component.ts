@@ -18,9 +18,8 @@ export class AddEditContactInfoComponent {
   contact!: ContactInfo
   constructor(private toastrService: ToastrService) {
     this.contactForm = this._formBuilder.group({
-      contactId: [''],
-      contactType: ['', [Validators.required]],
-      contactNumber: ['', [Validators.required]]
+      Type: ['', [Validators.required]],
+      ContactNumber: ['', [Validators.required]]
     });
   }
  ngOnInIt(){

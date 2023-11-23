@@ -2,9 +2,9 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Type</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="contactType" [formControlName]="'contactType'">
-        <mat-option value="home">Home</mat-option>
-        <mat-option value="office">Office</mat-option>
+      <mat-select name="contactType" [formControlName]="'Type'">
+        <mat-option value="1">Home</mat-option>
+        <mat-option value="2">Office</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
@@ -12,7 +12,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Contact Number</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput name="contactNumber" [formControlName]="'contactNumber'" />
+      <input matInput name="contactNumber" [formControlName]="'ContactNumber'" />
     </mat-form-field>
   </div>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">

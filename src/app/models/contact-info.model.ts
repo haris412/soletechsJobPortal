@@ -4,5 +4,5 @@ export interface ContactInfo{
     applicantPersonRecId:number;
     Type:number;
     message:string;
-    racid?:number;
+    recid?:number;
 }

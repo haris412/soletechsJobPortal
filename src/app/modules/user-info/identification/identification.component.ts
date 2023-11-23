@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Identification } from 'src/app/models/identification.model';
+import { UserInfoService } from '../user-info.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 
 @Component({
   selector: 'app-identification',
@@ -13,7 +15,8 @@ export class IdentificationComponent {
   identificationList: Identification[] = [];
   selectedIdentification!:Identification;
 
-  constructor(private toastrService: ToastrService){}
+  constructor(private toastrService: ToastrService,
+              private lookUpService:AppLookUpService){}
   OpenSidenav() {
     this.selectedIdentification = new Object() as Identification;
     this.sidenavOpen = true;
@@ -23,13 +26,22 @@ export class IdentificationComponent {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
-  IdentificationAdded(identification:Identification){
-    this.toastrService.success('Identification Added Successfully');
-    this.identificationList.push(identification);
+  async IdentificationAdded(identification:Identification){
+    let identificationData :Identification = {
+      ...identification,
+      recid:0,
+      applicantPersonRecId:Number(localStorage.getItem('recId'))
+    }
+    let response = await this.lookUpService.UpdateApplicantProfileIdentification(identificationData);
+    if(response?.Status){
+    this.toastrService.success(response?.Message);
     this.CloseSidenav();
+    }else{
+      this.toastrService.error(response?.Message);
+    }
   }
   DeleteIdentification(identification:Identification){
-    this.identificationList = this.identificationList.filter((identity:Identification) => identity.identificationId !== identification.identificationId);
+    this.identificationList = this.identificationList.filter((identity:Identification) => identity.IdentificationNumber !== identification.IdentificationNumber);
   }
   EditIdentification(identification:Identification){
     this.selectedIdentification = identification;

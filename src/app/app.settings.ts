@@ -50,6 +50,8 @@ export const apiURLs = {
         editCourse:`${environment.apiUrl}/ERPApplicant/EditCourse`,  
         editTrustedPosition:`${environment.apiUrl}/ERPApplicant/EditTrustedPosition`,  
         editSkill:`${environment.apiUrl}/ERPApplicant/EditSkill`,  
+        getApplicantProfile:`${environment.apiUrl}/ERPApplicant/GetApplicantProfile`,
+        updateApplicantProfileGeneral:`${environment.apiUrl}/ERPApplicant/UpdateApplicantProfileGeneral`,
         getPersonalSuffixLookup:`${environment.apiUrl}/ERPApplicant/GetPersonalSuffixLookup`,
         getPersonalTitleLookup:`${environment.apiUrl}/ERPApplicant/GetPersonalTitleLookup`,
         getUpdateApplicantProfileContact:`${environment.apiUrl}/ERPApplicant/GetUpdateApplicantProfileContact`,

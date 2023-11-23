@@ -183,4 +183,15 @@ export class UserInfoComponent implements OnInit {
           }
         );
     }
+
+    async GetApplicantProfile(){
+        let applicantId = localStorage.getItem('applicantId') ?? '';
+        let res = await this.lookUpService.GetApplicantProfile(applicantId);
+        if(res){
+           this.userInfoService.basicInfo = res?.ApplicantProfileGeneral;
+           this.userInfoService.contactsList= res?.ApplicantProfileContactList?.parmApplicantProfileContactList;
+           this.userInfoService.addressList = res?.ApplicantProfileAddressList?.parmApplicantProfileAddressList;
+           this.userInfoService.identificationList = res?.ApplicantProfileIdentification
+        }
+    }
 }

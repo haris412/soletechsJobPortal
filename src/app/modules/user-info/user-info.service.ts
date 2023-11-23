@@ -19,7 +19,10 @@ export class UserInfoService {
     reasonCodes: any[] = [];
     identificationType: any[] = [];
     nationality:any[] = [];
-
+	contactsList:any[] = [];
+	addressList:any[] = [];
+	identificationList:any[] = [];
+	basicInfo:any;
     prepareApplicantFormGroup() {
 		this.applicantForm = this._applicantFormBuilder.group({
 			currentJobTitle: ['',[Validators.required]],

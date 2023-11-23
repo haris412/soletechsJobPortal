@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Identification } from 'src/app/models/identification.model';
@@ -9,7 +9,7 @@ import { UserInfoService } from '../user-info.service';
   templateUrl: './add-edit-identification.component.html',
   styleUrls: ['./add-edit-identification.component.scss']
 })
-export class AddEditIdentificationComponent {
+export class AddEditIdentificationComponent implements OnInit{
 
   @Input() selectedIdentification:Identification = new Object() as Identification;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
@@ -22,16 +22,16 @@ export class AddEditIdentificationComponent {
   constructor(private toastrService: ToastrService
             , public userInfoService: UserInfoService) {
     this.identificationForm = this._formBuilder.group({
-      identifcationType: ['', [Validators.required]],
-      identificationNumer: ['', [Validators.required]],
-      issueDate: ['', [Validators.required]],
-      expiryDate: ['', [Validators.required]],
+      IdentificationType: ['', [Validators.required]],
+      IdentificationNumber: ['', [Validators.required]],
+      IssueDate: ['', [Validators.required]],
+      ExpiryDate: ['', [Validators.required]],
       attachment: ['']
 
     });
   }
- ngOnInIt(){
-   if (this.selectedIdentification.identifcationType !== '') {
+ ngOnInit(){
+   if (this.selectedIdentification?.IdentificationType !== '') {
      this.identificationForm.patchValue({
        ...this.selectedIdentification
      });

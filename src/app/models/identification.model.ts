@@ -1,8 +1,9 @@
 export interface Identification {
-    identificationId:string;
-    identifcationType:string;
-    identificationNumer:string;
-    issueDate:string;
-    expiryDate:string;
+    IdentificationNumber:string;
+    IdentificationType:string;
+    IssueDate:string;
+    ExpirationDate:string;
+    applicantPersonRecId:number;
+    recid:number;
     attachment:any;
 }

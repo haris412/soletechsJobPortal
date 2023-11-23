@@ -10,6 +10,7 @@ import { Course } from "../models/courses.model";
 import { PositionOfTrust } from "../models/position-of-trust.model";
 import { Address } from "../models/address.model";
 import { ContactInfo } from "../models/contact-info.model";
+import { Identification } from "../models/identification.model";
 
 @Injectable({
     providedIn: 'root',
@@ -388,6 +389,13 @@ export class AppLookUpService {
                 apiURLs.applicant.getPersonalTitleLookup,
             ).toPromise();
     }
+    async UpdateApplicantProfileGeneral(profile: any) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.updateApplicantProfileGeneral,
+                profile
+            ).toPromise();
+    }
     async GetUpdateApplicantProfileContact(contact:ContactInfo
     ) {
         return await this.httpClient
@@ -397,18 +405,29 @@ export class AppLookUpService {
             ).toPromise();
     }
 
-    async GetUpdateApplicantProfileAddress(data: any) {
+    async GetUpdateApplicantProfileAddress(address: Address) {
         return await this.httpClient
             .post<any>(
                 apiURLs.applicant.getUpdateApplicantProfileAddress,
-                data
-            ).toPromise();
-    }
-    async UpdateApplicantProfileIdentification(address: Address) {
-        return await this.httpClient
-            .post<any>(
-                apiURLs.applicant.updateApplicantProfileIdentification,
                 address
             ).toPromise();
     }
+    async UpdateApplicantProfileIdentification(identification: Identification) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.updateApplicantProfileIdentification,
+                identification
+            ).toPromise();
+    }
+    async GetApplicantProfile(
+        applicantId:string) {
+            let queryParams = new HttpParams();
+          queryParams = queryParams.append('applicantId', applicantId)
+            return await this.httpClient
+                .get<any>(
+                    apiURLs.applicant.getApplicantProfile,
+                    { params:queryParams }
+                ).toPromise();
+        }
+    
 }
