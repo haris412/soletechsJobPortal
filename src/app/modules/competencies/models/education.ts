@@ -16,5 +16,5 @@ export class Education {
     CreditsNeeded:number =0;
     Notes: string = '';
     Description:string = '';
-    recid:number = 0;
+    RecId:number = 0;
 }

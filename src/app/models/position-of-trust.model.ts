@@ -7,5 +7,5 @@ export interface PositionOfTrust{
     Notes:string;
     applicantPersonRecid:number;
     attachment :any;
-    Recid?:number;
+    Recid:number;
 }

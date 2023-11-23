@@ -57,7 +57,7 @@ export class AddEditEducationComponent implements OnInit{
   
     SaveEducation: () => void = () => {
       if (this.educationForm.valid) {
-        this.selectedEducation = this.educationForm.getRawValue();
+        this.selectedEducation = { ...this.selectedEducation, ...this.educationForm.getRawValue()};
         this.educationData.emit(this.selectedEducation);
       } else {
         this.educationForm.markAllAsTouched();

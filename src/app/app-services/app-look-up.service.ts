@@ -266,12 +266,31 @@ export class AppLookUpService {
             ).toPromise();
     }
 
+    async EditProfessionalExperience(
+        experience: professionalExperience
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.editExperience,
+                experience
+            ).toPromise();
+    }
+
     async CreateEducation(
         education: Education
     ) {
         return await this.httpClient
             .post<any>(
                 apiURLs.applicant.createEducation,
+                education
+            ).toPromise();
+    }
+    async EditEducation(
+        education: Education
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.editEducation,
                 education
             ).toPromise();
     }
@@ -306,12 +325,32 @@ export class AppLookUpService {
             ).toPromise();
     }
 
+    async EditCourse(
+        course: Course
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.editCourse,
+                course
+            ).toPromise();
+    }
+
     async CreateTrustedPosition(
         trustedPosition: PositionOfTrust
     ) {
         return await this.httpClient
             .post<any>(
                 apiURLs.applicant.createTrustedPosition,
+                trustedPosition
+            ).toPromise();
+    }
+
+    async EditTrustedPosition(
+        trustedPosition: PositionOfTrust
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.editTrustedPosition,
                 trustedPosition
             ).toPromise();
     }

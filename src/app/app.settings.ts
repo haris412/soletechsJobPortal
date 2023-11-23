@@ -65,6 +65,7 @@ export const apiURLs = {
         createCourse:`${environment.apiUrl}/ERPApplicant/CreateCourse`, 
         createTrustedPosition:`${environment.apiUrl}/ERPApplicant/createTrustedPosition`,
         editProfessional:`${environment.apiUrl}/ERPApplicant/EditProfessional`,
+        editExperience:`${environment.apiUrl}/ERPApplicant/EditExperience`,
         deleteSkill:`${environment.apiUrl}/ERPApplicant/DeleteSkill`,
         deleteEducation:`${environment.apiUrl}/ERPApplicant/DeleteEducation`,
         deleteCertificate:`${environment.apiUrl}/ERPApplicant/DeleteCertificate`,

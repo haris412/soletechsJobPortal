@@ -54,7 +54,13 @@ export class PositionoftrustComponent implements OnInit{
       Recid:0,
       applicantPersonRecid: Number(localStorage.getItem('recId'))
     }
-    let response = await this.lookUpService.CreateTrustedPosition(positionData);
+    let response;
+    if (positionOfTrust.Recid > 0) {
+      positionData = positionOfTrust;
+      response = await this.lookUpService.EditTrustedPosition(positionData);
+    } else {
+      response = await this.lookUpService.CreateTrustedPosition(positionData);
+    }
     if (response?.Status) {
       this.toastrService.success(response?.Message);
       this.GetPositionTrust();

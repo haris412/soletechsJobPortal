@@ -45,7 +45,7 @@ export class AddEditCoursesComponent  implements OnInit{
   
     SaveCourse: () => void = () => {
       if (this.CourseForm.valid) {
-        this.selectedCourse = this.CourseForm.getRawValue();
+        this.selectedCourse = { ...this.selectedCourse, ...this.CourseForm.getRawValue()};
         this.courseData.emit(this.selectedCourse);
       } else {
         this.CourseForm.markAllAsTouched();

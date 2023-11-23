@@ -8,5 +8,5 @@ export interface professionalExperience{
     applicantPersonRecId: number,
     phone: string,
     startDate: string,
-    recId:number;
+    recid:number;
 }

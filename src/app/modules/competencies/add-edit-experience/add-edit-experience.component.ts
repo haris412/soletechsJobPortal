@@ -48,7 +48,7 @@ export class AddEditExperienceComponent implements OnInit {
 
   SaveExperience: () => void = () => {
     if (this.experienceForm.valid) {
-      this.selectedExperience = this.experienceForm.getRawValue();
+      this.selectedExperience = { ...this.selectedExperience, ...this.experienceForm.getRawValue()};
       this.experienceData.emit(this.selectedExperience);
     } else {
       this.experienceForm.markAllAsTouched();

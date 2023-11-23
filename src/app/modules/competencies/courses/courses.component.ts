@@ -50,10 +50,16 @@ export class CoursesComponent implements OnInit{
   async CourseAdded(course:Course){
     let courseData :Course = {
       ...course,
-      recid:0,
+      RecId:0,
       applicantPersonRecId:Number(localStorage.getItem('recId'))
     }
-    let response = await this.lookUpService.CreateCourse(courseData);
+    let response;
+    if (course.RecId > 0) {
+      courseData = course;
+      response = await this.lookUpService.EditCourse(courseData);
+    } else {
+      response = await this.lookUpService.CreateCourse(courseData);
+    }
     if(response?.Status){
     this.toastrService.success(response?.Message);
     this.GetCourses();

@@ -51,13 +51,25 @@ export class ExperienceComponent implements OnInit{
     let experienceData :professionalExperience = {
       ...experience,
       employerLocation:"UK",
-      recId:0,
+      recid:0,
       applicantPersonRecId:Number(localStorage.getItem('recId'))
     }
-    let response = await this.lookUpService.CreateProfessionalExperience(experienceData);
+    let response;
+    var isEdit = false;
+    if (experience?.recid > 0) {
+      experienceData = experience;
+      response = await this.lookUpService.EditProfessionalExperience(experienceData);
+      isEdit = true;
+    } else {
+      response = await this.lookUpService.CreateProfessionalExperience(experienceData);
+    }
     if(response){
-    this.toastrService.success('experience Added Successfully');
-    this.experienceList.push(experience);
+    if (isEdit) {
+      this.toastrService.success('experience Updated Successfully');
+    } else {
+      this.toastrService.success('experience Added Successfully');
+    }
+    await this.GetExperiences();
     this.CloseSidenav();
     }
   }

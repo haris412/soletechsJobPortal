@@ -62,15 +62,21 @@ export class EducationComponent implements OnInit{
       CreditBasis:Number(education.CreditBasis) ?? 2 ,
       applicantPersonRecId:Number(localStorage.getItem('recId')),
       HRMDuration:4.0,
-      recid:0,
+      RecId:0,
       PeriodUnit:"Years",
       StartDate:this.datePipe.transform(education.StartDate,"yyyy-MM-dd") ?? '',
       EndDate:this.datePipe.transform(education.EndDate,"yyyy-MM-dd") ?? ''
-    } 
-    let response = await this.lookUpService.CreateEducation(educationData);
+    }
+    let response;
+    if (education?.RecId > 0) {
+      educationData = education;
+      response = await this.lookUpService.EditEducation(educationData);
+    } else {
+      response = await this.lookUpService.CreateEducation(educationData);
+    }
     if(response?.Status){
     this.toastrService.success(response?.Message);
-    this.GetEducationList();
+    await this.GetEducationList();
     this.CloseSidenav();
     }
   }

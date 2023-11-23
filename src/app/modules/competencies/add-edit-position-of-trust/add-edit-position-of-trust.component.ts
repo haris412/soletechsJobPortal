@@ -42,7 +42,7 @@ export class AddEditPositionOfTrustComponent implements OnInit{
   
     SavePosition: () => void = () => {
       if (this.psitionTrustForm.valid) {
-        this.selectedPositionOfTrust = this.psitionTrustForm.getRawValue();
+        this.selectedPositionOfTrust = { ...this.selectedPositionOfTrust, ...this.psitionTrustForm.getRawValue()};
         this.positionTrustData.emit(this.selectedPositionOfTrust);
       } else {
         this.psitionTrustForm.markAllAsTouched();
