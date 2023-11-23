@@ -6,5 +6,5 @@ export class Skills {
     applicantPersonRecId:number = 0;
     attachment:any;
     ratingModelId:string = ''
-    recId:number = 0
+    RecId:number = 0
 }

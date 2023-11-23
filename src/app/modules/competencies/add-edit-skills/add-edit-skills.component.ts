@@ -46,7 +46,7 @@ export class AddEditSkillsComponent implements OnInit {
   
     SaveSkill: () => void = () => {
       if (this.skillForm.valid) {
-        this.selectedSkill = this.skillForm.getRawValue();
+        this.selectedSkill = { ...this.selectedSkill, ...this.skillForm.getRawValue()};
         this.skillData.emit(this.selectedSkill);
       } else {
         this.skillForm.markAllAsTouched();
