@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
       }
       let response = await this.loginService.Login(loginData);
       if (response?.Status) {
-        localStorage.setItem('token', '3232132#3233#$$#$#%#$3$#@$');
         localStorage.setItem('userInfo', this.loginForm.getRawValue());
-        localStorage.setItem('recId',response?.Recid);
+        localStorage.setItem('recId', response?.Recid);
+        localStorage.setItem("applicantId", response?.applicantId);
         this.service.loginEmitter.emit(true);
         this.router.navigate(['/applicant']);
       }else{
