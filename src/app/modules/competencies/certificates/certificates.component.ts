@@ -69,13 +69,15 @@ export class CertificatesComponent implements OnInit {
         if (certificateResponse?.Status) {
           this.toastrService.success(certificateResponse?.Message);
           this.GetCertifiates();
-          this.OpenSidenav();
+          this.CloseSidenav();
         }
       } else {
         certificateResponse = await this.service.EditCertificate(certificateData);
+        if (certificateResponse?.Status) {
         this.toastrService.success(certificateResponse?.Message);
         this.GetCertifiates();
-        this.OpenSidenav();
+        this.CloseSidenav();
+        }
       }
     } catch (exception) {
       console.error();
@@ -85,9 +87,13 @@ export class CertificatesComponent implements OnInit {
   Delete(selectedcertificate:Certificates) {
     const data = `Are you sure you want to do delete this certificate?`;
     const dialogRef = this.deleteModal.openDialog(data);
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        this.certificates = this.certificates?.filter((certificate:Certificates) => certificate.CertificateTypeId !== selectedcertificate.CertificateTypeId);
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response:any = await this.service.DeleteCertificate(selectedcertificate?.recid ,applicantPersonRecId);
+        if(response?.Status){
+          this.GetCertifiates();
+        }
       }
     });
   }

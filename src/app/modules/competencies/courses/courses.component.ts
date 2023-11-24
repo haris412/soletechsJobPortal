@@ -48,31 +48,35 @@ export class CoursesComponent implements OnInit{
   }
 
   async CourseAdded(course:Course){
-    let courseData :Course = {
+    let courseData: Course = {
       ...course,
-      RecId:0,
-      applicantPersonRecId:Number(localStorage.getItem('recId'))
+      RecId: 0,
+      applicantPersonRecId: Number(localStorage.getItem('recId'))
     }
     let response;
-    if (course.RecId > 0) {
+    if (course?.RecId > 0) {
       courseData = course;
       response = await this.lookUpService.EditCourse(courseData);
     } else {
       response = await this.lookUpService.CreateCourse(courseData);
     }
-    if(response?.Status){
-    this.toastrService.success(response?.Message);
-    this.GetCourses();
-    this.CloseSidenav();
+    if (response?.Status) {
+      this.toastrService.success(response?.Message);
+      this.GetCourses();
+      this.CloseSidenav();
     }
   }
 
   Delete(selectedcourse:Course) {
     const data = `Are you sure you want to do delete this course?`;
     const dialogRef = this.deleteModal.openDialog(data);
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        this.courses = this.courses.filter((course:Course) => course.course !== selectedcourse.course);
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response: any = await this.lookUpService.DeleteCourse(selectedcourse?.RecId, applicantPersonRecId);
+        if (response?.Status) {
+          this.GetCourses();
+        }
       }
     });
   }

@@ -20,7 +20,7 @@ export class ContactInfoComponent {
   async ContactAdded(contact:ContactInfo){
     let contactData :ContactInfo = {
       ...contact,
-      recid:0,
+      recid:contact?.recid ? contact?.recid : 0,
       Type:Number(contact.Type),
       applicantPersonRecId:Number(localStorage.getItem('recId'))
     }

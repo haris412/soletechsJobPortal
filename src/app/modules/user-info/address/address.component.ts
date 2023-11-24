@@ -30,7 +30,7 @@ export class AddressComponent {
     try {
       let addressData: Address = {
         ...address,
-        recid: 0,
+        recid: address?.recid ? address?.recid : 0,
         PostalCode: "",
         ApplicantPersonRecid: Number(localStorage.getItem('recId'))
       }

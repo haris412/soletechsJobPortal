@@ -478,5 +478,106 @@ export class AppLookUpService {
                     { params:queryParams }
                 ).toPromise();
         }
-    
+    async DeleteCourse(
+        recId: number, applicantRecId:number) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+        set('applicantRecId',applicantRecId)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.courseDelete,
+                { params: queryParams }
+            ).toPromise();
+    }
+    async DeleteEducation(
+        recId: number, applicantRecId:number) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+        set('applicantRecId',applicantRecId)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.deleteEducation,
+                { params: queryParams }
+            ).toPromise();
+    }
+    async DeleteCertificate(
+        recId: number, applicantRecId:number) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+        set('applicantRecId',applicantRecId)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.deleteCertificate,
+                { params: queryParams }
+            ).toPromise();
+    }
+    async DeleteProfessional(
+        recId: number, applicantRecId:number) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+        set('applicantRecId',applicantRecId)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.professionalDelete,
+                { params: queryParams }
+            ).toPromise();
+    }
+    async DeleteSkills(
+        recId: number, applicantRecId:number) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+        set('applicantRecId',applicantRecId)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.deleteSkill,
+                { params: queryParams }
+            ).toPromise();
+    }
+    async DeletePositionOfTrust(
+        recId: number, applicantRecId:number) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+        set('applicantRecId',applicantRecId)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.deleteTrustedPosition,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async DeleteAddress(
+        recId: number, applicantRecId: number,country:string) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+            set('applicantRecId', applicantRecId).
+            set('country',country)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.deleteAddress,
+                { params: queryParams }
+            ).toPromise();
+    }
+    async DeleteContact(
+        recId: number, applicantRecId: number,contactNo:string) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+            set('applicantRecId', applicantRecId).
+            set('contactNo',contactNo)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.deleteContact,
+                { params: queryParams }
+            ).toPromise();
+    }
+    async DeleteIdentification(
+        recId: number, applicantRecId: number) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('recid', recId).
+            set('applicantRecId', applicantRecId)
+        return await this.httpClient
+            .delete<any>(
+                apiURLs.applicant.deleteIdentification,
+                { params: queryParams }
+            ).toPromise();
+    }
 }

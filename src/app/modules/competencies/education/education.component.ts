@@ -84,9 +84,13 @@ export class EducationComponent implements OnInit{
   Delete(selectededucation:Education) {
     const data = `Are you sure you want to do delete this education?`;
     const dialogRef = this.deleteModal.openDialog(data);
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        this.educations = this.educations.filter((education:Education) => education.EducationDisciplineRecId !== selectededucation.EducationDisciplineRecId);
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response:any = await this.lookUpService.DeleteEducation(selectededucation?.RecId ,applicantPersonRecId);
+        if(response?.Status){
+          this.GetEducationList();
+        }
       }
     });
   }

@@ -48,11 +48,11 @@ export class ExperienceComponent implements OnInit{
     }
   } 
   async ExperienceAdded(experience:professionalExperience){
-    let experienceData :professionalExperience = {
+    let experienceData: professionalExperience = {
       ...experience,
-      employerLocation:"UK",
-      recid:0,
-      applicantPersonRecId:Number(localStorage.getItem('recId'))
+      employerLocation: "UK",
+      recid: 0,
+      applicantPersonRecId: Number(localStorage.getItem('recId'))
     }
     let response;
     var isEdit = false;
@@ -63,23 +63,27 @@ export class ExperienceComponent implements OnInit{
     } else {
       response = await this.lookUpService.CreateProfessionalExperience(experienceData);
     }
-    if(response){
-    if (isEdit) {
-      this.toastrService.success('experience Updated Successfully');
-    } else {
-      this.toastrService.success('experience Added Successfully');
-    }
-    await this.GetExperiences();
-    this.CloseSidenav();
+    if (response) {
+      if (isEdit) {
+        this.toastrService.success('experience Updated Successfully');
+      } else {
+        this.toastrService.success('experience Added Successfully');
+      }
+      await this.GetExperiences();
+      this.CloseSidenav();
     }
   }
 
   DeleteExperience(selectedExperience:professionalExperience) {
     const data = `Are you sure you want to do this experience?`;
     const dialogRef = this.deleteModal.openDialog(data);
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        this.experienceList = this.experienceList.filter((experience:professionalExperience) => experience.employerName !== selectedExperience.employerName);
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response:any = await this.lookUpService.DeleteProfessional(selectedExperience?.recid ,applicantPersonRecId);
+        if(response?.Status){
+          this.GetExperiences();
+        }
       }
     });
   }

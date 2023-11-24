@@ -71,9 +71,13 @@ export class PositionoftrustComponent implements OnInit{
   Delete(selectedpositionOfTrust:PositionOfTrust) {
     const data = `Are you sure you want to do delete this position Of Trust?`;
     const dialogRef = this.deleteModal.openDialog(data);
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        this.positionTrustList = this.positionTrustList.filter((position:PositionOfTrust) => position.Employment !== selectedpositionOfTrust.Employment);
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response: any = await this.lookUpService.DeletePositionOfTrust(selectedpositionOfTrust?.Recid, applicantPersonRecId);
+        if (response?.Status) {
+          this.GetPositionTrust();
+        }
       }
     });
   }

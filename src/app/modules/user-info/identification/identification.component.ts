@@ -29,7 +29,7 @@ export class IdentificationComponent {
   async IdentificationAdded(identification:Identification){
     let identificationData :Identification = {
       ...identification,
-      recid:0,
+      recid:identification?.recid ? identification?.recid : 0,
       applicantPersonRecId:Number(localStorage.getItem('recId'))
     }
     let response = await this.lookUpService.UpdateApplicantProfileIdentification(identificationData);

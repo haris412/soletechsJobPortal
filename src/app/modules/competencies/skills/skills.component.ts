@@ -79,12 +79,16 @@ export class SkillsComponent implements OnInit{
     }
     
   }
-  DeleteSkill(selectedSkill:Skills) {
+    DeleteSkill(selectedSkill:Skills) {
     const data = `Are you sure you want to do this skill?`;
     const dialogRef = this.deleteModal.openDialog(data);
-    dialogRef.afterClosed().subscribe((dialogResult: any) => {
+     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        this.skillList = this.skillList.filter((skill:Skills) => skill.SkillID !== selectedSkill.SkillID);
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response:any = await this.lookUpService.DeleteSkills(selectedSkill?.RecId ,applicantPersonRecId);
+        if(response?.Status){
+          this.GetSkillsList();
+        }
       }
     });
   }
