@@ -16,7 +16,7 @@ export class AddressComponent {
 
   constructor(private toastrService: ToastrService,
               private lookUpService:AppLookUpService,
-            private userInfoService: UserInfoService){}
+            public userInfoService: UserInfoService){}
   OpenSidenav() {
     this.selectedAddress = new Object() as Address;
     this.sidenavOpen = true;
@@ -38,6 +38,7 @@ export class AddressComponent {
       if (response?.Status) {
         this.toastrService.success(response?.Message);
         this.CloseSidenav();
+        await this.userInfoService.GetApplicantProfile();
       } else {
         this.toastrService.error(response?.Message);
       }

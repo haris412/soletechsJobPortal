@@ -1,14 +1,15 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ContactInfo } from 'src/app/models/contact-info.model';
+import { UserInfoService } from '../user-info.service';
 
 @Component({
   selector: 'app-add-edit-contact-info',
   templateUrl: './add-edit-contact-info.component.html',
   styleUrls: ['./add-edit-contact-info.component.scss']
 })
-export class AddEditContactInfoComponent {
+export class AddEditContactInfoComponent implements OnInit {
 
   @Input() selectedContact:ContactInfo = new Object() as ContactInfo;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
@@ -16,21 +17,23 @@ export class AddEditContactInfoComponent {
   contactForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
   contact!: ContactInfo
-  constructor(private toastrService: ToastrService) {
+  constructor(private toastrService: ToastrService,
+              public userInfo: UserInfoService) {
     this.contactForm = this._formBuilder.group({
       Type: ['', [Validators.required]],
       ContactNumber: ['', [Validators.required]]
     });
   }
- ngOnInIt(){
-   if (this.selectedContact?.Type) {
-     this.contactForm.patchValue({
-       ...this.selectedContact
-     });
-   } else {
-     this.contactForm.reset();
-   }
- }
+  ngOnInit(): void {
+   if (this.userInfo.selectedContact) {
+    this.contactForm.patchValue({
+      ...this.userInfo.selectedContact
+    });
+  } else {
+    this.contactForm.reset();
+  }
+  }
+
   CloseIdentificationNav: () => void = () => {
     this.closeSideNav.emit(true);
   }

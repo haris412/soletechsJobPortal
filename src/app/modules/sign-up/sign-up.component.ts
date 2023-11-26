@@ -135,7 +135,7 @@ export class SignUpComponent implements OnInit {
 				this.userInfo.prepareApplicantFormGroup();
 				this.userForm.reset();
 				localStorage.setItem('applicantId', data?.applicantId);
-				localStorage.setItem('recId', data?.Recid);
+				localStorage.setItem('recId', data?.applicantPersonRecid);
 				Swal.fire({
 					title: 'Success',
 					icon: 'success',

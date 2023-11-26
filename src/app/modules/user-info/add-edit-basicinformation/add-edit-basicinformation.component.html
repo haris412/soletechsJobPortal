@@ -31,8 +31,7 @@
         <p>Nationality</p>
         <mat-form-field appearance="outline" class="w-100">
           <mat-select  [formControlName]="'nationality'">
-            <mat-option value="pakistan">Pakistan</mat-option>
-            <mat-option value="india">India</mat-option>
+            <mat-option *ngFor="let country of this.userInfoService.countryRegions" [value]="country.value">{{country.name}}</mat-option>
           </mat-select>
           <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
         </mat-form-field>

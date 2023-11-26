@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row mx-0">
-      <div *ngIf="contactInfoList.length === 0" class="contact-list">
+      <div *ngIf="this.userInfoService.contactsList.length === 0" class="contact-list">
         <div class="no-information">
           <img src="assets/SVG/no-info.svg" alt="no-info">
           <p class="text-shuttle-grey">You haven't added any information</p>
@@ -19,11 +19,11 @@
       </div>
       <div
         class="contact-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12"
-        *ngFor="let contact of contactInfoList"
+        *ngFor="let contact of this.userInfoService.contactsList"
       >
         <div class="d-flex align-items-center w-100 contact-item-container">
           <div class="contact-item rounded w-100">
-            <h6 class="mb-0 font-poppins-bold">{{ contact.Type }}</h6>
+            <h6 class="mb-0 font-poppins-bold">{{ contact.ContactNumber }}</h6>
             <div class="d-flex align-items-center gap-1">
               <div
                 class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white"
@@ -51,6 +51,7 @@
     </div>
   </div>
 </div>
+<ng-container *ngIf="sidenavOpen">
 <div
   class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100"
   [ngClass]="sidenavOpen ? 'open' : 'close'"
@@ -62,3 +63,4 @@
     (contactData)="ContactAdded($event)"
   ></app-add-edit-contact-info>
 </div>
+</ng-container>

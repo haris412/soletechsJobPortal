@@ -27,7 +27,7 @@ export class UserInfoComponent implements OnInit {
 
     title = 'soletech';
     public Editor = ClassicEditor;
-    index: Number = 1;
+    index: Number = 0;
     stepperTitle: string = 'Basic Info';
 
     constructor(private location: Location
@@ -41,6 +41,8 @@ export class UserInfoComponent implements OnInit {
 
     async ngOnInit() {
         await this.GetLookups();
+        await this.userInfoService.GetApplicantProfile();
+        this.index = 1;
     }
 
     OpenSidenav() {
@@ -182,16 +184,5 @@ export class UserInfoComponent implements OnInit {
             this.userInfoService.identificationType.push(data);
           }
         );
-    }
-
-    async GetApplicantProfile(){
-        let applicantId = localStorage.getItem('applicantId') ?? '';
-        let res = await this.lookUpService.GetApplicantProfile(applicantId);
-        if(res){
-           this.userInfoService.basicInfo = res?.ApplicantProfileGeneral;
-           this.userInfoService.contactsList= res?.ApplicantProfileContactList?.parmApplicantProfileContactList;
-           this.userInfoService.addressList = res?.ApplicantProfileAddressList?.parmApplicantProfileAddressList;
-           this.userInfoService.identificationList = res?.ApplicantProfileIdentification
-        }
     }
 }

@@ -10,14 +10,14 @@
       </div>
     </div>
     <div class="row mx-0">
-      <div *ngIf="AddressList.length === 0" class="address-list">
+      <div *ngIf="this.userInfoService.addressList.length === 0" class="address-list">
         <div class="no-information">
           <img src="assets/SVG/no-info.svg" alt="no-info">
           <p class="text-shuttle-grey">You haven't added any information</p>
         </div>
       </div>
       <div class="address-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12"
-        *ngFor="let address of AddressList">
+        *ngFor="let address of this.userInfoService.addressList">
         <div class="d-flex align-items-center w-100 address-item-container">
           <div class="address-item rounded w-100">
             <h6 class="mb-0 font-poppins-bold">{{address.Address}}</h6>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Identification } from 'src/app/models/identification.model';
 import { UserInfoService } from '../user-info.service';
@@ -9,14 +9,22 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
   templateUrl: './identification.component.html',
   styleUrls: ['./identification.component.scss']
 })
-export class IdentificationComponent {
+export class IdentificationComponent implements OnInit {
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
   identificationList: Identification[] = [];
   selectedIdentification!:Identification;
 
   constructor(private toastrService: ToastrService,
-              private lookUpService:AppLookUpService){}
+              private lookUpService:AppLookUpService,
+              public userInfoService: UserInfoService,
+              public ref: ChangeDetectorRef){}
+  
+  
+  ngOnInit(): void {
+    this.ref.detectChanges();
+  }
+
   OpenSidenav() {
     this.selectedIdentification = new Object() as Identification;
     this.sidenavOpen = true;
@@ -36,6 +44,7 @@ export class IdentificationComponent {
     if(response?.Status){
     this.toastrService.success(response?.Message);
     this.CloseSidenav();
+    await this.userInfoService.GetApplicantProfile();
     }else{
       this.toastrService.error(response?.Message);
     }
