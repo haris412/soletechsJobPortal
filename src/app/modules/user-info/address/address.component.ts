@@ -18,7 +18,6 @@ export class AddressComponent {
               private lookUpService:AppLookUpService,
             public userInfoService: UserInfoService){}
   OpenSidenav() {
-    this.selectedAddress = new Object() as Address;
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';
   }

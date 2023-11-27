@@ -5,7 +5,6 @@ import { forkJoin } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { UserInfoService } from './user-info.service';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-user-info',

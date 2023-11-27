@@ -26,7 +26,6 @@ export class IdentificationComponent implements OnInit {
   }
 
   OpenSidenav() {
-    this.selectedIdentification = new Object() as Identification;
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';
   }

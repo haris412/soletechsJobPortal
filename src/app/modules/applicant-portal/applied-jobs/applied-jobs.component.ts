@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./applied-jobs.component.scss']
 })
 export class AppliedJobsComponent {
+  @Input() appliedJobs:any = new Object() as any;
   public completed: boolean = false;
   jobList:any[]=[ {name:'Designer', type:'Full Time'}];
   constructor(private router: Router) {

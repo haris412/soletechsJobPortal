@@ -48,9 +48,11 @@ export class LoginComponent implements OnInit {
       }
       let response = await this.loginService.Login(loginData);
       if (response?.Status) {
-        localStorage.setItem('userInfo', this.loginForm.getRawValue());
-        localStorage.setItem('recId', response?.Recid);
-        localStorage.setItem("applicantId", response?.applicantId);
+        localStorage.setItem('userName', response?.UserName);
+        localStorage.setItem('email', response?.Email);
+        localStorage.setItem("applicantId", response?.ApplicantId);
+        localStorage.setItem("applicantPersonRecid", response?.ApplicantPersonRecid);
+        localStorage.setItem("recId", response?.ApplicantPersonRecid);
         this.service.loginEmitter.emit(true);
         this.router.navigate(['/applicant']);
       }else{

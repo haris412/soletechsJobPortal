@@ -379,6 +379,16 @@ export class AppLookUpService {
             ).toPromise();
     }
 
+   async MyApplicationJobList(applicantId:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicantId', applicantId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.application.myApplicationJobList,
+                { params: queryParams }
+            ).toPromise();
+    }
+
     async GetTrustedPositionList(
         personRecId: number
     ) {

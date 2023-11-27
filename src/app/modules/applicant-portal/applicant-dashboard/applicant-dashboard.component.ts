@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LinkedInService } from '../services/linkedin.service';
 import { environment } from 'src/environments/environment';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { LookupParameters } from './../../../models/look-up.model';
 
 @Component({
   selector: 'app-applicant-dashboard',
@@ -10,8 +12,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ApplicantDashboardComponent implements OnInit {
 
+  appliedJobs:any[] = [];
   constructor(private activatedRoute: ActivatedRoute, 
     public linkedInServive: LinkedInService,
+    private lookUpService:AppLookUpService,
     private route: Router) {
   }
   ngOnInit(): void {
@@ -21,6 +25,7 @@ export class ApplicantDashboardComponent implements OnInit {
         this.GetAccessToken(code);
       }
     });
+    this.GetAppliedJobs();
   }
   GetAccessToken(code: string) {
 
@@ -42,5 +47,12 @@ export class ApplicantDashboardComponent implements OnInit {
       this.linkedInServive.userInfo = res;
     }
     );
+  }
+  async GetAppliedJobs(){
+    let applicantId = localStorage.getItem('applicantId') ?? '';
+    let response = await this.lookUpService.MyApplicationJobList(applicantId);
+    if(response?.Status){
+      this.appliedJobs = response?.parmRecruitmentJobList;
+    }
   }
 }

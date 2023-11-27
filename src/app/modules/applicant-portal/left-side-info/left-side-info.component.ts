@@ -12,11 +12,14 @@ import { LinkedInService } from '../services/linkedin.service';
 export class LeftSideInfoComponent {
   isDisable: boolean = false;
   jobList: any[] = [{name:'Designer', type:'Full Time'}];
+  userEmail:string = '';
   constructor(private dialog: RescheduleModalComponentService,
     private toastrService: ToastrService,
     private router: Router,
     public linkedInServive: LinkedInService
-  ) { }
+  ) { 
+    this.userEmail = localStorage.getItem('userName') ?? '';
+  }
 
   OpenReschedule() {
     const dialogRef = this.dialog.openDialog('');

@@ -1,6 +1,6 @@
 <div>
   <h4 class="text-midnight-moss">Applied Jobs</h4>
-  <div *ngIf="jobList.length === 0" class="job-detail justify-content-center rounded-3">
+  <div *ngIf="appliedJobs.length === 0" class="job-detail justify-content-center rounded-3">
     <div class="no-information">
       <img src="assets/SVG/no-applied.svg" alt="" />
       <p class="text-shuttle-grey">You didnt apply for any job</p>
@@ -10,7 +10,7 @@
       </button>
     </div>
   </div>
-  <div *ngIf="jobList.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
+  <div *ngIf="appliedJobs.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="text-midnight-moss">Lead Product Design</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
@@ -72,7 +72,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="jobList.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
+  <div *ngIf="appliedJobs?.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="text-midnight-moss">Lead Product Design</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">

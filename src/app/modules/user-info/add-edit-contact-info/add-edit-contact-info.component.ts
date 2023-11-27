@@ -27,7 +27,8 @@ export class AddEditContactInfoComponent implements OnInit {
   ngOnInit(): void {
    if (this.userInfo.selectedContact) {
     this.contactForm.patchValue({
-      ...this.userInfo.selectedContact
+      ...this.userInfo.selectedContact,
+      Type:this.userInfo.selectedContact?.Type?.toString(),
     });
   } else {
     this.contactForm.reset();
