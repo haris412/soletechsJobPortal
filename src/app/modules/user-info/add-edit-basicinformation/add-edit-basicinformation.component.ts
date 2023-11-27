@@ -59,7 +59,7 @@ export class AddEditBasicinformationComponent implements OnInit{
 		   let profileData :any = {
         ...this.applicantForm.value,
         applicantId:localStorage.getItem("applicantId"),
-        recid:0
+        recid:this.userInfoService?.basicInfo?.recid ? this.userInfoService?.basicInfo?.recid : 0
        }
 			 let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);
        if(response){

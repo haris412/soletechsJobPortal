@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address.model';
 import { UserInfoService } from '../user-info.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
 @Component({
   selector: 'app-address',
@@ -16,7 +17,8 @@ export class AddressComponent {
 
   constructor(private toastrService: ToastrService,
               private lookUpService:AppLookUpService,
-            public userInfoService: UserInfoService){}
+            public userInfoService: UserInfoService,
+            private deleteModal: DeleteModalComponentService){}
   OpenSidenav() {
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';
@@ -46,7 +48,20 @@ export class AddressComponent {
     }
   }
   DeleteAddress(selectedAddress:Address){
-    this.AddressList = this.AddressList?.filter((address:Address) => address?.Address !== selectedAddress?.Address);
+    const data = `Are you sure you want to do delete this Address?`;
+    const dialogRef = this.deleteModal.openDialog(data);
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response:any = await this.lookUpService.DeleteCertificate(selectedAddress?.recid ?? 0 ,applicantPersonRecId);
+        if(response?.Status){
+          this.toastrService.success(response?.Message);
+          await this.userInfoService.GetApplicantProfile();
+        }else{
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
   EditAddress(address:Address){
     this.selectedAddress = address;

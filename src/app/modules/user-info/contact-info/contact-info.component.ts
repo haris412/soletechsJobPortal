@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ContactInfo } from 'src/app/models/contact-info.model';
 import { UserInfoService } from '../user-info.service';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
 @Component({
   selector: 'app-contact-info',
@@ -15,7 +16,8 @@ export class ContactInfoComponent implements OnInit {
   selectedContact!:ContactInfo;
  constructor(private toastrService: ToastrService,
              private lookUpService: AppLookUpService,
-             public userInfoService: UserInfoService){}
+             public userInfoService: UserInfoService,
+             private deleteModal: DeleteModalComponentService){}
   
   ngOnInit(): void {
     
@@ -24,7 +26,6 @@ export class ContactInfoComponent implements OnInit {
   async ContactAdded(contact:ContactInfo){
     let contactData :ContactInfo = {
       ...contact,
-      recid:contact?.recid ? contact?.recid : 0,
       Type:Number(contact.Type),
       applicantPersonRecId:Number(localStorage.getItem('recId'))
     }
@@ -36,14 +37,26 @@ export class ContactInfoComponent implements OnInit {
     }
   }
   DeleteContact(contact:ContactInfo){
-    this.contactInfoList = this.contactInfoList.filter((identity:ContactInfo) => identity.ContactNumber !== contact.ContactNumber);
+    const data = `Are you sure you want to do delete this contact?`;
+    const dialogRef = this.deleteModal.openDialog(data);
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response: any = await this.lookUpService.DeleteContact(contact?.recid ?? 0, applicantPersonRecId,contact.ContactNumber);
+        if (response?.Status) {
+          this.toastrService.success(response?.Message);
+          await this.userInfoService.GetApplicantProfile();
+        } else {
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
   EditContact(contact:ContactInfo){
     this.userInfoService.selectedContact = contact;
     this.OpenSidenav();
   }
   OpenSidenav() {
-    this.selectedContact = new Object() as ContactInfo;
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';
   }

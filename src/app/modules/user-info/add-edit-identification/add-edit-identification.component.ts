@@ -18,7 +18,8 @@ export class AddEditIdentificationComponent implements OnInit{
   isFile:boolean = false;
 	fileList:any[] = [];
   private _formBuilder = inject(UntypedFormBuilder);
-  identification!: Identification
+  identification!: Identification;
+  get f() { return this.identificationForm.controls; }
   constructor(private toastrService: ToastrService
             , public userInfoService: UserInfoService) {
     this.identificationForm = this._formBuilder.group({
@@ -26,6 +27,7 @@ export class AddEditIdentificationComponent implements OnInit{
       IdentificationNumber: ['', [Validators.required]],
       IssueDate: ['', [Validators.required]],
       ExpiryDate: ['', [Validators.required]],
+      recid:[this.selectedIdentification?.recid ? this.selectedIdentification?.recid : 0],
       attachment: ['']
 
     });

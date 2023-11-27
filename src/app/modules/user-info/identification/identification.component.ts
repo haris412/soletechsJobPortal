@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Identification } from 'src/app/models/identification.model';
 import { UserInfoService } from '../user-info.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
 @Component({
   selector: 'app-identification',
@@ -18,7 +19,8 @@ export class IdentificationComponent implements OnInit {
   constructor(private toastrService: ToastrService,
               private lookUpService:AppLookUpService,
               public userInfoService: UserInfoService,
-              public ref: ChangeDetectorRef){}
+              public ref: ChangeDetectorRef,
+              private deleteModal: DeleteModalComponentService){}
   
   
   ngOnInit(): void {
@@ -49,7 +51,21 @@ export class IdentificationComponent implements OnInit {
     }
   }
   DeleteIdentification(identification:Identification){
-    this.identificationList = this.identificationList.filter((identity:Identification) => identity.IdentificationNumber !== identification.IdentificationNumber);
+    
+    const data = `Are you sure you want to do delete this Identification?`;
+    const dialogRef = this.deleteModal.openDialog(data);
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let response:any = await this.lookUpService.DeleteIdentification(identification?.recid ,applicantPersonRecId);
+        if(response?.Status){
+          this.toastrService.success(response?.Message);
+          await this.userInfoService.GetApplicantProfile();
+        }else{
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
   EditIdentification(identification:Identification){
     this.selectedIdentification = identification;

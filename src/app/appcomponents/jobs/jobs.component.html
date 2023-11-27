@@ -89,7 +89,7 @@
 </div>
 
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
-    [ngClass]="sidenavOpen ? 'open' : 'close'">
+    [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
     <span class="heading">Apply</span>
-    <app-quick-apply *ngIf="sidenavOpen" (closeClicked) = "CloseSidenav()" [recruitmentProject] = "recruitmentProject" [selectedJob] = "selectedJob"></app-quick-apply>
+    <app-quick-apply  (closeClicked) = "CloseSidenav()" [recruitmentProject] = "recruitmentProject" [selectedJob] = "selectedJob"></app-quick-apply>
 </div>

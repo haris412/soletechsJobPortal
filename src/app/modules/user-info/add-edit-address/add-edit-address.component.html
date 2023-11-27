@@ -1,21 +1,23 @@
 <form class="row" action="" [formGroup]="addressForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Name of Description</p>
+    <p>Name of Description*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input
         matInput
         name="nameOfDescription"
         [formControlName]="'Address'"
       />
+      <mat-error class="error-message" *ngIf="f.Address.hasError('required') && (f.Address.dirty || f.Address.touched)">Address is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Country</p>
+    <p>Country*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="country" [formControlName]="'CountryRegionId'" (selectionChange)="changeCountry()">
         <mat-option *ngFor="let country of this.userInfoService.countryRegions" [value]="country.value">{{country.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <mat-error class="error-message" *ngIf="f.CountryRegionId.hasError('required') && (f.CountryRegionId.dirty || f.CountryRegionId.touched)">Country is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
@@ -28,19 +30,21 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Street</p>
+    <p>Street*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="street" [formControlName]="'streetName'" />
+      <mat-error class="error-message" *ngIf="f.streetName.hasError('required') && (f.streetName.dirty || f.streetName.touched)">Street Name is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Zip/Postal Code</p>
+    <p>Zip/Postal Code*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="zipCode" [formControlName]="'zipCode'">
         <mat-option value="0514">0514</mat-option>
         <mat-option value="8574">8574</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <mat-error class="error-message" *ngIf="f.zipCode.hasError('required') && (f.zipCode.dirty || f.zipCode.touched)">zipCode is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">

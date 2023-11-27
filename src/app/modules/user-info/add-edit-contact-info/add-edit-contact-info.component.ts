@@ -16,12 +16,14 @@ export class AddEditContactInfoComponent implements OnInit {
   @Output() contactData: EventEmitter<ContactInfo> = new EventEmitter();
   contactForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
-  contact!: ContactInfo
-  constructor(private toastrService: ToastrService,
-              public userInfo: UserInfoService) {
+  contact!: ContactInfo;
+  get f() { return this.contactForm.controls; }
+  constructor(public userInfo: UserInfoService) {
     this.contactForm = this._formBuilder.group({
       Type: ['', [Validators.required]],
-      ContactNumber: ['', [Validators.required]]
+      ContactNumber: ['', [Validators.required]],
+      recid:[this.selectedContact?.recid ? this.selectedContact?.recid : 0],
+
     });
   }
   ngOnInit(): void {

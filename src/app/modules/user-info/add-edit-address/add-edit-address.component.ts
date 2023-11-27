@@ -21,8 +21,8 @@ export class AddEditAddressComponent implements OnInit{
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Address
   cities:any[]=[];
-  constructor(private toastrService: ToastrService
-            , public userInfoService: UserInfoService
+  get f() { return this.addressForm.controls; }
+  constructor(public userInfoService: UserInfoService
             , public lookupService: AppLookUpService) {
     this.addressForm = this._formBuilder.group({
       Address: ['', [Validators.required]],
@@ -30,6 +30,7 @@ export class AddEditAddressComponent implements OnInit{
       City: [''],
       streetName: ['',[Validators.required]],
       zipCode: ['', [Validators.required]],
+      recid:[this.selectedAddress?.recid ? this.selectedAddress?.recid : 0],
       postBox: ['']
     });
   }
@@ -49,7 +50,6 @@ export class AddEditAddressComponent implements OnInit{
   SaveIdentification: () => void = () => {
     if (this.addressForm.valid) {
       this.identification = this.addressForm.getRawValue();
-      
       this.addressData.emit(this.identification);
     } else {
       this.addressForm.markAllAsTouched();

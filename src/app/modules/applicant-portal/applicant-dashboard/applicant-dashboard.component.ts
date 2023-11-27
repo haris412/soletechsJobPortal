@@ -51,7 +51,7 @@ export class ApplicantDashboardComponent implements OnInit {
   async GetAppliedJobs(){
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let response = await this.lookUpService.MyApplicationJobList(applicantId);
-    if(response?.Status){
+    if(response){
       this.appliedJobs = response?.parmRecruitmentJobList;
     }
   }

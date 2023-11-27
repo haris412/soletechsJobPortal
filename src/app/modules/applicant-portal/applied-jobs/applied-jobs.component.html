@@ -10,9 +10,10 @@
       </button>
     </div>
   </div>
-  <div *ngIf="appliedJobs.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
+  <div *ngIf="appliedJobs?.length > 0">
+  <div  *ngFor="let appliedJob of appliedJobs" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
     <div class="d-flex align-items-center justify-content-between">
-      <h5 class="text-midnight-moss">Lead Product Design</h5>
+      <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <div>
           <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
@@ -23,8 +24,7 @@
       </div>
     </div>
     <p class="text-shuttle-grey">
-      Your job as a UX Designer is to give a world-class experience for
-      tiket.com users...
+      {{appliedJob?.Overview}}
     </p>
     <div class="d-flex align-items-center gap-1 job-location-info mb-2">
       <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
@@ -72,62 +72,5 @@
       </div>
     </div>
   </div>
-  <div *ngIf="appliedJobs?.length > 0" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
-    <div class="d-flex align-items-center justify-content-between">
-      <h5 class="text-midnight-moss">Lead Product Design</h5>
-      <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
-        <div>
-          <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
-        </div>
-        <div>
-          <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer green-filter" />
-        </div>
-      </div>
-    </div>
-    <p class="text-shuttle-grey">
-      Your job as a UX Designer is to give a world-class experience for
-      tiket.com users...
-    </p>
-    <div class="d-flex align-items-center gap-1 job-location-info mb-2">
-      <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
-      <p class="text-midnight-moss mb-0">Dubai, UAE</p>
-    </div>
-    <div class="d-flex align-items-center gap-1 job-location-info mb-2">
-      <img class="green-filter" src="assets/SVG/ic_Job.svg" alt="" />
-      <p class="text-midnight-moss mb-0">Remote</p>
-    </div>
-    <div class="stage rounded-pill bg-shuttle-grey">
-      <p class="mb-0 font-poppins-medium text-white">Not Selected</p>
-    </div>
-    <div class="stepper-wrapper">
-      <div class="stepper-item">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
-        </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Screening</h6>
-      </div>
-      <div class="stepper-item">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
-        </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Interview</h6>
-      </div>
-      <div class="stepper-item">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
-        </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Offer</h6>
-      </div>
-      <div class="stepper-item">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
-        </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Onboarding</h6>
-      </div>
-    </div>
-  </div>
+</div>
 </div>

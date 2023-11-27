@@ -41,6 +41,13 @@ export class RecruitmentService {
             ).toPromise();
     }
 
+    async GetStartedRecruitingList() {
+        return await this.httpClient
+            .get<any>(
+                apiURLs.recrutmentProjects.getStartedRecruitingList
+            ).toPromise();
+    }
+
     async AuthenticationByCompanyIdAsync(
         companyId: string
     ) {

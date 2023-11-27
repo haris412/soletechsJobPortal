@@ -4,7 +4,9 @@ export const apiURLs = {
         GetRecruitmentInformationListAsync: `${environment.apiUrl}/ERPAuthentication/GetRecruitmentInformationList`,
         getRecruitmentProjectsList: `${environment.apiUrl}/ERPAuthentication/getRecruitmentProjectsList`,
         authenticationByCompanyIdAsync:`${environment.apiUrl}/ERPAuthentication/AuthenticationByCompanyId`,
-        getJobDetails:`${environment.apiUrl}/ERPAuthentication/GetJobDetails`
+        getJobDetails:`${environment.apiUrl}/ERPAuthentication/GetJobDetails`,
+        myApplicationJobList:`${environment.apiUrl}/ERPAuthentication/MyApplicationJobList`,
+        getStartedRecruitingList:`${environment.apiUrl}/ERPAuthentication/GetStartedRecruitingList`
     },
     lookUps: {
         getDepartmentLookup: `${environment.apiUrl}/MPRecruitment_Projects/getDepartment_Lookup`,
@@ -46,6 +48,7 @@ export const apiURLs = {
         getCertificateList:`${environment.apiUrl}/ERPApplicant/GetCertificateList`,  
         getEducationList:`${environment.apiUrl}/ERPApplicant/GetEducationList`,  
         getCourseList:`${environment.apiUrl}/ERPApplicant/GetCourseList`,  
+        myApplicationJobList:`${environment.apiUrl}/ERPAuthentication/MyApplicationJobList`,
         getTrustedPositionList:`${environment.apiUrl}/ERPApplicant/GetTrustedPoaitionList`,  
         editEducation:`${environment.apiUrl}/ERPApplicant/EditEducation`,  
         editCertificate:`${environment.apiUrl}/ERPApplicant/EditCertificate`,  

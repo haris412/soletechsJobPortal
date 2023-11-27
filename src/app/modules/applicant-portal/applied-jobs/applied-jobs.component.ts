@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,12 +6,19 @@ import { Router } from '@angular/router';
   templateUrl: './applied-jobs.component.html',
   styleUrls: ['./applied-jobs.component.scss']
 })
-export class AppliedJobsComponent {
+export class AppliedJobsComponent implements OnInit , OnChanges{
   @Input() appliedJobs:any = new Object() as any;
   public completed: boolean = false;
-  jobList:any[]=[ {name:'Designer', type:'Full Time'}];
   constructor(private router: Router) {
+  }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes?.appliedJobs?.currentValue){
+      this.appliedJobs = changes.appliedJobs.currentValue;
+    }
+  }
+  ngOnInit(): void {
+    console.log(this.appliedJobs);
   }
   GoToJobActions() {
     this.router.navigate(['/applicant/job-actions']);

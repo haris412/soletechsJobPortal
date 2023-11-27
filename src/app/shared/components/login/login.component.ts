@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   };
   loginForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
+  get f() { return this.loginForm.controls; }
   constructor(private router:Router , 
               private service:ApplicantDataService,
               private loginService:LoginService,
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit {
         this.toastrService.error(response?.Message);
       }
     } else {
-      this.loginForm.markAllAsTouched();
+       this.loginForm.markAllAsTouched();
     }
   }
 

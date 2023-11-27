@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +14,7 @@ import { LookupParameters } from 'src/app/models/look-up.model';
   templateUrl: './quick-apply.component.html',
   styleUrls: ['./quick-apply.component.scss']
 })
-export class QuickApplyComponent {
+export class QuickApplyComponent implements OnInit{
   @Input() selectedJob:any =  new Object() as any;
   @Input() recruitmentProject:Job = new Object() as Job;
   @Output() closeClicked: EventEmitter<boolean> = new EventEmitter();
@@ -34,6 +34,7 @@ export class QuickApplyComponent {
   private _formBuilder = inject(UntypedFormBuilder);
   quickApplyForm: UntypedFormGroup;
   separateDialCode = false;
+  get f() { return this.quickApplyForm.controls; }
   constructor(
     private router: Router,
     private lookUpService:AppLookUpService,
@@ -42,17 +43,17 @@ export class QuickApplyComponent {
 
   ) {
     this.quickApplyForm = this._formBuilder.group({
-      name:[''],
-      nameAr: ['',[Validators.required]],
-      recruitmentProject: [this.selectedJob?.jobId, [Validators.required]],
+      name:['', [Validators.required]],
+      nameAr: [''],
+      recruitmentProject: [this.recruitmentProject?.recruitingId, [Validators.required]],
       nationality: ['', [Validators.required]],
       email:['',[Validators.required]],
       phone:['',[Validators.required]],
       linkedIn: [''],
       highestDegree:[''],
       address:['',[Validators.required]],
-      currentAddressOut: [''],
-      dateOfBirth: [''],
+      currentAddressOut: ['' ,[Validators.required]],
+      dateOfBirth: ['' ,[Validators.required]],
       residentIdentity:[0],
       residentIdentityProfessional:[''],
       periodJoin:[''],
@@ -61,7 +62,7 @@ export class QuickApplyComponent {
   }
 
   ngOnInit(){
-    this.quickApplyForm?.controls?.recruitmentProject.setValue(this.selectedJob?.jobId);
+    this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.fileList = [];
     this.GetLookups();
@@ -144,22 +145,25 @@ export class QuickApplyComponent {
   }
 
   async QuickApply(){
-    console.log(this.quickApplyForm.controls['periodJoin']?.value);
-    let applicationData: Application = {
-      ...this.quickApplyForm.getRawValue(),
-      periodJoin:Number(this.quickApplyForm.controls['periodJoin']?.value),
-      applicantIdRecid:Number(localStorage.getItem('recId'))
-    }
-    try {
-      let applicationResponse = await this.applicationService.SaveApplication(applicationData);
-      if (applicationResponse.Status) {
-        this.toastrService.success(applicationResponse?.Message);
-        this.closeClicked.emit(true);
-      } else {
-        this.toastrService.error(applicationResponse?.Message);
+    if (this.quickApplyForm.valid) {
+      let applicationData: Application = {
+        ...this.quickApplyForm.getRawValue(),
+        periodJoin: Number(this.quickApplyForm.controls['periodJoin']?.value),
+        applicantIdRecid: Number(localStorage.getItem('recId'))
       }
-    } catch (ex) {
-      console.error();
+      try {
+        let applicationResponse = await this.applicationService.SaveApplication(applicationData);
+        if (applicationResponse.Status) {
+          this.toastrService.success(applicationResponse?.Message);
+          this.closeClicked.emit(true);
+        } else {
+          this.toastrService.error(applicationResponse?.Message);
+        }
+      } catch (ex) {
+        console.error();
+      }
+    } else {
+      this.quickApplyForm.markAllAsTouched();
     }
   }
 }

@@ -1,18 +1,20 @@
 <form class="row" action="" [formGroup]="contactForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Type</p>
+    <p>Type*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="contactType" [formControlName]="'Type'">
         <mat-option value="1">Home</mat-option>
         <mat-option value="2">Office</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <mat-error class="error-message" *ngIf="f.Type.hasError('required') && (f.Type.dirty || f.Type.touched)">Contact Type is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Contact Number</p>
+    <p>Contact Number*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="contactNumber" [formControlName]="'ContactNumber'" />
+      <mat-error class="error-message" *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">Contact Number is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">

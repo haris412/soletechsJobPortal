@@ -38,36 +38,19 @@ export class JobsListComponent implements OnInit {
       this.webView = false;
       this.show = true;
     }
-    // if(!localStorage.getItem('token')){
-    this.GetToken();
-    // }else{
-    //   this.GetJobs(localStorage.getItem('token') ?? '');
-    // }
+    this.getRecruitmentProjectsList();
   }
 
-  async getRecruitmentProjectsList(token: string) {
-    let params: jobsQueryParameters = {
-      _dataAreaId: 'USMF',
-      _languageId: "en-us"
-    }
-    let jobsResponseObj = await this.recruitmentService.GetRecruitmentProjectsList(params, token);
+  async getRecruitmentProjectsList() {
+    let jobsResponseObj = await this.recruitmentService.GetStartedRecruitingList();
     if (jobsResponseObj) {
       this.jobsList = jobsResponseObj.parmRecruitmentProjectsList;
     }
   }
-  async GetToken() {
-    let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');
-    if (accessTokenResponse) {
-      this.sharedService.SetToken(accessTokenResponse.access_token);
-      localStorage.setItem('token', accessTokenResponse.access_token);
-      if (accessTokenResponse.access_token) {
-        this.getRecruitmentProjectsList(accessTokenResponse.access_token);
-      }
-    }
-  }
-
+ 
   OpenJob(job: Job) {
     this.selectedJob = job;
+    console.log(this.selectedJob);
     this.GetJobDetail(job);
     this.isActive = true;
     if (this.mobileView) {
