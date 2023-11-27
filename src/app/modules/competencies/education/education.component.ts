@@ -89,7 +89,10 @@ export class EducationComponent implements OnInit{
         let applicantPersonRecId = Number(localStorage.getItem('recId'));
         let response:any = await this.lookUpService.DeleteEducation(selectededucation?.RecId ,applicantPersonRecId);
         if(response?.Status){
+          this.toastrService.success(response?.Message);
           this.GetEducationList();
+        }else{
+          this.toastrService.error(response?.Message);
         }
       }
     });

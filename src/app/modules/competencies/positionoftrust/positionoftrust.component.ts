@@ -76,7 +76,10 @@ export class PositionoftrustComponent implements OnInit{
         let applicantPersonRecId = Number(localStorage.getItem('recId'));
         let response: any = await this.lookUpService.DeletePositionOfTrust(selectedpositionOfTrust?.Recid, applicantPersonRecId);
         if (response?.Status) {
+          this.toastrService.success(response?.Message);
           this.GetPositionTrust();
+        }else{
+          this.toastrService.error(response?.Message);
         }
       }
     });

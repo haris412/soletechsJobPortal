@@ -75,7 +75,10 @@ export class CoursesComponent implements OnInit{
         let applicantPersonRecId = Number(localStorage.getItem('recId'));
         let response: any = await this.lookUpService.DeleteCourse(selectedcourse?.RecId, applicantPersonRecId);
         if (response?.Status) {
+          this.toastrService.success(response?.Message);
           this.GetCourses();
+        }else{
+          this.toastrService.error(response?.Message);
         }
       }
     });

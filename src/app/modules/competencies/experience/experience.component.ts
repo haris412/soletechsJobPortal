@@ -82,7 +82,10 @@ export class ExperienceComponent implements OnInit{
         let applicantPersonRecId = Number(localStorage.getItem('recId'));
         let response:any = await this.lookUpService.DeleteProfessional(selectedExperience?.recid ,applicantPersonRecId);
         if(response?.Status){
+          this.toastrService.success(response?.Message);
           this.GetExperiences();
+        }else{
+          this.toastrService.error(response?.Message);
         }
       }
     });

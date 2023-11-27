@@ -92,7 +92,10 @@ export class CertificatesComponent implements OnInit {
         let applicantPersonRecId = Number(localStorage.getItem('recId'));
         let response:any = await this.service.DeleteCertificate(selectedcertificate?.recid ,applicantPersonRecId);
         if(response?.Status){
+          this.toastrService.success(response?.Message);
           this.GetCertifiates();
+        }else{
+          this.toastrService.error(response?.Message);
         }
       }
     });
