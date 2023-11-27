@@ -54,9 +54,9 @@ export class SkillsComponent implements OnInit{
   async SkillAdded(skill:Skills){
     let skillData: Skills = {
       ...skill,
-      ratingLevelType:1,
-      RecId:0,
-      applicantPersonRecId:Number(localStorage.getItem('recId'))
+      ratingLevelType: 1,
+      RecId: 0,
+      applicantPersonRecId: Number(localStorage.getItem('recId'))
     }
     let response;
     var isEdit = false;
@@ -67,15 +67,12 @@ export class SkillsComponent implements OnInit{
     } else {
       response = await this.lookUpService.CreateSkill(skillData);
     }
-    if(response?.Status){
+    if (response?.Status) {
       this.toastrService.success(response?.Message);
-      if (isEdit) {
-        let index = this.skillList.findIndex(x=> x.RecId == skill.RecId)
-        this.skillList[index] = skill;
-      } else {
-        this.skillList.push(skill);
-      }
+      this.GetSkillsList();
       this.CloseSidenav();
+    } else {
+      this.toastrService.error(response?.Message);
     }
     
   }
@@ -87,7 +84,10 @@ export class SkillsComponent implements OnInit{
         let applicantPersonRecId = Number(localStorage.getItem('recId'));
         let response:any = await this.lookUpService.DeleteSkills(selectedSkill?.RecId ,applicantPersonRecId);
         if(response?.Status){
+          this.toastrService.success(response?.Message);
           this.GetSkillsList();
+        }else{
+          this.toastrService.error(response?.Message);
         }
       }
     });
