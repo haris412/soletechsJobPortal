@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   ) {
 
   }
-  ngOnInit() {
+  async ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.changePrimaryColor('#005a9c');
-    this.GetToken();
+    await this.GetToken();
   }
   getState(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData;

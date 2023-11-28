@@ -29,7 +29,7 @@ export class JobsListComponent implements OnInit {
   constructor(private recruitmentService: RecruitmentService,
     private sharedService: SharedService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.mobileView = this.width < this.minimunWidth;
     if (this.mobileView && this.selectedJob.id === undefined) {
       this.show = false;
@@ -38,7 +38,7 @@ export class JobsListComponent implements OnInit {
       this.webView = false;
       this.show = true;
     }
-    this.getRecruitmentProjectsList();
+    await this.getRecruitmentProjectsList();
   }
 
   async getRecruitmentProjectsList() {
@@ -50,7 +50,6 @@ export class JobsListComponent implements OnInit {
  
   OpenJob(job: Job) {
     this.selectedJob = job;
-    console.log(this.selectedJob);
     this.GetJobDetail(job);
     this.isActive = true;
     if (this.mobileView) {

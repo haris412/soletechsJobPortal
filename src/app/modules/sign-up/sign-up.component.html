@@ -1,238 +1,155 @@
 <div class="container-fluid main-container">
   <form class="row" action="" [formGroup]="this.userForm">
-  <div class="sign-up-info-div profile-div">
-    <span class="heading">Profile Picture</span>
-    <div class="d-flex align-items-center upload-profile-pic mt-3">
-      <div class="profile">
-        <img [src]="imageAvatar ? imageAvatar : defaultUrl" alt="" />
-      </div>
-      <div class="d-flex flex-column flex-lg-row upload-btns gap-2">
-        <button
-          type="file"
-          class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8 position-relative"
-          (change)="selectFile($event)"
-        >
-          Change Avatar
-          <input
-            class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0"
-            type="file"
-            id="formFile"
-          />
-        </button>
-        <button
-          type="button"
-          class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-        >
-          Remove Avatar
-        </button>
+    <div class="sign-up-info-div profile-div">
+      <span class="heading">Profile Picture</span>
+      <div class="d-flex align-items-center upload-profile-pic mt-3">
+        <div class="profile">
+          <img [src]="imageAvatar ? imageAvatar : defaultUrl" alt="" />
+        </div>
+        <div class="d-flex flex-column flex-lg-row upload-btns gap-2">
+          <button type="file" class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8 position-relative"
+            (change)="selectFile($event)">
+            Change Avatar
+            <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file"
+              id="formFile" />
+          </button>
+          <button type="button"
+            class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8">
+            Remove Avatar
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="sign-up-info-div cv-div">
-    <div class="heading mb-3">CV File</div>
-    <p class="font-poppins-bold text-midnight-moss">Upload</p>
-    <div class="upload-file">
-      <img src="assets/SVG/upload.svg" alt="" />
-      <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
-      <span>PDF or DOC (max. size 6MB)</span>
-      <input
-        class="form-control"
-        type="file"
-        id="formFile"
-        (change)="onFileUpload($event)"
-      />
-    </div>
-    <div
-      *ngIf="fileList.length > 0"
-      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2"
-    >
-      <div
-        class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
-        *ngFor="let file of fileList"
-      >
-        <div class="file-details rounded">
-          <div class="d-flex align-items-center gap-2">
-            <div class="file-icon">
-              <img src="assets/SVG/pdf-icon.svg" alt="" />
+    <div class="sign-up-info-div cv-div">
+      <div class="heading mb-3">CV File</div>
+      <p class="font-poppins-bold text-midnight-moss">Upload</p>
+      <div class="upload-file">
+        <img src="assets/SVG/upload.svg" alt="" />
+        <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+        <span>PDF or DOC (max. size 6MB)</span>
+        <input class="form-control" type="file" id="formFile" (change)="onFileUpload($event)" />
+      </div>
+      <div *ngIf="fileList.length > 0"
+        class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
+        <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
+          *ngFor="let file of fileList">
+          <div class="file-details rounded">
+            <div class="d-flex align-items-center gap-2">
+              <div class="file-icon">
+                <img src="assets/SVG/pdf-icon.svg" alt="" />
+              </div>
+              <div class="file-name-type">
+                <span class="file-name">{{ file.name }}</span>
+                <h6 class="file-type font-poppins-bold">PDF</h6>
+              </div>
             </div>
-            <div class="file-name-type">
-              <span class="file-name">{{ file.name }}</span>
-              <h6 class="file-type font-poppins-bold">PDF</h6>
+            <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+              <img height="20" src="assets/SVG/delete.svg" alt="" (click)="DeleteFile(file)" />
             </div>
-          </div>
-          <div
-            class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
-          >
-            <img
-              height="20"
-              src="assets/SVG/delete.svg"
-              alt=""
-              (click)="DeleteFile(file)"
-            />
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="sign-up-info-div">
-    <span class="heading">User Info</span>
-    <div class="d-flex flex-wrap align-items-center">
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Personal Title</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-select  name='skillId' [formControlName]="'personalTitle'">
-            <mat-option *ngFor="let title of personalTitle" [value]="title.value">{{title.name}}</mat-option>
-          </mat-select>
-          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-        </mat-form-field>
-        
-      </div>
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">First Name</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter first name"
-            [formControlName]="'firstName'"
-          />
-        </mat-form-field>
-      </div>
-      
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">First Name Arabic</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter Arabic name"
-            [formControlName]="'firstNameAr'"
-          />
-        </mat-form-field>
-      </div>
-
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Middle Name</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter middle name"
-            [formControlName]="'middleName'"
-          />
-        </mat-form-field>
-      </div>
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Middle Name Arabic</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter middle name"
-            [formControlName]="'middleNameAr'"
-          />
-        </mat-form-field>
-      </div>
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Last Name Prefix</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter last name prefix"
-            [formControlName]="'lastNamePrefix'"
-          />
-        </mat-form-field>
-      </div>
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Last Name</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="text"
-            matInput
-            placeholder="Enter last name"
-            [formControlName]="'lastName'"
-          />
-        </mat-form-field>
-      </div>
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Personal Suffix</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-select  name='skillId' [formControlName]="'personalSuffix'">
-            <mat-option *ngFor="let suffix of personalSuffix" [value]="suffix.value">{{suffix.name}}</mat-option>
-          </mat-select>
-          <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-        </mat-form-field>
-      </div>
-    </div>
-    <!-- </form> -->
-  </div>
-  <div class="sign-up-info-div">
-    <!-- <form class="row" action="" [formGroup]="this.userForm"> -->
+    <div class="sign-up-info-div">
+      <span class="heading">User Info</span>
       <div class="d-flex flex-wrap align-items-center">
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Email</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="email"
-            matInput
-            placeholder="Enter your email"
-            [formControlName]="'email'"
-          />
-        </mat-form-field>
+        <!-- <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Personal Title</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select name='skillId' [formControlName]="'personalTitle'">
+              <mat-option *ngFor="let title of personalTitle" [value]="title.value">{{title.name}}</mat-option>
+            </mat-select>
+            <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+          </mat-form-field>
+        </div> -->
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">First Name</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Enter first name" [formControlName]="'firstName'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">First Name Arabic</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Enter Arabic name" [formControlName]="'firstNameAr'" />
+          </mat-form-field>
+        </div>
+
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Middle Name</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Enter middle name" [formControlName]="'middleName'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Middle Name Arabic</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Enter middle name" [formControlName]="'middleNameAr'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Last Name Prefix</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Enter last name prefix" [formControlName]="'lastNamePrefix'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Last Name</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Enter last name" [formControlName]="'lastName'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Last Name Arabic</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Enter last name arabic" [formControlName]="'lastNamAr'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Mobile</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput placeholder="Mobile" [formControlName]="'mobile'" />
+          </mat-form-field>
+        </div>
+        
+        <!-- <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Personal Suffix</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select name='skillId' [formControlName]="'personalSuffix'">
+              <mat-option *ngFor="let suffix of personalSuffix" [value]="suffix.value">{{suffix.name}}</mat-option>
+            </mat-select>
+            <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+          </mat-form-field>
+        </div> -->
       </div>
-      <div class="d-flex flex-column fields-padding col-md-6 col-12">
-        <p class="text-midnight-moss font-poppins-medium">Password</p>
-        <mat-form-field appearance="outline" class="w-100">
-          <input
-            type="password"
-            matInput
-            placeholder="Enter your password"
-            [formControlName]="'password'"
-          />
-        </mat-form-field>
+    </div>
+    <div class="sign-up-info-div">
+      <div class="d-flex flex-wrap align-items-center">
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Email</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="email" matInput placeholder="Enter your email" [formControlName]="'email'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column fields-padding col-md-6 col-12">
+          <p class="text-midnight-moss font-poppins-medium">Password</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="password" matInput placeholder="Enter your password" [formControlName]="'password'" />
+          </mat-form-field>
+        </div>
       </div>
+    </div>
+    <div class="sign-up-info-div about-me">
+      <span class="heading">About Me</span>
+      <ckeditor [editor]="Editor"></ckeditor>
+    </div>
+    <div>
+      <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
+        <button type="button" (click)="Signup()"
+          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
+          Save changes
+        </button>
       </div>
-  </div>
-  <div class="sign-up-info-div about-me">
-    <span class="heading">About Me</span>
-    <ckeditor [editor]="Editor"></ckeditor>
-  </div>
-  
-  <!-- <div class="sign-up-info-div">
-    <div class="d-flex align-items-center justify-content-between">
-      <span class="heading">Profile</span>
-      <img
-        src="assets/SVG/edit-icon.svg"
-        alt=""
-        class="cursor-pointer"
-        (click)="RouteToProfile()"
-      />
     </div>
-  </div>
-  <div class="sign-up-info-div">
-    <div class="d-flex align-items-center justify-content-between">
-      <span class="heading">Competencies</span>
-      <img
-        src="assets/SVG/edit-icon.svg"
-        alt=""
-        class="cursor-pointer"
-        (click)="RouteToCompetencies()"
-      />
-    </div>
-  </div> -->
-  <div>
-    <div
-      class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns"
-    >
-      <button
-        type="button"
-        (click)="Signup()"
-        class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap"
-      >
-        Save changes
-      </button>
-    </div>
-  </div>
-</form>
+  </form>
 </div>

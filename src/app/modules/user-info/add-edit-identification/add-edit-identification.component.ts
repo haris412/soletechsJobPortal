@@ -33,7 +33,6 @@ export class AddEditIdentificationComponent implements OnInit{
     });
   }
  ngOnInit(){
-  console.log(this.selectedIdentification);
    if (this.selectedIdentification != undefined) {
      this.identificationForm.patchValue({
        ...this.selectedIdentification

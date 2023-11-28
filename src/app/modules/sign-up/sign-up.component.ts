@@ -33,14 +33,14 @@ export class SignUpComponent implements OnInit {
 		public userInfo: UserInfoService,
 		public lookupService: AppLookUpService) {
 		this.userForm = this._formBuilder.group({
-			personalTitle: ['', [Validators.required]],
 			firstName: ['', [Validators.required]],
 			firstNamAr: [''],
+			lastNamAr: [''],
 			middleNameAr: [''],
 			middleName: ['', [Validators.required]],
 			lastName: ['', [Validators.required]],
 			lastNamePrefix: [''],
-			personalSuffix: ['', [Validators.required]],
+			mobile:['', [Validators.required]],
 			email: ['', [Validators.required]],
 			password: ['', [Validators.required]],
 			aboutMe: ['']
@@ -122,7 +122,6 @@ export class SignUpComponent implements OnInit {
 	}
 
 	DeleteFile(selectedFile: File) {
-		//this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
 		this.fileList = [];
 	}
 
