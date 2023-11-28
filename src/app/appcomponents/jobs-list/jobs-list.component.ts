@@ -47,7 +47,7 @@ export class JobsListComponent implements OnInit {
       this.jobsList = jobsResponseObj.parmRecruitmentProjectsList;
     }
   }
- 
+
   OpenJob(job: Job) {
     this.selectedJob = job;
     this.GetJobDetail(job);
