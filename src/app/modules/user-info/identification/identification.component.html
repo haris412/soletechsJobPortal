@@ -16,16 +16,16 @@
           <p class="text-shuttle-grey">You haven't added any information</p>
         </div>
       </div>
-      <div  *ngIf="this.userInfoService.identificationList != undefined" class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" >
+      <div  *ngFor="let identification of userInfoService?.identificationList?.parmApplicantProfileIdentificationList" class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" >
         <div class="d-flex align-items-center w-100 identification-item-container">
           <div class="identification-item rounded w-100">
-            <h6 class="mb-0 font-poppins-bold">{{this.userInfoService.identificationList?.IdentificationNumber}}</h6>
+            <h6 class="mb-0 font-poppins-bold">{{identification?.IdentificationNumber}}</h6>
             <div class="d-flex align-items-center gap-1">
               <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img class="cursor-pointer" (click)="EditIdentification(this.userInfoService.identificationList)" src="assets/SVG/edit-icon.svg" alt="" />
+                <img class="cursor-pointer" (click)="EditIdentification(identification)" src="assets/SVG/edit-icon.svg" alt="" />
               </div>
               <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
-                <img height="20" src="assets/SVG/delete.svg" (click)="DeleteIdentification(this.userInfoService.identificationList)" alt="" />
+                <img height="20" src="assets/SVG/delete.svg" (click)="DeleteIdentification(identification)" alt="" />
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
     </div>
   </div>
 </div>
-<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'">
+<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
   <span class="heading">Identification</span>
   <app-add-edit-identification (closeSideNav)="CloseSidenav()" [selectedIdentification]="selectedIdentification"
     (identificationData)=IdentificationAdded($event)></app-add-edit-identification>

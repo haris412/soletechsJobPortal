@@ -56,7 +56,7 @@ export class UserInfoService {
 		   this.basicInfo = res?.ApplicantProfileGeneral;
 		   this.contactsList= res?.ApplicantProfileContactList?.parmApplicantProfileContactList;
 		   this.addressList = res?.ApplicantProfileAddressList?.parmApplicantProfileAddressList;
-		   this.identificationList = res?.ApplicantProfileIdentification
+		   this.identificationList = res?.ApplicantProfileIdentification;
 		}
 	  }
 }

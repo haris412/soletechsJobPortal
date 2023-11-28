@@ -27,12 +27,13 @@ export class AddEditIdentificationComponent implements OnInit{
       IdentificationNumber: ['', [Validators.required]],
       IssueDate: ['', [Validators.required]],
       ExpiryDate: ['', [Validators.required]],
-      recid:[this.selectedIdentification?.recid ? this.selectedIdentification?.recid : 0],
+      recId:[this.selectedIdentification?.recId ? this.selectedIdentification?.recId : 0],
       attachment: ['']
 
     });
   }
  ngOnInit(){
+  console.log(this.selectedIdentification);
    if (this.selectedIdentification != undefined) {
      this.identificationForm.patchValue({
        ...this.selectedIdentification
@@ -48,7 +49,6 @@ export class AddEditIdentificationComponent implements OnInit{
   SaveIdentification: () => void = () => {
     if (this.identificationForm.valid) {
       this.identification = this.identificationForm.getRawValue();
-      this.toastrService.success('Identificatin Added Successfully');
       this.identificationData.emit(this.identification);
     } else {
       this.identificationForm.markAllAsTouched();
@@ -62,7 +62,6 @@ export class AddEditIdentificationComponent implements OnInit{
   }
 
   DeleteFile(selectedFile:File) {
-    //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
     this.fileList = [];
   }
 }
