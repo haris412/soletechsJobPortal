@@ -23,14 +23,15 @@ export class AddEditBasicinformationComponent implements OnInit{
     this.applicantForm = this._applicantFormBuilder.group({
 			currentJobTitle: ['',[Validators.required]],
 			firstName:['', [Validators.required]],
-			lastName:['', [Validators.required]],
+			lastNamePrefix:['', [Validators.required]],
 			middleName:['', [Validators.required]],
-			maritalStatus:['', [Validators.required]],
+			maritalStatus:[0, [Validators.required]],
 			birthDate:[''],
 			highestDegree:['', [Validators.required]],
 			currentSalary:[''],
 			reasonCode:[''],
-			gender:['', [Validators.required]],
+      previousEmployee:[0],
+			gender:[ 0 , [Validators.required]],
 			nationality:['', [Validators.required]],
 			nativeLanguageId:['', [Validators.required]],
 			ethnicOriginId:['', [Validators.required]]
@@ -55,10 +56,12 @@ export class AddEditBasicinformationComponent implements OnInit{
   }
 
   async SaveChanges(){
+    debugger;
     if (this.applicantForm?.valid) {
 		   let profileData :any = {
         ...this.applicantForm.value,
-        applicantId:localStorage.getItem("applicantId"),
+        gender:Number(this.applicantForm?.controls?.gender.value),
+        maritalStatus:Number(this.applicantForm?.controls?.maritalStatus.value),
         recid:this.userInfoService?.basicInfo?.recid ? this.userInfoService?.basicInfo?.recid : 0
        }
 			 let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);

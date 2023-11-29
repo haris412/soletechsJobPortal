@@ -33,6 +33,7 @@ export class SignUpComponent implements OnInit {
 		public userInfo: UserInfoService,
 		public lookupService: AppLookUpService) {
 		this.userForm = this._formBuilder.group({
+			applicantImage:[''],
 			firstName: ['', [Validators.required]],
 			firstNamAr: [''],
 			lastNamAr: [''],

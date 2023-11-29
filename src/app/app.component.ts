@@ -35,9 +35,9 @@ export class AppComponent implements OnInit {
         else this.isPositionAbsolute = true;
       }
     });
-    if (!localStorage.getItem('token')) {
-      this.router.navigate(['/']);
-    }
+    // if (!localStorage.getItem('token')) {
+    //   this.router.navigate(['/']);
+    // }
     this.changePrimaryColor('#005a9c');
     await this.GetToken();
   }
@@ -52,7 +52,6 @@ export class AppComponent implements OnInit {
     let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');
     if (accessTokenResponse) {
       this.sharedService.SetToken(accessTokenResponse.access_token);
-      localStorage.setItem('token', accessTokenResponse.access_token);
     }
   }
 }

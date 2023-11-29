@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitmentService } from 'src/app/app-services/jobs.service';
-import { jobsQueryParameters } from 'src/app/models/get-jobs-parameters.model';
 import { JobDetailParameter } from 'src/app/models/job-detail-parameter';
 import { Job } from 'src/app/models/job.model';
 import { SharedService } from 'src/app/shared/services/shared.service';

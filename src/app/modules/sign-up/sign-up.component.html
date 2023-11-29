@@ -141,7 +141,9 @@
     </div>
     <div class="sign-up-info-div about-me">
       <span class="heading">About Me</span>
-      <ckeditor [editor]="Editor"></ckeditor>
+      <mat-form-field appearance="outline" class="w-100">
+      <ckeditor [editor]="Editor" [formControlName]="'aboutMe'"></ckeditor>
+    </mat-form-field>
     </div>
     <div>
       <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
