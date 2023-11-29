@@ -79,6 +79,7 @@ export const apiURLs = {
         deleteTrustedPosition:`${environment.apiUrl}/ERPApplicant/DeleteTrustedPosition`,
         deleteAddress:`${environment.apiUrl}/ERPApplicant/DeleteAddress`,
         deleteContact:`${environment.apiUrl}/ERPApplicant/DeleteContact`,
-        deleteIdentification:`${environment.apiUrl}/ERPApplicant/DeleteIdentification`
+        deleteIdentification:`${environment.apiUrl}/ERPApplicant/DeleteIdentification`,
+        validateEmail:`${environment.apiUrl}/ERPApplicant/ValidateEmail`,  
     }
 }

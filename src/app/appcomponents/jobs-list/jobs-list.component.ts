@@ -43,7 +43,7 @@ export class JobsListComponent implements OnInit {
   async getRecruitmentProjectsList() {
     let jobsResponseObj = await this.recruitmentService.GetStartedRecruitingList();
     if (jobsResponseObj) {
-      this.jobsList = jobsResponseObj.parmRecruitmentProjectsList;
+      this.jobsList = jobsResponseObj.parmRecruitmentProjectsList ?? [];
     }
   }
 

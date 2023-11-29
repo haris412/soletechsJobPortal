@@ -5,10 +5,12 @@ import { SignUpComponent } from './sign-up.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SignupRoutes } from './sign-up-routing';
+import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 
 @NgModule({
   declarations: [
-    SignUpComponent
+    SignUpComponent,
+    PasswordStrengthComponent
   ],
   imports: [
     RouterModule.forChild(SignupRoutes),
