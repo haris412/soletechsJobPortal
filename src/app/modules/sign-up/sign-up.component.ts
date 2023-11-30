@@ -27,16 +27,19 @@ export class SignUpComponent implements OnInit {
 	private _formBuilder = inject(UntypedFormBuilder);
 	userForm: UntypedFormGroup;
 	user: User = new User();
+	userData:any;
 	personalTitle: any[] = [];
 	personalSuffix: any[] = [];
+	aboutMe:string = '';
+	get f() { return this.userForm.controls; }
 	constructor(private router: Router,
 		public userInfo: UserInfoService,
 		public lookupService: AppLookUpService) {
 		this.userForm = this._formBuilder.group({
 			applicantImage:[''],
 			firstName: ['', [Validators.required]],
-			firstNamAr: [''],
-			lastNamAr: [''],
+			firstNameAr: [''],
+			lastNameAr: [''],
 			middleNameAr: [''],
 			middleName: ['', [Validators.required]],
 			lastName: ['', [Validators.required]],
@@ -53,7 +56,7 @@ export class SignUpComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.GetLookups();
+		//this.GetLookups();
 	}
 
 	async GetLookups() {
@@ -130,6 +133,10 @@ export class SignUpComponent implements OnInit {
 		if (this.userForm?.valid) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
+			this.userData = {
+				...this.userForm.value,
+				aboutMe:this.aboutMe
+			}
 			var data = await this.lookupService.CreateApplicant(this.user);
 			if (data != null && data.Status) {
 				this.userInfo.prepareApplicantFormGroup();
@@ -151,6 +158,7 @@ export class SignUpComponent implements OnInit {
 				});
 			}
 		} else {
+			this.userForm.markAllAsTouched();
 			Swal.fire({
 				title: "Alert",
 				icon: 'error',

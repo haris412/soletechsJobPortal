@@ -34,6 +34,8 @@ export class QuickApplyComponent implements OnInit{
   private _formBuilder = inject(UntypedFormBuilder);
   quickApplyForm: UntypedFormGroup;
   separateDialCode = false;
+  name:string = '';
+  email:string = '';
   get f() { return this.quickApplyForm.controls; }
   constructor(
     private router: Router,
@@ -42,18 +44,21 @@ export class QuickApplyComponent implements OnInit{
     private toastrService: ToastrService,
 
   ) {
+    this.name = localStorage.getItem('userName') ?? '';
+    this.email = localStorage.getItem('email') ?? '';
+
     this.quickApplyForm = this._formBuilder.group({
-      name:['', [Validators.required]],
+      name:[this.name, [Validators.required]],
       nameAr: [''],
       recruitmentProject: [this.recruitmentProject?.recruitingId, [Validators.required]],
-      nationality: ['', [Validators.required]],
-      email:['',[Validators.required]],
+      nationality: [''],
+      email:[this.email,[Validators.required]],
       phone:['',[Validators.required]],
       linkedIn: [''],
       highestDegree:[''],
-      address:['',[Validators.required]],
-      currentAddressOut: ['' ,[Validators.required]],
-      dateOfBirth: ['' ,[Validators.required]],
+      address:[''],
+      currentAddressOut: ['' ],
+      dateOfBirth: [''],
       residentIdentity:[0],
       residentIdentityProfessional:[''],
       periodJoin:[''],
@@ -140,7 +145,7 @@ export class QuickApplyComponent implements OnInit{
   CloseSidenav() {
     this.closeClicked.emit(true);
   }
-  SelectionChnage(event:any){
+  SelectionChange(event:any){
     console.log(event);
   }
 

@@ -1,5 +1,5 @@
 <div class="container-fluid main-container">
-  <form class="row" action="" [formGroup]="this.userForm">
+  <form class="row" action="" [formGroup]="userForm">
     <div class="sign-up-info-div profile-div">
       <span class="heading">Profile Picture</span>
       <div class="d-flex align-items-center upload-profile-pic mt-3">
@@ -53,19 +53,11 @@
     <div class="sign-up-info-div">
       <span class="heading">User Info</span>
       <div class="d-flex flex-wrap align-items-center">
-        <!-- <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Personal Title</p>
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-select name='skillId' [formControlName]="'personalTitle'">
-              <mat-option *ngFor="let title of personalTitle" [value]="title.value">{{title.name}}</mat-option>
-            </mat-select>
-            <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-          </mat-form-field>
-        </div> -->
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
           <p class="text-midnight-moss font-poppins-medium">First Name</p>
           <mat-form-field appearance="outline" class="w-100">
             <input type="text" matInput placeholder="Enter first name" [formControlName]="'firstName'" />
+            <!-- <mat-error class="error-message" *ngIf="f.firstName.hasError('required') && (f.firstName.dirty || f.firstName.touched)">First Name is Required</mat-error> -->
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
@@ -79,6 +71,7 @@
           <p class="text-midnight-moss font-poppins-medium">Middle Name</p>
           <mat-form-field appearance="outline" class="w-100">
             <input type="text" matInput placeholder="Enter middle name" [formControlName]="'middleName'" />
+            <!-- <mat-error class="error-message" *ngIf="f.middleName.hasError('required') && (f.middleName.dirty || f.middleName.touched)">Middle Name is Required</mat-error> -->
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
@@ -97,12 +90,13 @@
           <p class="text-midnight-moss font-poppins-medium">Last Name</p>
           <mat-form-field appearance="outline" class="w-100">
             <input type="text" matInput placeholder="Enter last name" [formControlName]="'lastName'" />
+            <mat-error class="error-message" *ngIf="f.lastName.hasError('required') && (f.lastName.dirty || f.lastName.touched)">Last Name is Required</mat-error>
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
           <p class="text-midnight-moss font-poppins-medium">Last Name Arabic</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter last name arabic" [formControlName]="'lastNamAr'" />
+            <input type="text" matInput placeholder="Enter last name arabic" [formControlName]="'lastNameAr'" />
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
@@ -111,16 +105,6 @@
             <input type="text" matInput placeholder="Mobile" [formControlName]="'mobile'" />
           </mat-form-field>
         </div>
-        
-        <!-- <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Personal Suffix</p>
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-select name='skillId' [formControlName]="'personalSuffix'">
-              <mat-option *ngFor="let suffix of personalSuffix" [value]="suffix.value">{{suffix.name}}</mat-option>
-            </mat-select>
-            <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-          </mat-form-field>
-        </div> -->
       </div>
     </div>
     <div class="sign-up-info-div">
@@ -129,21 +113,21 @@
           <p class="text-midnight-moss font-poppins-medium">Email</p>
           <mat-form-field appearance="outline" class="w-100">
             <input type="email" matInput placeholder="Enter your email" [formControlName]="'email'" />
+            <!-- <mat-error class="error-message" *ngIf="f.email.hasError('required') && (f.email.dirty || f.email.touched)">Email is Required</mat-error> -->
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
           <p class="text-midnight-moss font-poppins-medium">Password</p>
           <mat-form-field appearance="outline" class="w-100">
             <input type="password" matInput placeholder="Enter your password" [formControlName]="'password'" />
+            <!-- <mat-error class="error-message" *ngIf="f.password.hasError('required') && (f.password.dirty || f.password.touched)">Password is Required</mat-error> -->
           </mat-form-field>
         </div>
       </div>
     </div>
     <div class="sign-up-info-div about-me">
       <span class="heading">About Me</span>
-      <mat-form-field appearance="outline" class="w-100">
-      <ckeditor [editor]="Editor" [formControlName]="'aboutMe'"></ckeditor>
-    </mat-form-field>
+      <ckeditor [editor]="Editor" ></ckeditor>
     </div>
     <div>
       <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">

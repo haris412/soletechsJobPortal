@@ -3,6 +3,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { UserInfoService } from '../user-info.service';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,19 +20,20 @@ export class AddEditBasicinformationComponent implements OnInit{
   public Editor = ClassicEditor;
   applicantForm!: UntypedFormGroup;
   constructor(public userInfoService: UserInfoService,
-              private lookUpService:AppLookUpService,) {
+              private lookUpService:AppLookUpService,
+              private toasterService:ToastrService) {
     this.applicantForm = this._applicantFormBuilder.group({
 			currentJobTitle: ['',[Validators.required]],
 			firstName:['', [Validators.required]],
 			lastNamePrefix:['', [Validators.required]],
 			middleName:['', [Validators.required]],
-			maritalStatus:[0, [Validators.required]],
+			maritalStatus:['0', [Validators.required]],
 			birthDate:[''],
 			highestDegree:['', [Validators.required]],
 			currentSalary:[''],
 			reasonCode:[''],
-      previousEmployee:[0],
-			gender:[ 0 , [Validators.required]],
+      previousEmployee:['0'],
+			gender:[ '0' , [Validators.required]],
 			nationality:['', [Validators.required]],
 			nativeLanguageId:['', [Validators.required]],
 			ethnicOriginId:['', [Validators.required]]
@@ -40,7 +42,10 @@ export class AddEditBasicinformationComponent implements OnInit{
 
    ngOnInit(): void {
     this.applicantForm.patchValue({
-      ...this.userInfoService.basicInfo
+      ...this.userInfoService.basicInfo,
+      gender: Number(this.userInfoService.basicInfo?.gender),
+      maritalStatus: Number(this.userInfoService.basicInfo?.maritalStatus),
+      previousEmployee: Number(this.userInfoService.basicInfo?.previousEmployee)
     })
     
   }
@@ -56,19 +61,24 @@ export class AddEditBasicinformationComponent implements OnInit{
   }
 
   async SaveChanges(){
-    debugger;
     if (this.applicantForm?.valid) {
-		   let profileData :any = {
+      let profileData: any = {
         ...this.applicantForm.value,
-        gender:Number(this.applicantForm?.controls?.gender.value),
-        maritalStatus:Number(this.applicantForm?.controls?.maritalStatus.value),
-        recid:this.userInfoService?.basicInfo?.recid ? this.userInfoService?.basicInfo?.recid : 0
-       }
-			 let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);
-       if(response){
-        console.log(response);
-       }
-
+        gender: Number(this.applicantForm?.controls?.gender.value),
+        maritalStatus: Number(this.applicantForm?.controls?.maritalStatus?.value),
+        previousEmployee: Number(this.applicantForm?.controls?.previousEmployee?.value) ?? 0,
+        recid: this.userInfoService?.basicInfo?.recid ? this.userInfoService?.basicInfo?.recid : 0
+      }
+      try {
+        let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);
+        if (response?.Status) {
+          this.toasterService.success(response?.Message);
+        } else {
+          this.toasterService.error(response?.Message);
+        }
+      } catch (ex) {
+        console.error();
+      }
     }
   }
 }

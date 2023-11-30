@@ -10,6 +10,7 @@ import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/
 export class HeaderComponent implements OnInit {
 
   isLogin:boolean = false;
+  userName:string = '';
   constructor(
     private router:Router,
     private applicantDataService:ApplicantDataService
@@ -18,8 +19,9 @@ export class HeaderComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem('applicantId');
     if(token){
+      this.userName = localStorage.getItem('userName') ?? '';
       this.isLogin = true;
     }
   }

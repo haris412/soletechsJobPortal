@@ -5,6 +5,7 @@ import { SignUpComponent } from './sign-up.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SignupRoutes } from './sign-up-routing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

@@ -37,6 +37,7 @@ export class JobsListComponent implements OnInit {
       this.webView = false;
       this.show = true;
     }
+    await this.GetToken();
     await this.getRecruitmentProjectsList();
   }
 
@@ -94,6 +95,12 @@ export class JobsListComponent implements OnInit {
 
   onEnterPressed() {
     const inputText = this.inputText;
+  }
+  async GetToken() {
+    let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');
+    if (accessTokenResponse) {
+      this.sharedService.SetToken(accessTokenResponse.access_token);
+    }
   }
 
 }
