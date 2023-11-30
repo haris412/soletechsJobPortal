@@ -590,4 +590,15 @@ export class AppLookUpService {
                 { params: queryParams }
             ).toPromise();
     }
+    async ValidateEmail(
+        email: string
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('email', email)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.validateEmail,
+                { params: queryParams }
+            ).toPromise();
+    }
 }

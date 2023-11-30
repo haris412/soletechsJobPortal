@@ -7,6 +7,7 @@ import { UserInfoService } from '../user-info/user-info.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import Swal from "sweetalert2";
 import { forkJoin } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-signup',
@@ -32,9 +33,11 @@ export class SignUpComponent implements OnInit {
 	personalSuffix: any[] = [];
 	aboutMe:string = '';
 	get f() { return this.userForm.controls; }
+	strongPassword = false;
 	constructor(private router: Router,
 		public userInfo: UserInfoService,
-		public lookupService: AppLookUpService) {
+		public lookupService: AppLookUpService,
+		private toastrService: ToastrService) {
 		this.userForm = this._formBuilder.group({
 			applicantImage:[''],
 			firstName: ['', [Validators.required]],
@@ -167,4 +170,15 @@ export class SignUpComponent implements OnInit {
 			});
 		}
 	}
+
+	async validateEmail() {
+		var validate = await this.lookupService.ValidateEmail(this.userForm.controls.email.value);
+		if (validate != undefined && validate.Status) {
+			this.toastrService.error(validate?.Message);
+		}
+	}
+
+	onPasswordStrengthChanged(event: boolean) {
+		this.strongPassword = event;
+	  }
 }
