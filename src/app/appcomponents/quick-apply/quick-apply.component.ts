@@ -150,6 +150,9 @@ export class QuickApplyComponent implements OnInit{
   }
 
   async QuickApply(){
+    this.quickApplyForm.controls.highestDegree.setValue(this.degreeCtrl.value);
+    this.quickApplyForm.controls.nationality.setValue(this.nationalityCtrl.value);
+    this.quickApplyForm.controls.currentAddressOut.setValue(this.countriesCtrl.value);
     if (this.quickApplyForm.valid) {
       let applicationData: Application = {
         ...this.quickApplyForm.getRawValue(),
