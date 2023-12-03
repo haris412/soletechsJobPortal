@@ -24,9 +24,9 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     }
   }
   ngOnInit(): void {
-    console.log(this.appliedJobs);
   }
-  GoToJobActions() {
+  GoToJobActions(selectedJob:any) {
+    localStorage.setItem("applicationId",selectedJob?.applicationId);
     this.router.navigate(['/applicant/job-actions']);
   }
   GoToJobs(){

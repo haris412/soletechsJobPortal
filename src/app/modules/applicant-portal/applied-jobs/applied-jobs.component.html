@@ -11,7 +11,7 @@
     </div>
   </div>
   <div *ngIf="appliedJobs?.length > 0">
-  <div  *ngFor="let appliedJob of appliedJobs" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions()">
+  <div  *ngFor="let appliedJob of appliedJobs" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
