@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     private router:Router,
     private applicantDataService:ApplicantDataService
     ) { 
-      this.applicantDataService.loginEmitter.subscribe(x=> this.isLogin = true);
+      this.applicantDataService.loginEmitter.subscribe(x=> this.UserLogin());
     }
 
   ngOnInit(): void {
@@ -28,6 +28,14 @@ export class HeaderComponent implements OnInit {
 
   Login(){
     this.router.navigate(['/login']);
+  }
+  UserLogin(){
+    this.isLogin = true;
+    let token = localStorage.getItem('applicantId');
+    if(token){
+      this.userName = localStorage.getItem('userName') ?? '';
+      this.isLogin = true;
+    }
   }
   OpenProfile(){
     this.router.navigate(['/user-profile']);

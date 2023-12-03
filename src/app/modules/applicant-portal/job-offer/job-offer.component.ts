@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 
 
@@ -11,14 +11,22 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
   styleUrls: ['./job-offer.component.scss']
 })
 export class JobOfferComponent implements OnInit{
-  @Input() applicationId:string = "";
   basicInfo:any;
   finaceInfo:any;
   benefits:any;
+  applicationId:string = '';
   constructor(private location: Location,
               private toastrService: ToastrService,
               private router:Router,
-              private service:AppLookUpService) { }
+              private service:AppLookUpService,
+              private route: ActivatedRoute) { 
+                console.log(this.route.params);
+                this.route.params.subscribe(
+                  params => 
+                  this.applicationId = params['id']
+                );
+                console.log(this.applicationId);
+              }
   
   ngOnInit() {
     this.GetJobOffer();            
@@ -27,7 +35,7 @@ export class JobOfferComponent implements OnInit{
     this.location.back();
   }
   async GetJobOffer(){
-    let applcationId = localStorage.getItem("applicationId") ?? "00104";
+    let applcationId = localStorage.getItem("applicationId") ?? "";
     let response = await this.service.JobOfferDetails(applcationId);
     if(response){
       this.basicInfo = response?.jobOffer_BasicInfo;

@@ -44,21 +44,9 @@
         <h5>Finance Information</h5>
       </div>
       <div class="offer-info">
-        <div class="offer-detail">
-          <p>Basic salary</p>
-          <h6>{{finaceInfo?.basicSalary}} SAR</h6>
-        </div>
-        <div class="offer-detail">
-          <p>Transportation allowance</p>
-          <h6>{{finaceInfo?.transportationAllowance }} SAR</h6>
-        </div>
-        <div class="offer-detail">
-          <p>Housing allowance</p>
-          <h6>{{finaceInfo?.housingAllowance }} SAR</h6>
-        </div>
-        <div class="offer-detail">
-          <p>Total monthly salary</p>
-          <h6>{{finaceInfo?.totalMonthlySalary}} SAR</h6>
+        <div class="offer-detail" *ngFor="let financing of finaceInfo?.parmApplicationFinanceInfoList">
+          <p>{{financing?.description}}</p>
+          <h6>{{financing?.Amount}} SAR</h6>
         </div>
       </div>
     </div>

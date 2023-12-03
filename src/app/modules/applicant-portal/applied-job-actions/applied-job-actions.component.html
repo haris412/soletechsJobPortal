@@ -2,7 +2,7 @@
   <h4 class="text-midnight-moss">Applied Jobs</h4>
   <div class="job-detail rounded-3">
     <div class="d-flex align-items-center justify-content-between">
-      <h5 class="text-midnight-moss">Lead Product Design</h5>
+      <h5 class="text-midnight-moss">{{selectedJob?.Title}}</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <div>
           <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
@@ -13,16 +13,15 @@
       </div>
     </div>
     <p class="text-shuttle-grey">
-      Your job as a UX Designer is to give a world-class experience for
-      tiket.com users...
+      {{selectedJob?.Overview}}
     </p>
     <div class="d-flex align-items-center gap-1 job-location-info mb-2">
       <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
-      <p class="text-midnight-moss mb-0">Dubai, UAE</p>
+      <p class="text-midnight-moss mb-0">{{selectedJob?.JobLocation}}</p>
     </div>
     <div class="d-flex align-items-center gap-1 job-location-info mb-2">
       <img class="green-filter" src="assets/SVG/ic_Job.svg" alt="" />
-      <p class="text-midnight-moss mb-0">Remote</p>
+      <p class="text-midnight-moss mb-0">{{selectedJob?.jobType}}</p>
     </div>
     <div class="stage rounded-pill bg-feijoa">
       <p class="mb-0 font-poppins-medium text-midnight-moss">Interview Stage</p>

@@ -81,7 +81,7 @@ export class SkillsComponent implements OnInit{
     const dialogRef = this.deleteModal.openDialog(data);
      dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
         let response:any = await this.lookUpService.DeleteSkills(selectedSkill?.RecId ,applicantPersonRecId);
         if(response?.Status){
           this.toastrService.success(response?.Message);

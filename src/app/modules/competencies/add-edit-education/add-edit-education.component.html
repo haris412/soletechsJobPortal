@@ -3,15 +3,15 @@
     <p>Education</p>
     <mat-form-field appearance="outline" class="w-100" name="education">
       <mat-select name='education' [formControlName]="'EducationDisciplineRecId'">
-        <mat-option *ngFor="let discipline of educationDiscipline" [value]="discipline.value">{{discipline.name}}</mat-option>
+        <mat-option *ngFor="let discipline of educationDiscipline" [value]="discipline.value" (onSelectionChange) = "OnEducationChange($event)">{{discipline.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Description</p>
-    <mat-form-field appearance="outline" class="text-area w-100">
-      <textarea matInput name="description" [formControlName]="'Description'"></textarea>
+    <mat-form-field appearance="outline" class="w-100">
+      <input matInput name="description" [formControlName]="'Description'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
@@ -47,7 +47,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Start Date</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'">
+      <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput>
       <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
@@ -55,7 +55,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>End Date</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'">
+      <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput>
       <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>

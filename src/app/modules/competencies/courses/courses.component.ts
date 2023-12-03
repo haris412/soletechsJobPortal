@@ -51,7 +51,7 @@ export class CoursesComponent implements OnInit{
     let courseData: Course = {
       ...course,
       RecId: 0,
-      applicantPersonRecId: Number(localStorage.getItem('recId'))
+      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
     if (course?.RecId > 0) {
@@ -64,6 +64,8 @@ export class CoursesComponent implements OnInit{
       this.toastrService.success(response?.Message);
       this.GetCourses();
       this.CloseSidenav();
+    }else {
+      this.toastrService.error(response?.Message);
     }
   }
 

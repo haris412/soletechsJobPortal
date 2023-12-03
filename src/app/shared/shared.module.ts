@@ -11,6 +11,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SignupModalComponent } from './signup-modal/signup-modal.component';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 import { RescheduleModalComponent } from './reschedule-modal/reschedule-modal.component';
+import { DateValueAccessor } from './directives/date-input-accessor';
 
 
 
@@ -25,6 +26,7 @@ import { RescheduleModalComponent } from './reschedule-modal/reschedule-modal.co
     SignupModalComponent,
     NotificationModalComponent,
     RescheduleModalComponent,
+    DateValueAccessor
   ],
   imports: [
     MaterialModule,

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', response?.Email);
         localStorage.setItem("applicantId", response?.ApplicantId);
         localStorage.setItem("applicantPersonRecid", response?.ApplicantPersonRecid);
-        localStorage.setItem("recId", response?.ApplicantPersonRecid);
+        localStorage.setItem("recId", response?.recid);
         this.service.loginEmitter.emit(true);
         this.router.navigate(['/applicant']);
       }else{

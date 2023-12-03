@@ -52,7 +52,7 @@ export class PositionoftrustComponent implements OnInit{
     let positionData: PositionOfTrust = {
       ...positionOfTrust,
       Recid:0,
-      applicantPersonRecid: Number(localStorage.getItem('recId'))
+      applicantPersonRecid: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
     if (positionOfTrust.Recid > 0) {
@@ -65,6 +65,8 @@ export class PositionoftrustComponent implements OnInit{
       this.toastrService.success(response?.Message);
       this.GetPositionTrust();
       this.CloseSidenav();
+    }else {
+      this.toastrService.error(response?.Message);
     }
   }
 

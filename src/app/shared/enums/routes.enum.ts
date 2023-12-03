@@ -11,7 +11,7 @@ export enum RoutesEnum {
     App = 'app',
     Applicant = 'applicant',
     ApplicantDashboard = 'dashboard',
-    JobActions = 'job-actions',
+    JobActions = 'job-actions/:id',
     Onboarding = 'onboarding',
     LinkedInRedirect = 'linkedin-redirect',
     UserProfile = 'user-profile',

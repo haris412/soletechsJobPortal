@@ -151,7 +151,11 @@ export class SignUpComponent implements OnInit {
 					icon: 'success',
 					text: 'Applicant Created - ' + data?.applicantId,
 					confirmButtonText: 'Ok'
-				});
+				}).then((result) => {
+					if (result['isConfirmed']){
+					  this.router.navigate(['/login'])
+					}
+				  });
 			} else {
 				Swal.fire({
 					title: 'Error',

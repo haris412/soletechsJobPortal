@@ -57,15 +57,15 @@ export class EducationComponent implements OnInit{
   }
 
   async EducationAdded(education:Education){
-    let educationData :Education = {
+    let educationData: Education = {
       ...education,
-      CreditBasis:Number(education.CreditBasis) ?? 2 ,
-      applicantPersonRecId:Number(localStorage.getItem('recId')),
-      HRMDuration:4.0,
-      RecId:0,
-      PeriodUnit:"Years",
-      StartDate:this.datePipe.transform(education.StartDate,"yyyy-MM-dd") ?? '',
-      EndDate:this.datePipe.transform(education.EndDate,"yyyy-MM-dd") ?? ''
+      CreditBasis: Number(education.CreditBasis) ?? 2,
+      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid')),
+      HRMDuration: 4.0,
+      RecId: 0,
+      PeriodUnit: "Years",
+      StartDate: this.datePipe.transform(education.StartDate, "yyyy-MM-dd") ?? '',
+      EndDate: this.datePipe.transform(education.EndDate, "yyyy-MM-dd") ?? ''
     }
     let response;
     if (education?.RecId > 0) {
@@ -74,10 +74,12 @@ export class EducationComponent implements OnInit{
     } else {
       response = await this.lookUpService.CreateEducation(educationData);
     }
-    if(response?.Status){
-    this.toastrService.success(response?.Message);
-    await this.GetEducationList();
-    this.CloseSidenav();
+    if (response?.Status) {
+      this.toastrService.success(response?.Message);
+      await this.GetEducationList();
+      this.CloseSidenav();
+    } else {
+      this.toastrService.error(response?.Message);
     }
   }
 

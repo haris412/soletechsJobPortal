@@ -64,4 +64,8 @@ export class AddEditCertificatesComponent implements OnInit {
       //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
       this.fileList = [];
     }
+    OnCertificateChange(event:any){
+      this.certiifcateForm.controls.Description.setValue(event?.source?.value);
+      this.certiifcateForm.controls.Description.disable();
+    }
 }

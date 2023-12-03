@@ -25,7 +25,7 @@ export class AddEditSkillsComponent implements OnInit {
       SkillID: [''],
       ratingLevel: ['', [Validators.required]],
       ratingLevelDate: ['', [Validators.required]],
-      yearOfExperience:['', [Validators.required]],
+      Experience:['', [Validators.required]],
       attachment:['']
     });
     

@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApplicantDataService } from '../services/applicant-shared.service';
 
 @Component({
   selector: 'app-applied-jobs',
@@ -15,7 +16,7 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   public offerStage: boolean = false;
   public onBoardingStage: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private applicantService:ApplicantDataService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -26,8 +27,9 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   ngOnInit(): void {
   }
   GoToJobActions(selectedJob:any) {
-    localStorage.setItem("applicationId",selectedJob?.applicationId);
-    this.router.navigate(['/applicant/job-actions']);
+    this.applicantService.SetJob(selectedJob);
+    localStorage.setItem("applicationId", selectedJob?.applicationId);
+    this.router.navigate(['/applicant/job-actions' , selectedJob?.applicationId]);
   }
   GoToJobs(){
     this.router.navigate(['/jobs']);

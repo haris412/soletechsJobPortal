@@ -52,7 +52,7 @@ export class ApplicantDashboardComponent implements OnInit {
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let response = await this.lookUpService.MyApplicationJobList(applicantId);
     if(response){
-      this.appliedJobs = response?.parmRecruitmentJobList;
+      this.appliedJobs = response?.parmRecruitmentApplicationJobList;
     }
   }
 }

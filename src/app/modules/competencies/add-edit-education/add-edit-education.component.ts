@@ -23,7 +23,7 @@ export class AddEditEducationComponent implements OnInit{
   constructor(private competenciesService:CompetenciesCommonService){
     this.educationForm = this._formBuilder.group({
       id:[''],
-      Description: ['', [Validators.required]],
+      Description: [''],
       EducationDisciplineRecId: ['', [Validators.required]],
       EducationInstitutionId:['',[Validators.required]],
       EducationLevelId:['',[Validators.required]],
@@ -74,5 +74,9 @@ export class AddEditEducationComponent implements OnInit{
     DeleteFile: (selectedFile:File) => void = () => {
       //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
       this.fileList = [];
+    }
+    OnEducationChange(event:any){
+      this.educationForm.controls.Description.setValue(event?.source?.value);
+      this.educationForm.controls.Description.disable();
     }
 }
