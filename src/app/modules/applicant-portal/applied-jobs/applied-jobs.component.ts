@@ -8,7 +8,13 @@ import { Router } from '@angular/router';
 })
 export class AppliedJobsComponent implements OnInit , OnChanges{
   @Input() appliedJobs:any = new Object() as any;
+  public receivedStage: boolean = false;
   public completed: boolean = false;
+  public confirmedStage: boolean = false;
+  public interviewStage: boolean = false;
+  public offerStage: boolean = false;
+  public onBoardingStage: boolean = false;
+
   constructor(private router: Router) {
   }
 
