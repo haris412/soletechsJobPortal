@@ -11,6 +11,9 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
   styleUrls: ['./job-offer.component.scss']
 })
 export class JobOfferComponent implements OnInit{
+  basicInfo:any;
+  finaceInfo:any;
+  benefits:any;
   constructor(private location: Location,
               private toastrService: ToastrService,
               private router:Router,
@@ -24,7 +27,10 @@ export class JobOfferComponent implements OnInit{
   }
   async GetJobOffer(){
     let response = await this.service.JobOfferDetails("00104");
-    if(response.Status){
+    if(response){
+      this.basicInfo = response?.jobOffer_BasicInfo;
+      this.finaceInfo = response?.jobOffer_FinanceInfo;
+      this.benefits = response?.jobOffer_BenefitInfo; 
       console.log(response);
     }
   }

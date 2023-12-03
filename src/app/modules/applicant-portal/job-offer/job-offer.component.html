@@ -18,19 +18,19 @@
       <div class="offer-info">
         <div class="offer-detail">
           <p>Date</p>
-          <h6>22 November 2023</h6>
+          <h6>{{basicInfo?.date}}</h6>
         </div>
         <div class="offer-detail">
           <p>Candidate</p>
-          <h6>Omar Mouneer Ahmed</h6>
+          <h6>{{basicInfo?.candicateName}}</h6>
         </div>
         <div class="offer-detail">
           <p>Nationality</p>
-          <h6>Egyptian</h6>
+          <h6>{{basicInfo?.nationality}}</h6>
         </div>
         <div class="offer-detail">
           <p>Position</p>
-          <h6>Senior UX/UI</h6>
+          <h6>{{basicInfo?.positionName}}</h6>
         </div>
         <div class="offer-detail">
           <p>Department</p>
@@ -46,19 +46,19 @@
       <div class="offer-info">
         <div class="offer-detail">
           <p>Basic salary</p>
-          <h6>35,000.00 SAR</h6>
+          <h6>{{finaceInfo?.basicSalary}} SAR</h6>
         </div>
         <div class="offer-detail">
           <p>Transportation allowance</p>
-          <h6>1,500.00 SAR</h6>
+          <h6>{{finaceInfo?.transportationAllowance }} SAR</h6>
         </div>
         <div class="offer-detail">
           <p>Housing allowance</p>
-          <h6>45,800.00 SAR</h6>
+          <h6>{{finaceInfo?.housingAllowance }} SAR</h6>
         </div>
         <div class="offer-detail">
           <p>Total monthly salary</p>
-          <h6>65,800.00 SAR</h6>
+          <h6>{{finaceInfo?.totalMonthlySalary}} SAR</h6>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
       <div class="offer-info">
         <div class="offer-detail">
           <p>Vacation days</p>
-          <h6>22 days</h6>
+          <h6>{{benefits?.vactionDays}}</h6>
         </div>
         <div class="offer-detail">
           <p>Medical insurance</p>
@@ -78,11 +78,11 @@
         </div>
         <div class="offer-detail">
           <p>Contract period</p>
-          <h6>One year</h6>
+          <h6>{{benefits?.contractPeriod}} year</h6>
         </div>
         <div class="offer-detail">
           <p>Probation period</p>
-          <h6>Probation period</h6>
+          <h6>{{benefits?.probationPeriod}}</h6>
         </div>
       </div>
     </div>
