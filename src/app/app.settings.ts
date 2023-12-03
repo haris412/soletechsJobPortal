@@ -29,6 +29,8 @@ export const apiURLs = {
     application: {
         createApplication: `${environment.apiUrl}/ERPApplication/CreateApplication`,
         myApplicationJobList:`${environment.apiUrl}/ERPApplication/MyApplicationJobList`,
+        jobOfferDetails:`${environment.apiUrl}/ERPApplication/JobOfferDetails`,
+
 
     },
     applicant:{
