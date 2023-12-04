@@ -27,6 +27,7 @@
     "@ckeditor/ckeditor5-utils": "^39.0.2",
     "@ckeditor/ckeditor5-watchdog": "^39.0.2",
     "@ngneat/transloco": "^4.3.0",
+    "@rxweb/reactive-form-validators": "^13.0.1",
     "bootstrap": "^5.2.3",
     "material-icons": "^1.13.12",
     "ngx-toastr": "^15.2.2",

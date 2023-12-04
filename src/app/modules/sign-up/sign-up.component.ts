@@ -8,6 +8,7 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import Swal from "sweetalert2";
 import { forkJoin } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
 	selector: 'app-signup',
@@ -34,6 +35,8 @@ export class SignUpComponent implements OnInit {
 	aboutMe:string = '';
 	get f() { return this.userForm.controls; }
 	strongPassword = false;
+	public emailAlreadyExists: boolean = false;
+
 	constructor(private router: Router,
 		public userInfo: UserInfoService,
 		public lookupService: AppLookUpService,
@@ -49,7 +52,7 @@ export class SignUpComponent implements OnInit {
 			lastNamePrefix: [''],
 			mobile:['', [Validators.required]],
 			email: ['', [Validators.required]],
-			password: ['', [Validators.required]],
+			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			aboutMe: ['']
 
 		});
@@ -118,6 +121,7 @@ export class SignUpComponent implements OnInit {
 			reader.readAsDataURL(this.fileData);
 			reader.onload = () => {
 				this.imageAvatar = reader.result;
+				this.userForm.controls.applicantImage.setValue(this.imageAvatar.substring(this.imageAvatar.indexOf('base64,') + 7, this.imageAvatar.length));
 			};
 		} else {
 			alert("file type should be image of jpeg or png")
@@ -133,7 +137,7 @@ export class SignUpComponent implements OnInit {
 	}
 
 	async Signup() {
-		if (this.userForm?.valid) {
+		if (this.userForm?.valid && !this.emailAlreadyExists) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
 			this.userData = {
@@ -164,6 +168,22 @@ export class SignUpComponent implements OnInit {
 					confirmButtonText: 'Ok'
 				});
 			}
+		} else if (this.emailAlreadyExists) {
+			this.userForm.markAllAsTouched();
+			Swal.fire({
+				title: "Alert",
+				icon: 'error',
+				text: 'Email already exists.',
+				confirmButtonText: 'Ok'
+			});
+		} else if (this.userForm.controls.password.status == "INVALID") {
+			this.userForm.markAllAsTouched();
+			Swal.fire({
+				title: "Alert",
+				icon: 'error',
+				text: 'Password must contain a upper case letter, a digit and a special character.',
+				confirmButtonText: 'Ok'
+			});
 		} else {
 			this.userForm.markAllAsTouched();
 			Swal.fire({
@@ -179,6 +199,9 @@ export class SignUpComponent implements OnInit {
 		var validate = await this.lookupService.ValidateEmail(this.userForm.controls.email.value);
 		if (validate != undefined && validate.Status) {
 			this.toastrService.error(validate?.Message);
+			this.emailAlreadyExists = true;
+		} else {
+			this.emailAlreadyExists = false;
 		}
 	}
 
