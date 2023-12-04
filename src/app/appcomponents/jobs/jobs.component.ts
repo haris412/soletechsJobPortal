@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { JobDetail } from 'src/app/models/job-detail.model';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { Job } from 'src/app/models/job.model';
 import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-modal.service';
 
@@ -23,11 +23,15 @@ export class JobsComponent implements OnInit {
   mobileView: boolean = false;
   webView: boolean = true;
   public sidenavOpen: boolean = false;
-
+  applyBtn:string = 'Apply';
+  email:string  = '';
+  appliedJobs:any[] = [];
   constructor(
     private signUp: SignupModalComponentService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private lookUpService:AppLookUpService) { 
+
+   }
 
   ngOnInit(): void {
     this.mobileView = this.width < this.minimunWidth;
@@ -38,8 +42,19 @@ export class JobsComponent implements OnInit {
       this.webView = false;
       this.show = true;
     }
-  }
+    this.email = localStorage.getItem('email') ?? '';
+    if(this.email){
+      this.GetAppliedJobs();
+    }
 
+  }
+async GetAppliedJobs(){
+    let applicantId = localStorage.getItem('applicantId') ?? '';
+    let response = await this.lookUpService.MyApplicationJobList(applicantId);
+    if(response){
+      this.appliedJobs = response?.parmRecruitmentApplicationJobList;
+    }
+  }
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;

@@ -24,45 +24,60 @@
       <p class="text-midnight-moss mb-0">{{selectedJob?.jobType}}</p>
     </div>
     <div class="stage rounded-pill bg-feijoa">
-      <p class="mb-0 font-poppins-medium text-midnight-moss">Interview Stage</p>
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 0">Received</p>
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 1">Confirmed</p>
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 2">Interview</p>
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 3">Rejection</p>
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 4">Cancled</p>
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 5">Employed</p>  
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 6">Offered</p>
+  
     </div>
-    <div class="stepper-wrapper">
-      <div class="stepper-item completed">
-        <div class="step-counter">
-          <img src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="completed"></p>
+      <div class="stepper-wrapper">
+        <div class="stepper-item" [ngClass]="{ 'completed': selectedJob?.applicationStatus === 0 || selectedJob?.applicationStatus > 0}">
+          <div class="step-counter">
+            <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="selectedJob?.applicationStatus === 0 || selectedJob?.applicationStatus > 0"/>
+            <p  *ngIf="selectedJob?.applicationStatus !== 0 && selectedJob?.applicationStatus !== 1 && selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6"></p>
+          </div>
+          <h6 class="text-midnight-moss font-poppins-medium">Recived</h6>
+          <p class="text-midnight-moss font-poppins-medium">Received</p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Screening</h6>
-        <p class="text-midnight-moss font-poppins-medium">Screening</p>
-      </div>
-      <div class="stepper-item active">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
+        <div class="stepper-item" [ngClass]="{ 'completed': selectedJob?.applicationStatus === 1 || selectedJob?.applicationStatus > 1}">
+          <div class="step-counter">
+            <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="selectedJob?.applicationStatus === 1 || selectedJob?.applicationStatus > 1"/>
+            <p *ngIf="selectedJob?.applicationStatus !== 1 && selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6"></p>
+          </div>
+          <h6 class="text-midnight-moss font-poppins-medium">Confirmed</h6>
+          <p class="text-midnight-moss font-poppins-medium">Confirmed</p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Interview</h6>
-        <p class="text-midnight-moss font-poppins-medium">Interview</p>
-      </div>
-      <div class="stepper-item">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
+        <div class="stepper-item" [ngClass]="{ 'completed': selectedJob?.applicationStatus === 2 || selectedJob?.applicationStatus > 5}">
+          <div class="step-counter">
+            <img *ngIf="selectedJob?.applicationStatus === 2 || selectedJob?.applicationStatus > 2" src="assets/SVG/noun-tick.svg" alt="" />
+            <p *ngIf="selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6" ></p>
+          </div>
+          <h6 class="text-midnight-moss font-poppins-medium">Interview</h6>
+          <p class="text-midnight-moss font-poppins-medium">Interview</p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Offer</h6>
-        <p class="text-midnight-moss font-poppins-medium">Offer</p>
-      </div>
-      <div class="stepper-item">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
+        <div class="stepper-item" [ngClass]="{ 'completed': selectedJob?.applicationStatus === 6}">
+          <div class="step-counter">
+            <img *ngIf="selectedJob?.applicationStatus === 6 || selectedJob?.applicationStatus > 6" src="assets/SVG/noun-tick.svg" alt="" />
+            <p *ngIf="selectedJob?.applicationStatus !== 6"></p>
+          </div>
+          <h6 class="text-midnight-moss font-poppins-medium">Offer</h6>
+          <p class="text-midnight-moss font-poppins-medium">Offer</p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Onboarding</h6>
-        <p class="text-midnight-moss font-poppins-medium">Onboarding</p>
+        <div class="stepper-item">
+          <div class="step-counter">
+            <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
+            <p></p>
+          </div>
+          <h6 class="text-midnight-moss font-poppins-medium">Onboarding</h6>
+          <p class="text-midnight-moss font-poppins-medium">Onboarding</p>
+        </div>
       </div>
-    </div>
   </div>
   <h4 class="text-midnight-moss">Actions</h4>
-  <div class="next-actions">
+  <div class="next-actions" *ngIf="selectedJob?.applicationStatus === 2">
     <div class="actions rounded-3">
       <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
         <div class="job-details">
@@ -112,7 +127,7 @@
       </div>
     </div>
   </div>
-  <div class="next-actions">
+  <div class="next-actions" *ngIf="selectedJob?.applicationStatus === 7">
     <div class="actions rounded-3">
       <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
         <div class="job-details">
@@ -158,7 +173,7 @@
       </div>
     </div>
   </div>
-  <div class="next-actions">
+  <div class="next-actions" *ngIf="selectedJob?.applicationStatus === 6">
     <div class="actions rounded-3">
       <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
         <div class="job-details">
@@ -207,7 +222,7 @@
       </div>
     </div>
   </div>
-  <div class="next-actions">
+  <div class="next-actions" *ngIf="selectedJob?.applicationStatus === 7">
     <div class="actions rounded-3">
       <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
         <div class="job-details">
