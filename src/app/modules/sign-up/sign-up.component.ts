@@ -121,6 +121,7 @@ export class SignUpComponent implements OnInit {
 			reader.readAsDataURL(this.fileData);
 			reader.onload = () => {
 				this.imageAvatar = reader.result;
+				this.userForm.controls.applicantImage.setValue(this.imageAvatar.substring(this.imageAvatar.indexOf('base64,') + 7, this.imageAvatar.length));
 			};
 		} else {
 			alert("file type should be image of jpeg or png")
