@@ -11,6 +11,7 @@ import { PositionOfTrust } from "../models/position-of-trust.model";
 import { Address } from "../models/address.model";
 import { ContactInfo } from "../models/contact-info.model";
 import { Identification } from "../models/identification.model";
+import { SaveJob } from "../models/saveJob.model";
 
 @Injectable({
     providedIn: 'root',
@@ -624,14 +625,12 @@ export class AppLookUpService {
             ).toPromise();
     }
 
-    async SavedApplicantJobs(applicantId:string , jobId:string){
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('applicantId', applicantId).
-        set('jobId', jobId)
+    async SavedApplicantJobs(job:SaveJob){
+       
         return await this.httpClient
-            .get<any>(
-                apiURLs.application.savedApplicantJobs,
-                { params: queryParams }
+            .post<any>(
+                apiURLs.applicant.savedApplicantJobs,
+                job 
             ).toPromise();
     }
     

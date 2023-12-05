@@ -31,7 +31,6 @@ export const apiURLs = {
         myApplicationJobList:`${environment.apiUrl}/ERPApplication/MyApplicationJobList`,
         jobOfferDetails:`${environment.apiUrl}/ERPApplication/JobOfferDetails`,
         getApplicationDetails:`${environment.apiUrl}/ERPApplication/GetApplicationDetails`,
-        savedApplicantJobs:`${environment.apiUrl}/ERPApplication/SavedApplicantJobs`
     },
     applicant:{
         createApplicant: `${environment.apiUrl}/ERPApplicant/CreateApplicant`,
@@ -83,5 +82,7 @@ export const apiURLs = {
         deleteContact:`${environment.apiUrl}/ERPApplicant/DeleteContact`,
         deleteIdentification:`${environment.apiUrl}/ERPApplicant/DeleteIdentification`,
         validateEmail:`${environment.apiUrl}/ERPApplicant/ValidateEmail`,  
+        savedApplicantJobs:`${environment.apiUrl}/ERPApplicant/SavedApplicantJobs`
+
     }
 }

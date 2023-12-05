@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,13 @@ import { Router } from '@angular/router';
   templateUrl: './saved-jobs.component.html',
   styleUrls: ['./saved-jobs.component.scss']
 })
-export class SavedJobsComponent {
+export class SavedJobsComponent implements OnInit {
+  @Input() savedJobs:any[] = [];
   jobList:any[]=[];
   constructor(private router:Router){}
+  ngOnInit() {
+    console.log(this.savedJobs);
+  }
   GoToJobs() {
     this.router.navigate(['/jobs']);
   }

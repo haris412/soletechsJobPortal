@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { RecruitmentService } from 'src/app/app-services/jobs.service';
 import { JobDetailParameter } from 'src/app/models/job-detail-parameter';
 import { Job } from 'src/app/models/job.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { Router } from '@angular/router';
+import { SaveJob } from 'src/app/models/saveJob.model';
 
 @Component({
   selector: 'app-jobs-list',
@@ -26,7 +30,11 @@ export class JobsListComponent implements OnInit {
   selectedJob: Job = new Object() as Job;
   jobDetail: any = new Object() as any;
   constructor(private recruitmentService: RecruitmentService,
-    private sharedService: SharedService) { }
+    private sharedService: SharedService,
+    private lookupService:AppLookUpService,
+    private toastrService: ToastrService,
+    private router:Router
+    ) { }
 
   async ngOnInit() {
     this.mobileView = this.width < this.minimunWidth;
@@ -102,5 +110,25 @@ export class JobsListComponent implements OnInit {
       this.sharedService.SetToken(accessTokenResponse.access_token);
     }
   }
-
+  async SaveJob(job:any){
+    if (localStorage.getItem("email")) {
+      let applicantId = localStorage.getItem("applicantId") ?? '';
+      try {
+        let jobData:SaveJob = {
+          applicantId:applicantId,
+          jobId:job?.jobId
+        }
+        let savedJobResponse = await this.lookupService.SavedApplicantJobs(jobData);
+        if (savedJobResponse?.Status) {
+          this.toastrService.success("Job Saved Successfully");
+        } else {
+          this.toastrService.error(savedJobResponse?.Message);;
+        }
+      } catch (ex) {
+        console.error()
+      }
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 }
