@@ -28,8 +28,9 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   }
   GoToJobActions(selectedJob:any) {
     this.applicantService.SetJob(selectedJob);
-    localStorage.setItem("applicationId", selectedJob?.applicationId);
-    this.router.navigate(['/applicant/job-actions' , selectedJob?.applicationId]);
+    const id = selectedJob?.applicationId;
+    localStorage.setItem("applicationId", id);
+    this.router.navigate(['/applicant/job-actions' , id]);
   }
   GoToJobs(){
     this.router.navigate(['/jobs']);

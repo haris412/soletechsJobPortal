@@ -6,7 +6,7 @@ export const apiURLs = {
         authenticationByCompanyIdAsync:`${environment.apiUrl}/ERPAuthentication/AuthenticationByCompanyId`,
         getJobDetails:`${environment.apiUrl}/ERPAuthentication/GetJobDetails`,
         myApplicationJobList:`${environment.apiUrl}/ERPAuthentication/MyApplicationJobList`,
-        getStartedRecruitingList:`${environment.apiUrl}/ERPAuthentication/GetStartedRecruitingList`
+        getStartedRecruitingList:`${environment.apiUrl}/ERPAuthentication/GetStartedRecruitingList`,
     },
     lookUps: {
         getDepartmentLookup: `${environment.apiUrl}/MPRecruitment_Projects/getDepartment_Lookup`,
@@ -30,8 +30,8 @@ export const apiURLs = {
         createApplication: `${environment.apiUrl}/ERPApplication/CreateApplication`,
         myApplicationJobList:`${environment.apiUrl}/ERPApplication/MyApplicationJobList`,
         jobOfferDetails:`${environment.apiUrl}/ERPApplication/JobOfferDetails`,
-
-
+        getApplicationDetails:`${environment.apiUrl}/ERPApplication/GetApplicationDetails`,
+        savedApplicantJobs:`${environment.apiUrl}/ERPApplication/SavedApplicantJobs`
     },
     applicant:{
         createApplicant: `${environment.apiUrl}/ERPApplicant/CreateApplicant`,

@@ -612,5 +612,27 @@ export class AppLookUpService {
                 { params: queryParams }
             ).toPromise();
     }
+    async GetApplicationDetails(
+        applicationId: string
+    ) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicationId', applicationId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.application.getApplicationDetails,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async SavedApplicantJobs(applicantId:string , jobId:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicantId', applicantId).
+        set('jobId', jobId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.application.savedApplicantJobs,
+                { params: queryParams }
+            ).toPromise();
+    }
     
 }
