@@ -380,7 +380,7 @@ export class AppLookUpService {
             ).toPromise();
     }
 
-   async MyApplicationJobList(applicantId:string){
+    async MyApplicationJobList(applicantId: string) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('applicantId', applicantId)
         return await this.httpClient
@@ -456,7 +456,7 @@ export class AppLookUpService {
                 profile
             ).toPromise();
     }
-    async GetUpdateApplicantProfileContact(contact:ContactInfo
+    async GetUpdateApplicantProfileContact(contact: ContactInfo
     ) {
         return await this.httpClient
             .post<any>(
@@ -480,20 +480,20 @@ export class AppLookUpService {
             ).toPromise();
     }
     async GetApplicantProfile(
-        applicantId:string) {
-            let queryParams = new HttpParams();
-          queryParams = queryParams.append('applicantId', applicantId)
-            return await this.httpClient
-                .get<any>(
-                    apiURLs.applicant.getApplicantProfile,
-                    { params:queryParams }
-                ).toPromise();
-        }
+        applicantId: string) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicantId', applicantId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getApplicantProfile,
+                { params: queryParams }
+            ).toPromise();
+    }
     async DeleteCourse(
-        recId: number, applicantRecId:number) {
+        recId: number, applicantRecId: number) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
-        set('applicantRecId',applicantRecId)
+            set('applicantRecId', applicantRecId)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.courseDelete,
@@ -501,10 +501,10 @@ export class AppLookUpService {
             ).toPromise();
     }
     async DeleteEducation(
-        recId: number, applicantRecId:number) {
+        recId: number, applicantRecId: number) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
-        set('applicantRecId',applicantRecId)
+            set('applicantRecId', applicantRecId)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.deleteEducation,
@@ -512,10 +512,10 @@ export class AppLookUpService {
             ).toPromise();
     }
     async DeleteCertificate(
-        recId: number, applicantRecId:number) {
+        recId: number, applicantRecId: number) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
-        set('applicantRecId',applicantRecId)
+            set('applicantRecId', applicantRecId)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.deleteCertificate,
@@ -523,10 +523,10 @@ export class AppLookUpService {
             ).toPromise();
     }
     async DeleteProfessional(
-        recId: number, applicantRecId:number) {
+        recId: number, applicantRecId: number) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
-        set('applicantRecId',applicantRecId)
+            set('applicantRecId', applicantRecId)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.professionalDelete,
@@ -534,10 +534,10 @@ export class AppLookUpService {
             ).toPromise();
     }
     async DeleteSkills(
-        recId: number, applicantRecId:number) {
+        recId: number, applicantRecId: number) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
-        set('applicantRecId',applicantRecId)
+            set('applicantRecId', applicantRecId)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.deleteSkill,
@@ -545,10 +545,10 @@ export class AppLookUpService {
             ).toPromise();
     }
     async DeletePositionOfTrust(
-        recId: number, applicantRecId:number) {
+        recId: number, applicantRecId: number) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
-        set('applicantRecId',applicantRecId)
+            set('applicantRecId', applicantRecId)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.deleteTrustedPosition,
@@ -557,11 +557,11 @@ export class AppLookUpService {
     }
 
     async DeleteAddress(
-        recId: number, applicantRecId: number,country:string) {
+        recId: number, applicantRecId: number, country: string) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
             set('applicantRecId', applicantRecId).
-            set('country',country)
+            set('country', country)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.deleteAddress,
@@ -569,11 +569,11 @@ export class AppLookUpService {
             ).toPromise();
     }
     async DeleteContact(
-        recId: number, applicantRecId: number,contactNo:string) {
+        recId: number, applicantRecId: number, contactNo: string) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('recid', recId).
             set('applicantRecId', applicantRecId).
-            set('contactNo',contactNo)
+            set('contactNo', contactNo)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.deleteContact,
@@ -625,13 +625,22 @@ export class AppLookUpService {
             ).toPromise();
     }
 
-    async SavedApplicantJobs(job:SaveJob){
-       
+    async SavedApplicantJobs(job: SaveJob) {
+
         return await this.httpClient
             .post<any>(
                 apiURLs.applicant.savedApplicantJobs,
-                job 
+                job
             ).toPromise();
     }
-    
+
+    async GetApplicantSavedJobsList(applicantId:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicantId', applicantId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getApplicantSavedJobsList,
+                { params: queryParams }
+            ).toPromise();
+    }
 }

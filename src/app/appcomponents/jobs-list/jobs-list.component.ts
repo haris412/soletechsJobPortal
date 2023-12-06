@@ -24,17 +24,25 @@ export class JobsListComponent implements OnInit {
   show: boolean = true;
   mobileView: boolean = false;
   webView: boolean = true;
-  showJobList: boolean = true;
   inputText: string = '';
   jobsList: Job[] = [];
   selectedJob: Job = new Object() as Job;
   jobDetail: any = new Object() as any;
+  email:string = '';
+  appliedJobs:any[] = [];
+  applyBtn:string = 'Apply';
+  disableBtn:boolean = false;
   constructor(private recruitmentService: RecruitmentService,
     private sharedService: SharedService,
     private lookupService:AppLookUpService,
     private toastrService: ToastrService,
-    private router:Router
-    ) { }
+    private router:Router,
+    ) { 
+      this.email = localStorage.getItem('email') ?? '';
+      if(this.email){
+        this.GetAppliedJobs();
+      }
+    }
 
   async ngOnInit() {
     this.mobileView = this.width < this.minimunWidth;
@@ -77,9 +85,25 @@ export class JobsListComponent implements OnInit {
     let jobDetailResponse = await this.recruitmentService.GetJobDetail(jobDetailParam);
     if (jobDetailResponse) {
       this.jobDetail = jobDetailResponse;
+      if (this.appliedJobs?.length > 0) {
+        let appliedJob = this.appliedJobs?.find((job: any) => job?.jobId === this.jobDetail?.jobId);
+        if (appliedJob) {
+          this.applyBtn = 'Applied';
+          this.disableBtn = true;
+        } else {
+          this.applyBtn = 'Apply';
+          this.disableBtn = false;
+        }
+      }
     }
   }
-
+  async GetAppliedJobs(){
+    let applicantId = localStorage.getItem('applicantId') ?? '';
+    let response = await this.lookupService.MyApplicationJobList(applicantId);
+    if (response) {
+      this.appliedJobs = response?.parmRecruitmentApplicationJobList;
+    }
+  }
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;

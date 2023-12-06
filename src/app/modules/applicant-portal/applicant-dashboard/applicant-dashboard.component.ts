@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LinkedInService } from '../services/linkedin.service';
 import { environment } from 'src/environments/environment';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
-import { LookupParameters } from './../../../models/look-up.model';
 
 @Component({
   selector: 'app-applicant-dashboard',

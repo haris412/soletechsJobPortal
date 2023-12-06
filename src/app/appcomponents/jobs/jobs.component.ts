@@ -16,6 +16,8 @@ export class JobsComponent implements OnInit {
 
   @Input() selectedJob: any = new Object() as any;
   @Input() recruitmentProject:Job = new Object() as Job;
+  @Input() applyBtn:string = 'Apply';
+  @Input() disableBtn:boolean = false;
   @Output() backClicked: EventEmitter<boolean> = new EventEmitter();
   width: number = window.innerWidth;
   minimunWidth: number = 992;
@@ -23,9 +25,7 @@ export class JobsComponent implements OnInit {
   mobileView: boolean = false;
   webView: boolean = true;
   public sidenavOpen: boolean = false;
-  applyBtn:string = 'Apply';
   email:string  = '';
-  appliedJobs:any[] = [];
   constructor(
     private signUp: SignupModalComponentService,
     private router: Router,
@@ -42,19 +42,8 @@ export class JobsComponent implements OnInit {
       this.webView = false;
       this.show = true;
     }
-    this.email = localStorage.getItem('email') ?? '';
-    if(this.email){
-      this.GetAppliedJobs();
-    }
+  }
 
-  }
-async GetAppliedJobs(){
-    let applicantId = localStorage.getItem('applicantId') ?? '';
-    let response = await this.lookUpService.MyApplicationJobList(applicantId);
-    if(response){
-      this.appliedJobs = response?.parmRecruitmentApplicationJobList;
-    }
-  }
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;
@@ -64,6 +53,7 @@ async GetAppliedJobs(){
 
     }
   }
+  
   Back() {
     this.backClicked.emit(true);
   }

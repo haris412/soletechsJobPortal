@@ -35,7 +35,7 @@
                 Sign Up
             </button>
 
-            <button type="button" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
+            <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
                  {{applyBtn}}
             </button>
         </div>
@@ -74,8 +74,8 @@
                         Sign Up
                     </button>
 
-                    <button type="button" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
-                         Apply
+                    <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
+                         {{applyBtn}}
                     </button>
                 </div>
             </div>
