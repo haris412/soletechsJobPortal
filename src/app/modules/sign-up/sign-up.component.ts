@@ -35,6 +35,8 @@ export class SignUpComponent implements OnInit {
 	aboutMe:string = '';
 	get f() { return this.userForm.controls; }
 	strongPassword = false;
+	confirmError: boolean = false;
+	confirmemailError: boolean = false;
 	public emailAlreadyExists: boolean = false;
 
 	constructor(private router: Router,
@@ -52,7 +54,9 @@ export class SignUpComponent implements OnInit {
 			lastNamePrefix: [''],
 			mobile:['', [Validators.required]],
 			email: ['', [Validators.required]],
+			confirmemail: ['', [Validators.required]],
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
+			confirmpassword: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			aboutMe: ['']
 
 		});
@@ -207,5 +211,21 @@ export class SignUpComponent implements OnInit {
 
 	onPasswordStrengthChanged(event: boolean) {
 		this.strongPassword = event;
+	  }
+
+	  ChangeValue() {
+		if (this.userForm.controls.password.value != "" && this.userForm.controls.confirmpassword.value != "" && this.userForm.controls.password.value != this.userForm.controls.confirmpassword.value) {
+		  this.confirmError = true;
+		} else {
+		  this.confirmError = false;
+		}
+	  }
+	  
+	  validateConfirmEmail() {
+		if (this.userForm.controls.email.value != "" && this.userForm.controls.confirmemail.value != "" && this.userForm.controls.email.value != this.userForm.controls.confirmemail.value) {
+			this.confirmemailError = true;
+		  } else {
+			this.confirmemailError = false;
+		  }
 	  }
 }

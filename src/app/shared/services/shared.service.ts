@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class SharedService {
     token: string = '';
+    public email: string = "";
     constructor() { }
 
     GetToken() {

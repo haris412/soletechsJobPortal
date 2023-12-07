@@ -12,6 +12,7 @@ import { Address } from "../models/address.model";
 import { ContactInfo } from "../models/contact-info.model";
 import { Identification } from "../models/identification.model";
 import { SaveJob } from "../models/saveJob.model";
+import { ChangePassword } from "../models/ChangePassword";
 
 @Injectable({
     providedIn: 'root',
@@ -640,6 +641,25 @@ export class AppLookUpService {
         return await this.httpClient
             .get<any>(
                 apiURLs.applicant.getApplicantSavedJobsList,
+                { params: queryParams }
+            ).toPromise();
+    }
+
+    async ChangePassword(password: ChangePassword) {
+
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.changePassword,
+                password
+            ).toPromise();
+    }
+
+    async GetResetPassword(email: string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('email', email)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.resetPassword,
                 { params: queryParams }
             ).toPromise();
     }

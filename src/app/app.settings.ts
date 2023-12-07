@@ -83,7 +83,8 @@ export const apiURLs = {
         deleteIdentification:`${environment.apiUrl}/ERPApplicant/DeleteIdentification`,
         validateEmail:`${environment.apiUrl}/ERPApplicant/ValidateEmail`,  
         savedApplicantJobs:`${environment.apiUrl}/ERPApplicant/SavedApplicantJobs`,
-        getApplicantSavedJobsList:`${environment.apiUrl}/ERPApplicant/GetApplicantSavedJobsList`
-
+        getApplicantSavedJobsList:`${environment.apiUrl}/ERPApplicant/GetApplicantSavedJobsList`,
+        changePassword:`${environment.apiUrl}/ERPApplicant/ChangePassword`,
+        resetPassword:`${environment.apiUrl}/ERPApplicant/ResetPassword`
     }
 }
