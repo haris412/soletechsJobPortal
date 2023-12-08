@@ -13,6 +13,7 @@ import { NotificationModalComponent } from './notification-modal/notification-mo
 import { RescheduleModalComponent } from './reschedule-modal/reschedule-modal.component';
 import { DateValueAccessor } from './directives/date-input-accessor';
 import { PasswordStrengthComponent } from '../password-strength/password-strength.component';
+import { BlockCopyPasteDirective } from './directives/appBlockCopyPaste.directive';
 
 
 
@@ -28,7 +29,8 @@ import { PasswordStrengthComponent } from '../password-strength/password-strengt
     NotificationModalComponent,
     RescheduleModalComponent,
     DateValueAccessor,
-    PasswordStrengthComponent
+    PasswordStrengthComponent,
+    BlockCopyPasteDirective
   ],
   imports: [
     MaterialModule,
@@ -41,7 +43,8 @@ import { PasswordStrengthComponent } from '../password-strength/password-strengt
     LoginComponent,
     ForgetpasswordComponent,
     ResetPasswordComponent,
-    PasswordStrengthComponent
+    PasswordStrengthComponent,
+    BlockCopyPasteDirective
   ]
 })
 export class SharedModule { }

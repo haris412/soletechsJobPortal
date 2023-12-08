@@ -21,6 +21,7 @@ export class SignUpComponent implements OnInit {
 	public sidenavOpen: boolean = false;
 	title = 'angular';
 	public Editor = ClassicEditor;
+	editor: string = "";
 	index: Number = 1;
 	fileData: any;
 	imageAvatar: any;
@@ -141,6 +142,7 @@ export class SignUpComponent implements OnInit {
 	}
 
 	async Signup() {
+		this.userForm.controls.aboutMe.setValue(this.editor);
 		if (this.userForm?.valid && !this.emailAlreadyExists) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
