@@ -3,8 +3,17 @@
     <p>Type*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="contactType" [formControlName]="'Type'">
-        <mat-option value="1">Home</mat-option>
-        <mat-option value="2">Office</mat-option>
+        <mat-option value="0">None</mat-option>
+        <mat-option value="1">Phone</mat-option>
+        <mat-option value="2">Emailaddress</mat-option>
+        <mat-option value="3">URL</mat-option>
+        <mat-option value="4">Telex</mat-option>
+        <mat-option value="5">Fax</mat-option>
+        <mat-option value="6">Facebook</mat-option>
+        <mat-option value="7">Twitter</mat-option>
+        <mat-option value="8">LinkedIn</mat-option>
+        <mat-option value="9">Instagram</mat-option>
+        <mat-option value="10">WhatsApp</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
       <mat-error class="error-message" *ngIf="f.Type.hasError('required') && (f.Type.dirty || f.Type.touched)">Contact Type is Required</mat-error>
