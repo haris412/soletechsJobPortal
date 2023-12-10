@@ -30,7 +30,7 @@ export class ApplicantDashboardComponent implements OnInit {
       }
     });
     await this.GetAppliedJobs();
-    await this.SavedJobsList();
+    // await this.SavedJobsList();
   }
 
   GetAccessToken(code: string) {
@@ -78,16 +78,16 @@ export class ApplicantDashboardComponent implements OnInit {
     }
   }
 
-  async SavedJobsList() {
-    var data = await this.lookUpService.GetApplicantSavedJobsList(localStorage.getItem('applicantId') ?? "");
-    if (data != null && data.parmApplicantSavedJobsList != null) {
-      this.applicantService.savedJobs = [];
-      for (var item of data.parmApplicantSavedJobsList) {
-        var savedJobs = new SavedJobs();
-        savedJobs.id = item["$id"];
-        savedJobs.jobName = item.JobId;
-        this.applicantService.savedJobs.push(savedJobs);
-      }
-    }
-  }
+  // async SavedJobsList() {
+  //   var data = await this.lookUpService.GetApplicantSavedJobsList(localStorage.getItem('applicantId') ?? "");
+  //   if (data != null && data.parmApplicantSavedJobsList != null) {
+  //     this.applicantService.savedJobs = [];
+  //     for (var item of data.parmApplicantSavedJobsList) {
+  //       var savedJobs = new SavedJobs();
+  //       savedJobs.id = item["$id"];
+  //       savedJobs.jobName = item.JobId;
+  //       this.applicantService.savedJobs.push(savedJobs);
+  //     }
+  //   }
+  // }
 }
