@@ -147,9 +147,10 @@
         </div>
       </div>
     </div>
+    <span>{{this.editor}}</span>
     <div class="sign-up-info-div about-me">
       <span class="heading">About Me</span>
-      <ckeditor [editor]="Editor" [data]="editor" [(ngModel)]="editor"></ckeditor>
+      <ckeditor [editor]="Editor" [formControlName]="'aboutMe'"></ckeditor>
     </div>
     <div>
       <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
