@@ -15,6 +15,7 @@ import {  ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 import { AuthInterceptorService } from './app-services/http-interceptor.service';
+import { OtpVerificationComponent } from './appcomponents/otp-verification/otp-verification.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    bgsColor: 'white',
@@ -53,6 +54,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     JobsListComponent,
     QuickApplyComponent,
     LinkedInRedirectComponent,
+    OtpVerificationComponent
   ],
   imports: [
     BrowserModule,
