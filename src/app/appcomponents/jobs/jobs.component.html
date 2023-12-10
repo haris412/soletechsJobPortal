@@ -47,15 +47,17 @@
             </p>
         </div>
         <div  class="row m-0 align-items-center mb-3  w-100">
-        <div class="col-lg-3 col-6 job-benefits" *ngFor="let attribute of selectedJob?.JobAttribute?.parmRecruitmentJobAttributeList">
-            <div
-                class="d-flex flex-column align-items-start rounded-lg-start border-2 border border-white "  *ngIf="attribute?.AttributeValue !==''">
-                <p class="text-shuttle-grey" >{{attribute?.AttributeName}}</p>
-                <h6 class="mb-0 text-midnight-moss font-poppins-medium">
-                    {{attribute?.AttributeValue}}
-                </h6>
-            </div>
-          </div>
+        <ng-container *ngFor="let attribute of selectedJob?.JobAttribute?.parmRecruitmentJobAttributeList" >
+            <div class="col-lg-3 col-6 job-benefits" *ngIf="attribute?.AttributeValue !==''">
+                <div
+                    class="d-flex flex-column align-items-start rounded-lg-start border-2 border border-white "  >
+                    <p class="text-shuttle-grey" >{{attribute?.AttributeName}}</p>
+                    <h6 class="mb-0 text-midnight-moss font-poppins-medium">
+                        {{attribute?.AttributeValue}}
+                    </h6>
+                </div>
+              </div>
+        </ng-container>
         </div>
         <h5 class="mt-4">What you'll be working on</h5>
         <span class="text-shuttle-grey">This is the job for you if:</span>
