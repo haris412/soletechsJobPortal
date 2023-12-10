@@ -5,6 +5,7 @@ import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/
 import { LoginService } from '../../services/login.service';
 import { Login } from 'src/app/models/login.model';
 import { ToastrService } from 'ngx-toastr';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 
 @Component({
   selector: 'app-login',
@@ -19,16 +20,23 @@ export class LoginComponent implements OnInit {
     scope: ['openid', 'profile', 'email']
   };
   loginForm: UntypedFormGroup;
+  otpForm: UntypedFormGroup;
+
+  showOtp:boolean = false;
   private _formBuilder = inject(UntypedFormBuilder);
   get f() { return this.loginForm.controls; }
   constructor(private router:Router , 
               private service:ApplicantDataService,
               private loginService:LoginService,
-              private toastrService: ToastrService) {
+              private toastrService: ToastrService,
+              private lookupService:AppLookUpService) {
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-  });   
+  });
+  this.otpForm = this._formBuilder.group({
+    otp: [, [Validators.required]],
+});   
 }
 
   ngOnInit(): void {
@@ -48,6 +56,19 @@ export class LoginComponent implements OnInit {
         loginType: 0
       }
       let response = await this.loginService.Login(loginData);
+      if (response?.status) {
+        this.toastrService.success(response?.Message);
+        this.showOtp = true;
+      }else{
+        this.toastrService.error(response?.Message);
+      }
+    } else {
+       this.loginForm.markAllAsTouched();
+    }
+  }
+  async VerifyOtp(){
+    if (this.otpForm.valid) {
+      let response = await this.lookupService.VerifyOTP(this.otpForm.value)
       if (response?.Status) {
         localStorage.setItem('userName', response?.UserName);
         localStorage.setItem('email', response?.Email);
@@ -56,11 +77,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("recId", response?.recid);
         this.service.loginEmitter.emit(true);
         this.router.navigate(['/applicant']);
-      }else{
-        this.toastrService.error(response?.Message);
       }
     } else {
-       this.loginForm.markAllAsTouched();
+      this.otpForm.markAllAsTouched();
     }
   }
 

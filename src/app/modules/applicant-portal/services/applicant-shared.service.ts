@@ -6,6 +6,8 @@ import { SavedJobs } from '../models/savedJobs';
 })
 export class ApplicantDataService {
     loginEmitter:EventEmitter<boolean> = new EventEmitter();
+    signUpModalEmitter:EventEmitter<boolean> = new EventEmitter();
+
     isLogin:boolean = false;
     selectedJob:any;
     savedJobs: SavedJobs[] = [];

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { Job } from 'src/app/models/job.model';
+import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-modal.service';
 
 @Component({
@@ -26,11 +27,13 @@ export class JobsComponent implements OnInit {
   webView: boolean = true;
   public sidenavOpen: boolean = false;
   email:string  = '';
+  dialogRef:any;
   constructor(
     private signUp: SignupModalComponentService,
     private router: Router,
-    private lookUpService:AppLookUpService) { 
-
+    private lookUpService:AppLookUpService,
+    private applicantDataService:ApplicantDataService) { 
+      this.applicantDataService.signUpModalEmitter.subscribe(x=> this.CloseModal())
    }
 
   ngOnInit(): void {
@@ -58,7 +61,7 @@ export class JobsComponent implements OnInit {
     this.backClicked.emit(true);
   }
   SignUpModal() {
-    const dialogRef = this.signUp.openDialog('');
+     this.dialogRef = this.signUp.openDialog('');
   }
   OpenSidenav(selectedJob:any) {
     if (localStorage.getItem('applicantId')) {
@@ -73,5 +76,9 @@ export class JobsComponent implements OnInit {
   CloseSidenav() {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
+  }
+
+  CloseModal(){
+    this.signUp.closeDialog();
   }
 }
