@@ -62,7 +62,6 @@ export class ApplicantDashboardComponent implements OnInit {
     if(response){
       let savedJobsIds = response?.parmApplicantSavedJobsList;
       if(savedJobsIds?.length > 0){
-        debugger;
         savedJobsIds?.forEach((id:any) => {
           this.appliedJobs?.forEach((job:any) => {
             if(job?.jobId === id){
