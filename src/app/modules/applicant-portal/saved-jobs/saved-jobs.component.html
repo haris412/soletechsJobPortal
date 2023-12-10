@@ -1,7 +1,15 @@
 <div class="mb-5">
   <h4 class="text-midnight-moss">Saved Jobs</h4>
-  <div class="row w-100 justify-content-between flex-wrap mx-0">
-    <div *ngIf="savedJobs && savedJobs?.length === 0" class="job-detail justify-content-center rounded-3">
+  
+  <div class="row w-100 justify-content-between flex-nowrap mx-0">
+    <!-- <div *ngFor="let item of this.applicantService.savedJobs; index as i" class="job-detail justify-content-center rounded-3">
+      <div class="row">
+        <span>JobId: {{item.id}}</span>
+        <br/>
+        <span>Job Name: {{item.jobName}}</span>
+      </div>  
+    </div> -->
+    <div *ngIf="this.applicantService.savedJobs && this.applicantService.savedJobs?.length === 0" class="job-detail justify-content-center rounded-3">
       <div class="no-information">
         <img src="assets/SVG/no-saved.svg" alt="" />
         <p class="text-shuttle-grey">You don’t have any saved jobs</p>

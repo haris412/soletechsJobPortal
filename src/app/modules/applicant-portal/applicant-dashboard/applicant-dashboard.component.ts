@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LinkedInService } from '../services/linkedin.service';
 import { environment } from 'src/environments/environment';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { ApplicantDataService } from '../services/applicant-shared.service';
+import { SavedJobs } from '../models/savedJobs';
 
 @Component({
   selector: 'app-applicant-dashboard',
@@ -16,19 +18,22 @@ export class ApplicantDashboardComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, 
     public linkedInServive: LinkedInService,
     private lookUpService:AppLookUpService,
+    public applicantService: ApplicantDataService,
     private route: Router) {
   }
-   ngOnInit() {
+
+  async ngOnInit() {
     this.activatedRoute.queryParams.subscribe(async params => {
       const code = params['code'];
       if (code) {
         this.GetAccessToken(code);
       }
     });
-   this.GetAppliedJobs();
+    await this.GetAppliedJobs();
+    // await this.SavedJobsList();
   }
-  GetAccessToken(code: string) {
 
+  GetAccessToken(code: string) {
     let url = `client_id=${environment.clientId}&client_secret=${environment.clientSecret
                }&redirect_uri=${environment.redirect_uri}&code=${code}`;
     this.linkedInServive.GetAccessToken(url).subscribe(res => {
@@ -72,4 +77,17 @@ export class ApplicantDashboardComponent implements OnInit {
       }
     }
   }
+
+  // async SavedJobsList() {
+  //   var data = await this.lookUpService.GetApplicantSavedJobsList(localStorage.getItem('applicantId') ?? "");
+  //   if (data != null && data.parmApplicantSavedJobsList != null) {
+  //     this.applicantService.savedJobs = [];
+  //     for (var item of data.parmApplicantSavedJobsList) {
+  //       var savedJobs = new SavedJobs();
+  //       savedJobs.id = item["$id"];
+  //       savedJobs.jobName = item.JobId;
+  //       this.applicantService.savedJobs.push(savedJobs);
+  //     }
+  //   }
+  // }
 }

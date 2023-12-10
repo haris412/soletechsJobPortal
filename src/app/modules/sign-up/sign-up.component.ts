@@ -142,7 +142,7 @@ export class SignUpComponent implements OnInit {
 	}
 
 	async Signup() {
-		this.userForm.controls.aboutMe.setValue(this.editor);
+		this.userForm?.controls.aboutMe.setValue(this.userForm?.controls.aboutMe.value.replace(/<[^>]*>/g, ''));
 		if (this.userForm?.valid && !this.emailAlreadyExists) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
 			this.user = this.userForm.value;
