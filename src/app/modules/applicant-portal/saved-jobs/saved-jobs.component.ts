@@ -11,7 +11,6 @@ export class SavedJobsComponent implements OnInit {
   jobList:any[]=[];
   constructor(private router:Router){}
   ngOnInit() {
-    console.log(this.savedJobs);
   }
   GoToJobs() {
     this.router.navigate(['/jobs']);
