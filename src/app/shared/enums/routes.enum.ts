@@ -19,5 +19,6 @@ export enum RoutesEnum {
     notifications = 'notifications',
     Vendor = 'vendor',
     VendorDashboard = 'dashboard',
+    OTP = 'otp'
 
 }

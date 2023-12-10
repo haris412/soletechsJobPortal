@@ -9,6 +9,7 @@ import { JobsListComponent } from './appcomponents/jobs-list/jobs-list.component
 import { QuickApplyComponent } from './appcomponents/quick-apply/quick-apply.component';
 import { LinkedInRedirectComponent } from './modules/linkedIn-redirect/linkedIn-redirect.component';
 import { NotificationModalComponent } from './shared/notification-modal/notification-modal.component';
+import { OtpVerificationComponent } from './appcomponents/otp-verification/otp-verification.component';
 
 const routes: Routes = [
   { path: '', component: JobsListComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: RoutesEnum.Vendor, loadChildren: () => import('./modules/vendor-portal/vendor-portal.module').then(m => m.VendorPortalModule)},
 
   { path: RoutesEnum.notifications, component: NotificationModalComponent},
+  { path: RoutesEnum.OTP, component: OtpVerificationComponent},
  ];
 
 @NgModule({
