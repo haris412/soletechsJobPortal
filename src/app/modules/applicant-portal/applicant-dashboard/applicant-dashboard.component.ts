@@ -18,15 +18,14 @@ export class ApplicantDashboardComponent implements OnInit {
     private lookUpService:AppLookUpService,
     private route: Router) {
   }
-  async ngOnInit() {
+   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(async params => {
       const code = params['code'];
       if (code) {
         this.GetAccessToken(code);
       }
     });
-    await this.GetAppliedJobs();
-    this.GetApplicantSavedJobsList();
+   this.GetAppliedJobs();
   }
   GetAccessToken(code: string) {
 
@@ -54,23 +53,24 @@ export class ApplicantDashboardComponent implements OnInit {
     let response = await this.lookUpService.MyApplicationJobList(applicantId);
     if(response){
       this.appliedJobs = response?.parmRecruitmentApplicationJobList;
-      // let savedJobIds = response?.parmSavedJobs;
-      // if(savedJobIds?.length > 0){
-      //   savedJobIds?.forEach((id:any) => {
-      //     this.appliedJobs?.forEach((job:any) => {
-      //       if(job?.jobId === id){
-      //         this.savedJobs.push(job);
-      //       }
-      //     });
-      //   });  
-      // }
+      this.GetApplicantSavedJobsList();
     }
   }
   async GetApplicantSavedJobsList(){
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let response = await this.lookUpService.GetApplicantSavedJobsList(applicantId);
     if(response){
-      this.savedJobs = response?.parmApplicantSavedJobsList;
+      let savedJobsIds = response?.parmApplicantSavedJobsList;
+      if(savedJobsIds?.length > 0){
+        debugger;
+        savedJobsIds?.forEach((id:any) => {
+          this.appliedJobs?.forEach((job:any) => {
+            if(job?.jobId === id){
+              this.savedJobs.push(job);
+            }
+          });
+        });  
+      }
     }
   }
 }
