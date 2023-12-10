@@ -12,6 +12,8 @@ import { SignupModalComponent } from './signup-modal/signup-modal.component';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 import { RescheduleModalComponent } from './reschedule-modal/reschedule-modal.component';
 import { DateValueAccessor } from './directives/date-input-accessor';
+import { PasswordStrengthComponent } from '../password-strength/password-strength.component';
+import { BlockCopyPasteDirective } from './directives/appBlockCopyPaste.directive';
 
 
 
@@ -26,7 +28,9 @@ import { DateValueAccessor } from './directives/date-input-accessor';
     SignupModalComponent,
     NotificationModalComponent,
     RescheduleModalComponent,
-    DateValueAccessor
+    DateValueAccessor,
+    PasswordStrengthComponent,
+    BlockCopyPasteDirective
   ],
   imports: [
     MaterialModule,
@@ -39,6 +43,8 @@ import { DateValueAccessor } from './directives/date-input-accessor';
     LoginComponent,
     ForgetpasswordComponent,
     ResetPasswordComponent,
+    PasswordStrengthComponent,
+    BlockCopyPasteDirective
   ]
 })
 export class SharedModule { }

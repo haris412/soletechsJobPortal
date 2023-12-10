@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -8,13 +12,28 @@ import { Router } from '@angular/router';
 })
 export class ForgetpasswordComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  private _formBuilder = inject(UntypedFormBuilder);
+  userForm: UntypedFormGroup;
+  constructor(private router:Router,
+              public lookupService: AppLookUpService,
+              private toastrService: ToastrService,
+              private shareService: SharedService) { 
+                this.userForm = this._formBuilder.group({
+                  email:[''],
+                });
+              }
 
   ngOnInit(): void {
   }
 
-  PasswordReset(){
-    this.router.navigate(['/reset-password']);
+  async PasswordReset(){
+    var data = await this.lookupService.GetResetPassword(this.userForm.controls.email.value);
+    if (data != null && data.Message == "Email sent") {
+      localStorage.setItem('email', this.userForm.controls.email.value);
+      this.toastrService.success("Reset password link has been sent to your email account.");
+    } else {
+      this.toastrService.error(data.Message);
+    }
   }
   Back(){
     this.router.navigate(['/login']);

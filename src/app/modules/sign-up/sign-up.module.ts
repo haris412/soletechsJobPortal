@@ -5,18 +5,18 @@ import { SignUpComponent } from './sign-up.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SignupRoutes } from './sign-up-routing';
-import { PasswordStrengthComponent } from './password-strength/password-strength.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
-    SignUpComponent,
-    PasswordStrengthComponent
+    SignUpComponent
   ],
   imports: [
     RouterModule.forChild(SignupRoutes),
     CommonModule,
     MaterialModule,
-    CKEditorModule
+    CKEditorModule,
+    SharedModule
   ],
   exports:[
     SignUpComponent
