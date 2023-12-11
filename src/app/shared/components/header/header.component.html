@@ -1,30 +1,18 @@
 <nav class="navbar navbar-expand-lg bg-white py-0 border-0">
   <div class="container-fluid justify-content-lg-start justify-content-between">
     <a class="navbar-brand" (click)="GoToJobs()">
-      <img width="78px" src="assets/Images/SmallLogo 1.png" alt=""/>
+      <img width="78px" src="assets/Images/SmallLogo 1.png" alt="" />
     </a>
     <div class="d-flex align-items-center justify-content-between w-lg-100">
       <div class="d-flex align-items-center order-lg-3 order-1">
-        <div class="d-flex align-items-center gap-4" *ngIf="isLogin">
-          <div class="profile-navigation">
+        <div class="d-flex align-items-center gap-4" >
+          <div class="profile-navigation" [ngClass]="{'me-1' :!isLogin}">
             <div class="dropdown">
-              <div
-                class="d-flex align-items-center gap-1"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  height="20"
-                  src="assets/SVG/globe-grid-svgrepo-com.svg"
-                /><span>English</span
-                ><img
-                  width="20"
-                  src="assets/SVG/chevron-down.svg"
-                  alt="expand-down"
-                />
-                <ul class="dropdown-menu min_w-fit">
+              <div id="dropdown-language" class="d-flex align-items-center gap-1" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img height="20" src="assets/SVG/globe-grid-svgrepo-com.svg" /><span>English</span><img width="20"
+                  src="assets/SVG/chevron-down.svg" alt="expand-down" />
+                <ul class="dropdown-menu min_w-fit" aria-labelledby ="dropdown-language">
                   <li><a class="dropdown-item" href="#">English</a></li>
                   <li>
                     <a class="dropdown-item" href="#">Arabic - العربية</a>
@@ -33,19 +21,11 @@
               </div>
             </div>
           </div>
-          <div
-            class="notification"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              width="20px"
-              src="assets/SVG/notification.svg"
-              alt="notification"
-            />
+          <div *ngIf="isLogin" class="gap-4 d-flex align-items-center">
+          <div id="dropdown-notification" class="notification" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img width="20px" src="assets/SVG/notification.svg" alt="notification" />
             <div class="notification-counter">02</div>
-            <div class="notification-menu dropdown-menu">
+            <div class="notification-menu dropdown-menu" aria-labelledby ="dropdown-notification">
               <app-notification-modal></app-notification-modal>
             </div>
           </div>
@@ -54,105 +34,61 @@
               <img src="assets/Images/Profile.png" alt="" />
             </div>
             <div class="dropdown">
-              <div
-                class="d-flex align-items-center gap-1"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span>{{ userName }}</span
-                ><img
-                  width="20"
-                  src="assets/SVG/chevron-down.svg"
-                  alt="expand-down"
-                />
-                <ul class="dropdown-menu min_w-fit">
+              <div class="d-flex align-items-center gap-1" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>{{ userName }}</span><img width="20" src="assets/SVG/chevron-down.svg" alt="expand-down" />
+                <ul class="dropdown-menu  dropdown-menu-right min_w-fit">
                   <li>
-                    <a class="dropdown-item" href="#" (click)="OpenProfile()"
-                      >Profile</a
-                    >
+                    <a class="dropdown-item"  (click)="OpenProfile()">Profile</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#" (click)="LogOut()"
-                      >Logout</a
-                    >
+                    <a class="dropdown-item" (click)="LogOut()">Logout</a>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
+        </div>
         <div *ngIf="!isLogin">
-          <button
-            type="button"
-            class="btn bg-midnight-moss text-white rounded-3 login-btn w-100 w-lg-auto"
-            (click)="Login()"
-          >
+          <button type="button" class="btn bg-midnight-moss text-white rounded-3 login-btn w-100 w-lg-auto"
+            (click)="Login()">
             Login
           </button>
         </div>
       </div>
-      <button
-        class="navbar-toggler border-0 order-2"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar"
-      >
+      <button class="navbar-toggler border-0 order-2" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <img src="assets/SVG/Icontoggle.svg" width="18" height="12" alt="" />
       </button>
-      <div
-        class="offcanvas offcanvas-end order-lg-1 order-2"
-        tabindex="-1"
-        id="offcanvasNavbar"
-        aria-labelledby="offcanvasNavbarLabel"
-      >
+      <div class="offcanvas offcanvas-end order-lg-1 order-2" tabindex="-1" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <button
-            id="offcanvasNavbarLabel"
-            type="button"
-            class="btn-close btn-close-dark ms-auto"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
+          <button id="offcanvasNavbarLabel" type="button" class="btn-close btn-close-dark ms-auto"
+            data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div
-          class="offcanvas-body d-flex justify-content-lg-between flex-column gap-3 gap-lg-0 flex-lg-row align-items-lg-center"
-        >
+          class="offcanvas-body d-flex justify-content-lg-between flex-column gap-3 gap-lg-0 flex-lg-row align-items-lg-center">
           <ul class="navbar-nav px-2 gap-4">
             <li class="nav-item">
-              <div
-                class="nav-link d-flex align-items-center align-content-center active px-2 gap-1"
-                aria-current="page"
-              >
+              <div class="nav-link d-flex align-items-center align-content-center active px-2 gap-1"
+                aria-current="page">
                 <img height="15" width="15" src="assets/SVG/home.svg" alt="" />
                 <p class="text-midnight-moss font-poppins-semi mb-0">Home</p>
               </div>
             </li>
             <li class="nav-item" *ngIf="isLogin">
-              <div
-                class="nav-link d-flex align-items-center align-content-center px-2 gap-1"
-                aria-current="page"
-                (click)="SavedJobs()"
-              >
-                <img
-                  height="15"
-                  width="15"
-                  src="assets/SVG/ic_Dashboard Copy.svg"
-                  alt=""
-                />
+              <div class="nav-link d-flex align-items-center align-content-center px-2 gap-1" aria-current="page"
+                (click)="SavedJobs()">
+                <img height="15" width="15" src="assets/SVG/ic_Dashboard Copy.svg" alt="" />
                 <p class="text-midnight-moss font-poppins-semi mb-0">
                   Saved Jobs
                 </p>
               </div>
             </li>
             <li class="nav-item">
-              <div
-                class="nav-link d-flex align-items-center align-content-center px-2 gap-1"
-                aria-current="page"
-                (click)="GoToJobs()"
-              >
+              <div class="nav-link d-flex align-items-center align-content-center px-2 gap-1" aria-current="page"
+                (click)="GoToJobs()">
                 <img height="15" width="15" src="assets/SVG/search.svg" alt="" />
                 <p class="text-midnight-moss font-poppins-semi mb-0">
                   Job Search
@@ -160,7 +96,7 @@
               </div>
             </li>
           </ul>
-      
+
         </div>
       </div>
     </div>

@@ -59,7 +59,7 @@ export class CertificatesComponent implements OnInit {
       ...certificate,
       renewal: Number(certificate.renewal) ?? 0,
       recid: certificate?.recid ? certificate?.recid : 0,
-      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid')),
+      applicantPersonRecId: Number(localStorage.getItem('recId')),
       IssueDate: this.datePipe.transform(certificate.IssueDate, "yyyy-MM-dd") ?? '',
       ExpirationDate: this.datePipe.transform(certificate.ExpirationDate, "yyyy-MM-dd") ?? ''
     }

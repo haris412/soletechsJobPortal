@@ -1,4 +1,3 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -30,5 +29,8 @@ export class SignupModalComponent {
   SignUp(){
     this.sharedService.signUpModalEmitter.emit(true);
     this.router.navigate(['/sign-up']);
+  }
+  SignIn(){
+    this.router.navigate(['/login']);
   }
 }

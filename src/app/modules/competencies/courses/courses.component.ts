@@ -50,8 +50,8 @@ export class CoursesComponent implements OnInit{
   async CourseAdded(course:Course){
     let courseData: Course = {
       ...course,
-      RecId: 0,
-      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
+      RecId: course?.RecId ? course?.RecId : 0,
+      applicantPersonRecId: Number(localStorage.getItem('recId'))
     }
     let response;
     if (course?.RecId > 0) {

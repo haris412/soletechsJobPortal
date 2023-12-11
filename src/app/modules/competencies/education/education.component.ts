@@ -60,7 +60,7 @@ export class EducationComponent implements OnInit{
     let educationData: Education = {
       ...education,
       CreditBasis: Number(education.CreditBasis) ?? 2,
-      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid')),
+      applicantPersonRecId: Number(localStorage.getItem('recId')),
       HRMDuration: 4.0,
       RecId: 0,
       PeriodUnit: "Years",

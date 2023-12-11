@@ -33,7 +33,7 @@ export class AddressComponent {
         ...address,
         recid: address?.recid ? address?.recid : 0,
         PostalCode: "",
-        ApplicantPersonRecid: Number(localStorage.getItem('recId'))
+        ApplicantPersonRecid: Number(localStorage.getItem('applicantPersonRecid'))
       }
       let response = await this.lookUpService.GetUpdateApplicantProfileAddress(addressData);
       if (response?.Status) {

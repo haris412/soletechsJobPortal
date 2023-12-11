@@ -40,7 +40,7 @@ export class IdentificationComponent implements OnInit {
     let identificationData :Identification = {
       ...identification,
       recId:identification?.recId ? identification?.recId : 0,
-      applicantPersonRecId:Number(localStorage.getItem('recId'))
+      applicantPersonRecId:Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response = await this.lookUpService.UpdateApplicantProfileIdentification(identificationData);
     if(response?.Status){

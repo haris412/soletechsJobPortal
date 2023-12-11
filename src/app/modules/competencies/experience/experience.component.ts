@@ -52,7 +52,7 @@ export class ExperienceComponent implements OnInit{
       ...experience,
       employerLocation: "UK",
       recid: 0,
-      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
+      applicantPersonRecId: Number(localStorage.getItem('recId'))
     }
     let response;
     var isEdit = false;

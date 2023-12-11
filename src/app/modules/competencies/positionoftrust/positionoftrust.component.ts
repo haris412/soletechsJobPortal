@@ -51,8 +51,8 @@ export class PositionoftrustComponent implements OnInit{
   async PositionTrustAdded(positionOfTrust:PositionOfTrust){
     let positionData: PositionOfTrust = {
       ...positionOfTrust,
-      Recid:0,
-      applicantPersonRecid: Number(localStorage.getItem('applicantPersonRecid'))
+      Recid: positionOfTrust?.Recid ? positionOfTrust?.Recid : 0,
+      applicantPersonRecid: Number(localStorage.getItem('recId'))
     }
     let response;
     if (positionOfTrust.Recid > 0) {

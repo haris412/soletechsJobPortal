@@ -33,7 +33,7 @@ export class AddEditCoursesComponent  implements OnInit{
     
   }
   ngOnInit(){
-    if(this.selectedCourse.course !== ''){
+    if(this.selectedCourse?.course !== ''){
       this.CourseForm.patchValue({
         ...this.selectedCourse
       });

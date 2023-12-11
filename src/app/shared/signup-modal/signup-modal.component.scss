@@ -15,3 +15,11 @@
     }
   }
 }
+
+.email-signup{
+  &:hover,
+  &:focus{
+    color:white !important;
+    background-color: $midnight-moss;
+  }
+}

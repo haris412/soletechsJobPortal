@@ -20,18 +20,21 @@
         class="d-flex align-items-center px-3 btn text-midnight-moss w-100 py-2 font-poppins-semi border border-color-gray-300 gap-2">
         <img src="assets/SVG/microsoft.svg" alt="" />Sign in with Microsoft
       </button>
-      <button
-        class="d-flex align-items-center px-3 btn text-midnight-moss w-100 py-2 font-poppins-semi border border-color-gray-300 gap-2" (click)="SignUp()">
-        Sign up with Email
-      </button>
     </div>
     <div class="d-flex align-items-center gap-2 seperator">
       <hr class="w-100">
       <h6 class="mb-0 text-shuttle-grey font-poppins-semi">or</h6>
       <hr class="w-100">
     </div>
-    <button type="button" class="btn bg-midnight-moss text-white rounded font-poppins-medium w-100">
+    <button type="button" class="email-signup btn mb-2 border-color-midnight-moss text-midnight-moss rounded font-poppins-medium w-100" (click)="SignUp()">
+      Sign up with Email
+    </button>
+    <button type="button" class="mb-2 btn bg-midnight-moss text-white rounded font-poppins-medium w-100">
       Quick apply
     </button>
+    <p class="text-gray-600 mx-auto d-flex align-content-center justify-content-center">
+      Already have an account?<span class="font-poppins-medium text-equator ms-1 cursor-pointer"
+        (click)="SignIn()">Sign in</span>
+    </p>
   </div>
 </div>
