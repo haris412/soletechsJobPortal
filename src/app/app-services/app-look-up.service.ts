@@ -663,4 +663,12 @@ export class AppLookUpService {
                 { params: queryParams }
             ).toPromise();
     }
+
+    async VerifyOTP(otp: number) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.verifyOTP,
+                otp 
+            ).toPromise();
+    }
 }

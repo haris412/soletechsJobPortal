@@ -1,6 +1,8 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,7 +13,9 @@ import { environment } from 'src/environments/environment';
 export class SignupModalComponent {
 
   constructor(
-    private deleteModal: MatDialogRef<SignupModalComponent>
+    private deleteModal: MatDialogRef<SignupModalComponent>,
+    private router:Router,
+    private sharedService:ApplicantDataService
   ) { }
   closeDialog() {
     const dialogRef = this.deleteModal.close();
@@ -22,5 +26,9 @@ export class SignupModalComponent {
     let url = `${environment.authorizationUrl}?response_type=code&client_id=${environment.clientId
     }&redirect_uri=${environment.redirect_uri}&scope=${environment.scope}`;
     window.open(url, "_self");
+  }
+  SignUp(){
+    this.sharedService.signUpModalEmitter.emit(true);
+    this.router.navigate(['/sign-up']);
   }
 }

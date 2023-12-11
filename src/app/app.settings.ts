@@ -85,6 +85,7 @@ export const apiURLs = {
         savedApplicantJobs:`${environment.apiUrl}/ERPApplicant/SavedApplicantJobs`,
         getApplicantSavedJobsList:`${environment.apiUrl}/ERPApplicant/GetApplicantSavedJobsList`,
         changePassword:`${environment.apiUrl}/ERPApplicant/ChangePassword`,
-        resetPassword:`${environment.apiUrl}/ERPApplicant/ResetPassword`
+        resetPassword:`${environment.apiUrl}/ERPApplicant/ResetPassword`,
+        verifyOTP:`${environment.apiUrl}/ERPApplicant/VerifyOTP`
     }
 }
