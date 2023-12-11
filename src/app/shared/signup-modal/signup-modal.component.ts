@@ -21,7 +21,6 @@ export class SignupModalComponent {
   }
 
   loginWithLinkedIn() {
-    localStorage.setItem('token', 'ewr74#$43$#$#@@#');
     let url = `${environment.authorizationUrl}?response_type=code&client_id=${environment.clientId
     }&redirect_uri=${environment.redirect_uri}&scope=${environment.scope}`;
     window.open(url, "_self");
@@ -31,6 +30,7 @@ export class SignupModalComponent {
     this.router.navigate(['/sign-up']);
   }
   SignIn(){
+    this.sharedService.signUpModalEmitter.emit(true);
     this.router.navigate(['/login']);
   }
 }
