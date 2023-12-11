@@ -24,7 +24,7 @@
   display: block;
   border-bottom: 10px solid $midnight-moss;
   position: absolute;
-  bottom: -15px;
+  bottom: -7px;
   left: 0;
   width: 100%; // Initial width /
   border-radius: 10px;
@@ -108,6 +108,7 @@
       .dropdown-item {
         font-size: 0.875rem;
         padding-block: 0.5rem;
+        margin-right: 1rem;
         &:hover {
           color: $midnight-moss;
           background-color: $gray-200;
