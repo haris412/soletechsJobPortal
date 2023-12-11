@@ -665,11 +665,10 @@ export class AppLookUpService {
     }
 
     async VerifyOTP(otp: number) {
-
         return await this.httpClient
             .post<any>(
                 apiURLs.applicant.verifyOTP,
-                otp
+                otp 
             ).toPromise();
     }
 }
