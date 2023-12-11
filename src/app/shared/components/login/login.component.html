@@ -11,7 +11,7 @@
         </h3>
         <span class="fs-7 mobile-text d-lg-none text-gray-600">Welcome back! Please enter your details.</span>
       </div>
-      <form class="d-flex flex-column w-100" action="" [formGroup]="loginForm">
+      <form class="d-flex flex-column w-100 mb-2" action="" [formGroup]="loginForm">
         <div class="d-flex flex-column">
           <p class="text-midnight-moss font-poppins-medium d-lg-block d-none">
             Email*
@@ -46,7 +46,7 @@
           </mat-form-field>
         </div>
       </form>
-      <form class="d-flex flex-column w-100" action="" [formGroup]="otpForm" *ngIf="showOtp">
+      <form class="d-flex flex-column w-100 mb-2" action="" [formGroup]="otpForm" *ngIf="showOtp">
         <div class="d-flex flex-column" >
           <p class="text-midnight-moss font-poppins-medium d-lg-block d-none">
             OTP*

@@ -232,6 +232,14 @@ $utilities: map-merge(
         auto: auto,
       ),
     ),
+    "min-width": (
+      property: min-width,
+      class: min_w,
+      responsive: true,
+      values: (
+        fit: fit-content
+      )
+    ),
   )
 );
 $gray-200: #eaecf0;
