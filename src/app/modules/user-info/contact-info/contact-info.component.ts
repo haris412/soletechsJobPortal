@@ -28,7 +28,7 @@ export class ContactInfoComponent implements OnInit {
       ...contact,
       Type:Number(contact.Type),
       recid:contact?.recid ? contact?.recid : 0,
-      applicantPersonRecId:Number(localStorage.getItem('recId'))
+      applicantPersonRecId:Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response = await this.lookUpService.GetUpdateApplicantProfileContact(contactData);
     if(response){

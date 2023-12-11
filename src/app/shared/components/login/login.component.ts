@@ -77,6 +77,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("recId", response?.recid);
         this.service.loginEmitter.emit(true);
         this.router.navigate(['/applicant']);
+      }else{
+        this.toastrService.error(response?.Message);
       }
     } else {
       this.otpForm.markAllAsTouched();
