@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { Job } from 'src/app/models/job.model';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 import { SignupModalComponentService } from 'src/app/shared/signup-modal/signup-modal.service';
 
 @Component({
@@ -28,11 +29,13 @@ export class JobsComponent implements OnInit {
   public sidenavOpen: boolean = false;
   email:string  = '';
   dialogRef:any;
+
   constructor(
     private signUp: SignupModalComponentService,
     private router: Router,
     private lookUpService:AppLookUpService,
-    private applicantDataService:ApplicantDataService) { 
+    private applicantDataService:ApplicantDataService,
+    public sharedService: SharedService) { 
       this.applicantDataService.signUpModalEmitter.subscribe(x=> this.CloseModal())
    }
 

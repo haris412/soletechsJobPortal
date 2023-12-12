@@ -9,7 +9,7 @@
             <h4 class="mb-0">{{selectedJob.Description}}</h4>
             <div class="d-lg-flex d-none align-items-center header-icons gap-2">
                 <div class="p-1">
-                    <img height="34px" src="assets/SVG/Saved.svg" alt="saved" class="cursor-pointer green-filter" />
+                    <img height="34px" src="assets/SVG/Saved.svg" alt="saved" class="cursor-pointer green-filter" (click)="this.sharedService.SaveJob(selectedJob)" />
                 </div>
                 <div class="p-1">
                     <img height="34px" src="assets/SVG/Share.svg" alt="search" class="cursor-pointer green-filter" />
@@ -31,7 +31,7 @@
             </p>
         </div>
         <div class="d-lg-flex d-none align-items-center gap-3 application-buttons mb-3">
-            <button type="button" class="btn rounded-3 text-secondary" (click)="SignUpModal()">
+            <button type="button" class="btn rounded-3 text-secondary" *ngIf="!this.sharedService.isUserLoggedIn" (click)="SignUpModal()">
                 Sign Up
             </button>
 
@@ -72,7 +72,7 @@
             <div class="d-flex flex-wrap align-items-center justify-content-between">
                 <h5 class=" ">Are you interested in this Job?</h5>
                 <div class="d-flex align-items-center gap-3 application-buttons">
-                    <button type="button" class="btn rounded-3 text-secondary" (click)="SignUpModal()">
+                    <button type="button" class="btn rounded-3 text-secondary" *ngIf="!this.sharedService.isUserLoggedIn" (click)="SignUpModal()">
                         Sign Up
                     </button>
 

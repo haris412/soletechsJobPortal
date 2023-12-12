@@ -33,10 +33,8 @@ export class JobsListComponent implements OnInit {
   applyBtn:string = 'Apply';
   disableBtn:boolean = false;
   constructor(private recruitmentService: RecruitmentService,
-    private sharedService: SharedService,
-    private lookupService:AppLookUpService,
-    private toastrService: ToastrService,
-    private router:Router,
+    public sharedService: SharedService,
+    public lookupService:AppLookUpService
     ) { 
       this.email = localStorage.getItem('email') ?? '';
       if(this.email){
@@ -55,6 +53,11 @@ export class JobsListComponent implements OnInit {
     }
     await this.GetToken();
     await this.getRecruitmentProjectsList();
+    
+    var applicantId = localStorage.getItem('applicantId');
+    if (applicantId != undefined && applicantId != "") {
+      this.sharedService.isUserLoggedIn = true;
+    }
   }
 
   async getRecruitmentProjectsList() {
@@ -132,27 +135,6 @@ export class JobsListComponent implements OnInit {
     let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');
     if (accessTokenResponse) {
       this.sharedService.SetToken(accessTokenResponse.access_token);
-    }
-  }
-  async SaveJob(job:any){
-    if (localStorage.getItem("email")) {
-      let applicantId = localStorage.getItem("applicantId") ?? '';
-      try {
-        let jobData:SaveJob = {
-          applicantId:applicantId,
-          jobId:job?.jobId
-        }
-        let savedJobResponse = await this.lookupService.SavedApplicantJobs(jobData);
-        if (savedJobResponse?.Status) {
-          this.toastrService.success("Job Saved Successfully");
-        } else {
-          this.toastrService.error(savedJobResponse?.Message);;
-        }
-      } catch (ex) {
-        console.error()
-      }
-    } else {
-      this.router.navigate(['/login']);
     }
   }
 }
