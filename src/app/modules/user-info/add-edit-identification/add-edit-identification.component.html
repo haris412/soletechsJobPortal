@@ -20,7 +20,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Issue Date*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="issueDate" name="issueDate" [formControlName]="'IssueDate'" dateInput/>
+      <input matInput [matDatepicker]="issueDate" name="issueDate" [formControlName]="'IssueDate'" dateInput placeholder="dd/mm/yyyy"/>
       <mat-datepicker-toggle matIconSuffix [for]="issueDate"></mat-datepicker-toggle>
       <mat-datepicker #issueDate></mat-datepicker>
       <mat-error class="error-message" *ngIf="f.IssueDate.hasError('required') && (f.IssueDate.dirty || f.IssueDate.touched)">Issue Date is Required</mat-error>
@@ -29,7 +29,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Expiry Date*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="expiryDate" name="expiryDate" [formControlName]="'ExpirationDate'" dateInput/>
+      <input matInput [matDatepicker]="expiryDate" name="expiryDate" [formControlName]="'ExpirationDate'" dateInput placeholder="dd/mm/yyyy"/>
       <mat-datepicker-toggle matIconSuffix [for]="expiryDate"></mat-datepicker-toggle>
       <mat-datepicker #expiryDate></mat-datepicker>
       <mat-error class="error-message" *ngIf="f.ExpirationDate.hasError('required') && (f.ExpirationDate.dirty || f.ExpirationDate.touched)">Expiry Date is Required</mat-error>

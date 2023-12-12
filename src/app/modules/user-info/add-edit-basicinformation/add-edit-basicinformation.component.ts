@@ -26,7 +26,7 @@ export class AddEditBasicinformationComponent implements OnInit{
 			currentJobTitle: ['',[Validators.required]],
 			firstName:['', [Validators.required]],
 			lastName:['', [Validators.required]],
-			middleName:['', [Validators.required]],
+			middleName:[''],
 			maritalStatus:['0', [Validators.required]],
 			birthDate:[''],
 			highestDegree:['', [Validators.required]],
@@ -72,6 +72,7 @@ export class AddEditBasicinformationComponent implements OnInit{
       try {
         let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);
         if (response?.Status) {
+          await this.userInfoService.GetApplicantProfile();
           this.toasterService.success(response?.Message);
         } else {
           this.toasterService.error(response?.Message);

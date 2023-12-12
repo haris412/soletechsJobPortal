@@ -47,7 +47,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Start Date</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput>
+      <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
@@ -55,7 +55,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>End Date</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput>
+      <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
