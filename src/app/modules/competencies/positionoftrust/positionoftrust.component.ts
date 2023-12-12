@@ -38,7 +38,7 @@ export class PositionoftrustComponent implements OnInit{
   }
   async GetPositionTrust(){
     let trustedPositionResponse = await this.lookUpService.GetTrustedPositionList(this.personRecId);
-    if(trustedPositionResponse?.parmApplicantTrustedPositionList?.length > 0){
+    if(trustedPositionResponse?.parmApplicantTrustedPositionList){
       this.positionTrustList = trustedPositionResponse.parmApplicantTrustedPositionList;
     }
   }
