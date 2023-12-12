@@ -52,8 +52,8 @@ export class AddressComponent {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
-        let response:any = await this.lookUpService.DeleteCertificate(selectedAddress?.recid ?? 0 ,applicantPersonRecId);
+        let applicantPersonRecId = selectedAddress.ApplicantPersonRecid;
+        let response:any = await this.lookUpService.DeleteAddress(selectedAddress.ApplicantPersonRecid);
         if(response?.Status){
           this.toastrService.success(response?.Message);
           await this.userInfoService.GetApplicantProfile();

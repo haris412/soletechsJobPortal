@@ -36,7 +36,6 @@ export class IdentificationComponent implements OnInit {
     document.body.style.overflow = 'auto';
   }
   async IdentificationAdded(identification:Identification){
-    debugger;
     let identificationData :Identification = {
       ...identification,
       recId:identification?.recId ? identification?.recId : 0,
@@ -57,7 +56,7 @@ export class IdentificationComponent implements OnInit {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+         let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'))
         let response:any = await this.lookUpService.DeleteIdentification(identification?.recId ,applicantPersonRecId);
         if(response?.Status){
           this.toastrService.success(response?.Message);

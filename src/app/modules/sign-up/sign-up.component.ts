@@ -52,7 +52,6 @@ export class SignUpComponent implements OnInit {
 			middleNameAr: [''],
 			middleName: ['', [Validators.required]],
 			lastName: ['', [Validators.required]],
-			lastNamePrefix: [''],
 			mobile:['', [Validators.required]],
 			email: ['', [Validators.required]],
 			confirmemail: ['', [Validators.required]],

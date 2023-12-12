@@ -26,7 +26,7 @@ export class AddEditIdentificationComponent implements OnInit{
       IdentificationType: ['', [Validators.required]],
       IdentificationNumber: ['', [Validators.required]],
       IssueDate: ['', [Validators.required]],
-      ExpiryDate: ['', [Validators.required]],
+      ExpirationDate: ['', [Validators.required]],
       recId:[this.selectedIdentification?.recId ? this.selectedIdentification?.recId : 0],
       attachment: ['']
 

@@ -557,12 +557,9 @@ export class AppLookUpService {
             ).toPromise();
     }
 
-    async DeleteAddress(
-        recId: number, applicantRecId: number, country: string) {
+    async DeleteAddress(personRecid: number) {
         let queryParams = new HttpParams();
-        queryParams = queryParams.append('recid', recId).
-            set('applicantRecId', applicantRecId).
-            set('country', country)
+        queryParams = queryParams.append('personRecid', personRecid)
         return await this.httpClient
             .delete<any>(
                 apiURLs.applicant.deleteAddress,

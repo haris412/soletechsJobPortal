@@ -25,7 +25,7 @@ export class AddEditBasicinformationComponent implements OnInit{
     this.applicantForm = this._applicantFormBuilder.group({
 			currentJobTitle: ['',[Validators.required]],
 			firstName:['', [Validators.required]],
-			lastNamePrefix:['', [Validators.required]],
+			lastName:['', [Validators.required]],
 			middleName:['', [Validators.required]],
 			maritalStatus:['0', [Validators.required]],
 			birthDate:[''],
@@ -43,9 +43,9 @@ export class AddEditBasicinformationComponent implements OnInit{
    ngOnInit(): void {
     this.applicantForm.patchValue({
       ...this.userInfoService.basicInfo,
-      gender: Number(this.userInfoService.basicInfo?.gender),
-      maritalStatus: Number(this.userInfoService.basicInfo?.maritalStatus),
-      previousEmployee: Number(this.userInfoService.basicInfo?.previousEmployee)
+      gender: this.userInfoService.basicInfo?.gender?.toString(),
+      maritalStatus: this.userInfoService.basicInfo?.maritalStatus?.toString(),
+      previousEmployee: this.userInfoService.basicInfo?.previousEmployee?.toString()
     })
     
   }

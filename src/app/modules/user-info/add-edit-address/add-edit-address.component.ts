@@ -31,7 +31,8 @@ export class AddEditAddressComponent implements OnInit{
       streetName: ['',[Validators.required]],
       zipCode: ['', [Validators.required]],
       recid:[this.selectedAddress?.recid ? this.selectedAddress?.recid : 0],
-      postBox: ['']
+      PostalCode: [''],
+      description:['']
     });
   }
   ngOnInit(){

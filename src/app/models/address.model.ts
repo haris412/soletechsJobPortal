@@ -7,7 +7,7 @@ export interface Address {
     Purpose:string;
     streetName:string;
     CountryRegionId:string;
-    PostalCode:string;
+    PostalCode?:string;
     PostBox:string;
     ApplicantPersonRecid:number;
     recid?:number;

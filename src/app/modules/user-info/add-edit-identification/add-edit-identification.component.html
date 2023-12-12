@@ -29,10 +29,10 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>Expiry Date*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="expiryDate" name="expiryDate" [formControlName]="'ExpiryDate'" dateInput/>
+      <input matInput [matDatepicker]="expiryDate" name="expiryDate" [formControlName]="'ExpirationDate'" dateInput/>
       <mat-datepicker-toggle matIconSuffix [for]="expiryDate"></mat-datepicker-toggle>
       <mat-datepicker #expiryDate></mat-datepicker>
-      <mat-error class="error-message" *ngIf="f.ExpiryDate.hasError('required') && (f.ExpiryDate.dirty || f.ExpiryDate.touched)">Expiry Date is Required</mat-error>
+      <mat-error class="error-message" *ngIf="f.ExpirationDate.hasError('required') && (f.ExpirationDate.dirty || f.ExpirationDate.touched)">Expiry Date is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="cv-div">
