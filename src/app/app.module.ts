@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 import { AuthInterceptorService } from './app-services/http-interceptor.service';
 import { OtpVerificationComponent } from './appcomponents/otp-verification/otp-verification.component';
+import { TranslocoRootModule } from './transloco-root.module';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    bgsColor: 'white',
@@ -63,6 +64,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule.forRoot({
        showForeground: true,
     }),
+    TranslocoRootModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
     SharedModule,
