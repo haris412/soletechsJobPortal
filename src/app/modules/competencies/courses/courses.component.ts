@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit{
 
   async GetCourses(){
     let experienceResponse = await this.lookUpService.GetCourseList(this.personRecId);
-    if(experienceResponse?.parmApplicantCourseList?.length > 0){
+    if(experienceResponse?.parmApplicantCourseList){
       this.courses = experienceResponse.parmApplicantCourseList;
     }
   }

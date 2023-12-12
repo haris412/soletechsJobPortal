@@ -37,7 +37,7 @@ export class EducationComponent implements OnInit{
 
   async GetEducationList(){
     let educationResponse = await this.lookUpService.GetEducationList(this.personRecId);
-    if(educationResponse?.parmApplicantEducationList?.length > 0){
+    if(educationResponse?.parmApplicantEducationList){
       this.educations = educationResponse.parmApplicantEducationList;
     }
   }

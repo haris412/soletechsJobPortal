@@ -31,7 +31,7 @@ export class CertificatesComponent implements OnInit {
 
   async GetCertifiates(){
     let certificateResponse = await this.service.GetCertificateList(this.personRecId);
-    if(certificateResponse?.parmApplicantCertificateList.length > 0){
+    if(certificateResponse?.parmApplicantCertificateList){
       this.certificates = certificateResponse.parmApplicantCertificateList;
     }
   }
@@ -46,11 +46,8 @@ export class CertificatesComponent implements OnInit {
     document.body.style.overflow = 'auto';
   }
   async EditCertificate(certificate:Certificates){
-    // let certificateResponse = await this.service.CreateCertificate(certificate);
-    // if(certificateResponse){
       this.selectedCertificate = certificate;
       this.OpenSidenav();
-    //}
   }
 
   async CertificateAdded(certificate:Certificates){
