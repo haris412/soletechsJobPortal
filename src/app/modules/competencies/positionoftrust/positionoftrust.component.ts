@@ -20,7 +20,7 @@ export class PositionoftrustComponent implements OnInit{
   constructor(private toastrService: ToastrService,
     private lookUpService:AppLookUpService,
     private deleteModal: DeleteModalComponentService) {
-      this.personRecId = Number(localStorage.getItem('recId'));
+      this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
      }
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class PositionoftrustComponent implements OnInit{
     let positionData: PositionOfTrust = {
       ...positionOfTrust,
       Recid: positionOfTrust?.Recid ? positionOfTrust?.Recid : 0,
-      applicantPersonRecid: Number(localStorage.getItem('recId'))
+      applicantPersonRecid: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
     if (positionOfTrust.Recid > 0) {
@@ -75,7 +75,7 @@ export class PositionoftrustComponent implements OnInit{
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
         let response: any = await this.lookUpService.DeletePositionOfTrust(selectedpositionOfTrust?.Recid, applicantPersonRecId);
         if (response?.Status) {
           this.toastrService.success(response?.Message);

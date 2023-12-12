@@ -22,7 +22,7 @@ export class CertificatesComponent implements OnInit {
     private deleteModal: DeleteModalComponentService,
     private service:AppLookUpService,
     private datePipe: DatePipe) { 
-      this.personRecId = Number(localStorage.getItem('recId'));
+      this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
     }
 
     ngOnInit(): void {
@@ -59,7 +59,7 @@ export class CertificatesComponent implements OnInit {
       ...certificate,
       renewal: Number(certificate.renewal) ?? 0,
       recid: certificate?.recid ? certificate?.recid : 0,
-      applicantPersonRecId: Number(localStorage.getItem('recId')),
+      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid')),
       IssueDate: this.datePipe.transform(certificate.IssueDate, "yyyy-MM-dd") ?? '',
       ExpirationDate: this.datePipe.transform(certificate.ExpirationDate, "yyyy-MM-dd") ?? ''
     }
@@ -93,7 +93,7 @@ export class CertificatesComponent implements OnInit {
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
         let response:any = await this.service.DeleteCertificate(selectedcertificate?.recid ,applicantPersonRecId);
         if(response?.Status){
           this.toastrService.success(response?.Message);

@@ -19,7 +19,7 @@ export class CoursesComponent implements OnInit{
   constructor(private toastrService: ToastrService,
               private lookUpService:AppLookUpService,
               private deleteModal: DeleteModalComponentService) { 
-            this.personRecId = Number(localStorage.getItem('recId'));
+            this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
           }
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class CoursesComponent implements OnInit{
     let courseData: Course = {
       ...course,
       RecId: course?.RecId ? course?.RecId : 0,
-      applicantPersonRecId: Number(localStorage.getItem('recId'))
+      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
     if (course?.RecId > 0) {
@@ -74,7 +74,7 @@ export class CoursesComponent implements OnInit{
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
         let response: any = await this.lookUpService.DeleteCourse(selectedcourse?.RecId, applicantPersonRecId);
         if (response?.Status) {
           this.toastrService.success(response?.Message);

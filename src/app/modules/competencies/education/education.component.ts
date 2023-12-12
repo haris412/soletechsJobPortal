@@ -28,7 +28,7 @@ export class EducationComponent implements OnInit{
     private deleteModal: DeleteModalComponentService,
     private competenciesServie:CompetenciesCommonService,
     private datePipe: DatePipe){
-      this.personRecId = Number(localStorage.getItem('recId'));
+      this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
     }
   
   ngOnInit(){
@@ -60,7 +60,7 @@ export class EducationComponent implements OnInit{
     let educationData: Education = {
       ...education,
       CreditBasis: Number(education.CreditBasis) ?? 2,
-      applicantPersonRecId: Number(localStorage.getItem('recId')),
+      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid')),
       HRMDuration: 4.0,
       RecId: 0,
       PeriodUnit: "Years",
@@ -88,7 +88,7 @@ export class EducationComponent implements OnInit{
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
         let response:any = await this.lookUpService.DeleteEducation(selectededucation?.RecId ,applicantPersonRecId);
         if(response?.Status){
           this.toastrService.success(response?.Message);

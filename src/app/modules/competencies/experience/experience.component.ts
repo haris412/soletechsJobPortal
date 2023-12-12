@@ -23,7 +23,7 @@ export class ExperienceComponent implements OnInit{
     private deleteModal: DeleteModalComponentService,
     private lookUpService:AppLookUpService
   ) {
-    this.personRecId = Number(localStorage.getItem('recId'));
+    this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
   }
   ngOnInit(): void {
     this.GetExperiences();
@@ -43,7 +43,7 @@ export class ExperienceComponent implements OnInit{
 
   async GetExperiences(){
     let experienceResponse = await this.lookUpService.GetProfessionalList(this.personRecId);
-    if(experienceResponse?.parmApplicantProfessionalList?.length > 0){
+    if(experienceResponse?.parmApplicantProfessionalList){
       this.experienceList = experienceResponse.parmApplicantProfessionalList;
     }
   } 
@@ -51,8 +51,8 @@ export class ExperienceComponent implements OnInit{
     let experienceData: professionalExperience = {
       ...experience,
       employerLocation: "UK",
-      recid: 0,
-      applicantPersonRecId: Number(localStorage.getItem('recId'))
+      recid: experience?.recid ? experience?.recid : 0,
+      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
     var isEdit = false;
@@ -81,7 +81,7 @@ export class ExperienceComponent implements OnInit{
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
-        let applicantPersonRecId = Number(localStorage.getItem('recId'));
+        let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
         let response:any = await this.lookUpService.DeleteProfessional(selectedExperience?.recid ,applicantPersonRecId);
         if(response?.Status){
           this.toastrService.success(response?.Message);

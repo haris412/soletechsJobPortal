@@ -24,7 +24,7 @@ export class AddEditExperienceComponent implements OnInit {
       id: [''],
       employerName: ['', [Validators.required]],
       qualificationPosition: ['', [Validators.required]],
-      internetAddress: ['', [Validators.required]],
+      URL: ['', [Validators.required]],
       phone:['',[Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],

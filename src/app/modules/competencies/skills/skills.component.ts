@@ -24,7 +24,7 @@ export class SkillsComponent implements OnInit{
     private deleteModal: DeleteModalComponentService,
     private competenciesService: CompetenciesCommonService
   ) {
-    this.personRecId = Number(localStorage.getItem('recId'));
+    this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class SkillsComponent implements OnInit{
 
   async GetSkillsList(){
     let skillsResponse = await this.lookUpService.GetSkillsList(this.personRecId);
-    if(skillsResponse?.parmApplicantSkillsList?.length > 0){
+    if(skillsResponse?.parmApplicantSkillsList){
       this.skillList = skillsResponse.parmApplicantSkillsList;
     }
   }
@@ -55,8 +55,8 @@ export class SkillsComponent implements OnInit{
     let skillData: Skills = {
       ...skill,
       ratingLevelType: 1,
-      RecId: 0,
-      applicantPersonRecId: Number(localStorage.getItem('recId'))
+      RecId: skill?.RecId ? skill?.RecId :0,
+      applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
     var isEdit = false;
