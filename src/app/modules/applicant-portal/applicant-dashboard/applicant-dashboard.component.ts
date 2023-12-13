@@ -30,7 +30,8 @@ export class ApplicantDashboardComponent implements OnInit {
       }
     });
     await this.GetAppliedJobs();
-    // await this.SavedJobsList();
+    await this.GetApplicantSavedJobsList();
+    
   }
 
   GetAccessToken(code: string) {
@@ -58,36 +59,15 @@ export class ApplicantDashboardComponent implements OnInit {
     let response = await this.lookUpService.MyApplicationJobList(applicantId);
     if(response){
       this.appliedJobs = response?.parmRecruitmentApplicationJobList;
-      this.GetApplicantSavedJobsList();
     }
   }
   async GetApplicantSavedJobsList(){
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let response = await this.lookUpService.GetApplicantSavedJobsList(applicantId);
-    if(response){
-      let savedJobsIds = response?.parmApplicantSavedJobsList;
-      if(savedJobsIds?.length > 0){
-        savedJobsIds?.forEach((id:any) => {
-          this.appliedJobs?.forEach((job:any) => {
-            if(job?.jobId === id){
-              this.savedJobs.push(job);
-            }
-          });
-        });  
-      }
+    if (response) {
+      this.savedJobs = response?.parmApplicantSavedJobsList;
     }
   }
-
-  // async SavedJobsList() {
-  //   var data = await this.lookUpService.GetApplicantSavedJobsList(localStorage.getItem('applicantId') ?? "");
-  //   if (data != null && data.parmApplicantSavedJobsList != null) {
-  //     this.applicantService.savedJobs = [];
-  //     for (var item of data.parmApplicantSavedJobsList) {
-  //       var savedJobs = new SavedJobs();
-  //       savedJobs.id = item["$id"];
-  //       savedJobs.jobName = item.JobId;
-  //       this.applicantService.savedJobs.push(savedJobs);
-  //     }
-  //   }
-  // }
 }
+
+
