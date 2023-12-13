@@ -34,12 +34,12 @@ export class JobsComponent implements OnInit {
     private signUp: SignupModalComponentService,
     private router: Router,
     private lookUpService:AppLookUpService,
-    private applicantDataService:ApplicantDataService,
+    public applicantDataService:ApplicantDataService,
     public sharedService: SharedService) { 
       this.applicantDataService.signUpModalEmitter.subscribe(x=> this.CloseModal())
    }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.mobileView = this.width < this.minimunWidth;
     if (this.mobileView && this.selectedJob.$id === undefined) {
       this.show = true;
@@ -48,6 +48,7 @@ export class JobsComponent implements OnInit {
       this.webView = false;
       this.show = true;
     }
+    await this.applicantDataService.GetApplicantSavedJobsList();
   }
 
   onWindowResize(event: any) {

@@ -14,7 +14,6 @@ import { SavedJobs } from '../models/savedJobs';
 export class ApplicantDashboardComponent implements OnInit {
 
   appliedJobs:any[] = [];
-  savedJobs:any[] = [];
   constructor(private activatedRoute: ActivatedRoute, 
     public linkedInServive: LinkedInService,
     private lookUpService:AppLookUpService,
@@ -30,7 +29,7 @@ export class ApplicantDashboardComponent implements OnInit {
       }
     });
     await this.GetAppliedJobs();
-    await this.GetApplicantSavedJobsList();
+    await this.applicantService.GetApplicantSavedJobsList();
     
   }
 
@@ -61,13 +60,7 @@ export class ApplicantDashboardComponent implements OnInit {
       this.appliedJobs = response?.parmRecruitmentApplicationJobList;
     }
   }
-  async GetApplicantSavedJobsList(){
-    let applicantId = localStorage.getItem('applicantId') ?? '';
-    let response = await this.lookUpService.GetApplicantSavedJobsList(applicantId);
-    if (response) {
-      this.savedJobs = response?.parmApplicantSavedJobsList;
-    }
-  }
+
 }
 
 

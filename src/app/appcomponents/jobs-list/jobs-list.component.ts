@@ -8,6 +8,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { Router } from '@angular/router';
 import { SaveJob } from 'src/app/models/saveJob.model';
 import { TranslocoService } from '@ngneat/transloco';
+import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 
 @Component({
   selector: 'app-jobs-list',
@@ -37,7 +38,8 @@ export class JobsListComponent implements OnInit {
 
   constructor(private recruitmentService: RecruitmentService,
     public sharedService: SharedService,
-    public lookupService:AppLookUpService
+    public lookupService: AppLookUpService,
+    public applicantService: ApplicantDataService
     ) { 
       this.email = localStorage.getItem('email') ?? '';
       if(this.email){
@@ -60,6 +62,12 @@ export class JobsListComponent implements OnInit {
     var applicantId = localStorage.getItem('applicantId');
     if (applicantId != undefined && applicantId != "") {
       this.sharedService.isUserLoggedIn = true;
+    }
+    if(this.applicantService.selectedSavedJob != undefined && this.applicantService.selectedSavedJob != null) {
+      var job = this.jobsList.find(x => x.recruitingId == this.applicantService.selectedSavedJob.recruitingId) as Job;
+      if (job != undefined) {
+        this.OpenJob(job);
+      }
     }
   }
 

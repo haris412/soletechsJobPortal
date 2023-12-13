@@ -23,4 +23,9 @@ export class SavedJobsComponent implements OnInit,OnChanges {
   GoToJobs() {
     this.router.navigate(['/jobs']);
   }
+
+  selectJob(job: any) {
+    this.applicantService.selectedSavedJob = job;
+    this.router.navigate(['/jobs']);
+  }
 }

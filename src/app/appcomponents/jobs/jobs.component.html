@@ -9,7 +9,7 @@
             <h4 class="mb-0">{{selectedJob.Description}}</h4>
             <div class="d-lg-flex d-none align-items-center header-icons gap-2">
                 <div class="p-1">
-                    <img height="34px" src="assets/SVG/Saved.svg" alt="saved" class="cursor-pointer green-filter" (click)="this.sharedService.SaveJob(selectedJob)" />
+                    <img height="34px" src="assets/SVG/Saved.svg" alt="saved" [ngClass]="this.applicantDataService.isJobAlreadySaved(selectedJob) ? 'imgDisabled' : ''" class="cursor-pointer green-filter" (click)="this.sharedService.SaveJob(selectedJob)" />
                 </div>
                 <div class="p-1">
                     <img height="34px" src="assets/SVG/Share.svg" alt="search" class="cursor-pointer green-filter" />
