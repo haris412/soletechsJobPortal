@@ -52,7 +52,7 @@ export class SignUpComponent implements OnInit {
 			middleNameAr: [''],
 			middleName: ['', [Validators.required]],
 			lastName: ['', [Validators.required]],
-			mobile:['', [Validators.required]],
+			mobileNo:['', [Validators.required]],
 			email: ['', [Validators.required]],
 			confirmemail: ['', [Validators.required]],
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],

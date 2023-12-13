@@ -102,8 +102,8 @@
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
           <p class="text-midnight-moss font-poppins-medium">Mobile</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Mobile" [formControlName]="'mobile'" />
-            <mat-error class="error-message" *ngIf="f.mobile.hasError('required') && (f.mobile.dirty || f.mobile.touched)">Middle Name is Required</mat-error>
+            <input type="text" matInput placeholder="Mobile" [formControlName]="'mobileNo'" />
+            <mat-error class="error-message" *ngIf="f.mobileNo.hasError('required') && (f.mobileNo.dirty || f.mobileNo.touched)">Mobile is Required</mat-error>
 
           </mat-form-field>
         </div>
