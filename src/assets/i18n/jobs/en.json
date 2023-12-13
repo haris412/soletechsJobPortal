@@ -1,6 +1,11 @@
 {
-    "Search-jobs": "Search Jobs",
-    "csrd-introduction": "The following CSRD themes have been selected for your company. Press Start to begin the analysis.",
+    "search-jobs": "Search Jobs",
+    "job-plcaeholder": "Select a job to see it’s details.",
+    "sort-By":"Sort By",
+    "job-title-placeholder":"Enter job title",
+    "job-type":"Job Type",
+    "showing":"Showing",
+    "jobs":"Jobs",
     "start": "Start",
     "back-to-introduction": "Back to overview",
     "prev": "Prev",

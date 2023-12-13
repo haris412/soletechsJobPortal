@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
   userName:string = '';
   constructor(
     private router:Router,
-    private applicantDataService:ApplicantDataService
+    private applicantDataService:ApplicantDataService,
+    private service: TranslocoService
     ) { 
       this.applicantDataService.loginEmitter.subscribe(x=> this.UserLogin());
     }
@@ -36,6 +38,10 @@ export class HeaderComponent implements OnInit {
       this.userName = localStorage.getItem('userName') ?? '';
       this.isLogin = true;
     }
+  }
+  Change(lang: string) {
+    // Ensure new active lang is loaded
+    this.service.setActiveLang(lang);
   }
   OpenProfile(){
     this.router.navigate(['/user-profile']);

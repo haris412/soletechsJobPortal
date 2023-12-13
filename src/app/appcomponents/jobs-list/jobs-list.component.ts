@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { RecruitmentService } from 'src/app/app-services/jobs.service';
@@ -7,6 +7,7 @@ import { Job } from 'src/app/models/job.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Router } from '@angular/router';
 import { SaveJob } from 'src/app/models/saveJob.model';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-jobs-list',
@@ -32,6 +33,8 @@ export class JobsListComponent implements OnInit {
   appliedJobs:any[] = [];
   applyBtn:string = 'Apply';
   disableBtn:boolean = false;
+  private translocoService: TranslocoService = inject(TranslocoService);
+
   constructor(private recruitmentService: RecruitmentService,
     public sharedService: SharedService,
     public lookupService:AppLookUpService
