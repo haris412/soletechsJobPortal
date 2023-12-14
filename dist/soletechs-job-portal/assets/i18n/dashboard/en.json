@@ -1,0 +1,20 @@
+{
+    "applied-jobs": "Applied Jobs",
+    "saved-jobs":"Saved Jobs",
+    "browse-jobs":"Browse Jobs",
+    "not-apply-txt":"You didnt apply for any job",
+    "received":"Received",
+    "confirmed":"Confirmed",
+    "interview":"Interview",
+    "offer":"Offer",
+    "on-boarding":"Onboarding",
+    "no-saved-job-txt":"You don’t have any saved jobs",
+    "go-to-profile":"Go to my profile",
+    "basic-info":"Basic Info",
+    "competencies":"Competencies",
+    "next-actions":"Next actions",
+    "search-next-job":"Search your next job",
+    "search-jobs":"Search Jobs",
+    "confirm":"Confirm",
+    "reschedule":"Reschedule"
+}

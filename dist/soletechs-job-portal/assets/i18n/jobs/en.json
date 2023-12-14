@@ -1,12 +1,19 @@
 {
-    "Search-jobs": "Search Jobs",
-    "csrd-introduction": "The following CSRD themes have been selected for your company. Press Start to begin the analysis.",
+    "search-jobs": "Search Jobs",
+    "job-plcaeholder": "Select a job to see it’s details.",
+    "sort-By":"Sort By",
+    "job-title-placeholder":"Enter job title",
+    "job-type":"Job Type",
+    "showing":"Showing",
+    "jobs":"Jobs",
     "start": "Start",
-    "back-to-introduction": "Back to overview",
-    "prev": "Prev",
-    "next": "Next",
-    "explanation": "Explanation",
-    "ask-a-teammember": "Ask a teammember",
-    "select-a-teammember": "Select a teammember",
-    "select-a-teammember-for-question": "Select a teammember for question; "
+    "apply":"Apply",
+    "sign-up":"Sign Up",
+    "intereted-job":"Are you interested in this Job?",
+    "skill-needed":"Tech skills needed",
+    "working-on":"What you'll be working on",
+    "job-for-you":"This is the job for you if",
+    "skills":"Skills",
+    "overview":"Overview",
+    "applied":"Applied"
 }
