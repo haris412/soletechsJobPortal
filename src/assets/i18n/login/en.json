@@ -1,0 +1,13 @@
+{
+    "login": "Login",
+    "email":"Email",
+    "password":"Password",
+    "email-placeholder":"Enter your email",
+    "password-placeholder":"Enter ypur password",
+    "signup-google":"Sign up with google",
+    "forgot-password":"Forgot Password",
+    "acount-text":"Dont have an account?",
+    "sign-up":"Sign up",
+    "otp":"OTP",
+    "resend-otp":"Resend OTP"
+}

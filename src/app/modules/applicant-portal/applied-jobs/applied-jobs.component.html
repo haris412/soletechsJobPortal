@@ -1,12 +1,12 @@
-<div>
-  <h4 class="text-midnight-moss">Applied Jobs</h4>
+<ng-container *transloco="let t; scope: 'dashboard';">
+  <h4 class="text-midnight-moss">{{t('dashboard.applied-jobs')}}</h4>
   <div *ngIf="appliedJobs?.length === 0" class="job-detail justify-content-center rounded-3">
     <div class="no-information">
       <img src="assets/SVG/no-applied.svg" alt="" />
-      <p class="text-shuttle-grey">You didnt apply for any job</p>
+      <p class="text-shuttle-grey">{{t('dashboard.not-apply-txt')}}</p>
       <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
         (click)="GoToJobs()">
-        Browse Jobs
+        {{t('dashboard.browse-jobs')}}
       </button>
     </div>
   </div>
@@ -51,42 +51,42 @@
           <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0"/>
           <p  *ngIf="appliedJob?.applicationStatus !== 0 && appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6"></p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Recived</h6>
-        <p class="text-midnight-moss font-poppins-medium">Received</p>
+        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</h6>
+        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</p>
       </div>
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1}">
         <div class="step-counter">
           <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1"/>
           <p *ngIf="appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6"></p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Confirmed</h6>
-        <p class="text-midnight-moss font-poppins-medium">Confirmed</p>
+        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</h6>
+        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</p>
       </div>
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 5}">
         <div class="step-counter">
           <img *ngIf="appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 2" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6" ></p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Interview</h6>
-        <p class="text-midnight-moss font-poppins-medium">Interview</p>
+        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</h6>
+        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</p>
       </div>
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 6}">
         <div class="step-counter">
           <img *ngIf="appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="appliedJob?.applicationStatus !== 6"></p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Offer</h6>
-        <p class="text-midnight-moss font-poppins-medium">Offer</p>
+        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</h6>
+        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</p>
       </div>
       <div class="stepper-item">
         <div class="step-counter">
           <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p></p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">Onboarding</h6>
-        <p class="text-midnight-moss font-poppins-medium">Onboarding</p>
+        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.on-boarding')}}</h6>
+        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.on-boarding')}}</p>
       </div>
     </div>
   </div>
 </div>
-</div>
+</ng-container>

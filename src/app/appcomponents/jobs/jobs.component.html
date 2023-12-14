@@ -1,3 +1,5 @@
+<ng-container *transloco="let t; scope: 'jobs';">
+
 <div class="d-flex d-lg-none align-items-center gap-2 px-0 cursor-pointer" (click)="Back()" *ngIf="show">
     <img src="assets/SVG/Iconback.svg" alt="">
     <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
@@ -24,7 +26,7 @@
             <img height="34px" src="assets/SVG/Saved.svg" alt="saved" class="cursor-pointer" />
             <img height="34px" src="assets/SVG/Share.svg" alt="search" class="cursor-pointer" />
         </div>
-        <h5>Overview</h5>
+        <h5>{{t('jobs.overview')}}</h5>
         <div class="job-detail-text text-start">
             <p>
                 {{selectedJob.Overview}}
@@ -32,14 +34,17 @@
         </div>
         <div class="d-lg-flex d-none align-items-center gap-3 application-buttons mb-3">
             <button type="button" class="btn rounded-3 text-secondary" *ngIf="!this.sharedService.isUserLoggedIn" (click)="SignUpModal()">
-                Sign Up
+                {{t('jobs.sign-up')}}
             </button>
 
-            <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
-                 {{applyBtn}}
+            <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)" *ngIf="applyBtn == 'Apply'">
+                 {{t('jobs.apply')}}
             </button>
+            <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)"  *ngIf="applyBtn == 'Applied'">
+                {{t('jobs.applied')}}
+           </button>
         </div>
-        <h5 class="mt-4">Skills</h5>
+        <h5 class="mt-4">{{t('jobs.skills')}}</h5>
         <div class="d-flex align-items-center gap-2 skills flex-wrap">
             <p class="d-flex align-items-center justify-content-center py-2 px-3"
                 *ngFor="let skills of selectedJob?.Skills?.parmRecruitmentSkillsList">
@@ -59,26 +64,28 @@
               </div>
         </ng-container>
         </div>
-        <h5 class="mt-4">What you'll be working on</h5>
-        <span class="text-shuttle-grey">This is the job for you if:</span>
+        <h5 class="mt-4">{{t('jobs.working-on')}}</h5>
+        <span class="text-shuttle-grey">{{t('jobs.job-for-you')}}:</span>
         <ul class="mb-4">
             <div [innerHTML]="selectedJob.JobAd"></div>
         </ul>
-        <span class="text-shuttle-grey">Tech skills needed:</span>
+        <span class="text-shuttle-grey">{{t('jobs.skill-needed')}}:</span>
         <ul class="mb-lg-0 mb-4">
             <li *ngFor="let techskills of selectedJob.Skills?.parmRecruitmentSkillsList">{{techskills.Skill}}</li>
         </ul>
         <div class="info-detail-footer position-absolute bottom-0 border-lg-top pt-4 pb-3">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
-                <h5 class=" ">Are you interested in this Job?</h5>
+                <h5 class=" ">{{t('jobs.intereted-job')}}</h5>
                 <div class="d-flex align-items-center gap-3 application-buttons">
                     <button type="button" class="btn rounded-3 text-secondary" *ngIf="!this.sharedService.isUserLoggedIn" (click)="SignUpModal()">
-                        Sign Up
+                        {{t('jobs.sign-up')}}
                     </button>
-
-                    <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)">
-                         {{applyBtn}}
-                    </button>
+                    <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)" *ngIf="applyBtn == 'Apply'">
+                        {{t('jobs.apply')}}
+                   </button>
+                   <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)"  *ngIf="applyBtn == 'Applied'">
+                       {{t('jobs.applied')}}
+                  </button>
                 </div>
             </div>
         </div>
@@ -86,12 +93,13 @@
     <div class="d-flex flex-column w-100 no-info light-border border-radius-8 px-4 pt-4 bg-white"
         *ngIf="!selectedJob.jobId">
         <img height="185px" src="assets/SVG/illustration.svg" alt="" />
-        <h6 class="text-black">Select a job to see it’s details</h6>
+        <h6 class="text-black">{{ t('jobs.job-plcaeholder') }}</h6>
     </div>
 </div>
 
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
     [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
-    <span class="heading">Apply</span>
+    <span class="heading">{{t('jobs.apply')}}</span>
     <app-quick-apply  (closeClicked) = "CloseSidenav()" [recruitmentProject] = "recruitmentProject" [selectedJob] = "selectedJob"></app-quick-apply>
 </div>
+</ng-container>

@@ -14,6 +14,7 @@ import { RescheduleModalComponent } from './reschedule-modal/reschedule-modal.co
 import { DateValueAccessor } from './directives/date-input-accessor';
 import { PasswordStrengthComponent } from '../password-strength/password-strength.component';
 import { BlockCopyPasteDirective } from './directives/appBlockCopyPaste.directive';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 
 
@@ -34,6 +35,7 @@ import { BlockCopyPasteDirective } from './directives/appBlockCopyPaste.directiv
   ],
   imports: [
     MaterialModule,
+    TranslocoRootModule,
     CommonModule,
     CKEditorModule
   ],

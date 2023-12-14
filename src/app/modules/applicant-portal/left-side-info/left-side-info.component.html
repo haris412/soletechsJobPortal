@@ -1,3 +1,4 @@
+<ng-container *transloco="let t; scope: 'dashboard';">
 <div class="user-info info-container rounded-3">
   <h2 class="text-midnight-moss">Hi {{ this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.name : userEmail }},</h2>
   <div class="d-flex align-items-center gap-xxl-4 gap-3 profile-pic">
@@ -16,26 +17,26 @@
     <p class="mb-0 text-midnight-moss">Cairo, Egypt</p>
   </div>
   <div class="d-flex align-items-center justify-content-between cursor-pointer">
-    <p class="mb-0 text-denim text-decoration-underline" (click)="GoToProfile()">Go to my profile</p>
+    <p class="mb-0 text-denim text-decoration-underline" (click)="GoToProfile()">{{t('dashboard.go-to-profile')}}</p>
     <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToProfile()">
   </div>
 </div>
 <div class="d-flex align-items-center justify-content-between cursor-pointer side-tab">
-  <p class="mb-0 text-denim" (click)="GoToBasicInfo()">Basic Info</p>
+  <p class="mb-0 text-denim" (click)="GoToBasicInfo()">{{t('dashboard.basic-info')}}</p>
   <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToBasicInfo()">
 </div>
 <div class="d-flex align-items-center justify-content-between cursor-pointer side-tab">
-  <p class="mb-0 text-denim " (click)="GoToCompetencies()">Competencies</p>
+  <p class="mb-0 text-denim " (click)="GoToCompetencies()">{{t('dashboard.competencies')}}</p>
   <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToCompetencies()">
 </div>
 <div class="next-actions">
-  <h4 class="text-midnight-moss">Next actions</h4>
+  <h4 class="text-midnight-moss">{{t('dashboard.next-actions')}}</h4>
   <div *ngIf="jobList.length === 0" class="actions info-container rounded-3">
     <div class="no-information">
       <img src="assets/SVG/no-action.svg" alt="" />
-      <p class="text-shuttle-grey">Search your next job</p>
+      <p class="text-shuttle-grey">{{t('dashboard.search-next-job')}}</p>
       <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5" (click)="GoToJobs()">
-        Search Jobs
+        {{t('dashboard.search-jobs')}}
       </button>
     </div>
   </div>
@@ -73,13 +74,14 @@
       <div class="d-flex align-items-center gap-xxl-3 gap-2 confirm-reschedule">
         <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8"
           [disabled]="isDisable" (click)="Confirm()">
-          Confirm
+          {{t('dashboard.confirm')}}
         </button>
         <button type="button" class="btn text-error-600 border border-color-error-600 rounded font-poppins-semi fs-8"
           (click)="OpenReschedule()" [disabled]="isDisable">
-          Reschedule
+          {{t('dashboard.reschedule')}}
         </button>
       </div>
     </div>
   </div>
 </div>
+</ng-container>

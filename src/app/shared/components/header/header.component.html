@@ -1,3 +1,4 @@
+<ng-container *transloco="let t; scope: 'header';">
 <nav class="navbar navbar-expand-lg bg-white py-0 border-0">
   <div class="container-fluid justify-content-lg-start justify-content-between">
     <a class="navbar-brand" (click)="GoToJobs()">
@@ -10,7 +11,7 @@
             <div class="dropdown">
               <div id="dropdown-language" class="d-flex align-items-center gap-1" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <img height="20" src="assets/SVG/globe-grid-svgrepo-com.svg" /><span>English</span><img width="20"
+                <img height="20" src="assets/SVG/globe-grid-svgrepo-com.svg" /><span>{{selectedLanguage}}</span><img width="20"
                   src="assets/SVG/chevron-down.svg" alt="expand-down" />
                 <ul class="dropdown-menu min_w-fit" aria-labelledby ="dropdown-language">
                   <li><a class="dropdown-item" (click)="Change('en')">English</a></li>
@@ -39,10 +40,10 @@
                 <span>{{ userName }}</span><img width="20" src="assets/SVG/chevron-down.svg" alt="expand-down" />
                 <ul class="dropdown-menu  dropdown-menu-right min_w-fit">
                   <li>
-                    <a class="dropdown-item"  (click)="OpenProfile()">Profile</a>
+                    <a class="dropdown-item"  (click)="OpenProfile()"> {{t('header.profile')}}</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" (click)="LogOut()">Logout</a>
+                    <a class="dropdown-item" (click)="LogOut()"> {{t('header.logout')}}</a>
                   </li>
                 </ul>
               </div>
@@ -53,7 +54,7 @@
         <div *ngIf="!isLogin">
           <button type="button" class="btn bg-midnight-moss text-white rounded-3 login-btn w-100 w-lg-auto"
             (click)="Login()">
-            Login
+            {{t('header.login')}}
           </button>
         </div>
       </div>
@@ -74,7 +75,7 @@
               <div class="nav-link d-flex align-items-center align-content-center active px-2 gap-1"
                 aria-current="page">
                 <img height="15" width="15" src="assets/SVG/home.svg" alt="" />
-                <p class="text-midnight-moss font-poppins-semi mb-0">Home</p>
+                <p class="text-midnight-moss font-poppins-semi mb-0">{{t('header.home')}}</p>
               </div>
             </li>
             <li class="nav-item" *ngIf="isLogin">
@@ -82,7 +83,7 @@
                 (click)="SavedJobs()">
                 <img height="15" width="15" src="assets/SVG/ic_Dashboard Copy.svg" alt="" />
                 <p class="text-midnight-moss font-poppins-semi mb-0">
-                  Saved Jobs
+                  {{t('header.saved-jobs')}}
                 </p>
               </div>
             </li>
@@ -91,7 +92,7 @@
                 (click)="GoToJobs()">
                 <img height="15" width="15" src="assets/SVG/search.svg" alt="" />
                 <p class="text-midnight-moss font-poppins-semi mb-0">
-                  Job Search
+                  {{t('header.job-search')}}
                 </p>
               </div>
             </li>
@@ -102,3 +103,4 @@
     </div>
   </div>
 </nav>
+</ng-container>

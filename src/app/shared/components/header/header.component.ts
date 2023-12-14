@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
 
   isLogin:boolean = false;
   userName:string = '';
+  selectedLanguage:string = 'English';
   constructor(
     private router:Router,
     private applicantDataService:ApplicantDataService,
@@ -41,6 +42,12 @@ export class HeaderComponent implements OnInit {
   }
   Change(lang: string) {
     // Ensure new active lang is loaded
+    if(lang == 'en'){
+      this.selectedLanguage = 'English'
+    }else{
+      this.selectedLanguage = 'Arabic - العربية'
+
+    }
     this.service.setActiveLang(lang);
   }
   OpenProfile(){

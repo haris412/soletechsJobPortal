@@ -14,6 +14,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 
 
 
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     HttpClientModule,
+    TranslocoRootModule,
     RouterModule.forChild(applicatRoutes),
     CommonModule,
     ApplicantOnboardingModule,
