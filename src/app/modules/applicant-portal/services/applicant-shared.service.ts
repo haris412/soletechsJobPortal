@@ -29,9 +29,11 @@ export class ApplicantDataService {
 
     async GetApplicantSavedJobsList(){
       let applicantId = localStorage.getItem('applicantId') ?? '';
-      let response = await this.lookupService.GetApplicantSavedJobsList(applicantId);
-      if (response) {
-        this.savedJobs = response?.parmApplicantSavedJobsList;
+      if (applicantId != undefined && applicantId != '') {
+        let response = await this.lookupService.GetApplicantSavedJobsList(applicantId);
+        if (response) {
+          this.savedJobs = response?.parmApplicantSavedJobsList;
+        }
       }
     }
 }
