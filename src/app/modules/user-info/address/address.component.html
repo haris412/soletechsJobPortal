@@ -1,19 +1,20 @@
+<ng-container *transloco="let t; scope: 'basicInfo';">
 <div class="main-container">
   <div class="sign-up-info-div">
     <div class="d-flex align-items-center justify-content-between">
-      <span class="heading">Address</span>
+      <span class="heading">{{t('basicInfo.address')}}</span>
       <div
         class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
         (click)="OpenSidenav()">
         <img src="assets/SVG/plus-icon.svg" alt="" />
-        <h6 class="mb-0">Add New</h6>
+        <h6 class="mb-0">{{t('basicInfo.add-new')}}</h6>
       </div>
     </div>
     <div class="row mx-0">
       <div *ngIf="this.userInfoService.addressList.length === 0" class="address-list">
         <div class="no-information">
           <img src="assets/SVG/no-info.svg" alt="no-info">
-          <p class="text-shuttle-grey">You haven't added any information</p>
+          <p class="text-shuttle-grey">{{t('basicInfo.no-info')}}</p>
         </div>
       </div>
       <div class="address-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12"
@@ -38,7 +39,8 @@
 </div>
 
 <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
-  <span class="heading">Address</span>
+  <span class="heading">{{t('basicInfo.address')}}</span>
   <app-add-edit-address (closeSideNav)="CloseSidenav()" [selectedAddress]="selectedAddress"
     (addressData)="AddressAdded($event)"></app-add-edit-address>
 </div>
+</ng-container>

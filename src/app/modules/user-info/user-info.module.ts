@@ -14,6 +14,7 @@ import { AddEditContactInfoComponent } from './add-edit-contact-info/add-edit-co
 import { AddEditAddressComponent } from './add-edit-address/add-edit-address.component';
 import { AddEditIdentificationComponent } from './add-edit-identification/add-edit-identification.component';
 import { ToastrModule } from 'ngx-toastr';
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 
 
 
@@ -31,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     
   ],
   imports: [
+    TranslocoRootModule,
     RouterModule.forChild(UserInfoRoutes),
     MaterialModule,
     CKEditorModule,

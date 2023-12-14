@@ -1,6 +1,8 @@
+<ng-container *transloco="let t; scope: 'basicInfo';">
+
 <form class="row" action="" [formGroup]="addressForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Name of Description*</p>
+    <p>{{t('basicInfo.address-description')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="nameOfDescription" [formControlName]="'Address'" />
       <mat-error class="error-message"
@@ -8,7 +10,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Country*</p>
+    <p>{{t('basicInfo.country')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="country" [formControlName]="'CountryRegionId'" (selectionChange)="changeCountry()">
         <mat-option *ngFor="let country of this.userInfoService.countryRegions"
@@ -21,7 +23,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>City</p>
+    <p>{{t('basicInfo.city')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="city" [formControlName]="'City'">
         <mat-option *ngFor="let city of this.cities" [value]="city.value">{{city.name}}</mat-option>
@@ -30,7 +32,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Street*</p>
+    <p>{{t('basicInfo.street')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="street" [formControlName]="'streetName'" />
       <mat-error class="error-message"
@@ -39,7 +41,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Zip/Postal Code*</p>
+    <p>{{t('basicInfo.zip-postalCode')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="zipCode" [formControlName]="'zipCode'">
         <mat-option value="0514">0514</mat-option>
@@ -51,7 +53,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Post Box</p>
+    <p>{{t('basicInfo.post-box')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="PostalCode" [formControlName]="'PostalCode'" />
     </mat-form-field>
@@ -59,16 +61,17 @@
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
       (click)="Discard()">
-      Discard
+      {{t('basicInfo.discard')}}
     </button>
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
       (click)="CloseAddressNav()">
-      Close
+      {{t('basicInfo.close')}}
     </button>
     <button type="button"
       class="btn bg-midnight-moss border-color-midnight-moss text-white rounded font-poppins-semi fs-8 text-nowrap"
       (click)="SaveIdentification()">
-      Save
+      {{t('basicInfo.save')}}
     </button>
   </div>
 </form>
+</ng-container>
