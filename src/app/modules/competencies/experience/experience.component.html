@@ -1,19 +1,20 @@
+<ng-container *transloco="let t; scope: 'competencies';">
 <div class="main-container">
     <div class="sign-up-info-div">
       <div class="d-flex align-items-center justify-content-between">
-        <span class="heading">Experience</span>
+        <span class="heading">{{t('competencies.experience')}}</span>
         <div
           class="d-flex align-items-center justify-content-center rounded bg-midnight-moss text-white add-info gap-2 cursor-pointer"
           (click)="OpenSidenav()">
           <img src="assets/SVG/plus-icon.svg" alt="" />
-          <h6 class="mb-0">Add New</h6>
+          <h6 class="mb-0">{{t('competencies.add-new')}}</h6>
         </div>
       </div>
       <div class="row mx-0">
         <div *ngIf="experienceList.length === 0; else experiencesList" class="experience-list">
           <div class="no-information">
             <img src="assets/SVG/no-info.svg" alt="no-info">
-            <p class="text-shuttle-grey">You haven't added any information</p>
+            <p class="text-shuttle-grey">{{t('competencies.no-info-text')}}</p>
           </div>
         </div>
         <ng-template #experiencesList>
@@ -40,7 +41,8 @@
     </div>
   </div>
   <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-lg-45 w-md-75 w-100" [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
-    <span class="heading">Professional Experience</span>
+    <span class="heading">{{t('competencies.experience')}}</span>
     <app-add-edit-experience (closeSideNav)="CloseSidenav()" [selectedExperience]="selectedExperience"
     (experienceData)="ExperienceAdded($event)"></app-add-edit-experience>
   </div>
+</ng-container>

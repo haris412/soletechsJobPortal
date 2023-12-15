@@ -17,6 +17,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { AddEditCertificatesComponent } from './add-edit-certificates/add-edit-certificates.component';
 import { AddEditPositionOfTrustComponent } from './add-edit-position-of-trust/add-edit-position-of-trust.component';
 import { AddEditCoursesComponent } from './add-edit-courses/add-edit-courses.component';
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AddEditCoursesComponent } from './add-edit-courses/add-edit-courses.com
     AddEditCoursesComponent,
   ],
   imports: [
+    TranslocoRootModule,
     RouterModule.forChild(CompetenciesRoutes),
     MaterialModule,
     CKEditorModule,

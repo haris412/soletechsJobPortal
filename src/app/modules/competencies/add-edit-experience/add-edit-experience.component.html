@@ -1,156 +1,95 @@
-<form class="row" action="" [formGroup]="experienceForm">
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Employer</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input
-        matInput
-        name="employer"
-        [formControlName]="'employerName'"
-      />
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>URL Address</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input
-        matInput
-        name="URL"
-        [formControlName]="'URL'"
-      />
-    </mat-form-field>
-  </div>
-
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Started On</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input
-        matInput
-        [matDatepicker]="picker1"
-        name="startDate"
-        [formControlName]="'startDate'"
-        dateInput placeholder="dd/mm/yyyy"
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker1"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Ended On</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input
-        matInput
-        [matDatepicker]="picker2"
-        name="endDate"
-        [formControlName]="'endDate'"
-        dateInput placeholder="dd/mm/yyyy"
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker2"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Position</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input
-        matInput
-        name="position"
-        [formControlName]="'qualificationPosition'"
-      />
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Phone</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input
-        matInput
-        name="phone"
-        [formControlName]="'phone'"
-      />
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-12">
-    <p>Notes</p>
-    <mat-form-field appearance="outline" class="text-area w-100">
-      <textarea
-        rows="2"
-        matInput
-        name="notes"
-        name="notes"
-        [formControlName]="'notes'"
-      ></textarea>
-    </mat-form-field>
-  </div>
-  <div class="cv-div">
-    <p class="text-midnight-moss font-poppins-bold">Attachment</p>
-    <div  class="upload-file">
-      <input type="file" (change)="onFileUpload($event)" /><img
-        src="assets/SVG/upload.svg"
-        alt=""
-      />
-      <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
-      <span>PDF or DOC (max. size 6MB)</span>
+<ng-container *transloco="let t; scope: 'competencies';">
+  <form class="row" action="" [formGroup]="experienceForm">
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.employer')}}</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput name="employer" [formControlName]="'employerName'" />
+      </mat-form-field>
     </div>
-    <div
-      *ngIf="fileList.length > 0"
-      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3"
-    >
-      <div
-      class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
-        *ngFor="let file of fileList"
-      >
-        <div class="file-details rounded">
-          <div class="d-flex align-items-center gap-2">
-            <div class="file-icon">
-              <img
-                src="assets/SVG/pdf-icon.svg"
-                alt=""
-                (click)="DeleteFile(file)"
-              />
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.url-address')}}</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput name="URL" [formControlName]="'URL'" />
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.started-on')}}</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker1" name="startDate" [formControlName]="'startDate'" dateInput
+          placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.ended-on')}}</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker2" name="endDate" [formControlName]="'endDate'" dateInput
+          placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.position')}}</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput name="position" [formControlName]="'qualificationPosition'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.phone')}}</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput name="phone" [formControlName]="'phone'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-12">
+      <p>{{t('competencies.notes')}}</p>
+      <mat-form-field appearance="outline" class="text-area w-100">
+        <textarea rows="2" matInput name="notes" name="notes" [formControlName]="'notes'"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="cv-div">
+      <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
+      <div class="upload-file">
+        <input type="file" (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg" alt="" />
+        <p class="upload-text"><span>{{t('competencies.upload-text')}} </span>{{t('competencies.drag-drop')}}</p>
+        <span>PDF or DOC (max. size 6MB)</span>
+      </div>
+      <div *ngIf="fileList.length > 0" class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
+        <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
+          *ngFor="let file of fileList">
+          <div class="file-details rounded">
+            <div class="d-flex align-items-center gap-2">
+              <div class="file-icon">
+                <img src="assets/SVG/pdf-icon.svg" alt="" (click)="DeleteFile(file)" />
+              </div>
+              <div class="file-name-type">
+                <span class="file-name">{{ file.name }}</span>
+                <h6 class="file-type font-poppins-bold">PDF</h6>
+              </div>
             </div>
-            <div class="file-name-type">
-              <span class="file-name">{{ file.name }}</span>
-              <h6 class="file-type font-poppins-bold">PDF</h6>
+            <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+              <img height="20" src="assets/SVG/delete.svg" alt="" />
             </div>
-          </div>
-          <div
-            class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
-          >
-            <img  height="20" src="assets/SVG/delete.svg" alt="" />
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-  class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns"
->
-  <button
-    type="button"
-    class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-    (click)="Discard()"
-  >
-    Discard
-  </button>
-  <button
-    type="button"
-    class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-    (click)="CloseSideNav()"
-  >
-    Close
-  </button>
-  <button
-    type="button"
-    class="btn text-white bg-midnight-moss rounded font-poppins-semi"
-    (click)="SaveExperience()"
-  >
-    Save
-  </button>
-</div>
-</form>
-
+    <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+      <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+        (click)="Discard()">
+        {{t('competencies.discard')}}
+      </button>
+      <button type="button"
+        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
+        (click)="CloseSideNav()">
+        {{t('competencies.close')}}
+      </button>
+      <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi"
+        (click)="SaveExperience()">
+        {{t('competencies.save')}}
+      </button>
+    </div>
+  </form>
+</ng-container>

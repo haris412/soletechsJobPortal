@@ -1,6 +1,7 @@
+<ng-container *transloco="let t; scope: 'competencies';">
 <form class="row" action="" [formGroup]="educationForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Education</p>
+    <p>{{t('competencies.education')}}</p>
     <mat-form-field appearance="outline" class="w-100" name="education">
       <mat-select name='education' [formControlName]="'EducationDisciplineRecId'">
         <mat-option *ngFor="let discipline of educationDiscipline" [value]="discipline.value" (onSelectionChange) = "OnEducationChange($event)">{{discipline.name}}</mat-option>
@@ -9,13 +10,13 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Description</p>
+    <p>{{t('competencies.description')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="description" [formControlName]="'Description'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Level of Education</p>
+    <p>{{t('competencies.level-of-education')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name='levelOfEducation' [formControlName]="'EducationLevelId'">
         <mat-option *ngFor="let level of educationLevel" [value]="level.value">{{level.name}}</mat-option>
@@ -24,13 +25,13 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Secondary Emphasis</p>
+    <p>{{t('competencies.secondary-emphasis')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name='educationSecondaryEmphasis' [formControlName]="'EducationSecondaryEmphasis'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Institution</p>
+    <p>{{t('competencies.institution')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name='Institution' [formControlName]="'EducationInstitutionId'">
         <mat-option *ngFor="let institution of educationInstitution" [value]="institution.value">{{institution.name}}</mat-option>
@@ -39,13 +40,13 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Average</p>
+    <p>{{t('competencies.average')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input type="number" matInput name='educationaverage' [formControlName]="'EducationAverage'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Start Date</p>
+    <p>{{t('competencies.start-date')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -53,7 +54,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>End Date</p>
+    <p>{{t('competencies.end-date')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -61,19 +62,19 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Scale</p>
+    <p>{{t('competencies.scale')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input type="text" matInput name='educationScale' [formControlName]="'EducationScale'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Credits Completed</p>
+    <p>{{t('competencies.credits-completed')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input type="number" matInput name='creditsCompleted' [formControlName]="'CreditsCompleted'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Credit Hour Basis</p>
+    <p>{{t('competencies.credit-hour-basis')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name='hoursbasis' [formControlName]="'CreditBasis'">
         <mat-option value="2">yes</mat-option>
@@ -83,28 +84,28 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Credit Hours Earned</p>
+    <p>{{t('competencies.credit-hours-earned')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input type="number" matInput name='creditsEarned' [formControlName]="'CreditsEarned'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Credit Hours Required</p>
+    <p>{{t('competencies.credit-hours-required')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input type="number" matInput name='creditsNeeded' [formControlName]="'CreditsNeeded'"/>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-12">
-    <p>Notes</p>
+    <p>{{t('competencies.notes')}}</p>
     <mat-form-field appearance="outline" class="text-area w-100">
       <textarea matInput name='notes' [formControlName]="'Notes'"></textarea>
     </mat-form-field>
   </div>
   <div class="cv-div">
-    <p class="text-midnight-moss font-poppins-bold">Attachment</p>
+    <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
     <div  class="upload-file">
       <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
-      <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+      <p class="upload-text"><span>{{t('competencies.upload-text')}}</span>{{t('competencies.drag-drop')}}</p>
       <span>PDF or DOC (max. size 6MB)</span>
     </div>
     <div *ngIf="fileList.length > 0"
@@ -132,15 +133,16 @@
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
       (click)="Discard()">
-      Discard
+      {{t('competencies.discard')}}
     </button>
     <button type="button"
       class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
       (click)="CloseSideNav()">
-      Close
+      {{t('competencies.close')}}
     </button>
     <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="SaveEducation()">
-      Save
+      {{t('competencies.save')}}
     </button>
   </div>
 </form>
+</ng-container>

@@ -1,6 +1,7 @@
+<ng-container *transloco="let t; scope: 'competencies';">
 <form class="row" action="" [formGroup]="skillForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Skill ID</p>
+    <p>{{t('competencies.skill-id')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select  name='skillId' [formControlName]="'SkillID'">
         <mat-option *ngFor="let skill of skillList" [value]="skill.value">{{skill.name}}</mat-option>
@@ -9,7 +10,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Level</p>
+    <p>{{t('competencies.skill-level')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name='level' [formControlName]="'ratingLevel'">
         <mat-option *ngFor="let level of skillLevel" [value]="level.value">{{level.name}}</mat-option>
@@ -18,7 +19,7 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Level Date</p>
+    <p>{{t('competencies.level-date')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput [matDatepicker]="picker" name='ratingLevelDate' [formControlName]="'ratingLevelDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -26,16 +27,16 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>Year of Experience</p>
+    <p>{{t('competencies.year-of-experience')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name='experience' [formControlName]="'Experience'" />
     </mat-form-field>
   </div>
   <div class="cv-div">
-    <p class="text-midnight-moss font-poppins-bold">Attachment</p>
+    <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
     <div  class="upload-file">
       <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
-      <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+      <p class="upload-text"><span>{{t('competencies.upload-text')}} </span>{{t('competencies.drag-drop')}}</p>
       <span>PDF or DOC (max. size 6MB)</span>
     </div>
     <div *ngIf="fileList.length > 0"
@@ -51,7 +52,6 @@
               <h6 class="file-type font-poppins-bold">PDF</h6>
             </div>
           </div>
-
           <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
             <img  height="20" src="assets/SVG/delete.svg" alt="" />
           </div>
@@ -62,16 +62,16 @@
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
       (click)="Discard()">
-      Discard
+      {{t('competencies.discard')}}
     </button>
     <button type="button"
       class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
       (click)="CloseSideNav()">
-      Close
+      {{t('competencies.close')}}
     </button>
     <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="SaveSkill()">
-      Save
+      {{t('competencies.save')}}
     </button>
   </div>
 </form>
-
+</ng-container>
