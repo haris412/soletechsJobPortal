@@ -123,6 +123,27 @@ export class QuickApplyComponent implements OnInit{
     return this.degrees?.filter(degree => degree?.name?.toLowerCase()?.includes(filterValue));
   }
 
+  degreeDefaultSearch() {
+    this.degreeOptions = this.degreeCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  }
+
+  nationalityDefaultSearch() {
+    this.nationalityData = this.nationalityCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.__filterCountries(value || '')),
+    );
+  }
+
+  countryDefaultSearch() {
+    this.countriesData = this.countriesCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.__filterCountries(value || '')),
+    );
+  }
+
   private __filterCountries(value: string): string[] {
     const filterValue = value?.toLowerCase();
     return this.countryRegions?.filter(countries => countries?.name?.toLowerCase()?.includes(filterValue));
