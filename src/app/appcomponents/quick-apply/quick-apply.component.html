@@ -52,7 +52,8 @@
                matInput
                [formControl]="nationalityCtrl"
                [matAutocomplete]="autoNationality"
-               [formControlName]="'nationality'">
+               [formControlName]="'nationality'"
+               (click)="this.nationalityDefaultSearch()">
         <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete">
           <mat-option *ngFor="let nationality of nationalityData | async" (onSelectionChange) = "OnNationlaityChange($event)" [value]="nationality.value" >
             {{nationality.name}}
@@ -97,7 +98,8 @@
                matInput
                [formControl]="degreeCtrl"
                [matAutocomplete]="autodegrees"
-               [formControlName]="'highestDegree'">
+               [formControlName]="'highestDegree'"
+               (click)="this.degreeDefaultSearch()">
         <mat-autocomplete autoActiveFirstOption #autodegrees="matAutocomplete">
           <mat-option *ngFor="let degree of degreeOptions | async" [value]="degree.value">
             {{degree.name}}
@@ -116,7 +118,8 @@
                matInput
                [formControl]="countriesCtrl"
                [matAutocomplete]="autocountries"
-               [formControlName]="'address'">
+               [formControlName]="'address'"
+               (click)="this.countryDefaultSearch()">
         <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete">
           <mat-option *ngFor="let country of countriesData | async" [value]="country.value">
             {{country.name}}

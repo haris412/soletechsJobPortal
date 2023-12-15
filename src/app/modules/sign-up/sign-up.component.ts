@@ -53,7 +53,7 @@ export class SignUpComponent implements OnInit {
 			middleName: ['', [Validators.required]],
 			lastName: ['', [Validators.required]],
 			mobileNo:['', [Validators.required]],
-			email: ['', [Validators.required]],
+			email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
 			confirmemail: ['', [Validators.required]],
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			confirmpassword: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
@@ -187,6 +187,14 @@ export class SignUpComponent implements OnInit {
 				title: "Alert",
 				icon: 'error',
 				text: 'Password must contain a upper case letter, a digit and a special character.',
+				confirmButtonText: 'Ok'
+			});
+		} else if (this.userForm.controls.email.status == "INVALID") {
+			this.userForm.markAllAsTouched();
+			Swal.fire({
+				title: "Alert",
+				icon: 'error',
+				text: 'Please enter valid email address.',
 				confirmButtonText: 'Ok'
 			});
 		} else {
