@@ -14,12 +14,12 @@ export class AddEditEducationComponent implements OnInit{
   @Output() educationData: EventEmitter<Education> = new EventEmitter();
   educationForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
-  skill!: Education;
   fileList:any[]=[];
   file:any;
   educationInstitution:any[] = [];
   educationLevel:any[] = [];
   educationDiscipline:any[] = [];
+  get f() { return this.educationForm.controls; }
   constructor(private competenciesService:CompetenciesCommonService){
     this.educationForm = this._formBuilder.group({
       id:[''],
@@ -29,9 +29,9 @@ export class AddEditEducationComponent implements OnInit{
       EducationLevelId:['',[Validators.required]],
       StartDate: ['', [Validators.required]],
       EndDate: ['', [Validators.required]],
+      CreditBasis: [2,[Validators.required]],
       EducationScale:[''],
-      CreditBasis: [2],
-      EducationAverage:[0],
+      EducationAverage:[0,[Validators.required]],
       CreditsCompleted:['' ],
       CreditsEarned:[0],
       CreditsNeeded:[''],
@@ -44,7 +44,8 @@ export class AddEditEducationComponent implements OnInit{
   ngOnInit(){
     if(this.selectedEducation?.EducationDisciplineRecId !== ''){
       this.educationForm.patchValue({
-        ...this.selectedEducation
+        ...this.selectedEducation,
+        CreditBasis:this.selectedEducation?.CreditBasis?.toString()
       });
     }
     this.educationInstitution = this.competenciesService.educationInstitutionList;

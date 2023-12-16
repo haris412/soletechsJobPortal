@@ -26,6 +26,10 @@ export class IdentificationComponent implements OnInit {
   ngOnInit(): void {
     this.ref.detectChanges();
   }
+  AddIdentification(){
+    this.selectedIdentification = new Object() as Identification;
+    this.OpenSidenav();
+  }
 
   OpenSidenav() {
     this.sidenavOpen = true;

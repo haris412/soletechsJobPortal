@@ -27,6 +27,11 @@ export class PositionoftrustComponent implements OnInit{
     this.GetPositionTrust();
   }
 
+  AddPositionTrust(){
+    this.selectedPositionTrust = new Object() as PositionOfTrust;
+    this.OpenSidenav();
+  }
+
   OpenSidenav() {
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';

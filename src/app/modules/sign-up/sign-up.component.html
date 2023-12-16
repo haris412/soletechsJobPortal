@@ -1,7 +1,8 @@
+<ng-container *transloco="let t; scope: 'signUp';">
 <div class="container-fluid main-container">
   <form class="row" action="" [formGroup]="userForm">
     <div class="sign-up-info-div profile-div">
-      <span class="heading">Profile Picture</span>
+      <span class="heading">{{t('signUp.profile-picture')}}</span>
       <div class="d-flex align-items-center upload-profile-pic mt-3">
         <div class="profile">
           <img [src]="imageAvatar ? imageAvatar : defaultUrl" alt="" />
@@ -9,23 +10,23 @@
         <div class="d-flex flex-column flex-lg-row upload-btns gap-2">
           <button type="file" class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8 position-relative"
             (change)="selectFile($event)">
-            Change Avatar
+            {{t('signUp.change-avatar')}}
             <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0" type="file"
               id="formFile" />
           </button>
           <button type="button"
             class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8">
-            Remove Avatar
+            {{t('signUp.remove-avatar')}}
           </button>
         </div>
       </div>
     </div>
     <div class="sign-up-info-div cv-div">
-      <div class="heading mb-3">CV File</div>
-      <p class="font-poppins-bold text-midnight-moss">Upload</p>
+      <div class="heading mb-3">{{t('signUp.cv')}}</div>
+      <p class="font-poppins-bold text-midnight-moss">{{t('signUp.upload')}}</p>
       <div class="upload-file">
         <img src="assets/SVG/upload.svg" alt="" />
-        <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+        <p class="upload-text"><span>{{t('signUp.upload-text')}}</span>{{t('signUp.drag-drop')}}</p>
         <span>PDF or DOC (max. size 6MB)</span>
         <input class="form-control" type="file" id="formFile" (change)="onFileUpload($event)" />
       </div>
@@ -51,58 +52,52 @@
       </div>
     </div>
     <div class="sign-up-info-div">
-      <span class="heading">User Info</span>
+      <span class="heading">{{t('signUp.user-info')}}</span>
       <div class="d-flex flex-wrap align-items-center">
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">First Name English</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.first-name-english')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter first name" [formControlName]="'firstName'" />
+            <input type="text" matInput placeholder="{{t('signUp.first-name-placeholder')}}" [formControlName]="'firstName'" />
             <mat-error class="error-message" *ngIf="f.firstName.hasError('required') && (f.firstName.dirty || f.firstName.touched)">First Name is Required</mat-error>
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">First Name Arabic</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.first-name-arabic')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter Arabic name" [formControlName]="'firstNameAr'" />
+            <input type="text" matInput placeholder="{{t('signUp.first-name-placeholder')}}" [formControlName]="'firstNameAr'" />
           </mat-form-field>
         </div>
 
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Middle Name English</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.middle-name-english')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter middle name" [formControlName]="'middleName'" />
+            <input type="text" matInput placeholder="{{t('signUp.middle-name-placeholder')}}" [formControlName]="'middleName'" />
             <mat-error class="error-message" *ngIf="f.middleName.hasError('required') && (f.middleName.dirty || f.middleName.touched)">Middle Name is Required</mat-error>
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Middle Name Arabic</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.middle-name-arabic')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter middle name" [formControlName]="'middleNameAr'" />
+            <input type="text" matInput placeholder="{{t('signUp.middle-name-placeholder')}}" [formControlName]="'middleNameAr'" />
           </mat-form-field>
         </div>
-        <!-- <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Last Name Prefix</p>
-          <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter last name prefix" [formControlName]="'lastNamePrefix'" />
-          </mat-form-field>
-        </div> -->
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Last Name English</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.last-name-english')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter last name" [formControlName]="'lastName'" />
+            <input type="text" matInput placeholder="{{t('signUp.last-name-placeholder')}}" [formControlName]="'lastName'" />
             <mat-error class="error-message" *ngIf="f.lastName.hasError('required') && (f.lastName.dirty || f.lastName.touched)">Last Name is Required</mat-error>
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Last Name Arabic</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.last-name-arabic')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Enter last name arabic" [formControlName]="'lastNameAr'" />
+            <input type="text" matInput placeholder="{{t('signUp.last-name-placeholder')}}" [formControlName]="'lastNameAr'" />
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Mobile</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.mobile')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="text" matInput placeholder="Mobile" [formControlName]="'mobileNo'" />
+            <input type="text" matInput placeholder="{{t('signUp.mobile')}}" [formControlName]="'mobileNo'" />
             <mat-error class="error-message" *ngIf="f.mobileNo.hasError('required') && (f.mobileNo.dirty || f.mobileNo.touched)">Mobile is Required</mat-error>
 
           </mat-form-field>
@@ -112,36 +107,36 @@
     <div class="sign-up-info-div">
       <div class="d-flex flex-wrap align-items-center">
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Email</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.email')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="email" matInput placeholder="Enter your email" [formControlName]="'email'" (change)="validateEmail()" />
+            <input type="email" matInput placeholder="{{t('signUp.email-placeholder')}}" [formControlName]="'email'" (change)="validateEmail()" />
             <mat-error class="error-message" *ngIf="f.email.hasError('required') && (f.email.dirty || f.email.touched)">Email is Required</mat-error>
             <mat-error class="error-message" *ngIf="emailAlreadyExists">Email already exists</mat-error>
 
           </mat-form-field>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Confirm Email</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.confirm-email')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="email" matInput placeholder="Enter your email" [formControlName]="'confirmemail'" (change)="validateConfirmEmail()" appBlockCopyPaste />
+            <input type="email" matInput placeholder="{{t('signUp.email-placeholder')}}" [formControlName]="'confirmemail'" (change)="validateConfirmEmail()" appBlockCopyPaste />
           </mat-form-field>
           <mat-error class="error-message" *ngIf="confirmemailError">Confirm email should be match with email.</mat-error>
         </div>
       </div>
       <div class="d-flex flex-wrap">
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Password</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.password')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="password" matInput placeholder="Enter your password" [formControlName]="'password'" (change)="ChangeValue()" />
+            <input type="password" matInput placeholder="{{t('signUp.password-placeholder')}}" [formControlName]="'password'" (change)="ChangeValue()" />
             <mat-error class="error-message" *ngIf="f.password.hasError('required') && (f.password.dirty || f.password.touched)">Password is Required</mat-error>
           </mat-form-field>
           <mat-error class="error-message" *ngIf="f.password.status == 'INVALID' && (f.password.dirty || f.password.touched)">Password must contain a upper case letter, a digit and a special character.</mat-error>
           <app-password-strength [passwordToCheck]="this.userForm.value.password" (passwordStrength)="onPasswordStrengthChanged($event)"></app-password-strength>
         </div>
         <div class="d-flex flex-column fields-padding col-md-6 col-12">
-          <p class="text-midnight-moss font-poppins-medium">Confirm Password</p>
+          <p class="text-midnight-moss font-poppins-medium">{{t('signUp.confirm-password')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="password" matInput placeholder="Enter your password" [formControlName]="'confirmpassword'" (change)="ChangeValue()" appBlockCopyPaste />
+            <input type="password" matInput placeholder="{{t('signUp.password-placeholder')}}" [formControlName]="'confirmpassword'" (change)="ChangeValue()" appBlockCopyPaste />
           </mat-form-field>
           <mat-error class="error-message" *ngIf="confirmError">Confirm Password should be match with password.</mat-error>
         </div>
@@ -149,16 +144,17 @@
     </div>
     <span>{{this.editor}}</span>
     <div class="sign-up-info-div about-me">
-      <span class="heading">About Me</span>
+      <span class="heading">{{t('signUp.about-me')}}</span>
       <ckeditor [editor]="Editor" [formControlName]="'aboutMe'"></ckeditor>
     </div>
     <div>
       <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
         <button type="button" (click)="Signup()"
           class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
-          Save changes
+          {{t('signUp.save-changes')}}
         </button>
       </div>
     </div>
   </form>
 </div>
+</ng-container>

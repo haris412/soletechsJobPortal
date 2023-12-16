@@ -11,23 +11,29 @@ import { professionalExperience } from 'src/app/models/professional-experience.m
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.scss']
 })
-export class ExperienceComponent implements OnInit{
+export class ExperienceComponent implements OnInit {
   public completed: boolean = true;
   public sidenavOpen: boolean = false;
   experienceList: professionalExperience[] = [];
-  selectedExperience!:professionalExperience;
-  personRecId!:number;
+  selectedExperience!: professionalExperience;
+  personRecId!: number;
 
   constructor(
     private toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
-    private lookUpService:AppLookUpService
+    private lookUpService: AppLookUpService
   ) {
     this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
   }
   ngOnInit(): void {
     this.GetExperiences();
   }
+
+  AddExperience() {
+    this.selectedExperience = new Object() as professionalExperience;
+    this.OpenSidenav();
+  }
+
   EditExperience(experience: professionalExperience) {
     this.selectedExperience = experience;
     this.OpenSidenav();
@@ -41,13 +47,13 @@ export class ExperienceComponent implements OnInit{
     document.body.style.overflow = 'auto';
   }
 
-  async GetExperiences(){
+  async GetExperiences() {
     let experienceResponse = await this.lookUpService.GetProfessionalList(this.personRecId);
-    if(experienceResponse?.parmApplicantProfessionalList){
+    if (experienceResponse?.parmApplicantProfessionalList) {
       this.experienceList = experienceResponse.parmApplicantProfessionalList;
     }
-  } 
-  async ExperienceAdded(experience:professionalExperience){
+  }
+  async ExperienceAdded(experience: professionalExperience) {
     let experienceData: professionalExperience = {
       ...experience,
       employerLocation: "UK",
@@ -71,22 +77,22 @@ export class ExperienceComponent implements OnInit{
       }
       await this.GetExperiences();
       this.CloseSidenav();
-    }else {
+    } else {
       this.toastrService.error(response?.Message);
     }
   }
 
-  DeleteExperience(selectedExperience:professionalExperience) {
+  DeleteExperience(selectedExperience: professionalExperience) {
     const data = `Are you sure you want to do this experience?`;
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
         let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
-        let response:any = await this.lookUpService.DeleteProfessional(selectedExperience?.recid ,applicantPersonRecId);
-        if(response?.Status){
+        let response: any = await this.lookUpService.DeleteProfessional(selectedExperience?.recid, applicantPersonRecId);
+        if (response?.Status) {
           this.toastrService.success(response?.Message);
           this.GetExperiences();
-        }else{
+        } else {
           this.toastrService.error(response?.Message);
         }
       }

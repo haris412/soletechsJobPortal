@@ -26,6 +26,11 @@ export class CoursesComponent implements OnInit{
     this.GetCourses();
   }
 
+  AddCourse(){
+    this.selectedCourse = new Object() as Course;
+    this.OpenSidenav();
+  }
+
   OpenSidenav() {
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';

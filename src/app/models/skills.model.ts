@@ -1,8 +1,8 @@
 export class Skills {
     SkillID:string = '';
-    ratingLevel:string = '';
-    ratingLevelDate:string = '';
-    ratingLevelType:number = 0;
+    RatingLevel:string = '';
+    RatingLevelDate:string = '';
+    RatingLevelType:number = 0;
     applicantPersonRecId:number = 0;
     attachment:any;
     ratingModelId:string = ''

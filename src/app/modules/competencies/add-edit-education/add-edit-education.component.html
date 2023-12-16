@@ -1,12 +1,13 @@
 <ng-container *transloco="let t; scope: 'competencies';">
 <form class="row" action="" [formGroup]="educationForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.education')}}</p>
+    <p>{{t('competencies.education')}}*</p>
     <mat-form-field appearance="outline" class="w-100" name="education">
       <mat-select name='education' [formControlName]="'EducationDisciplineRecId'">
         <mat-option *ngFor="let discipline of educationDiscipline" [value]="discipline.value" (onSelectionChange) = "OnEducationChange($event)">{{discipline.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <mat-error class="error-message" *ngIf="f.EducationDisciplineRecId.hasError('required') && (f.EducationDisciplineRecId.dirty || f.EducationDisciplineRecId.touched)"> Education Discipline is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
@@ -16,12 +17,13 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.level-of-education')}}</p>
+    <p>{{t('competencies.level-of-education')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name='levelOfEducation' [formControlName]="'EducationLevelId'">
         <mat-option *ngFor="let level of educationLevel" [value]="level.value">{{level.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <mat-error class="error-message" *ngIf="f.EducationLevelId.hasError('required') && (f.EducationLevelId.dirty || f.EducationLevelId.touched)">Education Level is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
@@ -31,34 +33,38 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.institution')}}</p>
+    <p>{{t('competencies.institution')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name='Institution' [formControlName]="'EducationInstitutionId'">
         <mat-option *ngFor="let institution of educationInstitution" [value]="institution.value">{{institution.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <mat-error class="error-message" *ngIf="f.EducationInstitutionId.hasError('required') && (f.EducationInstitutionId.dirty || f.EducationInstitutionId.touched)">Education Institution is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.average')}}</p>
+    <p>{{t('competencies.average')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input type="number" matInput name='educationaverage' [formControlName]="'EducationAverage'"/>
+      <mat-error class="error-message" *ngIf="f.EducationAverage.hasError('required') && (f.EducationAverage.dirty || f.EducationAverage.touched)">Education Average is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.start-date')}}</p>
+    <p>{{t('competencies.start-date')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
+      <mat-error class="error-message" *ngIf="f.StartDate.hasError('required') && (f.StartDate.dirty || f.StartDate.touched)">Start Date is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.end-date')}}</p>
+    <p>{{t('competencies.end-date')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
+      <mat-error class="error-message" *ngIf="f.EndDate.hasError('required') && (f.EndDate.dirty || f.EndDate.touched)">End Date is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
@@ -81,6 +87,7 @@
         <mat-option value="1">No</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">

@@ -12,6 +12,7 @@ export class ApplicantDataService {
     isLogin:boolean = false;
     selectedJob:any;
     savedJobs: any[] = [];
+    applicantData:any;
     public selectedSavedJob: any;
 
     constructor(public lookupService: AppLookUpService) {}
@@ -22,7 +23,12 @@ export class ApplicantDataService {
     GetJob(){
       return this.selectedJob;
     }
-
+    SetApplicantInfo(applicantInfo:any){
+      this.applicantData = applicantInfo;
+    }
+    GetApplicantInfo(){
+      return this.applicantData;
+    }
     isJobAlreadySaved(job: any) {
       return this.savedJobs.find(x => x.recruitingId == job.recruitingId) != undefined;
     }

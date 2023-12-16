@@ -1,35 +1,39 @@
 <ng-container *transloco="let t; scope: 'competencies';">
 <form class="row" action="" [formGroup]="skillForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.skill-id')}}</p>
+    <p>{{t('competencies.skill')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select  name='skillId' [formControlName]="'SkillID'">
         <mat-option *ngFor="let skill of skillList" [value]="skill.value">{{skill.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <mat-error class="error-message" *ngIf="f.SkillID.hasError('required') && (f.SkillID.dirty || f.SkillID.touched)">Skill is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.skill-level')}}</p>
+    <p>{{t('competencies.skill-level')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name='level' [formControlName]="'ratingLevel'">
+      <mat-select name='level' [formControlName]="'RatingLevelType'">
         <mat-option *ngFor="let level of skillLevel" [value]="level.value">{{level.name}}</mat-option>
       </mat-select>
+      <mat-error class="error-message" *ngIf="f.RatingLevelType.hasError('required') && (f.RatingLevelType.dirty || f.RatingLevelType.touched)">Skill Level is Required</mat-error>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.level-date')}}</p>
+    <p>{{t('competencies.level-date')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker" name='ratingLevelDate' [formControlName]="'ratingLevelDate'" dateInput placeholder="dd/mm/yyyy">
+      <input matInput [matDatepicker]="picker" name='ratingLevelDate' [formControlName]="'RatingLevelDate'" dateInput placeholder="dd/mm/yyyy">
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error class="error-message" *ngIf="f.RatingLevelDate.hasError('required') && (f.RatingLevelDate.dirty || f.RatingLevelDate.touched)">Date  is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.year-of-experience')}}</p>
+    <p>{{t('competencies.year-of-experience')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name='experience' [formControlName]="'Experience'" />
+      <mat-error class="error-message" *ngIf="f.Experience.hasError('required') && (f.Experience.dirty || f.Experience.touched)">Experience is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="cv-div">

@@ -18,6 +18,7 @@ export class AddEditCertificatesComponent implements OnInit {
   fileList:any[]=[];
   file:any;
   certificateTypeList:any[] = [];
+  get f() { return this.certiifcateForm.controls; }
   constructor(private competenciesService:CompetenciesCommonService){
     this.certiifcateForm = this._formBuilder.group({
       id:[''],
@@ -25,7 +26,7 @@ export class AddEditCertificatesComponent implements OnInit {
       Description: [''],
       IssueDate: ['', [Validators.required]],
       ExpirationDate:['',[Validators.required]],
-      renewal: [''],
+      renewal: ['',[Validators.required]],
       Note: [''],
       recid:[this.selectedCertificate?.recid ? this.selectedCertificate?.recid : 0],
       attachment: [''],

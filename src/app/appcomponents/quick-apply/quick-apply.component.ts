@@ -14,33 +14,33 @@ import { LookupParameters } from 'src/app/models/look-up.model';
   templateUrl: './quick-apply.component.html',
   styleUrls: ['./quick-apply.component.scss']
 })
-export class QuickApplyComponent implements OnInit{
-  @Input() selectedJob:any =  new Object() as any;
-  @Input() recruitmentProject:Job = new Object() as Job;
+export class QuickApplyComponent implements OnInit {
+  @Input() selectedJob: any = new Object() as any;
+  @Input() recruitmentProject: Job = new Object() as Job;
   @Output() closeClicked: EventEmitter<boolean> = new EventEmitter();
 
   public isFile: boolean = false;
   public fileList: File[] = [];
-  recrutmentProjects:any[] = [];
-  countryRegions:any[] = [];
-  degrees:any[]=[];
+  recrutmentProjects: any[] = [];
+  countryRegions: any[] = [];
+  degrees: any[] = [];
   filteredOptions!: Observable<any[]>;
   degreeOptions!: Observable<any[]>;
   nationalityData!: Observable<any[]>;
-  countriesData!:Observable<any[]>;
+  countriesData!: Observable<any[]>;
   degreeCtrl = new FormControl('');
   countriesCtrl = new FormControl('');
   nationalityCtrl = new FormControl('');
   private _formBuilder = inject(UntypedFormBuilder);
   quickApplyForm: UntypedFormGroup;
   separateDialCode = false;
-  name:string = '';
-  email:string = '';
+  name: string = '';
+  email: string = '';
   get f() { return this.quickApplyForm.controls; }
   constructor(
     private router: Router,
-    private lookUpService:AppLookUpService,
-    private applicationService:ApplicationService,
+    private lookUpService: AppLookUpService,
+    private applicationService: ApplicationService,
     private toastrService: ToastrService,
 
   ) {
@@ -48,25 +48,25 @@ export class QuickApplyComponent implements OnInit{
     this.email = localStorage.getItem('email') ?? '';
 
     this.quickApplyForm = this._formBuilder.group({
-      name:[this.name, [Validators.required]],
+      name: [this.name, [Validators.required]],
       nameAr: [''],
       recruitmentProject: [this.recruitmentProject?.recruitingId, [Validators.required]],
       nationality: [''],
-      email:[this.email,[Validators.required]],
-      phone:['',[Validators.required]],
+      email: [this.email, [Validators.required]],
+      phone: ['', [Validators.required]],
       linkedIn: [''],
-      highestDegree:[''],
-      address:[''],
-      currentAddressOut: ['' ],
-      dateOfBirth: [''],
-      residentIdentity:[0],
-      residentIdentityProfessional:[''],
-      periodJoin:[''],
+      highestDegree: ['', [Validators.required]],
+      address: [''],
+      currentAddressOut: [''],
+      dateOfBirth: ['', [Validators.required]],
+      residentIdentity: [0],
+      residentIdentityProfessional: [''],
+      periodJoin: [''],
       attachment: [''],
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.fileList = [];
@@ -88,9 +88,9 @@ export class QuickApplyComponent implements OnInit{
   }
 
   async GetLookups() {
-    let params:LookupParameters = {
-      dataAreaId : 'USMF',
-      languageId:'en-us'
+    let params: LookupParameters = {
+      dataAreaId: 'USMF',
+      languageId: 'en-us'
     }
     const lookUps = await forkJoin({
       projects: this.lookUpService.GetRecruitmentLookup(params),
@@ -104,21 +104,21 @@ export class QuickApplyComponent implements OnInit{
       this.recrutmentProjects.push(data);
     }
     );
-    lookUps?.countries?.parmList?.forEach((countries:any)=> {
+    lookUps?.countries?.parmList?.forEach((countries: any) => {
       let data = new Object() as any;
       data.name = countries?.Description;
       data.value = countries?.Id;
       this.countryRegions.push(data);
     });
-    lookUps?.highestDegree?.parmList?.forEach((degree:any)=> {
+    lookUps?.highestDegree?.parmList?.forEach((degree: any) => {
       let data = new Object() as any;
       data.name = degree?.Description;
       data.value = degree?.Id;
       this.degrees.push(data);
     })
-   }
+  }
 
-   private _filter(value: string): string[] {
+  private _filter(value: string): string[] {
     const filterValue = value?.toLowerCase();
     return this.degrees?.filter(degree => degree?.name?.toLowerCase()?.includes(filterValue));
   }
@@ -149,7 +149,7 @@ export class QuickApplyComponent implements OnInit{
     return this.countryRegions?.filter(countries => countries?.name?.toLowerCase()?.includes(filterValue));
   }
 
-  OnNationlaityChange(event:any){
+  OnNationlaityChange(event: any) {
   }
 
   Back() {
@@ -160,17 +160,17 @@ export class QuickApplyComponent implements OnInit{
     this.fileList = files.target.files;
   }
 
-  DeleteFile(selectedFile:File) {
+  DeleteFile(selectedFile: File) {
     this.fileList = [];
   }
   CloseSidenav() {
     this.closeClicked.emit(true);
   }
-  SelectionChange(event:any){
+  SelectionChange(event: any) {
     console.log(event);
   }
 
-  async QuickApply(){
+  async QuickApply() {
     this.quickApplyForm.controls.highestDegree.setValue(this.degreeCtrl.value);
     this.quickApplyForm.controls.nationality.setValue(this.nationalityCtrl.value);
     this.quickApplyForm.controls.currentAddressOut.setValue(this.countriesCtrl.value);

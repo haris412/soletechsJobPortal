@@ -19,6 +19,11 @@ export class AddressComponent {
               private lookUpService:AppLookUpService,
             public userInfoService: UserInfoService,
             private deleteModal: DeleteModalComponentService){}
+  AddAddress(){
+    this.selectedAddress = new Object() as Address;
+    this.OpenSidenav();
+  }
+
   OpenSidenav() {
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';

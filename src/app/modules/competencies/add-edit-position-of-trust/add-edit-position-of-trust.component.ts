@@ -13,10 +13,10 @@ export class AddEditPositionOfTrustComponent implements OnInit{
   @Output() positionTrustData: EventEmitter<PositionOfTrust> = new EventEmitter();
   psitionTrustForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
-  skill!: PositionOfTrust;
   fileList:any[]=[];
   file_store!: FileList;
   file:any;
+  get f() { return this.psitionTrustForm.controls; }
   constructor(){
     this.psitionTrustForm = this._formBuilder.group({
       id: [''],
@@ -24,7 +24,7 @@ export class AddEditPositionOfTrustComponent implements OnInit{
       Position: ['', [Validators.required]],
       StartDate:['', [Validators.required]],
       EndDate:['', [Validators.required]],
-      Notes:['', [Validators.required]],
+      Notes:[''],
       attachment:['']
     });
     

@@ -1,33 +1,36 @@
 <ng-container *transloco="let t; scope: 'competencies';">
 <form class="row" action="" [formGroup]="CourseForm">
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.course-type')}}</p>
+      <p>{{t('competencies.course-type')}}*</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput name='course' [formControlName]="'course'"/>
         <!-- <img matSuffix src="assets/SVG/chevron-down.svg" alt="" /> -->
+        <mat-error class="error-message" *ngIf="f.course.hasError('required') && (f.course.dirty || f.course.touched)">course is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.start-date')}}</p>
+      <p>{{t('competencies.location')}}*</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput/>
+        <input matInput name='location' [formControlName]="'Location'"/>
+        <mat-error class="error-message" *ngIf="f.Location.hasError('required') && (f.Location.dirty || f.Location.touched)">Location is Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.start-date')}}*</p>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput placeholder="dd/mm/yyyy"/>
         <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
+        <mat-error class="error-message" *ngIf="f.StartDate.hasError('required') && (f.StartDate.dirty || f.StartDate.touched)">Start Date is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.end-date')}}</p>
+      <p>{{t('competencies.end-date')}}*</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput placeholder="dd/mm/yyyy"/>
         <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-    <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.location')}}</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput name='location' [formControlName]="'Location'"/>
+        <mat-error class="error-message" *ngIf="f.EndDate.hasError('required') && (f.EndDate.dirty || f.EndDate.touched)">End Date is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
@@ -36,7 +39,6 @@
         <input type="number" matInput name='noOfDay' [formControlName]="'NoOfDay'"/>
       </mat-form-field>
     </div>
-
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.hour-type')}} </p>
       <mat-form-field appearance="outline" class="w-100">

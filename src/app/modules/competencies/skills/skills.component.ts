@@ -31,6 +31,11 @@ export class SkillsComponent implements OnInit{
     this.GetSkillsList();
   }
 
+  AddSkill(){
+    this.selectedSkill = new Object() as Skills;
+    this.OpenSidenav();
+  }
+
   async GetSkillsList(){
     let skillsResponse = await this.lookUpService.GetSkillsList(this.personRecId);
     if(skillsResponse?.parmApplicantSkillsList){
@@ -54,7 +59,7 @@ export class SkillsComponent implements OnInit{
   async SkillAdded(skill:Skills){
     let skillData: Skills = {
       ...skill,
-      ratingLevelType: 1,
+      RatingLevelType: Number(skill.RatingLevelType),
       RecId: skill?.RecId ? skill?.RecId :0,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }

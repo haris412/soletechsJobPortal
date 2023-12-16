@@ -35,6 +35,11 @@ export class EducationComponent implements OnInit{
     this.GetEducationList();
   }
 
+  AddEducation(){
+    this.selectedEducation = new Object() as Education;
+    this.OpenSidenav();
+  }
+
   async GetEducationList(){
     let educationResponse = await this.lookUpService.GetEducationList(this.personRecId);
     if(educationResponse?.parmApplicantEducationList){

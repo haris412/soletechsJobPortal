@@ -141,7 +141,7 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Date of Birth</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker"  dateInput placeholder="dd/mm/yyyy">
+        <input matInput [matDatepicker]="picker"  [formControlName] = "'dateOfBirth'" dateInput placeholder="dd/mm/yyyy">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error class="error-message" *ngIf="f.dateOfBirth.hasError('required') && (f.dateOfBirth.dirty || f.dateOfBirth.touched)">Date of Birth is Required</mat-error>

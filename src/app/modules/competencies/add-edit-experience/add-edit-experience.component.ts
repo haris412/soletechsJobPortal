@@ -19,6 +19,7 @@ export class AddEditExperienceComponent implements OnInit {
   fileList: any[] = [];
   file_store!: FileList;
   file: any;
+  get f() { return this.experienceForm.controls; }
   constructor(private competenciesService: CompetenciesCommonService) {
     this.experienceForm = this._formBuilder.group({
       id: [''],

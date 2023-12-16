@@ -57,6 +57,11 @@ export class ContactInfoComponent implements OnInit {
     this.userInfoService.selectedContact = contact;
     this.OpenSidenav();
   }
+  AddContact(){
+    this.userInfoService.selectedContact = new Object() as ContactInfo;
+    this.OpenSidenav();
+  }
+
   OpenSidenav() {
     this.sidenavOpen = true;
     document.body.style.overflow = 'hidden';

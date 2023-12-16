@@ -2,7 +2,7 @@
 
 <form class="row" action="" [formGroup]="addressForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.address-description')}}*</p>
+    <p>{{t('basicInfo.address')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="nameOfDescription" [formControlName]="'Address'" />
       <mat-error class="error-message"
@@ -43,11 +43,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>{{t('basicInfo.zip-postalCode')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="zipCode" [formControlName]="'zipCode'">
-        <mat-option value="0514">0514</mat-option>
-        <mat-option value="8574">8574</mat-option>
-      </mat-select>
-      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <input name="zipCode" [formControlName]="'zipCode'"/>
       <mat-error class="error-message"
         *ngIf="f.zipCode.hasError('required') && (f.zipCode.dirty || f.zipCode.touched)">zipCode is Required</mat-error>
     </mat-form-field>

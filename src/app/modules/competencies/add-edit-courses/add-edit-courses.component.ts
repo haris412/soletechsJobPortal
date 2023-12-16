@@ -18,6 +18,7 @@ export class AddEditCoursesComponent  implements OnInit{
   fileList:any[]=[];
   file_store!: FileList;
   file:any;
+  get f() { return this.CourseForm.controls; }
   constructor(private competenciesService:CompetenciesCommonService){
     this.CourseForm = this._formBuilder.group({
       id: [''],

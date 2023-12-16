@@ -1,14 +1,14 @@
 <ng-container *transloco="let t; scope: 'competencies';">
   <form class="row" action="" [formGroup]="certiifcateForm">
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.certificate-type')}}</p>
+      <p>{{t('competencies.certificate-type')}}*</p>
       <mat-form-field appearance="outline" class="w-100">
         <mat-select name="certificate" [formControlName]="'CertificateTypeId'">
           <mat-option *ngFor="let certificate of certificateTypeList" [value]="certificate.value"
             (onSelectionChange)="OnCertificateChange($event)">{{certificate.name}}</mat-option>
-
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        <mat-error class="error-message" *ngIf="f.CertificateTypeId.hasError('required') && (f.CertificateTypeId.dirty || f.CertificateTypeId.touched)">Certificate Type is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
@@ -19,31 +19,34 @@
     </div>
 
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.start-date')}}</p>
+      <p>{{t('competencies.start-date')}}*</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput [matDatepicker]="picker1" name="startDate" [formControlName]="'IssueDate'" dateInput
           placeholder="dd/mm/yyyy" />
         <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
+        <mat-error class="error-message" *ngIf="f.IssueDate.hasError('required') && (f.IssueDate.dirty || f.IssueDate.touched)">Issue Date is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.end-date')}}</p>
+      <p>{{t('competencies.end-date')}}*</p>
       <mat-form-field appearance="outline" class="w-100">
         <input matInput [matDatepicker]="picker2" name="endDate" [formControlName]="'ExpirationDate'" dateInput
           placeholder="dd/mm/yyyy" />
         <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
+        <mat-error class="error-message" *ngIf="f.ExpirationDate.hasError('required') && (f.ExpirationDate.dirty || f.ExpirationDate.touched)">Expiration Date is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-12">
-      <p>{{t('competencies.require-renewal')}}</p>
+      <p>{{t('competencies.require-renewal')}}*</p>
       <mat-form-field appearance="outline" class="w-100">
         <mat-select name="requireRenewal" [formControlName]="'renewal'">
           <mat-option [value]="0">Yes</mat-option>
           <mat-option [value]="1">No</mat-option>
         </mat-select>
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+        <mat-error class="error-message" *ngIf="f.renewal.hasError('required') && (f.renewal.dirty || f.renewal.touched)">Renewal is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-12">

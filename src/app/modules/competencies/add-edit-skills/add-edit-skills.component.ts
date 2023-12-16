@@ -20,11 +20,12 @@ export class AddEditSkillsComponent implements OnInit {
   file:any;
   skillList:any[] = [];
   skillLevel:any[] = [];
+  get f() { return this.skillForm.controls; }
   constructor(private competenciesService:CompetenciesCommonService){
     this.skillForm = this._formBuilder.group({
-      SkillID: [''],
-      ratingLevel: ['', [Validators.required]],
-      ratingLevelDate: ['', [Validators.required]],
+      SkillID: ['',[Validators.required]],
+      RatingLevelType: ['', [Validators.required]],
+      RatingLevelDate: ['', [Validators.required]],
       Experience:['', [Validators.required]],
       attachment:['']
     });
@@ -33,10 +34,10 @@ export class AddEditSkillsComponent implements OnInit {
   ngOnInit(){
     this.skillList = this.competenciesService.skillsList;
     this.skillLevel = this.competenciesService.skillLevelList;
-    console.log(this.selectedSkill);
     if(this.selectedSkill?.SkillID !== ''){
       this.skillForm.patchValue({
-        ...this.selectedSkill
+        ...this.selectedSkill,
+        RatingLevelType:this.selectedSkill?.RatingLevelType?.toString()
       });
     }
    }

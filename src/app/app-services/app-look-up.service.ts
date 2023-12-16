@@ -668,4 +668,13 @@ export class AppLookUpService {
                 otp 
             ).toPromise();
     }
+    async GetUserDetails(applicantId:string) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicantId', applicantId)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.getUserDetails ,
+                { params: queryParams }
+            ).toPromise();
+    }
 }

@@ -4,7 +4,6 @@ import { LinkedInService } from '../services/linkedin.service';
 import { environment } from 'src/environments/environment';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ApplicantDataService } from '../services/applicant-shared.service';
-import { SavedJobs } from '../models/savedJobs';
 
 @Component({
   selector: 'app-applicant-dashboard',
@@ -28,6 +27,7 @@ export class ApplicantDashboardComponent implements OnInit {
         this.GetAccessToken(code);
       }
     });
+    await this.GetUserInfo();
     await this.GetAppliedJobs();
     await this.applicantService.GetApplicantSavedJobsList();
     
@@ -44,6 +44,18 @@ export class ApplicantDashboardComponent implements OnInit {
         this.route.navigateByUrl('/');
       }
     });
+  }
+
+  async GetUserInfo() {
+    let applicantId = localStorage.getItem('applicantId') ?? '';
+    try {
+      let response = await this.lookUpService.GetUserDetails(applicantId);
+      if (response) {
+        this.applicantService.SetApplicantInfo(response);
+      }
+    } catch (ex) {
+      console.error();
+    }
   }
 
   GetLinkedInUserInfo() {

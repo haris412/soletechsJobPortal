@@ -14,26 +14,31 @@ export class CertificatesComponent implements OnInit {
   public completed: boolean = false;
   public sidenavOpen: boolean = false;
   public isFile: boolean = false;
-  fileList:any[]=[]
-  public certificates: any[]=[];
-  selectedCertificate!:Certificates;
-  personRecId!:number;
+  fileList: any[] = []
+  public certificates: any[] = [];
+  selectedCertificate!: Certificates;
+  personRecId!: number;
   constructor(private toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
-    private service:AppLookUpService,
-    private datePipe: DatePipe) { 
-      this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
-    }
+    private service: AppLookUpService,
+    private datePipe: DatePipe) {
+    this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
+  }
 
-    ngOnInit(): void {
-      this.GetCertifiates();
-    }
+  ngOnInit(): void {
+    this.GetCertifiates();
+  }
 
-  async GetCertifiates(){
+  async GetCertifiates() {
     let certificateResponse = await this.service.GetCertificateList(this.personRecId);
-    if(certificateResponse?.parmApplicantCertificateList){
+    if (certificateResponse?.parmApplicantCertificateList) {
       this.certificates = certificateResponse.parmApplicantCertificateList;
     }
+  }
+
+  AddCertificate() {
+    this.selectedCertificate = new Object() as Certificates;
+    this.OpenSidenav();
   }
 
   OpenSidenav() {
@@ -45,12 +50,12 @@ export class CertificatesComponent implements OnInit {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
   }
-  async EditCertificate(certificate:Certificates){
-      this.selectedCertificate = certificate;
-      this.OpenSidenav();
+  async EditCertificate(certificate: Certificates) {
+    this.selectedCertificate = certificate;
+    this.OpenSidenav();
   }
 
-  async CertificateAdded(certificate:Certificates){
+  async CertificateAdded(certificate: Certificates) {
     let certificateResponse: any;
     let certificateData: Certificates = {
       ...certificate,
@@ -67,16 +72,16 @@ export class CertificatesComponent implements OnInit {
           this.toastrService.success(certificateResponse?.Message);
           this.GetCertifiates();
           this.CloseSidenav();
-        }else {
+        } else {
           this.toastrService.error(certificateResponse?.Message);
         }
       } else {
         certificateResponse = await this.service.EditCertificate(certificateData);
         if (certificateResponse?.Status) {
-        this.toastrService.success(certificateResponse?.Message);
-        this.GetCertifiates();
-        this.CloseSidenav();
-        }else {
+          this.toastrService.success(certificateResponse?.Message);
+          this.GetCertifiates();
+          this.CloseSidenav();
+        } else {
           this.toastrService.error(certificateResponse?.Message);
         }
       }
@@ -85,17 +90,17 @@ export class CertificatesComponent implements OnInit {
     }
   }
 
-  Delete(selectedcertificate:Certificates) {
+  Delete(selectedcertificate: Certificates) {
     const data = `Are you sure you want to do delete this certificate?`;
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
         let applicantPersonRecId = Number(localStorage.getItem('applicantPersonRecid'));
-        let response:any = await this.service.DeleteCertificate(selectedcertificate?.recid ,applicantPersonRecId);
-        if(response?.Status){
+        let response: any = await this.service.DeleteCertificate(selectedcertificate?.recid, applicantPersonRecId);
+        if (response?.Status) {
           this.toastrService.success(response?.Message);
           this.GetCertifiates();
-        }else{
+        } else {
           this.toastrService.error(response?.Message);
         }
       }
