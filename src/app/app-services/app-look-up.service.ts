@@ -677,4 +677,13 @@ export class AppLookUpService {
                 { params: queryParams }
             ).toPromise();
     }
+    async ResendOTP(email: string) {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('email', email)
+        return await this.httpClient
+            .get<any>(
+                apiURLs.applicant.resendOtp ,
+                { params: queryParams }
+            ).toPromise();
+    }
 }

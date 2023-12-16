@@ -43,7 +43,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>{{t('basicInfo.zip-postalCode')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <input name="zipCode" [formControlName]="'zipCode'"/>
+      <input matInput name="zipCode" [formControlName]="'zipCode'"/>
       <mat-error class="error-message"
         *ngIf="f.zipCode.hasError('required') && (f.zipCode.dirty || f.zipCode.touched)">zipCode is Required</mat-error>
     </mat-form-field>
