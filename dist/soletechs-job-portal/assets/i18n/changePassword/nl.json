@@ -1,0 +1,9 @@
+{
+    "forget-password":"هل نسيت كلمة السر",
+    "reset-instruction-text":"لا تقلق، سوف نرسل لك تعليمات إعادة التعيين",
+    "email":"بريد إلكتروني",
+    "email-placeholder":"أدخل البريد الإلكتروني",
+    "reset-password":"إعادة تعيين كلمة المرور",
+    "back-login":"العودة لتسجيل الدخول",
+    "change-password":"تغيير كلمة المرور"
+}
