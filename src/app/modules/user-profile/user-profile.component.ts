@@ -73,6 +73,7 @@ export class UserProfileComponent {
 	}
 
 	uploadCV(files: any) {
+		debugger;
 		this.fileList.push(files.target.files[0]);
 		this.ref.detectChanges();
 	}

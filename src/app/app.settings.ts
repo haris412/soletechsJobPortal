@@ -87,6 +87,7 @@ export const apiURLs = {
         changePassword:`${environment.apiUrl}/ERPApplicant/ChangePassword`,
         resetPassword:`${environment.apiUrl}/ERPApplicant/ResetPassword`,
         verifyOTP:`${environment.apiUrl}/ERPApplicant/VerifyOTP`,
-        getUserDetails:`${environment.apiUrl}/ERPApplicant/GetUserDetails`
+        getUserDetails:`${environment.apiUrl}/ERPApplicant/GetUserDetails`,
+        resendOtp:`${environment.apiUrl}/ERPApplicant/ResendOTP`
     }
 }

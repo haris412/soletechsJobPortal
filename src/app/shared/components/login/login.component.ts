@@ -85,4 +85,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  async resendOTP() {
+    await this.lookupService.ResendOTP(this.loginForm.controls.email.value);
+  }
+
 }

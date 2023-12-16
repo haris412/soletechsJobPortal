@@ -40,6 +40,7 @@ export class AddEditAddressComponent implements OnInit{
      this.addressForm.patchValue({
        ...this.selectedAddress
      });
+     this.changeCountry();
    } else {
      this.addressForm.reset();
    }

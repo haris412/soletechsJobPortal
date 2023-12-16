@@ -63,7 +63,7 @@
             (otpForm.controls.otp.dirty || otpForm.controls.otp.touched)">Otp is Required</mat-error>
           </mat-form-field>
           <div class="d-flex justify-content-end">
-            <p class="text-midnight-moss font-poppins-medium cursor-pointer">
+            <p class="text-midnight-moss font-poppins-medium cursor-pointer" (click)="resendOTP()">
               {{t('login.resend-otp')}}
             </p>
           </div>
