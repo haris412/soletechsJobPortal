@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { SaveJob } from 'src/app/models/saveJob.model';
 import { TranslocoService } from '@ngneat/transloco';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-jobs-list',
@@ -34,17 +35,23 @@ export class JobsListComponent implements OnInit {
   appliedJobs:any[] = [];
   applyBtn:string = 'Apply';
   disableBtn:boolean = false;
+  public isTranslate: boolean = false;
   private translocoService: TranslocoService = inject(TranslocoService);
 
   constructor(private recruitmentService: RecruitmentService,
     public sharedService: SharedService,
     public lookupService: AppLookUpService,
-    public applicantService: ApplicantDataService
+    public applicantService: ApplicantDataService,
+    public translationService: TranslationAlignmentService
+    
     ) { 
       this.email = localStorage.getItem('email') ?? '';
       if(this.email){
         this.GetAppliedJobs();
       }
+      this.translationService.languageChange.subscribe(x=>{{
+        this.isTranslate=x;
+      }});
     }
 
   async ngOnInit() {

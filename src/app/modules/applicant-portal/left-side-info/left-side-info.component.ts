@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
@@ -12,10 +12,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./left-side-info.component.scss']
 })
 export class LeftSideInfoComponent implements OnInit{
+  
+  userImage:string = 'assets/Images/Profile.png';
   isDisable: boolean = false;
   jobList: any[] = [{name:'Designer', type:'Full Time'}];
   userEmail:string = '';
-  userImage:string = 'assets/Images/Profile.png';
   imagePathOrBase64: any;
 
   constructor(private dialog: RescheduleModalComponentService,
@@ -29,12 +30,11 @@ export class LeftSideInfoComponent implements OnInit{
     this.userEmail = localStorage.getItem('userName') ?? '';
   }
   async ngOnInit() {
-    this.GetApplicantInfo();
     var applicant = localStorage.getItem('applicantid') ?? '';
     if (this.applicantService.applicantData == undefined && applicant != "") {
       await this.applicantService.GetUserInfo();
     }
-    if (this.applicantService.applicantData?.applicantImage != undefined && this.applicantService.applicantData?.applicantImage != "") {
+    if (this.applicantService.applicantData != undefined && this.applicantService.applicantData?.applicantImage != "") {
       this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
                  + this.applicantService.applicantData?.applicantImage);
     }
