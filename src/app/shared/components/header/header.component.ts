@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
@@ -13,19 +14,30 @@ export class HeaderComponent implements OnInit {
   isLogin:boolean = false;
   userName:string = '';
   selectedLanguage:string = 'English';
+  defaultImage = 'assets/Images/Profile.png'
+  imagePathOrBase64: any;
+  
   constructor(
     private router:Router,
     private applicantDataService:ApplicantDataService,
-    private service: TranslocoService
+    private service: TranslocoService,
+    private _sanitizer: DomSanitizer
     ) { 
       this.applicantDataService.loginEmitter.subscribe(x=> this.UserLogin());
     }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     let token = localStorage.getItem('applicantId');
     if(token){
       this.userName = localStorage.getItem('userName') ?? '';
       this.isLogin = true;
+    }
+    if (this.applicantDataService.applicantData == undefined && token != "") {
+      await this.applicantDataService.GetUserInfo();
+    }
+    if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
+      this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+                 + this.applicantDataService.applicantData?.applicantImage);
     }
   }
 

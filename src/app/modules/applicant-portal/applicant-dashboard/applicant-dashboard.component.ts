@@ -27,7 +27,9 @@ export class ApplicantDashboardComponent implements OnInit {
         this.GetAccessToken(code);
       }
     });
-    await this.GetUserInfo();
+    if (this.applicantService.applicantData == undefined) {
+      await this.applicantService.GetUserInfo();
+    }
     await this.GetAppliedJobs();
     await this.applicantService.GetApplicantSavedJobsList();
     
@@ -46,17 +48,7 @@ export class ApplicantDashboardComponent implements OnInit {
     });
   }
 
-  async GetUserInfo() {
-    let applicantId = localStorage.getItem('applicantId') ?? '';
-    try {
-      let response = await this.lookUpService.GetUserDetails(applicantId);
-      if (response) {
-        this.applicantService.SetApplicantInfo(response);
-      }
-    } catch (ex) {
-      console.error();
-    }
-  }
+
 
   GetLinkedInUserInfo() {
     this.linkedInServive.GetUserInfoLinkedIn().subscribe(res => {

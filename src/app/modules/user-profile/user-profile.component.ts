@@ -72,8 +72,7 @@ export class UserProfileComponent {
 		this.imageAvatar = this.defaultUrl;
 	}
 
-	uploadCV(files: any) {
-		debugger;
+	uploadCV(files: any) {;
 		this.fileList.push(files.target.files[0]);
 		this.ref.detectChanges();
 	}

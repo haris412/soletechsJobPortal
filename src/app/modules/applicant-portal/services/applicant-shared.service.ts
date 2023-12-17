@@ -12,7 +12,7 @@ export class ApplicantDataService {
     isLogin:boolean = false;
     selectedJob:any;
     savedJobs: any[] = [];
-    applicantData:any;
+    public applicantData:any;
     public selectedSavedJob: any;
 
     constructor(public lookupService: AppLookUpService) {}
@@ -40,6 +40,18 @@ export class ApplicantDataService {
         if (response) {
           this.savedJobs = response?.parmApplicantSavedJobsList;
         }
+      }
+    }
+
+    async GetUserInfo() {
+      let applicantId = localStorage.getItem('applicantId') ?? '';
+      try {
+        let response = await this.lookupService.GetUserDetails(applicantId);
+        if (response) {
+          this.SetApplicantInfo(response);
+        }
+      } catch (ex) {
+        console.error();
       }
     }
 }
