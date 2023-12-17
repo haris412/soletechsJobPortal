@@ -4,6 +4,13 @@
   height: 65px;
 }
 
+.direction-change {
+  direction: rtl;
+  .profile-navigation {
+    direction: ltr;
+  }
+}
+
 .navbar {
   box-shadow: 0px -0.8999999761581421px 0px 0px #e2e2ea inset;
   .nav-item {

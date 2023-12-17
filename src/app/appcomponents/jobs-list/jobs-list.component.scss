@@ -50,19 +50,27 @@ h4 {
     border-left: 0 !important;
   }
 
+  .border-end-lg-0 {
+    border-right: 0 !important;
+  }
+
   .job-search-filter .col-lg-3,
   .filtered-jobs.col-lg-3 {
     width: 30%;
   }
 
   .job-search-filter {
-    .rounded-end:not(:last-child),
+    .rounded-end:not(:last-child):not(.job-title),
     .rounded:not(:last-child) {
       border-radius: 0 !important;
     }
     .rounded-start-lg-0 {
       border-top-left-radius: 0 !important;
       border-bottom-left-radius: 0 !important;
+    }
+    .rounded-end-lg-0 {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
     }
   }
   .rounded-lg-start {

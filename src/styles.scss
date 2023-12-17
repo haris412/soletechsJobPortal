@@ -110,6 +110,11 @@ p {
   }
 }
 
+.direction-change {
+  direction: rtl;
+}
+
+
 .mat-mdc-form-field {
   font-size: 16px;
   color: $gray-500;
