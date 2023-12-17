@@ -30,13 +30,13 @@ export class LeftSideInfoComponent implements OnInit{
     this.userEmail = localStorage.getItem('userName') ?? '';
   }
   async ngOnInit() {
-    var applicant = localStorage.getItem('applicantid') ?? '';
+    var applicant = localStorage.getItem('applicantId') ?? '';
     if (this.applicantService.applicantData == undefined && applicant != "") {
       await this.applicantService.GetUserInfo();
     }
-    if (this.applicantService.applicantData != undefined && this.applicantService.applicantData?.applicantImage != "") {
+    if (this.applicantService.applicantData != undefined && this.applicantService.applicantData.applicantImage != "") {
       this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-                 + this.applicantService.applicantData?.applicantImage);
+                 + this.applicantService.applicantData.applicantImage);
     }
   }
   GetApplicantInfo(){

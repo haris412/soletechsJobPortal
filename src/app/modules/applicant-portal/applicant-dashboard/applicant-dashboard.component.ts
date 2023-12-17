@@ -27,9 +27,6 @@ export class ApplicantDashboardComponent implements OnInit {
         this.GetAccessToken(code);
       }
     });
-    if (this.applicantService.applicantData == undefined) {
-      await this.applicantService.GetUserInfo();
-    }
     await this.GetAppliedJobs();
     await this.applicantService.GetApplicantSavedJobsList();
     
