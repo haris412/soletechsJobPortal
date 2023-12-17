@@ -30,7 +30,7 @@ export class ApplicantDataService {
       return this.applicantData;
     }
     isJobAlreadySaved(job: any) {
-      return this.savedJobs.find(x => x.recruitingId == job.recruitingId) != undefined;
+      return this.savedJobs?.find(x => x.recruitingId == job.recruitingId) != undefined;
     }
 
     async GetApplicantSavedJobsList(){
