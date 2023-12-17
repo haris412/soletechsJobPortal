@@ -1,105 +1,152 @@
 <ng-container *transloco="let t; scope: 'jobs';">
 
-<div class="d-flex d-lg-none align-items-center gap-2 px-0 cursor-pointer" (click)="Back()" *ngIf="show">
-    <img src="assets/SVG/Iconback.svg" alt="">
-    <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
-</div>
-<div>
-    <div class="info-detail d-flex flex-column align-items-start light-border border-radius-8 px-lg-4 px-2 pt-4 bg-white position-relative"
-        *ngIf="selectedJob.jobId">
-        <div class="d-flex align-items-center justify-content-between w-100 mb-2">
-            <h4 class="mb-0">{{selectedJob.Description}}</h4>
-            <div class="d-lg-flex d-none align-items-center header-icons gap-2">
-                <div class="p-1">
-                    <img height="34px" src="assets/SVG/Saved.svg" alt="saved" [ngClass]="this.applicantDataService.isJobAlreadySaved(selectedJob) ? 'imgDisabled' : ''" class="cursor-pointer green-filter" (click)="this.sharedService.SaveJob(selectedJob)" />
+    <div class="d-flex d-lg-none align-items-center gap-2 px-0 cursor-pointer"
+         (click)="Back()"
+         *ngIf="show">
+        <img src="assets/SVG/Iconback.svg"
+             alt="">
+        <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
+    </div>
+    <div>
+        <div class="info-detail d-flex flex-column align-items-start light-border border-radius-8 px-lg-4 px-2 pt-4 bg-white position-relative"
+             *ngIf="selectedJob.jobId">
+            <div class="d-flex align-items-center justify-content-between w-100 mb-2">
+                <h4 class="mb-0">{{selectedJob.Description}}</h4>
+                <div class="d-lg-flex d-none align-items-center header-icons gap-2">
+                    <div class="p-1">
+                        <img height="34px"
+                             src="assets/SVG/Saved.svg"
+                             alt="saved"
+                             [ngClass]="this.applicantDataService.isJobAlreadySaved(selectedJob) ? 'imgDisabled' : ''"
+                             class="cursor-pointer green-filter"
+                             (click)="this.sharedService.SaveJob(selectedJob)" />
+                    </div>
+                    <div class="p-1">
+                        <img height="34px"
+                             src="assets/SVG/Share.svg"
+                             alt="search"
+                             class="cursor-pointer green-filter" />
+                    </div>
                 </div>
-                <div class="p-1">
-                    <img height="34px" src="assets/SVG/Share.svg" alt="search" class="cursor-pointer green-filter" />
+            </div>
+            <div class="job-location-detail">
+                <p class="text-midnight-moss-50 mb-0">{{selectedJob.location}}</p>
+            </div>
+            <span class="text-shuttle-grey mb-lg-3">{{selectedJob.postedDate}}</span>
+            <div class="d-flex d-lg-none align-items-center header-icons gap-2 mb-3">
+                <img height="34px"
+                     src="assets/SVG/Saved.svg"
+                     alt="saved"
+                     class="cursor-pointer" />
+                <img height="34px"
+                     src="assets/SVG/Share.svg"
+                     alt="search"
+                     class="cursor-pointer" />
+            </div>
+            <h5>{{t('jobs.overview')}}</h5>
+            <div class="job-detail-text text-start">
+                <p>
+                    {{selectedJob.Overview}}
+                </p>
+            </div>
+            <div class="d-lg-flex d-none align-items-center gap-3 application-buttons mb-3">
+                <button type="button"
+                        class="btn rounded-3 text-secondary"
+                        *ngIf="!this.sharedService.isUserLoggedIn"
+                        (click)="SignUpModal()">
+                    {{t('jobs.sign-up')}}
+                </button>
+
+                <button type="button"
+                        [disabled]="disableBtn"
+                        class="btn bg-midnight-moss text-white rounded-3"
+                        (click)="OpenSidenav(selectedJob)"
+                        *ngIf="applyBtn == 'Apply'">
+                    {{t('jobs.apply')}}
+                </button>
+                <button type="button"
+                        [disabled]="disableBtn"
+                        class="btn bg-midnight-moss text-white rounded-3"
+                        (click)="OpenSidenav(selectedJob)"
+                        *ngIf="applyBtn == 'Applied'">
+                    {{t('jobs.applied')}}
+                </button>
+            </div>
+            <h5 class="mt-4">{{t('jobs.skills')}}</h5>
+            <div class="d-flex align-items-center gap-2 skills flex-wrap">
+                <p class="d-flex align-items-center justify-content-center py-2 px-3"
+                   *ngFor="let skills of selectedJob?.Skills?.parmRecruitmentSkillsList">
+                    {{skills.Skill}}
+                </p>
+            </div>
+            <div class="row m-0 align-items-center mb-3  w-100">
+                <ng-container *ngFor="let attribute of selectedJob?.JobAttribute?.parmRecruitmentJobAttributeList">
+                    <div class="col-lg-3 col-6 job-benefits"
+                         *ngIf="attribute?.AttributeValue !==''">
+                        <div
+                             class="d-flex flex-column align-items-start rounded-lg-start border-2 border border-white ">
+                            <p class="text-shuttle-grey">{{attribute?.AttributeName}}</p>
+                            <h6 class="mb-0 text-midnight-moss font-poppins-medium">
+                                {{attribute?.AttributeValue}}
+                            </h6>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <h5 class="mt-4">{{t('jobs.working-on')}}</h5>
+            <span class="text-shuttle-grey">{{t('jobs.job-for-you')}}:</span>
+            <ul class="mb-4"
+                [ngClass]="{'direction-change':isTranslate}">
+                <div [innerHTML]="selectedJob.JobAd"></div>
+            </ul>
+            <span class="text-shuttle-grey">{{t('jobs.skill-needed')}}:</span>
+            <ul class="mb-lg-0 mb-4"
+                [ngClass]="{'direction-change':isTranslate}">
+                <li *ngFor="let techskills of selectedJob.Skills?.parmRecruitmentSkillsList">{{techskills.Skill}}</li>
+            </ul>
+            <div class="info-detail-footer position-absolute bottom-0 border-lg-top pt-4 pb-3">
+                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                    <h5 class=" ">{{t('jobs.intereted-job')}}</h5>
+                    <div class="d-flex align-items-center gap-3 application-buttons">
+                        <button type="button"
+                                class="btn rounded-3 text-secondary"
+                                *ngIf="!this.sharedService.isUserLoggedIn"
+                                (click)="SignUpModal()">
+                            {{t('jobs.sign-up')}}
+                        </button>
+                        <button type="button"
+                                [disabled]="disableBtn"
+                                class="btn bg-midnight-moss text-white rounded-3"
+                                (click)="OpenSidenav(selectedJob)"
+                                *ngIf="applyBtn == 'Apply'">
+                            {{t('jobs.apply')}}
+                        </button>
+                        <button type="button"
+                                [disabled]="disableBtn"
+                                class="btn bg-midnight-moss text-white rounded-3"
+                                (click)="OpenSidenav(selectedJob)"
+                                *ngIf="applyBtn == 'Applied'">
+                            {{t('jobs.applied')}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="job-location-detail">
-            <p class="text-midnight-moss-50 mb-0">{{selectedJob.location}}</p>
-        </div>
-        <span class="text-shuttle-grey mb-lg-3">{{selectedJob.postedDate}}</span>
-        <div class="d-flex d-lg-none align-items-center header-icons gap-2 mb-3">
-            <img height="34px" src="assets/SVG/Saved.svg" alt="saved" class="cursor-pointer" />
-            <img height="34px" src="assets/SVG/Share.svg" alt="search" class="cursor-pointer" />
-        </div>
-        <h5>{{t('jobs.overview')}}</h5>
-        <div class="job-detail-text text-start">
-            <p>
-                {{selectedJob.Overview}}
-            </p>
-        </div>
-        <div class="d-lg-flex d-none align-items-center gap-3 application-buttons mb-3">
-            <button type="button" class="btn rounded-3 text-secondary" *ngIf="!this.sharedService.isUserLoggedIn" (click)="SignUpModal()">
-                {{t('jobs.sign-up')}}
-            </button>
-
-            <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)" *ngIf="applyBtn == 'Apply'">
-                 {{t('jobs.apply')}}
-            </button>
-            <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)"  *ngIf="applyBtn == 'Applied'">
-                {{t('jobs.applied')}}
-           </button>
-        </div>
-        <h5 class="mt-4">{{t('jobs.skills')}}</h5>
-        <div class="d-flex align-items-center gap-2 skills flex-wrap">
-            <p class="d-flex align-items-center justify-content-center py-2 px-3"
-                *ngFor="let skills of selectedJob?.Skills?.parmRecruitmentSkillsList">
-                {{skills.Skill}}
-            </p>
-        </div>
-        <div  class="row m-0 align-items-center mb-3  w-100">
-        <ng-container *ngFor="let attribute of selectedJob?.JobAttribute?.parmRecruitmentJobAttributeList" >
-            <div class="col-lg-3 col-6 job-benefits" *ngIf="attribute?.AttributeValue !==''">
-                <div
-                    class="d-flex flex-column align-items-start rounded-lg-start border-2 border border-white "  >
-                    <p class="text-shuttle-grey" >{{attribute?.AttributeName}}</p>
-                    <h6 class="mb-0 text-midnight-moss font-poppins-medium">
-                        {{attribute?.AttributeValue}}
-                    </h6>
-                </div>
-              </div>
-        </ng-container>
-        </div>
-        <h5 class="mt-4">{{t('jobs.working-on')}}</h5>
-        <span class="text-shuttle-grey">{{t('jobs.job-for-you')}}:</span>
-        <ul class="mb-4">
-            <div [innerHTML]="selectedJob.JobAd"></div>
-        </ul>
-        <span class="text-shuttle-grey">{{t('jobs.skill-needed')}}:</span>
-        <ul class="mb-lg-0 mb-4">
-            <li *ngFor="let techskills of selectedJob.Skills?.parmRecruitmentSkillsList">{{techskills.Skill}}</li>
-        </ul>
-        <div class="info-detail-footer position-absolute bottom-0 border-lg-top pt-4 pb-3">
-            <div class="d-flex flex-wrap align-items-center justify-content-between">
-                <h5 class=" ">{{t('jobs.intereted-job')}}</h5>
-                <div class="d-flex align-items-center gap-3 application-buttons">
-                    <button type="button" class="btn rounded-3 text-secondary" *ngIf="!this.sharedService.isUserLoggedIn" (click)="SignUpModal()">
-                        {{t('jobs.sign-up')}}
-                    </button>
-                    <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)" *ngIf="applyBtn == 'Apply'">
-                        {{t('jobs.apply')}}
-                   </button>
-                   <button type="button" [disabled]="disableBtn" class="btn bg-midnight-moss text-white rounded-3" (click)="OpenSidenav(selectedJob)"  *ngIf="applyBtn == 'Applied'">
-                       {{t('jobs.applied')}}
-                  </button>
-                </div>
-            </div>
+        <div class="d-flex flex-column w-100 no-info light-border border-radius-8 px-4 pt-4 bg-white"
+             *ngIf="!selectedJob.jobId">
+            <img height="185px"
+                 src="assets/SVG/illustration.svg"
+                 alt="" />
+            <h6 class="text-black">{{ t('jobs.job-plcaeholder') }}</h6>
         </div>
     </div>
-    <div class="d-flex flex-column w-100 no-info light-border border-radius-8 px-4 pt-4 bg-white"
-        *ngIf="!selectedJob.jobId">
-        <img height="185px" src="assets/SVG/illustration.svg" alt="" />
-        <h6 class="text-black">{{ t('jobs.job-plcaeholder') }}</h6>
-    </div>
-</div>
 
-<div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
-    [ngClass]="sidenavOpen ? 'open' : 'close'" *ngIf="sidenavOpen">
-    <span class="heading">{{t('jobs.apply')}}</span>
-    <app-quick-apply  (closeClicked) = "CloseSidenav()" [recruitmentProject] = "recruitmentProject" [selectedJob] = "selectedJob"></app-quick-apply>
-</div>
+    <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
+         [ngClass]="sidenavOpen ? 'open' : 'close'"
+         *ngIf="sidenavOpen">
+        <span class="heading">{{t('jobs.apply')}}</span>
+        <app-quick-apply (closeClicked)="CloseSidenav()"
+                         [recruitmentProject]="recruitmentProject"
+                         [selectedJob]="selectedJob"></app-quick-apply>
+    </div>
 </ng-container>

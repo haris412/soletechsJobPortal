@@ -3,11 +3,11 @@
     <div
       class="row mx-0 job-search-filter mt-5 bg-white"
       *ngIf="!show || webView"
-      [ngClass]="{'direction-change':isTranslate}"
+      [ngClass]="{ 'direction-change': isTranslate }"
     >
       <div
         class="col-lg-3 col-6 px-2 py-lg-0 py-3 light-border d-flex align-items-center job-title"
-        [ngClass]="isTranslate ? 'rounded-end':'rounded-start'"
+        [ngClass]="isTranslate ? 'rounded-end' : 'rounded-start'"
       >
         <div class="d-flex align-items-center gap-2 w-100">
           <img class="green-filter" src="assets/SVG/search-rum.svg" alt="" />
@@ -22,7 +22,7 @@
       </div>
       <div
         class="col-lg-3 col-6 px-2 py-lg-0 py-3 light-border rounded-end d-flex align-items-center"
-        [ngClass]="isTranslate ? '':'border-start-lg-0'"
+        [ngClass]="isTranslate ? '' : 'border-start-lg-0'"
       >
         <div class="d-flex align-items-center gap-2">
           <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
@@ -31,7 +31,7 @@
       </div>
       <div
         class="col-lg-3 col-12 px-2 py-lg-0 py-3 light-border rounded d-flex align-items-center mt-lg-0 mt-2"
-        [ngClass]="isTranslate ? '':'border-start-lg-0'"
+        [ngClass]="isTranslate ? '' : 'border-start-lg-0'"
       >
         <div
           class="d-flex align-items-center justify-content-between w-100 job-type"
@@ -48,8 +48,12 @@
         </div>
       </div>
       <div
-        class="col-lg-1 col-12 d-flex align-items-center justify-content-center py-3  rounded  bg-midnight-moss text-white mt-2 mt-lg-0 px-lg-1 apply-filter__button"
-        [ngClass]="isTranslate ? 'rounded-lg-start rounded-end-lg-0':'rounded-lg-end rounded-start-lg-0'"
+        class="col-lg-1 col-12 d-flex align-items-center justify-content-center py-3 rounded bg-midnight-moss text-white mt-2 mt-lg-0 px-lg-1 apply-filter__button"
+        [ngClass]="
+          isTranslate
+            ? 'rounded-lg-start rounded-end-lg-0'
+            : 'rounded-lg-end rounded-start-lg-0'
+        "
       >
         <p class="mb-0">{{ t("jobs.search-jobs") }}</p>
       </div>
@@ -60,6 +64,7 @@
     >
       <div
         class="col-lg-3 col-12 px-0 d-flex flex-column filtered-jobs"
+        [ngClass]="{ 'direction-change': isTranslate }"
         *ngIf="!show || webView"
       >
         <div class="d-flex align-items-center justify-content-between">
@@ -128,7 +133,10 @@
                   {{ job.startDate | date }}
                 </p>
               </div>
-              <div class="listing-info text-start mb-1">
+              <div
+                class="listing-info mb-1"
+                [ngClass]="isTranslate ? 'text-end' : 'text-start'"
+              >
                 <p class="mb-0 text-shuttle-grey">
                   {{ job.description }}
                 </p>
@@ -153,8 +161,9 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8 col-12  px-0 mb-5 d-flex flex-column"
-        [ngClass]="isTranslate ? 'pe-lg-4':'ps-lg-4'"
+      <div
+        class="col-lg-8 col-12 px-0 mb-5 d-flex flex-column"
+        [ngClass]="isTranslate ? 'pe-lg-4 direction-change' : 'ps-lg-4'"
       >
         <app-jobs
           [selectedJob]="jobDetail"

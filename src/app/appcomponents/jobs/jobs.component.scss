@@ -234,6 +234,9 @@ h4 {
 
 ul {
   text-align: left;
+  &.direction-change {
+    text-align: right;
+  }
 }
 
 ul li {

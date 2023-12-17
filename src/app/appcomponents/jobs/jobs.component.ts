@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { Job } from 'src/app/models/job.model';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -29,14 +30,21 @@ export class JobsComponent implements OnInit {
   public sidenavOpen: boolean = false;
   email:string  = '';
   dialogRef:any;
+  public isTranslate: boolean = false;
+
 
   constructor(
     private signUp: SignupModalComponentService,
     private router: Router,
     private lookUpService:AppLookUpService,
     public applicantDataService:ApplicantDataService,
-    public sharedService: SharedService) { 
-      this.applicantDataService.signUpModalEmitter.subscribe(x=> this.CloseModal())
+    public sharedService: SharedService,    
+    public translationService: TranslationAlignmentService
+    ) { 
+      this.applicantDataService.signUpModalEmitter.subscribe(x=> this.CloseModal());
+      this.translationService.languageChange.subscribe(x=>{{
+        this.isTranslate=x;
+      }});
    }
 
   async ngOnInit() {

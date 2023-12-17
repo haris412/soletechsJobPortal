@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { forkJoin } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
 	selector: 'app-signup',
@@ -39,11 +40,14 @@ export class SignUpComponent implements OnInit {
 	confirmError: boolean = false;
 	confirmemailError: boolean = false;
 	public emailAlreadyExists: boolean = false;
+	public isTranslate: boolean = false;
 
 	constructor(private router: Router,
 		public userInfo: UserInfoService,
 		public lookupService: AppLookUpService,
-		private toastrService: ToastrService) {
+		private toastrService: ToastrService,
+		public translationService: TranslationAlignmentService
+		) {
 		this.userForm = this._formBuilder.group({
 			applicantImage:[''],
 			firstName: ['', [Validators.required]],
@@ -63,6 +67,9 @@ export class SignUpComponent implements OnInit {
 		if (this.userInfo.applicantForm == undefined) {
 			this.userInfo.prepareApplicantFormGroup();
 		}
+		this.translationService.languageChange.subscribe(x=>{{
+			this.isTranslate=x;
+		}});
 	}
 
 	ngOnInit(): void {

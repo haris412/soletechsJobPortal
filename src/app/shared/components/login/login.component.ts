@@ -6,6 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { Login } from 'src/app/models/login.model';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-login',
@@ -22,33 +23,41 @@ export class LoginComponent implements OnInit {
   loginForm: UntypedFormGroup;
   otpForm: UntypedFormGroup;
 
-  showOtp:boolean = false;
+  showOtp: boolean = false;
+  public isTranslate: boolean = false;
+
   private _formBuilder = inject(UntypedFormBuilder);
   get f() { return this.loginForm.controls; }
-  constructor(private router:Router , 
-              private service:ApplicantDataService,
-              private loginService:LoginService,
-              private toastrService: ToastrService,
-              private lookupService:AppLookUpService) {
+  constructor(private router: Router,
+    private service: ApplicantDataService,
+    private loginService: LoginService,
+    private toastrService: ToastrService,
+    private lookupService: AppLookUpService,
+    public translationService: TranslationAlignmentService
+
+    ) {
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-  });
-  this.otpForm = this._formBuilder.group({
-    otp: [, [Validators.required]],
-});   
-}
+    });
+    this.otpForm = this._formBuilder.group({
+      otp: [, [Validators.required]],
+    });
+    this.translationService.languageChange.subscribe(x=>{{
+      this.isTranslate=x;
+    }});
+  }
 
   ngOnInit(): void {
   }
-  ForgotPassword(){
+  ForgotPassword() {
     this.router.navigate(['/forgot-password']);
   }
-  SignUp(){
+  SignUp() {
     this.router.navigate(['/sign-up']);
   }
 
-  async Login(){
+  async Login() {
 
     if (this.loginForm.valid) {
       let loginData: Login = {
@@ -59,14 +68,14 @@ export class LoginComponent implements OnInit {
       if (response?.status) {
         this.toastrService.success(response?.Message);
         this.showOtp = true;
-      }else{
+      } else {
         this.toastrService.error(response?.Message);
       }
     } else {
-       this.loginForm.markAllAsTouched();
+      this.loginForm.markAllAsTouched();
     }
   }
-  async VerifyOtp(){
+  async VerifyOtp() {
     if (this.otpForm.valid) {
       let response = await this.lookupService.VerifyOTP(this.otpForm.value)
       if (response?.Status) {
@@ -77,7 +86,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("recId", response?.recid);
         this.service.loginEmitter.emit(true);
         this.router.navigate(['/applicant']);
-      }else{
+      } else {
         this.toastrService.error(response?.Message);
       }
     } else {
