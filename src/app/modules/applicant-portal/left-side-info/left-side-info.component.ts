@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
@@ -11,10 +11,10 @@ import { ApplicantDataService } from '../services/applicant-shared.service';
   styleUrls: ['./left-side-info.component.scss']
 })
 export class LeftSideInfoComponent implements OnInit{
+  @Input()userImage:string = 'assets/Images/Profile.png';
   isDisable: boolean = false;
   jobList: any[] = [{name:'Designer', type:'Full Time'}];
   userEmail:string = '';
-  userImage:string = 'assets/Images/Profile.png';
   constructor(private dialog: RescheduleModalComponentService,
     private toastrService: ToastrService,
     private router: Router,
