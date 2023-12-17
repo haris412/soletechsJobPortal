@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
+import { LinkedInService } from 'src/app/modules/applicant-portal/services/linkedin.service';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
   selectedLanguage: string = 'English';
   defaultImage = 'assets/Images/Profile.png'
   imagePathOrBase64: any;
+  userImage:string = 'assets/Images/Profile.png';
 
   public isTranslate: boolean = false;
   constructor(
@@ -25,7 +27,9 @@ export class HeaderComponent implements OnInit {
     private service: TranslocoService,
     private _sanitizer: DomSanitizer,
     private languageService: TranslationAlignmentService,
-    public translationService: TranslationAlignmentService
+    public translationService: TranslationAlignmentService,
+    public linkedInServive: LinkedInService,
+
   ) {
     this.applicantDataService.loginEmitter.subscribe(x => this.UserLogin());
     this.translationService.languageChange.subscribe(x => {
