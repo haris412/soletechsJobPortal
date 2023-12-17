@@ -35,7 +35,7 @@ export class JobsListComponent implements OnInit {
   appliedJobs:any[] = [];
   applyBtn:string = 'Apply';
   disableBtn:boolean = false;
-  public isTranslate: boolean = false;
+  public isTranslate: boolean = this.translationService.isTranslate;
   private translocoService: TranslocoService = inject(TranslocoService);
 
   constructor(private recruitmentService: RecruitmentService,

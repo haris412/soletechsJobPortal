@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
 	confirmError: boolean = false;
 	confirmemailError: boolean = false;
 	public emailAlreadyExists: boolean = false;
-	public isTranslate: boolean = false;
+	public isTranslate: boolean =  this.translationService.isTranslate;
 
 	constructor(private router: Router,
 		public userInfo: UserInfoService,
@@ -67,9 +67,9 @@ export class SignUpComponent implements OnInit {
 		if (this.userInfo.applicantForm == undefined) {
 			this.userInfo.prepareApplicantFormGroup();
 		}
-		this.translationService.languageChange.subscribe(x=>{{
-			this.isTranslate=x;
-		}});
+		this.translationService.languageChange.subscribe( x=> {
+			this.isTranslate = x;
+		});
 	}
 
 	ngOnInit(): void {

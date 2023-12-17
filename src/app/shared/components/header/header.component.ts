@@ -12,30 +12,32 @@ import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/
 })
 export class HeaderComponent implements OnInit {
 
-  isLogin:boolean = false;
-  userName:string = '';
-  selectedLanguage:string = 'English';
+  isLogin: boolean = false;
+  userName: string = '';
+  selectedLanguage: string = 'English';
   defaultImage = 'assets/Images/Profile.png'
   imagePathOrBase64: any;
-  
+
   public isTranslate: boolean = false;
   constructor(
-    private router:Router,
-    private applicantDataService:ApplicantDataService,
+    private router: Router,
+    private applicantDataService: ApplicantDataService,
     private service: TranslocoService,
     private _sanitizer: DomSanitizer,
     private languageService: TranslationAlignmentService,
     public translationService: TranslationAlignmentService
-    ) { 
-      this.applicantDataService.loginEmitter.subscribe(x=> this.UserLogin());
-      this.translationService.languageChange.subscribe(x=>{{
-        this.isTranslate=x;
-      }});
-    }
+  ) {
+    this.applicantDataService.loginEmitter.subscribe(x => this.UserLogin());
+    this.translationService.languageChange.subscribe(x => {
+      {
+        this.isTranslate = x;
+      }
+    });
+  }
 
   async ngOnInit() {
     let token = localStorage.getItem('applicantId');
-    if(token){
+    if (token) {
       this.userName = localStorage.getItem('userName') ?? '';
       this.isLogin = true;
     }
@@ -43,46 +45,48 @@ export class HeaderComponent implements OnInit {
       await this.applicantDataService.GetUserInfo();
     }
     if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
-      this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-                 + this.applicantDataService.applicantData?.applicantImage);
+      this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+        + this.applicantDataService.applicantData?.applicantImage);
     }
   }
 
-  Login(){
+  Login() {
     this.router.navigate(['/login']);
   }
-  UserLogin(){
+  UserLogin() {
     this.isLogin = true;
     let token = localStorage.getItem('applicantId');
-    if(token){
+    if (token) {
       this.userName = localStorage.getItem('userName') ?? '';
       this.isLogin = true;
     }
   }
   Change(lang: string) {
     // Ensure new active lang is loaded
-    if(lang == 'en'){
+    if (lang == 'en') {
       this.selectedLanguage = 'English';
       this.languageService.languageChange.emit(false);
-    }else{
+      this.languageService.isTranslate = false;
+    } else {
       this.selectedLanguage = 'Arabic - العربية'
       this.languageService.languageChange.emit(true);
+      this.translationService.isTranslate = true;
     }
     this.service.setActiveLang(lang);
-    
+
   }
-  OpenProfile(){
+  OpenProfile() {
     this.router.navigate(['/user-profile']);
   }
-  LogOut(){
+  LogOut() {
     localStorage.clear();
     this.isLogin = false;
     this.router.navigate(['/']);
   }
-  SavedJobs(){
+  SavedJobs() {
     this.router.navigate(['/applicant/dashboard']);
   }
-  GoToJobs(){
+  GoToJobs() {
     this.router.navigate(['/']);
   }
 }

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   otpForm: UntypedFormGroup;
 
   showOtp: boolean = false;
-  public isTranslate: boolean = false;
+  public isTranslate: boolean = this.translationService.isTranslate;
 
   private _formBuilder = inject(UntypedFormBuilder);
   get f() { return this.loginForm.controls; }
@@ -43,10 +43,11 @@ export class LoginComponent implements OnInit {
     this.otpForm = this._formBuilder.group({
       otp: [, [Validators.required]],
     });
-    this.translationService.languageChange.subscribe(x=>{{
-      this.isTranslate=x;
-    }});
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
+    });
   }
+
 
   ngOnInit(): void {
   }

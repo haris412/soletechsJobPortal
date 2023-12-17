@@ -30,7 +30,7 @@ export class JobsComponent implements OnInit {
   public sidenavOpen: boolean = false;
   email:string  = '';
   dialogRef:any;
-  public isTranslate: boolean = false;
+  public isTranslate: boolean = this.translationService.isTranslate;
 
 
   constructor(

@@ -9,6 +9,7 @@ import { apiURLs } from "../app.settings";
 })
 export class TranslationAlignmentService {
   languageChange:EventEmitter<boolean> = new EventEmitter();
+  isTranslate:boolean = false;
 
 constructor() { }
 
