@@ -112,8 +112,13 @@ p {
 
 .direction-change {
   direction: rtl;
+  .back-button {
+    img {
+      transform: rotate(180deg);
+    }
+    
+  }
 }
-
 
 .mat-mdc-form-field {
   font-size: 16px;
@@ -160,6 +165,15 @@ p {
     border: none;
   }
 }
+.direction-change {
+  .mdc-radio {
+    padding-left: 10px !important;
+  }
+  .mdc-checkbox {
+    margin-left: 10px !important;
+  }
+}
+
 .mdc-radio,
 .mdc-checkbox {
   padding-left: 0 !important;
@@ -307,7 +321,7 @@ form {
   .heading {
     font-size: 1.25rem;
     font-family: $font-poppins-bold;
-    color:$midnight-moss;
+    color: $midnight-moss;
   }
   &.close {
     transform: translateX(100%);

@@ -17,4 +17,12 @@ ul {
       background-color: rgba(99, 101, 107, 0.12);
     }
   }
+  &.arabic-direction {
+    padding-left: initial;
+    padding-right: 0;
+    li {
+      padding-right: 1rem;
+      padding-left: 0;
+    }
+  }
 }

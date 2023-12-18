@@ -165,3 +165,11 @@
     }
   }
 }
+
+.reverse-direction  {
+  .stepper-item::after,
+  .stepper-item.completed::after {
+    left: 0;
+    right: 50%;
+  }
+}

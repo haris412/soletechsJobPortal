@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { CompetenciesCommonService } from './services/competencies-common.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
     selector: 'app-competencies',
@@ -30,10 +31,15 @@ export class CompetenciesComponent implements OnInit {
     public Editor = ClassicEditor;
     index: Number = 1;
     stepperTitle: string = 'Skills';
-
+    public isTranslate: boolean = this.translationService.isTranslate;
     constructor(private location: Location,
         private lookUpService: AppLookUpService,
-        private competenciesService: CompetenciesCommonService) { }
+        private competenciesService: CompetenciesCommonService,
+        public translationService: TranslationAlignmentService) {
+            this.translationService.languageChange.subscribe(x=>{{
+                this.isTranslate=x;
+              }});
+         }
 
     ngOnInit(): void {
         this.GetLookUps();

@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { UserInfoService } from './user-info.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
     selector: 'app-user-info',
@@ -23,6 +24,7 @@ export class UserInfoComponent implements OnInit {
     public contactCompleted: boolean = false;
     public addressCompleted: boolean = false;
     public identificationCompleted: boolean = false;
+    public isTranslate: boolean = this.translationService.isTranslate;
 
     title = 'soletech';
     public Editor = ClassicEditor;
@@ -30,12 +32,16 @@ export class UserInfoComponent implements OnInit {
     stepperTitle: string = 'Basic Info';
 
     constructor(private location: Location
-             , private lookUpService: AppLookUpService
-             , private userInfoService: UserInfoService) { 
-        
+        , private lookUpService: AppLookUpService
+        , private userInfoService: UserInfoService,
+        public translationService: TranslationAlignmentService) {
+
         if (this.userInfoService.applicantForm == undefined) {
             this.userInfoService.prepareApplicantFormGroup();
         }
+        this.translationService.languageChange.subscribe(x=>{{
+            this.isTranslate=x;
+          }});
     }
 
     async ngOnInit() {
@@ -120,7 +126,7 @@ export class UserInfoComponent implements OnInit {
             this.isContactActive = false;
             this.isAddressActive = false;
             this.isIdentificationActive = true;
-        }else if (index === 1) {
+        } else if (index === 1) {
             this.isBasicActive = true;
             this.isContactActive = false;
             this.isAddressActive = false;
@@ -129,23 +135,23 @@ export class UserInfoComponent implements OnInit {
     }
 
     async GetLookups() {
-        let params:LookupParameters = {
-          dataAreaId : 'USMF',
-          languageId:'en-us'
+        let params: LookupParameters = {
+            dataAreaId: 'USMF',
+            languageId: 'en-us'
         }
         const lookUps = await forkJoin({
-          countries: this.lookUpService.GetCountryRegionLookup(params),
-          ethnic: this.lookUpService.GetEthnicOriginLookup(params),
-          nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
-          highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
-          reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
-          identificationType: this.lookUpService.GetIdentificationTypeLookup(params),
+            countries: this.lookUpService.GetCountryRegionLookup(params),
+            ethnic: this.lookUpService.GetEthnicOriginLookup(params),
+            nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
+            highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
+            reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
+            identificationType: this.lookUpService.GetIdentificationTypeLookup(params),
         }).toPromise();
         lookUps?.countries?.parmList?.forEach((projects: any) => {
-          let data = new Object() as any;
-          data.name = projects.Description;
-          data.value = projects.Id;
-          this.userInfoService.countryRegions.push(data);
+            let data = new Object() as any;
+            data.name = projects.Description;
+            data.value = projects.Id;
+            this.userInfoService.countryRegions.push(data);
         }
         );
         lookUps?.ethnic?.parmList?.forEach((projects: any) => {
@@ -153,35 +159,35 @@ export class UserInfoComponent implements OnInit {
             data.name = projects.Description;
             data.value = projects.Id;
             this.userInfoService.ethnic.push(data);
-          }
+        }
         );
         lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
             let data = new Object() as any;
             data.name = projects.Description;
             data.value = projects.Id;
             this.userInfoService.nativeLanguage.push(data);
-          }
+        }
         );
         lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
             let data = new Object() as any;
             data.name = projects.Description;
             data.value = projects.Id;
             this.userInfoService.highestDegree.push(data);
-          }
+        }
         );
         lookUps?.reasonCodes?.parmList?.forEach((projects: any) => {
             let data = new Object() as any;
             data.name = projects.Description;
             data.value = projects.Id;
             this.userInfoService.reasonCodes.push(data);
-          }
+        }
         );
         lookUps?.identificationType?.parmList?.forEach((projects: any) => {
             let data = new Object() as any;
             data.name = projects.Description;
             data.value = projects.Id;
             this.userInfoService.identificationType.push(data);
-          }
+        }
         );
     }
 }

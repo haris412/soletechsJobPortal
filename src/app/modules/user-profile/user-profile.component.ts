@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 
 @Component({
@@ -17,11 +18,17 @@ export class UserProfileComponent {
     imageAvatar:any;
 	defaultUrl:string = 'assets/Images/Profile.png';
 	fileList:any[] = [];
+	public isTranslate: boolean = this.translationService.isTranslate;
 	constructor(
 		private router: Router, 
 		public ref: ChangeDetectorRef,
 		private renderer: Renderer2, 
-		private el: ElementRef) { }
+		private el: ElementRef,
+		public translationService: TranslationAlignmentService) {
+			this.translationService.languageChange.subscribe(x=>{{
+        this.isTranslate=x;
+      }});
+		 }
 
 	ngOnInit(): void {
 	}

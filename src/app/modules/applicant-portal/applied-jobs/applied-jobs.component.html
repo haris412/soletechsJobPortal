@@ -45,7 +45,9 @@
 
 
     </div>
-    <div class="stepper-wrapper">
+    <div class="stepper-wrapper"
+      [ngClass]="{'reverse-direction' : isTranslate}"
+    >
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0}">
         <div class="step-counter">
           <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0"/>
