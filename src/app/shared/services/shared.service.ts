@@ -11,6 +11,8 @@ export class SharedService {
     token: string = '';
     public email: string = "";
     public isUserLoggedIn: boolean = false;
+    public dataAreaId: string = "USMF";
+    public languageId: string = "en-us";
 
     constructor(public lookupService: AppLookUpService,
                 public toastrService: ToastrService,

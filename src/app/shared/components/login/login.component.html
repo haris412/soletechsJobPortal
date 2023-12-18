@@ -82,6 +82,10 @@
           class="d-flex align-items-center justify-content-center btn text-midnight-moss w-100 py-2 font-poppins-semi border border-color-gray-300 gap-2">
           <img src="assets/SVG/google.svg" alt="" />{{t('login.signup-google')}}
         </button>
+        <button
+          class="d-flex align-items-center justify-content-center btn text-midnight-moss w-100 py-2 font-poppins-semi border border-color-gray-300 gap-2" (click)="signInLinkedIn()">
+          <img src="assets/SVG/google.svg" alt="" />Login With LinkedIn
+        </button>
       </div>
       <div class="d-flex flex-column w-100">
         <p class="text-equator lh-20 font-poppins-semi mx-auto fg-pass cursor-pointer" (click)="ForgotPassword()">

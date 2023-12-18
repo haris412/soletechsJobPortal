@@ -31,9 +31,7 @@ export class RecruitmentService {
     ) {
         let queryParams = new HttpParams();
         queryParams = queryParams.append('companyId', 'a').
-            set('accessToken', token).
-            set('dataAreaId', params._dataAreaId).
-            set('languageId', params._languageId)
+            set('accessToken', token);
         return await this.httpClient
             .get<any>(
                 apiURLs.recrutmentProjects.getRecruitmentProjectsList,
@@ -61,9 +59,7 @@ export class RecruitmentService {
 
     async GetJobDetail(params: JobDetailParameter) {
         let queryParams = new HttpParams();
-        queryParams = queryParams.append('jobId', params._jobRecid).
-            set('dataAreaId', params._dataAreaId).
-            set('languageId', params._languageId)
+        queryParams = queryParams.append('jobId', params._jobRecid);
         return await this.httpClient
             .get<any>(
                 apiURLs.recrutmentProjects.getJobDetails, { params: queryParams },

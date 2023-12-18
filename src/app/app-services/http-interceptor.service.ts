@@ -26,6 +26,8 @@ export class AuthInterceptorService implements HttpInterceptor {
                 setHeaders: {
                     Authorization: `Bearer ${token ?? ""}`, //TODO: NEED TO EXCLUDE ALLOW ANONYMOUS ACTIONS TO EXCLUDE TOKEN. SHOULD BE REPLACED WHEN FULL AUTH IS IMPLMENETED.
                     'AccessToken': token ?? '',
+                    'dataAreaId' : this.sharedService.dataAreaId,
+                    'languageId' : this.sharedService.languageId
                 },
             });
         }

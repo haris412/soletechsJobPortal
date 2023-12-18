@@ -88,14 +88,10 @@ export class QuickApplyComponent implements OnInit {
   }
 
   async GetLookups() {
-    let params: LookupParameters = {
-      dataAreaId: 'USMF',
-      languageId: 'en-us'
-    }
     const lookUps = await forkJoin({
-      projects: this.lookUpService.GetRecruitmentLookup(params),
-      countries: this.lookUpService.GetCountryRegionLookup(params),
-      highestDegree: this.lookUpService.GetHighestDegreeLookUp(params)
+      projects: this.lookUpService.GetRecruitmentLookup(),
+      countries: this.lookUpService.GetCountryRegionLookup(),
+      highestDegree: this.lookUpService.GetHighestDegreeLookUp()
     }).toPromise();
     lookUps?.projects?.parmList?.forEach((projects: any) => {
       let data = new Object() as any;

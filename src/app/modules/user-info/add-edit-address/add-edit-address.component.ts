@@ -64,12 +64,8 @@ export class AddEditAddressComponent implements OnInit{
   async changeCountry() {
     var address = this.addressForm.value;
     let countryid = address.CountryRegionId;
-    let params:LookupParameters = {
-      dataAreaId : 'USMF',
-      languageId:'en-us'
-    }
     const lookUps = await forkJoin({
-      cities: this.lookupService.GetCityLookup(params, countryid)
+      cities: this.lookupService.GetCityLookup(countryid)
     }).toPromise();
     lookUps?.cities?.parmList?.forEach((cities: any) => {
       let data = new Object() as any;

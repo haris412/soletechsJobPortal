@@ -7,6 +7,7 @@ import { Login } from 'src/app/models/login.model';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -97,6 +98,12 @@ export class LoginComponent implements OnInit {
 
   async resendOTP() {
     await this.lookupService.ResendOTP(this.loginForm.controls.email.value);
+  }
+
+  signInLinkedIn() {
+    let url = `${environment.authorizationUrl}?response_type=code&client_id=${environment.clientId
+    }&redirect_uri=${environment.redirect_uri}&scope=${environment.scope}`;
+    window.open(url, "_self");
   }
 
 }

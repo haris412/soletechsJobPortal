@@ -99,9 +99,7 @@ export class JobsListComponent implements OnInit {
 
   async GetJobDetail(job: Job) {
     let jobDetailParam: JobDetailParameter = {
-      _jobRecid: job.job,
-      _dataAreaId: 'USMF',
-      _languageId: 'En-us'
+      _jobRecid: job.job
     }
     let jobDetailResponse = await this.recruitmentService.GetJobDetail(jobDetailParam);
     if (jobDetailResponse) {

@@ -46,18 +46,14 @@ export class CompetenciesComponent implements OnInit {
     }
 
     async GetLookUps() {
-        let params: LookupParameters = {
-            dataAreaId: 'USMF',
-            languageId: 'en-us'
-        }
         const lookUps = await forkJoin({
-            skills: this.lookUpService.GetSkillLookup(params),
-            skillLevel: this.lookUpService.GetRatingLevelLookupList(params),
-            educationInstitution: this.lookUpService.GetEducationInstitutionLookupList(params),
-            educationDiscipline: this.lookUpService.GetEducationDisciplineLookupList(params),
-            certificateTypes: this.lookUpService.getCertificateTypeLookUpList(params),
-            personalTitle: this.lookUpService.GetPersonalTitleLookupList(params),
-            educationLevel: this.lookUpService.GetEducationLevelLookupList(params),
+            skills: this.lookUpService.GetSkillLookup(),
+            skillLevel: this.lookUpService.GetRatingLevelLookupList(),
+            educationInstitution: this.lookUpService.GetEducationInstitutionLookupList(),
+            educationDiscipline: this.lookUpService.GetEducationDisciplineLookupList(),
+            certificateTypes: this.lookUpService.getCertificateTypeLookUpList(),
+            personalTitle: this.lookUpService.GetPersonalTitleLookupList(),
+            educationLevel: this.lookUpService.GetEducationLevelLookupList(),
         }).toPromise();
         lookUps?.skills?.parmList?.forEach((projects: any) => {
             let data = new Object() as any;

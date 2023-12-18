@@ -135,17 +135,13 @@ export class UserInfoComponent implements OnInit {
     }
 
     async GetLookups() {
-        let params: LookupParameters = {
-            dataAreaId: 'USMF',
-            languageId: 'en-us'
-        }
         const lookUps = await forkJoin({
-            countries: this.lookUpService.GetCountryRegionLookup(params),
-            ethnic: this.lookUpService.GetEthnicOriginLookup(params),
-            nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
-            highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
-            reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
-            identificationType: this.lookUpService.GetIdentificationTypeLookup(params),
+            countries: this.lookUpService.GetCountryRegionLookup(),
+            ethnic: this.lookUpService.GetEthnicOriginLookup(),
+            nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(),
+            highestDegree: this.lookUpService.GetHighestDegreeLookups(),
+            reasonCodes: this.lookUpService.GetReasonCodeLookups(),
+            identificationType: this.lookUpService.GetIdentificationTypeLookup(),
         }).toPromise();
         lookUps?.countries?.parmList?.forEach((projects: any) => {
             let data = new Object() as any;

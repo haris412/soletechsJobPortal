@@ -21,115 +21,73 @@ export class AppLookUpService {
     constructor(private httpClient: HttpClient) { }
 
     async GetRecruitmentLookup(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId)
         return await this.httpClient
             .get<any>(
-                apiURLs.lookUps.getRecruitmentLookup,
-                { params: queryParams }
+                apiURLs.lookUps.getRecruitmentLookup
             ).toPromise();
     }
 
     async GetCountryRegionLookup(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.lookUps.getCountryRegionLookup,
-                { params: queryParams }
+                apiURLs.lookUps.getCountryRegionLookup
             ).toPromise();
     }
 
     async GetHighestDegreeLookUp(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getHighestDegreeLookUp,
-                { params: queryParams }
+                apiURLs.applicant.getHighestDegreeLookUp
             ).toPromise();
     }
 
     async GetEthnicOriginLookup(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.lookUps.GetEthnicOriginLookup,
-                { params: queryParams }
+                apiURLs.lookUps.GetEthnicOriginLookup
             ).toPromise();
     }
 
     async GetNativeLanguageCodeLookup(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.lookUps.GetNativeLanguageCodeLookup,
-                { params: queryParams }
+                apiURLs.lookUps.GetNativeLanguageCodeLookup
             ).toPromise();
     }
 
     async GetHighestDegreeLookups(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.lookUps.GetHighestDegreeLookups,
-                { params: queryParams }
+                apiURLs.lookUps.GetHighestDegreeLookups
             ).toPromise();
     }
 
     async GetReasonCodeLookups(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.lookUps.GetReasonCodeLookups,
-                { params: queryParams }
+                apiURLs.lookUps.GetReasonCodeLookups
             ).toPromise();
     }
 
     async GetIdentificationTypeLookup(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.lookUps.GetIdentificationTypeLookup,
-                { params: queryParams }
+                apiURLs.lookUps.GetIdentificationTypeLookup
             ).toPromise();
     }
 
-    async GetCityLookup(
-        params: LookupParameters, countryId: string
+    async GetCityLookup(countryId: string
     ) {
         let queryParams = new HttpParams();
-        queryParams = queryParams.append('countryId', countryId).set('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
+        queryParams = queryParams.append('countryId', countryId);
         return await this.httpClient
             .get<any>(
                 apiURLs.lookUps.GetCityLookup,
@@ -137,93 +95,58 @@ export class AppLookUpService {
             ).toPromise();
     }
     async GetSkillLookup(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getSkillLookupList,
-                { params: queryParams }
+                apiURLs.applicant.getSkillLookupList
             ).toPromise();
     }
 
     async GetRatingLevelLookupList(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getRatingLevelLookupList,
-                { params: queryParams }
+                apiURLs.applicant.getRatingLevelLookupList
             ).toPromise();
     }
 
     async GetEducationInstitutionLookupList(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getEducationInstitutionLookupList,
-                { params: queryParams }
+                apiURLs.applicant.getEducationInstitutionLookupList
             ).toPromise();
     }
 
     async GetEducationDisciplineLookupList(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getEducationDisciplineLookupList,
-                { params: queryParams }
+                apiURLs.applicant.getEducationDisciplineLookupList
             ).toPromise();
     }
 
     async GetEducationLevelLookupList(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getEducationLevelLookupList,
-                { params: queryParams }
+                apiURLs.applicant.getEducationLevelLookupList
             ).toPromise();
     }
 
     async getCertificateTypeLookUpList(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getCertificateTypeLookUpList,
-                { params: queryParams }
+                apiURLs.applicant.getCertificateTypeLookUpList
             ).toPromise();
     }
 
     async GetPersonalTitleLookupList(
-        params: LookupParameters
     ) {
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append('dataAreaId', params.dataAreaId).
-            set('languageId', params.languageId);
         return await this.httpClient
             .get<any>(
-                apiURLs.applicant.getPersonalTitleLookupList,
-                { params: queryParams }
+                apiURLs.applicant.getPersonalTitleLookupList
             ).toPromise();
     }
     //// Application Services
