@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
     private applicantDataService: ApplicantDataService,
     private service: TranslocoService,
     private _sanitizer: DomSanitizer,
-    private languageService: TranslationAlignmentService,
     public translationService: TranslationAlignmentService,
     public linkedInServive: LinkedInService,
 
@@ -69,11 +68,11 @@ export class HeaderComponent implements OnInit {
     // Ensure new active lang is loaded
     if (lang == 'en') {
       this.selectedLanguage = 'English';
-      this.languageService.languageChange.emit(false);
-      this.languageService.isTranslate = false;
+      this.translationService.languageChange.emit(false);
+      this.translationService.isTranslate = false;
     } else {
       this.selectedLanguage = 'Arabic - العربية'
-      this.languageService.languageChange.emit(true);
+      this.translationService.languageChange.emit(true);
       this.translationService.isTranslate = true;
     }
     this.service.setActiveLang(lang);
