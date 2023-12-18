@@ -49,9 +49,9 @@ export class JobsListComponent implements OnInit {
       if(this.email){
         this.GetAppliedJobs();
       }
-      this.translationService.languageChange.subscribe(x=>{{
-        this.isTranslate=x;
-      }});
+      this.translationService.languageChange.subscribe(x => {
+        this.isTranslate = x;
+      });
     }
 
   async ngOnInit() {
