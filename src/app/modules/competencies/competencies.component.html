@@ -1,6 +1,8 @@
 <ng-container *transloco="let t; scope: 'competencies';">
 
-<div class="container-fluid">
+  <div class="container-fluid"
+  [ngClass]="{'direction-change' : isTranslate}"
+>
   <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
     <img src="assets/SVG/Iconback.svg" alt="" />
     <p class="font-poppins-semi text-gray-600 mb-0">{{t('competencies.back')}}</p>

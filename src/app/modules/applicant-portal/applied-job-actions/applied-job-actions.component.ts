@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
 import { ApplicantDataService } from '../services/applicant-shared.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-applied-job-actions',
@@ -14,20 +15,22 @@ export class AppliedJobActionsComponent implements OnInit{
   jobList:any[]=[];
   selectedJob:any;
   applicationId:string = '';
+  public isTranslate: boolean = this.translationService.isTranslate;
   constructor(
     private router: Router,
     private dialog: RescheduleModalComponentService,
     private applicantService:ApplicantDataService,
     private lookUpService:AppLookUpService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public translationService: TranslationAlignmentService
   ) {
-    console.log(this.route.params);
     this.route.params.subscribe(
       params => 
       this.applicationId = params?.id
     );
-    console.log(this.applicationId);
-  
+    this.translationService.languageChange.subscribe(x=>{{
+      this.isTranslate=x;
+    }});
   }
 
   ngOnInit() {

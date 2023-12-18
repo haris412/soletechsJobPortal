@@ -1,6 +1,6 @@
 <div class="profile-menu">
   <h5 class="font-poppins-semi text-midnight-moss">My Profile</h5>
-  <ul>
+  <ul [ngClass]="isTranslate ? 'arabic-direction' : ''">
     <li [ngClass]="{'selected':isBasicInfo}" (click)="ScrolltoTarget('#basicInformation')">
       <h6>Basic Information</h6>
     </li>

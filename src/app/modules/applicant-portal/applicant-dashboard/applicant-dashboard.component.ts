@@ -4,6 +4,7 @@ import { LinkedInService } from '../services/linkedin.service';
 import { environment } from 'src/environments/environment';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ApplicantDataService } from '../services/applicant-shared.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-applicant-dashboard',
@@ -13,11 +14,17 @@ import { ApplicantDataService } from '../services/applicant-shared.service';
 export class ApplicantDashboardComponent implements OnInit {
 
   appliedJobs:any[] = [];
+  public isTranslate: boolean = this.translationService.isTranslate;
   constructor(private activatedRoute: ActivatedRoute, 
     public linkedInServive: LinkedInService,
     private lookUpService:AppLookUpService,
     public applicantService: ApplicantDataService,
-    private route: Router) {
+    private route: Router,
+    public translationService: TranslationAlignmentService
+    ) {
+      this.translationService.languageChange.subscribe(x=>{{
+        this.isTranslate=x;
+      }});
   }
 
   async ngOnInit() {

@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -10,6 +10,7 @@ export class LeftMenuComponent {
   public isBasicInfo: boolean = true;
   public notifications: boolean = false;
   public deactivate: boolean = false;
+  @Input() isTranslate: boolean = false;
   @Output() scrollTo = new EventEmitter<string>();
 
   ScrolltoTarget(event: any) {
