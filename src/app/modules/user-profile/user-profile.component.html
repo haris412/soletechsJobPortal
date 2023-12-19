@@ -15,8 +15,8 @@
           <span class="heading">Profile Picture</span>
           <div class="d-flex align-items-center upload-profile-pic mt-3">
             <div class="profile">
-              <img [src]="imageAvatar ? imageAvatar : defaultUrl"
-                   alt="" />
+              <img *ngIf="this.imagePathOrBase64 == undefined" src="{{this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.picture : defaultUrl}}" alt="" />
+              <img *ngIf="this.imagePathOrBase64 != undefined" [src]="imagePathOrBase64" alt="" />
             </div>
             <div class="d-flex flex-column flex-sm-row upload-btns gap-2">
               <button type="file"

@@ -16,17 +16,25 @@
             class="w-100"
             placeholder="{{ t('jobs.job-title-placeholder') }}"
             [(ngModel)]="inputText"
+            (input)="Valuechange($event)"
             (keyup.enter)="onEnterPressed()"
           />
         </div>
       </div>
       <div
-        class="col-lg-3 col-6 px-2 py-lg-0 py-3 light-border rounded-end d-flex align-items-center"
+        class="col-lg-3 col-6 px-2 py-lg-0 py-3 light-border  d-flex align-items-center job-title"
         [ngClass]="isTranslate ? '' : 'border-start-lg-0'"
       >
         <div class="d-flex align-items-center gap-2">
           <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
-          <p class="text-midnight-moss mb-0 font-poppins-medium">Dubai, UAE</p>
+          <!-- <p class="text-midnight-moss mb-0 font-poppins-medium">Dubai, UAE</p> -->
+          <input
+            type="text"
+            class="w-100"
+            placeholder="{{ t('jobs.job-location-placeholder') }}"
+            [(ngModel)]="locationText"
+            (input)="Locationchange($event)"
+          />
         </div>
       </div>
       <div
