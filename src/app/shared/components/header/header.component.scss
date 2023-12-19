@@ -9,6 +9,11 @@
   .profile-navigation {
     direction: ltr;
   }
+  .notification-menu {
+    @include media-breakpoint-up(lg) {
+      transform: translate(0, 10px) !important;
+    }
+  }
 }
 
 .navbar {

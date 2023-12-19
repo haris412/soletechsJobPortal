@@ -74,6 +74,12 @@ export class HeaderComponent implements OnInit {
       document.documentElement.style.setProperty('--font-medium', 'Poppins-Medium');
       document.documentElement.style.setProperty('--font-semi', 'Poppins-SemiBold');
       document.documentElement.style.setProperty('--font-bold', 'Poppins-Bold');
+      document.documentElement.style.setProperty('--h2-size', '2.25rem');
+      document.documentElement.style.setProperty('--h3-size', '1.875rem');
+      document.documentElement.style.setProperty('--h4-size', '1.5rem');
+      document.documentElement.style.setProperty('--h5-size', '1.125rem');
+      document.documentElement.style.setProperty('--h6-size', '1rem');
+      document.documentElement.style.setProperty('--p-size', '0.875remrem');
     } else {
       this.selectedLanguage = 'Arabic - العربية'
       this.translationService.languageChange.emit(true);
@@ -82,6 +88,12 @@ export class HeaderComponent implements OnInit {
       document.documentElement.style.setProperty('--font-medium', 'Arabic-Medium');
       document.documentElement.style.setProperty('--font-semi', 'Arabic-SemiBold');
       document.documentElement.style.setProperty('--font-bold', 'Arabic-SemiBold');
+      document.documentElement.style.setProperty('--h2-size', '2.625rem');
+      document.documentElement.style.setProperty('--h3-size', '2.25rem');
+      document.documentElement.style.setProperty('--h4-size', '1.875rem');
+      document.documentElement.style.setProperty('--h5-size', '1.5rem');
+      document.documentElement.style.setProperty('--h6-size', '1.125rem');
+      document.documentElement.style.setProperty('--p-size', '1rem');
     }
     this.service.setActiveLang(lang);
 

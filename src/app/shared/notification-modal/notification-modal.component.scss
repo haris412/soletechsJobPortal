@@ -38,6 +38,7 @@
           span {
             color: $shuttle-grey;
             font-size: 0.75rem;
+            max-width: 270px;
           }
         }
       }
@@ -73,6 +74,11 @@
       &:last-child {
         opacity: 0;
       }
+    }
+  }
+  &.direction-change {
+    .notification-text {
+      align-items: flex-start;
     }
   }
 }
