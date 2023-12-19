@@ -42,9 +42,9 @@ export class JobsComponent implements OnInit {
     public translationService: TranslationAlignmentService
     ) { 
       this.applicantDataService.signUpModalEmitter.subscribe(x=> this.CloseModal());
-      this.translationService.languageChange.subscribe(x=>{{
-        this.isTranslate=x;
-      }});
+      this.translationService.languageChange.subscribe(x  => {
+        this.isTranslate = x;
+      });
    }
 
   async ngOnInit() {

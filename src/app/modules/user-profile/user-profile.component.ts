@@ -2,6 +2,9 @@ import { ChangeDetectorRef, Component, ElementRef, Renderer2 } from '@angular/co
 import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { ApplicantDataService } from '../applicant-portal/services/applicant-shared.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { LinkedInService } from '../applicant-portal/services/linkedin.service';
 
 
 @Component({
@@ -18,19 +21,28 @@ export class UserProfileComponent {
     imageAvatar:any;
 	defaultUrl:string = 'assets/Images/Profile.png';
 	fileList:any[] = [];
+	imagePathOrBase64: any;
 	public isTranslate: boolean = this.translationService.isTranslate;
 	constructor(
 		private router: Router, 
 		public ref: ChangeDetectorRef,
 		private renderer: Renderer2, 
 		private el: ElementRef,
-		public translationService: TranslationAlignmentService) {
+		private applicantDataService: ApplicantDataService,
+		private _sanitizer: DomSanitizer,
+		public translationService: TranslationAlignmentService,
+		public linkedInServive: LinkedInService
+		) {
 			this.translationService.languageChange.subscribe(x=>{{
         this.isTranslate=x;
       }});
 		 }
 
 	ngOnInit(): void {
+	if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
+		this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+			+ this.applicantDataService.applicantData?.applicantImage);
+		}
 	}
 
 	OpenSidenav() {

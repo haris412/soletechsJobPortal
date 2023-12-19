@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
     private applicantDataService: ApplicantDataService,
     private service: TranslocoService,
     private _sanitizer: DomSanitizer,
-    private languageService: TranslationAlignmentService,
     public translationService: TranslationAlignmentService,
     public linkedInServive: LinkedInService,
 
@@ -69,15 +68,15 @@ export class HeaderComponent implements OnInit {
     // Ensure new active lang is loaded
     if (lang == 'en') {
       this.selectedLanguage = 'English';
-      this.languageService.languageChange.emit(false);
-      this.languageService.isTranslate = false;
+      this.translationService.languageChange.emit(false);
+      this.translationService.isTranslate = false;
       document.documentElement.style.setProperty('--font-regular', 'Poppins-Regular');
       document.documentElement.style.setProperty('--font-medium', 'Poppins-Medium');
       document.documentElement.style.setProperty('--font-semi', 'Poppins-SemiBold');
       document.documentElement.style.setProperty('--font-bold', 'Poppins-Bold');
     } else {
       this.selectedLanguage = 'Arabic - العربية'
-      this.languageService.languageChange.emit(true);
+      this.translationService.languageChange.emit(true);
       this.translationService.isTranslate = true;
       document.documentElement.style.setProperty('--font-regular', 'Arabic-Regular');
       document.documentElement.style.setProperty('--font-medium', 'Arabic-Medium');

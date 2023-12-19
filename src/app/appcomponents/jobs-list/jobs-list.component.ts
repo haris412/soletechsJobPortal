@@ -37,7 +37,8 @@ export class JobsListComponent implements OnInit {
   disableBtn:boolean = false;
   public isTranslate: boolean = this.translationService.isTranslate;
   private translocoService: TranslocoService = inject(TranslocoService);
-
+  jobsListCopy:Job[] = [];
+  locationText:string ='';
   constructor(private recruitmentService: RecruitmentService,
     public sharedService: SharedService,
     public lookupService: AppLookUpService,
@@ -49,9 +50,9 @@ export class JobsListComponent implements OnInit {
       if(this.email){
         this.GetAppliedJobs();
       }
-      this.translationService.languageChange.subscribe(x=>{{
-        this.isTranslate=x;
-      }});
+      this.translationService.languageChange.subscribe(x => {
+        this.isTranslate = x;
+      });
     }
 
   async ngOnInit() {
@@ -82,6 +83,7 @@ export class JobsListComponent implements OnInit {
     let jobsResponseObj = await this.recruitmentService.GetStartedRecruitingList();
     if (jobsResponseObj) {
       this.jobsList = jobsResponseObj.parmRecruitmentProjectsList ?? [];
+      this.jobsListCopy = jobsResponseObj.parmRecruitmentProjectsList ?? [];
     }
   }
 
@@ -148,7 +150,23 @@ export class JobsListComponent implements OnInit {
 
   onEnterPressed() {
     const inputText = this.inputText;
+    console.log(this.inputText);
   }
+  Locationchange(event:any){
+    if (event?.target?.value?.length >= 1) {
+      this.jobsList = this.jobsListCopy.filter((job: Job) => job.JobLocation.toLowerCase().includes(event?.target.value.toLowerCase()));
+    } else {
+      this.jobsList = this.jobsListCopy;
+    }
+  }
+  Valuechange(event:any){
+    if(event?.target?.value?.length >= 1){
+      this.jobsList = this.jobsListCopy.filter((job:Job)=> job.recruitingId.toLowerCase().includes(event?.target.value.toLowerCase()));
+    }else{
+      this.jobsList = this.jobsListCopy;
+    }
+  }
+
   async GetToken() {
     let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');
     if (accessTokenResponse) {

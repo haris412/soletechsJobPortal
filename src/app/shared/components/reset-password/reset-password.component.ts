@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ChangePassword } from 'src/app/models/ChangePassword';
 import { SharedService } from '../../services/shared.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -23,7 +24,8 @@ export class ResetPasswordComponent implements OnInit {
               public lookupService: AppLookUpService,
               private toastrService: ToastrService,
               private activatedRoute: ActivatedRoute,
-              private shareService: SharedService) {
+              private shareService: SharedService,
+              public translationService: TranslationAlignmentService,) {
               this.userForm = this._formBuilder.group({
                 password:['', Validators.required],
                 confirmPassword:['', Validators.required]
