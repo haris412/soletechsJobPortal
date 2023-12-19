@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotificationModalComponent } from './notification-modal.component';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Injectable({
   providedIn: 'root',

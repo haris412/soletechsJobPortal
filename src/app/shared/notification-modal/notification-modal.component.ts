@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class NotificationModalComponent {
   public isNotificationPage: boolean = false;
-  constructor(private router: Router) {
+  constructor(private router: Router,
+    public translationService: TranslationAlignmentService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/notifications') {

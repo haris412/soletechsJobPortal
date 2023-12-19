@@ -1,4 +1,4 @@
-<div class="parent-container" [ngClass]="{ 'notification-page': isNotificationPage }">
+<div class="parent-container" [ngClass]="{ 'notification-page': isNotificationPage, 'direction-change':translationService.isTranslate}">
   <div class="d-flex align-items-baseline justify-content-between">
     <h4 class="text-midnight-moss font-poppins-medium mb-4">Notification</h4>
     <img *ngIf="!isNotificationPage" class="green-filter" src="assets/SVG/x-circle.svg" alt="" />

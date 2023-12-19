@@ -116,7 +116,9 @@ p {
     img {
       transform: rotate(180deg);
     }
-    
+  }
+  .mat-calendar-controls {
+    direction: ltr;
   }
 }
 
@@ -325,11 +327,11 @@ form {
   }
   &.close {
     transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   &.open {
     transform: translateX(0%);
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   form {
     margin-top: 3.375rem;

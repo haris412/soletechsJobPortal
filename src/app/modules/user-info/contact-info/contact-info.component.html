@@ -22,7 +22,10 @@
         *ngFor="let contact of this.userInfoService.contactsList">
         <div class="d-flex align-items-center w-100 contact-item-container">
           <div class="contact-item rounded w-100">
-            <h6 class="mb-0 font-poppins-bold">{{ contact.ContactNumber }}</h6>
+            <div class="d-flex align-items-start flex-column">
+              <p class="text-midnight-moss font-poppins-bold">Label</p>
+              <h6 class="mb-0 font-poppins-semi">{{ contact.ContactNumber }}</h6>
+            </div>
             <div class="d-flex align-items-center gap-1">
               <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
                 <img class="cursor-pointer" (click)="EditContact(contact)" src="assets/SVG/edit-icon.svg" alt="" />
