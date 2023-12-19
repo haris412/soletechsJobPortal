@@ -71,10 +71,18 @@ export class HeaderComponent implements OnInit {
       this.selectedLanguage = 'English';
       this.languageService.languageChange.emit(false);
       this.languageService.isTranslate = false;
+      document.documentElement.style.setProperty('--font-regular', 'Poppins-Regular');
+      document.documentElement.style.setProperty('--font-medium', 'Poppins-Medium');
+      document.documentElement.style.setProperty('--font-semi', 'Poppins-SemiBold');
+      document.documentElement.style.setProperty('--font-bold', 'Poppins-Bold');
     } else {
       this.selectedLanguage = 'Arabic - العربية'
       this.languageService.languageChange.emit(true);
       this.translationService.isTranslate = true;
+      document.documentElement.style.setProperty('--font-regular', 'Arabic-Regular');
+      document.documentElement.style.setProperty('--font-medium', 'Arabic-Medium');
+      document.documentElement.style.setProperty('--font-semi', 'Arabic-SemiBold');
+      document.documentElement.style.setProperty('--font-bold', 'Arabic-SemiBold');
     }
     this.service.setActiveLang(lang);
 

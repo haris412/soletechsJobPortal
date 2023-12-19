@@ -239,7 +239,8 @@ ul li {
   height: calc(100vh - 200px);
 }
 
-.job-title {
+.job-title,
+.job-type {
   input {
     border: none;
     &:focus-visible {
@@ -250,4 +251,11 @@ ul li {
 
 .imgDisabled{
   pointer-events: none; 
+}
+
+.direction-change {
+  .job-listing-detail:nth-of-type(1):after {
+    left: auto;
+    right: 0;
+  }
 }

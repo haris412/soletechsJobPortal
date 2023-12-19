@@ -17,8 +17,27 @@
     font-family: 'Poppins-Bold';
     src: url('../../assets/font/Poppins/Poppins-Bold.ttf');
   }
+  @font-face {
+    font-family: 'Arabic-Regular';
+    src: url('../../assets/font/Arabic/Noto\ Kufi\ Arabic\ Regular.ttf');
+  }
+  @font-face {
+    font-family: 'Arabic-Medium';
+    src: url('../../assets/font/Arabic/Noto\ Kufi\ Arabic\ Medium.ttf');
+  }
+  @font-face {
+    font-family: 'Arabic-SemiBold';
+    src: url('../../assets/font/Arabic/Noto\ Kufi\ Arabic\ SemiBold.ttf');
+  }
+
+  :root {
+    --font-regular: 'Poppins-Regular';
+    --font-medium: 'Poppins-Medium';
+    --font-semibold: 'Poppins-SemiBold';
+    --font-bold: 'Poppins-Bold'
+  }
   
-  $font-poppins-regular: 'Poppins-Regular';
-  $font-poppins-medium: 'Poppins-Medium';
-  $font-poppins-semi: 'Poppins-SemiBold';
-  $font-poppins-bold: 'Poppins-Bold';
+  $font-poppins-regular: var(--font-regular);
+  $font-poppins-medium: var(--font-medium);
+  $font-poppins-semi: var(--font-semibold);
+  $font-poppins-bold: var(--font-bold);
