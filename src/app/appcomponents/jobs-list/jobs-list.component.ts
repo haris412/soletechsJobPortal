@@ -166,6 +166,13 @@ export class JobsListComponent implements OnInit {
       this.jobsList = this.jobsListCopy;
     }
   }
+  JobTypeChange(event:any){
+    if(event?.target?.value?.length >= 1){
+      this.jobsList = this.jobsListCopy.filter((job:Job)=> job.JobType.toLowerCase().includes(event?.target.value.toLowerCase()));
+    }else{
+      this.jobsList = this.jobsListCopy;
+    }
+  }
 
   async GetToken() {
     let accessTokenResponse = await this.recruitmentService.AuthenticationByCompanyIdAsync('');

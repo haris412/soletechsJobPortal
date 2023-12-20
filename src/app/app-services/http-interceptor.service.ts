@@ -33,6 +33,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                 },
             });
         }
+        return next.handle(request);
         return next.handle(request).pipe(map((event: HttpEvent<any>) => {
             if (event instanceof HttpResponse) {
                 event = event.clone({body: this.modifyBody(event.body)});
