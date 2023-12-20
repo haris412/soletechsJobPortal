@@ -5,6 +5,8 @@ import { TranslationAlignmentService } from 'src/app/app-services/translation-al
 import { ApplicantDataService } from '../applicant-portal/services/applicant-shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LinkedInService } from '../applicant-portal/services/linkedin.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { userApplicantImage } from 'src/app/models/userImageParameters';
 
 
 @Component({
@@ -22,6 +24,7 @@ export class UserProfileComponent {
 	defaultUrl:string = 'assets/Images/Profile.png';
 	fileList:any[] = [];
 	imagePathOrBase64: any;
+	fileData:any;
 	public isTranslate: boolean = this.translationService.isTranslate;
 	constructor(
 		private router: Router, 
@@ -31,7 +34,8 @@ export class UserProfileComponent {
 		private applicantDataService: ApplicantDataService,
 		private _sanitizer: DomSanitizer,
 		public translationService: TranslationAlignmentService,
-		public linkedInServive: LinkedInService
+		public linkedInServive: LinkedInService,
+		private lookUpService: AppLookUpService,
 		) {
 			this.translationService.languageChange.subscribe(x=>{{
         this.isTranslate=x;
@@ -75,11 +79,31 @@ export class UserProfileComponent {
 	RouteToCompetencies() {
 		this.router.navigate(['/competencies']);
 	}
-	selectFile(event:any) {
-		const reader = new FileReader();
-		reader.readAsDataURL(event.target.files[0]);
-      	reader.onload = (event) => {
-        	this.imageAvatar = event?.target?.result;
+	async selectFile(event:any) {
+		// const reader = new FileReader();
+		// reader.readAsDataURL(event.target.files[0]);
+      	// reader.onload = (event) => {
+        // 	this.imageAvatar = event?.target?.result;
+		// }
+		if (event.target.files[0].type == 'image/jpeg' || event.target.files[0].type == 'image/png') {
+			this.fileData = event.target.files[0];
+			const reader = new FileReader();
+			reader.readAsDataURL(this.fileData);
+			reader.onload = () => {
+				this.imageAvatar = reader.result;
+				// this.userForm.controls.applicantImage.setValue(this.imageAvatar.substring(this.imageAvatar.indexOf('base64,') + 7, this.imageAvatar.length));
+			};
+			let applicantImageParameters:userApplicantImage = {
+				applicantImage:this.imageAvatar.substring(this.imageAvatar.indexOf('base64,') + 7, this.imageAvatar.length),
+				applicantId:localStorage.getItem('applicantId') ?? ''
+			}
+			let res = await this.lookUpService.UploadApplicantImage(applicantImageParameters);
+			if(res){
+				console.log(res);
+			}
+		} else {
+			alert("file type should be image of jpeg or png")
+			return;
 		}
  	}
 

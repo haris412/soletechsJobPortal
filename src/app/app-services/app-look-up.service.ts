@@ -13,6 +13,7 @@ import { ContactInfo } from "../models/contact-info.model";
 import { Identification } from "../models/identification.model";
 import { SaveJob } from "../models/saveJob.model";
 import { ChangePassword } from "../models/ChangePassword";
+import { userApplicantImage } from "../models/userImageParameters";
 
 @Injectable({
     providedIn: 'root',
@@ -661,6 +662,13 @@ export class AppLookUpService {
             ).toPromise();
     }
 
+    async UploadApplicantImage(parameters: userApplicantImage) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.applicant.uploadApplicantImage,
+                parameters 
+            ).toPromise();
+    }
     async VerifyOTP(otp: number) {
         return await this.httpClient
             .post<any>(
