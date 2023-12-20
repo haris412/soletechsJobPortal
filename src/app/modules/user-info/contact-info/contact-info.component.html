@@ -23,7 +23,17 @@
         <div class="d-flex align-items-center w-100 contact-item-container">
           <div class="contact-item rounded w-100">
             <div class="d-flex align-items-start flex-column">
-              <p class="text-midnight-moss font-poppins-bold">Label</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 0" >None</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 1" >Phone</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 2" >Email</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 3" >URL</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 4" >Telex</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 5" >Fax</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 6" >Facebook</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 7" >Twitter</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 8" >LinkedIn</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 9" >Instagram</p>
+              <p class="text-midnight-moss font-poppins-bold" *ngIf="contact?.Type === 10" >WhatsApp</p>
               <h6 class="mb-0 font-poppins-semi">{{ contact.ContactNumber }}</h6>
             </div>
             <div class="d-flex align-items-center gap-1">
