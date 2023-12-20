@@ -102,7 +102,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/user-profile']);
   }
   LogOut() {
+    var token = localStorage.getItem('token') ?? "";
     localStorage.clear();
+    localStorage.setItem('token', token);
     this.isLogin = false;
     this.router.navigate(['/']);
   }

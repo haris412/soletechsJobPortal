@@ -8,6 +8,7 @@ import { ApplicationService } from 'src/app/app-services/application.service';
 import { Application } from 'src/app/models/applicatiom.model';
 import { Job } from 'src/app/models/job.model';
 import { LookupParameters } from 'src/app/models/look-up.model';
+import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 
 @Component({
   selector: 'app-quick-apply',
@@ -42,7 +43,7 @@ export class QuickApplyComponent implements OnInit {
     private lookUpService: AppLookUpService,
     private applicationService: ApplicationService,
     private toastrService: ToastrService,
-
+    public applicant: ApplicantDataService
   ) {
     this.name = localStorage.getItem('userName') ?? '';
     this.email = localStorage.getItem('email') ?? '';
@@ -69,6 +70,11 @@ export class QuickApplyComponent implements OnInit {
   ngOnInit() {
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
+    this.quickApplyForm?.controls?.phone.setValue(this.applicant.applicantData?.mobileNo ?? "");
+    this.quickApplyForm?.controls?.dateOfBirth.setValue(this.applicant.applicantData?.birthDate ?? "");
+    this.quickApplyForm?.controls?.nationality.setValue(this.applicant.applicantData?.nationality ?? "");
+    this.quickApplyForm?.controls?.highestDegree.setValue(this.applicant.applicantData?.highestDegree ?? "");
+    this.degreeCtrl.setValue(this.applicant.applicantData?.highestDegree ?? "");
     this.fileList = [];
     this.GetLookups();
     this.degreeOptions = this.degreeCtrl.valueChanges.pipe(

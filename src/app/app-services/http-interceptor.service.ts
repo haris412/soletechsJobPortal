@@ -7,7 +7,7 @@ import {
     HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { SharedService } from '../shared/services/shared.service';
 import { RecruitmentService } from './jobs.service';
 
@@ -33,13 +33,16 @@ export class AuthInterceptorService implements HttpInterceptor {
                 },
             });
         }
-        return next.handle(request);
-        return next.handle(request).pipe(map((event: HttpEvent<any>) => {
-            if (event instanceof HttpResponse) {
-                event = event.clone({body: this.modifyBody(event.body)});
-            }
-            return event;
-        }));
+        if (request.url.includes('.json')) {
+            return next.handle(request);
+        } else {
+            return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
+                if (event instanceof HttpResponse) {
+                    event = event.clone({body: this.modifyBody(event.body)});
+                }
+                return event;
+            }));
+        }
     }
     async modifyBody(body: any) {
         if (body?.Message == "Authentication failed.") {
