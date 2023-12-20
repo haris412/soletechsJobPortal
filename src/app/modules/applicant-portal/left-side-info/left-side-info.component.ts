@@ -17,7 +17,6 @@ export class LeftSideInfoComponent implements OnInit{
   isDisable: boolean = false;
   jobList: any[] = [{name:'Designer', type:'Full Time'}];
   userEmail:string = '';
-  imagePathOrBase64: any;
 
   constructor(private dialog: RescheduleModalComponentService,
     private toastrService: ToastrService,
@@ -35,7 +34,7 @@ export class LeftSideInfoComponent implements OnInit{
       await this.applicantService.GetUserInfo();
     }
     if (this.applicantService.applicantData != undefined && this.applicantService.applicantData.applicantImage != "") {
-      this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+      this.applicantService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
                  + this.applicantService.applicantData.applicantImage);
     }
   }

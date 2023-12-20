@@ -37,8 +37,8 @@
           <div class="d-flex align-items-center profile-navigation gap-2">
             <div class="profile">
               <!-- <img src="assets/Images/Profile.png" alt="" /> -->
-              <img *ngIf="this.imagePathOrBase64 == undefined" src="{{this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.picture : userImage}}" alt="" />
-              <img *ngIf="this.imagePathOrBase64 != undefined" [src]="imagePathOrBase64" alt="" />
+              <img *ngIf="this.applicantDataService.applicantImage == undefined" src="{{this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.picture : userImage}}" alt="" />
+              <img *ngIf="this.applicantDataService.applicantImage != undefined" [src]="this.applicantDataService.applicantImage" alt="" />
             </div>
             <div class="dropdown">
               <div class="d-flex align-items-center gap-1" href="#" role="button" data-bs-toggle="dropdown"

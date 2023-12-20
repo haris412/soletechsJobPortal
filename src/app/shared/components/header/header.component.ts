@@ -17,13 +17,12 @@ export class HeaderComponent implements OnInit {
   userName: string = '';
   selectedLanguage: string = 'English';
   defaultImage = 'assets/Images/Profile.png'
-  imagePathOrBase64: any;
   userImage:string = 'assets/Images/Profile.png';
 
   public isTranslate: boolean = false;
   constructor(
     private router: Router,
-    private applicantDataService: ApplicantDataService,
+    public applicantDataService: ApplicantDataService,
     private service: TranslocoService,
     private _sanitizer: DomSanitizer,
     public translationService: TranslationAlignmentService,
@@ -48,7 +47,7 @@ export class HeaderComponent implements OnInit {
       await this.applicantDataService.GetUserInfo();
     }
     if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
-      this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+      this.applicantDataService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
         + this.applicantDataService.applicantData?.applicantImage);
     }
   }

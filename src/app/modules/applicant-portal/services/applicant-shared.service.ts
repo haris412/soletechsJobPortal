@@ -14,6 +14,7 @@ export class ApplicantDataService {
     savedJobs: any[] = [];
     public applicantData:any;
     public selectedSavedJob: any;
+    public applicantImage: any;
 
     constructor(public lookupService: AppLookUpService) {}
 
