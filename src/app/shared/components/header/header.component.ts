@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit {
       this.translationService.isTranslate = false;
       document.documentElement.style.setProperty('--font-regular', 'Poppins-Regular');
       document.documentElement.style.setProperty('--font-medium', 'Poppins-Medium');
-      document.documentElement.style.setProperty('--font-semi', 'Poppins-SemiBold');
+      document.documentElement.style.setProperty('--font-semibold', 'Poppins-SemiBold');
       document.documentElement.style.setProperty('--font-bold', 'Poppins-Bold');
       document.documentElement.style.setProperty('--h2-size', '2.25rem');
       document.documentElement.style.setProperty('--h3-size', '1.875rem');
@@ -86,7 +86,7 @@ export class HeaderComponent implements OnInit {
       this.translationService.isTranslate = true;
       document.documentElement.style.setProperty('--font-regular', 'Arabic-Regular');
       document.documentElement.style.setProperty('--font-medium', 'Arabic-Medium');
-      document.documentElement.style.setProperty('--font-semi', 'Arabic-SemiBold');
+      document.documentElement.style.setProperty('--font-semibold', 'Arabic-SemiBold');
       document.documentElement.style.setProperty('--font-bold', 'Arabic-SemiBold');
       document.documentElement.style.setProperty('--h2-size', '2.625rem');
       document.documentElement.style.setProperty('--h3-size', '2.25rem');

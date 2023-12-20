@@ -20,7 +20,7 @@ export class UserProfileComponent {
 	title = 'angular';
 	public Editor = ClassicEditor;
 	index: Number = 1;
-    imageAvatar:any;
+  imageAvatar:any;
 	defaultUrl:string = 'assets/Images/Profile.png';
 	fileList:any[] = [];
 	imagePathOrBase64: any;
