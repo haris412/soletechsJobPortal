@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, forkJoin, map, startWith } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
@@ -37,6 +38,7 @@ export class QuickApplyComponent implements OnInit {
   separateDialCode = false;
   name: string = '';
   email: string = '';
+  phonePlaceHolder:any;
   get f() { return this.quickApplyForm.controls; }
   constructor(
     private router: Router,
@@ -201,4 +203,7 @@ export class QuickApplyComponent implements OnInit {
       this.quickApplyForm.markAllAsTouched();
     }
   }
+  OnCountryChanged(event:Country){
+		this.phonePlaceHolder = event?.placeHolder;
+	  }
 }

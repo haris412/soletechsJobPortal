@@ -17,6 +17,7 @@ import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoade
 import { AuthInterceptorService } from './app-services/http-interceptor.service';
 import { OtpVerificationComponent } from './appcomponents/otp-verification/otp-verification.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    bgsColor: 'white',
@@ -71,7 +72,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     BrowserAnimationsModule,
     MaterialModule,
     CKEditorModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMatIntlTelInputComponent
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]

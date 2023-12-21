@@ -15,6 +15,7 @@ import { AddEditAddressComponent } from './add-edit-address/add-edit-address.com
 import { AddEditIdentificationComponent } from './add-edit-identification/add-edit-identification.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslocoRootModule } from 'src/app/transloco-root.module';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 
 
@@ -37,6 +38,7 @@ import { TranslocoRootModule } from 'src/app/transloco-root.module';
     MaterialModule,
     CKEditorModule,
     CommonModule,
+    NgxMatIntlTelInputComponent,
     ToastrModule.forRoot(),
   ],
   exports:[

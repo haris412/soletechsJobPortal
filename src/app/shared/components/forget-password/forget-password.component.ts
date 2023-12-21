@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
@@ -15,6 +15,7 @@ export class ForgetpasswordComponent implements OnInit {
 
   private _formBuilder = inject(UntypedFormBuilder);
   userForm: UntypedFormGroup;
+  get f() { return this.userForm.controls; }
   constructor(private router:Router,
               public lookupService: AppLookUpService,
               private toastrService: ToastrService,
@@ -22,7 +23,7 @@ export class ForgetpasswordComponent implements OnInit {
               public translationService: TranslationAlignmentService,
               ) { 
                 this.userForm = this._formBuilder.group({
-                  email:[''],
+                  email:['',[Validators.required , Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
                 });
               }
 
