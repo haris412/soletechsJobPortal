@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SignupRoutes } from './sign-up-routing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TranslocoRootModule } from 'src/app/transloco-root.module';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TranslocoRootModule } from 'src/app/transloco-root.module';
     CommonModule,
     MaterialModule,
     CKEditorModule,
-    SharedModule
+    SharedModule,
+    NgxMatIntlTelInputComponent
   ],
   exports:[
     SignUpComponent

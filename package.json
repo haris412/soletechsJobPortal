@@ -30,6 +30,7 @@
     "@rxweb/reactive-form-validators": "^13.0.1",
     "bootstrap": "^5.2.3",
     "material-icons": "^1.13.12",
+    "ngx-mat-intl-tel-input": "^5.0.0",
     "ngx-toastr": "^15.2.2",
     "ngx-ui-loader": "^13.0.0",
     "rxjs": "~7.8.0",

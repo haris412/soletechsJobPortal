@@ -6,7 +6,7 @@
       <mat-select name="contactType" [formControlName]="'Type'">
         <mat-option value="0">None</mat-option>
         <mat-option value="1">Phone</mat-option>
-        <mat-option value="2">Emailaddress</mat-option>
+        <mat-option value="2">Email Address</mat-option>
         <mat-option value="3">URL</mat-option>
         <mat-option value="4">Telex</mat-option>
         <mat-option value="5">Fax</mat-option>
@@ -24,6 +24,15 @@
     <p>{{t('basicInfo.number')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="contactNumber" [formControlName]="'ContactNumber'" />
+      <ngx-mat-intl-tel-input
+        [preferredCountries]="['sa', 'us']"
+        [enablePlaceholder]="true"
+        [enableSearch]="true"
+        name="ContactNumber"
+        [formControlName] ="'ContactNumber'" 
+        describedBy="phoneInput"
+        (countryChanged) = "OnCountryChanged($event)"
+      ></ngx-mat-intl-tel-input>
       <mat-error class="error-message" *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">Contact Number is Required</mat-error>
     </mat-form-field>
   </div>

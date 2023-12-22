@@ -25,6 +25,7 @@ export class AddEditBasicinformationComponent implements OnInit {
   imagePathOrBase64: any;
   imageAvatar:any;
   fileList:any[] = [];
+  get f() { return this.applicantForm.controls; }
   constructor(public userInfoService: UserInfoService,
     private lookUpService: AppLookUpService,
     public ref: ChangeDetectorRef,
@@ -33,12 +34,12 @@ export class AddEditBasicinformationComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     public linkedInServive: LinkedInService) {
     this.applicantForm = this._applicantFormBuilder.group({
-      currentJobTitle: ['', [Validators.required]],
+      currentJobTitle: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       middleName: [''],
       maritalStatus: ['0', [Validators.required]],
-      birthDate: [''],
+      birthDate: ['',[Validators.required]],
       highestDegree: ['', [Validators.required]],
       currentSalary: [''],
       reasonCode: [''],
@@ -46,7 +47,7 @@ export class AddEditBasicinformationComponent implements OnInit {
       gender: ['0', [Validators.required]],
       nationality: ['', [Validators.required]],
       nativeLanguageId: ['', [Validators.required]],
-      ethnicOriginId: ['', [Validators.required]]
+      ethnicOriginId: ['']
     });
   }
 
@@ -94,6 +95,8 @@ export class AddEditBasicinformationComponent implements OnInit {
       } catch (ex) {
         console.error();
       }
+    }else{
+      this.applicantForm.markAllAsTouched();
     }
   }
   uploadCV(files: any) {;

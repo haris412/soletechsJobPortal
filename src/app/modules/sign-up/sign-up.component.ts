@@ -10,6 +10,7 @@ import { forkJoin } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
 
 @Component({
 	selector: 'app-signup',
@@ -41,7 +42,7 @@ export class SignUpComponent implements OnInit {
 	confirmemailError: boolean = false;
 	public emailAlreadyExists: boolean = false;
 	public isTranslate: boolean =  this.translationService.isTranslate;
-
+	phonePlaceHolder :any = "";
 	constructor(private router: Router,
 		public userInfo: UserInfoService,
 		public lookupService: AppLookUpService,
@@ -54,11 +55,12 @@ export class SignUpComponent implements OnInit {
 			firstNameAr: [''],
 			lastNameAr: [''],
 			middleNameAr: [''],
-			middleName: ['', [Validators.required]],
+			middleName: [''],
+			identificationNumber: [''],
 			lastName: ['', [Validators.required]],
 			mobileNo:['', [Validators.required]],
-			email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-			confirmemail: ['', [Validators.required]],
+			email: ['', [Validators.required, Validators.email]],
+			confirmemail: ['', [Validators.required,Validators.email]],
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			confirmpassword: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			aboutMe: ['']
@@ -243,5 +245,8 @@ export class SignUpComponent implements OnInit {
 		  } else {
 			this.confirmemailError = false;
 		  }
+	  }
+	  OnCountryChanged(event:Country){
+		this.phonePlaceHolder = event?.placeHolder;
 	  }
 }

@@ -72,8 +72,17 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Mobile*</p>
       <mat-form-field appearance="outline" class="w-100">
-        <input type="tel" matInput [formControlName]="'phone'"/>
-        <mat-error class="error-message" *ngIf="f.phone.hasError('required') && (f.phone.dirty || f.phone.touched)">Phone is Required</mat-error>
+        <ngx-mat-intl-tel-input
+        [preferredCountries]="['sa', 'us']"
+        [enablePlaceholder]="true"
+        [enableSearch]="true"
+        name="phone"
+        [formControlName] ="'phone'" 
+        describedBy="phoneInput"
+        (countryChanged) = "OnCountryChanged($event)"
+      ></ngx-mat-intl-tel-input>        
+      <mat-error class="error-message" *ngIf="f.phone.hasError('required') && (f.phone.dirty || f.phone.touched)">Phone is Required</mat-error>
+      <mat-error *ngIf="f.phone.errors?.validatePhoneNumber">Invalid Number</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12 linkedin-profile">
