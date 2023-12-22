@@ -62,7 +62,7 @@
         <span class="heading">{{t('signUp.user-info')}}</span>
         <div class="d-flex flex-wrap align-items-center">
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
-            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.first-name-english')}}</p>
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.first-name-english')}} *</p>
             <mat-form-field appearance="outline" class="w-100">
               <input type="text" matInput placeholder="{{t('signUp.first-name-placeholder')}}"
                 [formControlName]="'firstName'" />
@@ -72,7 +72,7 @@
             </mat-form-field>
           </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
-            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.last-name-english')}}</p>
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.last-name-english')}}*</p>
             <mat-form-field appearance="outline" class="w-100">
               <input type="text" matInput placeholder="{{t('signUp.last-name-placeholder')}}"
                 [formControlName]="'lastName'" />
@@ -82,7 +82,7 @@
             </mat-form-field>
           </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
-            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.first-name-arabic')}}</p>
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.first-name-arabic')}}*</p>
             <mat-form-field appearance="outline" class="w-100">
               <input type="text" matInput placeholder="{{t('signUp.first-name-placeholder')}}"
                 [formControlName]="'firstNameAr'" />
@@ -114,14 +114,14 @@
           </div> -->
 
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
-            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.last-name-arabic')}}</p>
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.last-name-arabic')}}*</p>
             <mat-form-field appearance="outline" class="w-100">
               <input type="text" matInput placeholder="{{t('signUp.last-name-placeholder')}}"
                 [formControlName]="'lastNameAr'" />
             </mat-form-field>
           </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
-            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.mobile')}}</p>
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.mobile')}}*</p>
             <mat-form-field appearance="outline" class="w-100">
               <ngx-mat-intl-tel-input [preferredCountries]="['sa', 'us']" [enablePlaceholder]="true"
                 [enableSearch]="true" name="phone" [formControlName]="'mobileNo'" describedBy="phoneInput"
@@ -133,10 +133,19 @@
             </mat-form-field>
           </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
-            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.identification-number')}}</p>
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.identification-number')}}*</p>
             <mat-form-field appearance="outline" class="w-100">
-              <input type="text" matInput placeholder="{{t('signUp.last-name-placeholder')}}"
+              <input type="text" matInput placeholder="{{t('signUp.identification-number-placeholder')}}"
                 [formControlName]="'identificationNumber'" />
+                <mat-error class="error-message"
+                *ngIf="f.identificationNumber.hasError('required') && (f.identificationNumber.dirty || f.identificationNumber.touched)">Identification number is Required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="d-flex flex-column fields-padding col-md-6 col-12">
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.ip-address')}}</p>
+            <mat-form-field appearance="outline" class="w-100">
+              <input type="text" matInput placeholder="{{t('signUp.ipaddress-number-placeholder')}}"
+                [formControlName]="'ipAddress'" />
             </mat-form-field>
           </div>
         </div>
