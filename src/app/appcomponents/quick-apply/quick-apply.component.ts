@@ -65,8 +65,7 @@ export class QuickApplyComponent implements OnInit {
       residentIdentity: [0],
       residentIdentityProfessional: [''],
       periodJoin: [''],
-      attachment: [''],
-      ipaddress: [''],
+      attachment: ['']
     });
   }
 
@@ -78,9 +77,6 @@ export class QuickApplyComponent implements OnInit {
     this.quickApplyForm?.controls?.nationality.setValue(this.applicant.applicantData?.nationality ?? "");
     this.quickApplyForm?.controls?.highestDegree.setValue(this.applicant.applicantData?.highestDegree ?? "");
     this.degreeCtrl.setValue(this.applicant.applicantData?.highestDegree ?? "");
-    var ipaddress = await this.lookUpService.GetIpAddress();
-    this.quickApplyForm?.controls?.ipaddress.setValue(ipaddress ?? "");
-    this.quickApplyForm?.controls?.ipaddress.disable();
     this.fileList = [];
     this.GetLookups();
     this.degreeOptions = this.degreeCtrl.valueChanges.pipe(

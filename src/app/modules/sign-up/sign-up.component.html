@@ -139,6 +139,14 @@
                 [formControlName]="'identificationNumber'" />
             </mat-form-field>
           </div>
+          <div class="d-flex flex-column fields-padding col-md-6 col-12">
+            <p>IP Address</p>
+            <div class="d-flex gap-1">
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput [formControlName]="'ipaddress'" type="text"/>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
       </div>
       <div class="sign-up-info-div">

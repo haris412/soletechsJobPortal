@@ -29,6 +29,7 @@
     "@ngneat/transloco": "^4.3.0",
     "@rxweb/reactive-form-validators": "^13.0.1",
     "bootstrap": "^5.2.3",
+    "libphonenumber-js": "^1.10.52",
     "material-icons": "^1.13.12",
     "ngx-mat-intl-tel-input": "^5.0.0",
     "ngx-toastr": "^15.2.2",
