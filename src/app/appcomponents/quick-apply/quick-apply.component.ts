@@ -65,11 +65,11 @@ export class QuickApplyComponent implements OnInit {
       residentIdentity: [0],
       residentIdentityProfessional: [''],
       periodJoin: [''],
-      attachment: [''],
+      attachment: ['']
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.quickApplyForm?.controls?.phone.setValue(this.applicant.applicantData?.mobileNo ?? "");

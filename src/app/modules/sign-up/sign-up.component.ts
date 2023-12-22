@@ -64,7 +64,8 @@ export class SignUpComponent implements OnInit {
 			confirmemail: ['', [Validators.required,Validators.email]],
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			confirmpassword: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
-			aboutMe: ['']
+			aboutMe: [''],
+			ipaddress: [''],
 
 		});
 		if (this.userInfo.applicantForm == undefined) {
@@ -75,7 +76,10 @@ export class SignUpComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void {
+	async ngOnInit() {
+		var ipaddress = await this.lookupService.GetIpAddress();
+		this.userForm?.controls?.ipaddress.setValue(ipaddress ?? "");
+		this.userForm?.controls?.ipaddress.disable();
 		//this.GetLookups();
 	}
 
