@@ -694,4 +694,10 @@ export class AppLookUpService {
                 { params: queryParams }
             ).toPromise();
     }
+    async GetIpAddress() {
+        let ipaddress =  await this.httpClient.get<any>(
+            apiURLs.applicant.getIpAddress
+        ).toPromise();
+        return ipaddress?.ip;
+    }
 }

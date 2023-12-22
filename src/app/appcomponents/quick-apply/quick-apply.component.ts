@@ -37,6 +37,7 @@ export class QuickApplyComponent implements OnInit {
   separateDialCode = false;
   name: string = '';
   email: string = '';
+  public disabledIp: boolean = true;
   get f() { return this.quickApplyForm.controls; }
   constructor(
     private router: Router,
@@ -64,10 +65,11 @@ export class QuickApplyComponent implements OnInit {
       residentIdentityProfessional: [''],
       periodJoin: [''],
       attachment: [''],
+      ipaddress: [''],
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.quickApplyForm?.controls?.phone.setValue(this.applicant.applicantData?.mobileNo ?? "");
@@ -75,6 +77,9 @@ export class QuickApplyComponent implements OnInit {
     this.quickApplyForm?.controls?.nationality.setValue(this.applicant.applicantData?.nationality ?? "");
     this.quickApplyForm?.controls?.highestDegree.setValue(this.applicant.applicantData?.highestDegree ?? "");
     this.degreeCtrl.setValue(this.applicant.applicantData?.highestDegree ?? "");
+    var ipaddress = await this.lookUpService.GetIpAddress();
+    this.quickApplyForm?.controls?.ipaddress.setValue(ipaddress ?? "");
+    this.quickApplyForm?.controls?.ipaddress.disable();
     this.fileList = [];
     this.GetLookups();
     this.degreeOptions = this.degreeCtrl.valueChanges.pipe(

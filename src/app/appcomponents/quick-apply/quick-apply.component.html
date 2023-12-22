@@ -173,6 +173,14 @@
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
       </mat-form-field>
     </div>
+    <div class="d-flex flex-column col-md-6 col-12 linkedin-profile">
+      <p>IP Address</p>
+      <div class="d-flex gap-1">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput [formControlName]="'ipaddress'" type="text"/>
+        </mat-form-field>
+      </div>
+    </div>
     <div class="cv-div">
       <p class="text-midnight-moss font-poppins-bold">Attachment</p>
       <div class="upload-file">
