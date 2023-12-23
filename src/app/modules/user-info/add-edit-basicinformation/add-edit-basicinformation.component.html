@@ -76,7 +76,7 @@
     <div class="sign-up-info-div">
       <form class="row" action="" [formGroup]="applicantForm">
         <div class="d-flex flex-column col-md-6 col-12">
-          <p> {{t('basicInfo.first-name')}}</p>
+          <p> {{t('basicInfo.first-name')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <input matInput [formControlName]="'firstName'" />
             <mat-error class="error-message"
@@ -85,7 +85,7 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.last-name')}}</p>
+          <p>{{t('basicInfo.last-name')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <input matInput [formControlName]="'lastName'" />
             <mat-error class="error-message"
@@ -100,7 +100,7 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.date-birth')}}</p>
+          <p>{{t('basicInfo.date-birth')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <input matInput [matDatepicker]="picker" [formControlName]="'birthDate'" dateInput placeholder="dd/mm/yyyy">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -111,7 +111,7 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.nationality')}}</p>
+          <p>{{t('basicInfo.nationality')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'nationality'">
               <mat-option *ngFor="let country of this.userInfoService.countryRegions"
@@ -123,7 +123,7 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.gender')}}</p>
+          <p>{{t('basicInfo.gender')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'gender'">
               <mat-option value="0">None</mat-option>
@@ -137,7 +137,7 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.marital-status')}}</p>
+          <p>{{t('basicInfo.marital-status')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'maritalStatus'">
               <mat-option value="0">None</mat-option>
@@ -167,7 +167,7 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.native-language')}}</p>
+          <p>{{t('basicInfo.native-language')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'nativeLanguageId'">
               <mat-option *ngFor="let nlanguage of this.userInfoService.nativeLanguage"
@@ -202,7 +202,7 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.highest-degree')}}</p>
+          <p>{{t('basicInfo.highest-degree')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'highestDegree'">
               <mat-option *ngFor="let hDegree of this.userInfoService.highestDegree"
