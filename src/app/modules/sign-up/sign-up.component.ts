@@ -50,14 +50,13 @@ export class SignUpComponent implements OnInit {
 		public translationService: TranslationAlignmentService
 		) {
 		this.userForm = this._formBuilder.group({
-			applicantImage:[''],
+			applicantImage:['', [Validators.required]],
 			firstName: ['', [Validators.required]],
 			firstNameAr: [''],
 			lastNameAr: [''],
 			middleNameAr: [''],
 			middleName: [''],
 			identificationNumber: ['', [Validators.required]],
-			ipAddress:[''],
 			lastName: ['', [Validators.required]],
 			mobileNo:['', [Validators.required]],
 			email: ['', [Validators.required, Validators.email]],

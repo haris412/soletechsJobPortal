@@ -10,6 +10,7 @@ import { Application } from 'src/app/models/applicatiom.model';
 import { Job } from 'src/app/models/job.model';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-quick-apply',
@@ -25,13 +26,16 @@ export class QuickApplyComponent implements OnInit {
   public fileList: File[] = [];
   recrutmentProjects: any[] = [];
   countryRegions: any[] = [];
+  cities: any[] = [];
   degrees: any[] = [];
   filteredOptions!: Observable<any[]>;
   degreeOptions!: Observable<any[]>;
   nationalityData!: Observable<any[]>;
   countriesData!: Observable<any[]>;
+  citiesData!: Observable<any[]>;
   degreeCtrl = new FormControl('');
   countriesCtrl = new FormControl('');
+  citiesCtrl = new FormControl('');
   nationalityCtrl = new FormControl('');
   private _formBuilder = inject(UntypedFormBuilder);
   quickApplyForm: UntypedFormGroup;
@@ -45,7 +49,8 @@ export class QuickApplyComponent implements OnInit {
     private lookUpService: AppLookUpService,
     private applicationService: ApplicationService,
     private toastrService: ToastrService,
-    public applicant: ApplicantDataService
+    public applicant: ApplicantDataService,
+    public sharedService: SharedService 
   ) {
     this.name = localStorage.getItem('userName') ?? '';
     this.email = localStorage.getItem('email') ?? '';
@@ -85,6 +90,11 @@ export class QuickApplyComponent implements OnInit {
     );
 
     this.countriesData = this.countriesCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.__filterCountries(value || '')),
+    );
+
+    this.citiesData = this.citiesCtrl.valueChanges.pipe(
       startWith(''),
       map(value => this.__filterCountries(value || '')),
     );
@@ -152,9 +162,21 @@ export class QuickApplyComponent implements OnInit {
     );
   }
 
+  citiesDefaultSearch() {
+    this.citiesData = this.citiesCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.__filterCities(value || '')),
+    );
+  }
+
   private __filterCountries(value: string): string[] {
     const filterValue = value?.toLowerCase();
     return this.countryRegions?.filter(countries => countries?.name?.toLowerCase()?.includes(filterValue));
+  }
+
+  private __filterCities(value: string): string[] {
+    const filterValue = value?.toLowerCase();
+    return this.cities?.filter(countries => countries?.name?.toLowerCase()?.includes(filterValue));
   }
 
   OnNationlaityChange(event: any) {
@@ -181,7 +203,8 @@ export class QuickApplyComponent implements OnInit {
   async QuickApply() {
     this.quickApplyForm.controls.highestDegree.setValue(this.degreeCtrl.value);
     this.quickApplyForm.controls.nationality.setValue(this.nationalityCtrl.value);
-    this.quickApplyForm.controls.currentAddressOut.setValue(this.countriesCtrl.value);
+    this.quickApplyForm.controls.address.setValue(this.countriesCtrl.value);
+    this.quickApplyForm.controls.currentAddressOut.setValue(this.citiesCtrl.value);
     if (this.quickApplyForm.valid) {
       let applicationData: Application = {
         ...this.quickApplyForm.getRawValue(),
@@ -192,6 +215,7 @@ export class QuickApplyComponent implements OnInit {
         let applicationResponse = await this.applicationService.SaveApplication(applicationData);
         if (applicationResponse.Status) {
           this.toastrService.success(applicationResponse?.Message);
+          this.sharedService.applied = true;
           this.closeClicked.emit(true);
         } else {
           this.toastrService.error(applicationResponse?.Message);
@@ -206,4 +230,23 @@ export class QuickApplyComponent implements OnInit {
   OnCountryChanged(event:Country){
 		this.phonePlaceHolder = event?.placeHolder;
 	  }
+
+    async changeCountry() {
+      let countryid = this.countriesCtrl.value ?? "";
+      let params:LookupParameters = {
+        dataAreaId : 'USMF',
+        languageId:'en-us'
+      }
+      const lookUps = await forkJoin({
+        cities: this.lookUpService.GetCityLookup(params, countryid)
+      }).toPromise();
+      lookUps?.cities?.parmList?.forEach((cities: any) => {
+        let data = new Object() as any;
+        data.name = cities?.Id;
+        data.value = cities.Id;
+        this.cities.push(data);
+      }
+      );
+      this.citiesDefaultSearch();
+    }
 }

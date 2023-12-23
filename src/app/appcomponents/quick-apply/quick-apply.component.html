@@ -128,7 +128,8 @@
                [formControl]="countriesCtrl"
                [matAutocomplete]="autocountries"
                [formControlName]="'address'"
-               (click)="this.countryDefaultSearch()">
+               (click)="this.countryDefaultSearch()"
+               (change)="changeCountry()">
         <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete">
           <mat-option *ngFor="let country of countriesData | async" [value]="country.value">
             {{country.name}}
@@ -140,11 +141,22 @@
     <div class="d-flex flex-column col-md-6 col-12">
       <p>Current Address (Out)</p>
       <mat-form-field appearance="outline" class="w-100">
-        <mat-select [formControlName]="'currentAddressOut'">
-          <mat-option *ngFor="let country of countryRegions" [value]="country.value">{{country.name}}</mat-option>
-        </mat-select>
+        <img matPrefix height="15" width="15" src="assets/SVG/search.svg" class="ms-2" alt="" />
         <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-        <mat-error class="error-message" *ngIf="f.currentAddressOut.hasError('required') && (f.currentAddressOut.dirty || f.currentAddressOut.touched)">Country is Required</mat-error>
+        <input type="text"
+               placeholder="Select Cities"
+               aria-label="Select Cities"
+               matInput
+               [formControl]="citiesCtrl"
+               [matAutocomplete]="autocities"
+               [formControlName]="'currentAddressOut'"
+               (click)="this.citiesDefaultSearch()">
+        <mat-autocomplete autoActiveFirstOption #autocities="matAutocomplete">
+          <mat-option *ngFor="let city of citiesData | async" [value]="city.value">
+            {{city.name}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error class="error-message" *ngIf="f.currentAddressOut.hasError('required') && (f.currentAddressOut.dirty || f.currentAddressOut.touched)">City is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">

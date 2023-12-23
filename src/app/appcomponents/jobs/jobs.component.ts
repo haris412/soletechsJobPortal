@@ -88,6 +88,11 @@ export class JobsComponent implements OnInit {
   CloseSidenav() {
     this.sidenavOpen = false;
     document.body.style.overflow = 'auto';
+    if (this.sharedService.applied) {
+      this.applyBtn = "Applied";
+      this.disableBtn = true;
+      this.sharedService.applied = false;
+    }
   }
 
   CloseModal(){
