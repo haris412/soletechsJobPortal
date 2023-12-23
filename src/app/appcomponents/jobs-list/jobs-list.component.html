@@ -140,7 +140,7 @@
         </div>
       </div>
       <div class="col-lg-8 col-12 px-0 mb-5 d-flex flex-column"
-           [ngClass]="isTranslate ? 'pe-lg-4 direction-change' : 'ps-lg-4'">
+           [ngClass]="isTranslate ? 'pe-lg-4 direction-change' : 'ps-lg-4'" *ngIf="this.jobDetailVisibility">
         <app-jobs [selectedJob]="jobDetail"
                   [applyBtn]="applyBtn"
                   [disableBtn]="disableBtn"

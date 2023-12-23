@@ -25,9 +25,12 @@ export class LoginComponent implements OnInit {
 
   showOtp: boolean = false;
   public isTranslate: boolean = this.translationService.isTranslate;
-
+  display: any;
+  public timerInterval: any;
+  otpEntered: boolean = true;
   private _formBuilder = inject(UntypedFormBuilder);
   get f() { return this.loginForm.controls; }
+
   constructor(private router: Router,
     private service: ApplicantDataService,
     private loginService: LoginService,
@@ -69,6 +72,8 @@ export class LoginComponent implements OnInit {
       if (response?.status) {
         this.toastrService.success(response?.Message);
         this.showOtp = true;
+        this.timer(5);
+        this.otpEntered = true;
       } else {
         this.toastrService.error(response?.Message);
       }
@@ -78,6 +83,7 @@ export class LoginComponent implements OnInit {
   }
   async VerifyOtp() {
     if (this.otpForm.valid) {
+      this.otpEntered = false
       let response = await this.lookupService.VerifyOTP(this.otpForm.value)
       if (response?.Status) {
         localStorage.setItem('userName', response?.UserName);
@@ -97,6 +103,35 @@ export class LoginComponent implements OnInit {
 
   async resendOTP() {
     await this.lookupService.ResendOTP(this.loginForm.controls.email.value);
+    clearInterval(this.timerInterval);
+    this.timer(5);
+    this.otpEntered = true;
+  }
+
+  timer(minute: any) {
+    // let minute = 1;
+    let seconds: number = minute * 60;
+    let textSec: any = '0';
+    let statSec: number = 60;
+
+    const prefix = minute < 10 ? '0' : '';
+
+    this.timerInterval = setInterval(() => {
+      seconds--;
+      if (statSec != 0) statSec--;
+      else statSec = 59;
+
+      if (statSec < 10) {
+        textSec = '0' + statSec;
+      } else textSec = statSec;
+
+      this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
+
+      if (seconds == 0) {
+        console.log('finished');
+        clearInterval(this.timerInterval);
+      }
+    }, 1000);
   }
 
 }

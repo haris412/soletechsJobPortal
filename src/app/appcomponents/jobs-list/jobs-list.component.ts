@@ -36,6 +36,7 @@ export class JobsListComponent implements OnInit {
   private translocoService: TranslocoService = inject(TranslocoService);
   jobsListCopy:Job[] = [];
   locationText:string ='';
+  jobDetailVisibility: boolean = false;
   constructor(private recruitmentService: RecruitmentService,
     public sharedService: SharedService,
     public lookupService: AppLookUpService,
@@ -85,6 +86,9 @@ export class JobsListComponent implements OnInit {
   }
 
   OpenJob(job: Job) {
+    this.jobDetailVisibility = false;
+    this.applyBtn = "Apply";
+    this.disableBtn = false;
     this.selectedJob = job;
     this.GetJobDetail(job);
     this.isActive = true;
@@ -104,6 +108,7 @@ export class JobsListComponent implements OnInit {
     }
     let jobDetailResponse = await this.recruitmentService.GetJobDetail(jobDetailParam);
     if (jobDetailResponse) {
+      this.jobDetailVisibility = true;
       this.jobDetail = jobDetailResponse;
       if (this.appliedJobs?.length > 0) {
         let appliedJob = this.appliedJobs?.find((job: any) => job?.jobId === this.jobDetail?.jobId);

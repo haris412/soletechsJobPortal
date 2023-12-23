@@ -246,6 +246,16 @@ p {
   color: $feijoa;
 }
 
+.ngx-mat-tel-input-container {
+  .mat-mdc-button.mat-mdc-button-base {
+    margin-top: 10px;
+    height: 36px !important;
+    .country-selector-code {
+      margin-right: .5ex;
+    }
+  }
+}
+
 .text-arabic {
   direction: rtl;
 }

@@ -11,6 +11,7 @@ export class SharedService {
     token: string = '';
     public email: string = "";
     public isUserLoggedIn: boolean = false;
+    public applied: boolean = false;
 
     constructor(public lookupService: AppLookUpService,
                 public toastrService: ToastrService,
