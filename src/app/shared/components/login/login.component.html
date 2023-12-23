@@ -64,7 +64,8 @@
             otpForm.controls.otp.hasError('required') &&
             (otpForm.controls.otp.dirty || otpForm.controls.otp.touched)">Otp is Required</mat-error>
           </mat-form-field>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex align-items-center justify-content-between ">
+            <p class="text-midnight-moss font-poppins-medium">Time Remaining <span>5:00</span></p>
             <p class="text-midnight-moss font-poppins-medium cursor-pointer" (click)="resendOTP()">
               {{t('login.resend-otp')}}
             </p>
@@ -76,7 +77,7 @@
           {{t('login.login')}}
         </button>
         <button class="btn bg-midnight-moss text-white w-100 py-2 font-poppins-semi" (click)="VerifyOtp()" *ngIf="showOtp">
-          VerifyOtp
+          Verify Otp
         </button>
         <button
           class="d-flex align-items-center justify-content-center btn text-midnight-moss w-100 py-2 font-poppins-semi border border-color-gray-300 gap-2">
