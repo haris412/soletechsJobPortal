@@ -19,10 +19,11 @@ export class AddEditContactInfoComponent implements OnInit {
   private _formBuilder = inject(UntypedFormBuilder);
   contact!: ContactInfo;
   phonePlaceHolder:any;
+  label:string = 'Number'
   get f() { return this.contactForm.controls; }
   constructor(public userInfo: UserInfoService) {
     this.contactForm = this._formBuilder.group({
-      Type: ['', [Validators.required]],
+      Type: ['1', [Validators.required]],
       ContactNumber: ['', [Validators.required]],
       recid:[this.selectedContact?.recid ? this.selectedContact?.recid : 0],
 
@@ -57,4 +58,27 @@ export class AddEditContactInfoComponent implements OnInit {
   OnCountryChanged(event:Country){
 		this.phonePlaceHolder = event?.placeHolder;
 	  }
+    SelectionChange(event:any){
+      if(event?.value === '1'){
+        this.label = 'Number';
+      }else if(event?.value === '2'){
+        this.label = 'Email';
+      }else if(event?.value === '3'){
+        this.label = 'URL';
+      }else if(event?.value === '4'){
+        this.label = 'Telex';
+      }else if(event?.value === '5'){
+        this.label = 'Fax';
+      }else if(event?.value === '6'){
+        this.label = 'Facebook';
+      }else if(event?.value === '7'){
+        this.label = 'Twitter';
+      }else if(event?.value === '8'){
+        this.label = 'LinkedIn';
+      }else if(event?.value === '9'){
+        this.label = 'Instagram';
+      }else if(event?.value === '10'){
+        this.label = 'WhatsApp';
+      }
+    }
 }

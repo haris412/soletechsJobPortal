@@ -3,7 +3,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>{{t('basicInfo.contact-type')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="contactType" [formControlName]="'Type'">
+      <mat-select name="contactType" [formControlName]="'Type'" (selectionChange)="SelectionChange($event)">
         <mat-option value="0">None</mat-option>
         <mat-option value="1">Phone</mat-option>
         <mat-option value="2">Email Address</mat-option>
@@ -21,8 +21,9 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.number')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
+    <!-- <p>{{t('basicInfo.number')}}*</p> -->
+    <p>{{label}}*</p>
+    <mat-form-field appearance="outline" class="w-100" *ngIf="label === 'Number'" >
       <ngx-mat-intl-tel-input
         [preferredCountries]="['sa', 'us']"
         [enablePlaceholder]="true"
@@ -32,7 +33,13 @@
         describedBy="phoneInput"
         (countryChanged) = "OnCountryChanged($event)"
       ></ngx-mat-intl-tel-input>
-      <mat-error class="error-message" *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">Contact Number is Required</mat-error>
+      <mat-error class="error-message" *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">{{label}} is Required</mat-error>
+      <mat-error *ngIf="f.ContactNumber.errors?.validatePhoneNumber">Invalid Number</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100" *ngIf="label !== 'Number'" >
+      <input matInput [formControlName]="'ContactNumber'" />
+      <mat-error class="error-message" *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">{{label}} is Required</mat-error>
+      <mat-error *ngIf="f.ContactNumber.errors?.validatePhoneNumber">Invalid Number</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">

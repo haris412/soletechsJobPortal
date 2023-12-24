@@ -83,7 +83,7 @@
           </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
             <p class="text-midnight-moss font-poppins-medium">{{t('signUp.first-name-arabic')}}*</p>
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="w-100 text-arabic">
               <input type="text" matInput placeholder="{{t('signUp.first-name-placeholder')}}"
                 [formControlName]="'firstNameAr'" />
             </mat-form-field>
@@ -115,7 +115,7 @@
 
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
             <p class="text-midnight-moss font-poppins-medium">{{t('signUp.last-name-arabic')}}*</p>
-            <mat-form-field appearance="outline" class="w-100">
+            <mat-form-field appearance="outline" class="w-100 text-arabic">
               <input type="text" matInput placeholder="{{t('signUp.last-name-placeholder')}}"
                 [formControlName]="'lastNameAr'" />
             </mat-form-field>
@@ -145,7 +145,7 @@
             <p class="text-midnight-moss font-poppins-medium">{{t('signUp.ip-address')}}</p>
             <mat-form-field appearance="outline" class="w-100">
               <input type="text" matInput placeholder="{{t('signUp.ipaddress-number-placeholder')}}"
-                [formControlName]="'ipaddress'" />
+                [formControlName]="'ipAddress'" />
             </mat-form-field>
           </div>
         </div>

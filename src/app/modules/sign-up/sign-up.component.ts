@@ -28,8 +28,8 @@ export class SignUpComponent implements OnInit {
 	fileData: any;
 	imageAvatar: any;
 	cvData: any
-	defaultUrl: string = 'assets/Images/Profile.png';
 	fileCvData: any;
+	defaultUrl: string = 'assets/Images/default-image.png';
 	fileList: any[] = [];
 	private _formBuilder = inject(UntypedFormBuilder);
 	userForm: UntypedFormGroup;
@@ -66,8 +66,9 @@ export class SignUpComponent implements OnInit {
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			confirmpassword: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			aboutMe: [''],
-			ipaddress: [''],
-			cvAttachment: ['']
+			cvAttachment: [''],
+			ipAddress: ['']
+
 		});
 		if (this.userInfo.applicantForm == undefined) {
 			this.userInfo.prepareApplicantFormGroup();
@@ -79,8 +80,8 @@ export class SignUpComponent implements OnInit {
 
 	async ngOnInit() {
 		var ipaddress = await this.lookupService.GetIpAddress();
-		this.userForm?.controls?.ipaddress.setValue(ipaddress ?? "");
-		this.userForm?.controls?.ipaddress.disable();
+		this.userForm?.controls?.ipAddress.setValue(ipaddress ?? "");
+		this.userForm?.controls?.ipAddress.disable();
 		//this.GetLookups();
 	}
 
@@ -168,12 +169,13 @@ export class SignUpComponent implements OnInit {
 		this.userForm?.controls.aboutMe.setValue(this.userForm?.controls.aboutMe.value.replace(/<[^>]*>/g, ''));
 		if (this.userForm?.valid && !this.emailAlreadyExists) {
 			this.userInfo.applicant = this.userInfo.applicantForm.value;
-			this.user = this.userForm.value;
+			this.user = this.userForm.getRawValue();
 			this.userData = {
-				...this.userForm.value,
+				...this.userForm.getRawValue(),
+				ipAddress: this.userForm?.controls.ipAddress.value,
 				aboutMe:this.aboutMe
 			}
-			var data = await this.lookupService.CreateApplicant(this.user);
+			var data = await this.lookupService.CreateApplicant(this.userData);
 			if (data != null && data.Status) {
 				this.userInfo.prepareApplicantFormGroup();
 				this.userForm.reset();
