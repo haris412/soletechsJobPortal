@@ -1,15 +1,15 @@
 {
-    "login": "تسجيل الدخول",
-    "email":"بريد إلكتروني",
+   "login": "تسجيل الدخول",
+    "email":"البريد إلكتروني",
     "password":"كلمة المرور",
     "email-placeholder":"أدخل بريدك الإلكتروني",
-    "password-placeholder":"ادخل رقمك السري",
-    "signup-google":"قم بالتسجيل مع جوجل",
+    "password-placeholder":"ادخل الرقم السري",
+    "signup-google":"التسجيل بحساب جوجل",
     "forgot-password":"هل نسيت كلمة السر",
     "acount-text":"ليس لديك حساب?",
-    "sign-up":"اشتراك",
-    "otp":"مكتب المدعي العام",
-    "resend-otp":"إعادة إرسال كلمة المرور",
-    "otp-required":"مطلوب Otp"
+    "sign-up":"إضافة حساب جديد",
+    "otp":"رمز التحقق",
+    "resend-otp":"إعادة إرسال رمز التحقق",
+    "otp-required":"رمز التحقق مطلوب"
 
 }

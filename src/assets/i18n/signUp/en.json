@@ -14,8 +14,6 @@
     "last-name-english":"Last Name English",
     "last-name-arabic":"Last Name Arabic",
     "mobile":"Mobile",
-    "identification-number":"Identification Number",
-    "ip-address":"Ip Address",
     "email":"Email",
     "confirm-email":"Confirm Email",
     "password":"Password",
@@ -24,9 +22,11 @@
     "save-changes":"Save Changes",
     "first-name-placeholder":"Enter first name",
     "password-placeholder":"Enter password",
-    "identification-number-placeholder":"Enter identification Number",
-    "ipaddress-number-placeholder":"Enter ip address",
     "last-name-placeholder":"Enter last name",
     "email-placeholder":"Enter Email",
-    "middle-name-placeholder":"Enter middle name"
+    "middle-name-placeholder":"Enter middle name",
+    "identification-number-placeholder":"Enter identification Number",
+    "ipaddress-number-placeholder":"Enter ip address",
+    "identification-number":"Identification Number",
+    "ip-address":"Ip Address"
 }
