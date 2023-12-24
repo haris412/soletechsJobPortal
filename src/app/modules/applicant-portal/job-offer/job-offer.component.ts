@@ -20,12 +20,10 @@ export class JobOfferComponent implements OnInit{
               private router:Router,
               private service:AppLookUpService,
               private route: ActivatedRoute) { 
-                console.log(this.route.params);
                 this.route.params.subscribe(
                   params => 
                   this.applicationId = params['id']
                 );
-                console.log(this.applicationId);
               }
   
   ngOnInit() {
