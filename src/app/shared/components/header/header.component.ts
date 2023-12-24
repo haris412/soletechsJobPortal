@@ -16,8 +16,8 @@ export class HeaderComponent implements OnInit {
   isLogin: boolean = false;
   userName: string = '';
   selectedLanguage: string = 'English';
-  defaultImage = 'assets/Images/Profile.png'
-  userImage:string = 'assets/Images/Profile.png';
+  defaultImage = 'assets/Images/default-image.png'
+  userImage:string = 'assets/Images/default-image.png'
 
   public isTranslate: boolean = false;
   constructor(

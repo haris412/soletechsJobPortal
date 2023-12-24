@@ -27,7 +27,9 @@ export class SignUpComponent implements OnInit {
 	index: Number = 1;
 	fileData: any;
 	imageAvatar: any;
-	defaultUrl: string = 'assets/Images/Profile.png';
+	cvData: any
+	fileCvData: any;
+	defaultUrl: string = 'assets/Images/default-image.png';
 	fileList: any[] = [];
 	private _formBuilder = inject(UntypedFormBuilder);
 	userForm: UntypedFormGroup;
@@ -64,7 +66,8 @@ export class SignUpComponent implements OnInit {
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			confirmpassword: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			aboutMe: [''],
-			ipAddress: [''],
+			cvAttachment: [''],
+			ipAddress: ['']
 
 		});
 		if (this.userInfo.applicantForm == undefined) {
@@ -146,6 +149,15 @@ export class SignUpComponent implements OnInit {
 		}
 	}
 	onFileUpload(files: any) {
+		if (files.target.files.length > 0) {
+			this.fileList = files.target.files[0];
+			const reader = new FileReader();
+			reader.readAsDataURL(this.fileCvData);
+			reader.onload = () => {
+				this.cvData = reader.result;
+				this.userForm.controls.cvAttachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+			};
+		}
 		this.fileList = files.target.files;
 	}
 
