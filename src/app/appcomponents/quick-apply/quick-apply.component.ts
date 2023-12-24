@@ -75,6 +75,7 @@ export class QuickApplyComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.quickApplyForm?.controls?.nameAr.setValue(this.applicant.applicantData?.nameAr);
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.quickApplyForm?.controls?.phone.setValue(this.applicant.applicantData?.mobileNo ?? "");
@@ -197,7 +198,6 @@ export class QuickApplyComponent implements OnInit {
     this.closeClicked.emit(true);
   }
   SelectionChange(event: any) {
-    console.log(event);
   }
 
   async QuickApply() {
@@ -209,7 +209,8 @@ export class QuickApplyComponent implements OnInit {
       let applicationData: Application = {
         ...this.quickApplyForm.getRawValue(),
         periodJoin: Number(this.quickApplyForm.controls['periodJoin']?.value),
-        applicantIdRecid: Number(localStorage.getItem('recId'))
+        applicantIdRecid: Number(localStorage.getItem('recId')),
+        applicantpersonRecid:Number(localStorage.getItem('applicantPersonRecid'))
       }
       try {
         let applicationResponse = await this.applicationService.SaveApplication(applicationData);

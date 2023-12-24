@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { ContactInfo } from 'src/app/models/contact-info.model';
 import { UserInfoService } from '../user-info.service';
 import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';

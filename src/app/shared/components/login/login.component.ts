@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { LoginService } from '../../services/login.service';
@@ -128,7 +128,6 @@ export class LoginComponent implements OnInit {
       this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
 
       if (seconds == 0) {
-        console.log('finished');
         clearInterval(this.timerInterval);
       }
     }, 1000);

@@ -145,7 +145,6 @@ export class JobsListComponent implements OnInit {
 
   onEnterPressed() {
     const inputText = this.inputText;
-    console.log(this.inputText);
   }
   Locationchange(event:any){
     if (event?.target?.value?.length >= 1) {

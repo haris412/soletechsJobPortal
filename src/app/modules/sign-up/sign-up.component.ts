@@ -173,7 +173,7 @@ export class SignUpComponent implements OnInit {
 			this.userData = {
 				...this.userForm.getRawValue(),
 				ipAddress: this.userForm?.controls.ipAddress.value,
-				aboutMe:this.aboutMe
+				//aboutMe:this.aboutMe
 			}
 			var data = await this.lookupService.CreateApplicant(this.userData);
 			if (data != null && data.Status) {

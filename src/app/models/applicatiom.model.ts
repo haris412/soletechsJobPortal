@@ -13,4 +13,5 @@ export interface Application{
     linkedIn: string;
     highestDegree: string;
     address: string;
+    applicantpersonRecid:number
 }

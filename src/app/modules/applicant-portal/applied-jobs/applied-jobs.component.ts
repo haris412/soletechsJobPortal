@@ -23,6 +23,7 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if(changes?.appliedJobs?.currentValue){
       this.appliedJobs = changes.appliedJobs.currentValue;
+      this.appliedJobs = this.appliedJobs?.filter((job:any)=> job?.approvedApplication == 1);
     }
   }
   ngOnInit(): void {
