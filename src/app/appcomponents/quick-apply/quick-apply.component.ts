@@ -216,6 +216,7 @@ export class QuickApplyComponent implements OnInit {
         if (applicationResponse.Status) {
           this.toastrService.success(applicationResponse?.Message);
           this.sharedService.applied = true;
+          this.sharedService.GetAppliedJobs();
           this.closeClicked.emit(true);
         } else {
           this.toastrService.error(applicationResponse?.Message);

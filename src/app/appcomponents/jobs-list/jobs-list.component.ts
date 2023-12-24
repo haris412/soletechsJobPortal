@@ -29,7 +29,6 @@ export class JobsListComponent implements OnInit {
   selectedJob: Job = new Object() as Job;
   jobDetail: any = new Object() as any;
   email:string = '';
-  appliedJobs:any[] = [];
   applyBtn:string = 'Apply';
   disableBtn:boolean = false;
   public isTranslate: boolean = this.translationService.isTranslate;
@@ -46,7 +45,7 @@ export class JobsListComponent implements OnInit {
     ) { 
       this.email = localStorage.getItem('email') ?? '';
       if(this.email){
-        this.GetAppliedJobs();
+        this.sharedService.GetAppliedJobs();
       }
       this.translationService.languageChange.subscribe(x => {
         this.isTranslate = x;
@@ -110,8 +109,8 @@ export class JobsListComponent implements OnInit {
     if (jobDetailResponse) {
       this.jobDetailVisibility = true;
       this.jobDetail = jobDetailResponse;
-      if (this.appliedJobs?.length > 0) {
-        let appliedJob = this.appliedJobs?.find((job: any) => job?.jobId === this.jobDetail?.jobId);
+      if (this.sharedService.appliedJobs?.length > 0) {
+        let appliedJob = this.sharedService.appliedJobs?.find((job: any) => job?.jobId === this.jobDetail?.jobId);
         if (appliedJob) {
           this.applyBtn = 'Applied';
           this.disableBtn = true;
@@ -122,13 +121,7 @@ export class JobsListComponent implements OnInit {
       }
     }
   }
-  async GetAppliedJobs(){
-    let applicantId = localStorage.getItem('applicantId') ?? '';
-    let response = await this.lookupService.MyApplicationJobList(applicantId);
-    if (response) {
-      this.appliedJobs = response?.parmRecruitmentApplicationJobList;
-    }
-  }
+  
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.mobileView = this.width < this.minimunWidth;
