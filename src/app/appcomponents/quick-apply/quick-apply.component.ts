@@ -235,6 +235,8 @@ export class QuickApplyComponent implements OnInit {
 
     async changeCountry() {
       let countryid = this.countriesCtrl.value ?? "";
+      this.cities = [];
+      this.citiesCtrl.setValue("");
       let params:LookupParameters = {
         dataAreaId : 'USMF',
         languageId:'en-us'

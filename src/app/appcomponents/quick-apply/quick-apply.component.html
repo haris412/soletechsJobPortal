@@ -129,7 +129,7 @@
                [matAutocomplete]="autocountries"
                [formControlName]="'address'"
                (click)="this.countryDefaultSearch()"
-               (change)="changeCountry()">
+               (ngModelChange)="changeCountry()">
         <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete">
           <mat-option *ngFor="let country of countriesData | async" [value]="country.value">
             {{country.name}}
