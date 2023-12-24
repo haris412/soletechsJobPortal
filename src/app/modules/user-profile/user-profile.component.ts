@@ -21,7 +21,7 @@ export class UserProfileComponent {
 	public Editor = ClassicEditor;
 	index: Number = 1;
   imageAvatar:any;
-	defaultUrl:string = 'assets/Images/Profile.png';
+	defaultUrl:string = 'assets/Images/default-image.png';
 	fileList:any[] = [];
 	fileData:any;
 	public isTranslate: boolean = this.translationService.isTranslate;

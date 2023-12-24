@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
 	index: Number = 1;
 	fileData: any;
 	imageAvatar: any;
-	defaultUrl: string = 'assets/Images/Profile.png';
+	defaultUrl: string = 'assets/Images/default-image.png';
 	fileList: any[] = [];
 	private _formBuilder = inject(UntypedFormBuilder);
 	userForm: UntypedFormGroup;

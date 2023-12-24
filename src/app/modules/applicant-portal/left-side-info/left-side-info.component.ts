@@ -13,7 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class LeftSideInfoComponent implements OnInit{
   
-  userImage:string = 'assets/Images/Profile.png';
+  userImage:string = 'assets/Images/default-image.png';
   isDisable: boolean = false;
   jobList: any[] = [{name:'Designer', type:'Full Time'}];
   userEmail:string = '';
