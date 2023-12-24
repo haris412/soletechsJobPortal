@@ -12,6 +12,7 @@ export class SharedService {
     public email: string = "";
     public isUserLoggedIn: boolean = false;
     public applied: boolean = false;
+    public appliedJobs:any[] = [];
 
     constructor(public lookupService: AppLookUpService,
                 public toastrService: ToastrService,
@@ -45,6 +46,13 @@ export class SharedService {
       }
     } else {
       this.router.navigate(['/login']);
+    }
+  }
+  async GetAppliedJobs(){
+    let applicantId = localStorage.getItem('applicantId') ?? '';
+    let response = await this.lookupService.MyApplicationJobList(applicantId);
+    if (response) {
+      this.appliedJobs = response?.parmRecruitmentApplicationJobList;
     }
   }
 }

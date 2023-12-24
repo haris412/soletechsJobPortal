@@ -150,7 +150,7 @@ export class SignUpComponent implements OnInit {
 	}
 	onFileUpload(files: any) {
 		if (files.target.files.length > 0) {
-			this.fileList = files.target.files[0];
+			this.fileCvData = files.target.files[0];
 			const reader = new FileReader();
 			reader.readAsDataURL(this.fileCvData);
 			reader.onload = () => {
