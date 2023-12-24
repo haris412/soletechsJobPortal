@@ -235,8 +235,6 @@ export class QuickApplyComponent implements OnInit {
 
     async changeCountry() {
       let countryid = this.countriesCtrl.value ?? "";
-      this.cities = [];
-      this.citiesCtrl.setValue("");
       let params:LookupParameters = {
         dataAreaId : 'USMF',
         languageId:'en-us'
@@ -244,6 +242,8 @@ export class QuickApplyComponent implements OnInit {
       const lookUps = await forkJoin({
         cities: this.lookUpService.GetCityLookup(params, countryid)
       }).toPromise();
+      this.cities = [];
+      this.citiesCtrl.setValue("");
       lookUps?.cities?.parmList?.forEach((cities: any) => {
         let data = new Object() as any;
         data.name = cities?.Id;
