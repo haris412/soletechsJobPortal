@@ -55,7 +55,7 @@
                [formControlName]="'nationality'"
                (click)="this.nationalityDefaultSearch()">
         <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete">
-          <mat-option *ngFor="let nationality of nationalityData | async" (onSelectionChange) = "OnNationlaityChange($event)" [value]="nationality.value" >
+          <mat-option *ngFor="let nationality of nationalityData | async" (onSelectionChange) = "OnNationlaityChange($event)" [value]="nationality.name" >
             {{nationality.name}}
           </mat-option>
         </mat-autocomplete>
@@ -131,7 +131,7 @@
                (click)="this.countryDefaultSearch()"
                (change)="changeCountry()">
         <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete">
-          <mat-option *ngFor="let country of countriesData | async" [value]="country.value">
+          <mat-option *ngFor="let country of countriesData | async" [value]="country.name">
             {{country.name}}
           </mat-option>
         </mat-autocomplete>

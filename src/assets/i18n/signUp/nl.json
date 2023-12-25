@@ -19,7 +19,7 @@
     "confirm-email":".تأكيد عنوان البريد الإلكتروني",
     "password":"كلمة المرور",
     "confirm-password":"تأكيد كلمة المرور",
-    "about-me":"",
+    "about-me":"عَنِّي",
     "save-changes":"حفظ التغييرات",
     "first-name-placeholder":"أدخل الاسم الأول",
     "password-placeholder":"أدخل كلمة المرور",
@@ -29,5 +29,6 @@
     "identification-number":"رقم الهوية",
     "identification-number-placeholder":"أدخل رقم الهوية",
     "ip-address":"عنوان الآي بي",
-    "ipaddress-number-placeholder":"أدخل عنوان IP",
+    "ipaddress-number-placeholder":"أدخل عنوان IP"
+    
 }
