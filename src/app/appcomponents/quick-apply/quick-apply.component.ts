@@ -242,6 +242,8 @@ export class QuickApplyComponent implements OnInit {
       const lookUps = await forkJoin({
         cities: this.lookUpService.GetCityLookup(params, countryid)
       }).toPromise();
+      this.cities = [];
+      this.citiesCtrl.setValue("");
       lookUps?.cities?.parmList?.forEach((cities: any) => {
         let data = new Object() as any;
         data.name = cities?.Id;
