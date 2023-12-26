@@ -13,6 +13,7 @@ export class SharedService {
     public isUserLoggedIn: boolean = false;
     public applied: boolean = false;
     public appliedJobs:any[] = [];
+    public jobDetail: any;
 
     constructor(public lookupService: AppLookUpService,
                 public toastrService: ToastrService,
@@ -24,6 +25,11 @@ export class SharedService {
 
     SetToken(token: string) {
         localStorage.setItem('token', token);
+    }
+
+    DeepCopyObject(data: any) {
+      var returnData = JSON.parse(JSON.stringify(data));
+      return returnData;
     }
 
     

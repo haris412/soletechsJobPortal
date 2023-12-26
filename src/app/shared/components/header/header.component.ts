@@ -38,6 +38,13 @@ export class HeaderComponent implements OnInit {
   }
 
   async ngOnInit() {
+    if (localStorage.getItem("isArabic") != undefined) {
+      if (localStorage.getItem("isArabic") == "false") {
+        this.Change("en");
+      } else {
+        this.Change("nl");
+      }
+    }
     let token = localStorage.getItem('applicantId');
     if (token) {
       this.userName = localStorage.getItem('userName') ?? '';
@@ -79,6 +86,7 @@ export class HeaderComponent implements OnInit {
       document.documentElement.style.setProperty('--h5-size', '1.125rem');
       document.documentElement.style.setProperty('--h6-size', '1rem');
       document.documentElement.style.setProperty('--p-size', '0.875remrem');
+      localStorage.setItem('isArabic', "false");
     } else {
       this.selectedLanguage = 'Arabic - العربية'
       this.translationService.languageChange.emit(true);
@@ -93,6 +101,7 @@ export class HeaderComponent implements OnInit {
       document.documentElement.style.setProperty('--h5-size', '1.5rem');
       document.documentElement.style.setProperty('--h6-size', '1.125rem');
       document.documentElement.style.setProperty('--p-size', '1rem');
+      localStorage.setItem('isArabic', "true");
     }
     this.service.setActiveLang(lang);
 

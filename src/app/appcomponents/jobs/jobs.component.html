@@ -96,12 +96,12 @@
             <h5 class="mt-4">{{t('jobs.working-on')}}</h5>
             <span class="text-shuttle-grey">{{t('jobs.job-for-you')}}:</span>
             <ul class="mb-4"
-                [ngClass]="{'direction-change':isTranslate}">
+                [ngClass]="{'direction-change':this.translationService.isTranslate}">
                 <div [innerHTML]="selectedJob.JobAd"></div>
             </ul>
             <span class="text-shuttle-grey">{{t('jobs.skill-needed')}}:</span>
             <ul class="mb-lg-0 mb-4"
-                [ngClass]="{'direction-change':isTranslate}">
+                [ngClass]="{'direction-change':this.translationService.isTranslate}">
                 <li *ngFor="let techskills of selectedJob.Skills?.parmRecruitmentSkillsList">{{techskills.Skill}}</li>
             </ul>
             <div class="info-detail-footer position-absolute bottom-0 border-lg-top pt-4 pb-3">

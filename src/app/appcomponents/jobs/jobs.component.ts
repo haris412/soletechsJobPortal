@@ -30,7 +30,6 @@ export class JobsComponent implements OnInit {
   public sidenavOpen: boolean = false;
   email:string  = '';
   dialogRef:any;
-  public isTranslate: boolean = this.translationService.isTranslate;
 
 
   constructor(
@@ -42,12 +41,16 @@ export class JobsComponent implements OnInit {
     public translationService: TranslationAlignmentService
     ) { 
       this.applicantDataService.signUpModalEmitter.subscribe(x=> this.CloseModal());
+      this.sharedService.jobDetail = this.sharedService.DeepCopyObject(this.selectedJob);
       this.translationService.languageChange.subscribe(x  => {
-        this.isTranslate = x;
+        this.translationService.isTranslate = x;
+        this.JobDetailLanguageChanges();
       });
    }
 
   async ngOnInit() {
+    this.sharedService.jobDetail = this.sharedService.DeepCopyObject(this.selectedJob);
+    this.JobDetailLanguageChanges();
     this.mobileView = this.width < this.minimunWidth;
     if (this.mobileView && this.selectedJob.$id === undefined) {
       this.show = true;
@@ -97,5 +100,16 @@ export class JobsComponent implements OnInit {
 
   CloseModal(){
     this.signUp.closeDialog();
+  }
+
+  JobDetailLanguageChanges() {
+    if (this.selectedJob != null) {
+      if (this.translationService.isTranslate) {
+        this.selectedJob.Description = this.sharedService.jobDetail.jobArabic;
+        this.selectedJob.JobLocation = this.sharedService.jobDetail.jobLocationArabic;
+      } else {
+        this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.jobDetail);
+      }     
+    }
   }
 }
