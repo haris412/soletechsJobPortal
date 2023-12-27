@@ -14,6 +14,7 @@ export class SharedService {
     public applied: boolean = false;
     public appliedJobs:any[] = [];
     public jobDetail: any;
+    public jobs: any;
 
     constructor(public lookupService: AppLookUpService,
                 public toastrService: ToastrService,

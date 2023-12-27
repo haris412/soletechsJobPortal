@@ -31,7 +31,6 @@ export class JobsListComponent implements OnInit {
   email:string = '';
   applyBtn:string = 'Apply';
   disableBtn:boolean = false;
-  public isTranslate: boolean = this.translationService.isTranslate;
   private translocoService: TranslocoService = inject(TranslocoService);
   jobsListCopy:Job[] = [];
   locationText:string ='';
@@ -48,7 +47,8 @@ export class JobsListComponent implements OnInit {
         this.sharedService.GetAppliedJobs();
       }
       this.translationService.languageChange.subscribe(x => {
-        this.isTranslate = x;
+        this.translationService.isTranslate = x;
+        this.JobLanguageChanges();
       });
     }
 
@@ -63,7 +63,8 @@ export class JobsListComponent implements OnInit {
     }
     await this.GetToken();
     await this.getRecruitmentProjectsList();
-    
+    this.sharedService.jobs = this.sharedService.DeepCopyObject(this.jobsList);
+    this.JobLanguageChanges();
     var applicantId = localStorage.getItem('applicantId');
     if (applicantId != undefined && applicantId != "") {
       this.sharedService.isUserLoggedIn = true;
@@ -82,6 +83,17 @@ export class JobsListComponent implements OnInit {
       this.jobsList = jobsResponseObj.parmRecruitmentProjectsList ?? [];
       this.jobsListCopy = jobsResponseObj.parmRecruitmentProjectsList ?? [];
     }
+  }
+
+  async JobLanguageChanges() {
+    if (this.translationService.isTranslate) {
+      for(let i = 0; i < this.jobsList.length; i++) {
+        this.jobsList[i].description = this.sharedService.jobs[i].jobArabic;
+        this.jobsList[i].JobLocation = this.sharedService.jobs[i].jobLocationArabic;
+      }
+    } else {
+      this.jobsList = this.sharedService.DeepCopyObject(this.sharedService.jobs);
+    } 
   }
 
   OpenJob(job: Job) {
