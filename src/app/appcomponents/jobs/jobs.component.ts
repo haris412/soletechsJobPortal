@@ -105,8 +105,10 @@ export class JobsComponent implements OnInit {
   JobDetailLanguageChanges() {
     if (this.selectedJob != null) {
       if (this.translationService.isTranslate) {
-        this.selectedJob.Description = this.sharedService.jobDetail.jobArabic;
-        this.selectedJob.JobLocation = this.sharedService.jobDetail.jobLocationArabic;
+        this.selectedJob.Description = this.sharedService.jobDetail?.jobArabic ? this.sharedService.jobDetail?.jobArabic : this.sharedService.jobDetail.Description;
+        this.selectedJob.JobLocation = this.sharedService.jobDetail?.jobLocationArabic ? this.sharedService.jobDetail?.jobLocationArabic : this.sharedService.jobDetail.JobLocation;
+        this.selectedJob.JobAd = this.sharedService.jobDetail?.jobadTextArabic ? this.sharedService.jobDetail?.jobadTextArabic : this.sharedService.jobDetail.JobAd;
+        
       } else {
         this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.jobDetail);
       }     
