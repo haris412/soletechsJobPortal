@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Certificates } from 'src/app/models/certificates.model';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-add-edit-certificates',
@@ -18,8 +19,12 @@ export class AddEditCertificatesComponent implements OnInit {
   fileList:any[]=[];
   file:any;
   certificateTypeList:any[] = [];
+  public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.certiifcateForm.controls; }
-  constructor(private competenciesService:CompetenciesCommonService){
+  constructor(
+    private competenciesService:CompetenciesCommonService,
+    public translationService: TranslationAlignmentService
+    ){
     this.certiifcateForm = this._formBuilder.group({
       id:[''],
       CertificateTypeId: ['',[Validators.required]],
@@ -31,7 +36,9 @@ export class AddEditCertificatesComponent implements OnInit {
       recid:[this.selectedCertificate?.recid ? this.selectedCertificate?.recid : 0],
       attachment: [''],
     });
-    
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
+    });
   }
   ngOnInit(){
     if(this.certificate?.CertificateTypeId !== ''){

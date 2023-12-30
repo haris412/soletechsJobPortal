@@ -1,85 +1,133 @@
 <ng-container *transloco="let t; scope: 'basicInfo';">
-<form class="row" action="" [formGroup]="identificationForm">
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.identification-type')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="identifcationType" [formControlName]="'IdentificationType'">
-        <mat-option *ngFor="let identification of this.userInfoService.identificationType" [value]="identification.value">{{identification.name}}</mat-option>
-      </mat-select>
-      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      <mat-error class="error-message" *ngIf="f.IdentificationType.hasError('required') && (f.IdentificationType.dirty || f.IdentificationType.touched)">Identification Type is Required</mat-error>
+  <form class="row"
+        action=""
+        [formGroup]="identificationForm">
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('basicInfo.identification-type')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <mat-select name="identifcationType"
+                    [formControlName]="'IdentificationType'">
+          <mat-option *ngFor="let identification of this.userInfoService.identificationType"
+                      [value]="identification.value">{{identification.name}}</mat-option>
+        </mat-select>
+        <img matSuffix
+             src="assets/SVG/chevron-down.svg"
+             alt="" />
+        <mat-error class="error-message"
+                   *ngIf="f.IdentificationType.hasError('required') && (f.IdentificationType.dirty || f.IdentificationType.touched)">Identification
+          Type is Required</mat-error>
 
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.identification-number')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input matInput name="identificationNumber" [formControlName]="'IdentificationNumber'" />
-      <mat-error class="error-message" *ngIf="f.IdentificationNumber.hasError('required') && (f.IdentificationNumber.dirty || f.IdentificationNumber.touched)">Identification Number is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.issue-date')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="issueDate" name="issueDate" [formControlName]="'IssueDate'" dateInput placeholder="dd/mm/yyyy"/>
-      <mat-datepicker-toggle matIconSuffix [for]="issueDate"></mat-datepicker-toggle>
-      <mat-datepicker #issueDate></mat-datepicker>
-      <mat-error class="error-message" *ngIf="f.IssueDate.hasError('required') && (f.IssueDate.dirty || f.IssueDate.touched)">Issue Date is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.expiry-date')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="expiryDate" name="expiryDate" [formControlName]="'ExpirationDate'" dateInput placeholder="dd/mm/yyyy"/>
-      <mat-datepicker-toggle matIconSuffix [for]="expiryDate"></mat-datepicker-toggle>
-      <mat-datepicker #expiryDate></mat-datepicker>
-      <mat-error class="error-message" *ngIf="f.ExpirationDate.hasError('required') && (f.ExpirationDate.dirty || f.ExpirationDate.touched)">Expiry Date is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="cv-div">
-    <p class="text-midnight-moss font-poppins-bold">{{t('basicInfo.attachment')}}</p>
-    <div  class="upload-file">
-      <input type="file" (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg" alt="" />
-      <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
-      <span>PDF or DOC (max. size 6MB)</span>
+      </mat-form-field>
     </div>
-    <div *ngIf="fileList.length > 0"
-      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
-      
-      <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2" *ngFor="let file of fileList">
-        <div class="file-details rounded">
-          <div class="d-flex align-items-center gap-2">
-            <div class="file-icon">
-              <img src="assets/SVG/pdf-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
-              <img src="assets/SVG/doc-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('basicInfo.identification-number')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="identificationNumber"
+               [formControlName]="'IdentificationNumber'" />
+        <mat-error class="error-message"
+                   *ngIf="f.IdentificationNumber.hasError('required') && (f.IdentificationNumber.dirty || f.IdentificationNumber.touched)">Identification
+          Number is Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('basicInfo.issue-date')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="issueDate"
+               name="issueDate"
+               [formControlName]="'IssueDate'"
+               dateInput
+               placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="issueDate"></mat-datepicker-toggle>
+        <mat-datepicker #issueDate></mat-datepicker>
+        <mat-error class="error-message"
+                   *ngIf="f.IssueDate.hasError('required') && (f.IssueDate.dirty || f.IssueDate.touched)">Issue Date is
+          Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('basicInfo.expiry-date')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="expiryDate"
+               name="expiryDate"
+               [formControlName]="'ExpirationDate'"
+               dateInput
+               placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="expiryDate"></mat-datepicker-toggle>
+        <mat-datepicker #expiryDate></mat-datepicker>
+        <mat-error class="error-message"
+                   *ngIf="f.ExpirationDate.hasError('required') && (f.ExpirationDate.dirty || f.ExpirationDate.touched)">Expiry
+          Date is Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="cv-div">
+      <p class="text-midnight-moss font-poppins-bold">{{t('basicInfo.attachment')}}</p>
+      <div class="upload-file">
+        <input type="file"
+               (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
+             alt="" />
+        <p class="upload-text"><span>Click to Upload </span>or drag and drop</p>
+        <span>PDF or DOC (max. size 6MB)</span>
+      </div>
+      <div *ngIf="fileList.length > 0"
+           class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
+
+        <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
+             *ngFor="let file of fileList">
+          <div class="file-details rounded">
+            <div class="d-flex align-items-center gap-2">
+              <div class="file-icon">
+                <img src="assets/SVG/pdf-icon.svg"
+                     alt=""
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
+                <img src="assets/SVG/doc-icon.svg"
+                     alt=""
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+              </div>
+              <div class="file-name-type">
+                <span class="file-name">{{ file.name }}</span>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
+              </div>
             </div>
-            <div class="file-name-type">
-              <span class="file-name">{{ file.name }}</span>
-              <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
-              <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
+            <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+              <img height="20"
+                   src="assets/SVG/delete.svg"
+                   alt=""
+                   (click)="DeleteFile(file)" />
             </div>
-          </div>
-          <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-            <img height="20" src="assets/SVG/delete.svg" alt="" (click)="DeleteFile(file)" />
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="Discard()">
-      {{t('basicInfo.discard')}}
-    </button>
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="CloseIdentificationNav()">
-      {{t('basicInfo.close')}}
+    <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+              [ngClass]="{'order-1': isTranslate}"
+              (click)="Discard()">
+        {{t('basicInfo.discard')}}
       </button>
-    <button type="button"
-      class="btn bg-midnight-moss border-color-midnight-moss text-white rounded font-poppins-semi fs-8 text-nowrap"
-      (click)="SaveIdentification()">
-      {{t('basicInfo.save')}}
-    </button>
-  </div>
-</form>
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+              [ngClass]="{'order-2': isTranslate}"
+              (click)="CloseIdentificationNav()">
+        {{t('basicInfo.close')}}
+      </button>
+      <button type="button"
+              class="btn bg-midnight-moss border-color-midnight-moss text-white rounded font-poppins-semi fs-8 text-nowrap"
+              (click)="SaveIdentification()">
+        {{t('basicInfo.save')}}
+      </button>
+    </div>
+  </form>
 </ng-container>

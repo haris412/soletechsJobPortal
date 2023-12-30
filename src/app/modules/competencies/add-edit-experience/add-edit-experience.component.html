@@ -1,101 +1,160 @@
 <ng-container *transloco="let t; scope: 'competencies';">
-  <form class="row" action="" [formGroup]="experienceForm">
+  <form class="row"
+        action=""
+        [formGroup]="experienceForm">
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.employer')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput name="employer" [formControlName]="'employerName'" />
-        <mat-error class="error-message" *ngIf="f.employerName.hasError('required') && (f.employerName.dirty || f.employerName.touched)">Employer Name is Required</mat-error>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="employer"
+               [formControlName]="'employerName'" />
+        <mat-error class="error-message"
+                   *ngIf="f.employerName.hasError('required') && (f.employerName.dirty || f.employerName.touched)">Employer
+          Name is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.url-address')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput name="URL" [formControlName]="'URL'" />
-        <mat-error class="error-message" *ngIf="f.URL.hasError('required') && (f.URL.dirty || f.URL.touched)">URL is Required</mat-error>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="URL"
+               [formControlName]="'URL'" />
+        <mat-error class="error-message"
+                   *ngIf="f.URL.hasError('required') && (f.URL.dirty || f.URL.touched)">URL is Required</mat-error>
       </mat-form-field>
     </div>
 
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.started-on')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker1" name="startDate" [formControlName]="'startDate'" dateInput
-          placeholder="dd/mm/yyyy" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="picker1"
+               name="startDate"
+               [formControlName]="'startDate'"
+               dateInput
+               placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
-        <mat-error class="error-message" *ngIf="f.startDate.hasError('required') && (f.startDate.dirty || f.startDate.touched)">Start Date is Required</mat-error>
+        <mat-error class="error-message"
+                   *ngIf="f.startDate.hasError('required') && (f.startDate.dirty || f.startDate.touched)">Start Date is
+          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.ended-on')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker2" name="endDate" [formControlName]="'endDate'" dateInput
-          placeholder="dd/mm/yyyy" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="picker2"
+               name="endDate"
+               [formControlName]="'endDate'"
+               dateInput
+               placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
-        <mat-error class="error-message" *ngIf="f.endDate.hasError('required') && (f.endDate.dirty || f.endDate.touched)">End Date is Required</mat-error>
+        <mat-error class="error-message"
+                   *ngIf="f.endDate.hasError('required') && (f.endDate.dirty || f.endDate.touched)">End Date is
+          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.position')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput name="position" [formControlName]="'qualificationPosition'" />
-        <mat-error class="error-message" *ngIf="f.qualificationPosition.hasError('required') && (f.qualificationPosition.dirty || f.qualificationPosition.touched)">Position is Required</mat-error>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="position"
+               [formControlName]="'qualificationPosition'" />
+        <mat-error class="error-message"
+                   *ngIf="f.qualificationPosition.hasError('required') && (f.qualificationPosition.dirty || f.qualificationPosition.touched)">Position
+          is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.phone')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput name="phone" [formControlName]="'phone'" />
-        <mat-error class="error-message" *ngIf="f.phone.hasError('required') && (f.phone.dirty || f.phone.touched)">Phone is Required</mat-error>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="phone"
+               [formControlName]="'phone'" />
+        <mat-error class="error-message"
+                   *ngIf="f.phone.hasError('required') && (f.phone.dirty || f.phone.touched)">Phone is
+          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-12">
       <p>{{t('competencies.notes')}}</p>
-      <mat-form-field appearance="outline" class="text-area w-100">
-        <textarea rows="2" matInput name="notes" name="notes" [formControlName]="'notes'"></textarea>
+      <mat-form-field appearance="outline"
+                      class="text-area w-100">
+        <textarea rows="2"
+                  matInput
+                  name="notes"
+                  name="notes"
+                  [formControlName]="'notes'"></textarea>
       </mat-form-field>
     </div>
     <div class="cv-div">
       <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
       <div class="upload-file">
-        <input type="file" (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg" alt="" />
+        <input type="file"
+               (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
+             alt="" />
         <p class="upload-text"><span>{{t('competencies.upload-text')}} </span>{{t('competencies.drag-drop')}}</p>
         <span>PDF or DOC (max. size 6MB)</span>
       </div>
-      <div *ngIf="fileList.length > 0" class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
+      <div *ngIf="fileList.length > 0"
+           class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
         <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
-          *ngFor="let file of fileList">
+             *ngFor="let file of fileList">
           <div class="file-details rounded">
             <div class="d-flex align-items-center gap-2">
               <div class="file-icon">
-                <img src="assets/SVG/pdf-icon.svg" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" alt="" (click)="DeleteFile(file)" />
-                <img src="assets/SVG/doc-icon.svg" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" alt="" (click)="DeleteFile(file)" />
+                <img src="assets/SVG/pdf-icon.svg"
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'"
+                     alt=""
+                     (click)="DeleteFile(file)" />
+                <img src="assets/SVG/doc-icon.svg"
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'"
+                     alt=""
+                     (click)="DeleteFile(file)" />
               </div>
               <div class="file-name-type">
                 <span class="file-name">{{ file.name }}</span>
-                <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
-                <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
               </div>
             </div>
             <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-              <img height="20" src="assets/SVG/delete.svg" alt="" />
+              <img height="20"
+                   src="assets/SVG/delete.svg"
+                   alt="" />
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-      <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-        (click)="Discard()">
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+              [ngClass]="{'order-1': isTranslate}"
+              (click)="Discard()">
         {{t('competencies.discard')}}
       </button>
       <button type="button"
-        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-        (click)="CloseSideNav()">
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
+              [ngClass]="{'order-2': isTranslate}"
+              (click)="CloseSideNav()">
         {{t('competencies.close')}}
       </button>
-      <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi"
-        (click)="SaveExperience()">
+      <button type="button"
+              class="btn text-white bg-midnight-moss rounded font-poppins-semi"
+              (click)="SaveExperience()">
         {{t('competencies.save')}}
       </button>
     </div>

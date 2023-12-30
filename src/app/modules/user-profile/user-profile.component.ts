@@ -25,6 +25,7 @@ export class UserProfileComponent {
 	fileList:any[] = [];
 	fileData:any;
 	public isTranslate: boolean = this.translationService.isTranslate;
+	public editAboutMe: boolean = false;
 	constructor(
 		private router: Router, 
 		public ref: ChangeDetectorRef,

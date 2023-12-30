@@ -1,98 +1,157 @@
 <ng-container *transloco="let t; scope: 'competencies';">
-<form class="row" action="" [formGroup]="CourseForm">
+  <form class="row"
+        action=""
+        [formGroup]="CourseForm">
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.course-type')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput name='course' [formControlName]="'course'"/>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name='course'
+               [formControlName]="'course'" />
         <!-- <img matSuffix src="assets/SVG/chevron-down.svg" alt="" /> -->
-        <mat-error class="error-message" *ngIf="f.course.hasError('required') && (f.course.dirty || f.course.touched)">course is Required</mat-error>
+        <mat-error class="error-message"
+                   *ngIf="f.course.hasError('required') && (f.course.dirty || f.course.touched)">course is
+          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.location')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput name='location' [formControlName]="'Location'"/>
-        <mat-error class="error-message" *ngIf="f.Location.hasError('required') && (f.Location.dirty || f.Location.touched)">Location is Required</mat-error>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name='location'
+               [formControlName]="'Location'" />
+        <mat-error class="error-message"
+                   *ngIf="f.Location.hasError('required') && (f.Location.dirty || f.Location.touched)">Location is
+          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.start-date')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput placeholder="dd/mm/yyyy"/>
-        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="picker1"
+               name='startDate'
+               [formControlName]="'StartDate'"
+               dateInput
+               placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
-        <mat-error class="error-message" *ngIf="f.StartDate.hasError('required') && (f.StartDate.dirty || f.StartDate.touched)">Start Date is Required</mat-error>
+        <mat-error class="error-message"
+                   *ngIf="f.StartDate.hasError('required') && (f.StartDate.dirty || f.StartDate.touched)">Start Date is
+          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.end-date')}}*</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput placeholder="dd/mm/yyyy"/>
-        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="picker2"
+               name='endDate'
+               [formControlName]="'EndDate'"
+               dateInput
+               placeholder="dd/mm/yyyy" />
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
-        <mat-error class="error-message" *ngIf="f.EndDate.hasError('required') && (f.EndDate.dirty || f.EndDate.touched)">End Date is Required</mat-error>
+        <mat-error class="error-message"
+                   *ngIf="f.EndDate.hasError('required') && (f.EndDate.dirty || f.EndDate.touched)">End Date is
+          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.no-of-days')}}</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input type="number" matInput name='noOfDay' [formControlName]="'NoOfDay'"/>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="number"
+               matInput
+               name='noOfDay'
+               [formControlName]="'NoOfDay'" />
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.hour-type')}} </p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input type="text" matInput name='hourType' [formControlName]="'HourType'"/>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="text"
+               matInput
+               name='hourType'
+               [formControlName]="'HourType'" />
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.no-of-hours')}}</p>
-      <mat-form-field appearance="outline" class="w-100">
-        <input type="number" matInput name='numberOfHours' [formControlName]="'NumberOfHours'"/>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="number"
+               matInput
+               name='numberOfHours'
+               [formControlName]="'NumberOfHours'" />
       </mat-form-field>
     </div>
     <div class="cv-div">
       <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
-      <div  class="upload-file">
-        <input type="file" (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg" alt="" />
+      <div class="upload-file">
+        <input type="file"
+               (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
+             alt="" />
         <p class="upload-text"><span>{{t('competencies.upload-text')}}</span>{{t('competencies.drag-drop')}}</p>
         <span>PDF or DOC (max. size 6MB)</span>
       </div>
       <div *ngIf="fileList.length > 0"
-        class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
-        <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2" *ngFor="let file of fileList">
+           class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
+        <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
+             *ngFor="let file of fileList">
           <div class="file-details rounded">
             <div class="d-flex align-items-center gap-2">
               <div class="file-icon">
-                <img src="assets/SVG/pdf-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
-                <img src="assets/SVG/doc-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+                <img src="assets/SVG/pdf-icon.svg"
+                     alt=""
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
+                <img src="assets/SVG/doc-icon.svg"
+                     alt=""
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
               </div>
               <div class="file-name-type">
                 <span class="file-name">{{ file.name }}</span>
-                <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
-                <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
               </div>
             </div>
             <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-              <img  height="20" src="assets/SVG/delete.svg" alt="" (click)="DeleteFile(file)" />
+              <img height="20"
+                   src="assets/SVG/delete.svg"
+                   alt=""
+                   (click)="DeleteFile(file)" />
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-      <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-        (click)="Discard()">
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+              [ngClass]="{'order-1': isTranslate}"
+              (click)="Discard()">
         {{t('competencies.discard')}}
       </button>
       <button type="button"
-        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-        (click)="CloseSideNav()">
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
+              [ngClass]="{'order-2': isTranslate}"
+              (click)="CloseSideNav()">
         {{t('competencies.close')}}
       </button>
-      <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="SaveCourse()">
+      <button type="button"
+              class="btn text-white bg-midnight-moss rounded font-poppins-semi"
+              (click)="SaveCourse()">
         {{t('competencies.save')}}
       </button>
     </div>
   </form>
-  </ng-container>
+</ng-container>

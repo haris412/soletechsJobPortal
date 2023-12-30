@@ -3,6 +3,7 @@ import { Experience } from '../models/experience';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
 import { professionalExperience } from 'src/app/models/professional-experience.model';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-add-edit-experience',
@@ -19,8 +20,11 @@ export class AddEditExperienceComponent implements OnInit {
   fileList: any[] = [];
   file_store!: FileList;
   file: any;
+  public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.experienceForm.controls; }
-  constructor(private competenciesService: CompetenciesCommonService) {
+  constructor(
+    private competenciesService: CompetenciesCommonService,
+    public translationService: TranslationAlignmentService) {
     this.experienceForm = this._formBuilder.group({
       id: [''],
       employerName: ['', [Validators.required]],
@@ -32,7 +36,9 @@ export class AddEditExperienceComponent implements OnInit {
       notes: [''],
       attachment: ['']
     });
-
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
+    });
   }
   ngOnInit() {
     this.experienceForm.reset();

@@ -3,6 +3,7 @@ import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms
 import { ContactInfo } from 'src/app/models/contact-info.model';
 import { UserInfoService } from '../user-info.service';
 import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-add-edit-contact-info',
@@ -10,7 +11,7 @@ import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
   styleUrls: ['./add-edit-contact-info.component.scss']
 })
 export class AddEditContactInfoComponent implements OnInit {
-
+  public isTranslate: boolean = this.translationService.isTranslate;
   @Input() selectedContact:ContactInfo = new Object() as ContactInfo;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
   @Output() contactData: EventEmitter<ContactInfo> = new EventEmitter();
@@ -20,12 +21,16 @@ export class AddEditContactInfoComponent implements OnInit {
   phonePlaceHolder:any;
   label:string = 'Number'
   get f() { return this.contactForm.controls; }
-  constructor(public userInfo: UserInfoService) {
+  constructor(
+    public userInfo: UserInfoService,
+    public translationService: TranslationAlignmentService) {
     this.contactForm = this._formBuilder.group({
       Type: ['1', [Validators.required]],
       ContactNumber: ['', [Validators.required]],
       recid:[this.selectedContact?.recid ? this.selectedContact?.recid : 0],
-
+    });
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
     });
   }
   ngOnInit(): void {

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Course } from 'src/app/models/courses.model';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-add-edit-courses',
@@ -18,8 +19,11 @@ export class AddEditCoursesComponent  implements OnInit{
   fileList:any[]=[];
   file_store!: FileList;
   file:any;
+  public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.CourseForm.controls; }
-  constructor(private competenciesService:CompetenciesCommonService){
+  constructor(
+    private competenciesService:CompetenciesCommonService,
+    public translationService: TranslationAlignmentService){
     this.CourseForm = this._formBuilder.group({
       id: [''],
       course: ['', [Validators.required]],
@@ -31,7 +35,9 @@ export class AddEditCoursesComponent  implements OnInit{
       NumberOfHours:[],
       attachment:['']
     });
-    
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
+    });
   }
   ngOnInit(){
     if(this.selectedCourse?.course !== ''){

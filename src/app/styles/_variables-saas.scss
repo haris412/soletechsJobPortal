@@ -240,6 +240,14 @@ $utilities: map-merge(
         fit: fit-content
       )
     ),
+    "order": (
+      property: order,
+      class: order__,
+      responsive: true,
+      values: (
+        -1: -1
+      )
+    ),
   )
 );
 $gray-200: #eaecf0;

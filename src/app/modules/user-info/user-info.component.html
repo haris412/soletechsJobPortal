@@ -63,15 +63,19 @@
       <app-identification *ngIf="index === 4"></app-identification>
       <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
         <button type="button"
-          class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3">
+          class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3"
+          [ngClass]="{'order-1': isTranslate}"
+          >
           {{t('basicInfo.discard')}}
         </button>
         <button type="button"
           class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3"
+          [ngClass]="{'order-2': isTranslate}"
           (click)="Back(index)">
           {{t('basicInfo.back')}}
         </button>
         <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+          
           (click)="Next()">
           {{t('basicInfo.next')}}
         </button>

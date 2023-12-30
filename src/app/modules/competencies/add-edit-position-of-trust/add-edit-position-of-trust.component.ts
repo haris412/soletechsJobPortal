@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
 
 @Component({
@@ -16,8 +17,9 @@ export class AddEditPositionOfTrustComponent implements OnInit{
   fileList:any[]=[];
   file_store!: FileList;
   file:any;
+  public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.psitionTrustForm.controls; }
-  constructor(){
+  constructor(public translationService: TranslationAlignmentService){
     this.psitionTrustForm = this._formBuilder.group({
       id: [''],
       Employment: ['', [Validators.required]],
@@ -26,6 +28,9 @@ export class AddEditPositionOfTrustComponent implements OnInit{
       EndDate:['', [Validators.required]],
       Notes:[''],
       attachment:['']
+    });
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
     });
     
   }
