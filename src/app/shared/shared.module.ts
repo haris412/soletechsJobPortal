@@ -15,6 +15,7 @@ import { DateValueAccessor } from './directives/date-input-accessor';
 import { PasswordStrengthComponent } from '../password-strength/password-strength.component';
 import { BlockCopyPasteDirective } from './directives/appBlockCopyPaste.directive';
 import { TranslocoRootModule } from '../transloco-root.module';
+import { PreventArabicDirective } from './directives/arabic.directive';
 
 
 
@@ -31,7 +32,8 @@ import { TranslocoRootModule } from '../transloco-root.module';
     RescheduleModalComponent,
     DateValueAccessor,
     PasswordStrengthComponent,
-    BlockCopyPasteDirective
+    BlockCopyPasteDirective,
+    PreventArabicDirective
   ],
   imports: [
     MaterialModule,
@@ -46,7 +48,8 @@ import { TranslocoRootModule } from '../transloco-root.module';
     ForgetpasswordComponent,
     ResetPasswordComponent,
     PasswordStrengthComponent,
-    BlockCopyPasteDirective
+    BlockCopyPasteDirective,
+    PreventArabicDirective
   ]
 })
 export class SharedModule { }

@@ -6,6 +6,7 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { UserInfoService } from './user-info.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
     selector: 'app-user-info',
@@ -33,8 +34,10 @@ export class UserInfoComponent implements OnInit {
 
     constructor(private location: Location
         , private lookUpService: AppLookUpService
-        , private userInfoService: UserInfoService,
-        public translationService: TranslationAlignmentService) {
+        , private userInfoService: UserInfoService
+        , public translationService: TranslationAlignmentService
+        , public shareService: SharedService 
+        ) {
 
         if (this.userInfoService.applicantForm == undefined) {
             this.userInfoService.prepareApplicantFormGroup();
@@ -189,5 +192,9 @@ export class UserInfoComponent implements OnInit {
             this.userInfoService.identificationType.push(data);
         }
         );
+    }
+
+    DiscardData() {
+      this.shareService.discardProfileInfo.emit(true);
     }
 }

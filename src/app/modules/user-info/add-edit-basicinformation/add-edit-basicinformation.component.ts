@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LinkedInService } from '../../applicant-portal/services/linkedin.service';
 import { ApplicantDataService } from '../../applicant-portal/services/applicant-shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class AddEditBasicinformationComponent implements OnInit {
     private toasterService: ToastrService,
     private applicantDataService: ApplicantDataService,
     private _sanitizer: DomSanitizer,
-    public linkedInServive: LinkedInService) {
+    public linkedInServive: LinkedInService,
+    public shareService: SharedService) {
     this.applicantForm = this._applicantFormBuilder.group({
       currentJobTitle: [''],
       firstName: ['', [Validators.required]],
@@ -62,7 +64,9 @@ export class AddEditBasicinformationComponent implements OnInit {
       this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
         + this.applicantDataService.applicantData?.applicantImage);
     }
-
+    this.shareService.discardProfileInfo.subscribe(x => {
+      this.applicantForm.reset();
+    });
   }
 
   OpenSidenav() {

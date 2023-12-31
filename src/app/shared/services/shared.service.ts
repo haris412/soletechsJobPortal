@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AppLookUpService } from "src/app/app-services/app-look-up.service";
@@ -15,6 +15,7 @@ export class SharedService {
     public appliedJobs:any[] = [];
     public jobDetail: any;
     public jobs: any;
+    discardProfileInfo: EventEmitter<boolean> = new EventEmitter();
 
     constructor(public lookupService: AppLookUpService,
                 public toastrService: ToastrService,
