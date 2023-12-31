@@ -6,6 +6,7 @@ import { UserInfoService } from '../user-info.service';
 import { forkJoin } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-add-edit-address',
@@ -13,7 +14,7 @@ import { LookupParameters } from 'src/app/models/look-up.model';
   styleUrls: ['./add-edit-address.component.scss']
 })
 export class AddEditAddressComponent implements OnInit{
-
+  public isTranslate: boolean = this.translationService.isTranslate;
   @Input() selectedAddress:Address = new Object() as Address;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
   @Output() addressData: EventEmitter<Address> = new EventEmitter();
@@ -22,8 +23,11 @@ export class AddEditAddressComponent implements OnInit{
   identification!: Address
   cities:any[]=[];
   get f() { return this.addressForm.controls; }
-  constructor(public userInfoService: UserInfoService
-            , public lookupService: AppLookUpService) {
+  constructor(
+    public userInfoService: UserInfoService, 
+    public lookupService: AppLookUpService,
+    public translationService: TranslationAlignmentService
+    ) {
     this.addressForm = this._formBuilder.group({
       Address: ['', [Validators.required]],
       CountryRegionId: ['', [Validators.required]],
@@ -33,6 +37,9 @@ export class AddEditAddressComponent implements OnInit{
       recid:[this.selectedAddress?.recid ? this.selectedAddress?.recid : 0],
       PostalCode: [''],
       description:['']
+    });
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
     });
   }
   ngOnInit(){

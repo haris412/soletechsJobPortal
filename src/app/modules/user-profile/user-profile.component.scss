@@ -41,4 +41,10 @@
       border-radius: 5px;
     }
   }
+  &.direction-change {
+    .profile {
+      margin-right: 0 !important;
+      margin-left: 1.25rem;
+    }
+  }
 }

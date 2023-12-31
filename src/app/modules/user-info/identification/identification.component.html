@@ -21,7 +21,10 @@
       <div  *ngFor="let identification of userInfoService?.identificationList?.parmApplicantProfileIdentificationList" class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" >
         <div class="d-flex align-items-center w-100 identification-item-container">
           <div class="identification-item rounded w-100">
-            <h6 class="mb-0 font-poppins-bold">{{identification?.IdentificationNumber}}</h6>
+            <div class="d-flex align-items-center gap-1">
+              <h6 class="mb-0 font-poppins-bold">{{identification?.IdentificationType}}</h6>
+              <h6 class="mb-0 font-poppins-bold">{{identification?.IdentificationNumber}}</h6>
+            </div>
             <div class="d-flex align-items-center gap-1">
               <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
                 <img class="cursor-pointer" (click)="EditIdentification(identification)" src="assets/SVG/edit-icon.svg" alt="" />

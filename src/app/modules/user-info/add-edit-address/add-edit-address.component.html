@@ -56,10 +56,12 @@
   </div>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+    [ngClass]="{'order-1': isTranslate}"
       (click)="Discard()">
       {{t('basicInfo.discard')}}
     </button>
     <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+    [ngClass]="{'order-2': isTranslate}"
       (click)="CloseAddressNav()">
       {{t('basicInfo.close')}}
     </button>

@@ -1,157 +1,251 @@
 <ng-container *transloco="let t; scope: 'competencies';">
-<form class="row" action="" [formGroup]="educationForm">
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.education')}}*</p>
-    <mat-form-field appearance="outline" class="w-100" name="education">
-      <mat-select name='education' [formControlName]="'EducationDisciplineRecId'">
-        <mat-option *ngFor="let discipline of educationDiscipline" [value]="discipline.value" (onSelectionChange) = "OnEducationChange($event)">{{discipline.name}}</mat-option>
-      </mat-select>
-      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      <mat-error class="error-message" *ngIf="f.EducationDisciplineRecId.hasError('required') && (f.EducationDisciplineRecId.dirty || f.EducationDisciplineRecId.touched)"> Education Discipline is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.description')}}</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input matInput name="description" [formControlName]="'Description'"/>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.level-of-education')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <mat-select name='levelOfEducation' [formControlName]="'EducationLevelId'">
-        <mat-option *ngFor="let level of educationLevel" [value]="level.value">{{level.name}}</mat-option>
-      </mat-select>
-      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      <mat-error class="error-message" *ngIf="f.EducationLevelId.hasError('required') && (f.EducationLevelId.dirty || f.EducationLevelId.touched)">Education Level is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.secondary-emphasis')}}</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input matInput name='educationSecondaryEmphasis' [formControlName]="'EducationSecondaryEmphasis'"/>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.institution')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <mat-select name='Institution' [formControlName]="'EducationInstitutionId'">
-        <mat-option *ngFor="let institution of educationInstitution" [value]="institution.value">{{institution.name}}</mat-option>
-      </mat-select>
-      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      <mat-error class="error-message" *ngIf="f.EducationInstitutionId.hasError('required') && (f.EducationInstitutionId.dirty || f.EducationInstitutionId.touched)">Education Institution is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.average')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input type="number" matInput name='educationaverage' [formControlName]="'EducationAverage'"/>
-      <mat-error class="error-message" *ngIf="f.EducationAverage.hasError('required') && (f.EducationAverage.dirty || f.EducationAverage.touched)">Education Average is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.start-date')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker1" name='startDate' [formControlName]="'StartDate'" dateInput placeholder="dd/mm/yyyy">
-      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-      <mat-error class="error-message" *ngIf="f.StartDate.hasError('required') && (f.StartDate.dirty || f.StartDate.touched)">Start Date is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.end-date')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input matInput [matDatepicker]="picker2" name='endDate' [formControlName]="'EndDate'" dateInput placeholder="dd/mm/yyyy">
-      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-      <mat-error class="error-message" *ngIf="f.EndDate.hasError('required') && (f.EndDate.dirty || f.EndDate.touched)">End Date is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.scale')}}</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input type="text" matInput name='educationScale' [formControlName]="'EducationScale'"/>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.credits-completed')}}</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input type="number" matInput name='creditsCompleted' [formControlName]="'CreditsCompleted'"/>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.credit-hour-basis')}}</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <mat-select name='hoursbasis' [formControlName]="'CreditBasis'">
-        <mat-option value="2">yes</mat-option>
-        <mat-option value="1">No</mat-option>
-      </mat-select>
-      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.credit-hours-earned')}}</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input type="number" matInput name='creditsEarned' [formControlName]="'CreditsEarned'"/>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('competencies.credit-hours-required')}}</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <input type="number" matInput name='creditsNeeded' [formControlName]="'CreditsNeeded'"/>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-12">
-    <p>{{t('competencies.notes')}}</p>
-    <mat-form-field appearance="outline" class="text-area w-100">
-      <textarea matInput name='notes' [formControlName]="'Notes'"></textarea>
-    </mat-form-field>
-  </div>
-  <div class="cv-div">
-    <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
-    <div  class="upload-file">
-      <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
-      <p class="upload-text"><span>{{t('competencies.upload-text')}}</span>{{t('competencies.drag-drop')}}</p>
-      <span>PDF or DOC (max. size 6MB)</span>
+  <form class="row"
+        action=""
+        [formGroup]="educationForm">
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.education')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100"
+                      name="education">
+        <mat-select name='education'
+                    [formControlName]="'EducationDisciplineRecId'">
+          <mat-option *ngFor="let discipline of educationDiscipline"
+                      [value]="discipline.value"
+                      (onSelectionChange)="OnEducationChange($event)">{{discipline.name}}</mat-option>
+        </mat-select>
+        <img matSuffix
+             src="assets/SVG/chevron-down.svg"
+             alt="" />
+        <mat-error class="error-message"
+                   *ngIf="f.EducationDisciplineRecId.hasError('required') && (f.EducationDisciplineRecId.dirty || f.EducationDisciplineRecId.touched)">
+          Education Discipline is Required</mat-error>
+      </mat-form-field>
     </div>
-    <div *ngIf="fileList.length > 0"
-      class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
-      <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2" *ngFor="let file of fileList">
-        <div class="file-details rounded">
-          <div class="d-flex align-items-center gap-2">
-            <div class="file-icon">
-              <img src="assets/SVG/pdf-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
-              <img src="assets/SVG/doc-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.description')}}</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="description"
+               [formControlName]="'Description'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.level-of-education')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <mat-select name='levelOfEducation'
+                    [formControlName]="'EducationLevelId'">
+          <mat-option *ngFor="let level of educationLevel"
+                      [value]="level.value">{{level.name}}</mat-option>
+        </mat-select>
+        <img matSuffix
+             src="assets/SVG/chevron-down.svg"
+             alt="" />
+        <mat-error class="error-message"
+                   *ngIf="f.EducationLevelId.hasError('required') && (f.EducationLevelId.dirty || f.EducationLevelId.touched)">Education
+          Level is Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.secondary-emphasis')}}</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name='educationSecondaryEmphasis'
+               [formControlName]="'EducationSecondaryEmphasis'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.institution')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <mat-select name='Institution'
+                    [formControlName]="'EducationInstitutionId'">
+          <mat-option *ngFor="let institution of educationInstitution"
+                      [value]="institution.value">{{institution.name}}</mat-option>
+        </mat-select>
+        <img matSuffix
+             src="assets/SVG/chevron-down.svg"
+             alt="" />
+        <mat-error class="error-message"
+                   *ngIf="f.EducationInstitutionId.hasError('required') && (f.EducationInstitutionId.dirty || f.EducationInstitutionId.touched)">Education
+          Institution is Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.average')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="number"
+               matInput
+               name='educationaverage'
+               [formControlName]="'EducationAverage'" />
+        <mat-error class="error-message"
+                   *ngIf="f.EducationAverage.hasError('required') && (f.EducationAverage.dirty || f.EducationAverage.touched)">Education
+          Average is Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.start-date')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="picker1"
+               name='startDate'
+               [formControlName]="'StartDate'"
+               dateInput
+               placeholder="dd/mm/yyyy">
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error class="error-message"
+                   *ngIf="f.StartDate.hasError('required') && (f.StartDate.dirty || f.StartDate.touched)">Start Date is
+          Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.end-date')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               [matDatepicker]="picker2"
+               name='endDate'
+               [formControlName]="'EndDate'"
+               dateInput
+               placeholder="dd/mm/yyyy">
+        <mat-datepicker-toggle matIconSuffix
+                               [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error class="error-message"
+                   *ngIf="f.EndDate.hasError('required') && (f.EndDate.dirty || f.EndDate.touched)">End Date is
+          Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.scale')}}</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="text"
+               matInput
+               name='educationScale'
+               [formControlName]="'EducationScale'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.credits-completed')}}</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="number"
+               matInput
+               name='creditsCompleted'
+               [formControlName]="'CreditsCompleted'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.credit-hour-basis')}}</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <mat-select name='hoursbasis'
+                    [formControlName]="'CreditBasis'">
+          <mat-option value="2">yes</mat-option>
+          <mat-option value="1">No</mat-option>
+        </mat-select>
+        <img matSuffix
+             src="assets/SVG/chevron-down.svg"
+             alt="" />
+
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.credit-hours-earned')}}</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="number"
+               matInput
+               name='creditsEarned'
+               [formControlName]="'CreditsEarned'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.credit-hours-required')}}</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input type="number"
+               matInput
+               name='creditsNeeded'
+               [formControlName]="'CreditsNeeded'" />
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-12">
+      <p>{{t('competencies.notes')}}</p>
+      <mat-form-field appearance="outline"
+                      class="text-area w-100">
+        <textarea matInput
+                  name='notes'
+                  [formControlName]="'Notes'"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="cv-div">
+      <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
+      <div class="upload-file">
+        <input type="file"
+               (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg"
+             alt="">
+        <p class="upload-text"><span>{{t('competencies.upload-text')}}</span>{{t('competencies.drag-drop')}}</p>
+        <span>PDF or DOC (max. size 6MB)</span>
+      </div>
+      <div *ngIf="fileList.length > 0"
+           class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
+        <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
+             *ngFor="let file of fileList">
+          <div class="file-details rounded">
+            <div class="d-flex align-items-center gap-2">
+              <div class="file-icon">
+                <img src="assets/SVG/pdf-icon.svg"
+                     alt=""
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
+                <img src="assets/SVG/doc-icon.svg"
+                     alt=""
+                     *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+              </div>
+              <div class="file-name-type">
+                <span class="file-name">{{file.name}}</span>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
+                <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
+              </div>
             </div>
-            <div class="file-name-type">
-              <span class="file-name">{{file.name}}</span>
-              <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
-              <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
+
+            <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+              <img height="20"
+                   src="assets/SVG/delete.svg"
+                   alt="" />
             </div>
           </div>
 
-          <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-            <img  height="20" src="assets/SVG/delete.svg" alt="" />
-          </div>
         </div>
-
       </div>
     </div>
-  </div>
-  <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="Discard()">
-      {{t('competencies.discard')}}
-    </button>
-    <button type="button"
-      class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
-      (click)="CloseSideNav()">
-      {{t('competencies.close')}}
-    </button>
-    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi" (click)="SaveEducation()">
-      {{t('competencies.save')}}
-    </button>
-  </div>
-</form>
+    <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+              [ngClass]="{'order-1': isTranslate}"
+              (click)="Discard()">
+        {{t('competencies.discard')}}
+      </button>
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap"
+              [ngClass]="{'order-2': isTranslate}"
+              (click)="CloseSideNav()">
+        {{t('competencies.close')}}
+      </button>
+      <button type="button"
+              class="btn text-white bg-midnight-moss rounded font-poppins-semi"
+              (click)="SaveEducation()">
+        {{t('competencies.save')}}
+      </button>
+    </div>
+  </form>
 </ng-container>

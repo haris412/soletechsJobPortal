@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Skills } from 'src/app/models/skills.model';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-add-edit-skills',
@@ -20,8 +21,11 @@ export class AddEditSkillsComponent implements OnInit {
   file:any;
   skillList:any[] = [];
   skillLevel:any[] = [];
+  public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.skillForm.controls; }
-  constructor(private competenciesService:CompetenciesCommonService){
+  constructor(
+    private competenciesService:CompetenciesCommonService,
+    public translationService: TranslationAlignmentService){
     this.skillForm = this._formBuilder.group({
       SkillID: ['',[Validators.required]],
       RatingLevelType: ['', [Validators.required]],
@@ -29,7 +33,9 @@ export class AddEditSkillsComponent implements OnInit {
       Experience:['', [Validators.required]],
       attachment:['']
     });
-    
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
+    });
   }
   ngOnInit(){
     this.skillList = this.competenciesService.skillsList;

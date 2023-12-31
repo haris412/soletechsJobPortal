@@ -1,61 +1,81 @@
 <ng-container *transloco="let t; scope: 'basicInfo';">
-<form class="row" action="" [formGroup]="contactForm">
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.contact-type')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="contactType" [formControlName]="'Type'" (selectionChange)="SelectionChange($event)">
-        <mat-option value="0">None</mat-option>
-        <mat-option value="1">Phone</mat-option>
-        <mat-option value="2">Email Address</mat-option>
-        <mat-option value="3">URL</mat-option>
-        <mat-option value="4">Telex</mat-option>
-        <mat-option value="5">Fax</mat-option>
-        <mat-option value="6">Facebook</mat-option>
-        <mat-option value="7">Twitter</mat-option>
-        <mat-option value="8">LinkedIn</mat-option>
-        <mat-option value="9">Instagram</mat-option>
-        <mat-option value="10">WhatsApp</mat-option>
-      </mat-select>
-      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
-      <mat-error class="error-message" *ngIf="f.Type.hasError('required') && (f.Type.dirty || f.Type.touched)">Contact Type is Required</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex flex-column col-lg-6 col-12">
-    <!-- <p>{{t('basicInfo.number')}}*</p> -->
-    <p>{{label}}*</p>
-    <mat-form-field appearance="outline" class="w-100" *ngIf="label === 'Number'" >
-      <ngx-mat-intl-tel-input
-        [preferredCountries]="['sa', 'us']"
-        [enablePlaceholder]="true"
-        [enableSearch]="true"
-        name="ContactNumber"
-        [formControlName] ="'ContactNumber'" 
-        describedBy="phoneInput"
-        (countryChanged) = "OnCountryChanged($event)"
-      ></ngx-mat-intl-tel-input>
-      <mat-error class="error-message" *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">{{label}} is Required</mat-error>
-      <mat-error *ngIf="f.ContactNumber.errors?.validatePhoneNumber">Invalid Number</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="w-100" *ngIf="label !== 'Number'" >
-      <input matInput [formControlName]="'ContactNumber'" />
-      <mat-error class="error-message" *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">{{label}} is Required</mat-error>
-      <mat-error *ngIf="f.ContactNumber.errors?.validatePhoneNumber">Invalid Number</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="Discard()">
-      {{t('basicInfo.discard')}}
-    </button>
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
-      (click)="CloseIdentificationNav()">
-      {{t('basicInfo.close')}}
-    </button>
-    <button type="button"
-      class="btn bg-midnight-moss border-color-midnight-moss text-white rounded font-poppins-semi fs-8 text-nowrap"
-      (click)="SaveContact()">
-      {{t('basicInfo.save')}}
-    </button>
-  </div>
-</form>
+  <form class="row"
+        action=""
+        [formGroup]="contactForm">
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('basicInfo.contact-type')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <mat-select name="contactType"
+                    [formControlName]="'Type'"
+                    (selectionChange)="SelectionChange($event)">
+          <mat-option value="0">None</mat-option>
+          <mat-option value="1">Phone</mat-option>
+          <mat-option value="2">Email Address</mat-option>
+          <mat-option value="3">URL</mat-option>
+          <mat-option value="4">Telex</mat-option>
+          <mat-option value="5">Fax</mat-option>
+          <mat-option value="6">Facebook</mat-option>
+          <mat-option value="7">Twitter</mat-option>
+          <mat-option value="8">LinkedIn</mat-option>
+          <mat-option value="9">Instagram</mat-option>
+          <mat-option value="10">WhatsApp</mat-option>
+        </mat-select>
+        <img matSuffix
+             src="assets/SVG/chevron-down.svg"
+             alt="" />
+        <mat-error class="error-message"
+                   *ngIf="f.Type.hasError('required') && (f.Type.dirty || f.Type.touched)">Contact Type is
+          Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <!-- <p>{{t('basicInfo.number')}}*</p> -->
+      <p>{{label}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100"
+                      *ngIf="label === 'Number'">
+        <ngx-mat-intl-tel-input [preferredCountries]="['sa', 'us']"
+                                [enablePlaceholder]="true"
+                                [enableSearch]="true"
+                                name="ContactNumber"
+                                [formControlName]="'ContactNumber'"
+                                describedBy="phoneInput"
+                                (countryChanged)="OnCountryChanged($event)"></ngx-mat-intl-tel-input>
+        <mat-error class="error-message"
+                   *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">{{label}}
+          is Required</mat-error>
+        <mat-error *ngIf="f.ContactNumber.errors?.validatePhoneNumber">Invalid Number</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline"
+                      class="w-100"
+                      *ngIf="label !== 'Number'">
+        <input matInput
+               [formControlName]="'ContactNumber'" />
+        <mat-error class="error-message"
+                   *ngIf="f.ContactNumber.hasError('required') && (f.ContactNumber.dirty || f.ContactNumber.touched)">{{label}}
+          is Required</mat-error>
+        <mat-error *ngIf="f.ContactNumber.errors?.validatePhoneNumber">Invalid Number</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+              [ngClass]="{'order-1': isTranslate}"
+              (click)="Discard()">
+        {{t('basicInfo.discard')}}
+      </button>
+      <button type="button"
+              class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+              [ngClass]="{'order-2': isTranslate}"
+              (click)="CloseIdentificationNav()">
+        {{t('basicInfo.close')}}
+      </button>
+      <button type="button"
+              class="btn bg-midnight-moss border-color-midnight-moss text-white rounded font-poppins-semi fs-8 text-nowrap"
+              (click)="SaveContact()">
+        {{t('basicInfo.save')}}
+      </button>
+    </div>
+  </form>
 </ng-container>

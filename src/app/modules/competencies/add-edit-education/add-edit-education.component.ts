@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular
 import { Education } from '../models/education';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-add-edit-education',
@@ -19,8 +20,11 @@ export class AddEditEducationComponent implements OnInit{
   educationInstitution:any[] = [];
   educationLevel:any[] = [];
   educationDiscipline:any[] = [];
+  public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.educationForm.controls; }
-  constructor(private competenciesService:CompetenciesCommonService){
+  constructor(
+    private competenciesService:CompetenciesCommonService,
+    public translationService: TranslationAlignmentService){
     this.educationForm = this._formBuilder.group({
       id:[''],
       Description: [''],
@@ -39,7 +43,9 @@ export class AddEditEducationComponent implements OnInit{
       Notes:[''],
       attachment:['']
     });
-    
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
+    });
   }
   ngOnInit(){
     if(this.selectedEducation?.EducationDisciplineRecId !== ''){
