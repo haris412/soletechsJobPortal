@@ -20,5 +20,7 @@
     "drag-drop":"or drag and drop",
     "pdf-doc":"PDF or DOC",
     "max-size":"max.size 6MB",
-    "my-profile":"My Profile"
+    "my-profile":"My Profile",
+    "change-avatar":"Change Avatar",
+    "remove-avatar":"Remove Avatar"
 }

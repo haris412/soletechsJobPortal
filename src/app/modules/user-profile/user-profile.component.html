@@ -26,7 +26,7 @@
               <button type="file"
                       class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8 position-relative text-nowrap"
                       (change)="selectFile($event)">
-                Change Avatar
+                      {{t('profile.change-avatar')}}
                 <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0"
                        type="file"
                        id="formFile" />
@@ -34,7 +34,7 @@
               <button type="button"
                       (click)="removeAvtar()"
                       class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap">
-                Remove Avatar
+                      {{t('profile.remove-avatar')}}
               </button>
             </div>
           </div>
