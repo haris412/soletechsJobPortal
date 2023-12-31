@@ -1,3 +1,4 @@
+<ng-container *transloco="let t; scope: 'profile';">
 <div class="container-fluid" [ngClass]="{'direction-change':isTranslate}">
   <div class="row mx-0">
     <div class="col-xxl-2 col-lg-3 col-12">
@@ -6,11 +7,11 @@
 
     <div class="col-xxl-10 col-lg-9 col-12 mb-2 sign-up-sections">
       <h2 id="basicInformation" class="font-poppins-medium text-midnight-moss">
-        Basic Information
+        {{t('profile.basic-info')}}
       </h2>
       <div class="main-container mb-0">
         <div class="sign-up-info-div profile-div">
-          <span class="heading">Profile Picture</span>
+          <span class="heading">{{t('profile.profile-picture')}}</span>
           <div class="d-flex align-items-center upload-profile-pic mt-3">
             <div class="profile">
               <img *ngIf="this.applicantDataService.applicantImage == undefined"
@@ -35,14 +36,14 @@
           </div>
         </div>
         <div class="sign-up-info-div cv-div">
-          <div class="heading mb-3">CV File</div>
-          <p class="font-poppins-bold text-midnight-moss">Upload</p>
+          <div class="heading mb-3">{{t('profile.cv-file')}}</div>
+          <p class="font-poppins-bold text-midnight-moss">{{t('profile.upload')}}</p>
           <div class="upload-file">
             <img src="assets/SVG/upload.svg" alt="" />
             <p class="upload-text">
-              <span>Click to Upload </span>or drag and drop
+              <span>{{t('profile.upload-text')}}</span>{{t('profile.drag-drop')}}
             </p>
-            <span>PDF or DOC (max. size 6MB)</span>
+            <span>{{t('profile.pdf-doc')}} ({{t('profile.max-size')}})</span>
             <input class="form-control" type="file" id="formFile" (change)="uploadCV($event)" />
           </div>
           <div *ngIf="fileList.length > 0"
@@ -73,7 +74,7 @@
           </div>
         </div>
         <div class="sign-up-info-div about-me">
-          <span class="heading">About Me</span>
+          <span class="heading">{{t('profile.about-me')}}</span>
           <ckeditor [editor]="Editor"></ckeditor>
         </div>
         <!-- <div class="sign-up-info-div">
@@ -104,40 +105,36 @@
         </div> -->
         <div class="sign-up-info-div">
           <div class="d-flex align-items-center justify-content-between">
-            <span class="heading">Profile</span>
+            <span class="heading">{{t('profile.profile')}}</span>
             <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToProfile()" />
           </div>
         </div>
         <div class="sign-up-info-div">
           <div class="d-flex align-items-center justify-content-between">
-            <span class="heading">Competencies</span>
+            <span class="heading">{{t('profile.competencies')}}</span>
             <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToCompetencies()" />
           </div>
         </div>
       </div>
       <h2 id="notifications" class="font-poppins-medium text-midnight-moss">
-        Notifications
+        {{t('profile.notifications')}}
       </h2>
       <div class="main-container mb-0">
         <div class="sign-up-info-div notification-div">
           <div class="d-flex-flex-column text-midnight-moss">
-            <h5 class="font-poppins-semi">Email Notifications</h5>
+            <h5 class="font-poppins-semi">{{t('profile.email-notifications')}}</h5>
             <p class="mb-4">
-              When you’re busy or not online, Substance can send you email
-              notifications for any new direct messages or mentions of your
-              name.
+              {{t('profile.email-noti-text')}}.
             </p>
-            <h5 class="font-poppins-semi">Send me email notifications:</h5>
+            <h5 class="font-poppins-semi">{{t('profile.email-send-notification')}}:</h5>
             <mat-radio-group aria-label="Select an option" class="d-flex flex-column mb-4">
               <mat-radio-button value="anytime">Anytime</mat-radio-button>
               <mat-radio-button value="once">Once a week at most</mat-radio-button>
               <mat-radio-button value="never">Never</mat-radio-button>
             </mat-radio-group>
-            <h5 class="font-poppins-semi">Email News & Updates</h5>
+            <h5 class="font-poppins-semi">{{t('profile.email-updates')}}</h5>
             <p>
-              From time to time, we’d like to send you emails with interesting
-              news about Cuboid and your workspace. You can choose which of
-              these updates you’d like to receive :
+              {{t('profile.email-news-updates')}} :
             </p>
             <section>
               <p><mat-checkbox>Tips and Tricks</mat-checkbox></p>
@@ -152,21 +149,20 @@
         </div>
       </div>
       <h2 id="deactivate" class="font-poppins-medium text-midnight-moss">
-        Deactivate my account
+        {{t('profile.deactivate-account')}}
       </h2>
       <div class="main-container">
         <div class="sign-up-info-div">
           <div class="d-flex align-items-md-center flex-md-row flex-column justify-content-md-between gap-lg-0 gap-2">
             <div class="d-flex flex-column">
-              <h6 class="font-poppins-semi">Deactivate my account</h6>
+              <h6 class="font-poppins-semi">{{t('profile.deactivate-account')}}</h6>
               <p class="text-shuttle-grey mb-0">
-                Don’t want to receive any emails or save my data on the job
-                finder portal
+                {{t('profile.deactivate-account-text')}}
               </p>
             </div>
             <button type="button"
               class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
-              Deactivate my account
+              {{t('profile.deactivate-account')}}
             </button>
           </div>
         </div>
@@ -174,13 +170,14 @@
       <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
         <button type="button"
           class="btn border border-color-gainsboro text-midnight-moss bg-white rounded font-poppins-medium fs-8 py-2 px-3">
-          Discard
+          {{t('profile.discard')}}
         </button>
         <button type="button"
           class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
-          Save changes
+          {{t('profile.save-changes')}}
         </button>
       </div>
     </div>
   </div>
 </div>
+</ng-container>

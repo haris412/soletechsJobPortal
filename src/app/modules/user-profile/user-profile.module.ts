@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { RightContentComponent } from './right-content/right-content.component';
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 
 
 
@@ -21,7 +22,7 @@ import { RightContentComponent } from './right-content/right-content.component';
     CommonModule,
     MaterialModule,
     CKEditorModule,
-
+    TranslocoRootModule
   ]
 })
 export class UserProfileModule { }

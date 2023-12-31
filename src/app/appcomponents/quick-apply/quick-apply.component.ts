@@ -57,7 +57,7 @@ export class QuickApplyComponent implements OnInit {
 
     this.quickApplyForm = this._formBuilder.group({
       name: [this.name, [Validators.required]],
-      nameAr: [''],
+      nameAr: ['',[Validators.required]],
       recruitmentProject: [this.recruitmentProject?.recruitingId, [Validators.required]],
       nationality: [''],
       email: [this.email, [Validators.required]],

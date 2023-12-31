@@ -1,10 +1,12 @@
+<ng-container *transloco="let t; scope: 'profile';">
 <div class="profile-menu">
-  <h5 class="font-poppins-semi text-midnight-moss">My Profile</h5>
+  <h5 class="font-poppins-semi text-midnight-moss">{{t('profile.my-profile')}}</h5>
   <ul [ngClass]="isTranslate ? 'arabic-direction' : ''">
     <li [ngClass]="{'selected':isBasicInfo}" (click)="ScrolltoTarget('#basicInformation')">
-      <h6>Basic Information</h6>
+      <h6>{{t('profile.basic-info')}}</h6>
     </li>
-    <li [ngClass]="{'selected':notifications}" (click)="ScrolltoTarget('#notifications')"><h6>Notifications</h6></li>
-    <li [ngClass]="{'selected':deactivate}" (click)="ScrolltoTarget('#deactivate')"><h6>Deactivate Account</h6></li>
+    <li [ngClass]="{'selected':notifications}" (click)="ScrolltoTarget('#notifications')"><h6>{{t('profile.notifications')}}</h6></li>
+    <li [ngClass]="{'selected':deactivate}" (click)="ScrolltoTarget('#deactivate')"><h6>{{t('profile.deactivate-account')}}</h6></li>
   </ul>
 </div>
+</ng-container>

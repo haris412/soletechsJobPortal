@@ -122,4 +122,7 @@ export class HeaderComponent implements OnInit {
   GoToJobs() {
     this.router.navigate(['/']);
   }
+  GoToHome(){
+    this.router.navigate(['/']);
+  }
 }

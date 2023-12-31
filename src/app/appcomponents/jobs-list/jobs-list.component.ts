@@ -88,8 +88,9 @@ export class JobsListComponent implements OnInit {
   async JobLanguageChanges() {
     if (this.translationService.isTranslate) {
       for(let i = 0; i < this.jobsList.length; i++) {
-        this.jobsList[i].description = this.sharedService.jobs[i].jobArabic;
-        this.jobsList[i].JobLocation = this.sharedService.jobs[i].jobLocationArabic;
+        this.jobsList[i].description = this.sharedService.jobs[i]?.jobArabic ? this.sharedService.jobs[i]?.jobArabic : this.sharedService.jobs[i]?.description;
+        this.jobsList[i].JobLocation = this.sharedService.jobs[i]?.jobLocationArabic ? this.sharedService.jobs[i]?.jobLocationArabic : this.sharedService.jobs[i]?.JobLocation;
+        this.jobsList[i].recruitingId = this.sharedService.jobs[i]?.recruitingArabic ? this.sharedService.jobs[i]?.recruitingArabic : this.sharedService.jobs[i]?.recruitingId;
       }
     } else {
       this.jobsList = this.sharedService.DeepCopyObject(this.sharedService.jobs);
