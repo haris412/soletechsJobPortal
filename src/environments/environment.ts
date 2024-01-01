@@ -10,7 +10,7 @@ export const environment = {
   scope: ['openid', 'profile', 'email' ],
   authorizationUrl: 'https://www.linkedin.com/oauth/v2/authorization',
   accessTokenUrl: 'https://www.linkedin.com/oauth/v2/accessToken',
-  apiUrl: 'http://localhost:7247/api'
+  apiUrl: 'http://85.10.211.132/soletech.api/api'
 };
 
 /*

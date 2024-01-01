@@ -1,0 +1,21 @@
+@import "../../../../styles/variables-saas";
+
+.main-container {
+  .profile-div {
+    .upload-profile-pic {
+      .profile {
+        width: 70px;
+        height: 70px;
+        margin-right: 1.25rem;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+    
+  }
+}

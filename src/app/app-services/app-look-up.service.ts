@@ -4,7 +4,7 @@ import { apiURLs } from "../app.settings";
 import { LookupParameters } from "../models/look-up.model";
 import { Skills } from "../models/skills.model";
 import { professionalExperience } from "../models/professional-experience.model";
-import { Education } from './../modules/competencies/models/education';
+
 import { Certificates } from "../models/certificates.model";
 import { Course } from "../models/courses.model";
 import { PositionOfTrust } from "../models/position-of-trust.model";
@@ -15,6 +15,7 @@ import { SaveJob } from "../models/saveJob.model";
 import { ChangePassword } from "../models/ChangePassword";
 import { userApplicantImage } from "../models/userImageParameters";
 import { UpdateAboutMe } from "../models/update-about-me.model";
+import { Education } from "../modules/competencies-common/components/models/education";
 
 @Injectable({
     providedIn: 'root',

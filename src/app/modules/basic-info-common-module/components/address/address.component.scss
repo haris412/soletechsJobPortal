@@ -1,0 +1,19 @@
+@import "../../../../styles/variables-saas";
+
+.main-container {
+  .address-item-container {
+    margin-bottom: 1.25rem;
+    gap: 1.75rem;
+    .address-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 0.813rem;
+      padding-inline: 1rem;
+      background-color: $white-smoke;
+    }
+  }
+  .add-address {
+    padding-block: 0.75rem;
+  }
+}
