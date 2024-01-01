@@ -86,12 +86,11 @@
         </div>
         <div class="sign-up-info-div about-me">
           <span class="heading">{{t('profile.about-me')}}</span>
-          <ckeditor [editor]="Editor"></ckeditor>
+          <ckeditor [editor]="Editor"  [(ngModel)]="aboutMe"></ckeditor>
           <div *ngIf="editAboutMe" class="d-flex justify-content-end mt-2">
             <button type="button"
                     class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap"
-                    (click)="editAboutMe = false"
-                    >
+                    (click)="UpdateAboutme()">
               Save
             </button>
           </div>

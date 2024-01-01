@@ -51,5 +51,11 @@
     "pdf":"PDF",
     "or":"or",
     "doc":"DOC",
-    "provide-skills":"Please provide your skills"
+    "provide-skills":"Please provide your skills",
+    "provide-experience":"Please provide your professional experience",
+    "provide-education":"Please provide your education",
+    "provide-certificate":"Please provide your certificates",
+    "provide-course":"Please provide your courses",
+    "provide-position-trust":"Please provide your position of trust"
+
 }

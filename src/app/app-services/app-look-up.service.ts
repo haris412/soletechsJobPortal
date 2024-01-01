@@ -14,6 +14,7 @@ import { Identification } from "../models/identification.model";
 import { SaveJob } from "../models/saveJob.model";
 import { ChangePassword } from "../models/ChangePassword";
 import { userApplicantImage } from "../models/userImageParameters";
+import { UpdateAboutMe } from "../models/update-about-me.model";
 
 @Injectable({
     providedIn: 'root',
@@ -699,5 +700,13 @@ export class AppLookUpService {
             apiURLs.applicant.getIpAddress
         ).toPromise();
         return ipaddress?.ip;
+    }
+
+    async UpdateAboutme(parameters:UpdateAboutMe){
+        return await this.httpClient
+        .post<any>(
+            apiURLs.applicant.updateAboutme,
+            parameters 
+        ).toPromise();
     }
 }

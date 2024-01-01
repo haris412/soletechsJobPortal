@@ -38,7 +38,7 @@
                  alt="" />
             <input type="text"
                    class="w-100"
-                   placeholder="{{ t('jobs.job-title-placeholder') }}"
+                   placeholder="{{ t('jobs.job-type-placeholder') }}"
                    [(ngModel)]="inputText"
                    (keyup)="JobTypeChange($event)"
                    (keyup.enter)="onEnterPressed()" />
@@ -108,17 +108,17 @@
                   </div>
                 </div>
               </div>
-              <div class="d-flex align-items-center gap-1 listing-time mb-2">
-                <img src="assets/SVG/clock.svg"
-                     alt="" />
-                <p class="text-shuttle-grey 14 mb-0">
-                  {{ job.startDate | date }}
-                </p>
-              </div>
               <div class="listing-info mb-1"
                    [ngClass]="this.translationService.isTranslate ? 'text-end' : 'text-start'">
                 <p class="mb-0 text-shuttle-grey">
                   {{ job.description }}
+                </p>
+              </div>
+              <div class="d-flex align-items-center gap-1 listing-time mb-2">
+                <img src="assets/SVG/clock.svg"
+                     alt="" />
+                <p class="text-shuttle-grey 14 mb-0">
+                  {{ job.startDate | date: 'dd-MM-yyyy' }}
                 </p>
               </div>
               <div class="d-flex align-items-center gap-1 job-location-info mb-2">

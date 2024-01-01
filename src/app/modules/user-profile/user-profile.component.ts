@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { LinkedInService } from '../applicant-portal/services/linkedin.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { userApplicantImage } from 'src/app/models/userImageParameters';
+import { UpdateAboutMe } from 'src/app/models/update-about-me.model';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class UserProfileComponent {
 	fileData:any;
 	public isTranslate: boolean = this.translationService.isTranslate;
 	public editAboutMe: boolean = false;
+	aboutMe:string = '';
 	constructor(
 		private router: Router, 
 		public ref: ChangeDetectorRef,
@@ -46,6 +48,9 @@ export class UserProfileComponent {
 	if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
 		this.applicantDataService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
 			+ this.applicantDataService.applicantData?.applicantImage);
+		}
+		if(this.applicantDataService.applicantData.aboutMe){
+		  this.aboutMe = this.applicantDataService.applicantData.aboutMe;
 		}
 	}
 
@@ -80,11 +85,6 @@ export class UserProfileComponent {
 		this.router.navigate(['/competencies']);
 	}
 	async selectFile(event:any) {
-		// const reader = new FileReader();
-		// reader.readAsDataURL(event.target.files[0]);
-      	// reader.onload = (event) => {
-        // 	this.imageAvatar = event?.target?.result;
-		// }
 		if (event.target.files[0].type == 'image/jpeg' || event.target.files[0].type == 'image/png') {
 			this.fileData = event.target.files[0];
 			const reader = new FileReader();
@@ -124,5 +124,16 @@ export class UserProfileComponent {
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+  async UpdateAboutme(){
+	let aboutMeData:UpdateAboutMe = {
+		applicantId:localStorage.getItem('applicantId') ?? '',
+		applicantPersonRecid:Number(localStorage.getItem('applicantPersonRecid')) ?? 0,
+		aboutMe:this.aboutMe
+	}
+	let res = await this.lookUpService.UpdateAboutme(aboutMeData);
+	if(res.Status) {
+		await this.applicantDataService.GetUserInfo();
+	}
   }
 }

@@ -33,6 +33,11 @@ export class HeaderComponent implements OnInit {
     this.translationService.languageChange.subscribe(x => {
       {
         this.isTranslate = x;
+        if(x){
+          this.userName = this.applicantDataService.applicantData?.firstNameAr ? this.applicantDataService.applicantData?.firstNameAr : localStorage.getItem('userName');
+        }else{
+          this.userName = localStorage.getItem('userName') ?? '';
+        }
       }
     });
   }
