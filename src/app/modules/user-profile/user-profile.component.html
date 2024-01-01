@@ -100,13 +100,13 @@
               <span class="heading">{{t('profile.about-me')}}</span>
               <img src="assets/SVG/edit-icon.svg"
                    alt=""
-                   class="cursor-pointer" />
+                   class="cursor-pointer" (click)="toggleEditor()" />
             </div>
             <ckeditor [editor]="Editor"
                       [(ngModel)]="aboutMe"
-                      [disabled]=true
+                      [disabled]="aboutMeDisablitiy"
                       ></ckeditor>
-            <div *ngIf="editAboutMe"
+            <div *ngIf="!aboutMeDisablitiy"
                  class="d-flex justify-content-end mt-2">
               <button type="button"
                       class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap"

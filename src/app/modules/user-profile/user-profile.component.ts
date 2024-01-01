@@ -28,8 +28,8 @@ export class UserProfileComponent {
 	fileList: any[] = [];
 	fileData: any;
 	public isTranslate: boolean = this.translationService.isTranslate;
-	public editAboutMe: boolean = false;
 	aboutMe: string = '';
+	aboutMeDisablitiy: boolean = true
 	constructor(
 		private router: Router,
 		public ref: ChangeDetectorRef,
@@ -188,5 +188,7 @@ export class UserProfileComponent {
 			this.competencyIndex = 5;
 		}
 	}
-
+	toggleEditor() {
+		this.aboutMeDisablitiy = !this.aboutMeDisablitiy;
+	}
 }
