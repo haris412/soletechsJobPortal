@@ -91,6 +91,7 @@ export class JobsListComponent implements OnInit {
         this.jobsList[i].description = this.sharedService.jobs[i]?.jobArabic ? this.sharedService.jobs[i]?.jobArabic : this.sharedService.jobs[i]?.description;
         this.jobsList[i].JobLocation = this.sharedService.jobs[i]?.jobLocationArabic ? this.sharedService.jobs[i]?.jobLocationArabic : this.sharedService.jobs[i]?.JobLocation;
         this.jobsList[i].recruitingId = this.sharedService.jobs[i]?.recruitingArabic ? this.sharedService.jobs[i]?.recruitingArabic : this.sharedService.jobs[i]?.recruitingId;
+        this.jobsList[i].JobType = this.sharedService.jobs[i]?.jobTypeArabic ? this.sharedService.jobs[i]?.jobTypeArabic : this.sharedService.jobs[i]?.JobType;
       }
     } else {
       this.jobsList = this.sharedService.DeepCopyObject(this.sharedService.jobs);
@@ -172,6 +173,7 @@ export class JobsListComponent implements OnInit {
     }else{
       this.jobsList = this.jobsListCopy;
     }
+    this.JobLanguageChanges();
   }
   JobTypeChange(event:any){
     if(event?.target?.value?.length >= 1){
