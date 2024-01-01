@@ -5,8 +5,152 @@
     <li [ngClass]="{'selected':isBasicInfo}" (click)="ScrolltoTarget('#basicInformation')">
       <h6>{{t('profile.basic-info')}}</h6>
     </li>
-    <li [ngClass]="{'selected':notifications}" (click)="ScrolltoTarget('#notifications')"><h6>{{t('profile.notifications')}}</h6></li>
-    <li [ngClass]="{'selected':deactivate}" (click)="ScrolltoTarget('#deactivate')"><h6>{{t('profile.deactivate-account')}}</h6></li>
+    <li [ngClass]="{'selected':cv}" (click)="ScrolltoTarget('#cv')"><h6>CV</h6></li>
+    <li [ngClass]="{'selected':about}" (click)="ScrolltoTarget('#about')"><h6>About Me</h6></li>
+    <li [ngClass]="{'selected':profile}" (click)="ScrolltoTarget('#profile')"><h6>Profile</h6></li>
+    <li [ngClass]="{'selected':competencies}" (click)="ScrolltoTarget('#competencies')"><h6>Competencies</h6></li>
+    <!-- <li [ngClass]="{'selected':notifications}" (click)="ScrolltoTarget('#notifications')"><h6>{{t('profile.notifications')}}</h6></li>
+    <li [ngClass]="{'selected':deactivate}" (click)="ScrolltoTarget('#deactivate')"><h6>{{t('profile.deactivate-account')}}</h6></li> -->
+  </ul>
+  <h4>Profile</h4>
+  <ul class="stepper">
+    <li>
+      <div class="stepper-progression active rounded-circle border border-color-midnight-moss"
+        [ngClass]="{ 'completed': basicCompleted, 'active': isBasicActive }">
+        <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
+        <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items" (click)="GoToTab(1)">
+        <p>{{t('basicInfo.basic-info')}}</p>
+        <p>{{t('basicInfo.basic-info-text')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+        [ngClass]="{ 'completed': contactCompleted, 'active': isContactActive }">
+        <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
+        <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items" (click)="GoToTab(2)">
+        <p>{{t('basicInfo.contact')}}</p>
+        <p>{{t('basicInfo.contact-info')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+        [ngClass]="{ 'completed': addressCompleted, 'active': isAddressActive }">
+        <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
+        <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items" (click)="GoToTab(3)">
+        <p>{{t('basicInfo.address')}}</p>
+        <p>{{t('basicInfo.address-info')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
+        [ngClass]="{ 'completed': identificationCompleted, 'active': isIdentificationActive }">
+        <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
+        <p *ngIf="!completed" class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items" (click)="GoToTab(4)">
+        <p>{{t('basicInfo.identification')}}</p>
+        <p>{{t('basicInfo.identification-info')}}</p>
+      </div>
+    </li>
+  </ul>
+  <h4>Competencies</h4>
+  <ul class="stepper">
+    <li>
+      <div class="stepper-progression active rounded-circle border border-color-midnight-moss"
+           [ngClass]="{ 'completed': skillCompleted, 'active': skillsisActive }">
+        <img *ngIf="skillCompleted"
+             src="assets/SVG/noun-tick.svg"
+             alt="" />
+        <p *ngIf="!skillCompleted"
+           class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items"
+           (click)="GoToCompetencyTab(1)">
+        <p>{{t('competencies.skills')}}</p>
+        <p>{{t('competencies.provide-skills')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+           [ngClass]="{ 'completed': experienceCompleted, 'active': experienceisActive }">
+        <img *ngIf="experienceCompleted"
+             src="assets/SVG/noun-tick.svg"
+             alt="" />
+        <p *ngIf="!experienceCompleted"
+           class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items"
+           (click)="GoToCompetencyTab(2)">
+        <p>{{t('competencies.professional-experience')}}</p>
+        <p>{{t('competencies.provide-experience')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+           [ngClass]="{ 'completed': educationCompleted, 'active': educationisActive }">
+        <img *ngIf="educationCompleted"
+             src="assets/SVG/noun-tick.svg"
+             alt="" />
+        <p *ngIf="!educationCompleted"
+           class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items"
+           (click)="GoToCompetencyTab(3)">
+        <p>{{t('competencies.education')}}</p>
+        <p>{{t('competencies.provide-education')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+           [ngClass]="{ 'completed': certificatescompleted, 'active': certificatesisActive }">
+        <img *ngIf="certificatescompleted"
+             src="assets/SVG/noun-tick.svg"
+             alt="" />
+        <p *ngIf="!certificatescompleted"
+           class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items"
+           (click)="GoToCompetencyTab(4)">
+        <p>{{t('competencies.certificates')}}</p>
+        <p>{{t('competencies.provide-certificate')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss"
+           [ngClass]="{ 'completed': coursesCompleted, 'active': coursesisActive }">
+        <img *ngIf="coursesCompleted"
+             src="assets/SVG/noun-tick.svg"
+             alt="" />
+        <p *ngIf="!coursesCompleted"
+           class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items"
+           (click)="GoToCompetencyTab(5)">
+        <p>{{t('competencies.courses')}}</p>
+        <p>{{t('competencies.provide-course')}}</p>
+      </div>
+    </li>
+    <li>
+      <div class="stepper-progression rounded-circle border border-color-midnight-moss last-step"
+           [ngClass]="{ 'completed': positionOfTrustcompleted, 'active': positionOfTrustisActive }">
+        <img *ngIf="positionOfTrustcompleted"
+             src="assets/SVG/noun-tick.svg"
+             alt="" />
+        <p *ngIf="!positionOfTrustcompleted"
+           class="bg-midnight-moss rounded-circle"></p>
+      </div>
+      <div class="stepper-items"
+           (click)="GoToCompetencyTab(6)">
+        <p>{{t('competencies.position-of-trust')}}</p>
+        <p>{{t('competencies.provide-position-trust')}}</p>
+      </div>
+    </li>
   </ul>
 </div>
 </ng-container>

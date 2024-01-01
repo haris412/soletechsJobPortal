@@ -21,7 +21,7 @@
                class="bg-midnight-moss rounded-circle"></p>
           </div>
           <div class="stepper-items"
-               (click)="GoToTab(1)">
+               (click)="GoToCompetencyTab(1)">
             <p>{{t('competencies.skills')}}</p>
             <p class="text-nowrap">{{t('competencies.provide-skills')}}</p>
           </div>
@@ -36,7 +36,7 @@
                class="bg-midnight-moss rounded-circle"></p>
           </div>
           <div class="stepper-items"
-               (click)="GoToTab(2)">
+               (click)="GoToCompetencyTab(2)">
             <p>{{t('competencies.professional-experience')}}</p>
             <p>{{t('competencies.provide-experience')}}</p>
           </div>
@@ -51,7 +51,7 @@
                class="bg-midnight-moss rounded-circle"></p>
           </div>
           <div class="stepper-items"
-               (click)="GoToTab(3)">
+               (click)="GoToCompetencyTab(3)">
             <p>{{t('competencies.education')}}</p>
             <p>{{t('competencies.provide-education')}}</p>
           </div>
@@ -66,7 +66,7 @@
                class="bg-midnight-moss rounded-circle"></p>
           </div>
           <div class="stepper-items"
-               (click)="GoToTab(4)">
+               (click)="GoToCompetencyTab(4)">
             <p>{{t('competencies.certificates')}}</p>
             <p>{{t('competencies.provide-certificate')}}</p>
           </div>
@@ -81,7 +81,7 @@
                class="bg-midnight-moss rounded-circle"></p>
           </div>
           <div class="stepper-items"
-               (click)="GoToTab(5)">
+               (click)="GoToCompetencyTab(5)">
             <p>{{t('competencies.courses')}}</p>
             <p>{{t('competencies.provide-course')}}</p>
           </div>
@@ -96,7 +96,7 @@
                class="bg-midnight-moss rounded-circle"></p>
           </div>
           <div class="stepper-items"
-               (click)="GoToTab(6)">
+               (click)="GoToCompetencyTab(6)">
             <p>{{t('competencies.position-of-trust')}}</p>
             <p>{{t('competencies.provide-position-trust')}}</p>
           </div>
@@ -121,12 +121,12 @@
           <button type="button"
                   class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
                   [ngClass]="{'order-2': isTranslate}"
-                  (click)="Back(index)">
+                  (click)="PrevCompetency(index)">
             {{t('competencies.back')}}
           </button>
           <button type="button"
                   class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-                  (click)="Next()">
+                  (click)="NextCompetency()">
             {{t('competencies.next')}}
           </button>
         </div>

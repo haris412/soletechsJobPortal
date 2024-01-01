@@ -4,8 +4,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { forkJoin } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
-import { CompetenciesCommonService } from './services/competencies-common.service';
+
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { CompetenciesCommonService } from '../competencies-common/components/services/competencies-common.service';
 
 @Component({
     selector: 'app-competencies',
@@ -119,7 +120,7 @@ export class CompetenciesComponent implements OnInit {
         this.sidenavOpen = false;
     }
 
-    Next() {
+    NextCompetency() {
         if (this.index === 1) {
             this.skillCompleted = true;
             this.experienceisActive = true;
@@ -147,7 +148,7 @@ export class CompetenciesComponent implements OnInit {
             this.index = 6;
         }
     }
-    Back(index: Number) {
+    PrevCompetency(index: Number) {
         if (index === 2) {
             this.stepperTitle = 'Skills';
             this.index = 1;
@@ -168,7 +169,50 @@ export class CompetenciesComponent implements OnInit {
     GoBack() {
         this.location.back();
     }
-    GoToTab(index: number) {
+    GoToCompetencyTab(index: number) {
         this.index = index;
+        if (index === 2) {
+            this.skillsisActive = false;
+            this.experienceisActive = true;
+            this.educationisActive = false;
+            this.certificatesisActive = false;
+            this.coursesisActive = false;
+            this.positionOfTrustisActive = false;
+        } else if (index === 3) {
+            this.skillsisActive = false;
+            this.experienceisActive = false;
+            this.educationisActive = true;
+            this.certificatesisActive = false;
+            this.coursesisActive = false;
+            this.positionOfTrustisActive = false;
+        } else if (index === 4) {
+            this.skillsisActive = false;
+            this.experienceisActive = false;
+            this.educationisActive = false;
+            this.certificatesisActive = true;
+            this.coursesisActive = false;
+            this.positionOfTrustisActive = false;
+        }else if (index === 5) {
+            this.skillsisActive = false;
+            this.experienceisActive = false;
+            this.educationisActive = false;
+            this.certificatesisActive = false;
+            this.coursesisActive = true;
+            this.positionOfTrustisActive = false;
+        }else if (index === 6) {
+            this.skillsisActive = false;
+            this.experienceisActive = false;
+            this.educationisActive = false;
+            this.certificatesisActive = false;
+            this.coursesisActive = false;
+            this.positionOfTrustisActive = true;
+        } else if (index === 1) {
+            this.skillsisActive = true;
+            this.experienceisActive = false;
+            this.educationisActive = false;
+            this.certificatesisActive = false;
+            this.coursesisActive = false;
+            this.positionOfTrustisActive = false;
+        }
     }
 }

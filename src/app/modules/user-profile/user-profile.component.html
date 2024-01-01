@@ -1,101 +1,121 @@
 <ng-container *transloco="let t; scope: 'profile';">
-<div class="container-fluid" [ngClass]="{'direction-change':isTranslate}">
-  <div class="row mx-0">
-    <div class="col-xxl-2 col-lg-3 col-12">
-      <app-left-menu [isTranslate]="isTranslate"
-                     (scrollTo)="ScrollToTarget($event)"></app-left-menu>
-    </div>
+  <div class="container-fluid"
+       [ngClass]="{'direction-change':isTranslate}">
+    <div class="row mx-0">
+      <div class="col-xxl-2 col-lg-3 col-12">
+        <app-left-menu [isTranslate]="isTranslate"
+                       (scrollTo)="ScrollToTarget($event)"
+                       (switchTab)="GetProfileTabIndex($event)"
+                       (switchCompetencyTab)="GetCompetencyTabIndex($event)"></app-left-menu>
+      </div>
 
-    <div class="col-xxl-10 col-lg-9 col-12 mb-2 sign-up-sections">
-      <h2 id="basicInformation" class="font-poppins-medium text-midnight-moss">
+      <div class="col-xxl-10 col-lg-9 col-12 mb-2 sign-up-sections">
+        <!-- <h2 id="basicInformation" class="font-poppins-medium text-midnight-moss">
         {{t('profile.basic-info')}}
-      </h2>
-      <div class="main-container mb-0">
-        <div class="sign-up-info-div profile-div">
-          <span class="heading">{{t('profile.profile-picture')}}</span>
-          <div class="d-flex align-items-center upload-profile-pic mt-3">
-            <div class="profile">
-              <img *ngIf="this.applicantDataService.applicantImage == undefined"
-                   src="{{this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.picture : defaultUrl}}"
-                   alt="" />
-              <img *ngIf="this.applicantDataService.applicantImage != undefined"
-                   [src]="this.applicantDataService.applicantImage"
-                   alt="" />
-            </div>
-            <div class="d-flex flex-column flex-sm-row upload-btns gap-2">
-              <button type="file"
-                      class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8 position-relative text-nowrap"
-                      (change)="selectFile($event)">
-                      {{t('profile.change-avatar')}}
-                <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0"
-                       type="file"
-                       id="formFile" />
-              </button>
-              <button type="button"
-                      (click)="removeAvtar()"
-                      class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap">
-                      {{t('profile.remove-avatar')}}
-              </button>
+      </h2> -->
+        <div class="main-container mb-0">
+          <div id="basicInformation"
+               class="sign-up-info-div profile-div">
+            <span class="heading">{{t('profile.profile-picture')}}</span>
+            <div class="d-flex align-items-center upload-profile-pic mt-3">
+              <div class="profile">
+                <img *ngIf="this.applicantDataService.applicantImage == undefined"
+                     src="{{this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.picture : defaultUrl}}"
+                     alt="" />
+                <img *ngIf="this.applicantDataService.applicantImage != undefined"
+                     [src]="this.applicantDataService.applicantImage"
+                     alt="" />
+              </div>
+              <div class="d-flex flex-column flex-sm-row upload-btns gap-2">
+                <button type="file"
+                        class="btn bg-midnight-moss text-white rounded font-poppins-medium fs-8 position-relative text-nowrap"
+                        (change)="selectFile($event)">
+                  {{t('profile.change-avatar')}}
+                  <input class="form-control position-absolute opacity-0 h-100 w-100 left-0 top-0"
+                         type="file"
+                         id="formFile" />
+                </button>
+                <button type="button"
+                        (click)="removeAvtar()"
+                        class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8 text-nowrap">
+                  {{t('profile.remove-avatar')}}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="sign-up-info-div cv-div">
-          <div class="heading mb-3">{{t('profile.cv-file')}}</div>
-          <p class="font-poppins-bold text-midnight-moss">{{t('profile.upload')}}</p>
-          <div class="upload-file">
-            <img src="assets/SVG/upload.svg"
-                 alt="" />
-            <p class="upload-text">
-              <span>{{t('profile.upload-text')}}</span>{{t('profile.drag-drop')}}
-            </p>
-            <span>{{t('profile.pdf-doc')}} ({{t('profile.max-size')}})</span>
-            <input class="form-control" type="file" id="formFile" (change)="uploadCV($event)" />
-          </div>
-          <div *ngIf="fileList.length > 0"
-               class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
-            <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center"
-                 *ngFor="let file of fileList">
-              <div class="file-details rounded">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="file-icon">
-                    <img src="assets/SVG/pdf-icon.svg"
-                         alt=""
-                         *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
-                    <img src="assets/SVG/doc-icon.svg"
-                         alt=""
-                         *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+          <div id="cv"
+               class="sign-up-info-div cv-div">
+            <div class="heading mb-3">{{t('profile.cv-file')}}</div>
+            <p class="font-poppins-bold text-midnight-moss">{{t('profile.upload')}}</p>
+            <div class="upload-file">
+              <img src="assets/SVG/upload.svg"
+                   alt="" />
+              <p class="upload-text">
+                <span>{{t('profile.upload-text')}}</span>{{t('profile.drag-drop')}}
+              </p>
+              <span>{{t('profile.pdf-doc')}} ({{t('profile.max-size')}})</span>
+              <input class="form-control"
+                     type="file"
+                     id="formFile"
+                     (change)="uploadCV($event)" />
+            </div>
+            <div *ngIf="fileList.length > 0"
+                 class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
+              <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center"
+                   *ngFor="let file of fileList">
+                <div class="file-details rounded">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="file-icon">
+                      <img src="assets/SVG/pdf-icon.svg"
+                           alt=""
+                           *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
+                      <img src="assets/SVG/doc-icon.svg"
+                           alt=""
+                           *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+                    </div>
+                    <div class="file-name-type">
+                      <span class="file-name">{{ file.name }}</span>
+                      <h6 class="file-type font-poppins-bold"
+                          *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF
+                      </h6>
+                      <h6 class="file-type font-poppins-bold"
+                          *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word
+                      </h6>
+                    </div>
                   </div>
-                  <div class="file-name-type">
-                    <span class="file-name">{{ file.name }}</span>
-                    <h6 class="file-type font-poppins-bold"
-                        *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
-                    <h6 class="file-type font-poppins-bold"
-                        *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
-                  </div>
-                </div>
 
-                <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
-                  <img height="20"
-                       src="assets/SVG/delete.svg"
-                       alt=""
-                       (click)="DeleteFile(file)" />
+                  <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+                    <img height="20"
+                         src="assets/SVG/delete.svg"
+                         alt=""
+                         (click)="DeleteFile(file)" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="sign-up-info-div about-me">
-          <span class="heading">{{t('profile.about-me')}}</span>
-          <ckeditor [editor]="Editor"  [(ngModel)]="aboutMe"></ckeditor>
-          <div *ngIf="editAboutMe" class="d-flex justify-content-end mt-2">
-            <button type="button"
-                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap"
-                    (click)="UpdateAboutme()">
-              Save
-            </button>
+          <div id="about"
+               class="sign-up-info-div about-me">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="heading">{{t('profile.about-me')}}</span>
+              <img src="assets/SVG/edit-icon.svg"
+                   alt=""
+                   class="cursor-pointer" />
+            </div>
+            <ckeditor [editor]="Editor"
+                      [(ngModel)]="aboutMe"
+                      [disabled]=true
+                      ></ckeditor>
+            <div *ngIf="editAboutMe"
+                 class="d-flex justify-content-end mt-2">
+              <button type="button"
+                      class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap"
+                      (click)="UpdateAboutme()">
+                Save
+              </button>
+            </div>
           </div>
-        </div>
-        <!-- <div class="sign-up-info-div">
+          <!-- <div class="sign-up-info-div">
           <form class="row" action="">
             <div class="d-flex flex-column col-md-6 col-12">
               <p class="text-midnight-moss font-poppins-medium">Email</p>
@@ -121,20 +141,84 @@
             </div>
           </form>
         </div> -->
-        <div class="sign-up-info-div">
-          <div class="d-flex align-items-center justify-content-between">
+          <div id="profile"
+               class="sign-up-info-div">
+            <h4 class="font-poppins-bold text-midnight-moss">{{t('basicInfo.profile')}}</h4>
+            <app-add-edit-basicinformation [isUserProfile]="true"
+                                           *ngIf="index === 1"></app-add-edit-basicinformation>
+            <app-contact-info [isUserProfile]="true"
+                              *ngIf="index === 2"></app-contact-info>
+            <app-address [isUserProfile]="true"
+                         *ngIf="index === 3"></app-address>
+            <app-identification [isUserProfile]="true"
+                                *ngIf="index === 4"></app-identification>
+            <!-- <app-user-info></app-user-info> -->
+            <!-- <div class="d-flex align-items-center justify-content-between">
             <span class="heading">{{t('profile.profile')}}</span>
             <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToProfile()" />
+          </div> -->
+            <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns mt-2">
+              <button type="button"
+                      class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3"
+                      (click)="DiscardData()"
+                      [ngClass]="{'order-1': isTranslate}">
+                {{t('basicInfo.discard')}}
+              </button>
+              <button type="button"
+                      class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3"
+                      [ngClass]="{'order-2': isTranslate}"
+                      (click)="Back(index)">
+                {{t('basicInfo.back')}}
+              </button>
+              <button type="button"
+                      class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+                      (click)="Next()">
+                {{t('basicInfo.next')}}
+              </button>
+
+              <!-- <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5">
+                  {{t('basicInfo.save-changes')}}
+                </button> -->
+
+            </div>
+          </div>
+          <div id="competencies"
+               class="sign-up-info-div">
+            <h4 class="font-poppins-bold text-midnight-moss">{{t('competencies.competencies')}}</h4>
+            <app-skills *ngIf="competencyIndex === 1"></app-skills>
+            <app-experience *ngIf="competencyIndex === 2"></app-experience>
+            <app-education *ngIf="competencyIndex === 3"></app-education>
+            <app-certificates *ngIf="competencyIndex === 4"></app-certificates>
+            <app-courses *ngIf="competencyIndex === 5"></app-courses>
+            <app-positionoftrust *ngIf="competencyIndex === 6"></app-positionoftrust>
+            <!-- <div class="d-flex align-items-center justify-content-between">
+              <span class="heading">{{t('profile.competencies')}}</span>
+              <img src="assets/SVG/edit-icon.svg"
+                   alt=""
+                   class="cursor-pointer"
+                   (click)="RouteToCompetencies()" />
+            </div> -->
+            <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
+              <button type="button"
+                      class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
+                      [ngClass]="{'order-1': isTranslate}">
+                {{t('competencies.discard')}}
+              </button>
+              <button type="button"
+                      class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
+                      [ngClass]="{'order-2': isTranslate}"
+                      (click)="PrevCompetency(index)">
+                {{t('competencies.back')}}
+              </button>
+              <button type="button"
+                      class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+                      (click)="NextCompetency()">
+                {{t('competencies.next')}}
+              </button>
+            </div>
           </div>
         </div>
-        <div class="sign-up-info-div">
-          <div class="d-flex align-items-center justify-content-between">
-            <span class="heading">{{t('profile.competencies')}}</span>
-            <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToCompetencies()" />
-          </div>
-        </div>
-      </div>
-      <h2 id="notifications" class="font-poppins-medium text-midnight-moss">
+        <!-- <h2 id="notifications" class="font-poppins-medium text-midnight-moss">
         {{t('profile.notifications')}}
       </h2>
       <div class="main-container mb-0">
@@ -184,18 +268,18 @@
             </button>
           </div>
         </div>
-      </div>
-      <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
-        <button type="button"
-          class="btn border border-color-gainsboro text-midnight-moss bg-white rounded font-poppins-medium fs-8 py-2 px-3">
-          {{t('profile.discard')}}
-        </button>
-        <button type="button"
-          class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
-          {{t('profile.save-changes')}}
-        </button>
+      </div> -->
+        <!-- <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
+            <button type="button"
+                    class="btn border border-color-gainsboro text-midnight-moss bg-white rounded font-poppins-medium fs-8 py-2 px-3">
+              {{t('profile.discard')}}
+            </button>
+            <button type="button"
+                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
+              {{t('profile.save-changes')}}
+            </button>
+          </div> -->
       </div>
     </div>
   </div>
-</div>
 </ng-container>
