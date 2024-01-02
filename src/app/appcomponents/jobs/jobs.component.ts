@@ -111,7 +111,7 @@ export class JobsComponent implements OnInit {
         this.selectedJob.Overview = this.sharedService.jobDetail?.OverviewArabic ? this.sharedService.jobDetail?.OverviewArabic : this.sharedService.jobDetail?.Overview;  
         // this.selectedJob.Skills = this.sharedService.jobDetail?.SkillsArabicList ? this.sharedService.jobDetail?.SkillsArabicList : this.sharedService.jobDetail?.Skills;        
         for(let skill of this.selectedJob.Skills?.parmRecruitmentSkillsList) {
-          skill.Skill = skill.skillsArabic;
+          skill.Skill = skill.skillsArabic ? skill.skillsArabic : skill.Skill;
         }
       } else {
         this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.jobDetail);
