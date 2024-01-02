@@ -43,6 +43,9 @@ export class QuickApplyComponent implements OnInit {
   name: string = '';
   email: string = '';
   phonePlaceHolder:any;
+  fileCvData: any;
+  attchments: any[] = [];
+  fileNames: any[] = [];
   get f() { return this.quickApplyForm.controls; }
   constructor(
     private router: Router,
@@ -70,7 +73,8 @@ export class QuickApplyComponent implements OnInit {
       residentIdentity: [0],
       residentIdentityProfessional: [''],
       periodJoin: [''],
-      attachment: ['']
+      attachments: [['']],
+      fileNames: [['']]
     });
   }
 
@@ -188,7 +192,22 @@ export class QuickApplyComponent implements OnInit {
   }
 
   onFileUpload(files: any) {
-    this.fileList = files.target.files;
+    if (files.target.files.length > 0) {
+      this.attchments = [];
+			for (let file of files.target.files) {
+        this.fileCvData = files.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(this.fileCvData);
+        reader.onload = () => {
+          let cvData: any = reader.result;
+          this.attchments.push(cvData.substring(cvData.indexOf('base64,') + 7, cvData.length));
+          this.fileNames.push(this.fileCvData.name);
+          this.quickApplyForm.controls.attachments.setValue(this.attchments);
+          this.quickApplyForm.controls.fileNames.setValue(this.fileNames);
+        };
+      }
+		}
+		this.fileList = files.target.files;
   }
 
   DeleteFile(selectedFile: File) {

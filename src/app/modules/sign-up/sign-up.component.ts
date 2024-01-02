@@ -67,8 +67,8 @@ export class SignUpComponent implements OnInit {
 			confirmpassword: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
 			aboutMe: [''],
 			cvAttachment: [''],
-			ipAddress: ['']
-
+			ipAddress: [''],
+			fileName: ['']
 		});
 		if (this.userInfo.applicantForm == undefined) {
 			this.userInfo.prepareApplicantFormGroup();
@@ -156,6 +156,7 @@ export class SignUpComponent implements OnInit {
 			reader.onload = () => {
 				this.cvData = reader.result;
 				this.userForm.controls.cvAttachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+				this.userForm.controls.fileName.setValue(this.fileCvData.name);
 			};
 		}
 		this.fileList = files.target.files;
@@ -173,6 +174,7 @@ export class SignUpComponent implements OnInit {
 			this.userData = {
 				...this.userForm.getRawValue(),
 				ipAddress: this.userForm?.controls.ipAddress.value,
+				fileName: this.userForm?.controls.fileName.value
 				//aboutMe:this.aboutMe
 			}
 			var data = await this.lookupService.CreateApplicant(this.userData);
