@@ -14,9 +14,7 @@ import { CompetenciesCommonModule } from '../competencies-common/competencies-co
 
 @NgModule({
   declarations: [
-    
-    CompetenciesComponent,
-    
+    CompetenciesComponent
   ],
   imports: [
     TranslocoRootModule,

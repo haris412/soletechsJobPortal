@@ -111,7 +111,7 @@
               <button type="button"
                       class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap"
                       (click)="UpdateAboutme()">
-                Save
+                      {{t('profile.save-changes')}}
               </button>
             </div>
           </div>
@@ -143,7 +143,7 @@
         </div> -->
           <div id="profile"
                class="sign-up-info-div">
-            <h4 class="font-poppins-bold text-midnight-moss">{{t('basicInfo.profile')}}</h4>
+            <h4 class="font-poppins-bold text-midnight-moss">{{t('profile.profile')}}</h4>
             <app-add-edit-basicinformation [isUserProfile]="true"
                                            *ngIf="index === 1"></app-add-edit-basicinformation>
             <app-contact-info [isUserProfile]="true"
@@ -162,18 +162,18 @@
                       class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3"
                       (click)="DiscardData()"
                       [ngClass]="{'order-1': isTranslate}">
-                {{t('basicInfo.discard')}}
+                {{t('profile.discard')}}
               </button>
               <button type="button"
                       class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3"
                       [ngClass]="{'order-2': isTranslate}"
                       (click)="Back(index)">
-                {{t('basicInfo.back')}}
+                {{t('profile.back')}}
               </button>
               <button type="button"
                       class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
                       (click)="Next()">
-                {{t('basicInfo.next')}}
+                {{t('profile.next')}}
               </button>
 
               <!-- <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5">
@@ -184,7 +184,7 @@
           </div>
           <div id="competencies"
                class="sign-up-info-div">
-            <h4 class="font-poppins-bold text-midnight-moss">{{t('competencies.competencies')}}</h4>
+            <h4 class="font-poppins-bold text-midnight-moss">{{t('profile.competencies')}}</h4>
             <app-skills *ngIf="competencyIndex === 1"></app-skills>
             <app-experience *ngIf="competencyIndex === 2"></app-experience>
             <app-education *ngIf="competencyIndex === 3"></app-education>
@@ -202,18 +202,18 @@
               <button type="button"
                       class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
                       [ngClass]="{'order-1': isTranslate}">
-                {{t('competencies.discard')}}
+                {{t('profile.discard')}}
               </button>
               <button type="button"
                       class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
                       [ngClass]="{'order-2': isTranslate}"
                       (click)="PrevCompetency(index)">
-                {{t('competencies.back')}}
+                {{t('profile.back')}}
               </button>
               <button type="button"
                       class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
                       (click)="NextCompetency()">
-                {{t('competencies.next')}}
+                {{t('profile.next')}}
               </button>
             </div>
           </div>

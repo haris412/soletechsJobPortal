@@ -10,6 +10,8 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { LinkedInService } from 'src/app/modules/applicant-portal/services/linkedin.service';
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
+import { forkJoin } from 'rxjs';
+import { LookupParameters } from 'src/app/models/look-up.model';
 
 
 @Component({
@@ -56,7 +58,9 @@ export class AddEditBasicinformationComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.GetLookups();
+    await this.userInfoService.GetApplicantProfile();
     this.applicantForm.patchValue({
       ...this.userInfoService.basicInfo,
       gender: this.userInfoService.basicInfo?.gender?.toString(),
@@ -122,5 +126,61 @@ export class AddEditBasicinformationComponent implements OnInit {
  	}
    removeAvtar() {
 		this.imageAvatar = this.defaultUrl;
+	}
+  async GetLookups() {
+		let params: LookupParameters = {
+			dataAreaId: 'USMF',
+			languageId: 'en-us'
+		}
+		const lookUps = await forkJoin({
+			countries: this.lookUpService.GetCountryRegionLookup(params),
+			ethnic: this.lookUpService.GetEthnicOriginLookup(params),
+			nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
+			highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
+			reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
+			identificationType: this.lookUpService.GetIdentificationTypeLookup(params),
+		}).toPromise();
+		lookUps?.countries?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.countryRegions.push(data);
+		}
+		);
+		lookUps?.ethnic?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.ethnic.push(data);
+		}
+		);
+		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.nativeLanguage.push(data);
+		}
+		);
+		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.highestDegree.push(data);
+		}
+		);
+		lookUps?.reasonCodes?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.reasonCodes.push(data);
+		}
+		);
+		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.identificationType.push(data);
+		}
+		);
 	}
 }

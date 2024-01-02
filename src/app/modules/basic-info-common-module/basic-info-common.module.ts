@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BasicInfoCommonModuleComponent } from './basic-info-common-module.component';
 import { AddEditAddressComponent } from './components/add-edit-address/add-edit-address.component';
 import { AddEditBasicinformationComponent } from './components/add-edit-basicinformation/add-edit-basicinformation.component';
 import { AddEditContactInfoComponent } from './components/add-edit-contact-info/add-edit-contact-info.component';
@@ -31,7 +30,6 @@ import { TranslocoRootModule } from 'src/app/transloco-root.module';
     CommonModule,
     NgxMatIntlTelInputComponent,
     ToastrModule.forRoot(),
-    CommonModule
   ],
   
   exports : [

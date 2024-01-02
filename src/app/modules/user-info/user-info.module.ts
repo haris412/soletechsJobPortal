@@ -9,15 +9,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslocoRootModule } from 'src/app/transloco-root.module';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { BasicInfoCommonModule } from '../basic-info-common-module/basic-info-common.module';
-
-
-
-
 @NgModule({
   declarations: [
-    UserInfoComponent,
-    
-    
+    UserInfoComponent
   ],
   imports: [
     TranslocoRootModule,
@@ -30,8 +24,7 @@ import { BasicInfoCommonModule } from '../basic-info-common-module/basic-info-co
     BasicInfoCommonModule
   ],
   exports:[
-    UserInfoComponent,
-    
+    UserInfoComponent
   ],
   providers: [],
 })
