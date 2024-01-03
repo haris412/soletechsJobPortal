@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; scope: 'basicInfo';">
 
-  <div [ngClass]="!isUserProfile ? 'main-container':''">
+  <div class="main-container" [ngClass]="{'mb-0' : isUserProfile}">
     <!-- <div class="sign-up-info-div profile-div">
     <span class="heading">Profile Picture</span>
     <div class="d-flex align-items-center upload-profile-pic mt-3">

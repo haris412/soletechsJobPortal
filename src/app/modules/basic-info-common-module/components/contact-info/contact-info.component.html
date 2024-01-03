@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; scope: 'basicInfo';">
 
-<div [ngClass]="!isUserProfile ? 'main-container':''">
+<div class="main-container" [ngClass]="{'mb-0' : isUserProfile}">
   <div class="sign-up-info-div">
     <div class="d-flex align-items-center justify-content-between">
       <span class="heading">{{t('basicInfo.contact')}}</span>
