@@ -9,6 +9,7 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { userApplicantImage } from 'src/app/models/userImageParameters';
 import { UpdateAboutMe } from 'src/app/models/update-about-me.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { CompetenciesCommonService } from '../competencies-common/components/services/competencies-common.service';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class UserProfileComponent {
 		public translationService: TranslationAlignmentService,
 		public linkedInServive: LinkedInService,
 		private lookUpService: AppLookUpService,
-		public shareService: SharedService
+		public shareService: SharedService,
+        public competencies: CompetenciesCommonService
 	) {
 		this.translationService.languageChange.subscribe(x => {
 			{
@@ -49,13 +51,16 @@ export class UserProfileComponent {
 		});
 	}
 
-	ngOnInit(): void {
+	async ngOnInit() {
 		if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
 			this.applicantDataService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
 				+ this.applicantDataService.applicantData?.applicantImage);
 		}
-		if (this.applicantDataService.applicantData.aboutMe) {
+		if (this.applicantDataService.applicantData?.aboutMe) {
 			this.aboutMe = this.applicantDataService.applicantData.aboutMe;
+		}
+		if (this.competencies.skillsList.length == 0) {
+			await this.shareService.GetLookUps();
 		}
 	}
 

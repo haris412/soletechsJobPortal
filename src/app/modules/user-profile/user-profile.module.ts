@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { UserProfileComponent } from './user-profile.component';
 import { UserProfileRoutes } from './user-profile-routing';
 import { RouterModule } from '@angular/router';
@@ -30,5 +30,6 @@ import { CompetenciesCommonModule } from '../competencies-common/competencies-co
     BasicInfoCommonModule,
     CompetenciesCommonModule
   ],
+  providers: [DatePipe],
 })
 export class UserProfileModule { }

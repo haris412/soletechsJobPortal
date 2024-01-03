@@ -7,6 +7,7 @@ import { LookupParameters } from 'src/app/models/look-up.model';
 
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { CompetenciesCommonService } from '../competencies-common/components/services/competencies-common.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
     selector: 'app-competencies',
@@ -34,81 +35,15 @@ export class CompetenciesComponent implements OnInit {
     stepperTitle: string = 'Skills';
     public isTranslate: boolean = this.translationService.isTranslate;
     constructor(private location: Location,
-        private lookUpService: AppLookUpService,
-        private competenciesService: CompetenciesCommonService,
+        public sharedService: SharedService,
         public translationService: TranslationAlignmentService) {
             this.translationService.languageChange.subscribe(x=>{{
                 this.isTranslate=x;
               }});
          }
 
-    ngOnInit(): void {
-        this.GetLookUps();
-    }
-
-    async GetLookUps() {
-        let params: LookupParameters = {
-            dataAreaId: 'USMF',
-            languageId: 'en-us'
-        }
-        const lookUps = await forkJoin({
-            skills: this.lookUpService.GetSkillLookup(params),
-            skillLevel: this.lookUpService.GetRatingLevelLookupList(params),
-            educationInstitution: this.lookUpService.GetEducationInstitutionLookupList(params),
-            educationDiscipline: this.lookUpService.GetEducationDisciplineLookupList(params),
-            certificateTypes: this.lookUpService.getCertificateTypeLookUpList(params),
-            personalTitle: this.lookUpService.GetPersonalTitleLookupList(params),
-            educationLevel: this.lookUpService.GetEducationLevelLookupList(params),
-        }).toPromise();
-        lookUps?.skills?.parmList?.forEach((projects: any) => {
-            let data = new Object() as any;
-            data.name = projects.Description;
-            data.value = projects.Id;
-            this.competenciesService.skillsList.push(data);
-        }
-        );
-        lookUps?.skillLevel?.parmList?.forEach((projects: any) => {
-            let data = new Object() as any;
-            data.name = projects.Description;
-            data.value = projects.Id;
-            this.competenciesService.skillLevelList.push(data);
-        }
-        );
-        lookUps?.educationInstitution?.parmList?.forEach((projects: any) => {
-            let data = new Object() as any;
-            data.name = projects.Description;
-            data.value = projects.Id;
-            this.competenciesService.educationInstitutionList.push(data);
-        }
-        );
-        lookUps?.educationDiscipline?.parmList?.forEach((projects: any) => {
-            let data = new Object() as any;
-            data.name = projects.Description;
-            data.value = projects.Id;
-            this.competenciesService.educationDesciplineList.push(data);
-        }
-        );
-        lookUps?.certificateTypes?.parmList?.forEach((projects: any) => {
-            let data = new Object() as any;
-            data.name = projects.Description;
-            data.value = projects.Id;
-            this.competenciesService.certificateTypesList.push(data);
-        }
-        );
-        lookUps?.personalTitle?.parmList?.forEach((projects: any) => {
-            let data = new Object() as any;
-            data.name = projects.Description;
-            data.value = projects.Id;
-            this.competenciesService.personalTitleList.push(data);
-        }
-        );
-        lookUps?.educationLevel?.parmList?.forEach((projects: any) => {
-            let data = new Object() as any;
-            data.name = projects.Description;
-            data.value = projects.Id;
-            this.competenciesService.educationLevelList.push(data);
-        }
-        );
+    async ngOnInit() {
+        await this.sharedService.GetLookUps();
     }
 
     OpenSidenav() {
