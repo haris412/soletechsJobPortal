@@ -120,6 +120,7 @@ export class LeftMenuComponent {
     }
   }
   GoToTab(index: number) {
+    this.ScrolltoTarget('#profile');
     this.index = index;
     if (index === 2) {
       this.isBasicActive = false;
@@ -145,6 +146,7 @@ export class LeftMenuComponent {
     this.switchTab.emit(this.index);
   }
   GoToCompetencyTab(index: number) {
+    this.ScrolltoTarget('#competencies');
     this.competencyIndex = index;
     if (index === 2) {
       this.skillsisActive = false;
