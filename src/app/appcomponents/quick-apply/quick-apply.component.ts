@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, forkJoin, map, startWith } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ApplicationService } from 'src/app/app-services/application.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { Application } from 'src/app/models/applicatiom.model';
 import { Job } from 'src/app/models/job.model';
 import { LookupParameters } from 'src/app/models/look-up.model';
@@ -53,7 +54,8 @@ export class QuickApplyComponent implements OnInit {
     private applicationService: ApplicationService,
     private toastrService: ToastrService,
     public applicant: ApplicantDataService,
-    public sharedService: SharedService 
+    public sharedService: SharedService,
+    public translationService: TranslationAlignmentService
   ) {
     this.name = localStorage.getItem('userName') ?? '';
     this.email = localStorage.getItem('email') ?? '';
@@ -75,6 +77,9 @@ export class QuickApplyComponent implements OnInit {
       periodJoin: [''],
       attachments: [['']],
       fileNames: [['']]
+    });
+    this.translationService.languageChange.subscribe(x => {
+      this.translationService.isTranslate = x;
     });
   }
 

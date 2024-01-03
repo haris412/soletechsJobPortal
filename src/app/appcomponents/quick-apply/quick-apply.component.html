@@ -227,11 +227,11 @@
     </div>
   </form>
   <div class="d-flex align-items-center justify-content-end w-100 gap-2 action-btns">
-    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8"
+    <button type="button" class="btn border-color-midnight-moss text-midnight-moss rounded font-poppins-medium fs-8" [ngClass]="{ 'order-2': this.translationService.isTranslate }"
         (click)="CloseSidenav()">
         {{ t("quickApply.cancel") }}
     </button>
-    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8"
+    <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 text-nowrap"
         (click)="QuickApply()">
         {{ t("quickApply.apply-now") }}
     </button>
