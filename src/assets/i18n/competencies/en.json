@@ -56,6 +56,8 @@
     "provide-education":"Please provide your education",
     "provide-certificate":"Please provide your certificates",
     "provide-course":"Please provide your courses",
-    "provide-position-trust":"Please provide your position of trust"
-
+    "provide-position-trust":"Please provide your position of trust",
+    "click-upload":"Click to upload",
+    "pdf-doc":"PDF or Doc",
+    "max-size":"max.size 6MB"
 }
