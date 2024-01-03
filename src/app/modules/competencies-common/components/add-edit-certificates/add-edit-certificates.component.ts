@@ -18,6 +18,8 @@ export class AddEditCertificatesComponent implements OnInit {
   certificate!: Certificates;
   fileList:any[]=[];
   file:any;
+  fileCvData: any;
+  cvData: any
   certificateTypeList:any[] = [];
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.certiifcateForm.controls; }
@@ -34,7 +36,8 @@ export class AddEditCertificatesComponent implements OnInit {
       renewal: ['',[Validators.required]],
       Note: [''],
       recid:[this.selectedCertificate?.recid ? this.selectedCertificate?.recid : 0],
-      attachment: [''],
+      attachment:[''],
+			fileName: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
@@ -65,6 +68,16 @@ export class AddEditCertificatesComponent implements OnInit {
       this.fileList = [];
     }
     onFileUpload(files: any) {
+      if (files.target.files.length > 0) {
+        this.fileCvData = files.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(this.fileCvData);
+        reader.onload = () => {
+          this.cvData = reader.result;
+          this.certiifcateForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+          this.certiifcateForm.controls.fileName.setValue(this.fileCvData.name);
+        };
+      }
       this.fileList.push(files.target.files[0]);
     }
   

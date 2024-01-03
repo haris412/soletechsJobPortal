@@ -17,6 +17,8 @@ export class AddEditPositionOfTrustComponent implements OnInit{
   fileList:any[]=[];
   file_store!: FileList;
   file:any;
+  fileCvData: any;
+  cvData: any
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.psitionTrustForm.controls; }
   constructor(public translationService: TranslationAlignmentService){
@@ -27,7 +29,8 @@ export class AddEditPositionOfTrustComponent implements OnInit{
       StartDate:['', [Validators.required]],
       EndDate:['', [Validators.required]],
       Notes:[''],
-      attachment:['']
+      attachment:[''],
+			fileName: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
@@ -58,6 +61,16 @@ export class AddEditPositionOfTrustComponent implements OnInit{
       this.fileList = [];
     }
     onFileUpload(files: any) {
+      if (files.target.files.length > 0) {
+        this.fileCvData = files.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(this.fileCvData);
+        reader.onload = () => {
+          this.cvData = reader.result;
+          this.psitionTrustForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+          this.psitionTrustForm.controls.fileName.setValue(this.fileCvData.name);
+        };
+      }
       this.fileList.push(files.target.files[0]);
     }
   

@@ -22,6 +22,8 @@ export class AddEditSkillsComponent implements OnInit {
   skillList:any[] = [];
   skillLevel:any[] = [];
   public isTranslate: boolean = this.translationService.isTranslate;
+  fileCvData: any;
+  cvData: any
   get f() { return this.skillForm.controls; }
   constructor(
     private competenciesService:CompetenciesCommonService,
@@ -31,7 +33,8 @@ export class AddEditSkillsComponent implements OnInit {
       RatingLevelType: ['', [Validators.required]],
       RatingLevelDate: ['', [Validators.required]],
       Experience:['', [Validators.required]],
-      attachment:['']
+      attachment:[''],
+			fileName: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
@@ -64,6 +67,16 @@ export class AddEditSkillsComponent implements OnInit {
       this.fileList = [];
     }
     onFileUpload(files: any) {
+      if (files.target.files.length > 0) {
+        this.fileCvData = files.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(this.fileCvData);
+        reader.onload = () => {
+          this.cvData = reader.result;
+          this.skillForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+          this.skillForm.controls.fileName.setValue(this.fileCvData.name);
+        };
+      }
       this.fileList.push(files.target.files);
     }
   
