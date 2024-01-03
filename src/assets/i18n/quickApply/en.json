@@ -20,5 +20,9 @@
     "pdf-doc":"PDF or Doc",
     "max-size":"max.size 6MB",
     "cancel":"Cancel",
-    "apply-now":"Apply now"
+    "apply-now":"Apply now",
+    "city-placeholder":"Select City",
+    "degree-placeholder":"Select Degree",
+    "country-placeholder":"Select Country",
+    "nationality-paceholder":"Select Nationality"
 }
