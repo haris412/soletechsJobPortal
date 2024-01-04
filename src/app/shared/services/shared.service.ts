@@ -1,8 +1,11 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { forkJoin } from "rxjs";
 import { AppLookUpService } from "src/app/app-services/app-look-up.service";
+import { LookupParameters } from "src/app/models/look-up.model";
 import { SaveJob } from "src/app/models/saveJob.model";
+import { CompetenciesCommonService } from "src/app/modules/competencies-common/components/services/competencies-common.service";
 
 @Injectable({
     providedIn: 'root',
@@ -21,6 +24,7 @@ export class SharedService {
     discardProfileInfo: EventEmitter<boolean> = new EventEmitter();
 
     constructor(public lookupService: AppLookUpService,
+                private competenciesService: CompetenciesCommonService,
                 public toastrService: ToastrService,
                 private router:Router) { }
 
@@ -66,4 +70,69 @@ export class SharedService {
       this.appliedJobs = response?.parmRecruitmentApplicationJobList;
     }
   }
+
+  async GetLookUps() {
+    let params: LookupParameters = {
+        dataAreaId: 'USMF',
+        languageId: 'en-us'
+    }
+    const lookUps = await forkJoin({
+        skills: this.lookupService.GetSkillLookup(params),
+        skillLevel: this.lookupService.GetRatingLevelLookupList(params),
+        educationInstitution: this.lookupService.GetEducationInstitutionLookupList(params),
+        educationDiscipline: this.lookupService.GetEducationDisciplineLookupList(params),
+        certificateTypes: this.lookupService.getCertificateTypeLookUpList(params),
+        personalTitle: this.lookupService.GetPersonalTitleLookupList(params),
+        educationLevel: this.lookupService.GetEducationLevelLookupList(params),
+    }).toPromise();
+    lookUps?.skills?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.competenciesService.skillsList.push(data);
+    }
+    );
+    lookUps?.skillLevel?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.competenciesService.skillLevelList.push(data);
+    }
+    );
+    lookUps?.educationInstitution?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.competenciesService.educationInstitutionList.push(data);
+    }
+    );
+    lookUps?.educationDiscipline?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.competenciesService.educationDesciplineList.push(data);
+    }
+    );
+    lookUps?.certificateTypes?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.competenciesService.certificateTypesList.push(data);
+    }
+    );
+    lookUps?.personalTitle?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.competenciesService.personalTitleList.push(data);
+    }
+    );
+    lookUps?.educationLevel?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.competenciesService.educationLevelList.push(data);
+    }
+    );
+}
 }

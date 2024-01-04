@@ -20,6 +20,8 @@ export class AddEditExperienceComponent implements OnInit {
   fileList: any[] = [];
   file_store!: FileList;
   file: any;
+  fileCvData: any;
+  cvData: any
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.experienceForm.controls; }
   constructor(
@@ -34,7 +36,8 @@ export class AddEditExperienceComponent implements OnInit {
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       notes: [''],
-      attachment: ['']
+      attachment:[''],
+			fileName: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
@@ -66,6 +69,16 @@ export class AddEditExperienceComponent implements OnInit {
     this.fileList = [];
   }
   onFileUpload(files: any) {
+    if (files.target.files.length > 0) {
+      this.fileCvData = files.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.fileCvData);
+      reader.onload = () => {
+        this.cvData = reader.result;
+        this.experienceForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+        this.experienceForm.controls.fileName.setValue(this.fileCvData.name);
+      };
+    }
     this.fileList.push(files.target.files[0]);
   }
   DeleteFile: (selectedFile: File) => void = () => {
