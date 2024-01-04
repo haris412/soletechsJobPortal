@@ -23,15 +23,22 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
               private applicantService:ApplicantDataService,
               public sharedService: SharedService,
               public translationService: TranslationAlignmentService) {
+                this.translationService.languageChange.subscribe(x => {
+                  this.translationService.isTranslate = x;
+                  this.AppliedJobsLanguageChanges();
+                });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes?.appliedJobs?.currentValue){
       this.appliedJobs = changes.appliedJobs.currentValue;
       this.appliedJobs = this.appliedJobs?.filter((job:any)=> job?.approvedApplication == 1);
+      this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
     }
   }
   ngOnInit(): void {
+    this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
+    this.AppliedJobsLanguageChanges();
   }
   GoToJobActions(selectedJob:any) {
     this.applicantService.SetJob(selectedJob);
@@ -43,20 +50,18 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     this.router.navigate(['/jobs']);
   }
 
-  JobDetailLanguageChanges() {
-    // if (this.appliedJobs != null) {
-    //   if (this.translationService.isTranslate) {
-    //     this.selectedJob.Description = this.sharedService.jobDetail?.jobArabic ? this.sharedService.jobDetail?.jobArabic : this.sharedService.jobDetail?.Description;
-    //     this.selectedJob.JobLocation = this.sharedService.jobDetail?.jobLocationArabic ? this.sharedService.jobDetail?.jobLocationArabic : this.sharedService.jobDetail?.JobLocation;
-    //     this.selectedJob.JobAd = this.sharedService.jobDetail?.jobadTextArabic ? this.sharedService.jobDetail?.jobadTextArabic : this.sharedService.jobDetail?.JobAd;
-    //     this.selectedJob.Overview = this.sharedService.jobDetail?.OverviewArabic ? this.sharedService.jobDetail?.OverviewArabic : this.sharedService.jobDetail?.Overview;  
-    //     // this.selectedJob.Skills = this.sharedService.jobDetail?.SkillsArabicList ? this.sharedService.jobDetail?.SkillsArabicList : this.sharedService.jobDetail?.Skills;        
-    //     for(let skill of this.selectedJob.Skills?.parmRecruitmentSkillsList) {
-    //       skill.Skill = skill.skillsArabic ? skill.skillsArabic : skill.Skill;
-    //     }
-    //   } else {
-    //     this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.jobDetail);
-    //   }     
-    // }
+  AppliedJobsLanguageChanges() {
+    if (this.appliedJobs?.length > 0) {
+      if (this.translationService.isTranslate) {
+        for(let i = 0; i < this.appliedJobs.length; i++) {
+          this.appliedJobs[i].Title = this.sharedService.appliedJobsCopy[i]?.JobArabic ? this.sharedService.appliedJobsCopy[i]?.JobArabic : this.sharedService.appliedJobsCopy[i]?.Title;
+          this.appliedJobs[i].Overview = this.sharedService.appliedJobsCopy[i]?.ArabicOverview ? this.sharedService.appliedJobsCopy[i]?.ArabicOverview : this.sharedService.appliedJobsCopy[i]?.Overview;
+          this.appliedJobs[i].JobLocation = this.sharedService.appliedJobsCopy[i]?.jobLocationArabic ? this.sharedService.appliedJobsCopy[i]?.jobLocationArabic : this.sharedService.appliedJobsCopy[i]?.JobLocation;
+          this.appliedJobs[i].jobType = this.sharedService.appliedJobsCopy[i]?.jobTypeArabic ? this.sharedService.appliedJobsCopy[i]?.jobTypeArabic : this.sharedService.appliedJobsCopy[i]?.JobType;
+        }
+      } else {
+        this.appliedJobs = this.sharedService.DeepCopyObject(this.sharedService.appliedJobsCopy);
+      }     
+    }
   }
 }

@@ -15,6 +15,9 @@ export class SharedService {
     public appliedJobs:any[] = [];
     public jobDetail: any;
     public jobs: any;
+    public appliedJobsCopy:any[] = [];
+    public savedJobsCopy:any[]=[];
+    public selectedJobActions:any;
     discardProfileInfo: EventEmitter<boolean> = new EventEmitter();
 
     constructor(public lookupService: AppLookUpService,
