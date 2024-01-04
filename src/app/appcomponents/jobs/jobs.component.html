@@ -141,8 +141,10 @@
         </div>
     </div>
 
-    <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100 text-start"
+    <div class="sidenav p-xxl-5 p-md-4 p-3 bg-white w-xl-45 w-lg-50 w-md-75 w-100"
          [ngClass]="sidenavOpen ? 'open' : 'close'"
+         [class.text-start]="!this.translationService.isTranslate"
+         [class.text-end]="this.translationService.isTranslate"
          *ngIf="sidenavOpen">
         <span class="heading">{{t('jobs.apply')}}</span>
         <app-quick-apply (closeClicked)="CloseSidenav()"
