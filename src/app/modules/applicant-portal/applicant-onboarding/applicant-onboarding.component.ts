@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 
 
 @Component({
@@ -23,9 +24,13 @@ export class ApplicantOnboardingComponent {
   public sidenavOpen: boolean = false;
   title = 'angular';
   index: Number = 1;
-  constructor(private location: Location) { }
+  constructor(private location: Location,
+    private service:AppLookUpService) { }
 
   ngOnInit(): void {
+    let applicantId = localStorage.getItem('applicantId') ?? '';
+    let applicationId = localStorage.getItem('applicationId') ?? '';
+    this.service.GetApplicationOnBoardingList(applicantId,applicationId);
   }
 
   OpenSidenav() {

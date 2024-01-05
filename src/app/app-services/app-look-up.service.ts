@@ -710,4 +710,15 @@ export class AppLookUpService {
             parameters 
         ).toPromise();
     }
+
+    async GetApplicationOnBoardingList(applicantId:string ,applicationId:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicantId', applicantId).
+        set('applicationId',applicationId)
+        return await this.httpClient
+        .get<any>(
+            apiURLs.application.getApplicationOnBoardingList,
+            {params:queryParams}
+        ).toPromise();
+    }
 }
