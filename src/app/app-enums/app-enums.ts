@@ -63,3 +63,19 @@ export enum CreditHourBasis{
      Term = 4,
      Other = 5
 }
+
+export enum CareerPageTaskStatus {
+    None = 0,
+    Identification = 1,
+    Education = 2,
+    Certificate = 3,
+    ProfessionalExperience = 4,
+    References  = 5,
+    MedicalReport = 6
+}
+
+export enum ActivityDuration {
+    BeforeJoining = 0,
+    FirstDay = 2,
+    In30Days = 3
+}

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { ActivityDurationGroupByData, ApplicantOnboardingTasks } from 'src/app/models/ApplicantOnboardingTasks';
+import { ActivityDuration } from 'src/app/app-enums/app-enums';
 
 
 @Component({
@@ -22,15 +25,43 @@ export class ApplicantOnboardingComponent {
   public emergencyContactCompleted: boolean = false;
   public emergencyContactisActive: boolean = false;
   public sidenavOpen: boolean = false;
+  durationGroups: ActivityDurationGroupByData[] = [];
   title = 'angular';
   index: Number = 1;
-  constructor(private location: Location,
-    private service:AppLookUpService) { }
+  ActivityDuration = ActivityDuration;
 
-  ngOnInit(): void {
+  constructor(private location: Location,
+    private service:AppLookUpService,
+    public shared: SharedService) { }
+
+  async ngOnInit() {
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let applicationId = localStorage.getItem('applicationId') ?? '';
-    this.service.GetApplicationOnBoardingList(applicantId,applicationId);
+    let boardingData = await this.service.GetApplicationOnBoardingList(applicantId,applicationId);
+    this.shared.onBoardingData = boardingData.parmRecruitment_ApplicationOnBodingList as ApplicantOnboardingTasks[];
+    const group = this.shared.onBoardingData.reduce((acc: any, curr) => {
+      let key = curr.ActivityDuration;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(curr);
+      return acc;
+    }, {});
+    if (group != undefined) {
+      this.durationGroups = [];
+      let keies = Object.keys(group);
+      for(let item = 0; item < keies.length; item++) {
+        let durationData = new ActivityDurationGroupByData();
+        durationData.ActivityDuration = keies[item];
+        durationData.applicantOnboardingTasks = group[keies[item]];
+        if (durationData.applicantOnboardingTasks.length > 0) {
+          durationData.applicantOnboardingTasks[0].Active = true;
+        }
+        this.durationGroups.push(durationData);
+      }
+    }
+
+    var data = 2;
   }
 
   OpenSidenav() {
@@ -41,49 +72,55 @@ export class ApplicantOnboardingComponent {
     this.sidenavOpen = false;
   }
 
-  Next() {
-    if (this.index === 1) {
-      this.identificationCompleted = true;
-      this.documentsisActive = true;
-      this.index = 2;
-    } else if (this.index === 2) {
-      this.documentsCompleted = true;
-      this.medicalisActive = true;
-      this.index = 3;
-    } else if (this.index === 3) {
-      this.medicalCompleted = true;
-      this.dependentsisActive = true;
-      this.index = 4;
-    } else if (this.index === 4) {
-      this.dependentsCompleted = true
-      this.addressisActive = true;
-      this.index = 5;
-    } else if (this.index === 5) {
-      this.addressCompleted = true;
-      this.emergencyContactisActive = true
-      this.index = 6;
+  Next(durationIndex: string) {
+    let index = this.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.findIndex(y => y.Active);
+    let task = this.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.find(y => y.Active);
+    if (task != undefined && index != undefined) {
+      task.Completed = true;
+      let duration = this.durationGroups.find(x => x.ActivityDuration == durationIndex);
+      if (duration != undefined) {
+        duration.applicantOnboardingTasks.forEach(x => x.Active = false);
+        let taskData = duration.applicantOnboardingTasks[index + 1];
+        if (taskData) {
+          taskData.Active = true;
+        }
+      }
     }
   }
-  Back(index: Number) {
-    if (index === 2) {
-      this.index = 1;
-    } else if (index === 3) {
-      this.index = 2;
-    } else if (index === 4) {
-      this.index = 3;
-    } else if (index === 5) {
-      this.index = 4;
-    } else if (index === 6) {
-      this.index = 5;
+  Back(durationIndex: string) {
+    let index = this.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.findIndex(y => y.Active);
+    if (index != undefined) {
+      let duration = this.durationGroups.find(x => x.ActivityDuration == durationIndex);
+      if (duration != undefined) {
+        duration.applicantOnboardingTasks.forEach(x => x.Active = false);
+        let taskData = duration.applicantOnboardingTasks[index - 1];
+        if (taskData) {
+          taskData.Active = true;
+        }
+      }
     }
   }
   GoBack() {
     this.location.back();
   }
-  GoToTab(index: number) {
-    this.index = index;
+  GoToTab(group: number, index: number) {
+    this.durationGroups[group].applicantOnboardingTasks.forEach(x => x.Active = false);
+    this.durationGroups[group].applicantOnboardingTasks[index].Active = true;
   }
   Discard() { 
     
+  }
+
+  getEnumKeyByEnumValue(enumValue: string) {
+    let key = +enumValue;
+    let returnValue = "";
+    if (enumValue == ActivityDuration.BeforeJoining.toString()) {
+      returnValue = "Before Joining";
+    } else if (enumValue == ActivityDuration.FirstDay.toString()) {
+      returnValue = "First Day";
+    } else {
+      returnValue = "In 30 Days";
+    }
+    return returnValue;
   }
 }

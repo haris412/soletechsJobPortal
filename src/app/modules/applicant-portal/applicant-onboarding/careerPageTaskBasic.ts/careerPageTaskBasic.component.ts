@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-identificationOnboarding',
-  templateUrl: './identification.component.html',
-  styleUrls: ['./identification.component.scss']
+  selector: 'app-careerPageTaskBasic',
+  templateUrl: './careerPageTaskBasic.component.html',
+  styleUrls: ['./careerPageTaskBasic.component.scss']
 })
-export class IdentificationComponent {
+export class CareerPageTaskBasicComponent {
   fileList:any[]=[];
   public identificationForm: UntypedFormGroup | undefined;
+  @Input() taskName: string = '';
+  @Input() taskDescription: string = '';
 
   onFileUpload(files: any) {
     this.fileList = files.target.files;

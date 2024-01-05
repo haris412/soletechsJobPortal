@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AddressComponent } from './address/address.component';
 import { DependentComponent } from './dependent/dependent.component';
 import { DocumentsComponent } from './documents/documents.component';
@@ -8,6 +8,9 @@ import { IdentificationComponent } from './identification/identification.compone
 import { MedicalCheckUpComponent } from './medical-check-up/medical-check-up.component';
 import { ApplicantOnboardingComponent } from './applicant-onboarding.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { CareerPageTaskBasicComponent } from './careerPageTaskBasic.ts/careerPageTaskBasic.component';
+import { CompetenciesCommonModule } from '../../competencies-common/competencies-common.module';
+import { BasicInfoCommonModule } from '../../basic-info-common-module/basic-info-common.module';
 
 
 
@@ -19,12 +22,16 @@ import { MaterialModule } from 'src/app/material/material.module';
     EmergencyContactComponent,
     IdentificationComponent,
     MedicalCheckUpComponent,
-    ApplicantOnboardingComponent
+    ApplicantOnboardingComponent,
+    CareerPageTaskBasicComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    CompetenciesCommonModule,
+    BasicInfoCommonModule
   ],
+  providers: [DatePipe],
   exports: [
     AddressComponent,
     DependentComponent,
