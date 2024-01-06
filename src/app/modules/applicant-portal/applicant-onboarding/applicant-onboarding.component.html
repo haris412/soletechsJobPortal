@@ -20,13 +20,15 @@
       </li>
     </ul>
 
-    <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections" *ngFor="let tasks of duration.applicantOnboardingTasks; index as i">
+    <ng-container *ngFor="let tasks of duration.applicantOnboardingTasks; index as i">
+    <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections" *ngIf="tasks.Active || (tasks.CareerPageTaskStatus == 2 && tasks.Active) || (tasks.CareerPageTaskStatus == 1 && tasks.Active) || (tasks.CareerPageTaskStatus == 3 && tasks.Active) || (tasks.CareerPageTaskStatus == 4 && tasks.Active)" >
       <app-careerPageTaskBasic [taskName]="tasks.taskName" [taskDescription]="tasks.description" *ngIf="tasks.Active"></app-careerPageTaskBasic>
       <app-education *ngIf="tasks.CareerPageTaskStatus == 2 && tasks.Active"></app-education>
       <app-identification *ngIf="tasks.CareerPageTaskStatus == 1 && tasks.Active"></app-identification>
       <app-certificates *ngIf="tasks.CareerPageTaskStatus == 3 && tasks.Active"></app-certificates>
       <app-experience *ngIf="tasks.CareerPageTaskStatus == 4 && tasks.Active"></app-experience>
     </div>
+  </ng-container>
     <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
       <button type="button"
         class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
