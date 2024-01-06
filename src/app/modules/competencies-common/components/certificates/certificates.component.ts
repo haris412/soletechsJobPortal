@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { Certificates } from 'src/app/models/certificates.model';
@@ -18,6 +18,7 @@ export class CertificatesComponent implements OnInit {
   public certificates: any[] = [];
   selectedCertificate!: Certificates;
   personRecId!: number;
+  @Input() isOnboarding : boolean = false;
   constructor(private toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
     private service: AppLookUpService,

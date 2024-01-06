@@ -16,6 +16,7 @@ export class IdentificationComponent implements OnInit {
   public isFile: boolean = false;
   identificationList: Identification[] = [];
   selectedIdentification!:Identification;
+  @Input() isOnboarding : boolean = false;
   @Input() isUserProfile : boolean = false;
   constructor(private toastrService: ToastrService,
               private lookUpService:AppLookUpService,

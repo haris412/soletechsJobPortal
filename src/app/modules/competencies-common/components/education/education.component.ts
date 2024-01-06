@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Education } from '../models/education';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
@@ -22,6 +22,7 @@ export class EducationComponent implements OnInit{
   activeIndex: number = -1;
   isEdit: boolean = false;
   personRecId!:number;
+  @Input() isOnboarding : boolean = false;
 
   constructor(private toastrService: ToastrService,
     private lookUpService:AppLookUpService,

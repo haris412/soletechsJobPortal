@@ -9,11 +9,11 @@
     <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
       <li *ngFor="let tasks of duration.applicantOnboardingTasks; index as i">
         <div class="stepper-progression active rounded-circle border border-color-midnight-moss"
-          [ngClass]="{ 'completed': tasks.Completed, 'active': tasks.Active}">
+          [ngClass]="{ 'completed': tasks.Completed, 'active': tasks.Active, 'last-step':i==duration.applicantOnboardingTasks.length-1}">
           <img *ngIf="tasks.Completed" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="!tasks.Completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
-        <div class="stepper-items" (click)="GoToTab(g, i)">
+        <div class="stepper-items cursor-pointer" (click)="GoToTab(g, i)">
           <img src="assets/SVG/fingerprint.svg" alt="" />
           <p class="text-nowrap">{{tasks.taskName}}</p>
         </div>
@@ -21,12 +21,12 @@
     </ul>
 
     <ng-container *ngFor="let tasks of duration.applicantOnboardingTasks; index as i">
-    <div class="col-xxl-9 col-lg-8 col-12 pb-5 sign-up-sections" *ngIf="tasks.Active || (tasks.CareerPageTaskStatus == 2 && tasks.Active) || (tasks.CareerPageTaskStatus == 1 && tasks.Active) || (tasks.CareerPageTaskStatus == 3 && tasks.Active) || (tasks.CareerPageTaskStatus == 4 && tasks.Active)" >
+    <div class="col-xxl-9 col-lg-8 col-12 sign-up-sections" *ngIf="tasks.Active || (tasks.CareerPageTaskStatus == 2 && tasks.Active) || (tasks.CareerPageTaskStatus == 1 && tasks.Active) || (tasks.CareerPageTaskStatus == 3 && tasks.Active) || (tasks.CareerPageTaskStatus == 4 && tasks.Active)" >
       <app-careerPageTaskBasic [taskName]="tasks.taskName" [taskDescription]="tasks.description" *ngIf="tasks.Active"></app-careerPageTaskBasic>
-      <app-education *ngIf="tasks.CareerPageTaskStatus == 2 && tasks.Active"></app-education>
-      <app-identification *ngIf="tasks.CareerPageTaskStatus == 1 && tasks.Active"></app-identification>
-      <app-certificates *ngIf="tasks.CareerPageTaskStatus == 3 && tasks.Active"></app-certificates>
-      <app-experience *ngIf="tasks.CareerPageTaskStatus == 4 && tasks.Active"></app-experience>
+      <app-education [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 2 && tasks.Active"></app-education>
+      <app-identification [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 1 && tasks.Active"></app-identification>
+      <app-certificates [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 3 && tasks.Active"></app-certificates>
+      <app-experience [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 4 && tasks.Active"></app-experience>
     </div>
   </ng-container>
     <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
