@@ -32,3 +32,9 @@
   }
   
 }
+
+.mark__completed {
+  &:hover {
+    opacity: 0.9;
+  }
+}
