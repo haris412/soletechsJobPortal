@@ -27,6 +27,7 @@ export class ApplicantOnboardingTasks {
     taskName: string = '';
     Active: boolean = false;
     Completed: boolean = false;
+    markAsComplete: boolean = false;
 }
 
 export class ActivityDurationGroupByData {

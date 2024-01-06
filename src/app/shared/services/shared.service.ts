@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { forkJoin } from "rxjs";
 import { AppLookUpService } from "src/app/app-services/app-look-up.service";
-import { ApplicantOnboardingTasks } from "src/app/models/ApplicantOnboardingTasks";
+import { ActivityDurationGroupByData, ApplicantOnboardingTasks } from "src/app/models/ApplicantOnboardingTasks";
 import { LookupParameters } from "src/app/models/look-up.model";
 import { SaveJob } from "src/app/models/saveJob.model";
 import { CompetenciesCommonService } from "src/app/modules/competencies-common/components/services/competencies-common.service";
@@ -23,7 +23,7 @@ export class SharedService {
     public savedJobsCopy:any[]=[];
     public selectedJobActions:any;
     public onBoardingData: ApplicantOnboardingTasks[] = [];
-
+    durationGroups: ActivityDurationGroupByData[] = [];
     discardProfileInfo: EventEmitter<boolean> = new EventEmitter();
 
     constructor(public lookupService: AppLookUpService,

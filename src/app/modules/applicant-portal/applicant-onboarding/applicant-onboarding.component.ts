@@ -25,7 +25,7 @@ export class ApplicantOnboardingComponent {
   public emergencyContactCompleted: boolean = false;
   public emergencyContactisActive: boolean = false;
   public sidenavOpen: boolean = false;
-  durationGroups: ActivityDurationGroupByData[] = [];
+  
   title = 'angular';
   index: Number = 1;
   ActivityDuration = ActivityDuration;
@@ -48,7 +48,7 @@ export class ApplicantOnboardingComponent {
       return acc;
     }, {});
     if (group != undefined) {
-      this.durationGroups = [];
+      this.shared.durationGroups = [];
       let keies = Object.keys(group);
       for(let item = 0; item < keies.length; item++) {
         let durationData = new ActivityDurationGroupByData();
@@ -57,7 +57,7 @@ export class ApplicantOnboardingComponent {
         if (durationData.applicantOnboardingTasks.length > 0) {
           durationData.applicantOnboardingTasks[0].Active = true;
         }
-        this.durationGroups.push(durationData);
+        this.shared.durationGroups.push(durationData);
       }
     }
 
@@ -73,11 +73,11 @@ export class ApplicantOnboardingComponent {
   }
 
   Next(durationIndex: string) {
-    let index = this.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.findIndex(y => y.Active);
-    let task = this.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.find(y => y.Active);
+    let index = this.shared.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.findIndex(y => y.Active);
+    let task = this.shared.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.find(y => y.Active);
     if (task != undefined && index != undefined) {
       task.Completed = true;
-      let duration = this.durationGroups.find(x => x.ActivityDuration == durationIndex);
+      let duration = this.shared.durationGroups.find(x => x.ActivityDuration == durationIndex);
       if (duration != undefined) {
         duration.applicantOnboardingTasks.forEach(x => x.Active = false);
         let taskData = duration.applicantOnboardingTasks[index + 1];
@@ -88,9 +88,9 @@ export class ApplicantOnboardingComponent {
     }
   }
   Back(durationIndex: string) {
-    let index = this.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.findIndex(y => y.Active);
+    let index = this.shared.durationGroups.find(x => x.ActivityDuration == durationIndex)?.applicantOnboardingTasks.findIndex(y => y.Active);
     if (index != undefined) {
-      let duration = this.durationGroups.find(x => x.ActivityDuration == durationIndex);
+      let duration = this.shared.durationGroups.find(x => x.ActivityDuration == durationIndex);
       if (duration != undefined) {
         duration.applicantOnboardingTasks.forEach(x => x.Active = false);
         let taskData = duration.applicantOnboardingTasks[index - 1];
@@ -104,8 +104,8 @@ export class ApplicantOnboardingComponent {
     this.location.back();
   }
   GoToTab(group: number, index: number) {
-    this.durationGroups[group].applicantOnboardingTasks.forEach(x => x.Active = false);
-    this.durationGroups[group].applicantOnboardingTasks[index].Active = true;
+    this.shared.durationGroups[group].applicantOnboardingTasks.forEach(x => x.Active = false);
+    this.shared.durationGroups[group].applicantOnboardingTasks[index].Active = true;
   }
   Discard() { 
     

@@ -3,7 +3,7 @@
     <img src="assets/SVG/Iconback.svg" alt="" />
     <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
   </div>
-  <div class="row mx-0" *ngFor="let duration of this.durationGroups; index as g">
+  <div class="row mx-0" *ngFor="let duration of this.shared.durationGroups; index as g">
     <h2>{{getEnumKeyByEnumValue(duration.ActivityDuration)}}</h2>
     <br />
     <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
@@ -14,7 +14,6 @@
           <p *ngIf="!tasks.Completed" class="bg-midnight-moss rounded-circle"></p>
         </div>
         <div class="stepper-items cursor-pointer" (click)="GoToTab(g, i)">
-          <img src="assets/SVG/fingerprint.svg" alt="" />
           <p class="text-nowrap">{{tasks.taskName}}</p>
         </div>
       </li>
@@ -22,7 +21,7 @@
 
     <ng-container *ngFor="let tasks of duration.applicantOnboardingTasks; index as i">
     <div class="col-xxl-9 col-lg-8 col-12 sign-up-sections" *ngIf="tasks.Active || (tasks.CareerPageTaskStatus == 2 && tasks.Active) || (tasks.CareerPageTaskStatus == 1 && tasks.Active) || (tasks.CareerPageTaskStatus == 3 && tasks.Active) || (tasks.CareerPageTaskStatus == 4 && tasks.Active)" >
-      <app-careerPageTaskBasic [taskName]="tasks.taskName" [taskDescription]="tasks.description" *ngIf="tasks.Active"></app-careerPageTaskBasic>
+      <app-careerPageTaskBasic [taskName]="tasks.taskName" [taskDescription]="tasks.description" [activityDurationIndex]="g" [careerTaskIndex]="i" *ngIf="tasks.Active"></app-careerPageTaskBasic>
       <app-education [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 2 && tasks.Active"></app-education>
       <app-identification [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 1 && tasks.Active"></app-identification>
       <app-certificates [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 3 && tasks.Active"></app-certificates>
