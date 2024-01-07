@@ -30,7 +30,7 @@ export class AppliedJobActionsComponent implements OnInit{
       params => 
       this.applicationId = params?.id
     );
-    this.translationService.languageChange.subscribe(x=>{
+    this.translationService.languageChange.subscribe(x=> {
       this.AppliedJobActionsLanguageChanges();
     });
   }
