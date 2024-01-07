@@ -165,7 +165,7 @@
       </div>
     </div>
     <div class="next-actions"
-         *ngIf="selectedJob?.applicationStatus === 7">
+         *ngIf="selectedJob?.applicationStatus === 8">
       <div class="actions rounded-3">
         <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
           <div class="job-details">
@@ -288,8 +288,8 @@
                      alt="book" />
               </div>
               <div class="d-flex flex-column action-details">
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Congratulations!!!! You Were Selected</h6>
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Senior UX/UI</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Congratulations!!!! You Are Selected</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{selectedJob?.Title}}</h6>
                 <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
                   <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
                     <div class="d-flex align-items-center gap-2">
@@ -297,7 +297,7 @@
                            src="assets/SVG/ic_Location.svg"
                            alt="" />
                       <p class="text-midnight-moss font-poppins-medium mb-0">
-                        Dubai, UAE
+                        {{selectedJob?.JobLocation}}
                       </p>
                     </div>
                     <div class="d-flex align-items-center gap-2">
@@ -305,7 +305,7 @@
                            src="assets/SVG/ic_Job.svg"
                            alt="" />
                       <p class="text-midnight-moss font-poppins-medium mb-0">
-                        Job Type
+                        {{selectedJob?.jobType}}
                       </p>
                     </div>
                   </div>

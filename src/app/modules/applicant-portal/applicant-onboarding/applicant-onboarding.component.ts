@@ -38,8 +38,8 @@ export class ApplicantOnboardingComponent {
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let applicationId = localStorage.getItem('applicationId') ?? '';
     let boardingData = await this.service.GetApplicationOnBoardingList(applicantId,applicationId);
-    this.shared.onBoardingData = boardingData.parmRecruitment_ApplicationOnBodingList as ApplicantOnboardingTasks[];
-    const group = this.shared.onBoardingData.reduce((acc: any, curr) => {
+    this.shared.onBoardingData = boardingData?.listOnboarding?.parmRecruitment_ApplicationOnBoardingList as ApplicantOnboardingTasks[];
+    const group = this.shared.onBoardingData?.reduce((acc: any, curr) => {
       let key = curr.ActivityDuration;
       if (!acc[key]) {
         acc[key] = [];
