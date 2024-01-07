@@ -35,6 +35,7 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
       this.appliedJobs = this.appliedJobs?.filter((job:any)=> job?.approvedApplication == 1);
       this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
     }
+    this.AppliedJobsLanguageChanges();
   }
   ngOnInit(): void {
     this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
