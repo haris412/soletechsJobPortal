@@ -24,6 +24,7 @@ export class SharedService {
     public selectedJobActions:any;
     public onBoardingData: ApplicantOnboardingTasks[] = [];
     durationGroups: ActivityDurationGroupByData[] = [];
+    // orBoardingDataCopy:any
     discardProfileInfo: EventEmitter<boolean> = new EventEmitter();
 
     constructor(public lookupService: AppLookUpService,
