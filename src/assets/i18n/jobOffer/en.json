@@ -1,0 +1,23 @@
+{
+    "accept-offer":"Accept Offer",
+    "reject-offer":"Reject Offer",
+    "basic-information":"Basic Information",
+    "finance-information":"Finance Information",
+    "benefits":"Benefits",
+    "date":"Date",
+    "candidate":"Candidate",
+    "nationality":"Nationality",
+    "position":"Position",
+    "location":"Location",
+    "phone":"Phone",
+    "contract-period":"Contract Period",
+    "net-salary":"Net Salary",
+    "valid-from":"Valid From",
+    "valid-to":"Valid To",
+    "offer-date":"Offer Date",
+    "vacation-days":"Vacation Days",
+    "medical-insurance":"Medical insurance",
+    "probabtion-period":"Probation Period"
+    
+
+}
