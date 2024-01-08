@@ -61,7 +61,7 @@ export class ApplicantOnboardingComponent {
         let durationData = new ActivityDurationGroupByData();
         durationData.ActivityDuration = keies[item];
         durationData.applicantOnboardingTasks = group[keies[item]];
-        if (durationData.applicantOnboardingTasks.length > 0) {
+        if (durationData.applicantOnboardingTasks.length > 0 && item == 0) {
           durationData.applicantOnboardingTasks[0].Active = true;
         }
         this.shared.durationGroups.push(durationData);
@@ -86,10 +86,12 @@ export class ApplicantOnboardingComponent {
       task.Completed = true;
       let duration = this.shared.durationGroups.find(x => x.ActivityDuration == durationIndex);
       if (duration != undefined) {
-        duration.applicantOnboardingTasks.forEach(x => x.Active = false);
-        let taskData = duration.applicantOnboardingTasks[index + 1];
-        if (taskData) {
-          taskData.Active = true;
+        if (duration.applicantOnboardingTasks[index + 1]) {
+          duration.applicantOnboardingTasks.forEach(x => x.Active = false);
+          let taskData = duration.applicantOnboardingTasks[index + 1];
+          if (taskData) {
+            taskData.Active = true;
+          }
         }
       }
     }
@@ -99,10 +101,12 @@ export class ApplicantOnboardingComponent {
     if (index != undefined) {
       let duration = this.shared.durationGroups.find(x => x.ActivityDuration == durationIndex);
       if (duration != undefined) {
-        duration.applicantOnboardingTasks.forEach(x => x.Active = false);
-        let taskData = duration.applicantOnboardingTasks[index - 1];
-        if (taskData) {
-          taskData.Active = true;
+        if (duration.applicantOnboardingTasks[index - 1]) {
+          duration.applicantOnboardingTasks.forEach(x => x.Active = false);
+          let taskData = duration.applicantOnboardingTasks[index - 1];
+          if (taskData) {
+            taskData.Active = true;
+          }
         }
       }
     }
@@ -143,5 +147,9 @@ export class ApplicantOnboardingComponent {
     //     this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.selectedJobActions);
     //   }     
     // }
+  }
+  AnyTaskIsActive(durationIndex: string) {
+    let index = this.shared.durationGroups.findIndex(x => x.ActivityDuration == durationIndex);
+    return this.shared.durationGroups[index].applicantOnboardingTasks.find(x => x.Active || x.Completed) ? true : false;
   }
 }
