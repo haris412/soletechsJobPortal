@@ -47,5 +47,7 @@
      "basic-info-text":"Please provide your name and email",
      "no-info":"You haven't added any information",
      "address-description":"Description",
-     "attachment":"Attachment"
+     "attachment":"Attachment",
+     "basic-inf":"Basic Info"
+
 }

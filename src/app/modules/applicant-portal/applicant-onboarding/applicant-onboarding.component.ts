@@ -4,6 +4,7 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivityDurationGroupByData, ApplicantOnboardingTasks } from 'src/app/models/ApplicantOnboardingTasks';
 import { ActivityDuration } from 'src/app/app-enums/app-enums';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 
 @Component({
@@ -32,7 +33,13 @@ export class ApplicantOnboardingComponent {
 
   constructor(private location: Location,
     private service:AppLookUpService,
-    public shared: SharedService) { }
+    public shared: SharedService,
+    public translationService: TranslationAlignmentService,
+    ) {
+      this.translationService.languageChange.subscribe(x=> {
+        this.OnboardingJobActionLanguageChanges();
+      });
+     }
 
   async ngOnInit() {
     let applicantId = localStorage.getItem('applicantId') ?? '';
@@ -122,5 +129,19 @@ export class ApplicantOnboardingComponent {
       returnValue = "In 30 Days";
     }
     return returnValue;
+  }
+  OnboardingJobActionLanguageChanges() {
+    // if (this.selectedJob !== null) {
+    //   if (this.translationService.isTranslate) {
+    //     this.selectedJob.Description = this.sharedService.selectedJobActions?.jobArabic ? this.sharedService.selectedJobActions?.jobArabic : this.sharedService.selectedJobActions?.Description;
+    //     this.selectedJob.Title = this.sharedService.selectedJobActions?.JobArabic ? this.sharedService.selectedJobActions?.JobArabic : this.sharedService.selectedJobActions?.Title;
+    //     this.selectedJob.JobLocation = this.sharedService.selectedJobActions?.jobLocationArabic ? this.sharedService.selectedJobActions?.jobLocationArabic : this.sharedService.selectedJobActions?.JobLocation;
+    //     this.selectedJob.JobAd = this.sharedService.selectedJobActions?.jobadTextArabic ? this.sharedService.selectedJobActions?.jobadTextArabic : this.sharedService.selectedJobActions?.JobAd;
+    //     this.selectedJob.Overview = this.sharedService.selectedJobActions?.ArabicOverview ? this.sharedService.selectedJobActions?.ArabicOverview : this.sharedService.selectedJobActions?.Overview; 
+    //     this.selectedJob.jobType  = this.sharedService.selectedJobActions?.JobTypeArabic ? this.sharedService.selectedJobActions?.JobTypeArabic : this.sharedService.selectedJobActions?.JobType; 
+    //   } else {
+    //     this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.selectedJobActions);
+    //   }     
+    // }
   }
 }

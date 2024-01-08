@@ -49,6 +49,10 @@
     "certificates":"Certificates",
     "courses":"Courses",
     "position-of-trust":"Position of Trust",
-    "education":"Education"
+    "education":"Education",
+    "basic-inf":"Basic Info",
+    "applicant-image":"Applicant Image",
+    "applicant-cv":"Applicant Cv",
+    "about-applicant":"About Applicant"
 
 }

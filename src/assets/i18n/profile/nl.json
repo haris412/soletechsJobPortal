@@ -47,6 +47,10 @@
     "certificates":"الشهادات",
     "courses":"الدورات",
     "position-of-trust":"موقف الثقة",
-    "education":"التعليم"
+    "education":"التعليم",
+    "basic-inf":"معلومات اساسية",
+    "applicant-image":"صورة المتقدم",
+    "applicant-cv":"السيرة الذاتية",
+    "about-applicant":"نبذة عن المتقدم"
 
 }

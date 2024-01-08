@@ -29,7 +29,7 @@
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-md-6 col-12">
-      <p>{{ t("quickApply.name-ar") }}(AR)</p>
+      <p>{{ t("quickApply.name-ar") }}</p>
       <mat-form-field appearance="outline" class="w-100 text-arabic">
         <input matInput [formControlName]="'nameAr'"/>
         <mat-error class="error-message" *ngIf="f.nameAr.hasError('required') && (f.nameAr.dirty || f.nameAr.touched)">Name arabic is Required</mat-error>

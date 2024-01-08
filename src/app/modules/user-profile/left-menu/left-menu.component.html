@@ -1,14 +1,14 @@
 <ng-container *transloco="let t; scope: 'profile';">
 <div class="profile-menu">
-  <h5 class="font-poppins-semi text-midnight-moss">{{t('profile.my-profile')}}</h5>
+  <h5 class="font-poppins-semi text-midnight-moss">{{t('profile.basic-inf')}}</h5>
   <ul [ngClass]="isTranslate ? 'arabic-direction' : ''">
     <li [ngClass]="{'selected':isBasicInfo}" (click)="ScrolltoTarget('#basicInformation')">
-      <h6>{{t('profile.basic-info')}}</h6>
+      <h6>{{t('profile.applicant-image')}}</h6>
     </li>
-    <li [ngClass]="{'selected':cv}" (click)="ScrolltoTarget('#cv')"><h6>{{t('profile.cv')}}</h6></li>
-    <li [ngClass]="{'selected':about}" (click)="ScrolltoTarget('#about')"><h6>{{t('profile.about-me')}}</h6></li>
-    <li [ngClass]="{'selected':profile}" (click)="ScrolltoTarget('#profile')"><h6>{{t('profile.profile')}}</h6></li>
-    <li [ngClass]="{'selected':competencies}" (click)="ScrolltoTarget('#competencies')"><h6>{{t('profile.competencies')}}</h6></li>
+    <li [ngClass]="{'selected':cv}" (click)="ScrolltoTarget('#cv')"><h6>{{t('profile.applicant-cv')}}</h6></li>
+    <li [ngClass]="{'selected':about}" (click)="ScrolltoTarget('#about')"><h6>{{t('profile.about-applicant')}}</h6></li>
+    <!-- <li [ngClass]="{'selected':profile}" (click)="ScrolltoTarget('#profile')"><h6>{{t('profile.profile')}}</h6></li>
+    <li [ngClass]="{'selected':competencies}" (click)="ScrolltoTarget('#competencies')"><h6>{{t('profile.competencies')}}</h6></li> -->
     <!-- <li [ngClass]="{'selected':notifications}" (click)="ScrolltoTarget('#notifications')"><h6>{{t('profile.notifications')}}</h6></li>
     <li [ngClass]="{'selected':deactivate}" (click)="ScrolltoTarget('#deactivate')"><h6>{{t('profile.deactivate-account')}}</h6></li> -->
   </ul>

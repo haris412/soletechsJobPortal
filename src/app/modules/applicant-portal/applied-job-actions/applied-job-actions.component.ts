@@ -31,6 +31,7 @@ export class AppliedJobActionsComponent implements OnInit{
       this.applicationId = params?.id
     );
     this.translationService.languageChange.subscribe(x=> {
+      this.translationService.isTranslate = x;
       this.AppliedJobActionsLanguageChanges();
     });
   }
@@ -66,9 +67,11 @@ export class AppliedJobActionsComponent implements OnInit{
     if (this.selectedJob !== null) {
       if (this.translationService.isTranslate) {
         this.selectedJob.Description = this.sharedService.selectedJobActions?.jobArabic ? this.sharedService.selectedJobActions?.jobArabic : this.sharedService.selectedJobActions?.Description;
+        this.selectedJob.Title = this.sharedService.selectedJobActions?.JobArabic ? this.sharedService.selectedJobActions?.JobArabic : this.sharedService.selectedJobActions?.Title;
         this.selectedJob.JobLocation = this.sharedService.selectedJobActions?.jobLocationArabic ? this.sharedService.selectedJobActions?.jobLocationArabic : this.sharedService.selectedJobActions?.JobLocation;
         this.selectedJob.JobAd = this.sharedService.selectedJobActions?.jobadTextArabic ? this.sharedService.selectedJobActions?.jobadTextArabic : this.sharedService.selectedJobActions?.JobAd;
-        this.selectedJob.Overview = this.sharedService.selectedJobActions?.OverviewArabic ? this.sharedService.selectedJobActions?.OverviewArabic : this.sharedService.selectedJobActions?.Overview; 
+        this.selectedJob.Overview = this.sharedService.selectedJobActions?.ArabicOverview ? this.sharedService.selectedJobActions?.ArabicOverview : this.sharedService.selectedJobActions?.Overview; 
+        this.selectedJob.jobType  = this.sharedService.selectedJobActions?.JobTypeArabic ? this.sharedService.selectedJobActions?.JobTypeArabic : this.sharedService.selectedJobActions?.JobType; 
       } else {
         this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.selectedJobActions);
       }     

@@ -21,5 +21,8 @@
     "search-jobs":"البحث عن وظيفة",
     "confirm":"تأكيد",
     "reschedule":"إعادة تحديد الموعد",
-    "actions":"أجراءات"
+    "actions":"أجراءات",
+    "start-on-boarding":"ابدأ الإعداد",
+    "job-details":"تفاصيل الوظيفة"
+
 }

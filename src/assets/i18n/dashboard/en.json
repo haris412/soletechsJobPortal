@@ -21,5 +21,7 @@
     "search-jobs":"Search Jobs",
     "confirm":"Confirm",
     "reschedule":"Reschedule",
-    "actions":"Actions"
+    "actions":"Actions",
+    "start-on-boarding":"Start onboarding",
+    "job-details":"Job details"
 }

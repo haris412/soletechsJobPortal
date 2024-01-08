@@ -11,6 +11,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { CareerPageTaskBasicComponent } from './careerPageTaskBasic.ts/careerPageTaskBasic.component';
 import { CompetenciesCommonModule } from '../../competencies-common/competencies-common.module';
 import { BasicInfoCommonModule } from '../../basic-info-common-module/basic-info-common.module';
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 
 
 
@@ -26,6 +27,7 @@ import { BasicInfoCommonModule } from '../../basic-info-common-module/basic-info
     CareerPageTaskBasicComponent
   ],
   imports: [
+    TranslocoRootModule,
     CommonModule,
     MaterialModule,
     CompetenciesCommonModule,

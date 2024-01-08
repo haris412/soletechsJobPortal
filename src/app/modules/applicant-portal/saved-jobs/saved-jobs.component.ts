@@ -31,6 +31,7 @@ export class SavedJobsComponent implements OnInit,OnChanges {
       this.savedJobs = changes.savedJobs.currentValue;
       this.sharedService.savedJobsCopy = this.sharedService.DeepCopyObject(this.savedJobs);
     }
+    this.SavedJobsLanguageChanges();
   }
   GoToJobs() {
     this.router.navigate(['/jobs']);
@@ -43,7 +44,7 @@ export class SavedJobsComponent implements OnInit,OnChanges {
   SavedJobsLanguageChanges() {
     if (this.savedJobs?.length > 0) {
       if (this.translationService.isTranslate) {
-        for(let i = 0; i < this.savedJobs.length; i++) {
+        for(let i = 0; i < this.savedJobs?.length; i++) {
           this.savedJobs[i].recruitingId = this.sharedService.savedJobsCopy[i]?.RecruitingArabic ? this.sharedService.savedJobsCopy[i]?.RecruitingArabic : this.sharedService.savedJobsCopy[i]?.recruitingId;
           this.savedJobs[i].JobLocation = this.sharedService.savedJobsCopy[i]?.jobLocationArabic ? this.sharedService.savedJobsCopy[i]?.jobLocationArabic : this.sharedService.savedJobsCopy[i]?.JobLocation;
           this.savedJobs[i].JobType = this.sharedService.savedJobsCopy[i]?.JobTypeArabic ? this.sharedService.savedJobsCopy[i]?.JobTypeArabic : this.sharedService.savedJobsCopy[i]?.JobType;

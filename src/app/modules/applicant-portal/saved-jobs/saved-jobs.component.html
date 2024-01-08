@@ -26,14 +26,13 @@
             </div> -->
           </div>
         </div>
+        <p class="text-shuttle-grey">
+          {{job?.description}}
+        </p>
         <div class="d-flex align-items-center gap-1 listing-time mb-2">
           <img src="assets/SVG/clock.svg" alt="" />
           <p class="text-shuttle-grey 14 mb-0">{{ job.startDate | date }}</p>
         </div>
-        <p class="text-shuttle-grey">
-          {{job?.description}}
-        </p>
-        
         <div class="d-flex align-items-center gap-1 job-location-info mb-2">
           <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
           <p class="text-midnight-moss mb-0">{{job?.JobLocation}}</p>

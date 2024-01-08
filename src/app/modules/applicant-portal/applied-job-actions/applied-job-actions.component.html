@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; scope: 'dashboard';">
   <div class="container-fluid mt-5"
-       [ngClass]="{'direction-change' : isTranslate}">
+       [ngClass]="{'direction-change' : translationService.isTranslate}">
     <h4 class="text-midnight-moss">{{t('dashboard.applied-jobs')}}</h4>
     <div class="job-detail rounded-3">
       <div class="d-flex align-items-center justify-content-between">
@@ -44,10 +44,9 @@
            *ngIf="selectedJob?.applicationStatus === 5">{{t('dashboard.employed')}}</p>
         <p class="mb-0 font-poppins-medium text-midnight-moss"
            *ngIf="selectedJob?.applicationStatus === 6">{{t('dashboard.offered')}}</p>
-
       </div>
       <div class="stepper-wrapper"
-           [ngClass]="{'reverse-direction' : isTranslate}">
+           [ngClass]="{'reverse-direction' : translationService.isTranslate}">
         <div class="stepper-item"
              [ngClass]="{ 'completed': selectedJob?.applicationStatus === 0 || selectedJob?.applicationStatus > 0}">
           <div class="step-counter">
@@ -312,7 +311,7 @@
                   <div class="d-flex align-items-center gap-2">
                     <img src="assets/SVG/redirect.svg"
                          alt="" />
-                    <a class="cursor-pointer mb-0">Job details</a>
+                    <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
                   </div>
                 </div>
               </div>
@@ -322,7 +321,7 @@
             <button type="button"
                     class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
                     (click)="toOnboarding()">
-              Start onboarding
+                    {{t('dashboard.start-on-boarding')}}
             </button>
           </div>
         </div>

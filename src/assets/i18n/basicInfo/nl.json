@@ -46,6 +46,7 @@
      "basic-info-text":"يرجى اضافة الاسم والبريد الإلكتروني",
      "no-info":"لم يتم إضافة أي معلومات",
      "address-description":"الوصف",
-     "attachment":"المرفقات"
+     "attachment":"المرفقات",
+     "basic-inf":"معلومات اساسية"
 
 }
