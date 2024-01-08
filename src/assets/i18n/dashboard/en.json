@@ -23,5 +23,10 @@
     "reschedule":"Reschedule",
     "actions":"Actions",
     "start-on-boarding":"Start onboarding",
-    "job-details":"Job details"
+    "job-details":"Job details",
+    "offer-ready":"Offer is ready",
+    "reject-offer":"Reject offer",
+    "accept-offer":"Accept Offer",
+    "show-offer":"Show offer",
+    "congrats-selection":"Congratulations!!!! You Are Selected"
 }

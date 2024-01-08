@@ -11,7 +11,8 @@
     </div>
   </div>
   <div *ngIf="appliedJobs?.length > 0">
-  <div  *ngFor="let appliedJob of appliedJobs" class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
+  <ng-container *ngFor="let appliedJob of appliedJobs">
+  <div   class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
@@ -42,16 +43,13 @@
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 4">Cancled</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 5">Employed</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 6">{{t('dashboard.offer')}}</p>
-
-
     </div>
     <div class="stepper-wrapper"
-      [ngClass]="{'reverse-direction' : isTranslate}"
-    >
+      [ngClass]="{'reverse-direction' : isTranslate}">
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0}">
         <div class="step-counter">
           <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0"/>
-          <p  *ngIf="appliedJob?.applicationStatus !== 0 && appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6"></p>
+          <p  *ngIf="appliedJob?.applicationStatus !== 0 && appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7"></p>
         </div>
         <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</h6>
         <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</p>
@@ -59,7 +57,7 @@
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1}">
         <div class="step-counter">
           <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1"/>
-          <p *ngIf="appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6"></p>
+          <p *ngIf="appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7"></p>
         </div>
         <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</h6>
         <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</p>
@@ -67,15 +65,15 @@
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 5}">
         <div class="step-counter">
           <img *ngIf="appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 2" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6" ></p>
+          <p *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7" ></p>
         </div>
         <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</h6>
         <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</p>
       </div>
-      <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 6}">
+      <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6}">
         <div class="step-counter">
-          <img *ngIf="appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="appliedJob?.applicationStatus !== 6"></p>
+          <img *ngIf="appliedJob?.applicationStatus > 6" src="assets/SVG/noun-tick.svg" alt="" />
+          <p *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7" ></p>
         </div>
         <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</h6>
         <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</p>
@@ -89,6 +87,118 @@
         <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.on-boarding')}}</p>
       </div>
     </div>
+    
   </div>
+  <ng-container *transloco="let t; scope: 'dashboard';">
+    <div class="next-actions" *ngIf="appliedJob?.applicationStatus === 7">
+      <div class="actions rounded-3">
+        <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
+          <div class="job-details">
+            <div class="d-flex align-items-center gap-xxl-3 gap-2">
+              <div>
+                <img src="assets/SVG/ready-offer.svg"
+                     alt="book" />
+              </div>
+              <div class="d-flex flex-column action-details">
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.offer-ready')}}</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
+                <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
+                  <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
+                    <div class="d-flex align-items-center gap-2">
+                      <img class="green-filter"
+                           src="assets/SVG/ic_Location.svg"
+                           alt="" />
+                      <p class="text-midnight-moss font-poppins-medium mb-0">
+                        {{appliedJob?.JobLocation}}
+                      </p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <img class="green-filter"
+                           src="assets/SVG/ic_Job.svg"
+                           alt="" />
+                      <p class="text-midnight-moss font-poppins-medium mb-0">
+                        {{appliedJob?.jobType}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="assets/SVG/redirect.svg"
+                         alt="" />
+                    <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
+            <button type="button"
+                    class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto">
+                 {{t('dashboard.reject-offer')}}
+            </button>
+            <button type="button"
+                    class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto">
+                    {{t('dashboard.accept-offer')}}
+            </button>
+            <button type="button"
+                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
+                    (click)="toJobOffer()">
+                    {{t('dashboard.show-offer')}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="next-actions" *ngIf="appliedJob?.applicationStatus === 7">
+      <div class="actions rounded-3">
+        <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
+          <div class="job-details">
+            <div class="d-flex align-items-center gap-xxl-3 gap-2">
+              <div>
+                <img src="assets/SVG/celebrate.svg"
+                     alt="book" />
+              </div>
+              <div class="d-flex flex-column action-details">
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.congrats-selection')}}</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
+                <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
+                  <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
+                    <div class="d-flex align-items-center gap-2">
+                      <img class="green-filter"
+                           src="assets/SVG/ic_Location.svg"
+                           alt="" />
+                      <p class="text-midnight-moss font-poppins-medium mb-0">
+                        {{appliedJob?.JobLocation}}
+                      </p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <img class="green-filter"
+                           src="assets/SVG/ic_Job.svg"
+                           alt="" />
+                      <p class="text-midnight-moss font-poppins-medium mb-0">
+                        {{appliedJob?.jobType}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="assets/SVG/redirect.svg"
+                         alt="" />
+                    <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
+            <button type="button"
+                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
+                    (click)="toOnboarding()">
+                    {{t('dashboard.start-on-boarding')}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
 </div>
 </ng-container>

@@ -23,6 +23,12 @@
     "reschedule":"إعادة تحديد الموعد",
     "actions":"أجراءات",
     "start-on-boarding":"ابدأ الإعداد",
-    "job-details":"تفاصيل الوظيفة"
+    "job-details":"تفاصيل الوظيفة",
+    "offer-ready":"العرض جاهز",
+    "reject-offer":"رفض العرض",
+    "accept-offer":"اقبل العرض",
+    "show-offer":"عرض العرض",
+    "congrats-selection":"تهانينا!!!! لقد تم اختيارك"
+
 
 }

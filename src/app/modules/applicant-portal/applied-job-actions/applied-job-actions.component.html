@@ -54,7 +54,7 @@
                  alt=""
                  *ngIf="selectedJob?.applicationStatus === 0 || selectedJob?.applicationStatus > 0" />
             <p
-               *ngIf="selectedJob?.applicationStatus !== 0 && selectedJob?.applicationStatus !== 1 && selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6">
+               *ngIf="selectedJob?.applicationStatus !== 0 && selectedJob?.applicationStatus !== 1 && selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6 && selectedJob?.applicationStatus !== 7">
             </p>
           </div>
           <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</h6>
@@ -67,7 +67,7 @@
                  alt=""
                  *ngIf="selectedJob?.applicationStatus === 1 || selectedJob?.applicationStatus > 1" />
             <p
-               *ngIf="selectedJob?.applicationStatus !== 1 && selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6">
+               *ngIf="selectedJob?.applicationStatus !== 1 && selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6 && selectedJob?.applicationStatus !== 7">
             </p>
           </div>
           <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</h6>
@@ -79,18 +79,18 @@
             <img *ngIf="selectedJob?.applicationStatus === 2 || selectedJob?.applicationStatus > 2"
                  src="assets/SVG/noun-tick.svg"
                  alt="" />
-            <p *ngIf="selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6"></p>
+            <p *ngIf="selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6 && selectedJob?.applicationStatus !== 7"></p>
           </div>
           <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</h6>
           <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</p>
         </div>
         <div class="stepper-item"
-             [ngClass]="{ 'completed': selectedJob?.applicationStatus === 6}">
+             [ngClass]="{ 'completed': selectedJob?.applicationStatus === 6 || selectedJob?.applicationStatus > 6}">
           <div class="step-counter">
             <img *ngIf="selectedJob?.applicationStatus === 6 || selectedJob?.applicationStatus > 6"
                  src="assets/SVG/noun-tick.svg"
                  alt="" />
-            <p *ngIf="selectedJob?.applicationStatus !== 6"></p>
+            <p *ngIf="selectedJob?.applicationStatus !== 6 && selectedJob?.applicationStatus !== 7"></p>
           </div>
           <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</h6>
           <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</p>
@@ -217,8 +217,7 @@
         </div>
       </div>
     </div>
-    <div class="next-actions"
-         *ngIf="selectedJob?.applicationStatus === 6">
+    <div class="next-actions">
       <div class="actions rounded-3">
         <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
           <div class="job-details">
