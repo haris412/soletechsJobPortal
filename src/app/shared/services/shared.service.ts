@@ -24,7 +24,12 @@ export class SharedService {
     public selectedJobActions:any;
     public onBoardingData: ApplicantOnboardingTasks[] = [];
     durationGroups: ActivityDurationGroupByData[] = [];
-    // orBoardingDataCopy:any
+    public onboardingLanguageChangeData: ActivityDurationGroupByData[] = [];
+    
+    public showOfferBasicLanguageData: any;
+    public showOfferFinanceLanguageData: any;
+    public showOfferBenefitsLanguageData: any;
+
     discardProfileInfo: EventEmitter<boolean> = new EventEmitter();
 
     constructor(public lookupService: AppLookUpService,

@@ -13,9 +13,6 @@ import Swal from 'sweetalert2';
 export class CareerPageTaskBasicComponent implements OnInit {
   fileList:any[]=[];
   public identificationForm: UntypedFormGroup | undefined;
-  @Input() taskName: string = '';
-  @Input() taskDescription: string = '';
-  @Input() instructions: string = '';
   @Input() activityDurationIndex: number = -1;
   @Input() careerTaskIndex: number = -1;
   instructionsItems: string[] = [];
@@ -31,22 +28,34 @@ export class CareerPageTaskBasicComponent implements OnInit {
   public isFile: boolean = false;
   constructor(private router:Router,
               public shared: SharedService,
-              public translationService: TranslationAlignmentService){}
+              public translationService: TranslationAlignmentService){
+                this.translationService.languageChange.subscribe(x=> {
+                  this.SetTaskData();
+                });
+              }
 
   ngOnInit() {
-    if (this.instructions) {
-      if (this.instructions.includes(':')) {
-        let parentInstruction = this.instructions.split(':');
+    this.SetTaskData();
+  }
+
+  SetTaskData() {
+    if (this.shared.durationGroups[this.activityDurationIndex] && 
+      this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex]) {
+        this.instructionsItems = [];
+    if (this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions) {
+      if (this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions.includes(':')) {
+        let parentInstruction = this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions.split(':');
         if (parentInstruction.length > 1) {
           this.instructionsItems.push(parentInstruction[0] + ":");
           this.prepareInstruction(parentInstruction[1], '.');
         } else {
-          this.prepareInstruction(this.instructions, '.');
+          this.prepareInstruction(this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions, '.');
         }
       } else {
-        this.prepareInstruction(this.instructions, '.');
+        this.prepareInstruction(this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions, '.');
       }
     }
+  }
   }
 
   prepareInstruction(instruction: string, delimeter: string) {

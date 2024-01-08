@@ -28,10 +28,7 @@
 
     <ng-container *ngFor="let tasks of duration.applicantOnboardingTasks; index as i">
     <div class="col-xxl-9 col-lg-8 col-12 sign-up-sections" *ngIf="tasks.Active || (tasks.CareerPageTaskStatus == 2 && tasks.Active) || (tasks.CareerPageTaskStatus == 1 && tasks.Active) || (tasks.CareerPageTaskStatus == 3 && tasks.Active) || (tasks.CareerPageTaskStatus == 4 && tasks.Active)" >
-      <app-careerPageTaskBasic [taskName]="tasks.taskName" 
-                               [taskDescription]="tasks.description" 
-                               [instructions]="tasks.instructions"
-                               [activityDurationIndex]="g" 
+      <app-careerPageTaskBasic [activityDurationIndex]="g" 
                                [careerTaskIndex]="i" *ngIf="tasks.Active"></app-careerPageTaskBasic>
       <app-education [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 2 && tasks.Active"></app-education>
       <app-identification [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 1 && tasks.Active"></app-identification>

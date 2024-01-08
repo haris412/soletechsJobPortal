@@ -10,11 +10,14 @@ export class ApplicantOnboardingTasks {
     RegardingWorker: string = '';
     ResolvedBy: number = 0;
     Status: number = 0;
+    TaskDescriptionAr: string = '';
+    TaskNameAr: string = '';
     applicantOnBoding: number = 0;
     assignmentType: number = 0;
     description: string = '';
     dueDate: string | Date = '';
     instructions: string = '';
+    instructionsAr: string = '';
     isOptional: number = 0;
     jobArabic: string = '';
     jobId: string = '';
