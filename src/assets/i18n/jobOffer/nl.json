@@ -1,9 +1,23 @@
 {
+    "back":"خلف",
+    "warning":"تحذير",
+    "warning-text":"يتعين عليك إرسال قرارك النهائي قبل 16 يناير 2024، وإلا فسيتم اعتباره مرفوضًا",
     "accept-offer":"اقبل العرض",
     "show-offer":"عرض العرض",
     "basic-information":"معلومات اساسية",
     "finance-information":"المعلومات المالية",
     "benefits":"فوائد",
     "date":"تاريخ",
-    "candidate":"مُرَشَّح"
+    "candidate":"مُرَشَّح",
+    "nationality":"جنسية",
+    "position":"موضع",
+    "location":"موقع",
+    "phone":"هاتف",
+    "contract-period":"مدة العقد",
+    "valid-from":"صالح من تاريخ",
+    "valid-to":"صالحة ل",
+    "offer-date":"تاريخ العرض",
+    "vacation-days":"أيام الإجازة",
+    "medical-insurance":"التأمين الطبي",
+    "probabtion-period":"فترة اختبار"
 }

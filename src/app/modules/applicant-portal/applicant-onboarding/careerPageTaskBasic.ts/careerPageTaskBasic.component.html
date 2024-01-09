@@ -1,10 +1,11 @@
-<div class="container-div">
+<ng-container *transloco="let t; scope: 'onBoarding';">
+<div class="container-div"[ngClass]="{'direction-change' : translationService.isTranslate}">
   <div class="inner-detail position-relative">
     <button 
             [ngClass]=" translationService.isTranslate ? 'start-0' : 'end-0'"
             class="d-flex align-items-center gap-1 font-poppins-medium fs-8 bg-feijoa border-0 rounded position-absolute  top-0 py-1 px-3 mark__completed text-midnight-moss"
             (click)="markAsComplete()">
-      Mark as completed
+            {{t('onBoarding.mark-completed')}}
     </button>
     <div class="left-detail">
       <h4 class="text-shuttle-grey">{{this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].taskName}}</h4>
@@ -12,7 +13,7 @@
         {{this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].description}}
       </p>
       <br />
-      <h4 class="text-shuttle-grey">Instructions:</h4>
+      <h4 class="text-shuttle-grey">{{t('onBoarding.instructions')}}:</h4>
       <div *ngFor="let instruction of this.instructionsItems">
         <p class="text-shuttle-grey">{{instruction}}</p>
       </div>
@@ -47,3 +48,4 @@
     </div>
   </div>
 </div>
+</ng-container>

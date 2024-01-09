@@ -1,6 +1,7 @@
 {
     "back":"الرجوع",
     "next":"التالي",
-    "discard":"ينبذ"
-
+    "discard":"ينبذ",
+    "mark-completed":"وضع علامة كمكتمل",
+    "instructions":"تعليمات"
 }

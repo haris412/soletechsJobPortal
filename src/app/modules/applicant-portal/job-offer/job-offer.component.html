@@ -1,68 +1,67 @@
-<!-- <ng-container *transloco="let t; scope: 'jobOffer';"> -->
-<div class="container-fluid">
+<ng-container *transloco="let t; scope: 'jobOffer';">
+<div class="container-fluid" [ngClass]="{'direction-change' : translationService.isTranslate}">
   <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
     <img src="assets/SVG/Iconback.svg" alt="" />
-    <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
+    <p class="font-poppins-semi text-gray-600 mb-0">{{t('jobOffer.back')}}</p>
   </div>
   <div class="d-flex error align-items-center gap-1 badge rounded-pill p-1">
-    <span class="badge rounded-pill text-white">Warning</span>
-    <span class="text-wrap">You need to send your final decision before 16 January 2024, else will
-      be consider as rejected
+    <span class="badge rounded-pill text-white">{{t('jobOffer.warning')}}</span>
+    <span class="text-wrap">{{t('jobOffer.warning-text')}}
     </span>
   </div>
   <div class="row w-100 justify-content-between mx-0 offer-types">
     <div class="col-md-4 col-12 basic-information">
       <div class="heading">
         <img src="assets/SVG/list.svg" alt="list-icon" />
-        <h5>Basic Information</h5>
+        <h5>{{t('jobOffer.basic-information')}}</h5>
       </div>
       <div class="d-flex justify-content-between">
       <div class="offer-info">
         <div class="offer-detail">
-          <p>Date</p>
+          <p>{{t('jobOffer.date')}}</p>
           <h6>{{basicInfo?.date}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Candidate</p>
+          <p>{{t('jobOffer.candidate')}}</p>
           <h6>{{basicInfo?.candicateName}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Nationality</p>
+          <p>{{t('jobOffer.nationality')}}</p>
           <h6>{{basicInfo?.nationality}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Position</p>
+          <p>{{t('jobOffer.position')}}</p>
           <h6>{{basicInfo?.positionName}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Location</p>
+          <p>{{t('jobOffer.location')}}</p>
           <h6>{{basicInfo?.location}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Phone</p>
+          <p>{{t('jobOffer.phone')}}</p>
           <h6>{{basicInfo?.applicantPhone}}</h6>
         </div>
         
       </div>
       <div class="offer-info basic-info">
         <div class="offer-detail">
-          <p>Contract Period</p>
+          <p>{{t('jobOffer.contract-period')}}</p>
           <h6>{{basicInfo?.contractPeriod}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Net Salary</p>
+          <p>{{t('jobOffer.net-salary')}}</p>
           <h6>{{basicInfo?.netSalary}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Valid From</p>
+          <p>{{t('jobOffer.valid-from')}}</p>
           <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Valid To</p>
+          <p>{{t('jobOffer.valid-to')}}</p>
           <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Offer Date</p>
+          <p>{{t('jobOffer.offer-date')}}</p>
           <h6>{{basicInfo?.offerDate | date : 'd/M/y'}}</h6>
         </div>
       </div>
@@ -71,7 +70,7 @@
     <div class="col-md-4 col-12 finance-information">
       <div class="heading">
         <img src="assets/SVG/coins-stacked.svg" alt="coins-stacked" />
-        <h5>Finance Information</h5>
+        <h5>{{t('jobOffer.finance-information')}}</h5>
       </div>
       <div class="offer-info">
         <div class="offer-detail" *ngFor="let financing of finaceInfo?.parmApplicationFinanceInfoList">
@@ -83,23 +82,23 @@
     <div class="col-md-4 col-12 benefits">
       <div class="heading">
         <img src="assets/SVG/benefits.svg" alt="benefits-icon" />
-        <h5>Benefits</h5>
+        <h5>{{t('jobOffer.benefits')}}</h5>
       </div>
       <div class="offer-info">
         <div class="offer-detail">
-          <p>Vacation days</p>
+          <p>{{t('jobOffer.vacation-days')}}</p>
           <h6>{{benefits?.vactionDays}}</h6>
         </div>
         <div class="offer-detail">
-          <p>Medical insurance</p>
+          <p>{{t('jobOffer.medical-insurance')}}</p>
           <h6>Provided by med care</h6>
         </div>
         <div class="offer-detail">
-          <p>Contract period</p>
+          <p>{{t('jobOffer.contract-period')}}</p>
           <h6>{{benefits?.contractPeriod}} year</h6>
         </div>
         <div class="offer-detail">
-          <p>Probation period</p>
+          <p>{{t('jobOffer.probabtion-period')}}</p>
           <h6>{{benefits?.probationPeriod}}</h6>
         </div>
       </div>
@@ -107,12 +106,12 @@
   </div>
   <div class="d-flex justify-content-end gap-3 btns-container">
     <button type="button" class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto" (click)="RejectOffer()">
-      Reject offer
+      {{t('jobOffer.reject-offer')}}
     </button>
     <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto"
       (click)="AcceptOffer()">
-      Accept offer
+      {{t('jobOffer.accept-offer')}}
     </button>
   </div>
 </div>
-<!-- </ng-container> -->
+</ng-container>

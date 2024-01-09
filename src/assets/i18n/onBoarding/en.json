@@ -1,5 +1,7 @@
 {
     "back":"Back",
     "next":"Next",
-    "discard":"Discard"
+    "discard":"Discard",
+    "mark-completed":"Mark as completed",
+    "instructions":"Instructions"
 }

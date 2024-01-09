@@ -68,7 +68,8 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   toJobOffer() {
     this.router.navigate(['/applicant/job-offer']);
   }
-  toOnboarding() {
+  toOnboarding(application:any) {
+    localStorage.setItem('applicationId',application.applicationId);
     this.router.navigate(['/applicant/onboarding'])
   }
 }

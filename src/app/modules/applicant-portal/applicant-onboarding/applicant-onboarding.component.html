@@ -8,7 +8,7 @@
          (click)="GoBack()">
       <img src="assets/SVG/Iconback.svg"
            alt="" />
-      <p class="font-poppins-semi text-gray-600 mb-0">Back</p>
+      <p class="font-poppins-semi text-gray-600 mb-0"> {{t('onBoarding.back')}}</p>
     </div>
   <div class="row mx-0" *ngFor="let duration of this.shared.durationGroups; index as g">
     <h2>{{getEnumKeyByEnumValue(duration.ActivityDuration)}}</h2>
