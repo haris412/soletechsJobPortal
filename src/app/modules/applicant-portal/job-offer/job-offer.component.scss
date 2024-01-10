@@ -16,21 +16,10 @@
   }
   .offer-types {
     margin-block: 1.5rem;
-    
-    @include media-breakpoint-up(md) {
-      .col-md-4 {
-        width: 32.33333%;
-      }
-    }
-    
     .basic-information,
     .finance-information,
     .benefits {
-      padding-block: 1.5rem;
-      padding-left: 1.5rem;
       background-color: white;
-      border-radius: 0.5rem;
-      margin-bottom: 1.5rem;
       &:last-of-type {
         margin-bottom: 0;
       }
@@ -38,7 +27,6 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        margin-bottom: 1.5rem;
         h5 {
           font-family: $font-poppins-semi;
           color: $midnight-moss;
@@ -47,7 +35,6 @@
       }
       .offer-info {
         display: flex;
-        flex-direction: column;
         .offer-detail {
           margin-bottom: 1rem;
           &:last-of-type {

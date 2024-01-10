@@ -62,7 +62,7 @@
             <div *ngIf="fileList.length > 0"
                  class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
               <div class="uploaded-files col-xl-4 col-md-6 d-flex align-items-center"
-                   *ngFor="let file of fileList">
+                   *ngFor="let file of fileList; index as i">
                 <div class="file-details rounded">
                   <div class="d-flex align-items-center gap-2">
                     <div class="file-icon">
@@ -88,7 +88,7 @@
                     <img height="20"
                          src="assets/SVG/delete.svg"
                          alt=""
-                         (click)="DeleteFile(file)" />
+                         (click)="DeleteFile(i)" />
                   </div>
                 </div>
               </div>

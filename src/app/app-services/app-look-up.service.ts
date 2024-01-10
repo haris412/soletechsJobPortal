@@ -711,6 +711,14 @@ export class AppLookUpService {
         ).toPromise();
     }
 
+    async uploadCvs(parameters:UpdateAboutMe){
+        return await this.httpClient
+        .post<any>(
+            apiURLs.applicant.updateAboutme,
+            parameters 
+        ).toPromise();
+    }
+
     async GetApplicationOnBoardingList(applicantId:string ,applicationId:string){
         let queryParams = new HttpParams();
         queryParams = queryParams.append('applicantId', applicantId).

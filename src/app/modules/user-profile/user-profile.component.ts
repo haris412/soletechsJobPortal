@@ -31,6 +31,8 @@ export class UserProfileComponent {
 	public isTranslate: boolean = this.translationService.isTranslate;
 	aboutMe: string = '';
 	aboutMeDisablitiy: boolean = true
+	fileCvData: any;
+	uploadCvData: UploadCvsDTO[] = [];
 	constructor(
 		private router: Router,
 		public ref: ChangeDetectorRef,
@@ -99,8 +101,9 @@ export class UserProfileComponent {
 		}
 	}
 
-	DeleteFile(file: any) {
-		this.fileList = [];
+	DeleteFile(index: number) {
+		this.fileList.splice(index, 1);
+		this.uploadCvData.splice(index, 1);
 	}
 
 	removeAvtar() {
@@ -108,7 +111,18 @@ export class UserProfileComponent {
 	}
 
 	uploadCV(files: any) {
-		;
+		if (files.target.files.length > 0) {
+			  this.fileCvData = files.target.files[0];
+			  const reader = new FileReader();
+			  reader.readAsDataURL(this.fileCvData);
+			  reader.onload = () => {
+				let cvData: any = reader.result;
+				let uploadCVs = new UploadCvsDTO();
+				uploadCVs.cvAttachment = cvData.substring(cvData.indexOf('base64,') + 7, cvData.length);
+				uploadCVs.fileName = this.fileCvData.name;
+				this.uploadCvData.push(uploadCVs);
+			  };
+		}
 		this.fileList.push(files.target.files[0]);
 		this.ref.detectChanges();
 	}
@@ -196,4 +210,14 @@ export class UserProfileComponent {
 	toggleEditor() {
 		this.aboutMeDisablitiy = !this.aboutMeDisablitiy;
 	}
+
+	uploadCvs() {
+		// upload this.uploadCvData object to Api for uploading.
+	}
+}
+
+
+export class UploadCvsDTO {
+	cvAttachment: string = '';
+	fileName: string = '';
 }

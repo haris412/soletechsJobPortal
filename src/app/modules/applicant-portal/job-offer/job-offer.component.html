@@ -1,117 +1,136 @@
 <ng-container *transloco="let t; scope: 'jobOffer';">
-<div class="container-fluid" [ngClass]="{'direction-change' : translationService.isTranslate}">
-  <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer" (click)="GoBack()">
-    <img src="assets/SVG/Iconback.svg" alt="" />
-    <p class="font-poppins-semi text-gray-600 mb-0">{{t('jobOffer.back')}}</p>
-  </div>
-  <div class="d-flex error align-items-center gap-1 badge rounded-pill p-1">
-    <span class="badge rounded-pill text-white">{{t('jobOffer.warning')}}</span>
-    <span class="text-wrap">{{t('jobOffer.warning-text')}}
-    </span>
-  </div>
-  <div class="row w-100 justify-content-between mx-0 offer-types">
-    <div class="col-md-4 col-12 basic-information">
-      <div class="heading">
-        <img src="assets/SVG/list.svg" alt="list-icon" />
-        <h5>{{t('jobOffer.basic-information')}}</h5>
-      </div>
-      <div class="d-flex justify-content-between">
-      <div class="offer-info">
-        <div class="offer-detail">
-          <p>{{t('jobOffer.date')}}</p>
-          <h6>{{basicInfo?.date}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.candidate')}}</p>
-          <h6>{{basicInfo?.candicateName}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.nationality')}}</p>
-          <h6>{{basicInfo?.nationality}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.position')}}</p>
-          <h6>{{basicInfo?.positionName}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.location')}}</p>
-          <h6>{{basicInfo?.location}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.phone')}}</p>
-          <h6>{{basicInfo?.applicantPhone}}</h6>
-        </div>
-        
-      </div>
-      <div class="offer-info basic-info">
-        <div class="offer-detail">
-          <p>{{t('jobOffer.contract-period')}}</p>
-          <h6>{{basicInfo?.contractPeriod}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.net-salary')}}</p>
-          <h6>{{basicInfo?.netSalary}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.valid-from')}}</p>
-          <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.valid-to')}}</p>
-          <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.offer-date')}}</p>
-          <h6>{{basicInfo?.offerDate | date : 'd/M/y'}}</h6>
-        </div>
-      </div>
+  <div class="container-fluid"
+       [ngClass]="{'direction-change' : translationService.isTranslate}">
+    <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer"
+         (click)="GoBack()">
+      <img src="assets/SVG/Iconback.svg"
+           alt="" />
+      <p class="font-poppins-semi text-gray-600 mb-0">{{t('jobOffer.back')}}</p>
+    </div>
+    <div class="d-flex error align-items-center gap-1 badge rounded-pill p-1">
+      <span class="badge rounded-pill text-white">{{t('jobOffer.warning')}}</span>
+      <span class="text-wrap">{{t('jobOffer.warning-text')}}
+      </span>
+    </div>
+    <div class="offer-types">
+      <mat-accordion>
+        <mat-expansion-panel class="basic-information">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="heading">
+                <img src="assets/SVG/list.svg"
+                     alt="list-icon" />
+                <h5>{{t('jobOffer.basic-information')}}</h5>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row m-0 offer-info">
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.date')}}</p>
+              <h6>{{basicInfo?.date}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.candidate')}}</p>
+              <h6>{{basicInfo?.candicateName}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.nationality')}}</p>
+              <h6>{{basicInfo?.nationality}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.position')}}</p>
+              <h6>{{basicInfo?.positionName}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.location')}}</p>
+              <h6>{{basicInfo?.location}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.phone')}}</p>
+              <h6>{{basicInfo?.applicantPhone}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.contract-period')}}</p>
+              <h6>{{basicInfo?.contractPeriod}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.net-salary')}}</p>
+              <h6>{{basicInfo?.netSalary}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.valid-from')}}</p>
+              <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.valid-to')}}</p>
+              <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.offer-date')}}</p>
+              <h6>{{basicInfo?.offerDate | date : 'd/M/y'}}</h6>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="finance-information">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="heading">
+                <img src="assets/SVG/coins-stacked.svg"
+                     alt="coins-stacked" />
+                <h5>{{t('jobOffer.finance-information')}}</h5>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row m-0 offer-info">
+            <div class="offer-detail col-lg-3 col-md-4 col-6"
+                 *ngFor="let financing of finaceInfo?.parmApplicationFinanceInfoList">
+              <p>{{financing?.description}}</p>
+              <h6>{{financing?.Amount}} SAR</h6>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="benefits">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="heading">
+                <img src="assets/SVG/benefits.svg"
+                     alt="benefits-icon" />
+                <h5>{{t('jobOffer.benefits')}}</h5>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="offer-info row m-0">
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.vacation-days')}}</p>
+              <h6>{{benefits?.vactionDays}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.medical-insurance')}}</p>
+              <h6>Provided by med care</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.contract-period')}}</p>
+              <h6>{{benefits?.contractPeriod}} year</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p>{{t('jobOffer.probabtion-period')}}</p>
+              <h6>{{benefits?.probationPeriod}}</h6>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="d-flex justify-content-end gap-3 btns-container">
+      <button type="button"
+              class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto"
+              (click)="RejectOffer()">
+        {{t('jobOffer.reject-offer')}}
+      </button>
+      <button type="button"
+              class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto"
+              (click)="AcceptOffer()">
+        {{t('jobOffer.accept-offer')}}
+      </button>
     </div>
   </div>
-    <div class="col-md-4 col-12 finance-information">
-      <div class="heading">
-        <img src="assets/SVG/coins-stacked.svg" alt="coins-stacked" />
-        <h5>{{t('jobOffer.finance-information')}}</h5>
-      </div>
-      <div class="offer-info">
-        <div class="offer-detail" *ngFor="let financing of finaceInfo?.parmApplicationFinanceInfoList">
-          <p>{{financing?.description}}</p>
-          <h6>{{financing?.Amount}} SAR</h6>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 col-12 benefits">
-      <div class="heading">
-        <img src="assets/SVG/benefits.svg" alt="benefits-icon" />
-        <h5>{{t('jobOffer.benefits')}}</h5>
-      </div>
-      <div class="offer-info">
-        <div class="offer-detail">
-          <p>{{t('jobOffer.vacation-days')}}</p>
-          <h6>{{benefits?.vactionDays}}</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.medical-insurance')}}</p>
-          <h6>Provided by med care</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.contract-period')}}</p>
-          <h6>{{benefits?.contractPeriod}} year</h6>
-        </div>
-        <div class="offer-detail">
-          <p>{{t('jobOffer.probabtion-period')}}</p>
-          <h6>{{benefits?.probationPeriod}}</h6>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="d-flex justify-content-end gap-3 btns-container">
-    <button type="button" class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto" (click)="RejectOffer()">
-      {{t('jobOffer.reject-offer')}}
-    </button>
-    <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto"
-      (click)="AcceptOffer()">
-      {{t('jobOffer.accept-offer')}}
-    </button>
-  </div>
-</div>
 </ng-container>
