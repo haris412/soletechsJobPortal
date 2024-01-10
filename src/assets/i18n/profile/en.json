@@ -51,8 +51,8 @@
     "position-of-trust":"Position of Trust",
     "education":"Education",
     "basic-inf":"Basic Info",
-    "applicant-image":"Applicant Image",
-    "applicant-cv":"Applicant Cv",
-    "about-applicant":"About Applicant"
+    "applicant-image":"My Image",
+    "applicant-cv":"My Cv",
+    "about-applicant":"About"
 
 }
