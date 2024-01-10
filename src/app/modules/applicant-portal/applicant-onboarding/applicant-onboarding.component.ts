@@ -143,13 +143,13 @@ export class ApplicantOnboardingComponent {
       }
     } else if (enumValue == ActivityDuration.FirstDay.toString()) {
       if (this.translationService.isTranslate) {
-        returnValue = "30 يوم"
+        returnValue = "اليوم الاول"
       } else {
         returnValue = "First Day";
       }
     } else {
       if (this.translationService.isTranslate) {
-        returnValue = "60 يوم"
+        returnValue = "ثلاثون يوم"
       } else {
         returnValue = "In 30 Days";
       }
