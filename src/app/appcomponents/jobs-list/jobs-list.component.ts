@@ -170,8 +170,10 @@ export class JobsListComponent implements OnInit {
   Valuechange(event:any){
     if(event?.target?.value?.length >= 1){
       this.jobsList = this.jobsListCopy.filter((job:Job)=> job.recruitingId.toLowerCase().includes(event?.target.value.toLowerCase()));
+      this.sharedService.jobs = this.sharedService.DeepCopyObject(this.jobsListCopy.filter((job:Job)=> job.recruitingId.toLowerCase().includes(event?.target.value.toLowerCase())));
     }else{
       this.jobsList = this.jobsListCopy;
+      this.sharedService.jobs = this.sharedService.DeepCopyObject(this.jobsListCopy);
     }
     this.JobLanguageChanges();
   }

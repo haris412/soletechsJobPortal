@@ -34,6 +34,7 @@
       <app-identification [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 1 && tasks.Active"></app-identification>
       <app-certificates [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 3 && tasks.Active"></app-certificates>
       <app-experience [isOnboarding]="true" *ngIf="tasks.CareerPageTaskStatus == 4 && tasks.Active"></app-experience>
+      <app-medical-check-up *ngIf="tasks.CareerPageTaskStatus == 6 && tasks.Active"></app-medical-check-up>
     </div>
   </ng-container>
     <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns" *ngIf="this.AnyTaskIsActive(duration.ActivityDuration)">

@@ -92,6 +92,7 @@ export const apiURLs = {
         resendOtp:`${environment.apiUrl}/ERPApplicant/ResendOTP`,
         uploadApplicantImage:`${environment.apiUrl}/ERPApplicant/UploadApplicantImage`,
         updateAboutme:`${environment.apiUrl}/ERPApplicant/UpdateAboutme`,
-        getIpAddress:`${environment.apiUrl}/Application/GetIpAddress`
+        getIpAddress:`${environment.apiUrl}/Application/GetIpAddress`,
+        uploadCvs:`${environment.apiUrl}/ERPApplicant/UploadCvAttachments`
     }
 }
