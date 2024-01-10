@@ -3,5 +3,10 @@
     "next":"التالي",
     "discard":"ينبذ",
     "mark-completed":"وضع علامة كمكتمل",
-    "instructions":"تعليمات"
+    "instructions":"تعليمات",
+    "before-joining":"قبل التعيين",
+    "first-day":"اليوم الأول",
+    "thirty-days":"30 يوم",
+    "sixty-days":"60 يوم",
+    "ninty-days":"90 يوم"
 }

@@ -3,5 +3,10 @@
     "next":"Next",
     "discard":"Discard",
     "mark-completed":"Mark as completed",
-    "instructions":"Instructions"
+    "instructions":"Instructions",
+    "before-joining":"Before Joining",
+    "first-day":"First Day",
+    "thirty-days":"In 30 Days",
+    "sixty-days":"In 60 Days",
+    "ninty-days":"In 90 Days"
 }

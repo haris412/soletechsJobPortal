@@ -136,11 +136,23 @@ export class ApplicantOnboardingComponent {
     let key = +enumValue;
     let returnValue = "";
     if (enumValue == ActivityDuration.BeforeJoining.toString()) {
-      returnValue = "Before Joining";
+      if (this.translationService.isTranslate) {
+        returnValue = "قبل التعيين"
+      } else {
+        returnValue = "Before Joining";
+      }
     } else if (enumValue == ActivityDuration.FirstDay.toString()) {
-      returnValue = "First Day";
+      if (this.translationService.isTranslate) {
+        returnValue = "30 يوم"
+      } else {
+        returnValue = "First Day";
+      }
     } else {
-      returnValue = "In 30 Days";
+      if (this.translationService.isTranslate) {
+        returnValue = "60 يوم"
+      } else {
+        returnValue = "In 30 Days";
+      }
     }
     return returnValue;
   }
