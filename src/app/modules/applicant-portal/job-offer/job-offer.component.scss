@@ -16,6 +16,8 @@
   }
   .offer-types {
     margin-block: 1.5rem;
+    height: calc(100vh - 300px);
+    overflow-y: auto;
     .basic-information,
     .finance-information,
     .benefits {
@@ -54,7 +56,6 @@
     }
   }
   .btns-container {
-    margin-bottom: 2rem;
     .btn {
       padding-inline: 1.25rem;
       padding-block: 0.5rem;
