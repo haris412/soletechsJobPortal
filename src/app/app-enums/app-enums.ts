@@ -77,5 +77,6 @@ export enum CareerPageTaskStatus {
 export enum ActivityDuration {
     BeforeJoining = 0,
     FirstDay = 2,
-    In30Days = 3
+    In30Days = 3,
+    In60Days = 1
 }
