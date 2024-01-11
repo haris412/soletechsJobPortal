@@ -14,9 +14,10 @@
       </p>
       <br />
       <h4 class="text-shuttle-grey">{{t('onBoarding.instructions')}}:</h4>
-      <div *ngFor="let instruction of this.instructionsItems">
-        <p class="text-shuttle-grey">{{instruction}}</p>
-      </div>
+      <!-- <div *ngFor="let instruction of this.instructionsItems"> -->
+        <div [innerHTML]="shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions"></div>
+        <!-- <p class="text-shuttle-grey">{{instruction}}</p>
+      </div> -->
       <!-- <h6 class="text-midnight-moss font-poppins-semi">Lead Product Design</h6>
       <div class="d-flex align-items-center gap-4 mb-1">
         <div class="d-flex align-items-center gap-3">

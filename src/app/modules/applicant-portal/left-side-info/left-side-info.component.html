@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; scope: 'dashboard';">
 <div class="user-info info-container rounded-3">
-  <h2 class="text-midnight-moss">Hi {{ this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.name : userEmail }},</h2>
+  <h2 class="text-midnight-moss">{{t('dashboard.welcome')}} {{ this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.name : userEmail }},</h2>
   <div class="d-flex align-items-center gap-xxl-4 gap-3 profile-pic">
     <div>
       <div class="profile">

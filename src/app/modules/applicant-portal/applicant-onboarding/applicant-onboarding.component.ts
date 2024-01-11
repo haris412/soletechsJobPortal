@@ -65,6 +65,7 @@ export class ApplicantOnboardingComponent {
         if (durationData.applicantOnboardingTasks.length > 0 && item == 0) {
           durationData.applicantOnboardingTasks[0].Active = true;
         }
+        console.log(durationData); 
         this.shared.durationGroups.push(durationData);
       }
     }
