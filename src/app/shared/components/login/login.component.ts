@@ -86,7 +86,6 @@ export class LoginComponent implements OnInit {
       this.otpEntered = false
       let response = await this.lookupService.VerifyOTP(this.otpForm.value)
       if (response?.Status) {
-        localStorage.setItem('userName', response?.UserName);
         localStorage.setItem('email', response?.Email);
         localStorage.setItem("applicantId", response?.ApplicantId);
         localStorage.setItem("applicantPersonRecid", response?.ApplicantPersonRecid);

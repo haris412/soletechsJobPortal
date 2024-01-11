@@ -49,6 +49,8 @@ export class ApplicantDataService {
       try {
         let response = await this.lookupService.GetUserDetails(applicantId);
         if (response) {
+          localStorage.setItem('userNameAr', response.firstNameAr);
+          localStorage.setItem('userName', response?.firstName);
           this.SetApplicantInfo(response);
         }
       } catch (ex) {

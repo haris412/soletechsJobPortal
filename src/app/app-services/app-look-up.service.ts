@@ -16,6 +16,7 @@ import { ChangePassword } from "../models/ChangePassword";
 import { userApplicantImage } from "../models/userImageParameters";
 import { UpdateAboutMe } from "../models/update-about-me.model";
 import { Education } from "../modules/competencies-common/components/models/education";
+import { UploadCvsDTO } from "../modules/user-profile/user-profile.component";
 
 @Injectable({
     providedIn: 'root',
@@ -711,10 +712,10 @@ export class AppLookUpService {
         ).toPromise();
     }
 
-    async uploadCvs(parameters:UpdateAboutMe){
+    async uploadCvs(parameters: UploadCvsDTO[]){
         return await this.httpClient
         .post<any>(
-            apiURLs.applicant.updateAboutme,
+            apiURLs.applicant.uploadCvs,
             parameters 
         ).toPromise();
     }

@@ -10,6 +10,7 @@ import { userApplicantImage } from 'src/app/models/userImageParameters';
 import { UpdateAboutMe } from 'src/app/models/update-about-me.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { CompetenciesCommonService } from '../competencies-common/components/services/competencies-common.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -44,7 +45,8 @@ export class UserProfileComponent {
 		public linkedInServive: LinkedInService,
 		private lookUpService: AppLookUpService,
 		public shareService: SharedService,
-        public competencies: CompetenciesCommonService
+        public competencies: CompetenciesCommonService,
+		public toastrService: ToastrService,
 	) {
 		this.translationService.languageChange.subscribe(x => {
 			{
@@ -118,6 +120,7 @@ export class UserProfileComponent {
 			  reader.onload = () => {
 				let cvData: any = reader.result;
 				let uploadCVs = new UploadCvsDTO();
+				uploadCVs.applicantId = localStorage.getItem('applicantId') ?? '',
 				uploadCVs.cvAttachment = cvData.substring(cvData.indexOf('base64,') + 7, cvData.length);
 				uploadCVs.fileName = this.fileCvData.name;
 				this.uploadCvData.push(uploadCVs);
@@ -211,13 +214,19 @@ export class UserProfileComponent {
 		this.aboutMeDisablitiy = !this.aboutMeDisablitiy;
 	}
 
-	uploadCvs() {
-		// upload this.uploadCvData object to Api for uploading.
+	async uploadCvs() {
+		let res = await this.lookUpService.uploadCvs(this.uploadCvData);
+		if (res != null && res.length > 0) {
+			this.toastrService.success("Files are uploaded");
+		} else {
+			this.toastrService.error(res)
+		}
 	}
 }
 
 
 export class UploadCvsDTO {
+	applicantId: string = ''
 	cvAttachment: string = '';
 	fileName: string = '';
 }
