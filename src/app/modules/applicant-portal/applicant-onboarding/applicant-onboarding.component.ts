@@ -66,7 +66,8 @@ export class ApplicantOnboardingComponent {
           durationData.applicantOnboardingTasks[0].Active = true;
         }
         console.log(durationData); 
-        this.shared.durationGroups.push(durationData);
+        if (durationData.ActivityDuration != ActivityDuration.In60Days.toString())
+          this.shared.durationGroups.push(durationData);
       }
     }
     this.shared.onboardingLanguageChangeData = this.shared.DeepCopyObject(this.shared.durationGroups);
@@ -148,7 +149,7 @@ export class ApplicantOnboardingComponent {
       } else {
         returnValue = "First Day";
       }
-    } else {
+    } else if (enumValue == ActivityDuration.In30Days.toString()) {
       if (this.translationService.isTranslate) {
         returnValue = "ثلاثون يوم"
       } else {
