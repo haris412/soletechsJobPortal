@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; scope: 'onBoarding';">
-<div class="container-div"[ngClass]="{'direction-change' : translationService.isTranslate}">
+<div class="container-div" [ngClass]="{'direction-change' : translationService.isTranslate}">
   <div class="inner-detail position-relative">
     <button 
             [ngClass]=" translationService.isTranslate ? 'start-0' : 'end-0'"
@@ -15,7 +15,7 @@
       <br />
       <h4 class="text-shuttle-grey">{{t('onBoarding.instructions')}}:</h4>
       <!-- <div *ngFor="let instruction of this.instructionsItems"> -->
-        <div [innerHTML]="shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions"></div>
+        <div [ngClass]="{'font-family-change' : translationService.isTranslate}" [innerHTML]="shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions"></div>
         <!-- <p class="text-shuttle-grey">{{instruction}}</p>
       </div> -->
       <!-- <h6 class="text-midnight-moss font-poppins-semi">Lead Product Design</h6>

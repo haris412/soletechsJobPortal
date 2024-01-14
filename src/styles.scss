@@ -492,3 +492,13 @@ form {
 // .green-filter {
 //   filter: brightness(0) saturate(100%) invert(30%) sepia(92%) saturate(1541%) hue-rotate(128deg) brightness(98%) contrast(103%);
 // }
+
+.font-family-change {
+  font {
+    font-family: 'Arabic-Regular' !important
+  }
+}
+
+font {
+  font-family: $font-poppins-regular !important;
+}
