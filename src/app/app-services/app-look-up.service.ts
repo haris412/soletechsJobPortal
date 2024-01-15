@@ -16,7 +16,7 @@ import { ChangePassword } from "../models/ChangePassword";
 import { userApplicantImage } from "../models/userImageParameters";
 import { UpdateAboutMe } from "../models/update-about-me.model";
 import { Education } from "../modules/competencies-common/components/models/education";
-import { UploadCvsDTO } from "../modules/user-profile/user-profile.component";
+import { UploadCvsDTO, UploadMedicalDTO } from "../modules/user-profile/user-profile.component";
 
 @Injectable({
     providedIn: 'root',
@@ -716,6 +716,14 @@ export class AppLookUpService {
         return await this.httpClient
         .post<any>(
             apiURLs.applicant.uploadCvs,
+            parameters 
+        ).toPromise();
+    }
+
+    async uploadMedical(parameters: UploadMedicalDTO[]){
+        return await this.httpClient
+        .post<any>(
+            apiURLs.applicant.medicalHistory,
             parameters 
         ).toPromise();
     }
