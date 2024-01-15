@@ -11,6 +11,7 @@ import { UpdateAboutMe } from 'src/app/models/update-about-me.model';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { CompetenciesCommonService } from '../competencies-common/components/services/competencies-common.service';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 
 
 @Component({
@@ -47,6 +48,7 @@ export class UserProfileComponent {
 		public shareService: SharedService,
         public competencies: CompetenciesCommonService,
 		public toastrService: ToastrService,
+		private deleteModal: DeleteModalComponentService
 	) {
 		this.translationService.languageChange.subscribe(x => {
 			{
@@ -102,11 +104,18 @@ export class UserProfileComponent {
 			return;
 		}
 	}
+	
 
 	DeleteFile(index: number) {
-		this.fileList.splice(index, 1);
-		this.uploadCvData.splice(index, 1);
-	}
+		const data = `Are you sure you want to do remove this cv?`;
+		const dialogRef = this.deleteModal.openDialog(data);
+		dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+		if (dialogResult) {
+			this.fileList.splice(index, 1);
+			this.uploadCvData.splice(index, 1);
+		}
+	});
+  }
 
 	removeAvtar() {
 		this.imageAvatar = this.defaultUrl;
