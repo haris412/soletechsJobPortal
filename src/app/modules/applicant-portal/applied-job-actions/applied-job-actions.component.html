@@ -227,8 +227,8 @@
                      alt="book" />
               </div>
               <div class="d-flex flex-column action-details">
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Offer is ready</h6>
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Senior UX/UI</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.offer-ready')}}</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{selectedJob?.Title}}</h6>
                 <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
                   <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
                     <div class="d-flex align-items-center gap-2">
@@ -236,7 +236,7 @@
                            src="assets/SVG/ic_Location.svg"
                            alt="" />
                       <p class="text-midnight-moss font-poppins-medium mb-0">
-                        Dubai, UAE
+                        {{selectedJob?.JobLocation}}
                       </p>
                     </div>
                     <div class="d-flex align-items-center gap-2">
@@ -244,14 +244,14 @@
                            src="assets/SVG/ic_Job.svg"
                            alt="" />
                       <p class="text-midnight-moss font-poppins-medium mb-0">
-                        Job Type
+                        {{selectedJob?.jobType}}
                       </p>
                     </div>
                   </div>
                   <div class="d-flex align-items-center gap-2">
                     <img src="assets/SVG/redirect.svg"
                          alt="" />
-                    <a class="cursor-pointer mb-0">Job details</a>
+                    <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
                   </div>
                 </div>
               </div>
@@ -260,16 +260,16 @@
           <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
             <button type="button"
                     class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto">
-              Reject offer
+                    {{t('dashboard.reject-offer')}}
             </button>
             <button type="button"
                     class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto">
-              Accept offer
+                    {{t('dashboard.accept-offer')}}
             </button>
             <button type="button"
                     class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
                     (click)="toJobOffer()">
-              Show offer
+                    {{t('dashboard.show-offer')}}
             </button>
           </div>
         </div>
@@ -286,7 +286,7 @@
                      alt="book" />
               </div>
               <div class="d-flex flex-column action-details">
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Congratulations!!!! You Are Selected</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.congrats-selection')}}</h6>
                 <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{selectedJob?.Title}}</h6>
                 <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
                   <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">

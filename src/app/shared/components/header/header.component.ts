@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
   selectedLanguage: string = 'English';
   defaultImage = 'assets/Images/default-image.png'
   userImage:string = 'assets/Images/default-image.png'
-
+  savedJobs:boolean = false;
+  home:boolean = true;
   public isTranslate: boolean = false;
   constructor(
     private router: Router,
@@ -122,12 +123,18 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
   SavedJobs() {
+    this.savedJobs = true;
+    this.home = false;
     this.router.navigate(['/applicant/dashboard']);
   }
   GoToJobs() {
+    this.savedJobs = false;
+    this.home = true;
     this.router.navigate(['/']);
   }
   GoToHome(){
+    this.savedJobs = false;
+    this.home = true;
     this.router.navigate(['/']);
   }
 }
