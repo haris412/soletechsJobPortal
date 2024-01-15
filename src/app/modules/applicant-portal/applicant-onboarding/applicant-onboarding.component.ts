@@ -66,7 +66,9 @@ export class ApplicantOnboardingComponent {
           durationData.applicantOnboardingTasks[0].Active = true;
         }
         console.log(durationData); 
-        if (durationData.ActivityDuration != ActivityDuration.In60Days.toString())
+        if (durationData.ActivityDuration != ActivityDuration.In60Days.toString() &&
+            durationData.ActivityDuration != ActivityDuration.Custom.toString() &&
+            durationData.ActivityDuration != ActivityDuration.In90Days.toString())
           this.shared.durationGroups.push(durationData);
       }
     }
