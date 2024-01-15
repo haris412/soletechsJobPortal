@@ -231,6 +231,7 @@ export class UserProfileComponent {
 			this.toastrService.error(res)
 		}
 	}
+
 }
 
 
@@ -238,4 +239,12 @@ export class UploadCvsDTO {
 	applicantId: string = ''
 	cvAttachment: string = '';
 	fileName: string = '';
+}
+
+
+export class UploadMedicalDTO {
+	applicantId: string = ''
+	attachment: string = '';
+	fileName: string = '';
+	_imageBase64: string = '';
 }

@@ -93,6 +93,7 @@ export const apiURLs = {
         uploadApplicantImage:`${environment.apiUrl}/ERPApplicant/UploadApplicantImage`,
         updateAboutme:`${environment.apiUrl}/ERPApplicant/UpdateAboutme`,
         getIpAddress:`${environment.apiUrl}/Application/GetIpAddress`,
-        uploadCvs:`${environment.apiUrl}/ERPApplicant/UploadCvAttachments`
+        uploadCvs:`${environment.apiUrl}/ERPApplicant/UploadCvAttachments`,
+        medicalHistory:`${environment.apiUrl}/ERPApplicant/UploadMedicalAttachment`
     }
 }
