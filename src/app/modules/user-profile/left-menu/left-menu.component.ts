@@ -17,7 +17,7 @@ export class LeftMenuComponent {
   public completed: boolean = false;
   public sidenavOpen: boolean = false;
   public isActive: boolean = false;
-  public isBasicActive: boolean = true;
+  public isBasicActive: boolean = false;
   public isContactActive: boolean = false;
   public isAddressActive: boolean = false;
   public isIdentificationActive: boolean = false;
@@ -26,7 +26,7 @@ export class LeftMenuComponent {
   public addressCompleted: boolean = false;
   public identificationCompleted: boolean = false;
   public skillCompleted: boolean = false;
-  public skillsisActive: boolean = true;
+  public skillsisActive: boolean = false;
   public experienceCompleted: boolean = false;
   public experienceisActive: boolean = false;
   public educationCompleted: boolean = false;
@@ -55,6 +55,26 @@ export class LeftMenuComponent {
         this.cv = false;
         this.profile = false;
         this.competencies = false;
+        this.isBasicActive = false;
+        this.isContactActive = false;
+        this.isAddressActive = false;
+        this.isIdentificationActive = false;
+        this.basicCompleted = false;
+        this.contactCompleted = false;
+        this.addressCompleted = false;
+        this.identificationCompleted = false;
+        this.skillCompleted = false;
+        this.skillsisActive = false;
+        this.experienceCompleted = false;
+        this.experienceisActive = false;
+        this.educationCompleted = false;
+        this.educationisActive = false;
+        this.coursesCompleted = false;
+        this.coursesisActive = false;
+        this.certificatescompleted = false;
+        this.certificatesisActive = false;
+        this.positionOfTrustcompleted = false;
+        this.positionOfTrustisActive = false;
         break;
       }
       case '#about': {
@@ -65,6 +85,27 @@ export class LeftMenuComponent {
         this.cv = false;
         this.profile = false;
         this.competencies = false;
+        this.isBasicActive = false;
+
+        this.isContactActive = false;
+        this.isAddressActive = false;
+        this.isIdentificationActive = false;
+        this.basicCompleted = false;
+        this.contactCompleted = false;
+        this.addressCompleted = false;
+        this.identificationCompleted = false;
+        this.skillCompleted = false;
+        this.skillsisActive = false;
+        this.experienceCompleted = false;
+        this.experienceisActive = false;
+        this.educationCompleted = false;
+        this.educationisActive = false;
+        this.coursesCompleted = false;
+        this.coursesisActive = false;
+        this.certificatescompleted = false;
+        this.certificatesisActive = false;
+        this.positionOfTrustcompleted = false;
+        this.positionOfTrustisActive = false;
         break;
       }
       case '#cv': {
@@ -75,6 +116,26 @@ export class LeftMenuComponent {
         this.cv = true;
         this.profile = false;
         this.competencies = false;
+        this.isBasicActive = false;
+        this.isContactActive = false;
+        this.isAddressActive = false;
+        this.isIdentificationActive = false;
+        this.basicCompleted = false;
+        this.contactCompleted = false;
+        this.addressCompleted = false;
+        this.identificationCompleted = false;
+        this.skillCompleted = false;
+        this.skillsisActive = false;
+        this.experienceCompleted = false;
+        this.experienceisActive = false;
+        this.educationCompleted = false;
+        this.educationisActive = false;
+        this.coursesCompleted = false;
+        this.coursesisActive = false;
+        this.certificatescompleted = false;
+        this.certificatesisActive = false;
+        this.positionOfTrustcompleted = false;
+        this.positionOfTrustisActive = false;
         break;
       }
       case '#profile': {
@@ -105,6 +166,26 @@ export class LeftMenuComponent {
         this.cv = false;
         this.profile = false;
         this.competencies = false;
+        this.isBasicActive = false;
+        this.isContactActive = false;
+        this.isAddressActive = false;
+        this.isIdentificationActive = false;
+        this.basicCompleted = false;
+        this.contactCompleted = false;
+        this.addressCompleted = false;
+        this.identificationCompleted = false;
+        this.skillCompleted = false;
+        this.skillsisActive = false;
+        this.experienceCompleted = false;
+        this.experienceisActive = false;
+        this.educationCompleted = false;
+        this.educationisActive = false;
+        this.coursesCompleted = false;
+        this.coursesisActive = false;
+        this.certificatescompleted = false;
+        this.certificatesisActive = false;
+        this.positionOfTrustcompleted = false;
+        this.positionOfTrustisActive = false;
         break;
       }
       case '#deactivate': {
@@ -115,6 +196,26 @@ export class LeftMenuComponent {
         this.cv = false;
         this.profile = false;
         this.competencies = false;
+        this.isBasicActive = false;
+        this.isContactActive = false;
+        this.isAddressActive = false;
+        this.isIdentificationActive = false;
+        this.basicCompleted = false;
+        this.contactCompleted = false;
+        this.addressCompleted = false;
+        this.identificationCompleted = false;
+        this.skillCompleted = false;
+        this.skillsisActive = false;
+        this.experienceCompleted = false;
+        this.experienceisActive = false;
+        this.educationCompleted = false;
+        this.educationisActive = false;
+        this.coursesCompleted = false;
+        this.coursesisActive = false;
+        this.certificatescompleted = false;
+        this.certificatesisActive = false;
+        this.positionOfTrustcompleted = false;
+        this.positionOfTrustisActive = false;
         break;
       }
     }
@@ -127,21 +228,42 @@ export class LeftMenuComponent {
       this.isContactActive = true;
       this.isAddressActive = false;
       this.isIdentificationActive = false;
+      this.skillsisActive = false;
+      this.experienceisActive = false;
+      this.educationisActive = false;
+      this.certificatesisActive = false;
+      this.coursesisActive = false;
+      this.positionOfTrustisActive = false;
     } else if (index === 3) {
       this.isBasicActive = false;
       this.isContactActive = false;
       this.isAddressActive = true;
       this.isIdentificationActive = false;
+      this.skillsisActive = false;
+      this.experienceisActive = false;
+      this.educationisActive = false;
+      this.certificatesisActive = false;
+      this.coursesisActive = false;
     } else if (index === 4) {
       this.isBasicActive = false;
       this.isContactActive = false;
       this.isAddressActive = false;
       this.isIdentificationActive = true;
+      this.skillsisActive = false;
+      this.experienceisActive = false;
+      this.educationisActive = false;
+      this.certificatesisActive = false;
+      this.coursesisActive = false;
     } else if (index === 1) {
       this.isBasicActive = true;
       this.isContactActive = false;
       this.isAddressActive = false;
       this.isIdentificationActive = false;
+      this.skillsisActive = false;
+      this.experienceisActive = false;
+      this.educationisActive = false;
+      this.certificatesisActive = false;
+      this.coursesisActive = false;
     }
     this.switchTab.emit(this.index);
   }
@@ -155,6 +277,10 @@ export class LeftMenuComponent {
       this.certificatesisActive = false;
       this.coursesisActive = false;
       this.positionOfTrustisActive = false;
+      this.isBasicActive = false;
+      this.isContactActive = false;
+      this.isAddressActive = false;
+      this.isIdentificationActive = false;
     } else if (index === 3) {
       this.skillsisActive = false;
       this.experienceisActive = false;
@@ -162,6 +288,10 @@ export class LeftMenuComponent {
       this.certificatesisActive = false;
       this.coursesisActive = false;
       this.positionOfTrustisActive = false;
+      this.isBasicActive = false;
+      this.isContactActive = false;
+      this.isAddressActive = false;
+      this.isIdentificationActive = false;
     } else if (index === 4) {
       this.skillsisActive = false;
       this.experienceisActive = false;
@@ -169,6 +299,10 @@ export class LeftMenuComponent {
       this.certificatesisActive = true;
       this.coursesisActive = false;
       this.positionOfTrustisActive = false;
+      this.isBasicActive = false;
+      this.isContactActive = false;
+      this.isAddressActive = false;
+      this.isIdentificationActive = false;
     } else if (index === 5) {
       this.skillsisActive = false;
       this.experienceisActive = false;
@@ -176,6 +310,10 @@ export class LeftMenuComponent {
       this.certificatesisActive = false;
       this.coursesisActive = true;
       this.positionOfTrustisActive = false;
+      this.isBasicActive = false;
+      this.isContactActive = false;
+      this.isAddressActive = false;
+      this.isIdentificationActive = false;
     } else if (index === 6) {
       this.skillsisActive = false;
       this.experienceisActive = false;
@@ -183,6 +321,10 @@ export class LeftMenuComponent {
       this.certificatesisActive = false;
       this.coursesisActive = false;
       this.positionOfTrustisActive = true;
+      this.isBasicActive = false;
+      this.isContactActive = false;
+      this.isAddressActive = false;
+      this.isIdentificationActive = false;
     } else if (index === 1) {
       this.skillsisActive = true;
       this.experienceisActive = false;
@@ -190,6 +332,10 @@ export class LeftMenuComponent {
       this.certificatesisActive = false;
       this.coursesisActive = false;
       this.positionOfTrustisActive = false;
+      this.isBasicActive = false;
+      this.isContactActive = false;
+      this.isAddressActive = false;
+      this.isIdentificationActive = false;
     }
     this.switchCompetencyTab.emit(this.competencyIndex);
   }
