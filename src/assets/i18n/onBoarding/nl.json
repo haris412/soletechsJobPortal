@@ -8,5 +8,10 @@
     "first-day":"اليوم الأول",
     "thirty-days":"30 يوم",
     "sixty-days":"60 يوم",
-    "ninty-days":"90 يوم"
+    "ninty-days":"90 يوم",
+    "upload-medical":"تحميل المستندات الطبية",
+    "upload-text":"انقر للتحميل",
+    "drag-drop":"أو السحب والإفلات",
+    "pdf-doc":"PDF أو DOC",
+    "max-size":"الحد الأقصى للحجم 6 ميجابايت"
 }

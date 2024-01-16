@@ -42,11 +42,13 @@ export class MedicalCheckUpComponent {
   }
 
   async uploadMedical() {
+    if(this.uploadMedicalData?.length > 0){
 		let res = await this.lookUpService.uploadMedical(this.uploadMedicalData);
 		if (res != null && res.length > 0) {
 			this.toastrService.success("Files are uploaded");
 		} else {
 			this.toastrService.error(res)
 		}
+  }
 	}
 }

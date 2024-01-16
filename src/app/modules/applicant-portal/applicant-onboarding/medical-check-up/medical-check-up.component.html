@@ -1,8 +1,9 @@
+<ng-container *transloco="let t; scope: 'onBoarding';">
 <div class="main-container">
   <div class="sign-up-info-div cv-div">
     <form class="row" action="">
       <div class="cv-div">
-        <p class="font-poppins-bold">Upload Medical Documents
+        <p class="font-poppins-bold">{{t('onBoarding.upload-medical')}}
         </p>
         <div *ngIf="fileList.length === 0" class="upload-file">
           <input type="file" (change)="onFileUpload($event)" /><img
@@ -10,44 +11,39 @@
                   alt=""
           />
           <p class="upload-text">
-            <span>Click to Upload </span>or drag and drop
+            <span>{{t('onBoarding.upload-text')}} </span>{{t('onBoarding.drag-drop')}} 
           </p>
-          <span>PDF or DOC (max. size 6MB)</span>
+          <span>{{t('onBoarding.pdf-doc')}} </span>
         </div>
-        <div
-          *ngIf="fileList.length > 0"
-          class="p-3 row col-lg-6 col-12 mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2"
-        >
-          <div
-            class="uploaded-files col-12 px-0 px-0 d-flex align-items-center"
-            *ngFor="let file of fileList; index as i"
-          >
+        <div *ngIf="fileList.length > 0"
+          class="p-3 row col-lg-6 col-12 mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">
+          <div class="uploaded-files col-12 px-0 px-0 d-flex align-items-center" *ngFor="let file of fileList; index as i">
             <div class="file-details rounded">
               <div class="d-flex align-items-center gap-2">
                 <div class="file-icon">
-                  <img src="assets/SVG/pdf-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
-                  <img src="assets/SVG/doc-icon.svg" alt="" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
+                  <img src="assets/SVG/pdf-icon.svg" alt=""
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'" />
+                  <img src="assets/SVG/doc-icon.svg" alt=""
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'" />
                 </div>
                 <div class="file-name-type">
                   <span class="file-name">{{ file.name }}</span>
-                  <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
-                  <h6 class="file-type font-poppins-bold" *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
+                  <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) == 'pdf'">PDF</h6>
+                  <h6 class="file-type font-poppins-bold"
+                    *ngIf="file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length) != 'pdf'">Word</h6>
                 </div>
               </div>
-              <div
-                class="delete p-2 rounded border border-color-alice-blue cursor-pointer"
-              >
-                <img
-                   height="20" src="assets/SVG/delete.svg"
-                  alt=""
-                  (click)="DeleteFile(i)"
-                />
+              <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
+                <img height="20" src="assets/SVG/delete.svg" alt="" (click)="DeleteFile(i)" />
               </div>
             </div>
           </div>
         </div>
-        <input type="button" value="Upload Medical History" (click)="uploadMedical()" />
-      </div>
-    </form>
-  </div>
-</div>
+        <input type="button" value="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap"
+          value="{{t('profile.upload')}}" (click)="uploadMedical()" *ngIf="uploadMedicalData && uploadMedicalData.length > 0" />
+        </div>
+        </form>
+        </div>
+        </div>
+        </ng-container>
