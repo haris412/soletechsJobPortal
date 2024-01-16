@@ -45,7 +45,8 @@ export class ApplicantOnboardingComponent {
   async ngOnInit() {
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let applicationId = localStorage.getItem('applicationId') ?? '';
-    let boardingData = await this.service.GetApplicationOnBoardingList(applicantId,applicationId);
+    let personRecId = Number(localStorage.getItem('applicantPersonRecid')) ?? 0;
+    let boardingData = await this.service.GetApplicationOnBoardingList(applicantId,applicationId,personRecId);
     this.shared.onBoardingData = boardingData?.listOnboarding?.parmRecruitment_ApplicationOnBoardingList as ApplicantOnboardingTasks[];
     const group = this.shared.onBoardingData?.reduce((acc: any, curr) => {
       let key = curr.ActivityDuration;
