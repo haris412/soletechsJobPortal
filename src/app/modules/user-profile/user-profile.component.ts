@@ -225,7 +225,7 @@ export class UserProfileComponent {
 
 	async uploadCvs() {
 		let res = await this.lookUpService.uploadCvs(this.uploadCvData);
-		if (res != null && res.length > 0) {
+		if (res != null && res?.length > 0) {
 			this.toastrService.success("Files are uploaded");
 		} else {
 			this.toastrService.error(res)

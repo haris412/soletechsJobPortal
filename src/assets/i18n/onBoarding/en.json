@@ -8,5 +8,9 @@
     "first-day":"First Day",
     "thirty-days":"In 30 Days",
     "sixty-days":"In 60 Days",
-    "ninty-days":"In 90 Days"
+    "ninty-days":"In 90 Days",
+    "upload-medical":"Upload Medical Documents",
+    "upload-text":"Click to Upload",
+    "drag-drop":"or drag and drop",
+    "pdf-doc":"PDF or DOC"
 }

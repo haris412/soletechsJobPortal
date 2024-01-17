@@ -135,6 +135,7 @@
               <li class="nav-item"
                   *ngIf="isLogin">
                 <div class="nav-link d-flex align-items-center align-content-center px-2 gap-1"
+                     [ngClass]="savedJobs ? 'active':''"
                      aria-current="page"
                      (click)="SavedJobs()">
                   <img height="15"
@@ -149,7 +150,8 @@
               <li class="nav-item">
                 <div class="nav-link d-flex align-items-center align-content-center px-2 gap-1"
                      aria-current="page"
-                     (click)="GoToJobs()">
+                     (click)="GoToJobs()" 
+                     [ngClass]="home ? 'active':''">
                   <img height="15"
                        width="15"
                        src="assets/SVG/search.svg"
