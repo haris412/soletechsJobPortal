@@ -80,9 +80,8 @@ export class AddEditSkillsComponent implements OnInit {
       this.fileList.push(files.target.files);
     }
   
-    DeleteFile: (selectedFile:File) => void = () => {
-      //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
-      this.fileList = [];
+    DeleteFile(index: number) {
+      this.fileList.splice(index, 1);
     }
 }
 

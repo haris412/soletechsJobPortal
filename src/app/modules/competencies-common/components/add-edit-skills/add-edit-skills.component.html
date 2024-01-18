@@ -85,11 +85,11 @@
                 <img src="assets/SVG/pdf-icon.svg"
                      *ngIf="file[i].name.substring(file[i].name.lastIndexOf('.') + 1, file[i].name.length) == 'pdf'"
                      alt=""
-                     (click)="DeleteFile(file)" />
+                     (click)="DeleteFile(i)" />
                 <img src="assets/SVG/doc-icon.svg"
                      *ngIf="file[i].name.substring(file[i].name.lastIndexOf('.') + 1, file[i].name.length) != 'pdf'"
                      alt=""
-                     (click)="DeleteFile(file)" />
+                     (click)="DeleteFile(i)" />
               </div>
               <div class="file-name-type">
                 <span class="file-name">{{file[i].name}}</span>
@@ -103,7 +103,7 @@
             </div>
             <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
               <img height="20"
-                   src="assets/SVG/delete.svg"
+                   src="assets/SVG/delete.svg" (click)="DeleteFile(i)"
                    alt="" />
             </div>
           </div>
