@@ -1,23 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
-import { UploadCvsDTO, UploadMedicalDTO } from 'src/app/modules/user-profile/user-profile.component';
+import { UploadMedicalDTO } from 'src/app/modules/user-profile/user-profile.component';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-medical-check-up',
   templateUrl: './medical-check-up.component.html',
   styleUrls: ['./medical-check-up.component.scss']
 })
-export class MedicalCheckUpComponent {
+export class MedicalCheckUpComponent implements OnInit {
   fileList:any[]=[];
   fileCvData: any;
 	uploadMedicalData: UploadMedicalDTO[] = [];
-
+  hospitalDataList:any[] = [];
   constructor(private lookUpService: AppLookUpService,
-		          public toastrService: ToastrService) {
-    
-  }
+		          public toastrService: ToastrService,
+              public shared: SharedService) {}
 
+  ngOnInit() {
+    this.hospitalDataList = this.shared.applicantonHospitalBoardingList;
+  }
   onFileUpload(files: any) {
     if (files.target.files.length > 0) {
       this.fileCvData = files.target.files[0];

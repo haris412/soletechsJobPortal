@@ -22,6 +22,7 @@ export class SharedService {
     public appliedJobsCopy:any[] = [];
     public savedJobsCopy:any[]=[];
     public selectedJobActions:any;
+    public applicantonHospitalBoardingList:any[] = [];
     public onBoardingData: ApplicantOnboardingTasks[] = [];
     durationGroups: ActivityDurationGroupByData[] = [];
     public onboardingLanguageChangeData: ActivityDurationGroupByData[] = [];

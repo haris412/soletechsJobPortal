@@ -1,17 +1,17 @@
 {
-    "back":"الرجوع",
+    "back":"رجوع",
     "next":"التالي",
-    "discard":"ينبذ",
-    "mark-completed":"وضع علامة كمكتمل",
-    "instructions":"تعليمات",
+    "discard":"إلغاء",
+    "mark-completed":"تم الانتهاء",
+    "instructions":"التعليمات",
     "before-joining":"قبل التعيين",
     "first-day":"اليوم الأول",
     "thirty-days":"30 يوم",
     "sixty-days":"60 يوم",
     "ninty-days":"90 يوم",
-    "upload-medical":"تحميل المستندات الطبية",
-    "upload-text":"انقر للتحميل",
-    "drag-drop":"أو السحب والإفلات",
-    "pdf-doc":"PDF أو DOC",
-    "max-size":"الحد الأقصى للحجم 6 ميجابايت"
+    "upload-medical":"تحميل التقرير الطبية",
+    "upload-text":"تحميل الملف",
+    "drag-drop":" اسحب الملف",
+    "pdf-doc":"PDF-Docs صيغة الملف",
+    "max-size":"الحد الأقصى لحجم الملف 6 ميجابايت"
 }

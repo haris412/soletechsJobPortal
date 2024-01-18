@@ -47,6 +47,7 @@ export class ApplicantOnboardingComponent {
     let applicationId = localStorage.getItem('applicationId') ?? '';
     let personRecId = Number(localStorage.getItem('applicantPersonRecid')) ?? 0;
     let boardingData = await this.service.GetApplicationOnBoardingList(applicantId,applicationId,personRecId);
+    this.shared.applicantonHospitalBoardingList = boardingData?.applicantonHospitalBoardingList?.parmApplicant_HospitalOnBoardingList;
     this.shared.onBoardingData = boardingData?.listOnboarding?.parmRecruitment_ApplicationOnBoardingList as ApplicantOnboardingTasks[];
     const group = this.shared.onBoardingData?.reduce((acc: any, curr) => {
       let key = curr.ActivityDuration;
@@ -66,7 +67,6 @@ export class ApplicantOnboardingComponent {
         if (durationData.applicantOnboardingTasks.length > 0 && item == 0) {
           durationData.applicantOnboardingTasks[0].Active = true;
         }
-        console.log(durationData); 
         if (durationData.ActivityDuration != ActivityDuration.In60Days.toString() &&
             durationData.ActivityDuration != ActivityDuration.Custom.toString() &&
             durationData.ActivityDuration != ActivityDuration.In90Days.toString())

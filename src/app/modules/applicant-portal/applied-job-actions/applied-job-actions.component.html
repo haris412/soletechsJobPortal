@@ -44,6 +44,7 @@
            *ngIf="selectedJob?.applicationStatus === 5">{{t('dashboard.employed')}}</p>
         <p class="mb-0 font-poppins-medium text-midnight-moss"
            *ngIf="selectedJob?.applicationStatus === 6">{{t('dashboard.offered')}}</p>
+        <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 7">{{t('dashboard.on-boarding')}}</p>
       </div>
       <div class="stepper-wrapper"
            [ngClass]="{'reverse-direction' : translationService.isTranslate}">

@@ -2,7 +2,7 @@
   "welcome":"مرحبا",
   "applied-jobs": "الوظائف التي تم التقدم اليها",
     "saved-jobs":"الوظائف المحفوظة",
-    "browse-jobs":"تصفح الوظائف",
+    "browse-jobs":"استعراض الوظائف",
     "not-apply-txt":" لم يتم التقدم لأي وظيفة",
     "received":"تم الأستلام",
     "confirmed":"تم التاكيد",
@@ -13,7 +13,7 @@
     "employed":"تم التوظيف",
     "offered":"تم تقديم العرض",
     "on-boarding":"تهيئة متطلبات العمل",
-    "no-saved-job-txt":"ليس لديك أي وظائف محفوظة",
+    "no-saved-job-txt":"لا يوجد وظائف محفوظة",
     "go-to-profile":"اذهب إلى الملف الشخصي",
     "basic-info":"المعلومات الأساسية",
     "competencies":"الكفاءات",
@@ -23,13 +23,13 @@
     "confirm":"تأكيد",
     "reschedule":"إعادة تحديد الموعد",
     "actions":"أجراءات",
-    "start-on-boarding":"ابدأ الإعداد",
+    "start-on-boarding":"الاعداد لبدء العمل",
     "job-details":"تفاصيل الوظيفة",
     "offer-ready":"العرض جاهز",
     "reject-offer":"رفض العرض",
-    "accept-offer":"اقبل العرض",
-    "show-offer":"عرض العرض",
-    "congrats-selection":"تهانينا!!!! لقد تم اختيارك"
+    "accept-offer":"قبول العرض",
+    "show-offer":"إستعراض العرض",
+    "congrats-selection":"تهانينا!!!! لقد تم اختيارك للوظيفة"
 
 
 }
