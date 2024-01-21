@@ -7,9 +7,9 @@
           <p class="text-shuttle-grey">{{t('basicInfo.no-info')}}</p>
         </div>
       </div> -->
-      <!-- <div  *ngFor="let hospital of hospitalDataList" class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" >
-        <div class="d-flex align-items-center w-100 identification-item-container">
-          <div class="identification-item rounded w-100">
+      <div   class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" *ngFor="let hospital of hospitalDataList">
+        <div class="d-flex align-items-center w-100 identification-item-container" >
+          <div class="identification-item rounded w-100" >
             <div class="d-flex align-items-start flex-column">
               <h6 class="mb-0 font-poppins-bold">{{hospital?.hospitalId}}</h6>
             </div>
@@ -17,9 +17,10 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
     <div class="sign-up-info-div cv-div">
+      
       <form class="row" action="">
         <div class="cv-div">
           <p class="font-poppins-bold">{{t('onBoarding.upload-medical')}}
