@@ -67,22 +67,30 @@
           Date is Required</mat-error>
       </mat-form-field>
     </div>
-    <div class="d-flex flex-column col-12">
-      <p>{{t('competencies.require-renewal')}}*</p>
-      <mat-form-field appearance="outline"
-                      class="w-100">
-        <mat-select name="requireRenewal"
+    <div class="d-flex flex-column col-6 mb-3">
+      <div class="d-flex align-items-center  justify-content-between">
+      <p class="mb-0">{{t('competencies.require-renewal')}}*</p>
+      <mat-slide-toggle
+          [checked]="toggleValue"
+          [formControlName]="'renewal'"
+        ></mat-slide-toggle>
+      </div>
+      <span class="error-text" *ngIf="f.renewal.hasError('required') && (f.renewal.dirty || f.renewal.touched)"> Renewal is
+        Required </span>
+      <!-- <mat-form-field appearance="outline"
+                      class="w-100"> -->
+        <!-- <mat-select name="requireRenewal"
                     [formControlName]="'renewal'">
           <mat-option [value]="0">Yes</mat-option>
           <mat-option [value]="1">No</mat-option>
-        </mat-select>
-        <img matSuffix
+        </mat-select> -->
+        <!-- <img matSuffix
              src="assets/SVG/chevron-down.svg"
              alt="" />
         <mat-error class="error-message"
                    *ngIf="f.renewal.hasError('required') && (f.renewal.dirty || f.renewal.touched)">Renewal is
           Required</mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
     </div>
     <div class="d-flex flex-column col-12">
       <p>{{t('competencies.notes')}}</p>

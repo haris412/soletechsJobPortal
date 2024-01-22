@@ -739,4 +739,14 @@ export class AppLookUpService {
             {params:queryParams}
         ).toPromise();
     }
+
+    async GetApplicationInterviewerList(applicationId:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicationId', applicationId)
+        return await this.httpClient
+        .get<any>(
+            apiURLs.application.getApplicationOnBoardingList,
+            {params:queryParams}
+        ).toPromise();
+    }
 }

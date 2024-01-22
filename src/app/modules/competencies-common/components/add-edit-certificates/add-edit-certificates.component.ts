@@ -14,6 +14,7 @@ export class AddEditCertificatesComponent implements OnInit {
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
   @Output() educationData: EventEmitter<Certificates> = new EventEmitter();
   certiifcateForm: UntypedFormGroup;
+  toggleValue: any;
   private _formBuilder = inject(UntypedFormBuilder);
   certificate!: Certificates;
   fileList:any[]=[];

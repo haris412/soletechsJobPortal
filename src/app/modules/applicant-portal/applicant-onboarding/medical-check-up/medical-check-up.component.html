@@ -1,26 +1,19 @@
 <ng-container *transloco="let t; scope: 'onBoarding';">
   <div class="main-container">
-    <div class="row mx-0">
-      <!-- <div *ngIf="this.userInfoService.identificationList == undefined" class="identification-list">
-        <div class="no-information">
-          <img src="assets/SVG/no-info.svg" alt="no-info">
-          <p class="text-shuttle-grey">{{t('basicInfo.no-info')}}</p>
-        </div>
-      </div> -->
-      <div   class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" *ngFor="let hospital of hospitalDataList">
-        <div class="d-flex align-items-center w-100 identification-item-container" >
-          <div class="identification-item rounded w-100" >
-            <div class="d-flex align-items-start flex-column">
-              <h6 class="mb-0 font-poppins-bold">{{hospital?.hospitalId}}</h6>
-            </div>
-            <div class="d-flex align-items-center gap-1">
+    <div class="sign-up-info-div">
+      <span class="heading">Hospitals</span>
+      <div class="row">
+        <div  *ngFor="let hospital of hospitalDataList" class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" >
+          <div class="d-flex align-items-center w-100 identification-item-container">
+            <div class="identification-item rounded w-100">
+              <div class="d-flex align-items-start flex-column">
+                <!-- <p class="mb-0 font-poppins-bold">{{identification?.IdentificationType}}</p> -->
+                <h6 class="mb-0 font-poppins-bold">{{hospital?.hospitalId}}</h6>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="sign-up-info-div cv-div">
-      
       <form class="row" action="">
         <div class="cv-div">
           <p class="font-poppins-bold">{{t('onBoarding.upload-medical')}}

@@ -73,4 +73,6 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     localStorage.setItem('applicationId',application.applicationId);
     this.router.navigate(['/applicant/onboarding'])
   }
+  Confirm(){}
+  OpenReschedule(){}
 }

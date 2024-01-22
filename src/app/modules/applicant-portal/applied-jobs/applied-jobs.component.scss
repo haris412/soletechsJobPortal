@@ -305,3 +305,51 @@
     right: 50%;
   }
 }
+
+.next-actions {
+  .job-details {
+    @include media-breakpoint-up(xxl) {
+      margin-bottom: 2.375rem;
+    }
+  }
+  .month-date {
+    .month {
+      width: 46px;
+      height: 17px;
+      background-color: $feijoa;
+      text-transform: uppercase;
+      font-size: 0.531rem;
+      font-family: $font-poppins-bold;
+    }
+    .date {
+      width: 46px;
+      height: 29px;
+      background-color: $white-smoke;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      font-family: $font-poppins-bold;
+    }
+  }
+  .meeting-with {
+    font-size: 0.75rem;
+    font-family: $font-poppins-medium;
+  }
+  .confirm-reschedule {
+    .btn {
+      padding-inline: 1.25rem;
+      padding-block: 0.5rem;
+      width: 120.5px;
+    }
+  }
+}
+
+.side-tab{
+  background-color: white;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+
+  p {
+    font-weight: 600;
+  }
+}
