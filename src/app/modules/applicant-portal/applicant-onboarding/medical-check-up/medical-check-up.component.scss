@@ -1,6 +1,9 @@
 @import "../../../../styles/variables-saas";
 
 .main-container {
+  .identification-list:first-child {
+    border-right: 1px solid $gray-200;
+  }
   .identification-item-container {
     margin-bottom: 1.25rem;
     gap: 1.75rem;
@@ -16,4 +19,9 @@
   .add-identification {
     padding-block: 0.75rem;
   }
+}
+
+.hospital-detail {
+  padding-inline: 1rem;
+  background-color: $whisper;
 }

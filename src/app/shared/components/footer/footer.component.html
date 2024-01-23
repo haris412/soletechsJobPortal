@@ -1,5 +1,6 @@
 <div
-    class="footer d-none w-100 d-lg-flex align-items-center justify-content-center py-2 bg-midnight-moss text-white mt-5"
+    class="footer d-none w-100 d-lg-flex align-items-center justify-content-center py-2 bg-midnight-moss text-white"
+    [ngClass]="{'mt-5':!isLogin}"
     >
     <p class="mb-0">&copy; 2023 JOBFINDER. All rights reserved.</p>
 </div>

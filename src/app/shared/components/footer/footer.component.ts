@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  @Input() isPositionAbsolute: boolean = false;
+  @Input() isLogin: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

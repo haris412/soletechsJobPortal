@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   title = 'soletechsJobPortal';
   currentRoute: string = '';
   loginURLs = ['/login', '/forgot-password', '/reset-password', '/reset-password-success'];
-  public isPositionAbsolute: boolean = false;
+  public isLogin: boolean = false;
   public o:any;
   constructor(
     private router: Router,
@@ -30,9 +30,9 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
         if (this.currentRoute == '/login' || this.currentRoute == '/forgot-password' || this.currentRoute == '/reset-password' || this.currentRoute == '/reset-password-success') {
-          this.isPositionAbsolute = false;
+          this.isLogin = true;
         }
-        else this.isPositionAbsolute = true;
+        else this.isLogin = false;
       }
     });
     // if (!localStorage.getItem('token')) {

@@ -353,3 +353,7 @@
     font-weight: 600;
   }
 }
+
+.btn:disabled {
+  background-color: $shuttle-grey !important;
+}
