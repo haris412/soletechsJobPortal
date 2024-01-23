@@ -108,7 +108,7 @@
         <input type="file"
                (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
              alt="" />
-        <p class="upload-text"><span>{{t('competencies.upload-text')}}</span>{{t('competencies.drag-drop')}}</p>
+        <p class="upload-text"><span>{{t('competencies.upload-text')}}</span><span> {{t('competencies.drag-drop')}}</span></p>
         <span>PDF or DOC (max. size 6MB)</span>
       </div>
       <div *ngIf="fileList.length > 0"

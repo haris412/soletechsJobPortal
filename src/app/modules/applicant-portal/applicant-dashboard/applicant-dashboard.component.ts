@@ -68,7 +68,10 @@ export class ApplicantDashboardComponent implements OnInit {
       this.appliedJobs = response?.parmRecruitmentApplicationJobList;
     }
   }
-
+  async Confirmed(){
+    await this.GetAppliedJobs();
+    await this.applicantService.GetApplicantSavedJobsList();
+  }
 }
 
 

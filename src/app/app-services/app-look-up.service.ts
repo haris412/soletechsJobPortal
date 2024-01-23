@@ -749,4 +749,15 @@ export class AppLookUpService {
             {params:queryParams}
         ).toPromise();
     }
+
+    async GetConfirmInterviewer(applicationId:string , interviewerRecid:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('applicationId', applicationId).
+        set('interviewRecId',interviewerRecid)
+        return await this.httpClient
+        .get<any>(
+            apiURLs.application.getConfirmInterviewer,
+            {params:queryParams}
+        ).toPromise();
+    }
 }

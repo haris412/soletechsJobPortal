@@ -73,7 +73,7 @@
                [formControlName]="'NoOfDay'" />
       </mat-form-field>
     </div>
-    <div class="d-flex flex-column col-lg-6 col-12">
+    <!-- <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.hour-type')}} </p>
       <mat-form-field appearance="outline"
                       class="w-100">
@@ -82,7 +82,7 @@
                name='hourType'
                [formControlName]="'HourType'" />
       </mat-form-field>
-    </div>
+    </div> -->
     <div class="d-flex flex-column col-lg-6 col-12">
       <p>{{t('competencies.no-of-hours')}}</p>
       <mat-form-field appearance="outline"
@@ -99,7 +99,7 @@
         <input type="file"
                (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
              alt="" />
-        <p class="upload-text"><span>{{t('competencies.upload-text')}}</span>{{t('competencies.drag-drop')}}</p>
+        <p class="upload-text"><span>{{t('competencies.upload-text')}}</span><span> {{t('competencies.drag-drop')}}</span></p>
         <span>PDF or DOC (max. size 6MB)</span>
       </div>
       <div *ngIf="fileList.length > 0"

@@ -29,7 +29,8 @@
     "reject-offer":"رفض العرض",
     "accept-offer":"قبول العرض",
     "show-offer":"إستعراض العرض",
-    "congrats-selection":"تهانينا!!!! لقد تم اختيارك للوظيفة"
-
+    "congrats-selection":"تهانينا!!!! لقد تم اختيارك للوظيفة",
+    "upload-text":"انقر للتحميل",
+    "drag-drop":"أو اسحب الملف"
 
 }

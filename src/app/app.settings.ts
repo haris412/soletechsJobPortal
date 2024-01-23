@@ -32,7 +32,8 @@ export const apiURLs = {
         jobOfferDetails:`${environment.apiUrl}/ERPApplication/JobOfferDetails`,
         getApplicationDetails:`${environment.apiUrl}/ERPApplication/GetApplicationDetails`,
         getApplicationOnBoardingList:`${environment.apiUrl}/ERPApplication/GetApplicationOnBoardingList`,
-        getApplicationInterviewerList:`${environment.apiUrl}/ERPApplication/GetApplicationInterviewerList`
+        getApplicationInterviewerList:`${environment.apiUrl}/ERPApplication/GetApplicationInterviewerList`,
+        getConfirmInterviewer:`${environment.apiUrl}/ERPApplication/GetConfirmInterviewer`
     },
     applicant:{
         createApplicant: `${environment.apiUrl}/ERPApplicant/CreateApplicant`,

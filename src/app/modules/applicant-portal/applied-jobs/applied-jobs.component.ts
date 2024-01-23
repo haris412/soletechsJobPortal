@@ -1,8 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApplicantDataService } from '../services/applicant-shared.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-applied-jobs',
@@ -12,6 +15,7 @@ import { TranslationAlignmentService } from 'src/app/app-services/translation-al
 export class AppliedJobsComponent implements OnInit , OnChanges{
   @Input() appliedJobs:any = new Object() as any;
   @Input() isTranslate:boolean = false;
+  @Output() interviewConfirmed: EventEmitter<boolean> = new EventEmitter();
   public receivedStage: boolean = false;
   public completed: boolean = false;
   public confirmedStage: boolean = false;
@@ -21,7 +25,9 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
 
   constructor(private router: Router,
               private applicantService:ApplicantDataService,
+              private applicationService:AppLookUpService,
               public sharedService: SharedService,
+              private toastrService: ToastrService,
               public translationService: TranslationAlignmentService) {
                 this.translationService.languageChange.subscribe(x => {
                   this.translationService.isTranslate = x;
@@ -73,6 +79,35 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     localStorage.setItem('applicationId',application.applicationId);
     this.router.navigate(['/applicant/onboarding'])
   }
-  Confirm(){}
+  async Confirm(appliedJob:any, interview:any){
+   let res =  await this.applicationService.GetConfirmInterviewer(appliedJob.applicationId,interview.InterviewerRecid);
+   if(res.Status){
+   this.toastrService.success(res.Message);
+   this.interviewConfirmed.emit(true);
+   }else{
+    this.toastrService.error(res.Message);
+   }
+  }
+
+  GetMonth(date:any){
+    let updatedDate = moment(date).format("DD.MM.YYYY");
+    let momentDate = moment(updatedDate, 'DD.MM.YYYY', true);
+    return momentDate.format('MMMM');
+    // console.log(moment(updatedDate).format('MM'));
+  }
+  GetDay(date:any){
+    let updatedDate = moment(date).format("DD.MM.YYYY");
+    let momentDate = moment(updatedDate, 'DD.MM.YYYY', true);
+    return momentDate.day();
+    // console.log(moment(updatedDate).format('MM'));
+  }
+
+  GetTimeDifference(startDateTime:any, endDateTime:any){
+    const startTime = moment(startDateTime);
+    const endTime = moment(endDateTime);
+    const duration = moment.duration(endTime.diff(startTime));
+    const minutes = Math.floor(duration.asMinutes()) % 60;
+    return minutes;
+  }
   OpenReschedule(){}
 }

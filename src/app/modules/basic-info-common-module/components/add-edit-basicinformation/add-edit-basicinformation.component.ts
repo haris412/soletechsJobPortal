@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ToastrService } from 'ngx-toastr';
-
 import { DomSanitizer } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
@@ -44,6 +42,8 @@ export class AddEditBasicinformationComponent implements OnInit {
       currentJobTitle: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+      firstNameAr:[''],
+      lastNameAr:[''],
       middleName: [''],
       maritalStatus: ['0', [Validators.required]],
       birthDate: ['',[Validators.required]],

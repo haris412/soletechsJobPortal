@@ -6,7 +6,7 @@
         <app-left-side-info></app-left-side-info>
       </div>
       <div class="d-flex flex-column col-xl-9 col-12">
-        <app-applied-jobs [isTranslate]="isTranslate" [appliedJobs] = "appliedJobs"></app-applied-jobs>
+        <app-applied-jobs (interviewConfirmed) ="Confirmed()" [isTranslate]="isTranslate" [appliedJobs] = "appliedJobs"></app-applied-jobs>
         <app-saved-jobs [savedJobs]="this.applicantService.savedJobs"></app-saved-jobs>
       </div>
     </div>

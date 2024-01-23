@@ -94,9 +94,15 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
-          <p>{{t('basicInfo.middle-name')}}</p>
+          <p>{{t('basicInfo.first-name-ar')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <input matInput [formControlName]="'middleName'" />
+            <input matInput [formControlName]="'firstNameAr'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column col-md-6 col-12">
+          <p>{{t('basicInfo.last-name-ar')}}</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [formControlName]="'lastNameAr'" />
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
@@ -156,7 +162,7 @@
               status is required</mat-error>
           </mat-form-field>
         </div>
-        <div class="d-flex flex-column col-md-6 col-12">
+        <!-- <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.ethnic-origin')}}</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'ethnicOriginId'">
@@ -165,7 +171,7 @@
             </mat-select>
             <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
           </mat-form-field>
-        </div>
+        </div> -->
         <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.native-language')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
@@ -214,7 +220,7 @@
               degree is required</mat-error>
           </mat-form-field>
         </div>
-        <div class="d-flex flex-column col-md-6 col-12">
+        <!-- <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.reason-code')}}</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'reasonCode'">
@@ -223,7 +229,7 @@
             </mat-select>
             <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
           </mat-form-field>
-        </div>
+        </div> -->
       </form>
     </div>
     <!-- <div class="sign-up-info-div about-me">

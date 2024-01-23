@@ -91,7 +91,8 @@
     </div>
     
   </div>
-  <ng-container *ngFor="let interview of appliedJob?.InterviewerList?.parmApplicantInterviewList">
+  <div class="row">
+  <div class="col-6 mr-2" *ngFor="let interview of appliedJob?.InterviewerList?.parmApplicantInterviewList">
     <div class="next-actions">
     <div  class="actions info-container rounded-3">
       <div class="d-flex flex-xl-column flex-sm-row flex-column gap-2 justify-content-sm-between">
@@ -99,10 +100,10 @@
           <div class="d-flex align-items-center gap-xxl-3 gap-2">
             <div class="d-flex flex-column month-date">
               <div class="d-flex align-items-center justify-content-center month rounded-top">
-                dec
+                {{GetMonth(interview.StartTime)}}
               </div>
               <div class="d-flex align-items-center justify-content-center date rounded-bottom">
-                07
+                {{GetDay(interview.StartTime)}}
               </div>
             </div>
             <div class="d-flex flex-column action-details">
@@ -122,7 +123,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-1 font-poppins-medium time-remaining text-midnight-moss">
                   <img src="assets/SVG/hourglass.svg" alt="time-remaining" />
-                  30m
+                  <span>{{GetTimeDifference(interview.StartTime , interview.EndTime)}}mins</span>
                 </div>
               </div>
             </div>
@@ -130,7 +131,7 @@
         </div>
         <div class="d-flex align-items-center gap-xxl-3 gap-2 confirm-reschedule">
           <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8"
-             (click)="Confirm()">
+             (click)="Confirm(appliedJob , interview)" [disabled]="interview.ApplicantConfirmed === 1">
             {{t('dashboard.confirm')}}
           </button>
           <!-- <button type="button" class="btn text-error-600 border border-color-error-600 rounded font-poppins-semi fs-8"
@@ -141,7 +142,8 @@
       </div>
     </div>
     </div>
-  </ng-container>
+  </div>
+</div>
   <ng-container *transloco="let t; scope: 'dashboard';">
     <div class="next-actions" *ngIf="appliedJob?.applicationStatus === 7">
       <div class="actions rounded-3">

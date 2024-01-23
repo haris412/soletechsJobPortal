@@ -2,7 +2,9 @@
 
     "profile":"Profile",
      "first-name":"First Name",
+     "first-name-ar":"First Name AR",
      "last-name":"Last Name",
+     "last-name-ar":"Last Name AR",
      "middle-name":"Middle Name",
      "date-birth":"Date of Birth",
      "nationality":"Nationality",
@@ -35,6 +37,8 @@
      "issue-date":"Issue Date",
      "expiry-date":"Expiry Date",
      "file-upload-text":"Click to upload or drag and drop",
+     "upload-text":"click to upload",
+     "drag-drop":"or drag and drop",
      "pdf-doc":"PDF or DOC",
      "max-size":"max size",
      "back":"Back",
