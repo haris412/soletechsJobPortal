@@ -1,41 +1,78 @@
 <ng-container *transloco="let t; scope: 'onBoarding';">
   <div class="main-container">
-    <div class="sign-up-info-div">
-      <span class="heading">Hospitals</span>
-      <div class="row">
-        <div *ngFor="let hospital of hospitalDataList"
-             class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12">
-          <div class="d-flex flex-column w-100 identification-item-container">
-            <div class="identification-item rounded w-100">
-              <div class="d-flex align-items-start flex-column w-100">
-                <!-- <p class="mb-0 font-poppins-bold">{{identification?.IdentificationType}}</p> -->
-                <h6 class="mb-0 font-poppins-bold">{{hospital?.hospitalId}}</h6>
+    <h4>Screening</h4>
+    <div class="row">
+      <!-- <div *ngFor="let hospital of hospitalDataList"
+           class="identification-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12">
+        <div class="d-flex flex-column w-100 identification-item-container">
+          <div class="identification-item rounded w-100">
+            <div class="d-flex align-items-start flex-column w-100">
+              <p class="mb-0 font-poppins-bold">{{identification?.IdentificationType}}</p>
+              <h6 class="mb-0 font-poppins-bold">{{hospital?.hospitalId}}</h6>
 
+            </div>
+          </div>
+          <div class="d-flex flex-column hospital-detail rounded">
+            <div class="my-1">
+              <p class="mb-0 fs-8 font-poppins-bold">Description:</p>
+              <p class="mb-0 fs-9">{{hospital?.description}}</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="d-flex flex-column">
+                <p class="mb-0 font-poppins-bold fs-8">From:</p>
+                <p class="mb-0 fs-9">{{hospital?.fromTime}}</p>
+              </div>
+              <div class="d-flex flex-column">
+                <p class="mb-0 font-poppins-bold fs-8">To:</p>
+                <p class="mb-0 fs-9">{{hospital?.ToTime}}</p>
               </div>
             </div>
-            <div class="d-flex flex-column hospital-detail rounded">
-              <div class="my-1">
-                <p class="mb-0 fs-8 font-poppins-bold">Description:</p>
-                <p class="mb-0 fs-9">{{hospital?.description}}</p>
-              </div>
-              <div class="d-flex align-items-center gap-3">
-                <div class="d-flex flex-column">
-                  <p class="mb-0 font-poppins-bold fs-8">From:</p>
-                  <p class="mb-0 fs-9">{{hospital?.fromTime}}</p>
+            <div class="mb-1">
+              <p class="mb-0 font-poppins-bold fs-8">Location:</p>
+              <p class="mb-0 fs-9">{{hospital?.locationURl}}</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-lg-6 col-12 mr-2" *ngFor="let hospital of hospitalDataList">
+        <div class="next-actions rounded-3">
+        <div  class="actions info-container rounded-3">
+          <div class="d-flex flex-column gap-2 justify-content-sm-between">
+            <div class="job-details">
+              <div class="d-flex align-items-center gap-xxl-3 gap-2">
+                <!-- <div class="d-flex flex-column month-date">
+                  <div class="d-flex align-items-center justify-content-center month rounded-top">
+                    {{GetMonth(interview.StartTime)}}
+                  </div>
+                  <div class="d-flex align-items-center justify-content-center date rounded-bottom">
+                    {{GetDay(interview.StartTime)}}
+                  </div>
+                </div> -->
+                <div class="d-flex flex-column action-details">
+                  <h6 class="mb-1 font-poppins-bold text-midnight-moss">{{hospital?.hospitalId}}</h6>
+                  <div class="meeting-with mb-1 text-nowrap">
+                    <span class="text-midnight-moss">Description: </span>
+                    <span class="text-denim text-nowrap text-truncate">{{hospital?.description}}</span>
+                  </div>
+                  <div class="meeting-with mb-1 text-nowrap">
+                    <span class="text-midnight-moss">Location: </span>
+                    <span class="text-denim text-nowrap text-truncate">{{hospital?.locationURl}}</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 schedule">
+                    <div class="d-flex align-items-center gap-1 font-poppins-medium time text-midnight-moss">
+                      <img src="assets/SVG/clock.svg" alt="clock" />
+                      {{hospital?.fromTime}} - {{hospital?.ToTime}}
+                    </div>
+                  </div>
                 </div>
-                <div class="d-flex flex-column">
-                  <p class="mb-0 font-poppins-bold fs-8">To:</p>
-                  <p class="mb-0 fs-9">{{hospital?.ToTime}}</p>
-                </div>
-              </div>
-              <div class="mb-1">
-                <p class="mb-0 font-poppins-bold fs-8">Location:</p>
-                <p class="mb-0 fs-9">{{hospital?.locationURl}}</p>
               </div>
             </div>
           </div>
         </div>
+        </div>
       </div>
+    </div>
+    <div class="sign-up-info-div">
       <form class="row"
             action="">
         <div class="cv-div">
@@ -43,7 +80,7 @@
           </p>
           <div *ngIf="fileList.length === 0"
                class="upload-file">
-            <input type="file"
+            <input type="file" class="cursor-pointer"
                    (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
                  alt="" />
             <p class="upload-text">
