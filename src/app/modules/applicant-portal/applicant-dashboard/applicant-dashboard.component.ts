@@ -22,9 +22,9 @@ export class ApplicantDashboardComponent implements OnInit {
     private route: Router,
     public translationService: TranslationAlignmentService
     ) {
-      this.translationService.languageChange.subscribe(x=>{{
+      this.translationService.languageChange.subscribe(x=> {
         this.isTranslate=x;
-      }});
+      });
   }
 
   async ngOnInit() {
