@@ -299,7 +299,13 @@ button {
 .main-container {
   margin-bottom: 4.875rem;
   .sign-up-info-div {
-    padding: 2rem;
+    padding: 0.75rem;
+    @include media-breakpoint-up(lg) {
+      padding: 2rem;
+    }
+    @include media-breakpoint-up(sm) {
+      padding: 1rem;
+    }
     background-color: white;
     margin-bottom: 1rem;
     border-radius: 8px;
