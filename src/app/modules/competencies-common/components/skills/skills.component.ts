@@ -61,6 +61,7 @@ export class SkillsComponent implements OnInit{
       ...skill,
       RatingLevelType: Number(skill.RatingLevelType),
       RecId: skill?.RecId ? skill?.RecId :0,
+      AttachmentWeb:skill.Attachment ? 1: 0,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;

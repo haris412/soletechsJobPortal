@@ -33,7 +33,7 @@ export class AddEditSkillsComponent implements OnInit {
       RatingLevelType: ['', [Validators.required]],
       RatingLevelDate: ['', [Validators.required]],
       Experience:['', [Validators.required]],
-      attachment:[''],
+      Attachment:[''],
 			fileName: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
@@ -73,7 +73,7 @@ export class AddEditSkillsComponent implements OnInit {
         reader.readAsDataURL(this.fileCvData);
         reader.onload = () => {
           this.cvData = reader.result;
-          this.skillForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+          this.skillForm.controls.Attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
           this.skillForm.controls.fileName.setValue(this.fileCvData.name);
         };
       }
