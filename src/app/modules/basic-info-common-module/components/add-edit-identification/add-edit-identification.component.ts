@@ -5,6 +5,7 @@ import { Identification } from 'src/app/models/identification.model';
 
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 
 @Component({
   selector: 'app-add-edit-identification',
@@ -22,11 +23,13 @@ export class AddEditIdentificationComponent implements OnInit {
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Identification;
   fileFromAttachments = '';
+  attachBase64: any = '';
   get f() { return this.identificationForm.controls; }
   constructor(
     private toastrService: ToastrService,
     public userInfoService: UserInfoService,
-    public translationService: TranslationAlignmentService
+    public translationService: TranslationAlignmentService,
+    public lookupService: AppLookUpService
     ) {
     this.identificationForm = this._formBuilder.group({
       IdentificationType: ['', [Validators.required]],
@@ -72,10 +75,24 @@ export class AddEditIdentificationComponent implements OnInit {
   DeleteFile(selectedFile: File) {
     this.fileList = [];
   }
-  GetFilesFromAttachment(attachment: string) {
+  async GetFilesFromAttachment(attachment: string) {
     if (attachment.includes('soletechsattachmentcontainer')) {
-      /// call to get data from Azure
+      this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
       this.fileFromAttachments = attachment;
     }
+  }
+  DownloadFile() {
+    this.showPdf();
+  }
+
+  showPdf() {
+    const linkSource =
+      'data:application/octet-stream;base64,' + this.attachBase64?.value;
+    const downloadLink = document.createElement('a');
+    const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('/') + 1, this.fileFromAttachments.length);
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
   }
 }
