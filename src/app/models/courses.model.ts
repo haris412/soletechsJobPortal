@@ -9,6 +9,6 @@ export interface Course{
     HourType: string,
     NumberOfHours: number,
     applicantPersonRecId: number; 
-    attachment:any;
+    Attachment:any;
     RecId:number;
 }

@@ -6,6 +6,6 @@ export interface PositionOfTrust{
     EndDate:string | Date;
     Notes:string;
     applicantPersonRecid:number;
-    attachment :any;
+    Attachment :any;
     Recid:number;
 }

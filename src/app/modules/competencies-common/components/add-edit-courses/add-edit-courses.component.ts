@@ -21,6 +21,7 @@ export class AddEditCoursesComponent  implements OnInit{
   file:any;
   fileCvData: any;
   cvData: any
+  fileFromAttachments = '';
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.CourseForm.controls; }
   constructor(
@@ -48,6 +49,7 @@ export class AddEditCoursesComponent  implements OnInit{
         ...this.selectedCourse
       });
     }
+    this.GetFilesFromAttachment(this.selectedCourse?.Attachment);
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -82,5 +84,12 @@ export class AddEditCoursesComponent  implements OnInit{
     DeleteFile: (selectedFile:File) => void = () => {
       //this.fileList = this.fileList.filter((file:any)=> file.name !== selectedFile.name);
       this.fileList = [];
+    }
+
+    GetFilesFromAttachment(attachment: string) {
+      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
+        /// call to get data from Azure
+        this.fileFromAttachments = attachment;
+      }
     }
 }

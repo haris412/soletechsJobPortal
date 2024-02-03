@@ -22,6 +22,7 @@ export class AddEditEducationComponent implements OnInit{
   educationDiscipline:any[] = [];
   fileCvData: any;
   cvData: any
+  fileFromAttachments = '';
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.educationForm.controls; }
   constructor(
@@ -60,6 +61,7 @@ export class AddEditEducationComponent implements OnInit{
     this.educationInstitution = this.competenciesService.educationInstitutionList;
     this.educationLevel = this.competenciesService.educationLevelList;
     this.educationDiscipline  = this.competenciesService.educationDesciplineList;
+    this.GetFilesFromAttachment(this.selectedEducation?.Attachment);
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -98,5 +100,11 @@ export class AddEditEducationComponent implements OnInit{
     OnEducationChange(event:any){
       this.educationForm.controls.Description.setValue(event?.source?.value);
       this.educationForm.controls.Description.disable();
+    }
+    GetFilesFromAttachment(attachment: string) {
+      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
+        /// call to get data from Azure
+        this.fileFromAttachments = attachment;
+      }
     }
 }

@@ -7,7 +7,7 @@ export interface Certificates{
     Note:string;
     applicantPersonRecId:number;
     recid:number;
-    attachment:any;
+    Attachment:any;
 }
 
 

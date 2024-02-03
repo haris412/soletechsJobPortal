@@ -21,6 +21,7 @@ export class AddEditCertificatesComponent implements OnInit {
   file:any;
   fileCvData: any;
   cvData: any
+  fileFromAttachments = '';
   certificateTypeList:any[] = [];
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.certiifcateForm.controls; }
@@ -51,6 +52,7 @@ export class AddEditCertificatesComponent implements OnInit {
       });
     }
     this.certificateTypeList = this.competenciesService.certificateTypesList;
+    this.GetFilesFromAttachment(this.selectedCertificate?.Attachment);
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -89,5 +91,11 @@ export class AddEditCertificatesComponent implements OnInit {
     OnCertificateChange(event:any){
       this.certiifcateForm.controls.Description.setValue(event?.source?.value);
       this.certiifcateForm.controls.Description.disable();
+    }
+    GetFilesFromAttachment(attachment: string) {
+      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
+        /// call to get data from Azure
+        this.fileFromAttachments = attachment;
+      }
     }
 }

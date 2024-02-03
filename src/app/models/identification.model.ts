@@ -5,5 +5,5 @@ export interface Identification {
     ExpirationDate:string;
     applicantPersonRecId:number;
     recId:number;
-    attachment:any;
+    Attachment:any;
 }

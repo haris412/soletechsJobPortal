@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class IdentificationComponent {
   fileList:any[]=[];
   public identificationForm: UntypedFormGroup | undefined;
+  fileFromAttachments = '';
 
   onFileUpload(files: any) {
     this.fileList = files.target.files;
@@ -24,6 +25,11 @@ export class IdentificationComponent {
 
   GoToJobDetail(){
     this.router.navigate(['/jobs']);
-
+  }
+  GetFilesFromAttachment(attachment: string) {
+    if (attachment.includes('soletechsattachmentcontainer')) {
+      /// call to get data from Azure
+      this.fileFromAttachments = attachment;
+    }
   }
 }

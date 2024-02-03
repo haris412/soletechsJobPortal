@@ -21,6 +21,7 @@ export class AddEditIdentificationComponent implements OnInit {
   fileList: any[] = [];
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Identification;
+  fileFromAttachments = '';
   get f() { return this.identificationForm.controls; }
   constructor(
     private toastrService: ToastrService,
@@ -47,6 +48,7 @@ export class AddEditIdentificationComponent implements OnInit {
     } else {
       this.identificationForm.reset();
     }
+    this.GetFilesFromAttachment(this.selectedIdentification?.Attachment);
   }
   CloseIdentificationNav: () => void = () => {
     this.closeSideNav.emit(true);
@@ -69,5 +71,11 @@ export class AddEditIdentificationComponent implements OnInit {
 
   DeleteFile(selectedFile: File) {
     this.fileList = [];
+  }
+  GetFilesFromAttachment(attachment: string) {
+    if (attachment.includes('soletechsattachmentcontainer')) {
+      /// call to get data from Azure
+      this.fileFromAttachments = attachment;
+    }
   }
 }

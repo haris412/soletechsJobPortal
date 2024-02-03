@@ -760,4 +760,14 @@ export class AppLookUpService {
             {params:queryParams}
         ).toPromise();
     }
+
+    async GetAttachmentFromAzure(attachmentUrl:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('attachmentUrl', attachmentUrl)
+        return await this.httpClient
+        .get<any>(
+            apiURLs.applicant.getAttachmentFile,
+            {params:queryParams}
+        ).toPromise();
+    }
 }

@@ -22,6 +22,7 @@ export class AddEditExperienceComponent implements OnInit {
   file: any;
   fileCvData: any;
   cvData: any
+  fileFromAttachments = '';
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.experienceForm.controls; }
   constructor(
@@ -50,7 +51,7 @@ export class AddEditExperienceComponent implements OnInit {
         ...this.selectedExperience
       });
     }
-
+    this.GetFilesFromAttachment(this.selectedExperience?.attachment);
   }
   CloseSideNav: () => void = () => {
     this.closeSideNav.emit(true);
@@ -83,5 +84,11 @@ export class AddEditExperienceComponent implements OnInit {
   }
   DeleteFile: (selectedFile: File) => void = () => {
     this.fileList = [];
+  }
+  GetFilesFromAttachment(attachment: string) {
+    if (attachment && attachment.includes('soletechsattachmentcontainer')) {
+      /// call to get data from Azure
+      this.fileFromAttachments = attachment;
+    }
   }
 }
