@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
 
@@ -21,8 +22,10 @@ export class AddEditPositionOfTrustComponent implements OnInit{
   cvData: any
   fileFromAttachments = '';
   public isTranslate: boolean = this.translationService.isTranslate;
+  attachBase64: any = '';
   get f() { return this.psitionTrustForm.controls; }
-  constructor(public translationService: TranslationAlignmentService){
+  constructor(public translationService: TranslationAlignmentService,
+              public lookupService: AppLookUpService){
     this.psitionTrustForm = this._formBuilder.group({
       id: [''],
       Employment: ['', [Validators.required]],
@@ -81,10 +84,25 @@ export class AddEditPositionOfTrustComponent implements OnInit{
       this.fileList = [];
     }
 
-    GetFilesFromAttachment(attachment: string) {
+    async GetFilesFromAttachment(attachment: string) {
       if (attachment && attachment.includes('soletechsattachmentcontainer')) {
-        /// call to get data from Azure
+        this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
         this.fileFromAttachments = attachment;
       }
+    }
+
+    DownloadFile() {
+      this.showPdf();
+    }
+
+    showPdf() {
+      const linkSource =
+        'data:application/octet-stream;base64,' + this.attachBase64?.value;
+      const downloadLink = document.createElement('a');
+      const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('/') + 1, this.fileFromAttachments.length);
+  
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+      downloadLink.click();
     }
 }

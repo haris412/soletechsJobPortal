@@ -137,7 +137,7 @@
         <div class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
           <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2">
             <div class="file-details rounded">
-              <div class="d-flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2" (click)="DownloadFile()">
                 <div class="file-icon">
                   <img src="assets/SVG/pdf-icon.svg"
                       *ngIf="fileFromAttachments.substring(fileFromAttachments.lastIndexOf('.') + 1, fileFromAttachments.length) == 'pdf'"

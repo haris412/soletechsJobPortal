@@ -3,6 +3,7 @@ import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms
 import { Certificates } from 'src/app/models/certificates.model';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 
 @Component({
   selector: 'app-add-edit-certificates',
@@ -23,11 +24,13 @@ export class AddEditCertificatesComponent implements OnInit {
   cvData: any
   fileFromAttachments = '';
   certificateTypeList:any[] = [];
+  attachBase64: any = '';
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.certiifcateForm.controls; }
   constructor(
     private competenciesService:CompetenciesCommonService,
-    public translationService: TranslationAlignmentService
+    public translationService: TranslationAlignmentService,
+    public lookupService: AppLookUpService
     ){
     this.certiifcateForm = this._formBuilder.group({
       id:[''],
@@ -92,10 +95,25 @@ export class AddEditCertificatesComponent implements OnInit {
       this.certiifcateForm.controls.Description.setValue(event?.source?.value);
       this.certiifcateForm.controls.Description.disable();
     }
-    GetFilesFromAttachment(attachment: string) {
+    async GetFilesFromAttachment(attachment: string) {
       if (attachment && attachment.includes('soletechsattachmentcontainer')) {
-        /// call to get data from Azure
+        this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
         this.fileFromAttachments = attachment;
       }
+    }
+
+    DownloadFile() {
+      this.showPdf();
+    }
+
+    showPdf() {
+      const linkSource =
+        'data:application/octet-stream;base64,' + this.attachBase64?.value;
+      const downloadLink = document.createElement('a');
+      const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('/') + 1, this.fileFromAttachments.length);
+  
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+      downloadLink.click();
     }
 }
