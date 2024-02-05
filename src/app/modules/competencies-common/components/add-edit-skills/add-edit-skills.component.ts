@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Skills } from 'src/app/models/skills.model';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 
 @Component({
   selector: 'app-add-edit-skills',
@@ -24,10 +25,13 @@ export class AddEditSkillsComponent implements OnInit {
   public isTranslate: boolean = this.translationService.isTranslate;
   fileCvData: any;
   cvData: any
+  fileFromAttachments = '';
+  attachBase64: any = '';
   get f() { return this.skillForm.controls; }
   constructor(
     private competenciesService:CompetenciesCommonService,
-    public translationService: TranslationAlignmentService){
+    public translationService: TranslationAlignmentService,
+    public lookupService: AppLookUpService){
     this.skillForm = this._formBuilder.group({
       SkillID: ['',[Validators.required]],
       RatingLevelType: ['', [Validators.required]],
@@ -49,6 +53,7 @@ export class AddEditSkillsComponent implements OnInit {
         RatingLevelType:this.selectedSkill?.RatingLevelType?.toString()
       });
     }
+    this.GetFilesFromAttachment(this.selectedSkill?.Attachment);
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -82,6 +87,29 @@ export class AddEditSkillsComponent implements OnInit {
   
     DeleteFile(index: number) {
       this.fileList.splice(index, 1);
+    }
+
+    async GetFilesFromAttachment(attachment: string) {
+      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
+        /// call to get data from Azure
+        this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
+        this.fileFromAttachments = attachment;
+      }
+    }
+
+    DownloadFile() {
+      this.showPdf();
+    }
+
+    showPdf() {
+      const linkSource =
+        'data:application/octet-stream;base64,' + this.attachBase64?.value;
+      const downloadLink = document.createElement('a');
+      const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('/') + 1, this.fileFromAttachments.length);
+  
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+      downloadLink.click();
     }
 }
 
