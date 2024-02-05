@@ -35,12 +35,12 @@ export class AddEditEducationComponent implements OnInit{
       EducationLevelId:['',[Validators.required]],
       StartDate: ['', [Validators.required]],
       EndDate: ['', [Validators.required]],
-      CreditBasis: [2,[Validators.required]],
+      CreditBasis: [2],
       EducationScale:[''],
       EducationAverage:[0,[Validators.required]],
-      CreditsCompleted:['' ],
+      CreditsCompleted:[0],
       CreditsEarned:[0],
-      CreditsNeeded:[''],
+      CreditsNeeded:[0],
       EducationSecondaryEmphasis:[''],
       Notes:[''],
       attachment:[''],
@@ -54,7 +54,7 @@ export class AddEditEducationComponent implements OnInit{
     if(this.selectedEducation?.EducationDisciplineRecId !== ''){
       this.educationForm.patchValue({
         ...this.selectedEducation,
-        CreditBasis:this.selectedEducation?.CreditBasis?.toString()
+        CreditBasis:'2'
       });
     }
     this.educationInstitution = this.competenciesService.educationInstitutionList;

@@ -92,7 +92,7 @@
     
   </div>
   <div class="row">
-    <h5 class="text-midnight-moss">Interview Schedules</h5>
+    <h5 class="text-midnight-moss" *ngIf="appliedJob?.InterviewerList?.parmApplicantInterviewList.length > 0">Interview Schedules</h5>
   <div class="col-lg-4 col-sm-6 col-12 mr-2" *ngFor="let interview of appliedJob?.InterviewerList?.parmApplicantInterviewList">
     <div class="next-actions">
     <div  class="actions info-container rounded-3">
