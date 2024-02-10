@@ -21,7 +21,10 @@
         <div class="courses-list d-flex flex-column align-items-center mt-3 col-sm-6 col-12" *ngFor="let course of courses; index as i">
           <div class="d-flex align-items-center w-100 courses-item-container">
             <div class="courses-item rounded w-100" >
-              <h6 class="mb-0 font-poppins-bold">{{course.course}}</h6>
+              <div class="d-flex align-items-start flex-column">
+                <p class="text-midnight-moss font-poppins-bold">{{course.course}}</p>
+                <h6 class="mb-0 font-poppins-bold">{{course.Location}}</h6>
+              </div>
               <div class="d-flex align-items-center gap-1">
                 <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
                   <img class="cursor-pointer" src="assets/SVG/edit-icon.svg" alt="" (click)="EditCourse(course)"/>
