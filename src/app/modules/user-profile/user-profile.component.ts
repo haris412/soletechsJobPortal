@@ -38,7 +38,6 @@ export class UserProfileComponent {
 	constructor(
 		private router: Router,
 		public ref: ChangeDetectorRef,
-		private renderer: Renderer2,
 		private el: ElementRef,
 		public applicantDataService: ApplicantDataService,
 		private _sanitizer: DomSanitizer,
@@ -62,6 +61,13 @@ export class UserProfileComponent {
 			this.applicantDataService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
 				+ this.applicantDataService.applicantData?.applicantImage);
 		}
+		this.applicantDataService.applicantData.cvAttachment = this._sanitizer.bypassSecurityTrustResourceUrl('data:file/pdf;base64,'
+				+ this.applicantDataService.applicantData.cvAttachment);
+		console.log(this.applicantDataService.applicantData.cvAttachment);
+		let blob = this.b64toBlob(this.applicantDataService.applicantData.cvAttachment, "application/pdf");
+		console.log(blob);
+		var url = window.URL.createObjectURL(blob);
+         console.log(url);
 		if (this.applicantDataService.applicantData?.aboutMe) {
 			this.aboutMe = this.applicantDataService.applicantData.aboutMe;
 		}
@@ -69,7 +75,29 @@ export class UserProfileComponent {
 			await this.shareService.GetLookUps();
 		}
 	}
-
+	public b64toBlob(b64Data:string, contentType:string) {
+		contentType = contentType || '';
+		let sliceSize = 512;
+	  
+		var byteCharacters = atob(b64Data);
+		var byteArrays = [];
+	  
+		for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+			var slice = byteCharacters.slice(offset, offset + sliceSize);
+	  
+			var byteNumbers = new Array(slice.length);
+			for (var i = 0; i < slice.length; i++) {
+				byteNumbers[i] = slice.charCodeAt(i);
+			}
+	  
+			var byteArray = new Uint8Array(byteNumbers);
+	  
+			byteArrays.push(byteArray);
+		}
+	  
+		var blob = new Blob(byteArrays, { type: contentType });
+		return blob;
+	  }
 	OpenSidenav() {
 		this.sidenavOpen = true;
 	}

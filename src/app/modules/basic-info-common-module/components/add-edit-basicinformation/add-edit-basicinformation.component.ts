@@ -29,6 +29,8 @@ export class AddEditBasicinformationComponent implements OnInit {
   imageAvatar:any;
   fileList:any[] = [];
   @Input() isUserProfile : boolean = false;
+  nativeLanguage: any[] = [];
+  highestDegree: any[] = [];
   get f() { return this.applicantForm.controls; }
   constructor(public userInfoService: UserInfoService,
     private lookUpService: AppLookUpService,
@@ -158,16 +160,18 @@ export class AddEditBasicinformationComponent implements OnInit {
 			let data = new Object() as any;
 			data.name = projects.Description;
 			data.value = projects.Id;
-			this.userInfoService.nativeLanguage.push(data);
+			this.nativeLanguage.push(data);
 		}
 		);
+    this.userInfoService.nativeLanguage = this.nativeLanguage;
 		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;
 			data.value = projects.Id;
-			this.userInfoService.highestDegree.push(data);
+			this.highestDegree.push(data);
 		}
 		);
+    this.userInfoService.highestDegree = this.highestDegree;
 		lookUps?.reasonCodes?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;

@@ -1,6 +1,6 @@
 export class Skills {
     SkillID:string = '';
-    RatingLevel:string = '';
+    RatingLevel:number = 0;
     RatingLevelDate:string = '';
     RatingLevelType:number = 0;
     applicantPersonRecId:number = 0;
