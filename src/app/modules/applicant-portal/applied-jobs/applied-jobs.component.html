@@ -16,7 +16,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center justify-content-between w-100">
         <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
-        <span class="rounded-pill bg-warning text-white font-poppins-medium p-2">Pending Approval</span>
+        <span class="rounded-pill bg-warning text-white font-poppins-medium p-2" *ngIf="appliedJob?.approvedApplication == 0">Pending Approval</span>
       </div>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <!-- <div>
@@ -38,7 +38,7 @@
       <img class="green-filter" src="assets/SVG/ic_Job.svg" alt="" />
       <p class="text-midnight-moss mb-0">{{appliedJob?.jobType}}</p>
     </div>
-    <div class="stage rounded-pill bg-feijoa">
+    <div class="stage rounded-pill bg-feijoa" *ngIf="appliedJob?.approvedApplication !== 0">
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 0">{{t('dashboard.received')}}</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 1">{{t('dashboard.confirmed')}}</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 2">{{t('dashboard.interview')}}</p>
@@ -50,7 +50,7 @@
 
     </div>
     <div class="stepper-wrapper"
-      [ngClass]="{'reverse-direction' : isTranslate}">
+      [ngClass]="{'reverse-direction' : isTranslate}" *ngIf="appliedJob?.approvedApplication !== 0">
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0}">
         <div class="step-counter">
           <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0"/>
@@ -77,7 +77,7 @@
       </div>
       <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6}">
         <div class="step-counter">
-          <img *ngIf="appliedJob?.applicationStatus > 6" src="assets/SVG/noun-tick.svg" alt="" />
+          <img *ngIf="appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6" src="assets/SVG/noun-tick.svg" alt="" />
           <p *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7" ></p>
         </div>
         <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</h6>
@@ -156,7 +156,7 @@
   </div>
 </div>
   <ng-container *transloco="let t; scope: 'dashboard';">
-    <div class="next-actions" *ngIf="appliedJob?.applicationStatus === 7">
+    <div class="next-actions" *ngIf=" appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6">
       <div class="actions rounded-3">
         <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
           <div class="job-details">
