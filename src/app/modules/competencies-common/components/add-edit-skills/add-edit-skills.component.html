@@ -131,6 +131,7 @@
                       *ngIf="fileFromAttachments.substring(fileFromAttachments.lastIndexOf('.') + 1, fileFromAttachments.length) != 'pdf'">Word
                   </h6>
                 </div>
+                <img src="assets/SVG/download-minimalistic-svgrepo-com.svg" height="20" class="cursor-pointer" alt="">
               </div>
             </div>
           </div>
@@ -154,6 +155,11 @@
               class="btn text-white bg-midnight-moss rounded font-poppins-semi"
               (click)="SaveSkill()">
         {{t('competencies.save')}}
+      </button>
+      <button type="button"
+              class="btn text-white bg-midnight-moss rounded font-poppins-semi"
+              (click)="SaveSkill()">
+        Save add New
       </button>
     </div>
   </form>

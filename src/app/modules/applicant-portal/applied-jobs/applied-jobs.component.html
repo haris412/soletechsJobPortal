@@ -12,9 +12,12 @@
   </div>
   <div *ngIf="appliedJobs?.length > 0">
   <ng-container *ngFor="let appliedJob of appliedJobs">
-  <div   class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
+  <div class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
     <div class="d-flex align-items-center justify-content-between">
-      <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
+      <div class="d-flex align-items-center justify-content-between w-100">
+        <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
+        <span class="rounded-pill bg-warning text-white font-poppins-medium p-2">Pending Approval</span>
+      </div>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <!-- <div>
           <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
@@ -40,7 +43,7 @@
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 1">{{t('dashboard.confirmed')}}</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 2">{{t('dashboard.interview')}}</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 3">Rejection</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 4">Cancled</p>
+      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 4">Canceled</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 5">Employed</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 6">{{t('dashboard.offer')}}</p>
       <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 7">{{t('dashboard.on-boarding')}}</p>
