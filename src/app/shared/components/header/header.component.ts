@@ -34,9 +34,9 @@ export class HeaderComponent implements OnInit {
     this.translationService.languageChange.subscribe(x => {
       {
         this.isTranslate = x;
-        if(x){
+        if (x) {
           this.userName = this.applicantDataService.applicantData?.firstNameAr ? this.applicantDataService.applicantData?.firstNameAr : localStorage.getItem('userName');
-        }else{
+        } else {
           this.userName = localStorage.getItem('userName') ?? '';
         }
       }
@@ -53,11 +53,12 @@ export class HeaderComponent implements OnInit {
     }
     let token = localStorage.getItem('applicantId');
     if (token) {
-      this.userName = localStorage.getItem('userName') ?? '';
+      this.userName = this.applicantDataService?.applicantData?.firstName ?? '';
       this.isLogin = true;
     }
     if (this.applicantDataService.applicantData == undefined && token != "") {
       await this.applicantDataService.GetUserInfo();
+      this.UserLogin();
     }
     if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
       this.applicantDataService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
@@ -69,12 +70,24 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   UserLogin() {
-    this.isLogin = true;
     let token = localStorage.getItem('applicantId');
     if (token) {
-      this.userName = localStorage.getItem('userName') ?? '';
+      if (this.translationService.isTranslate) {
+        let usrAr = this.applicantDataService?.applicantData?.firstNameAr ?? '';
+        this.userName =  usrAr ? usrAr :  this.applicantDataService?.applicantData?.firstName ?? '';
+      } else {
+        this.userName = this.applicantDataService?.applicantData?.firstName ?? '';
+      } 
       this.isLogin = true;
     }
+  }
+  UserNameLanguage() {
+    if (this.translationService.isTranslate) {
+      let usrAr = this.applicantDataService?.applicantData?.firstNameAr ?? '';
+      this.userName =  usrAr ? usrAr :  this.applicantDataService?.applicantData?.firstName ?? '';
+    } else {
+      this.userName = this.applicantDataService?.applicantData?.firstName ?? '';
+    } 
   }
   Change(lang: string) {
     // Ensure new active lang is loaded

@@ -26,6 +26,7 @@ export class ApplicantDataService {
     }
     SetApplicantInfo(applicantInfo:any){
       this.applicantData = applicantInfo;
+      this.loginEmitter.emit(true);
     }
     GetApplicantInfo(){
       return this.applicantData;

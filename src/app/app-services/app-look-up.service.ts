@@ -770,4 +770,15 @@ export class AppLookUpService {
             {params:queryParams}
         ).toPromise();
     }
+
+    async GetRatingLevelLookup(skillId:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('skillId', skillId)
+        return await this.httpClient
+        .get<any>(
+            apiURLs.applicant.getRatingLevelLookup,
+            {params:queryParams}
+        ).toPromise();
+    }
+  
 }

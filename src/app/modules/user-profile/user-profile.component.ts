@@ -35,6 +35,7 @@ export class UserProfileComponent {
 	aboutMeDisablitiy: boolean = true
 	fileCvData: any;
 	uploadCvData: UploadCvsDTO[] = [];
+	isActive:number = 2;
 	constructor(
 		private router: Router,
 		public ref: ChangeDetectorRef,
@@ -57,21 +58,22 @@ export class UserProfileComponent {
 	}
 
 	async ngOnInit() {
-		if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
+		this.isActive = this.applicantDataService?.applicantData?.ApplicationStatus;
+		if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService?.applicantData?.applicantImage != "") {
 			this.applicantDataService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
-				+ this.applicantDataService.applicantData?.applicantImage);
+				+ this.applicantDataService?.applicantData?.applicantImage);
 		}
-		this.applicantDataService.applicantData.cvAttachment = this._sanitizer.bypassSecurityTrustResourceUrl('data:file/pdf;base64,'
-				+ this.applicantDataService.applicantData.cvAttachment);
-		console.log(this.applicantDataService.applicantData.cvAttachment);
-		let blob = this.b64toBlob(this.applicantDataService.applicantData.cvAttachment, "application/pdf");
-		console.log(blob);
-		var url = window.URL.createObjectURL(blob);
-         console.log(url);
+		// if (this.applicantDataService?.applicantData?.cvAttachment) {
+		// 	this.applicantDataService.applicantData.cvAttachment = this._sanitizer.bypassSecurityTrustResourceUrl('data:file/pdf;base64,'
+		// 		+ this.applicantDataService?.applicantData?.cvAttachment);
+		// 		let blob = this.b64toBlob(this.applicantDataService?.applicantData?.cvAttachment, "application/pdf");
+				
+		// }
+		
 		if (this.applicantDataService.applicantData?.aboutMe) {
-			this.aboutMe = this.applicantDataService.applicantData.aboutMe;
+			this.aboutMe = this.applicantDataService?.applicantData?.aboutMe;
 		}
-		if (this.competencies.skillsList.length == 0) {
+		if (this.competencies?.skillsList?.length == 0) {
 			await this.shareService.GetLookUps();
 		}
 	}

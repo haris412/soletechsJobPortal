@@ -1,12 +1,13 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { ApplicantDataService } from '../../applicant-portal/services/applicant-shared.service';
 
 @Component({
   selector: 'app-left-menu',
   templateUrl: './left-menu.component.html',
   styleUrls: ['./left-menu.component.scss']
 })
-export class LeftMenuComponent {
+export class LeftMenuComponent implements OnInit {
   public isBasicInfo: boolean = true;
   public about: boolean = false;
   public cv: boolean = false;
@@ -44,6 +45,10 @@ export class LeftMenuComponent {
   @Output() switchTab = new EventEmitter<number>();
   @Output() switchCompetencyTab = new EventEmitter<number>();
 
+  constructor(public applicantDataService: ApplicantDataService){}
+  ngOnInit() {
+    this.isActive = this.applicantDataService?.applicantData?.ApplicationStatus;
+  }
   ScrolltoTarget(event: any) {
     this.scrollTo.emit(event);
     switch (event) {

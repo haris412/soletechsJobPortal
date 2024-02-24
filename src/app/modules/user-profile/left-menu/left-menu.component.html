@@ -53,8 +53,8 @@
         </div>
       </li>
     </ul>
-    <h4>{{t('profile.competencies')}}</h4>
-    <ul>
+    <h4 *ngIf="isActive">{{t('profile.competencies')}}</h4>
+    <ul *ngIf="isActive">
       <li [ngClass]="{'selected':skillsisActive}">
 
         <div 

@@ -191,4 +191,7 @@ export class JobsListComponent implements OnInit {
       this.sharedService.SetToken(accessTokenResponse.access_token);
     }
   }
+  SortBy(){
+    
+  }
 }

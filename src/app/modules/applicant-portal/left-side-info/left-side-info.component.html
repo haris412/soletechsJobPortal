@@ -10,12 +10,12 @@
     </div>
     <div class="d-flex-flex-column">
       <h6 class="font-poppins-medium mb-2 text-midnight-moss">{{ this.linkedInServive.userInfo != undefined ? this.linkedInServive.userInfo.name : userEmail }}</h6>
-      <!-- <p class="text-midnight-moss">UX-UI Designer</p> -->
+      <p class="text-midnight-moss">{{applicantService.applicantData?.currentJobTitle}}</p>
     </div>
   </div>
   <div class="d-flex align-items-center location-info">
     <img src="assets/SVG/ic_location_on.svg" class="green-filter" alt="location-on" />
-    <!-- <p class="mb-0 text-midnight-moss">Cairo, Egypt</p> -->
+    <p class="mb-0 text-midnight-moss">{{applicantService.applicantData?.nationality}}</p>
   </div>
   <div class="d-flex align-items-center justify-content-between cursor-pointer">
     <p class="mb-0 text-denim text-decoration-underline" (click)="GoToProfile()">{{t('dashboard.go-to-profile')}}</p>
@@ -26,7 +26,7 @@
   <p class="mb-0 text-denim" (click)="GoToBasicInfo()">{{t('dashboard.basic-info')}}</p>
   <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToBasicInfo()">
 </div>
-<div class="d-flex align-items-center justify-content-between cursor-pointer side-tab">
+<div class="d-flex align-items-center justify-content-between cursor-pointer side-tab" *ngIf="isActive === 1">
   <p class="mb-0 text-denim " (click)="GoToCompetencies()">{{t('dashboard.competencies')}}</p>
   <img src="assets/SVG/arrow-left.svg" alt="arrow-left" (click)="GoToCompetencies()">
 </div>

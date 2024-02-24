@@ -97,6 +97,21 @@ export class AddEditSkillsComponent implements OnInit {
       }
     }
 
+    async onSelectionChange(event:any){
+      let res = await this.lookupService.GetRatingLevelLookup(event.value);
+      if (res) {
+        console.log(res?.parmList);
+        this.skillLevel = [];
+        res?.parmList?.forEach((projects: any) => {
+          let data = new Object() as any;
+          data.name = projects.Description;
+          data.value = projects.Id;
+          this.skillLevel.push(data);
+        }
+        );
+      }
+    }
+
     DownloadFile() {
       this.showPdf();
     }

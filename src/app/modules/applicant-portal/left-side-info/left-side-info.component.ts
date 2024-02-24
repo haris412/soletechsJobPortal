@@ -19,7 +19,7 @@ export class LeftSideInfoComponent implements OnInit{
   jobList: any[] = [{name:'Designer', type:'Full Time'}];
   userEmail: string = '';
   userEmailAr: string = '';
-
+  isActive:number = 1;
   constructor(private dialog: RescheduleModalComponentService,
     private toastrService: ToastrService,
     private router: Router,
@@ -28,7 +28,8 @@ export class LeftSideInfoComponent implements OnInit{
     private _sanitizer: DomSanitizer,
     public translationService: TranslationAlignmentService
   ) { 
-    this.userEmail = localStorage.getItem('userName') ?? '';
+    this.userEmail = this.applicantService?.applicantData?.firstName ?? '';
+    this.UserNameLanguage();
     this.translationService.languageChange.subscribe(x => {
       this.translationService.isTranslate = x;
       this.UserNameLanguage();
@@ -38,6 +39,7 @@ export class LeftSideInfoComponent implements OnInit{
     var applicant = localStorage.getItem('applicantId') ?? '';
     if (this.applicantService.applicantData == undefined && applicant != "") {
       await this.applicantService.GetUserInfo();
+      this.UserNameLanguage();
     }
     if (this.applicantService.applicantData != undefined && this.applicantService.applicantData.applicantImage != "") {
       this.applicantService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
@@ -47,11 +49,13 @@ export class LeftSideInfoComponent implements OnInit{
 
   UserNameLanguage() {
     if (this.translationService.isTranslate) {
-      let usrAr = localStorage.getItem('userNameAr') ?? '';
-      this.userEmail =  usrAr ? usrAr :  localStorage.getItem('userName') ?? '';
+      let usrAr = this.applicantService?.applicantData?.firstNameAr ?? '';
+      this.userEmail =  usrAr ? usrAr :  this.applicantService?.applicantData?.firstName ?? '';
     } else {
-      this.userEmail = localStorage.getItem('userName') ?? '';
+      this.userEmail = this.applicantService?.applicantData?.firstName ?? '';
     } 
+    this.isActive = this.applicantService?.applicantData?.ApplicationStatus;
+
   }
 
   GetApplicantInfo(){

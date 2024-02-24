@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, NgZone, OnInit, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
@@ -7,7 +7,8 @@ import { Login } from 'src/app/models/login.model';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
-
+import { CredentialResponse  } from 'google-one-tap';
+import { SocialUser } from 'angularx-social-login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   };
   loginForm: UntypedFormGroup;
   otpForm: UntypedFormGroup;
+  user!: SocialUser;
 
   showOtp: boolean = false;
   public isTranslate: boolean = this.translationService.isTranslate;
@@ -36,9 +38,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private toastrService: ToastrService,
     private lookupService: AppLookUpService,
-    public translationService: TranslationAlignmentService
-
-    ) {
+    public translationService: TranslationAlignmentService,
+    private _ngZone:NgZone) {
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
   }
   ForgotPassword() {
     this.router.navigate(['/forgot-password']);
@@ -131,5 +133,16 @@ export class LoginComponent implements OnInit {
       }
     }, 1000);
   }
-
+  LoginWithGoogle(){
+      this.signInWithGoogle();
+  }
+  async HandleCredentialsResponse(response:CredentialResponse){
+    console.log(response);
+    // await this.service.LoginWithGoogle(response.crdentai)
+  }
+  async signInWithGoogle() {
+  }
+  GoogleResponse(response:any){
+    console.log(response);
+  }
 }

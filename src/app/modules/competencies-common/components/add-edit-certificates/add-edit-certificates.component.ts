@@ -38,7 +38,7 @@ export class AddEditCertificatesComponent implements OnInit {
       Description: [''],
       IssueDate: ['', [Validators.required]],
       ExpirationDate:['',[Validators.required]],
-      renewal: ['',[Validators.required]],
+      renewal: [''],
       Note: [''],
       recid:[this.selectedCertificate?.recid ? this.selectedCertificate?.recid : 0],
       attachment:[''],

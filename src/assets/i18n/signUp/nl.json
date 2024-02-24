@@ -20,6 +20,8 @@
     "password":"كلمة المرور",
     "confirm-password":"تأكيد كلمة المرور",
     "about-me":"عَنِّي",
+    "current-job-title":"المسمي الوظيفي الحالي",
+    "current-job-title-placeholder":"أدخل المسمى الوظيفي الحالي",
     "save-changes":"حفظ التغييرات",
     "first-name-placeholder":"أدخل الاسم الأول",
     "password-placeholder":"أدخل كلمة المرور",

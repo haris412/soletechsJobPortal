@@ -61,6 +61,7 @@ export class SignUpComponent implements OnInit {
 			identificationNumber: ['', [Validators.required]],
 			lastName: ['', [Validators.required]],
 			mobileNo:['', [Validators.required]],
+			currentJobTitle:['',[Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
 			confirmemail: ['', [Validators.required,Validators.email]],
 			password: ['', [Validators.required, RxwebValidators.password({validation:{digit: true,specialCharacter: true, upperCase: true} })]],
@@ -174,7 +175,8 @@ export class SignUpComponent implements OnInit {
 			this.userData = {
 				...this.userForm.getRawValue(),
 				ipAddress: this.userForm?.controls.ipAddress.value,
-				fileName: this.userForm?.controls.fileName.value
+				attachmentFileName: this.userForm?.controls.fileName.value,
+				attachmentForWeb : this.userForm.controls.cvAttachment.value !== ''?  1: 0 
 				//aboutMe:this.aboutMe
 			}
 			var data = await this.lookupService.CreateApplicant(this.userData);

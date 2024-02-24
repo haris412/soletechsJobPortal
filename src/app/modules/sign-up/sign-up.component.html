@@ -141,6 +141,15 @@
                 *ngIf="f.identificationNumber.hasError('required') && (f.identificationNumber.dirty || f.identificationNumber.touched)">Identification number is Required</mat-error>
             </mat-form-field>
           </div>
+          <div class="d-flex flex-column fields-padding col-md-6 col-12">
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.current-job-title')}}*</p>
+            <mat-form-field appearance="outline" class="w-100">
+              <input type="text" matInput placeholder="{{t('signUp.current-job-title-placeholder')}}"
+                [formControlName]="'currentJobTitle'" />
+                <mat-error class="error-message"
+                *ngIf="f.currentJobTitle.hasError('required') && (f.currentJobTitle.dirty || f.currentJobTitle.touched)">Cuurent Job title is Required</mat-error>
+            </mat-form-field>
+          </div>
           <!-- <div class="d-flex flex-column fields-padding col-md-6 col-12">
             <p class="text-midnight-moss font-poppins-medium">{{t('signUp.ip-address')}}</p>
             <mat-form-field appearance="outline" class="w-100">

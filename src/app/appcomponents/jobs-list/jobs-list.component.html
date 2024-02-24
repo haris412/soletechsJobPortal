@@ -64,7 +64,7 @@
           <h5 class="mb-0 text-midnight-moss">
             {{ t("jobs.showing") }} {{ jobsList.length }} {{ t("jobs.jobs") }}
           </h5>
-          <div class="d-lg-flex d-none align-items-center px-3 py-2 gap-2 light-border rounded-3 bg-white">
+          <div class="d-lg-flex d-none align-items-center px-3 py-2 gap-2 light-border rounded-3 bg-white" (click)="SortBy()">
             <img src="assets/SVG/filter-lines.svg"
                  alt="" />
             <p class="mb-0 text-midnight-moss">{{ t("jobs.sort-By") }}</p>
@@ -100,12 +100,12 @@
                          class="cursor-pointer green-filter"
                          (click)="this.sharedService.SaveJob(job)" />
                   </div>
-                  <div>
+                  <!-- <div>
                     <img height="26px"
                          src="assets/SVG/Share.svg"
                          alt="search"
                          class="cursor-pointer green-filter" />
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="listing-info mb-1"

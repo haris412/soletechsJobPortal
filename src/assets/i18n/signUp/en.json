@@ -21,6 +21,8 @@
     "about-me":"About Me",
     "save-changes":"Save Changes",
     "first-name-placeholder":"Enter first name",
+    "current-job-title":"Current job title",
+    "current-job-title-placeholder":"Enter current job title",
     "password-placeholder":"Enter password",
     "last-name-placeholder":"Enter last name",
     "email-placeholder":"Enter Email",

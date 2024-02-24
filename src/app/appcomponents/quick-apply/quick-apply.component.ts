@@ -84,7 +84,7 @@ export class QuickApplyComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.quickApplyForm?.controls?.nameAr.setValue(this.applicant.applicantData?.nameAr);
+    this.quickApplyForm?.controls?.nameAr.setValue(this.applicant.applicantData?.firstNameAr);
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
     this.quickApplyForm?.controls?.phone.setValue(this.applicant.applicantData?.mobileNo ?? "");

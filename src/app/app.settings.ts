@@ -97,6 +97,7 @@ export const apiURLs = {
         getIpAddress:`${environment.apiUrl}/Application/GetIpAddress`,
         uploadCvs:`${environment.apiUrl}/ERPApplicant/UploadCvAttachments`,
         medicalHistory:`${environment.apiUrl}/ERPApplicant/UploadMedicalAttachment`,
-        getAttachmentFile:`${environment.apiUrl}/ERPApplicant/GetAttachFileFromAzure`
+        getAttachmentFile:`${environment.apiUrl}/ERPApplicant/GetAttachFileFromAzure`,
+        getRatingLevelLookup:`${environment.apiUrl}/ERPApplicant/GetRatingLevelLookup`
     }
 }
