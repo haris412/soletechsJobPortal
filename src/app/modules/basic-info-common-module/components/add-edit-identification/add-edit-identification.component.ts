@@ -24,6 +24,9 @@ export class AddEditIdentificationComponent implements OnInit {
   identification!: Identification;
   fileFromAttachments = '';
   attachBase64: any = '';
+  fileCvData: any;
+  cvData: any;
+
   get f() { return this.identificationForm.controls; }
   constructor(
     private toastrService: ToastrService,
@@ -38,6 +41,7 @@ export class AddEditIdentificationComponent implements OnInit {
       ExpirationDate: ['', [Validators.required]],
       recId: [this.selectedIdentification?.recId ? this.selectedIdentification?.recId : 0],
       attachment: ['']
+      //fileName: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
@@ -69,6 +73,16 @@ export class AddEditIdentificationComponent implements OnInit {
     this.identificationForm.reset();
   }
   onFileUpload(files: any) {
+    // if (files.target.files.length > 0) {
+    //   this.fileCvData = files.target.files[0];
+    //   const reader = new FileReader();
+    //   reader.readAsDataURL(this.fileCvData);
+    //   reader.onload = () => {
+    //     this.cvData = reader.result;
+    //     this.identificationForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+    //     this.identificationForm.controls.fileName.setValue(this.fileCvData.name);
+    //   };
+    // }
     this.fileList.push(files.target.files[0]);
   }
 

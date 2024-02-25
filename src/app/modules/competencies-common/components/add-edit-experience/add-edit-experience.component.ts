@@ -40,7 +40,7 @@ export class AddEditExperienceComponent implements OnInit {
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       notes: [''],
-      attachment:[''],
+      Attachment:[''],
 			fileName: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
@@ -54,7 +54,7 @@ export class AddEditExperienceComponent implements OnInit {
         ...this.selectedExperience
       });
     }
-    this.GetFilesFromAttachment(this.selectedExperience?.attachment);
+    this.GetFilesFromAttachment(this.selectedExperience?.Attachment);
   }
   CloseSideNav: () => void = () => {
     this.closeSideNav.emit(true);

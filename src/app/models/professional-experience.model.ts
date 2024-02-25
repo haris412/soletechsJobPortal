@@ -10,6 +10,6 @@ export interface professionalExperience{
     phone: string,
     startDate: string,
     recid:number;
-    attachment: string;
+    Attachment: string;
     attachmentWeb: string;
 }

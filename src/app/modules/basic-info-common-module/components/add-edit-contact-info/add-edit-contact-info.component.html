@@ -31,10 +31,10 @@
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
       <!-- <p>{{t('basicInfo.number')}}*</p> -->
-      <p>{{label}}*</p>
+      <p >{{label}}*</p>
       <mat-form-field appearance="outline"
                       class="w-100"
-                      *ngIf="label === 'Number'">
+                      *ngIf="label === 'Number' || userInfo.selectedContact?.Type === 1">
         <ngx-mat-intl-tel-input [preferredCountries]="['sa', 'us']"
                                 [enablePlaceholder]="true"
                                 [enableSearch]="true"
@@ -49,7 +49,7 @@
       </mat-form-field>
       <mat-form-field appearance="outline"
                       class="w-100"
-                      *ngIf="label !== 'Number'">
+                      *ngIf="label !== 'Number' && this.userInfo.selectedContact?.Type !== 1">
         <input matInput
                [formControlName]="'ContactNumber'" />
         <mat-error class="error-message"

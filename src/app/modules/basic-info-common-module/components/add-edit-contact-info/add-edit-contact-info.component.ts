@@ -20,7 +20,7 @@ export class AddEditContactInfoComponent implements OnInit {
   private _formBuilder = inject(UntypedFormBuilder);
   contact!: ContactInfo;
   phonePlaceHolder:any;
-  label:string = 'Number';
+  label:string = '';
   @Input() isUserProfile : boolean = false;
   get f() { return this.contactForm.controls; }
   constructor(
@@ -41,6 +41,7 @@ export class AddEditContactInfoComponent implements OnInit {
       ...this.userInfo.selectedContact,
       Type:this.userInfo.selectedContact?.Type?.toString(),
     });
+    console.log(this.userInfo.selectedContact);
   } else {
     this.contactForm.reset();
   }

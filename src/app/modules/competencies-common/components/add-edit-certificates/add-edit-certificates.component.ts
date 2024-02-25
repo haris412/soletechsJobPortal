@@ -21,7 +21,7 @@ export class AddEditCertificatesComponent implements OnInit {
   fileList:any[]=[];
   file:any;
   fileCvData: any;
-  cvData: any
+  cvData: any;
   fileFromAttachments = '';
   certificateTypeList:any[] = [];
   attachBase64: any = '';

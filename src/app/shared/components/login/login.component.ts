@@ -32,7 +32,9 @@ export class LoginComponent implements OnInit {
   otpEntered: boolean = true;
   private _formBuilder = inject(UntypedFormBuilder);
   get f() { return this.loginForm.controls; }
+  isViewingPassword: boolean = false;
 
+  password:string = 'password';
   constructor(private router: Router,
     private service: ApplicantDataService,
     private loginService: LoginService,
@@ -144,5 +146,14 @@ export class LoginComponent implements OnInit {
   }
   GoogleResponse(response:any){
     console.log(response);
+  }
+  ViewPassword(){
+    if (this.password === 'password') {
+      this.password = 'text';
+    } else {
+      this.password = 'password';
+    }
+    this.isViewingPassword = !this.isViewingPassword;
+    
   }
 }

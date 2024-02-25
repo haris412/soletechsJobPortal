@@ -39,10 +39,13 @@
             {{t('login.password')}}
           </p>
           <mat-form-field appearance="outline" class="w-100">
-            <input type="password" matInput placeholder="{{t('login.password-placeholder')}}" [formControlName]="'password'"
+            <input type="{{password}}" matInput placeholder="{{t('login.password-placeholder')}}" [formControlName]="'password'"
               [class.is-invalid]="
                 f.password.invalid && (f.password.dirty || f.password.touched)
               " />
+              <div class="view-password cursor-pointer" [ngClass]="{'viewing-password': isViewingPassword}" matSuffix (click)="ViewPassword()">
+                <mat-icon>visibility</mat-icon>
+              </div>
             <mat-error class="error-message" *ngIf="
                 f.password.hasError('required') &&
                 (f.password.dirty || f.password.touched)
@@ -88,7 +91,7 @@
       data-client_id="1087623064187-dvnr2g65fbk52l5sutr3io8apef57pdv.apps.googleusercontent.com"
       data-context="signin"
       data-ux_mode="redirect"
-      data-login_uri="https://localhost:4200/"
+      data-login_uri="https://localhost:4200/applicant"
       data-callback="GoogleResponse"
       data-auto_prompt="false">
     </div>
