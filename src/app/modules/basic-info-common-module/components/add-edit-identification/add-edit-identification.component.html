@@ -7,7 +7,7 @@
       <mat-form-field appearance="outline"
                       class="w-100">
         <mat-select name="identifcationType"
-                    [formControlName]="'IdentificationType'">
+                    [formControlName]="'IdentificationType'" [panelClass]="{'direction-change':isTranslate}">
           <mat-option *ngFor="let identification of identificationType"
                       [value]="identification.value">{{identification.name}}</mat-option>
         </mat-select>

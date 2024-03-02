@@ -32,6 +32,7 @@ export class AddEditBasicinformationComponent implements OnInit {
   @Input() isUserProfile : boolean = false;
   nativeLanguage: any[] = [];
   highestDegree: any[] = [];
+  public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.applicantForm.controls; }
   constructor(public userInfoService: UserInfoService,
     private lookUpService: AppLookUpService,
@@ -62,6 +63,9 @@ export class AddEditBasicinformationComponent implements OnInit {
       nationality: ['', [Validators.required]],
       nativeLanguageId: ['', [Validators.required]],
       ethnicOriginId: ['']
+    });
+    this.translationService.languageChange.subscribe( x=> {
+      this.isTranslate  = x;
     });
   }
 

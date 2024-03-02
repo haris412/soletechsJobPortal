@@ -7,7 +7,7 @@
       <mat-form-field appearance="outline"
                       class="w-100">
         <mat-select name="certificate"
-                    [formControlName]="'CertificateTypeId'">
+                    [formControlName]="'CertificateTypeId'" [panelClass]="{'direction-change':isTranslate}">
           <mat-option *ngFor="let certificate of certificateTypeList"
                       [value]="certificate.value"
                       (onSelectionChange)="OnCertificateChange($event)">{{certificate.name}}</mat-option>

@@ -135,6 +135,10 @@ p {
   .mat-calendar-controls {
     direction: ltr;
   }
+  .mdc-list-item__primary-text {
+    margin-left: auto;
+    margin-right: 0 !important;
+  }
 }
 
 .error-text {
