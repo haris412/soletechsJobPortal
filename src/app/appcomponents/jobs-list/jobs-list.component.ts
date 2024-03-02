@@ -31,7 +31,6 @@ export class JobsListComponent implements OnInit {
   email:string = '';
   applyBtn:string = 'Apply';
   disableBtn:boolean = false;
-  private translocoService: TranslocoService = inject(TranslocoService);
   jobsListCopy:Job[] = [];
   locationText:string ='';
   jobDetailVisibility: boolean = false;
