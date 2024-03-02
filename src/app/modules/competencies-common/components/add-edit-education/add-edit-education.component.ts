@@ -52,6 +52,7 @@ export class AddEditEducationComponent implements OnInit{
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
+      this.ArabicList();
     });
   }
   ngOnInit(){
@@ -61,9 +62,7 @@ export class AddEditEducationComponent implements OnInit{
         CreditBasis:'2'
       });
     }
-    this.educationInstitution = this.competenciesService.educationInstitutionList;
-    this.educationLevel = this.competenciesService.educationLevelList;
-    this.educationDiscipline  = this.competenciesService.educationDesciplineList;
+    this.ArabicList();
     this.GetFilesFromAttachment(this.selectedEducation?.Attachment);
    }
     CloseSideNav: () => void = () => {
@@ -125,5 +124,16 @@ export class AddEditEducationComponent implements OnInit{
       downloadLink.href = linkSource;
       downloadLink.download = fileName;
       downloadLink.click();
+    }
+    ArabicList() {
+      if (this.translationService.isTranslate) {
+        this.educationInstitution = this.competenciesService.educationInstitutionArabicList;
+        this.educationLevel =  this.competenciesService.educationLevelArabicList;
+        this.educationDiscipline  = this.competenciesService.educationDeciplineArabicList;
+      } else {
+        this.educationInstitution = this.competenciesService.educationInstitutionList;
+        this.educationLevel = this.competenciesService.educationLevelList;
+        this.educationDiscipline  = this.competenciesService.educationDesciplineList;
+      } 
     }
 }

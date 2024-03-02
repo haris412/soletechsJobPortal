@@ -113,20 +113,20 @@
         <app-positionoftrust *ngIf="index === 6"></app-positionoftrust>
 
         <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
-          <button type="button"
+          <!-- <button type="button"
                   class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
                   [ngClass]="{'order-1': isTranslate}">
             {{t('competencies.discard')}}
-          </button>
+          </button> -->
           <button type="button"
                   class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
                   [ngClass]="{'order-2': isTranslate}"
-                  (click)="PrevCompetency(index)">
+                  (click)="PrevCompetency(index)" *ngIf="index !== 1">
             {{t('competencies.back')}}
           </button>
           <button type="button"
                   class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-                  (click)="NextCompetency()">
+                  (click)="NextCompetency()" *ngIf="index !== 6">
             {{t('competencies.next')}}
           </button>
         </div>

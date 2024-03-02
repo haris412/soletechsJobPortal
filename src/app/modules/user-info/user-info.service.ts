@@ -21,9 +21,11 @@ export class UserInfoService {
     cities: any[] = [];
     ethnic: any[] = [];
     nativeLanguage: any[] = [];
+	nativeLanguageArabic: any[] = [];
     highestDegree: any[] = [];
-    reasonCodes: any[] = [];
+	highestDegreeArabic: any[] = [];
     identificationType: any[] = [];
+	identificationTypeArabic: any[] = [];
     nationality:any[] = [];
 	contactsList:any[] = [];
 	addressList:any[] = [];
