@@ -38,7 +38,6 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if(changes?.appliedJobs?.currentValue){
       this.appliedJobs = changes.appliedJobs.currentValue;
-      // this.appliedJobs = this.appliedJobs?.filter((job:any)=> job?.approvedApplication == 1);
       this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
     }
     this.AppliedJobsLanguageChanges();
@@ -96,9 +95,10 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     // console.log(moment(updatedDate).format('MM'));
   }
   GetDay(date:any){
-    let updatedDate = moment(date).format("DD.MM.YYYY");
-    let momentDate = moment(updatedDate, 'DD.MM.YYYY', true);
-    return momentDate.day();
+    const dateObject = moment(date);
+    // Get the day of the month
+    const day = dateObject.date();
+    return day
     // console.log(moment(updatedDate).format('MM'));
   }
 
@@ -108,6 +108,11 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     const duration = moment.duration(endTime.diff(startTime));
     const minutes = Math.floor(duration.asMinutes()) % 60;
     return minutes;
+  }
+  GetYear(date:string){
+    const dateObject = moment(date);
+    const year = dateObject.year();
+    return year;
   }
   OpenReschedule(){}
 }
