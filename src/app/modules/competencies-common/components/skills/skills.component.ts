@@ -22,7 +22,6 @@ export class SkillsComponent implements OnInit{
     private lookUpService:AppLookUpService,
     private toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
-    private competenciesService: CompetenciesCommonService
   ) {
     this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
   }

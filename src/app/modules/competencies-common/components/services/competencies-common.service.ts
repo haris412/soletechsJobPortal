@@ -6,12 +6,18 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class CompetenciesCommonService {
    
     skillsList:any[] = [];
+    skillsArabicList:any[]=[];
     skillLevelList:any[] = [];
+    skillsLevelArabicList:any[]=[];
     educationDesciplineList:any[] = [];
+    educationDeciplineArabicList:any[]=[];
     educationLevelList:any[] = [];
+    educationLevelArabicList:any[]=[];
     educationInstitutionList:any[] = [];
+    educationInstitutionArabicList:any[]=[];
     certificateTypesList:any[] =[];
-    personalTitleList:any[] = [];
+    certificateTypesArabicList:any[]=[];
+  
     SetLookUps(){
 
     }

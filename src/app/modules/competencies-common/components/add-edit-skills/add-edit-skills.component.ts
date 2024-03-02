@@ -22,6 +22,9 @@ export class AddEditSkillsComponent implements OnInit {
   file:any;
   skillList:any[] = [];
   skillLevel:any[] = [];
+  skillLevelEnglish:any[] = [];
+  skillLevelArabic:any[] = [];
+
   public isTranslate: boolean = this.translationService.isTranslate;
   fileCvData: any;
   cvData: any
@@ -42,11 +45,11 @@ export class AddEditSkillsComponent implements OnInit {
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
+      this.ArabicList();
     });
   }
   ngOnInit(){
-    this.skillList = this.competenciesService.skillsList;
-    this.skillLevel = this.competenciesService.skillLevelList;
+    this.ArabicList();
     if(this.selectedSkill?.SkillID !== ''){
       this.skillForm.patchValue({
         ...this.selectedSkill,
@@ -97,20 +100,33 @@ export class AddEditSkillsComponent implements OnInit {
       }
     }
 
-    async onSelectionChange(event:any){
-      let res = await this.lookupService.GetRatingLevelLookup(event.value);
-      if (res) {
-        console.log(res?.parmList);
-        this.skillLevel = [];
-        res?.parmList?.forEach((projects: any) => {
-          let data = new Object() as any;
-          data.name = projects.Description;
-          data.value = projects.Id;
-          this.skillLevel.push(data);
-        }
-        );
+  async onSelectionChange(event: any) {
+    let res = await this.lookupService.GetRatingLevelLookup(event.value);
+    if (res) {
+      this.skillLevel = [];
+      this.skillLevelEnglish = [];
+      this.skillLevelArabic = [];
+      res?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.skillLevelEnglish.push(data);
+      }
+      );
+      res?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.OtherLine;
+        data.value = projects.Id;
+        this.skillLevelArabic.push(data);
+      }
+      );
+      if (this.isTranslate) {
+        this.skillLevel = this.skillLevelArabic;
+      } else {
+        this.skillLevel = this.skillLevelEnglish;
       }
     }
+  }
 
     DownloadFile() {
       this.showPdf();
@@ -121,10 +137,18 @@ export class AddEditSkillsComponent implements OnInit {
         'data:application/octet-stream;base64,' + this.attachBase64?.value;
       const downloadLink = document.createElement('a');
       const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('/') + 1, this.fileFromAttachments.length);
-  
       downloadLink.href = linkSource;
       downloadLink.download = fileName;
       downloadLink.click();
+    }
+     ArabicList() {
+      if (this.translationService.isTranslate) {
+        this.skillList = this.competenciesService.skillsArabicList;
+        this.skillLevel =  this.competenciesService.skillLevelList;
+      } else {
+        this.skillList = this.competenciesService.skillsList;
+        this.skillLevel = this.competenciesService.skillLevelList;
+      } 
     }
 }
 

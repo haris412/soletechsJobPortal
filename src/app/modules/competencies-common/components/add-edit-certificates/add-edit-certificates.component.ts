@@ -46,15 +46,17 @@ export class AddEditCertificatesComponent implements OnInit {
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
+      this.ArabicList();
     });
   }
   ngOnInit(){
+    this.ArabicList();
     if(this.certificate?.CertificateTypeId !== ''){
       this.certiifcateForm.patchValue({
         ...this.selectedCertificate
       });
     }
-    this.certificateTypeList = this.competenciesService.certificateTypesList;
+    
     this.GetFilesFromAttachment(this.selectedCertificate?.Attachment);
    }
     CloseSideNav: () => void = () => {
@@ -115,5 +117,12 @@ export class AddEditCertificatesComponent implements OnInit {
       downloadLink.href = linkSource;
       downloadLink.download = fileName;
       downloadLink.click();
+    }
+    ArabicList() {
+      if (this.translationService.isTranslate) {
+        this.certificateTypeList = this.competenciesService.certificateTypesArabicList;
+      } else {
+        this.certificateTypeList = this.competenciesService.certificateTypesList;
+      } 
     }
 }

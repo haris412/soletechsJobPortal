@@ -26,10 +26,9 @@ export class AddEditIdentificationComponent implements OnInit {
   attachBase64: any = '';
   fileCvData: any;
   cvData: any;
-
+  identificationType:any[]=[];
   get f() { return this.identificationForm.controls; }
   constructor(
-    private toastrService: ToastrService,
     public userInfoService: UserInfoService,
     public translationService: TranslationAlignmentService,
     public lookupService: AppLookUpService
@@ -43,11 +42,13 @@ export class AddEditIdentificationComponent implements OnInit {
       attachment: ['']
       //fileName: ['']
     });
-    this.translationService.languageChange.subscribe( x=> {
-      this.isTranslate  = x;
+    this.translationService.languageChange.subscribe(x => {
+      this.isTranslate = x;
+      this.ArabicList();
     });
   }
   ngOnInit() {
+    this.ArabicList();
     if (this.selectedIdentification != undefined) {
       this.identificationForm.patchValue({
         ...this.selectedIdentification
@@ -108,5 +109,12 @@ export class AddEditIdentificationComponent implements OnInit {
     downloadLink.href = linkSource;
     downloadLink.download = fileName;
     downloadLink.click();
+  }
+  ArabicList() {
+    if (this.translationService.isTranslate) {
+      this.identificationType = this.userInfoService.identificationTypeArabic;
+    } else {
+      this.identificationType = this.userInfoService.identificationType;
+    } 
   }
 }

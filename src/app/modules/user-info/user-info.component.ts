@@ -147,7 +147,6 @@ export class UserInfoComponent implements OnInit {
 		}
 		const lookUps = await forkJoin({
 			countries: this.lookUpService.GetCountryRegionLookup(params),
-			ethnic: this.lookUpService.GetEthnicOriginLookup(params),
 			nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
 			highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
 			reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
@@ -160,18 +159,18 @@ export class UserInfoComponent implements OnInit {
 			this.userInfoService.countryRegions.push(data);
 		}
 		);
-		lookUps?.ethnic?.parmList?.forEach((projects: any) => {
-			let data = new Object() as any;
-			data.name = projects.Description;
-			data.value = projects.Id;
-			this.userInfoService.ethnic.push(data);
-		}
-		);
 		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.nativeLanguage.push(data);
+		}
+		);
+		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Other;
+			data.value = projects.Id;
+			this.userInfoService.nativeLanguageArabic.push(data);
 		}
 		);
 		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
@@ -181,11 +180,11 @@ export class UserInfoComponent implements OnInit {
 			this.userInfoService.highestDegree.push(data);
 		}
 		);
-		lookUps?.reasonCodes?.parmList?.forEach((projects: any) => {
+		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Description;
+			data.name = projects.Other;
 			data.value = projects.Id;
-			this.userInfoService.reasonCodes.push(data);
+			this.userInfoService.highestDegreeArabic.push(data);
 		}
 		);
 		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
@@ -193,6 +192,13 @@ export class UserInfoComponent implements OnInit {
 			data.name = projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.identificationType.push(data);
+		}
+		);
+		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Other;
+			data.value = projects.Id;
+			this.userInfoService.identificationTypeArabic.push(data);
 		}
 		);
 	}

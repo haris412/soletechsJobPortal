@@ -10,6 +10,7 @@ import { LinkedInService } from 'src/app/modules/applicant-portal/services/linke
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
 import { forkJoin } from 'rxjs';
 import { LookupParameters } from 'src/app/models/look-up.model';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 
 @Component({
@@ -39,7 +40,11 @@ export class AddEditBasicinformationComponent implements OnInit {
     private applicantDataService: ApplicantDataService,
     private _sanitizer: DomSanitizer,
     public linkedInServive: LinkedInService,
-    public shareService: SharedService) {
+    public shareService: SharedService,
+    public translationService: TranslationAlignmentService) {
+      this.translationService.languageChange.subscribe( x=> {
+        this.ArabicList();
+      });
     this.applicantForm = this._applicantFormBuilder.group({
       currentJobTitle: [''],
       firstName: ['', [Validators.required]],
@@ -61,7 +66,7 @@ export class AddEditBasicinformationComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.GetLookups();
+    this.ArabicList();
     await this.userInfoService.GetApplicantProfile();
     this.applicantForm.patchValue({
       ...this.userInfoService.basicInfo,
@@ -129,62 +134,13 @@ export class AddEditBasicinformationComponent implements OnInit {
    removeAvtar() {
 		this.imageAvatar = this.defaultUrl;
 	}
-  async GetLookups() {
-		let params: LookupParameters = {
-			dataAreaId: 'USMF',
-			languageId: 'en-us'
-		}
-		const lookUps = await forkJoin({
-			countries: this.lookUpService.GetCountryRegionLookup(params),
-			ethnic: this.lookUpService.GetEthnicOriginLookup(params),
-			nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
-			highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
-			reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
-			identificationType: this.lookUpService.GetIdentificationTypeLookup(params),
-		}).toPromise();
-		lookUps?.countries?.parmList?.forEach((projects: any) => {
-			let data = new Object() as any;
-			data.name = projects.Description;
-			data.value = projects.Id;
-			this.userInfoService.countryRegions.push(data);
-		}
-		);
-		lookUps?.ethnic?.parmList?.forEach((projects: any) => {
-			let data = new Object() as any;
-			data.name = projects.Description;
-			data.value = projects.Id;
-			this.userInfoService.ethnic.push(data);
-		}
-		);
-		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
-			let data = new Object() as any;
-			data.name = projects.Description;
-			data.value = projects.Id;
-			this.nativeLanguage.push(data);
-		}
-		);
-    this.userInfoService.nativeLanguage = this.nativeLanguage;
-		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
-			let data = new Object() as any;
-			data.name = projects.Description;
-			data.value = projects.Id;
-			this.highestDegree.push(data);
-		}
-		);
-    this.userInfoService.highestDegree = this.highestDegree;
-		lookUps?.reasonCodes?.parmList?.forEach((projects: any) => {
-			let data = new Object() as any;
-			data.name = projects.Description;
-			data.value = projects.Id;
-			this.userInfoService.reasonCodes.push(data);
-		}
-		);
-		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
-			let data = new Object() as any;
-			data.name = projects.Description;
-			data.value = projects.Id;
-			this.userInfoService.identificationType.push(data);
-		}
-		);
-	}
+  ArabicList() {
+    if (this.translationService.isTranslate) {
+      this.nativeLanguage = this.userInfoService.nativeLanguageArabic;
+      this.highestDegree = this.userInfoService.highestDegreeArabic;
+    } else {
+      this.nativeLanguage = this.userInfoService.nativeLanguage;
+      this.highestDegree = this.userInfoService.highestDegree;
+    } 
+  }
 }
