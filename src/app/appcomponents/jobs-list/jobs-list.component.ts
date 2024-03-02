@@ -35,6 +35,7 @@ export class JobsListComponent implements OnInit {
   jobsListCopy:Job[] = [];
   locationText:string ='';
   jobDetailVisibility: boolean = false;
+  sortBy:boolean = false;
   constructor(private recruitmentService: RecruitmentService,
     public sharedService: SharedService,
     public lookupService: AppLookUpService,
@@ -192,6 +193,11 @@ export class JobsListComponent implements OnInit {
     }
   }
   SortBy(){
-    
+    this.sortBy = !this.sortBy;
+    if (this.sortBy) {
+      this.jobsList = this.jobsList?.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+    } else {
+      this.jobsList = this.jobsList?.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+    }
   }
 }
