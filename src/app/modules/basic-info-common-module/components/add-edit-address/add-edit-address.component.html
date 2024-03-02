@@ -12,7 +12,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>{{t('basicInfo.country')}}*</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="country" [formControlName]="'CountryRegionId'" (selectionChange)="changeCountry()">
+      <mat-select name="country" [formControlName]="'CountryRegionId'" (selectionChange)="changeCountry()" [panelClass]="{'direction-change':isTranslate}">
         <mat-option *ngFor="let country of this.userInfoService.countryRegions"
           [value]="country.value">{{country.name}}</mat-option>
       </mat-select>
@@ -25,7 +25,7 @@
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>{{t('basicInfo.city')}}</p>
     <mat-form-field appearance="outline" class="w-100">
-      <mat-select name="city" [formControlName]="'City'">
+      <mat-select name="city" [formControlName]="'City'" [panelClass]="{'direction-change':isTranslate}">
         <mat-option *ngFor="let city of this.cities" [value]="city.value">{{city.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />

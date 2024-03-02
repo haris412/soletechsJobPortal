@@ -116,14 +116,17 @@
               <div class="d-flex align-items-center justify-content-center date rounded-bottom">
                 {{GetDay(interview.StartTime)}}
               </div>
+              <div class="d-flex align-items-center justify-content-center month rounded-bottom">
+                2024
+              </div>
             </div>
             <div class="d-flex flex-column action-details">
               
-              <div class="meeting-with mb-2 text-nowrap">
+              <div class="d-flex meeting-with mb-2 text-nowrap">
                 <span class="text-midnight-moss">Meeting with: </span>
                 <span class="text-denim text-nowrap text-truncate">{{interview.InterviewerName}}</span>
               </div>
-              <div class="meeting-with mb-2 text-nowrap">
+              <div class="d-flex meeting-with mb-2 text-nowrap">
                 <span class="text-midnight-moss">Location: </span>
                 <span class="text-denim text-nowrap text-truncate">{{interview.Location}}</span>
               </div>

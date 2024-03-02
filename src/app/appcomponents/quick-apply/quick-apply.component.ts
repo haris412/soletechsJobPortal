@@ -22,7 +22,7 @@ export class QuickApplyComponent implements OnInit {
   @Input() selectedJob: any = new Object() as any;
   @Input() recruitmentProject: Job = new Object() as Job;
   @Output() closeClicked: EventEmitter<boolean> = new EventEmitter();
-
+  public isTranslate: boolean = this.translationService.isTranslate;
   public isFile: boolean = false;
   public fileList: File[] = [];
   recrutmentProjects: any[] = [];

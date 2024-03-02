@@ -47,7 +47,7 @@
         <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.nationality')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [formControlName]="'nationality'">
+            <mat-select [formControlName]="'nationality'" [panelClass]="{'direction-change':isTranslate}">
               <mat-option *ngFor="let country of this.userInfoService.countryRegions"
                 [value]="country.value">{{country.name}}</mat-option>
             </mat-select>
@@ -59,7 +59,7 @@
         <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.gender')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [formControlName]="'gender'">
+            <mat-select [formControlName]="'gender'" [panelClass]="{'direction-change':isTranslate}">
               <mat-option value="0">None</mat-option>
               <mat-option value="1">Male</mat-option>
               <mat-option value="2">Female</mat-option>
@@ -73,7 +73,7 @@
         <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.marital-status')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [formControlName]="'maritalStatus'">
+            <mat-select [formControlName]="'maritalStatus'" [panelClass]="{'direction-change':isTranslate}">
               <mat-option value="0">None</mat-option>
               <mat-option value="1">Married</mat-option>
               <mat-option value="2">Single</mat-option>
@@ -93,7 +93,7 @@
         <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.native-language')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [formControlName]="'nativeLanguageId'">
+            <mat-select [formControlName]="'nativeLanguageId'" [panelClass]="{'direction-change':isTranslate}">
               <mat-option *ngFor="let nlanguage of nativeLanguage"
                 [value]="nlanguage.value">{{nlanguage.name}}</mat-option>
             </mat-select>
@@ -106,7 +106,7 @@
         <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.previous-employer')}}</p>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [formControlName]="'previousEmployee'">
+            <mat-select [formControlName]="'previousEmployee'" [panelClass]="{'direction-change':isTranslate}">
               <mat-option value="1">Yes</mat-option>
               <mat-option value="0">No</mat-option>
             </mat-select>
@@ -128,7 +128,7 @@
         <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.highest-degree')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [formControlName]="'highestDegree'">
+            <mat-select [formControlName]="'highestDegree'" [panelClass]="{'direction-change':isTranslate}">
               <mat-option *ngFor="let hDegree of highestDegree"
                 [value]="hDegree.value">{{hDegree.name}}</mat-option>
             </mat-select>
