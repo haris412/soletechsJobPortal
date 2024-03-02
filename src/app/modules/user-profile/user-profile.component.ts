@@ -12,6 +12,9 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { CompetenciesCommonService } from '../competencies-common/components/services/competencies-common.service';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
+import { UserInfoService } from '../user-info/user-info.service';
+import { forkJoin } from 'rxjs';
+import { LookupParameters } from 'src/app/models/look-up.model';
 
 
 @Component({
@@ -48,7 +51,8 @@ export class UserProfileComponent {
 		public shareService: SharedService,
         public competencies: CompetenciesCommonService,
 		public toastrService: ToastrService,
-		private deleteModal: DeleteModalComponentService
+		private deleteModal: DeleteModalComponentService,
+		private userInfoService: UserInfoService
 	) {
 		this.translationService.languageChange.subscribe(x => {
 			{
@@ -73,8 +77,9 @@ export class UserProfileComponent {
 		if (this.applicantDataService.applicantData?.aboutMe) {
 			this.aboutMe = this.applicantDataService?.applicantData?.aboutMe;
 		}
-		if (this.competencies?.skillsList?.length == 0) {
-			await this.shareService.GetLookUps();
+		if(this.competencies?.skillsList?.length == 0 || this.userInfoService.nativeLanguage?.length === 0 || this.userInfoService.highestDegree?.length ===0){
+			await this.GetLookups();
+
 		}
 	}
 	public b64toBlob(b64Data:string, contentType:string) {
@@ -261,6 +266,69 @@ export class UserProfileComponent {
 			this.toastrService.error(res)
 		}
 	}
+	async GetLookups() {
+		let params: LookupParameters = {
+			dataAreaId: 'USMF',
+			languageId: 'en-us'
+		}
+		const lookUps = await forkJoin({
+			countries: this.lookUpService.GetCountryRegionLookup(params),
+			nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
+			highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
+			reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
+			identificationType: this.lookUpService.GetIdentificationTypeLookup(params),
+		}).toPromise();
+		lookUps?.countries?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.countryRegions.push(data);
+		}
+		);
+		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.nativeLanguage.push(data);
+		}
+		);
+		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Other;
+			data.value = projects.Id;
+			this.userInfoService.nativeLanguageArabic.push(data);
+		}
+		);
+		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.highestDegree.push(data);
+		}
+		);
+		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Other;
+			data.value = projects.Id;
+			this.userInfoService.highestDegreeArabic.push(data);
+		}
+		);
+		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.userInfoService.identificationType.push(data);
+		}
+		);
+		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Other;
+			data.value = projects.Id;
+			this.userInfoService.identificationTypeArabic.push(data);
+		}
+		);
+	}
+
 
 }
 

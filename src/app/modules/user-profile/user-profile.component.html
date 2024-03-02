@@ -117,32 +117,6 @@
               </button>
             </div>
           </div>
-          <!-- <div class="sign-up-info-div">
-          <form class="row" action="">
-            <div class="d-flex flex-column col-md-6 col-12">
-              <p class="text-midnight-moss font-poppins-medium">Email</p>
-              <mat-form-field appearance="outline" class="w-100">
-                <input
-                  type="email"
-                  matInput
-                  placeholder="Enter your email"
-                  [formControlName]="'email'"
-                />
-              </mat-form-field>
-            </div>
-            <div class="d-flex flex-column col-md-6 col-12">
-              <p class="text-midnight-moss font-poppins-medium">Password</p>
-              <mat-form-field appearance="outline" class="w-100">
-                <input
-                  type="password"
-                  matInput
-                  placeholder="Enter your password"
-                  [formControlName]="'password'"
-                />
-              </mat-form-field>
-            </div>
-          </form>
-        </div> -->
           <div id="profile"
                class="sign-up-info-div">
             <h4 class="font-poppins-bold text-midnight-moss">{{t('profile.profile')}}</h4>
@@ -154,11 +128,6 @@
                          *ngIf="index === 3"></app-address>
             <app-identification [isUserProfile]="true"
                                 *ngIf="index === 4"></app-identification>
-            <!-- <app-user-info></app-user-info> -->
-            <!-- <div class="d-flex align-items-center justify-content-between">
-            <span class="heading">{{t('profile.profile')}}</span>
-            <img src="assets/SVG/edit-icon.svg" alt="" class="cursor-pointer" (click)="RouteToProfile()" />
-          </div> -->
             <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns mt-2">
               <button type="button"
                       class="btn border border-color-gainsboro text-midnight-moss rounded bg-white font-poppins-medium fs-8 py-2 px-3"
@@ -177,11 +146,6 @@
                       (click)="Next()">
                 {{t('profile.next')}}
               </button>
-
-              <!-- <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5">
-                  {{t('basicInfo.save-changes')}}
-                </button> -->
-
             </div>
           </div>
           <div id="competencies" class="sign-up-info-div" >
@@ -192,13 +156,6 @@
             <app-certificates *ngIf="competencyIndex === 4"></app-certificates>
             <app-courses *ngIf="competencyIndex === 5"></app-courses>
             <app-positionoftrust *ngIf="competencyIndex === 6"></app-positionoftrust>
-            <!-- <div class="d-flex align-items-center justify-content-between">
-              <span class="heading">{{t('profile.competencies')}}</span>
-              <img src="assets/SVG/edit-icon.svg"
-                   alt=""
-                   class="cursor-pointer"
-                   (click)="RouteToCompetencies()" />
-            </div> -->
             <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
               <button type="button"
                       class="btn border border-color-gainsboro text-midnight-moss rounded font-poppins-medium fs-8 py-2 px-3 bg-white"
@@ -219,67 +176,6 @@
             </div>
           </div>
         </div>
-        <!-- <h2 id="notifications" class="font-poppins-medium text-midnight-moss">
-        {{t('profile.notifications')}}
-      </h2>
-      <div class="main-container mb-0">
-        <div class="sign-up-info-div notification-div">
-          <div class="d-flex-flex-column text-midnight-moss">
-            <h5 class="font-poppins-semi">{{t('profile.email-notifications')}}</h5>
-            <p class="mb-4">
-              {{t('profile.email-noti-text')}}.
-            </p>
-            <h5 class="font-poppins-semi">{{t('profile.email-send-notification')}}:</h5>
-            <mat-radio-group aria-label="Select an option" class="d-flex flex-column mb-4">
-              <mat-radio-button value="anytime">Anytime</mat-radio-button>
-              <mat-radio-button value="once">Once a week at most</mat-radio-button>
-              <mat-radio-button value="never">Never</mat-radio-button>
-            </mat-radio-group>
-            <h5 class="font-poppins-semi">{{t('profile.email-updates')}}</h5>
-            <p>
-              {{t('profile.email-news-updates')}} :
-            </p>
-            <section>
-              <p><mat-checkbox>Tips and Tricks</mat-checkbox></p>
-              <p><mat-checkbox>Offers and Promotions</mat-checkbox></p>
-              <p><mat-checkbox>Research Opportunies</mat-checkbox></p>
-              <p>
-                <mat-checkbox>Job Updates (Approved, rejected,
-                  Canceled,etc..)</mat-checkbox>
-              </p>
-            </section>
-          </div>
-        </div>
-      </div>
-      <h2 id="deactivate" class="font-poppins-medium text-midnight-moss">
-        {{t('profile.deactivate-account')}}
-      </h2>
-      <div class="main-container">
-        <div class="sign-up-info-div">
-          <div class="d-flex align-items-md-center flex-md-row flex-column justify-content-md-between gap-lg-0 gap-2">
-            <div class="d-flex flex-column">
-              <h6 class="font-poppins-semi">{{t('profile.deactivate-account')}}</h6>
-              <p class="text-shuttle-grey mb-0">
-                {{t('profile.deactivate-account-text')}}
-              </p>
-            </div>
-            <button type="button"
-              class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
-              {{t('profile.deactivate-account')}}
-            </button>
-          </div>
-        </div>
-      </div> -->
-        <!-- <div class="d-flex align-items-center justify-content-end w-100 gap-3 action-btns">
-            <button type="button"
-                    class="btn border border-color-gainsboro text-midnight-moss bg-white rounded font-poppins-medium fs-8 py-2 px-3">
-              {{t('profile.discard')}}
-            </button>
-            <button type="button"
-                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5 text-nowrap">
-              {{t('profile.save-changes')}}
-            </button>
-          </div> -->
       </div>
     </div>
   </div>
