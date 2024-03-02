@@ -11,7 +11,7 @@
       <p class="font-poppins-semi text-gray-600 mb-0"> {{t('onBoarding.back')}}</p>
     </div>
   <div class="row mx-0" *ngFor="let duration of this.shared.durationGroups; index as g">
-    <h2>{{getEnumKeyByEnumValue(duration.ActivityDuration)}}</h2>
+    <h4>{{getEnumKeyByEnumValue(duration.ActivityDuration)}}</h4>
     <br />
     <ul class="stepper px-0 col-xxl-3 col-lg-4 col-12">
       <li *ngFor="let tasks of duration.applicantOnboardingTasks; index as i">
