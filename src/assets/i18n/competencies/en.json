@@ -59,5 +59,6 @@
     "provide-position-trust":"Please provide your position of trust",
     "click-upload":"Click to upload",
     "pdf-doc":"PDF or Doc",
-    "max-size":"max.size 6MB"
+    "max-size":"max.size 6MB",
+    "save-add-new":"Save and add"
 }

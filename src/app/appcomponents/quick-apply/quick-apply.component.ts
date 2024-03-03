@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatOptionSelectionChange } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
 import { ToastrService } from 'ngx-toastr';
@@ -27,6 +28,7 @@ export class QuickApplyComponent implements OnInit {
   public fileList: File[] = [];
   recrutmentProjects: any[] = [];
   countryRegions: any[] = [];
+  countryRegionsArabic:any[]=[];
   cities: any[] = [];
   degrees: any[] = [];
   filteredOptions!: Observable<any[]>;
@@ -84,6 +86,7 @@ export class QuickApplyComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.nationalityCtrl.setValue(this.applicant.applicantData?.nationality);
     this.quickApplyForm?.controls?.nameAr.setValue(this.applicant.applicantData?.firstNameAr);
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
     this.quickApplyForm?.controls?.recruitmentProject.disable();
@@ -118,7 +121,7 @@ export class QuickApplyComponent implements OnInit {
   async GetLookups() {
     let params: LookupParameters = {
       dataAreaId: 'USMF',
-      languageId: 'en-us'
+      languageId: this.isTranslate ? 'ar': 'en-us'
     }
     const lookUps = await forkJoin({
       projects: this.lookUpService.GetRecruitmentLookup(params),
@@ -130,8 +133,7 @@ export class QuickApplyComponent implements OnInit {
       data.name = projects?.Description;
       data.value = projects?.Id;
       this.recrutmentProjects.push(data);
-    }
-    );
+    });
     lookUps?.countries?.parmList?.forEach((countries: any) => {
       let data = new Object() as any;
       data.name = countries?.Description;
@@ -190,6 +192,7 @@ export class QuickApplyComponent implements OnInit {
   }
 
   OnNationlaityChange(event: any) {
+    console.log(event);
   }
 
   Back() {
@@ -257,14 +260,15 @@ export class QuickApplyComponent implements OnInit {
 		this.phonePlaceHolder = event?.placeHolder;
 	  }
 
-    async changeCountry() {
-      let countryid = this.countriesCtrl.value ?? "";
+    async changeCountry(event:MatOptionSelectionChange ) {
+    let filteredCountry = this.countryRegions.find((country:any)=> country?.name === event?.source?.value);      
+// let countryid = this.countriesCtrl.value ?? "";
       let params:LookupParameters = {
         dataAreaId : 'USMF',
-        languageId:'en-us'
+        languageId: this.isTranslate ? 'ar':' en-us'
       }
       const lookUps = await forkJoin({
-        cities: this.lookUpService.GetCityLookup(params, countryid)
+        cities: this.lookUpService.GetCityLookup(params, filteredCountry?.value)
       }).toPromise();
       this.cities = [];
       this.citiesCtrl.setValue("");
@@ -276,5 +280,8 @@ export class QuickApplyComponent implements OnInit {
       }
       );
       this.citiesDefaultSearch();
+    }
+    GetCountries(){
+
     }
 }

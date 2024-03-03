@@ -130,10 +130,9 @@
                [formControl]="countriesCtrl"
                [matAutocomplete]="autocountries"
                [formControlName]="'address'"
-               (click)="this.countryDefaultSearch()"
-               (ngModelChange)="changeCountry()">
+               (click)="this.countryDefaultSearch()">
         <mat-autocomplete autoActiveFirstOption #autocountries="matAutocomplete" [class]="isTranslate ? 'direction-change':''">
-          <mat-option *ngFor="let country of countriesData | async" [value]="country.name">
+          <mat-option *ngFor="let country of countriesData | async" (onSelectionChange) = "changeCountry($event)" [value]="country.name">
             {{country.name}}
           </mat-option>
         </mat-autocomplete>

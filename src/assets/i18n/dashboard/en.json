@@ -29,5 +29,7 @@
     "reject-offer":"Reject offer",
     "accept-offer":"Accept Offer",
     "show-offer":"Show offer",
-    "congrats-selection":"Congratulations!!!! You Are Selected"
+    "congrats-selection":"Congratulations!!!! You Are Selected",
+    "interview-schedule":"Interview Schedules",
+    "pending-approval":"Pending Approval"
 }
