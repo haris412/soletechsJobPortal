@@ -28,11 +28,9 @@ export class AddEditExperienceComponent implements OnInit {
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.experienceForm.controls; }
   constructor(
-    private competenciesService: CompetenciesCommonService,
     public translationService: TranslationAlignmentService,
     public lookupService: AppLookUpService) {
     this.experienceForm = this._formBuilder.group({
-      id: [''],
       employerName: ['', [Validators.required]],
       qualificationPosition: ['', [Validators.required]],
       URL: ['', [Validators.required]],
@@ -79,8 +77,8 @@ export class AddEditExperienceComponent implements OnInit {
       reader.readAsDataURL(this.fileCvData);
       reader.onload = () => {
         this.cvData = reader.result;
-        this.experienceForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
-        this.experienceForm.controls.fileName.setValue(this.fileCvData.name);
+        this.experienceForm.controls.Attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+        this.experienceForm.controls.fileName.setValue(this.fileCvData?.name);
       };
     }
     this.fileList.push(files.target.files[0]);

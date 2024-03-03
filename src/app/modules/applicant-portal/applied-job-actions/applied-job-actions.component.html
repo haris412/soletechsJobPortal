@@ -91,7 +91,7 @@
             <img *ngIf="selectedJob?.applicationStatus === 6 || selectedJob?.applicationStatus > 6"
                  src="assets/SVG/noun-tick.svg"
                  alt="" />
-            <p *ngIf="selectedJob?.applicationStatus !== 6 && selectedJob?.applicationStatus !== 7"></p>
+            <p *ngIf="selectedJob?.applicationStatus !== 2 && selectedJob?.applicationStatus !== 6 && selectedJob?.applicationStatus !== 7"></p>
           </div>
           <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</h6>
           <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</p>

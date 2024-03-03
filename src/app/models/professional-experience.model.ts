@@ -11,5 +11,6 @@ export interface professionalExperience{
     startDate: string,
     recid:number;
     Attachment: string;
-    attachmentWeb: string;
+    AttachmentWeb: number;
+    fileName:string;
 }

@@ -56,5 +56,7 @@
     "provide-education":"يرجي ادخال بيانات التعليم",
     "provide-certificate":"يرجي ادخال بيانات الشهادات",
     "provide-course":"يرجي ادخال بيانات الدورات التدريبية",
-    "provide-position-trust":"يرجي ادخال بيانات الوظائف السابقة"
+    "provide-position-trust":"يرجي ادخال بيانات الوظائف السابقة",
+    "save-add-new":"حفظ وإضافة"
+
 }

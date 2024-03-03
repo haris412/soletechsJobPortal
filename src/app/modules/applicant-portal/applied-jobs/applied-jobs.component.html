@@ -16,7 +16,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center justify-content-between w-100">
         <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
-        <span class="rounded-pill bg-warning text-white font-poppins-medium p-2" *ngIf="appliedJob?.approvedApplication == 0">{{t('pending-approval')}}</span>
+        <span class="rounded-pill bg-warning text-white font-poppins-medium p-2" *ngIf="appliedJob?.approvedApplication == 0">{{t('dashboard.pending-approval')}}</span>
       </div>
       <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
         <!-- <div>
@@ -95,7 +95,7 @@
     
   </div>
   <div class="row">
-    <h5 *ngIf="appliedJob?.InterviewerList?.parmApplicantInterviewList.length > 0" class="text-midnight-moss">{{t('interview-schedule')}}</h5>
+    <h5 *ngIf="appliedJob?.InterviewerList?.parmApplicantInterviewList.length > 0" class="text-midnight-moss">{{t('dashboard.interview-schedule')}}</h5>
   <div class="col-lg-4 col-sm-6 col-12 mr-2" *ngFor="let interview of appliedJob?.InterviewerList?.parmApplicantInterviewList">
     <div class="next-actions">
     <div  class="actions info-container rounded-3">
@@ -123,11 +123,11 @@
             <div class="d-flex flex-column action-details">
               
               <div class="d-flex meeting-with mb-2 text-nowrap">
-                <span class="text-midnight-moss">Meeting with: </span>
+                <span class="text-midnight-moss">{{t('dashboard.meeting-with')}}: </span>
                 <span class="text-denim text-nowrap text-truncate">{{interview.InterviewerName}}</span>
               </div>
               <div class="d-flex meeting-with mb-2 text-nowrap">
-                <span class="text-midnight-moss">Location: </span>
+                <span class="text-midnight-moss">{{t('dashboard.location')}}: </span>
                 <span class="text-denim text-nowrap text-truncate">{{interview.Location}}</span>
               </div>
               <div class="d-flex align-items-center gap-2 schedule">
@@ -143,16 +143,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="d-flex align-items-center justify-content-end gap-xxl-3 gap-2 confirm-reschedule">
-          <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8"
-             (click)="Confirm(appliedJob , interview)" [disabled]="interview.ApplicantConfirmed === 1">
-            {{t('dashboard.confirm')}}
-          </button>
-          <button type="button" class="btn text-error-600 border border-color-error-600 rounded font-poppins-semi fs-8"
-            (click)="OpenReschedule()" [disabled]="isDisable">
-            {{t('dashboard.reschedule')}}
-          </button>
-        </div> -->
       </div>
     </div>
     </div>

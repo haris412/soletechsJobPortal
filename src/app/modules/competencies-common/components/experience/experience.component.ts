@@ -56,7 +56,10 @@ export class ExperienceComponent implements OnInit {
   async ExperienceAdded(experience: professionalExperience) {
     let experienceData: professionalExperience = {
       ...experience,
-      employerLocation: "UK",
+      //employerLocation: "UK",
+      Attachment: experience?.Attachment ? experience?.Attachment : '',
+      fileName:experience.fileName ? experience.fileName :'',
+      AttachmentWeb:experience.Attachment ? 1 : 0,
       recid: experience?.recid ? experience?.recid : 0,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
