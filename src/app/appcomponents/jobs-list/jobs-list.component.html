@@ -64,11 +64,20 @@
           <h5 class="mb-0 text-midnight-moss">
             {{ t("jobs.showing") }} {{ jobsList.length }} {{ t("jobs.jobs") }}
           </h5>
-          <div class="d-lg-flex d-none align-items-center px-3 py-2 gap-2 light-border rounded-3 bg-white" (click)="SortBy()">
+          <div class="d-lg-flex d-none align-items-center px-3 py-2 gap-2 light-border rounded-3 bg-white cursor-pointer" (click)="SortBy()" [matMenuTriggerFor]="menu">
             <img src="assets/SVG/filter-lines.svg"
                  alt="" />
-            <p class="mb-0 text-midnight-moss">{{ t("jobs.sort-By") }}</p>
+            <div class="d-flex align-items-center gap-2">
+              <p class="mb-0 text-midnight-moss ">{{ t("jobs.sort-By") }} </p>
+              <div class="d-flex align-items-center gap-1">
+                <span class="font-poppins-medium">Date</span> <img height="8" class="cursor-pointer" src="assets/SVG/cross-icon.svg" alt="close"/>
+              </div>
+            </div>
           </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
         </div>
         <div class="job-listings"
              *ngFor="let job of jobsList">

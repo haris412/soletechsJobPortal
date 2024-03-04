@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { RecruitmentService } from 'src/app/app-services/jobs.service';
 import { JobDetailParameter } from 'src/app/models/job-detail-parameter';
@@ -7,6 +7,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-jobs-list',
@@ -17,7 +18,9 @@ import { TranslationAlignmentService } from 'src/app/app-services/translation-al
   },
 })
 export class JobsListComponent implements OnInit {
-
+  @ViewChild(MatMenuTrigger, { static: true, read: ElementRef })
+  userMenu!: ElementRef<HTMLElement>;
+  menuWidth: any;
   isActive: boolean = false;
   width: number = window.innerWidth;
   minimunWidth: number = 992;
@@ -191,7 +194,8 @@ export class JobsListComponent implements OnInit {
       this.sharedService.SetToken(accessTokenResponse.access_token);
     }
   }
-  SortBy(){
+  SortBy() {
+    this.menuWidth = this.userMenu.nativeElement.clientWidth;
     this.sortBy = !this.sortBy;
     if (this.sortBy) {
       this.jobsList = this.jobsList?.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
