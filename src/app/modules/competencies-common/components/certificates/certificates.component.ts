@@ -2,8 +2,10 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { Certificates } from 'src/app/models/certificates.model';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-certificates',
@@ -22,8 +24,14 @@ export class CertificatesComponent implements OnInit {
   constructor(private toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
     private service: AppLookUpService,
+    public translationService: TranslationAlignmentService,
+    public sharedService: SharedService,
     private datePipe: DatePipe) {
     this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
+    this.translationService.languageChange.subscribe(x => {
+      this.translationService.isTranslate = x;
+      this.CertificateListLanguageChanges();
+    });
   }
 
   ngOnInit(): void {
@@ -34,7 +42,9 @@ export class CertificatesComponent implements OnInit {
     let certificateResponse = await this.service.GetCertificateList(this.personRecId);
     if (certificateResponse?.parmApplicantCertificateList) {
       this.certificates = certificateResponse.parmApplicantCertificateList;
+      this.sharedService.certificateListCopy = this.sharedService.DeepCopyObject(certificateResponse.parmApplicantCertificateList);
     }
+    this.CertificateListLanguageChanges();
   }
 
   AddCertificate() {
@@ -106,5 +116,16 @@ export class CertificatesComponent implements OnInit {
         }
       }
     });
+  }
+  CertificateListLanguageChanges() {
+    if (this.certificates?.length > 0) {
+      if (this.translationService.isTranslate) {
+        for(let i = 0; i < this.certificates?.length; i++) {
+          this.certificates[i].CertificateTypeId = this.sharedService.certificateListCopy[i]?.CertificateTypeAr ? this.sharedService.certificateListCopy[i]?.CertificateTypeAr : this.sharedService.certificateListCopy[i]?.CertificateTypeId;
+        }
+      } else {
+        this.certificates = this.sharedService.DeepCopyObject(this.sharedService.certificateListCopy);
+      }     
+    }
   }
 }

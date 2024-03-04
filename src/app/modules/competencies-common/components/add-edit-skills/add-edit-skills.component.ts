@@ -111,15 +111,13 @@ export class AddEditSkillsComponent implements OnInit {
         data.name = projects.Description;
         data.value = projects.Id;
         this.skillLevelEnglish.push(data);
-      }
-      );
+      });
       res?.parmList?.forEach((projects: any) => {
         let data = new Object() as any;
-        data.name = projects.OtherLine;
+        data.name = projects.OtherLine ? projects.OtherLine : projects.Description;
         data.value = projects.Id;
         this.skillLevelArabic.push(data);
-      }
-      );
+      });
       if (this.isTranslate) {
         this.skillLevel = this.skillLevelArabic;
       } else {

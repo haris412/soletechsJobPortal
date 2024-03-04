@@ -48,7 +48,6 @@ export class CompetenciesComponent implements OnInit {
 
     OpenSidenav() {
         this.sidenavOpen = true;
-        
     }
 
     CloseSidenav() {

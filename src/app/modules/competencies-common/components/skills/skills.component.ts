@@ -3,7 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { Skills } from 'src/app/models/skills.model';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
-import { CompetenciesCommonService } from '../services/competencies-common.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-skills',
@@ -22,7 +23,13 @@ export class SkillsComponent implements OnInit{
     private lookUpService:AppLookUpService,
     private toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
+    public sharedService: SharedService,
+    public translationService: TranslationAlignmentService
   ) {
+    this.translationService.languageChange.subscribe(x => {
+      this.translationService.isTranslate = x;
+      this.SkillListLanguageChanges();
+    });
     this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
   }
 
@@ -39,7 +46,9 @@ export class SkillsComponent implements OnInit{
     let skillsResponse = await this.lookUpService.GetSkillsList(this.personRecId);
     if(skillsResponse?.parmApplicantSkillsList){
       this.skillList = skillsResponse.parmApplicantSkillsList;
+      this.sharedService.skillsListCopy = this.sharedService.DeepCopyObject(skillsResponse.parmApplicantSkillsList);
     }
+    this.SkillListLanguageChanges();
   }
 
   OpenSidenav() {
@@ -96,5 +105,16 @@ export class SkillsComponent implements OnInit{
         }
       }
     });
+  }
+  SkillListLanguageChanges() {
+    if (this.skillList?.length > 0) {
+      if (this.translationService.isTranslate) {
+        for(let i = 0; i < this.skillList?.length; i++) {
+          this.skillList[i].SkillID = this.sharedService.skillsListCopy[i]?.descriptionSkillAr ? this.sharedService.skillsListCopy[i]?.descriptionSkillAr : this.sharedService.skillsListCopy[i]?.SkillID;
+        }
+      } else {
+        this.skillList = this.sharedService.DeepCopyObject(this.sharedService.skillsListCopy);
+      }     
+    }
   }
 }

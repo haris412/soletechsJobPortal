@@ -18,6 +18,9 @@ export class SharedService {
   public applied: boolean = false;
   public appliedJobs: any[] = [];
   public jobDetail: any;
+  public skillsListCopy:any;
+  public educationListCopy:any;
+  public certificateListCopy:any;
   public jobs: any;
   public appliedJobsCopy: any[] = [];
   public savedJobsCopy: any[] = [];
@@ -103,7 +106,7 @@ export class SharedService {
     );
     lookUps?.skills?.parmList?.forEach((skills: any) => {
       let data = new Object() as any;
-      data.name = skills.OtherLine;
+      data.name = skills.OtherLine ? skills.OtherLine : skills.Description;
       data.value = skills.Id;
       this.competenciesService.skillsArabicList.push(data);
     }
@@ -124,7 +127,7 @@ export class SharedService {
     );
     lookUps?.educationInstitution?.parmList?.forEach((educationInstitution: any) => {
       let data = new Object() as any;
-      data.name = educationInstitution.OtherLine;
+      data.name = educationInstitution.OtherLine ? educationInstitution.OtherLine : educationInstitution.Description;
       data.value = educationInstitution.Id;
       this.competenciesService.educationInstitutionArabicList.push(data);
     }
@@ -138,7 +141,7 @@ export class SharedService {
     );
     lookUps?.educationDiscipline?.parmList?.forEach((educationDiscipline: any) => {
       let data = new Object() as any;
-      data.name = educationDiscipline.Other;
+      data.name = educationDiscipline.Other ? educationDiscipline.Other : educationDiscipline.Description;
       data.value = educationDiscipline.Id;
       this.competenciesService.educationDeciplineArabicList.push(data);
     }
@@ -152,7 +155,7 @@ export class SharedService {
     );
     lookUps?.certificateTypes?.parmList?.forEach((projects: any) => {
       let data = new Object() as any;
-      data.name = projects.Other;
+      data.name = projects.Other ? projects.Other : projects.Description;
       data.value = projects.Id;
       this.competenciesService.certificateTypesArabicList.push(data);
     }
@@ -166,7 +169,7 @@ export class SharedService {
     );
     lookUps?.educationLevel?.parmList?.forEach((projects: any) => {
       let data = new Object() as any;
-      data.name = projects.Other;
+      data.name = projects.Other ? projects.Other :  projects.Description;
       data.value = projects.Id;
       this.competenciesService.educationLevelArabicList.push(data);
      }

@@ -34,49 +34,42 @@ export class BasicInfoCommonModuleComponent implements OnInit {
 			data.name = projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.countryRegions.push(data);
-		}
-		);
+		});
 		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.nativeLanguage.push(data);
-		}
-		);
+		});
 		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other :projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.nativeLanguageArabic.push(data);
-		}
-		);
+		});
 		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.highestDegree.push(data);
-		}
-		);
+		});
 		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other : projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.highestDegreeArabic.push(data);
-		}
-		);
+		});
 		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.identificationType.push(data);
-		}
-		);
+		});
 		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other : projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.identificationTypeArabic.push(data);
-		}
-		);
+		});
 	}
 }

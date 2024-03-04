@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-competencies-common',
@@ -7,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompetenciesCommonComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sharedService: SharedService) { }
 
-  ngOnInit() {
-  }
+  async ngOnInit() {}
 
 }

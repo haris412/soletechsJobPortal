@@ -5,6 +5,8 @@ import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { CompetenciesCommonService } from './../services/competencies-common.service';
 import { DatePipe } from '@angular/common';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-education',
@@ -27,9 +29,14 @@ export class EducationComponent implements OnInit{
   constructor(private toastrService: ToastrService,
     private lookUpService:AppLookUpService,
     private deleteModal: DeleteModalComponentService,
-    private competenciesServie:CompetenciesCommonService,
+    public translationService: TranslationAlignmentService,
+    public sharedService: SharedService,
     private datePipe: DatePipe){
       this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
+      this.translationService.languageChange.subscribe(x => {
+        this.translationService.isTranslate = x;
+        this.EducationListLanguageChanges();
+      });
     }
   
   ngOnInit(){
@@ -45,7 +52,9 @@ export class EducationComponent implements OnInit{
     let educationResponse = await this.lookUpService.GetEducationList(this.personRecId);
     if(educationResponse?.parmApplicantEducationList){
       this.educations = educationResponse.parmApplicantEducationList;
+      this.sharedService.educationListCopy = this.sharedService.DeepCopyObject(educationResponse.parmApplicantEducationList);
     }
+    this.EducationListLanguageChanges();
   }
   OpenSidenav() {
     this.sidenavOpen = true;
@@ -104,5 +113,17 @@ export class EducationComponent implements OnInit{
         }
       }
     });
+  }
+  EducationListLanguageChanges() {
+    if (this.educations?.length > 0) {
+      if (this.translationService.isTranslate) {
+        for(let i = 0; i < this.educations?.length; i++) {
+          this.educations[i].Description = this.sharedService.educationListCopy[i]?.disciplineArabic ? this.sharedService.skillsListCopy[i]?.disciplineArabic : this.sharedService.skillsListCopy[i]?.Description;
+          this.educations[i].EducationDisciplineRecId = this.sharedService.educationListCopy[i]?.educationDescriptionAr ? this.sharedService.skillsListCopy[i]?.educationDescriptionAr : this.sharedService.skillsListCopy[i]?.EducationDisciplineRecId;
+        }
+      } else {
+        this.educations = this.sharedService.DeepCopyObject(this.sharedService.educationListCopy);
+      }     
+    }
   }
 }

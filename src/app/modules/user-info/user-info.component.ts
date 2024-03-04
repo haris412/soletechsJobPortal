@@ -168,7 +168,7 @@ export class UserInfoComponent implements OnInit {
 		);
 		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other : projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.nativeLanguageArabic.push(data);
 		}
@@ -182,11 +182,10 @@ export class UserInfoComponent implements OnInit {
 		);
 		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other : projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.highestDegreeArabic.push(data);
-		}
-		);
+		});
 		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;
@@ -196,11 +195,10 @@ export class UserInfoComponent implements OnInit {
 		);
 		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other :projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.identificationTypeArabic.push(data);
-		}
-		);
+		});
 	}
 
 	DiscardData() {

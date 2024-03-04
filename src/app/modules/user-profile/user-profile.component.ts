@@ -15,6 +15,7 @@ import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-
 import { UserInfoService } from '../user-info/user-info.service';
 import { forkJoin } from 'rxjs';
 import { LookupParameters } from 'src/app/models/look-up.model';
+import { SharedModule } from './../../shared/shared.module';
 
 
 @Component({
@@ -77,9 +78,10 @@ export class UserProfileComponent {
 		if (this.applicantDataService.applicantData?.aboutMe) {
 			this.aboutMe = this.applicantDataService?.applicantData?.aboutMe;
 		}
-		if(this.competencies?.skillsList?.length == 0 || this.userInfoService.nativeLanguage?.length === 0 || this.userInfoService.highestDegree?.length ===0){
+		if (this.userInfoService.countryRegions?.length == 0 || this.userInfoService.nativeLanguage?.length === 0 || this.userInfoService.highestDegree?.length === 0) {
 			await this.GetLookups();
-
+		} if (this.competencies.skillLevelList?.length === 0 || this.competencies.educationDesciplineList?.length === 0 || this.competencies.educationLevelList?.length === 0) {
+			await this.shareService.GetLookUps();
 		}
 	}
 	public b64toBlob(b64Data:string, contentType:string) {
@@ -294,7 +296,7 @@ export class UserProfileComponent {
 		);
 		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other : projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.nativeLanguageArabic.push(data);
 		}
@@ -308,7 +310,7 @@ export class UserProfileComponent {
 		);
 		lookUps?.highestDegree?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other : projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.highestDegreeArabic.push(data);
 		}
@@ -322,13 +324,12 @@ export class UserProfileComponent {
 		);
 		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
-			data.name = projects.Other;
+			data.name = projects.Other ? projects.Other : projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.identificationTypeArabic.push(data);
 		}
 		);
 	}
-
 
 }
 
