@@ -19,7 +19,7 @@
       <!-- <li [ngClass]="{'selected':notifications}" (click)="ScrolltoTarget('#notifications')"><h6>{{t('profile.notifications')}}</h6></li>
     <li [ngClass]="{'selected':deactivate}" (click)="ScrolltoTarget('#deactivate')"><h6>{{t('profile.deactivate-account')}}</h6></li> -->
     </ul>
-    <h4>{{t('profile.profile')}}</h4>
+    <h5>{{t('profile.profile')}}</h5>
     <ul>
       <li [ngClass]="{'selected':isBasicActive}">
         <div 
@@ -53,7 +53,7 @@
         </div>
       </li>
     </ul>
-    <h4 *ngIf="isActive">{{t('profile.competencies')}}</h4>
+    <h5 *ngIf="isActive">{{t('profile.competencies')}}</h5>
     <ul *ngIf="isActive">
       <li [ngClass]="{'selected':skillsisActive}">
 
