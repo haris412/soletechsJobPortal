@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
 import { Address } from 'src/app/models/address.model';
 
-import { forkJoin } from 'rxjs';
+import { Observable, forkJoin, map, startWith } from 'rxjs';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
@@ -22,6 +22,10 @@ export class AddEditAddressComponent implements OnInit{
   private _formBuilder = inject(UntypedFormBuilder);
   identification!: Address
   cities:any[]=[];
+  citiesArabic:any[]=[];
+  nationalityData!: Observable<any[]>;
+  nationalityCtrl = new FormControl('');
+  selectedNationality:string = '';
   get f() { return this.addressForm.controls; }
   constructor(
     public userInfoService: UserInfoService, 
@@ -47,10 +51,15 @@ export class AddEditAddressComponent implements OnInit{
      this.addressForm.patchValue({
        ...this.selectedAddress
      });
-     this.changeCountry();
+     this.SetNationalityValue();
+     this.changeCountry(this.selectedAddress?.CountryRegionId);
    } else {
      this.addressForm.reset();
    }
+   this.nationalityData = this.nationalityCtrl.valueChanges.pipe(
+    startWith(''),
+    map(value => this.__filterCountries(value || '')),
+  );
  }
   CloseAddressNav: () => void = () => {
     this.closeSideNav.emit(true);
@@ -59,6 +68,7 @@ export class AddEditAddressComponent implements OnInit{
   SaveIdentification: () => void = () => {
     if (this.addressForm.valid) {
       this.identification = this.addressForm.getRawValue();
+      this.identification.CountryRegionId = this.selectedNationality;
       this.addressData.emit(this.identification);
     } else {
       this.addressForm.markAllAsTouched();
@@ -68,7 +78,7 @@ export class AddEditAddressComponent implements OnInit{
     this.addressForm.reset();
   }
 
-  async changeCountry() {
+  async changeCountry(countryId:string) {
     var address = this.addressForm.value;
     let countryid = address.CountryRegionId;
     let params:LookupParameters = {
@@ -76,14 +86,30 @@ export class AddEditAddressComponent implements OnInit{
       languageId:'en-us'
     }
     const lookUps = await forkJoin({
-      cities: this.lookupService.GetCityLookup(params, countryid)
+      cities: this.lookupService.GetCityLookup(params, countryId)
     }).toPromise();
     lookUps?.cities?.parmList?.forEach((cities: any) => {
       let data = new Object() as any;
       data.name = cities?.Id;
       data.value = cities.Id;
       this.cities.push(data);
+    });
+  }
+  private __filterCountries(value: string): string[] {
+    const filterValue = value?.toLowerCase();
+    return this.userInfoService.countryRegions?.filter(countries => countries?.name?.toLowerCase()?.includes(filterValue));
+  }
+  OnNationlaityChange(event:any){
+    let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === event?.source.value);
+    this.nationalityCtrl.setValue(filteredCountry.name);
+    this.selectedNationality = filteredCountry.value;
+    this.changeCountry(this.selectedNationality);
+  }
+
+  SetNationalityValue(){
+    let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === this.selectedAddress?.CountryRegionId);
+    if(filteredCountry){
+    this.nationalityCtrl.setValue(filteredCountry.name);
     }
-    );
   }
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -8,8 +8,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { LinkedInService } from 'src/app/modules/applicant-portal/services/linkedin.service';
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
-import { forkJoin } from 'rxjs';
-import { LookupParameters } from 'src/app/models/look-up.model';
+import { map, Observable, startWith } from 'rxjs';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 
@@ -28,10 +27,13 @@ export class AddEditBasicinformationComponent implements OnInit {
   applicantForm!: UntypedFormGroup;
   imagePathOrBase64: any;
   imageAvatar:any;
+  selectedNationality:string = '';
   fileList:any[] = [];
   @Input() isUserProfile : boolean = false;
   nativeLanguage: any[] = [];
   highestDegree: any[] = [];
+  nationalityData!: Observable<any[]>;
+  nationalityCtrl = new FormControl('');
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.applicantForm.controls; }
   constructor(public userInfoService: UserInfoService,
@@ -85,6 +87,11 @@ export class AddEditBasicinformationComponent implements OnInit {
     this.shareService.discardProfileInfo.subscribe(x => {
       this.applicantForm.reset();
     });
+    this.SetNationalityValue();
+    this.nationalityData = this.nationalityCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.__filterCountries(value || '')),
+    );
   }
 
   OpenSidenav() {
@@ -101,6 +108,7 @@ export class AddEditBasicinformationComponent implements OnInit {
     if (this.applicantForm?.valid) {
       let profileData: any = {
         ...this.applicantForm.value,
+        nationality : this.selectedNationality,
         gender: Number(this.applicantForm?.controls?.gender.value),
         maritalStatus: Number(this.applicantForm?.controls?.maritalStatus?.value),
         previousEmployee: Number(this.applicantForm?.controls?.previousEmployee?.value) ?? 0,
@@ -146,5 +154,21 @@ export class AddEditBasicinformationComponent implements OnInit {
       this.nativeLanguage = this.userInfoService.nativeLanguage;
       this.highestDegree = this.userInfoService.highestDegree;
     } 
+  }
+  private __filterCountries(value: string): string[] {
+    const filterValue = value?.toLowerCase();
+    return this.userInfoService.countryRegions?.filter(countries => countries?.name?.toLowerCase()?.includes(filterValue));
+  }
+  OnNationlaityChange(event:any){
+    let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === event?.source.value);
+    this.nationalityCtrl.setValue(filteredCountry.name);
+    this.selectedNationality = filteredCountry.value;
+  }
+
+  SetNationalityValue(){
+    let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === this.userInfoService.basicInfo.nationality);
+    if(filteredCountry){
+    this.nationalityCtrl.setValue(filteredCountry.name);
+    }
   }
 }

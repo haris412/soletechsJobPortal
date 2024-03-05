@@ -53,7 +53,7 @@
      "address-description":"Description",
      "attachment":"Attachment",
      "basic-inf":"Basic Info",
-     "save-add-new":"Save and add"
-
-
+     "save-add-new":"Save and add",
+     "nationality-paceholder":"Select Nationality",
+     "country-paceholder":"Select Country"
 }

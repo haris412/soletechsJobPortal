@@ -50,5 +50,8 @@
      "address-description":"الوصف",
      "attachment":"المرفقات",
      "basic-inf":"معلومات اساسية",
-     "save-add-new":"حفظ وإضافة"
+     "save-add-new":"حفظ وإضافة",
+     "nationality-paceholder":"برجاء اختيار الجنسية",
+     "country-paceholder":"حدد الدولة"
+
 }

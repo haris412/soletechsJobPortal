@@ -11,7 +11,7 @@
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
     <p>{{t('basicInfo.country')}}*</p>
-    <mat-form-field appearance="outline" class="w-100">
+    <!-- <mat-form-field appearance="outline" class="w-100">
       <mat-select name="country" [formControlName]="'CountryRegionId'" (selectionChange)="changeCountry()" [panelClass]="{'direction-change':isTranslate}">
         <mat-option *ngFor="let country of this.userInfoService.countryRegions"
           [value]="country.value">{{country.name}}</mat-option>
@@ -20,6 +20,24 @@
       <mat-error class="error-message"
         *ngIf="f.CountryRegionId.hasError('required') && (f.CountryRegionId.dirty || f.CountryRegionId.touched)">Country
         is Required</mat-error>
+    </mat-form-field> -->
+    <mat-form-field appearance="outline" class="w-100">
+      <img matPrefix height="15" width="15" src="assets/SVG/search.svg" class="ms-2" alt="" />
+      <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+      <input type="text"
+             placeholder="{{ t('basicInfo.country-paceholder') }}"
+             aria-label="Select Nationality"
+             matInput
+             [formControl]="nationalityCtrl"
+             [matAutocomplete]="autoNationality"
+             [formControlName]="'CountryRegionId'"
+             >
+      <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete" [class]="isTranslate ? 'direction-change':''">
+        <mat-option *ngFor="let nationality of nationalityData | async" (onSelectionChange) = "OnNationlaityChange($event)" [value]="nationality.value" >
+          {{nationality.name}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error class="error-message" *ngIf="f.CountryRegionId.hasError('required') && (f.CountryRegionId.dirty || f.CountryRegionId.touched)">Country is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
