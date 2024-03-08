@@ -11,7 +11,7 @@ body {
   height: 100%;
 }
 * {
-  -webkit-font-smoothing: antialiased
+  -webkit-font-smoothing: antialiased;
 }
 // Plus imports for other components in your app.
 $my-typography: mat.define-typography-config(
@@ -51,15 +51,14 @@ $my-theme: mat.define-light-theme(
 @include mat.all-component-themes($my-theme);
 
 /* You can add global styles to this file, and also import other style files */
-:root{
-  --h2-size:2.25rem;
-  --h3-size:1.875rem;
+:root {
+  --h2-size: 2.25rem;
+  --h3-size: 1.875rem;
   --h4-size: 1.5rem;
   --h5-size: 1.125rem;
   --h6-szie: 1rem;
   --p-size: 0.875rem;
 }
-
 
 body {
   --bs-body-font-family: $font-popins-regular !important;
@@ -198,6 +197,22 @@ p {
   .mdc-checkbox {
     margin-left: 10px !important;
   }
+  .mat-mdc-select-value {
+    font-family: $font-poppins-regular;
+  }
+  .mdc-text-field__input {
+    font-family: $font-poppins-regular !important;
+  }
+  .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+    padding-right: max(16px, var(--mdc-shape-small, 4px));
+  }
+  .mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
+    padding-left: max(16px, var(--mdc-shape-small, 4px));
+  }
+  .mat-mdc-form-field-infix {
+    margin-left: auto;
+    text-align: right;
+  }
 }
 
 .mdc-radio,
@@ -263,7 +278,7 @@ p {
     margin-top: 10px;
     height: 36px !important;
     .country-selector-code {
-      margin-right: .5ex;
+      margin-right: 0.5ex;
     }
   }
 }
@@ -513,7 +528,7 @@ form {
 
 .font-family-change {
   font {
-    font-family: 'Arabic-Regular' !important
+    font-family: "Arabic-Regular" !important;
   }
   h2 {
     font-size: 0.875rem !important;
@@ -522,7 +537,7 @@ form {
 
 font {
   font-family: $font-poppins-regular !important;
-  font-size:14px !important;
+  font-size: 14px !important;
 }
 
 .view-password {
