@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { ContactInfo } from 'src/app/models/contact-info.model';
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
 
@@ -19,7 +20,8 @@ export class ContactInfoComponent implements OnInit {
  constructor(private toastrService: ToastrService,
              private lookUpService: AppLookUpService,
              public userInfoService: UserInfoService,
-             private deleteModal: DeleteModalComponentService){}
+             private deleteModal: DeleteModalComponentService,
+             public translationService: TranslationAlignmentService){}
   
   ngOnInit(): void {
     
@@ -54,6 +56,31 @@ export class ContactInfoComponent implements OnInit {
         }
       }
     });
+  }
+  CheckContactType(type:number){
+    let label:string = '';
+    if(type == 1){
+      label= this.translationService.isTranslate ? 'رقم' : 'Number';
+      }else if(type === 2){
+        label= this.translationService.isTranslate ? 'بريد إلكتروني' : 'Email';
+      }else if(type === 3){
+        label= this.translationService.isTranslate ? 'عنوان ' : 'URL';
+      }else if(type === 4){
+        label= this.translationService.isTranslate ? 'التلكس' : 'Telex';
+      }else if(type === 5){
+        label= this.translationService.isTranslate ? 'فاكس' : 'Fax';
+      }else if(type === 6){
+        label= this.translationService.isTranslate ? 'فيسبوك' : 'Facebook';
+      }else if(type === 7){
+        label= this.translationService.isTranslate ? 'تويتر' : 'Twitter';
+      }else if(type === 8){
+        label= this.translationService.isTranslate ? 'ينكدين' : 'LinkedIn';
+      }else if(type === 9){
+        label= this.translationService.isTranslate ? 'انستغرام' : 'Instagram';
+      }else if(type === 10){
+        label= this.translationService.isTranslate ? 'واتساب' :  'WhatsApp';
+      }
+      return label
   }
   EditContact(contact:ContactInfo){
     this.userInfoService.selectedContact = contact;

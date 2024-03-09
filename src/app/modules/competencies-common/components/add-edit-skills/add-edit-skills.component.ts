@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Skills } from 'src/app/models/skills.model';
 import { CompetenciesCommonService } from '../services/competencies-common.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
+import { Observable, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-skills',
@@ -31,6 +32,9 @@ export class AddEditSkillsComponent implements OnInit {
   fileFromAttachments = '';
   attachBase64: any = '';
   get f() { return this.skillForm.controls; }
+  skillsData!: Observable<any[]>;
+  skillsCtrl = new FormControl('');
+  selectedSkillPlaceHolder:string = ''
   constructor(
     private competenciesService:CompetenciesCommonService,
     public translationService: TranslationAlignmentService,
@@ -45,18 +49,22 @@ export class AddEditSkillsComponent implements OnInit {
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
-      this.ArabicList();
     });
   }
   ngOnInit(){
-    this.ArabicList();
     if(this.selectedSkill?.SkillID !== ''){
+      this.GetRatingLevel(this.selectedSkill.SkillID);
       this.skillForm.patchValue({
         ...this.selectedSkill,
         RatingLevel:this.selectedSkill?.RatingLevel?.toString()
       });
+      this.SetSkillValue();
     }
     this.GetFilesFromAttachment(this.selectedSkill?.Attachment);
+    this.skillsData = this.skillsCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.__filterSkills(value || '')),
+    );
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -100,36 +108,74 @@ export class AddEditSkillsComponent implements OnInit {
       }
     }
 
-  async onSelectionChange(event: any) {
-    let res = await this.lookupService.GetRatingLevelLookup(event.value);
-    if (res) {
-      this.skillLevel = [];
-      this.skillLevelEnglish = [];
-      this.skillLevelArabic = [];
-      res?.parmList?.forEach((projects: any) => {
-        let data = new Object() as any;
-        data.name = projects.Description;
-        data.value = projects.Id;
-        this.skillLevelEnglish.push(data);
-      });
-      res?.parmList?.forEach((projects: any) => {
-        let data = new Object() as any;
-        data.name = projects.OtherLine ? projects.OtherLine : projects.Description;
-        data.value = projects.Id;
-        this.skillLevelArabic.push(data);
-      });
-      if (this.isTranslate) {
-        this.skillLevel = this.skillLevelArabic;
-      } else {
-        this.skillLevel = this.skillLevelEnglish;
-      }
-    }
-  }
-
     DownloadFile() {
       this.showPdf();
     }
-
+    private __filterSkills(value: string): string[] {
+      const filterValue = value?.toLowerCase();
+      return this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.filter(skill => skill?.name?.toLowerCase()?.includes(filterValue)) : this.competenciesService.skillsList?.filter(skill => skill?.name?.toLowerCase()?.includes(filterValue));
+    }
+    async OnSkillsChange(event:any){
+      let filteredCountry = this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.find(skill => skill?.value === event?.source.value) : this.competenciesService.skillsList?.find(skill => skill?.value === event?.source.value);
+      this.skillsCtrl.setValue(filteredCountry.name);
+      this.selectedSkillPlaceHolder = filteredCountry.value;
+      this.skillForm.controls.SkillID.setValue(filteredCountry.value);
+      let res = await this.lookupService.GetRatingLevelLookup(event?.source.value);
+      if (res) {
+        this.skillLevel = [];
+        this.skillLevelEnglish = [];
+        this.skillLevelArabic = [];
+        res?.parmList?.forEach((projects: any) => {
+          let data = new Object() as any;
+          data.name = projects.Description;
+          data.value = projects.Id;
+          this.skillLevelEnglish.push(data);
+        });
+        res?.parmList?.forEach((projects: any) => {
+          let data = new Object() as any;
+          data.name = projects.OtherLine ? projects.OtherLine : projects.Description;
+          data.value = projects.Id;
+          this.skillLevelArabic.push(data);
+        });
+        if (this.isTranslate) {
+          this.skillLevel = this.skillLevelArabic;
+        } else {
+          this.skillLevel = this.skillLevelEnglish;
+        }
+      }
+    }
+  
+    async GetRatingLevel(skillId:string){
+      let res = await this.lookupService.GetRatingLevelLookup(skillId);
+      if (res) {
+        this.skillLevel = [];
+        this.skillLevelEnglish = [];
+        this.skillLevelArabic = [];
+        res?.parmList?.forEach((projects: any) => {
+          let data = new Object() as any;
+          data.name = projects.Description;
+          data.value = projects.Id;
+          this.skillLevelEnglish.push(data);
+        });
+        res?.parmList?.forEach((projects: any) => {
+          let data = new Object() as any;
+          data.name = projects.OtherLine ? projects.OtherLine : projects.Description;
+          data.value = projects.Id;
+          this.skillLevelArabic.push(data);
+        });
+        if (this.isTranslate) {
+          this.skillLevel = this.skillLevelArabic;
+        } else {
+          this.skillLevel = this.skillLevelEnglish;
+        }
+      }
+    }
+    SetSkillValue(){
+      let filteredSkill = this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.find(skill => skill?.value === this.selectedSkill.SkillID) : this.competenciesService.skillsList?.find(skill => skill?.value === this.selectedSkill.SkillID);
+      if(filteredSkill){
+      this.skillsCtrl.setValue(filteredSkill.name);
+      }
+    }
     showPdf() {
       const linkSource =
         'data:application/octet-stream;base64,' + this.attachBase64?.value;
@@ -138,15 +184,6 @@ export class AddEditSkillsComponent implements OnInit {
       downloadLink.href = linkSource;
       downloadLink.download = fileName;
       downloadLink.click();
-    }
-     ArabicList() {
-      if (this.translationService.isTranslate) {
-        this.skillList = this.competenciesService.skillsArabicList;
-        this.skillLevel =  this.competenciesService.skillLevelList;
-      } else {
-        this.skillList = this.competenciesService.skillsList;
-        this.skillLevel = this.competenciesService.skillLevelList;
-      } 
     }
 }
 

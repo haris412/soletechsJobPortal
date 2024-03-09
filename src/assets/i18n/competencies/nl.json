@@ -57,6 +57,10 @@
     "provide-certificate":"يرجي ادخال بيانات الشهادات",
     "provide-course":"يرجي ادخال بيانات الدورات التدريبية",
     "provide-position-trust":"يرجي ادخال بيانات الوظائف السابقة",
-    "save-add-new":"حفظ وإضافة"
+    "save-add-new":"حفظ وإضافة",
+    "skill-type":"نوع المهارة",
+    "major":"رئيسي",
+    "skill-placeHolder":"مهارات البحث",
+    "delete-confirmation-message":"هل انت متأكد من حذف السجل ؟"
 
 }

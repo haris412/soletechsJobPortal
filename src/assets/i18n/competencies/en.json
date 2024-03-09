@@ -60,5 +60,10 @@
     "click-upload":"Click to upload",
     "pdf-doc":"PDF or Doc",
     "max-size":"max.size 6MB",
-    "save-add-new":"Save and add"
+    "save-add-new":"Save and add",
+    "skill-type":"Skill Type",
+    "major":"Major",
+    "skill-placeHolder":"Search skills",
+    "delete-confirmation-message":"Are you sure you want to delete this?"
+    
 }

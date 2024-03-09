@@ -10,17 +10,7 @@
                     [formControlName]="'Type'"
                     (selectionChange)="SelectionChange($event)"
                     [panelClass]="{'direction-change':isTranslate}">
-          <mat-option value="0">None</mat-option>
-          <mat-option value="1">Phone</mat-option>
-          <mat-option value="2">Email Address</mat-option>
-          <mat-option value="3">URL</mat-option>
-          <mat-option value="4">Telex</mat-option>
-          <mat-option value="5">Fax</mat-option>
-          <mat-option value="6">Facebook</mat-option>
-          <mat-option value="7">Twitter</mat-option>
-          <mat-option value="8">LinkedIn</mat-option>
-          <mat-option value="9">Instagram</mat-option>
-          <mat-option value="10">WhatsApp</mat-option>
+          <mat-option *ngFor="let contact of contactList" [value]="contact.value">{{contact.name}}</mat-option>
         </mat-select>
         <img matSuffix
              src="assets/SVG/chevron-down.svg"

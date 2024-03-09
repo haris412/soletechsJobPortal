@@ -44,7 +44,7 @@
     <p>{{t('basicInfo.city')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <mat-select name="city" [formControlName]="'City'" [panelClass]="{'direction-change':isTranslate}">
-        <mat-option *ngFor="let city of this.cities" [value]="city.value">{{city.name}}</mat-option>
+        <mat-option *ngFor="let city of cities" [value]="city.value">{{city.name}}</mat-option>
       </mat-select>
       <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
     </mat-form-field>

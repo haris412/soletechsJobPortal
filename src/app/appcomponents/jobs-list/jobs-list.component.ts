@@ -195,7 +195,7 @@ export class JobsListComponent implements OnInit {
     }
   }
   SortBy() {
-    this.menuWidth = this.userMenu.nativeElement.clientWidth;
+    // this.menuWidth = this.userMenu.nativeElement.clientWidth;
     this.sortBy = !this.sortBy;
     if (this.sortBy) {
       this.jobsList = this.jobsList?.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());

@@ -7,7 +7,7 @@
      "last-name-ar":"الاسم الأخير بالعربية",
      "middle-name":"الأسم الأوسط",
      "date-birth":"تاريخ الميلاد",
-     "nationality":"تاريخ الميلاد",
+     "nationality":"الجنسية",
      "gender":"النوع",
      "marital-status":"الحالة الاجتماعية",
      "ethnic-origin":"الأصل العرقي",
@@ -52,6 +52,10 @@
      "basic-inf":"معلومات اساسية",
      "save-add-new":"حفظ وإضافة",
      "nationality-paceholder":"برجاء اختيار الجنسية",
-     "country-paceholder":"حدد الدولة"
+     "country-paceholder":"حدد الدولة",
+     "delete":"يمسح",
+      "cancel":"يلغي",
+     "delete-entry" :"- حذف السجل",
+     "delete-confirmation-message":"هل انت متأكد من حذف السجل ؟"
 
 }

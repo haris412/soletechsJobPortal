@@ -43,11 +43,12 @@ export class UserInfoComponent implements OnInit {
 		if (this.userInfoService.applicantForm == undefined) {
 			this.userInfoService.prepareApplicantFormGroup();
 		}
-		this.translationService.languageChange.subscribe(x => {
-			{
-				this.isTranslate = x;
-			}
-		});
+	this.translationService.languageChange.subscribe(x => {
+		{
+			this.ChangeCountry();
+			this.isTranslate = x;
+		}
+	});
 	}
 
 	async ngOnInit() {
@@ -145,8 +146,12 @@ export class UserInfoComponent implements OnInit {
 			dataAreaId: 'USMF',
 			languageId: 'en-us'
 		}
+		let countryParams:LookupParameters = {
+			dataAreaId: 'USMF',
+			languageId: this.translationService.isTranslate ? 'ar': 'en-us'
+		}
 		const lookUps = await forkJoin({
-			countries: this.lookUpService.GetCountryRegionLookup(params),
+			countries: this.lookUpService.GetCountryRegionLookup(countryParams),
 			nativeLanguage: this.lookUpService.GetNativeLanguageCodeLookup(params),
 			highestDegree: this.lookUpService.GetHighestDegreeLookups(params),
 			reasonCodes: this.lookUpService.GetReasonCodeLookups(params),
@@ -157,8 +162,7 @@ export class UserInfoComponent implements OnInit {
 			data.name = projects.Description;
 			data.value = projects.Id;
 			this.userInfoService.countryRegions.push(data);
-		}
-		);
+		});
 		lookUps?.nativeLanguage?.parmList?.forEach((projects: any) => {
 			let data = new Object() as any;
 			data.name = projects.Description;
@@ -204,4 +208,8 @@ export class UserInfoComponent implements OnInit {
 	DiscardData() {
 		this.shareService.discardProfileInfo.emit(true);
 	}
+  ChangeCountry(){
+	if(this.translationService.isTranslate){
+	}
+  }
 }

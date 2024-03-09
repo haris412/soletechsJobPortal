@@ -16,6 +16,7 @@ import { PasswordStrengthComponent } from '../password-strength/password-strengt
 import { BlockCopyPasteDirective } from './directives/appBlockCopyPaste.directive';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { PreventArabicDirective } from './directives/arabic.directive';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 
 
@@ -33,7 +34,8 @@ import { PreventArabicDirective } from './directives/arabic.directive';
     DateValueAccessor,
     PasswordStrengthComponent,
     BlockCopyPasteDirective,
-    PreventArabicDirective
+    PreventArabicDirective,
+    DeleteModalComponent
   ],
   imports: [
     MaterialModule,

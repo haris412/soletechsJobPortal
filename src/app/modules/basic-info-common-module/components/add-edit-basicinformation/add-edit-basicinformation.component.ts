@@ -10,6 +10,8 @@ import { LinkedInService } from 'src/app/modules/applicant-portal/services/linke
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
 import { map, Observable, startWith } from 'rxjs';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
+import { LookupParameters } from 'src/app/models/look-up.model';
+import { LookUpDto } from 'src/app/models/lookup-dto.model';
 
 
 @Component({
@@ -30,10 +32,13 @@ export class AddEditBasicinformationComponent implements OnInit {
   selectedNationality:string = '';
   fileList:any[] = [];
   @Input() isUserProfile : boolean = false;
-  nativeLanguage: any[] = [];
-  highestDegree: any[] = [];
+  nativeLanguage: LookUpDto[] = [];
+  highestDegree: LookUpDto[] = [];
   nationalityData!: Observable<any[]>;
   nationalityCtrl = new FormControl('');
+  maritalStatusList:LookUpDto[] = [];
+  genderList:LookUpDto[] = [];
+  previousEmployeeList:LookUpDto[] = [];
   public isTranslate: boolean = this.translationService.isTranslate;
   get f() { return this.applicantForm.controls; }
   constructor(public userInfoService: UserInfoService,
@@ -45,9 +50,6 @@ export class AddEditBasicinformationComponent implements OnInit {
     public linkedInServive: LinkedInService,
     public shareService: SharedService,
     public translationService: TranslationAlignmentService) {
-      this.translationService.languageChange.subscribe( x=> {
-        this.ArabicList();
-      });
     this.applicantForm = this._applicantFormBuilder.group({
       currentJobTitle: [''],
       firstName: ['', [Validators.required]],
@@ -67,19 +69,21 @@ export class AddEditBasicinformationComponent implements OnInit {
       ethnicOriginId: ['']
     });
     this.translationService.languageChange.subscribe( x=> {
-      this.isTranslate  = x;
+      this.translationService.isTranslate  = x;
+      this.isTranslate = x;
+      this.ArabicList();
     });
   }
 
   async ngOnInit() {
-    this.ArabicList();
     await this.userInfoService.GetApplicantProfile();
     this.applicantForm.patchValue({
       ...this.userInfoService.basicInfo,
       gender: this.userInfoService.basicInfo?.gender?.toString(),
       maritalStatus: this.userInfoService.basicInfo?.maritalStatus?.toString(),
       previousEmployee: this.userInfoService.basicInfo?.previousEmployee?.toString()
-    })
+    });
+    this.ArabicList();
     if (this.applicantDataService.applicantData?.applicantImage != undefined && this.applicantDataService.applicantData?.applicantImage != "") {
       this.imagePathOrBase64 = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
         + this.applicantDataService.applicantData?.applicantImage);
@@ -146,14 +150,49 @@ export class AddEditBasicinformationComponent implements OnInit {
    removeAvtar() {
 		this.imageAvatar = this.defaultUrl;
 	}
-  ArabicList() {
+  async ArabicList() {
     if (this.translationService.isTranslate) {
       this.nativeLanguage = this.userInfoService.nativeLanguageArabic;
       this.highestDegree = this.userInfoService.highestDegreeArabic;
+      this.maritalStatusList = this.userInfoService.maritalStatusListArabic;
+      this.genderList = this.userInfoService.genderListArabic;
+      this.previousEmployeeList = this.userInfoService.previousEmployerListArabic;
+      let countryParams:LookupParameters = {
+        dataAreaId: 'USMF',
+        languageId:  'ar' 
+      }
+      let response = await this.lookUpService.GetCountryRegionLookup(countryParams);
+      this.userInfoService.countryRegions = [];
+      response?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.userInfoService.countryRegions.push(data);
+      });
     } else {
       this.nativeLanguage = this.userInfoService.nativeLanguage;
       this.highestDegree = this.userInfoService.highestDegree;
+      this.maritalStatusList = this.userInfoService.maritalStatusList;
+      this.genderList = this.userInfoService.gendersList;
+      this.previousEmployeeList = this.userInfoService.previousEmployerList;
+      let countryParams:LookupParameters = {
+        dataAreaId: 'USMF',
+        languageId: 'en-us'
+      }
+      let response = await this.lookUpService.GetCountryRegionLookup(countryParams);
+      this.userInfoService.countryRegions = [];
+      response?.parmList?.forEach((projects: any) => {
+        let data = new Object() as any;
+        data.name = projects.Description;
+        data.value = projects.Id;
+        this.userInfoService.countryRegions.push(data);
+      });
     } 
+    this.nationalityData = this.nationalityCtrl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.__filterCountries(value || '')),
+    ); 
+    this.SetNationalityValue();
   }
   private __filterCountries(value: string): string[] {
     const filterValue = value?.toLowerCase();

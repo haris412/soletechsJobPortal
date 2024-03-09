@@ -15,7 +15,6 @@ import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-
 import { UserInfoService } from '../user-info/user-info.service';
 import { forkJoin } from 'rxjs';
 import { LookupParameters } from 'src/app/models/look-up.model';
-import { SharedModule } from './../../shared/shared.module';
 
 
 @Component({
@@ -68,13 +67,11 @@ export class UserProfileComponent {
 			this.applicantDataService.applicantImage = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
 				+ this.applicantDataService?.applicantData?.applicantImage);
 		}
-		// if (this.applicantDataService?.applicantData?.cvAttachment) {
-		// 	this.applicantDataService.applicantData.cvAttachment = this._sanitizer.bypassSecurityTrustResourceUrl('data:file/pdf;base64,'
-		// 		+ this.applicantDataService?.applicantData?.cvAttachment);
-		// 		let blob = this.b64toBlob(this.applicantDataService?.applicantData?.cvAttachment, "application/pdf");
-				
-		// }
-		
+		if(this.applicantDataService?.applicantData?.cvAttachment){
+		const binaryData = Uint8Array.from(atob(this.applicantDataService?.applicantData?.cvAttachment), c => c.charCodeAt(0));
+		const fileSignature = binaryData[0].toString(16) + binaryData[1].toString(16) + binaryData[2].toString(16) + binaryData[3].toString(16);
+		this.GenerateFileName(fileSignature);
+		}
 		if (this.applicantDataService.applicantData?.aboutMe) {
 			this.aboutMe = this.applicantDataService?.applicantData?.aboutMe;
 		}
@@ -84,29 +81,26 @@ export class UserProfileComponent {
 			await this.shareService.GetLookUps();
 		}
 	}
-	public b64toBlob(b64Data:string, contentType:string) {
-		contentType = contentType || '';
-		let sliceSize = 512;
-	  
-		var byteCharacters = atob(b64Data);
-		var byteArrays = [];
-	  
-		for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-			var slice = byteCharacters.slice(offset, offset + sliceSize);
-	  
-			var byteNumbers = new Array(slice.length);
-			for (var i = 0; i < slice.length; i++) {
-				byteNumbers[i] = slice.charCodeAt(i);
-			}
-	  
-			var byteArray = new Uint8Array(byteNumbers);
-	  
-			byteArrays.push(byteArray);
+	  GenerateFileName(fileSignature:any){
+		let fileExtension = '';
+		switch (fileSignature) {
+			case '89504e47':
+				fileExtension = 'png';
+				break;
+			case '47494638':
+				fileExtension = 'gif';
+				break;
+			case '25504446':
+				fileExtension = 'pdf';
+				break;
+			// Add more cases as needed for other file types
+			default:
+				fileExtension = 'bin';
 		}
-	  
-		var blob = new Blob(byteArrays, { type: contentType });
-		return blob;
-	  }
+		// Construct the file name with the extension
+		const fileName = `cv.${fileExtension}`;
+		this.fileList.push({name:fileName})
+		}
 	OpenSidenav() {
 		this.sidenavOpen = true;
 	}
@@ -148,8 +142,8 @@ export class UserProfileComponent {
 		const dialogRef = this.deleteModal.openDialog(data);
 		dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
 		if (dialogResult) {
-			this.fileList.splice(index, 1);
-			this.uploadCvData.splice(index, 1);
+			this.fileList= [];
+			this.uploadCvData = [];
 		}
 	});
   }
@@ -171,9 +165,10 @@ export class UserProfileComponent {
 				uploadCVs.fileName = this.fileCvData.name;
 				this.uploadCvData.push(uploadCVs);
 			  };
+			  this.fileList.push(files.target.files[0]);
+		      this.ref.detectChanges();
 		}
-		this.fileList.push(files.target.files[0]);
-		this.ref.detectChanges();
+		
 	}
 	ScrollToTarget(event: any) {
 		const targetElement = this.el.nativeElement.querySelector(event);

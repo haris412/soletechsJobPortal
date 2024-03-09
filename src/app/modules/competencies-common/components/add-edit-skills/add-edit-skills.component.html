@@ -6,14 +6,21 @@
       <p>{{t('competencies.skill')}}*</p>
       <mat-form-field appearance="outline"
                       class="w-100">
-        <mat-select name='skillId'
-                    [formControlName]="'SkillID'" (selectionChange)="onSelectionChange($event)" [panelClass]="{'direction-change':isTranslate}">
-          <mat-option *ngFor="let skill of skillList"
-                      [value]="skill.value">{{skill.name}}</mat-option>
-        </mat-select>
-        <img matSuffix
-             src="assets/SVG/chevron-down.svg"
-             alt="" />
+            <img matPrefix height="15" width="15" src="assets/SVG/search.svg" class="ms-2" alt="" />
+            <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+            <input type="text"
+                   placeholder="{{ t('competencies.skill-placeHolder') }}"
+                   aria-label="Select Nationality"
+                   matInput
+                   [formControl]="skillsCtrl"
+                   [matAutocomplete]="autoNationality"
+                   [formControlName]="'SkillID'"
+                   >
+            <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete" [class]="isTranslate ? 'direction-change':''">
+              <mat-option *ngFor="let skill of skillsData | async" (onSelectionChange) = "OnSkillsChange($event)" [value]="skill.value" >
+                {{skill.name}}
+              </mat-option>
+            </mat-autocomplete>
         <mat-error class="error-message"
                    *ngIf="f.SkillID.hasError('required') && (f.SkillID.dirty || f.SkillID.touched)">Skill is
           Required</mat-error>

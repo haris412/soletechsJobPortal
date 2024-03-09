@@ -99,7 +99,7 @@ export class EducationComponent implements OnInit{
   }
 
   Delete(selectededucation:Education) {
-    const data = `Are you sure you want to do delete this education?`;
+    const data = `Are you sure you want to do delete this?`;
     const dialogRef = this.deleteModal.openDialog(data);
     dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
       if (dialogResult) {
@@ -118,8 +118,8 @@ export class EducationComponent implements OnInit{
     if (this.educations?.length > 0) {
       if (this.translationService.isTranslate) {
         for(let i = 0; i < this.educations?.length; i++) {
-          this.educations[i].Description = this.sharedService.educationListCopy[i]?.disciplineArabic ? this.sharedService.skillsListCopy[i]?.disciplineArabic : this.sharedService.skillsListCopy[i]?.Description;
-          this.educations[i].EducationDisciplineRecId = this.sharedService.educationListCopy[i]?.educationDescriptionAr ? this.sharedService.skillsListCopy[i]?.educationDescriptionAr : this.sharedService.skillsListCopy[i]?.EducationDisciplineRecId;
+          this.educations[i].Description = this.sharedService.educationListCopy[i]?.disciplineArabic ? this.sharedService.educationListCopy[i]?.disciplineArabic : this.sharedService.educationListCopy[i]?.Description;
+          this.educations[i].EducationDisciplineRecId = this.sharedService.educationListCopy[i]?.educationDescriptionAr ? this.sharedService.educationListCopy[i]?.educationDescriptionAr : this.sharedService.educationListCopy[i]?.EducationDisciplineRecId;
         }
       } else {
         this.educations = this.sharedService.DeepCopyObject(this.sharedService.educationListCopy);

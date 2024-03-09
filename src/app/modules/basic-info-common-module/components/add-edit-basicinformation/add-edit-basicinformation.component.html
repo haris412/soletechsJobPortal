@@ -69,9 +69,7 @@
           <p>{{t('basicInfo.gender')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'gender'" [panelClass]="{'direction-change':isTranslate}">
-              <mat-option value="0">None</mat-option>
-              <mat-option value="1">Male</mat-option>
-              <mat-option value="2">Female</mat-option>
+              <mat-option *ngFor="let gender of genderList" [value]="gender.value">{{gender.name}}</mat-option>
             </mat-select>
             <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
             <mat-error class="error-message"
@@ -83,15 +81,7 @@
           <p>{{t('basicInfo.marital-status')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'maritalStatus'" [panelClass]="{'direction-change':isTranslate}">
-              <mat-option value="0">None</mat-option>
-              <mat-option value="1">Married</mat-option>
-              <mat-option value="2">Single</mat-option>
-              <mat-option value="3">Widowed</mat-option>
-              <mat-option value="4">Divorced</mat-option>
-              <mat-option value="5">Cohabiting</mat-option>
-              <mat-option value="6">Registeredpartnership</mat-option>
-              <mat-option value="7">Separated</mat-option>
-              <mat-option value="8">Civilpartnership</mat-option>
+              <mat-option *ngFor="let status of maritalStatusList" [value]="status.value">{{status.name}}</mat-option>
             </mat-select>
             <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
             <mat-error class="error-message"
@@ -116,8 +106,7 @@
           <p>{{t('basicInfo.previous-employer')}}</p>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [formControlName]="'previousEmployee'" [panelClass]="{'direction-change':isTranslate}">
-              <mat-option value="1">Yes</mat-option>
-              <mat-option value="0">No</mat-option>
+              <mat-option *ngFor="let employe of previousEmployeeList" [value]="employe.value">{{employe.name}}</mat-option>
             </mat-select>
             <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
           </mat-form-field>

@@ -7,6 +7,7 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
+import { LookUpDto } from 'src/app/models/lookup-dto.model';
 
 @Component({
   selector: 'app-add-edit-address',
@@ -44,6 +45,7 @@ export class AddEditAddressComponent implements OnInit{
     });
     this.translationService.languageChange.subscribe( x=> {
       this.isTranslate  = x;
+      this.PrepareLangugaeLists();
     });
   }
   ngOnInit(){
@@ -79,12 +81,13 @@ export class AddEditAddressComponent implements OnInit{
   }
 
   async changeCountry(countryId:string) {
-    var address = this.addressForm.value;
-    let countryid = address.CountryRegionId;
     let params:LookupParameters = {
       dataAreaId : 'USMF',
       languageId:'en-us'
     }
+    this.cities = [];
+    this.userInfoService.citiesList = [];
+    this.userInfoService.citiesListArabic = [];
     const lookUps = await forkJoin({
       cities: this.lookupService.GetCityLookup(params, countryId)
     }).toPromise();
@@ -92,8 +95,15 @@ export class AddEditAddressComponent implements OnInit{
       let data = new Object() as any;
       data.name = cities?.Id;
       data.value = cities.Id;
-      this.cities.push(data);
+      this.userInfoService.citiesList.push(data);
     });
+    lookUps?.cities?.parmList?.forEach((cities: any) => {
+      let data = new Object() as any;
+      data.name = cities?.Description;
+      data.value = cities.Description;
+      this.userInfoService.citiesListArabic.push(data);
+    });
+    this.PrepareLangugaeLists();
   }
   private __filterCountries(value: string): string[] {
     const filterValue = value?.toLowerCase();
@@ -103,6 +113,7 @@ export class AddEditAddressComponent implements OnInit{
     let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === event?.source.value);
     this.nationalityCtrl.setValue(filteredCountry.name);
     this.selectedNationality = filteredCountry.value;
+    this.addressForm.controls.SkillID.setValue(filteredCountry.value);
     this.changeCountry(this.selectedNationality);
   }
 
@@ -110,6 +121,13 @@ export class AddEditAddressComponent implements OnInit{
     let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === this.selectedAddress?.CountryRegionId);
     if(filteredCountry){
     this.nationalityCtrl.setValue(filteredCountry.name);
+    }
+  }
+  PrepareLangugaeLists() {
+    if (this.translationService.isTranslate) {
+      this.cities = this.userInfoService.citiesListArabic;
+    } else {
+      this.cities = this.userInfoService.citiesList;
     }
   }
 }
