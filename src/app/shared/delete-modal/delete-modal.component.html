@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; scope: 'basicInfo';">
-<div class="parent-container text-center">
+<div class="parent-container text-center" [ngClass]="{'direction-change':this.translationService.isTranslate}">
   <div class="p-2"><img height="26" width="26" src="assets/SVG/delete.svg" alt="delete" /></div>
   <div>
     <h6 class="text-midnight-moss font-poppins-bold">{{t('basicInfo.delete-entry')}}</h6>

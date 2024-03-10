@@ -1,263 +1,333 @@
 <ng-container *transloco="let t; scope: 'dashboard';">
   <h4 class="text-midnight-moss">{{t('dashboard.applied-jobs')}}</h4>
-  <div *ngIf="appliedJobs?.length === 0" class="job-detail justify-content-center rounded-3">
-    <div class="no-information">
-      <img src="assets/SVG/no-applied.svg" alt="" />
-      <p class="text-shuttle-grey">{{t('dashboard.not-apply-txt')}}</p>
-      <button type="button" class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
-        (click)="GoToJobs()">
-        {{t('dashboard.browse-jobs')}}
-      </button>
-    </div>
-  </div>
-  <div *ngIf="appliedJobs?.length > 0">
-  <ng-container *ngFor="let appliedJob of appliedJobs">
-  <div class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
-    <div class="d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center justify-content-between w-100">
-        <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
-        <span class="rounded-pill bg-warning text-white font-poppins-medium p-2" *ngIf="appliedJob?.approvedApplication == 0">{{t('dashboard.pending-approval')}}</span>
+  <ng-template *ngIf="appliedJobs?.length === 0">
+    <div 
+         class="job-detail justify-content-center rounded-3">
+      <div class="no-information">
+        <img src="assets/SVG/no-applied.svg"
+             alt="" />
+        <p class="text-shuttle-grey">{{t('dashboard.not-apply-txt')}}</p>
+        <button type="button"
+                class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 py-2 px-5"
+                (click)="GoToJobs()">
+          {{t('dashboard.browse-jobs')}}
+        </button>
       </div>
-      <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
-        <!-- <div>
+    </div>
+  </ng-template>
+  <div *ngIf="appliedJobs?.length > 0">
+    <ng-container *ngFor="let appliedJob of appliedJobs">
+      <div class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center justify-content-between w-100 mb-2">
+            <h5 class="text-midnight-moss">{{appliedJob?.Title}}</h5>
+            <div class="dropdown" (click)="$event.stopPropagation()">
+              <div data-bs-toggle="dropdown"
+                   data-bs-display="static"
+                   aria-expanded="false">
+                <span class="rounded-pill text-white font-poppins-medium p-2 px-3 dropdown-toggle"
+                      *ngIf="appliedJob?.approvedApplication == 0"
+                      [ngClass]="{'bg-feijoa':inProgress, 'bg-warning':!inProgress}"
+                      >
+                      {{applicationStatus}}
+                </span>
+              </div>
+              <ul class="dropdown-menu w-100 mt-2 p-0">
+                <li><a class="dropdown-item application-in-progress py-2"
+                     href="#"
+                     (click)="ApplicationStatus('in-progress')">In Progress</a></li>
+                <li><a class="dropdown-item application-pending py-2"
+                     href="#"
+                     (click)="ApplicationStatus('pending')">Pending Approval</a></li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
+            <!-- <div>
           <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
         </div>
         <div>
           <img height="26px" src="assets/SVG/Share.svg" alt="share" class="cursor-pointer green-filter" />
         </div> -->
-      </div>
-    </div>
-    <p class="text-shuttle-grey">
-      {{appliedJob?.Overview}}
-    </p>
-    <div class="d-flex align-items-center gap-1 job-location-info mb-2">
-      <img class="green-filter" src="assets/SVG/ic_Location.svg" alt="" />
-      <p class="text-midnight-moss mb-0">{{appliedJob?.JobLocation}}</p>
-    </div>
-    <div class="d-flex align-items-center gap-1 job-location-info mb-2">
-      <img class="green-filter" src="assets/SVG/ic_Job.svg" alt="" />
-      <p class="text-midnight-moss mb-0">{{appliedJob?.jobType}}</p>
-    </div>
-    <div class="stage rounded-pill bg-feijoa" *ngIf="appliedJob?.approvedApplication !== 0">
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 0">{{t('dashboard.received')}}</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 1">{{t('dashboard.confirmed')}}</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 2">{{t('dashboard.interview')}}</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 3">Rejection</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 4">Canceled</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 5">Employed</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 6">{{t('dashboard.offer')}}</p>
-      <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="appliedJob?.applicationStatus === 7">{{t('dashboard.on-boarding')}}</p>
+          </div>
+        </div>
+        <p class="text-shuttle-grey">
+          {{appliedJob?.Overview}}
+        </p>
+        <div class="d-flex align-items-center gap-1 job-location-info mb-2">
+          <img class="green-filter"
+               src="assets/SVG/ic_Location.svg"
+               alt="" />
+          <p class="text-midnight-moss mb-0">{{appliedJob?.JobLocation}}</p>
+        </div>
+        <div class="d-flex align-items-center gap-1 job-location-info mb-2">
+          <img class="green-filter"
+               src="assets/SVG/ic_Job.svg"
+               alt="" />
+          <p class="text-midnight-moss mb-0">{{appliedJob?.jobType}}</p>
+        </div>
+        <div class="stage rounded-pill bg-feijoa"
+             *ngIf="appliedJob?.approvedApplication !== 0">
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 0">{{t('dashboard.received')}}</p>
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 1">{{t('dashboard.confirmed')}}</p>
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 2">{{t('dashboard.interview')}}</p>
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 3">Rejection</p>
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 4">Canceled</p>
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 5">Employed</p>
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 6">{{t('dashboard.offer')}}</p>
+          <p class="mb-0 font-poppins-medium text-midnight-moss"
+             *ngIf="appliedJob?.applicationStatus === 7">{{t('dashboard.on-boarding')}}</p>
 
-    </div>
-    <div class="stepper-wrapper"
-      [ngClass]="{'reverse-direction' : isTranslate}" *ngIf="appliedJob?.approvedApplication !== 0">
-      <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0}">
-        <div class="step-counter">
-          <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0"/>
-          <p  *ngIf="appliedJob?.applicationStatus !== 0 && appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7"></p>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</h6>
-        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</p>
-      </div>
-      <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1}">
-        <div class="step-counter">
-          <img src="assets/SVG/noun-tick.svg" alt="" *ngIf="appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1"/>
-          <p *ngIf="appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7"></p>
+        <div class="stepper-wrapper"
+             [ngClass]="{'reverse-direction' : isTranslate}"
+             *ngIf="appliedJob?.approvedApplication !== 0">
+          <div class="stepper-item"
+               [ngClass]="{ 'completed': appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0}">
+            <div class="step-counter">
+              <img src="assets/SVG/noun-tick.svg"
+                   alt=""
+                   *ngIf="appliedJob?.applicationStatus === 0 || appliedJob?.applicationStatus > 0" />
+              <p
+                 *ngIf="appliedJob?.applicationStatus !== 0 && appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7">
+              </p>
+            </div>
+            <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</h6>
+            <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.received')}}</p>
+          </div>
+          <div class="stepper-item"
+               [ngClass]="{ 'completed': appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1}">
+            <div class="step-counter">
+              <img src="assets/SVG/noun-tick.svg"
+                   alt=""
+                   *ngIf="appliedJob?.applicationStatus === 1 || appliedJob?.applicationStatus > 1" />
+              <p
+                 *ngIf="appliedJob?.applicationStatus !== 1 && appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7">
+              </p>
+            </div>
+            <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</h6>
+            <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</p>
+          </div>
+          <div class="stepper-item"
+               [ngClass]="{ 'completed': appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 5}">
+            <div class="step-counter">
+              <img *ngIf="appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 2"
+                   src="assets/SVG/noun-tick.svg"
+                   alt="" />
+              <p
+                 *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7">
+              </p>
+            </div>
+            <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</h6>
+            <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</p>
+          </div>
+          <div class="stepper-item"
+               [ngClass]="{ 'completed': appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6}">
+            <div class="step-counter">
+              <img *ngIf="appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6"
+                   src="assets/SVG/noun-tick.svg"
+                   alt="" />
+              <p
+                 *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7">
+              </p>
+            </div>
+            <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</h6>
+            <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</p>
+          </div>
+          <div class="stepper-item">
+            <div class="step-counter">
+              <img *ngIf="completed"
+                   src="assets/SVG/noun-tick.svg"
+                   alt="" />
+              <p></p>
+            </div>
+            <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.on-boarding')}}</h6>
+            <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.on-boarding')}}</p>
+          </div>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</h6>
-        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.confirmed')}}</p>
+
       </div>
-      <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 5}">
-        <div class="step-counter">
-          <img *ngIf="appliedJob?.applicationStatus === 2 || appliedJob?.applicationStatus > 2" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7" ></p>
+      <div class="row">
+        <h5 *ngIf="appliedJob?.InterviewerList?.parmApplicantInterviewList.length > 0"
+            class="text-midnight-moss">{{t('dashboard.interview-schedule')}}</h5>
+        <div class="col-lg-4 col-sm-6 col-12 mr-2"
+             *ngFor="let interview of appliedJob?.InterviewerList?.parmApplicantInterviewList">
+          <div class="next-actions">
+            <div class="actions info-container rounded-3">
+              <div class="d-flex flex-column gap-2 justify-content-sm-between">
+                <div class="">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="mb-1 font-poppins-bold text-midnight-moss">{{interview.RecruitingId}}</h6>
+                    <button type="button"
+                            class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8"
+                            (click)="Confirm(appliedJob , interview)"
+                            [disabled]="interview.ApplicantConfirmed === 1">
+                      {{t('dashboard.confirm')}}
+                    </button>
+                  </div>
+                  <div class="d-flex align-items-center gap-xxl-3 gap-2">
+                    <div class="d-flex flex-column month-date">
+                      <div class="d-flex align-items-center justify-content-center month rounded-top">
+                        {{GetMonth(interview.StartTime)}}
+                      </div>
+                      <div class="d-flex align-items-center justify-content-center date rounded-bottom">
+                        {{GetDay(interview.StartTime)}}
+                      </div>
+                      <div class="d-flex align-items-center justify-content-center month rounded-bottom">
+                        {{GetYear(interview.StartTime)}}
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column action-details">
+
+                      <div class="d-flex meeting-with mb-2 text-nowrap">
+                        <span class="text-midnight-moss">{{t('dashboard.meeting-with')}}: </span>
+                        <span class="text-denim text-nowrap text-truncate">{{interview.InterviewerName}}</span>
+                      </div>
+                      <div class="d-flex meeting-with mb-2 text-nowrap">
+                        <span class="text-midnight-moss">{{t('dashboard.location')}}: </span>
+                        <span class="text-denim text-nowrap text-truncate">{{interview.Location}}</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2 schedule">
+                        <div class="d-flex align-items-center gap-1 font-poppins-medium time text-midnight-moss">
+                          <img src="assets/SVG/clock.svg"
+                               alt="clock" />
+                          {{interview.StartTime | date: 'shortTime'}}
+                        </div>
+                        <div
+                             class="d-flex align-items-center gap-1 font-poppins-medium time-remaining text-midnight-moss">
+                          <img src="assets/SVG/hourglass.svg"
+                               alt="time-remaining" />
+                          <span>{{GetTimeDifference(interview.StartTime , interview.EndTime)}}mins</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</h6>
-        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.interview')}}</p>
       </div>
-      <div class="stepper-item" [ngClass]="{ 'completed': appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6}">
-        <div class="step-counter">
-          <img *ngIf="appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6" src="assets/SVG/noun-tick.svg" alt="" />
-          <p *ngIf="appliedJob?.applicationStatus !== 2 && appliedJob?.applicationStatus !== 6 && appliedJob?.applicationStatus !== 7" ></p>
+      <ng-container *transloco="let t; scope: 'dashboard';">
+        <div class="next-actions"
+             *ngIf=" appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6">
+          <div class="actions rounded-3">
+            <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
+              <div class="job-details">
+                <div class="d-flex align-items-center gap-xxl-3 gap-2">
+                  <div>
+                    <img src="assets/SVG/ready-offer.svg"
+                         alt="book" />
+                  </div>
+                  <div class="d-flex flex-column action-details">
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.offer-ready')}}</h6>
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
+                    <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
+                      <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
+                        <div class="d-flex align-items-center gap-2">
+                          <img class="green-filter"
+                               src="assets/SVG/ic_Location.svg"
+                               alt="" />
+                          <p class="text-midnight-moss font-poppins-medium mb-0">
+                            {{appliedJob?.JobLocation}}
+                          </p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                          <img class="green-filter"
+                               src="assets/SVG/ic_Job.svg"
+                               alt="" />
+                          <p class="text-midnight-moss font-poppins-medium mb-0">
+                            {{appliedJob?.jobType}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="assets/SVG/redirect.svg"
+                             alt="" />
+                        <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
+                <button type="button"
+                        class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto">
+                  {{t('dashboard.reject-offer')}}
+                </button>
+                <button type="button"
+                        class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto">
+                  {{t('dashboard.accept-offer')}}
+                </button>
+                <button type="button"
+                        class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
+                        (click)="toJobOffer(appliedJob)">
+                  {{t('dashboard.show-offer')}}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</h6>
-        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.offer')}}</p>
-      </div>
-      <div class="stepper-item">
-        <div class="step-counter">
-          <img *ngIf="completed" src="assets/SVG/noun-tick.svg" alt="" />
-          <p></p>
+        <div class="next-actions"
+             *ngIf="appliedJob?.applicationStatus === 7">
+          <div class="actions rounded-3">
+            <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
+              <div class="job-details">
+                <div class="d-flex align-items-center gap-xxl-3 gap-2">
+                  <div>
+                    <img src="assets/SVG/celebrate.svg"
+                         alt="book" />
+                  </div>
+                  <div class="d-flex flex-column action-details">
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.congrats-selection')}}</h6>
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
+                    <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
+                      <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
+                        <div class="d-flex align-items-center gap-2">
+                          <img class="green-filter"
+                               src="assets/SVG/ic_Location.svg"
+                               alt="" />
+                          <p class="text-midnight-moss font-poppins-medium mb-0">
+                            {{appliedJob?.JobLocation}}
+                          </p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                          <img class="green-filter"
+                               src="assets/SVG/ic_Job.svg"
+                               alt="" />
+                          <p class="text-midnight-moss font-poppins-medium mb-0">
+                            {{appliedJob?.jobType}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="assets/SVG/redirect.svg"
+                             alt="" />
+                        <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
+                <button type="button"
+                        class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
+                        (click)="toOnboarding(appliedJob)">
+                  {{t('dashboard.start-on-boarding')}}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <h6 class="text-midnight-moss font-poppins-medium">{{t('dashboard.on-boarding')}}</h6>
-        <p class="text-midnight-moss font-poppins-medium">{{t('dashboard.on-boarding')}}</p>
-      </div>
-    </div>
-    
+      </ng-container>
+    </ng-container>
   </div>
-  <div class="row">
-    <h5 *ngIf="appliedJob?.InterviewerList?.parmApplicantInterviewList.length > 0" class="text-midnight-moss">{{t('dashboard.interview-schedule')}}</h5>
-  <div class="col-lg-4 col-sm-6 col-12 mr-2" *ngFor="let interview of appliedJob?.InterviewerList?.parmApplicantInterviewList">
-    <div class="next-actions">
-    <div  class="actions info-container rounded-3">
-      <div class="d-flex flex-column gap-2 justify-content-sm-between">
-        <div class="">
-          <div class="d-flex align-items-center justify-content-between">
-            <h6 class="mb-1 font-poppins-bold text-midnight-moss">{{interview.RecruitingId}}</h6>
-            <button type="button" class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8"
-             (click)="Confirm(appliedJob , interview)" [disabled]="interview.ApplicantConfirmed === 1">
-            {{t('dashboard.confirm')}}
-          </button>
-          </div>
-          <div class="d-flex align-items-center gap-xxl-3 gap-2">
-            <div class="d-flex flex-column month-date">
-              <div class="d-flex align-items-center justify-content-center month rounded-top">
-                {{GetMonth(interview.StartTime)}}
-              </div>
-              <div class="d-flex align-items-center justify-content-center date rounded-bottom">
-                {{GetDay(interview.StartTime)}}
-              </div>
-              <div class="d-flex align-items-center justify-content-center month rounded-bottom">
-                {{GetYear(interview.StartTime)}}
-              </div>
-            </div>
-            <div class="d-flex flex-column action-details">
-              
-              <div class="d-flex meeting-with mb-2 text-nowrap">
-                <span class="text-midnight-moss">{{t('dashboard.meeting-with')}}: </span>
-                <span class="text-denim text-nowrap text-truncate">{{interview.InterviewerName}}</span>
-              </div>
-              <div class="d-flex meeting-with mb-2 text-nowrap">
-                <span class="text-midnight-moss">{{t('dashboard.location')}}: </span>
-                <span class="text-denim text-nowrap text-truncate">{{interview.Location}}</span>
-              </div>
-              <div class="d-flex align-items-center gap-2 schedule">
-                <div class="d-flex align-items-center gap-1 font-poppins-medium time text-midnight-moss">
-                  <img src="assets/SVG/clock.svg" alt="clock" />
-                  {{interview.StartTime | date: 'shortTime'}}
-                </div>
-                <div class="d-flex align-items-center gap-1 font-poppins-medium time-remaining text-midnight-moss">
-                  <img src="assets/SVG/hourglass.svg" alt="time-remaining" />
-                  <span>{{GetTimeDifference(interview.StartTime , interview.EndTime)}}mins</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
-  <ng-container *transloco="let t; scope: 'dashboard';">
-    <div class="next-actions" *ngIf=" appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6">
-      <div class="actions rounded-3">
-        <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
-          <div class="job-details">
-            <div class="d-flex align-items-center gap-xxl-3 gap-2">
-              <div>
-                <img src="assets/SVG/ready-offer.svg"
-                     alt="book" />
-              </div>
-              <div class="d-flex flex-column action-details">
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.offer-ready')}}</h6>
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
-                <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
-                  <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
-                    <div class="d-flex align-items-center gap-2">
-                      <img class="green-filter"
-                           src="assets/SVG/ic_Location.svg"
-                           alt="" />
-                      <p class="text-midnight-moss font-poppins-medium mb-0">
-                        {{appliedJob?.JobLocation}}
-                      </p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                      <img class="green-filter"
-                           src="assets/SVG/ic_Job.svg"
-                           alt="" />
-                      <p class="text-midnight-moss font-poppins-medium mb-0">
-                        {{appliedJob?.jobType}}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="assets/SVG/redirect.svg"
-                         alt="" />
-                    <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
-            <button type="button"
-                    class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto">
-                 {{t('dashboard.reject-offer')}}
-            </button>
-            <button type="button"
-                    class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto">
-                    {{t('dashboard.accept-offer')}}
-            </button>
-            <button type="button"
-                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
-                    (click)="toJobOffer(appliedJob)">
-                    {{t('dashboard.show-offer')}}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="next-actions" *ngIf="appliedJob?.applicationStatus === 7">
-      <div class="actions rounded-3">
-        <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
-          <div class="job-details">
-            <div class="d-flex align-items-center gap-xxl-3 gap-2">
-              <div>
-                <img src="assets/SVG/celebrate.svg"
-                     alt="book" />
-              </div>
-              <div class="d-flex flex-column action-details">
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.congrats-selection')}}</h6>
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
-                <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
-                  <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
-                    <div class="d-flex align-items-center gap-2">
-                      <img class="green-filter"
-                           src="assets/SVG/ic_Location.svg"
-                           alt="" />
-                      <p class="text-midnight-moss font-poppins-medium mb-0">
-                        {{appliedJob?.JobLocation}}
-                      </p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                      <img class="green-filter"
-                           src="assets/SVG/ic_Job.svg"
-                           alt="" />
-                      <p class="text-midnight-moss font-poppins-medium mb-0">
-                        {{appliedJob?.jobType}}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="assets/SVG/redirect.svg"
-                         alt="" />
-                    <a class="cursor-pointer mb-0">{{t('dashboard.job-details')}}</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
-            <button type="button"
-                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto"
-                    (click)="toOnboarding(appliedJob)">
-                    {{t('dashboard.start-on-boarding')}}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</ng-container>
-</div>
 </ng-container>

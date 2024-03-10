@@ -22,6 +22,8 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   public interviewStage: boolean = false;
   public offerStage: boolean = false;
   public onBoardingStage: boolean = false;
+  public inProgress: boolean = false;
+  public applicationStatus: string = 'Pending Approval';
 
   constructor(private router: Router,
               private applicantService:ApplicantDataService,
@@ -115,4 +117,17 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     return year;
   }
   OpenReschedule(){}
+  ApplicationStatus(status:string) :string {
+    switch(status){
+      case 'in-progress':
+        this.inProgress = true;
+        this.applicationStatus = 'In Progress'
+        break;
+      case 'pending':
+        this.inProgress = false;
+        this.applicationStatus = 'Pending Approval'
+        break;
+    }
+    return this.applicationStatus;
+  }
 }
