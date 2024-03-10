@@ -558,3 +558,16 @@ font {
     font-size: 18px;
   }
 }
+
+.attachment-icon {
+  height: 38px;
+  width: 38px;
+  .mat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 21px;
+    width: 19px;
+    font-size: 21px;
+  }
+}

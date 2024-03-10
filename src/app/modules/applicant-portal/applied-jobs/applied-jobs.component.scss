@@ -357,3 +357,17 @@
 .btn:disabled {
   background-color: $shuttle-grey !important;
 }
+
+.application-in-progress {
+  &:hover, &:focus {
+    background-color: $feijoa;
+    color: white;
+  }
+}
+
+.application-pending {
+  &:hover, &:focus {
+    background-color: rgb(255,193,7);
+    color: white;
+  }
+}

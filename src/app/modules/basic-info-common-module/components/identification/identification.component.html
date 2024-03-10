@@ -26,7 +26,9 @@
               <h6 class="mb-0 font-poppins-bold">{{identification?.IdentificationNumber}}</h6>
             </div>
             <div class="d-flex align-items-center gap-1">
-              <mat-icon title="1 attachment" *ngIf="identification.Attachment">attachment</mat-icon>
+              <div *ngIf="identification.Attachment" class="p-2 rounded border border-color-alice-blue bg-white attachment-icon">
+                <mat-icon title="1 attachment"  >attach_file</mat-icon>
+              </div>
               <div class="p-2 rounded border border-color-alice-blue cursor-pointer bg-white">
                 <img class="cursor-pointer" (click)="EditIdentification(identification)" src="assets/SVG/edit-icon.svg" alt="" />
               </div>
