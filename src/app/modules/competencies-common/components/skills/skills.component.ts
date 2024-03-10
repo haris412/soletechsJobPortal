@@ -67,7 +67,7 @@ export class SkillsComponent implements OnInit{
   async SkillAdded(skill:Skills){
     let skillData: Skills = {
       ...skill,
-      RatingLevel: Number(skill.RatingLevel),
+      RatingLevelId: Number(skill.RatingLevelId),
       RecId: skill?.RecId ? skill?.RecId :0,
       AttachmentWeb:skill.Attachment ? 1: 0,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))

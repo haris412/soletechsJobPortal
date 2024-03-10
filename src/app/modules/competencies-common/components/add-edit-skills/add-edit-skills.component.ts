@@ -41,7 +41,7 @@ export class AddEditSkillsComponent implements OnInit {
     public lookupService: AppLookUpService){
     this.skillForm = this._formBuilder.group({
       SkillID: ['',[Validators.required]],
-      RatingLevel: ['', [Validators.required]],
+      RatingLevelId: ['', [Validators.required]],
       RatingLevelDate: ['', [Validators.required]],
       Experience:['', [Validators.required]],
       Attachment:[''],
@@ -56,7 +56,7 @@ export class AddEditSkillsComponent implements OnInit {
       this.GetRatingLevel(this.selectedSkill.SkillID);
       this.skillForm.patchValue({
         ...this.selectedSkill,
-        RatingLevel:this.selectedSkill?.RatingLevel?.toString()
+        RatingLevel:this.selectedSkill?.RatingLevelId?.toString()
       });
       this.SetSkillValue();
     }

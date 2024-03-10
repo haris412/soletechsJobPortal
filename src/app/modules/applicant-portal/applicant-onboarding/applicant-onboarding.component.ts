@@ -75,6 +75,9 @@ export class ApplicantOnboardingComponent {
     }
     this.shared.onboardingLanguageChangeData = this.shared.DeepCopyObject(this.shared.durationGroups);
     this.OnboardingJobActionLanguageChanges();
+    if (this.shared.durationGroups.length > 0){
+    this.GoToTab(0,0)
+    }
   }
 
   OpenSidenav() {
