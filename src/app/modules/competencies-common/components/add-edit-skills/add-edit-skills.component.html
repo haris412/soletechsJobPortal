@@ -14,7 +14,6 @@
                    matInput
                    [formControl]="skillsCtrl"
                    [matAutocomplete]="autoNationality"
-                   [formControlName]="'SkillID'"
                    >
             <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete" [class]="isTranslate ? 'direction-change':''">
               <mat-option *ngFor="let skill of skillsData | async" (onSelectionChange) = "OnSkillsChange($event)" [value]="skill.value" >

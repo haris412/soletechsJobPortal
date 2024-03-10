@@ -5,6 +5,8 @@ import { Identification } from 'src/app/models/identification.model';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
+import { LookUpDto } from 'src/app/models/lookup-dto.model';
+import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 
 @Component({
   selector: 'app-identification',
@@ -22,7 +24,8 @@ export class IdentificationComponent implements OnInit {
               private lookUpService:AppLookUpService,
               public userInfoService: UserInfoService,
               public ref: ChangeDetectorRef,
-              private deleteModal: DeleteModalComponentService){}
+              private deleteModal: DeleteModalComponentService,
+              public translationService: TranslationAlignmentService,){}
   
   
   ngOnInit(): void {
@@ -72,6 +75,10 @@ export class IdentificationComponent implements OnInit {
         }
       }
     });
+  }
+  GetLabel(identificationType:string){
+    let filteredLabel = this.translationService.isTranslate ? this.userInfoService.identificationTypeArabic.find((type:LookUpDto) => type.value === identificationType)  : this.userInfoService.identificationType.find((type:LookUpDto) => type.value === identificationType);
+    return filteredLabel?.name
   }
   EditIdentification(identification:Identification){
     this.selectedIdentification = identification;

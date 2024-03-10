@@ -170,7 +170,7 @@ export class ApplicantOnboardingComponent {
         for(let duration of this.shared.durationGroups) {
           for (let task of duration.applicantOnboardingTasks) {
             task.description = task.TaskDescriptionAr ? task.TaskDescriptionAr : task.description;
-            task.taskName = task.TaskNameAr ? task.TaskNameAr : task.taskName;
+            task.taskName = task.description ? task.description : task.taskName;
             task.instructions = task.instructionsAr ? task.instructionsAr : task.instructions;
           }
         }

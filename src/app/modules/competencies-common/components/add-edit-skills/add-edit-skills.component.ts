@@ -53,10 +53,11 @@ export class AddEditSkillsComponent implements OnInit {
   }
   ngOnInit(){
     if(this.selectedSkill?.SkillID !== ''){
+      debugger;
       this.GetRatingLevel(this.selectedSkill.SkillID);
       this.skillForm.patchValue({
         ...this.selectedSkill,
-        RatingLevel:this.selectedSkill?.RatingLevelId?.toString()
+        RatingLevelId:this.selectedSkill?.RatingLevelId?.toString()
       });
       this.SetSkillValue();
     }
@@ -116,9 +117,10 @@ export class AddEditSkillsComponent implements OnInit {
       return this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.filter(skill => skill?.name?.toLowerCase()?.includes(filterValue)) : this.competenciesService.skillsList?.filter(skill => skill?.name?.toLowerCase()?.includes(filterValue));
     }
     async OnSkillsChange(event:any){
+      debugger;
       let filteredCountry = this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.find(skill => skill?.value === event?.source.value) : this.competenciesService.skillsList?.find(skill => skill?.value === event?.source.value);
       this.skillsCtrl.setValue(filteredCountry.name);
-      this.selectedSkillPlaceHolder = filteredCountry.value;
+      this.selectedSkillPlaceHolder = filteredCountry.name;
       this.skillForm.controls.SkillID.setValue(filteredCountry.value);
       let res = await this.lookupService.GetRatingLevelLookup(event?.source.value);
       if (res) {
@@ -171,9 +173,11 @@ export class AddEditSkillsComponent implements OnInit {
       }
     }
     SetSkillValue(){
+      debugger;
+
       let filteredSkill = this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.find(skill => skill?.value === this.selectedSkill.SkillID) : this.competenciesService.skillsList?.find(skill => skill?.value === this.selectedSkill.SkillID);
       if(filteredSkill){
-      this.skillsCtrl.setValue(filteredSkill.name);
+       this.skillsCtrl.setValue(filteredSkill.name);
       }
     }
     showPdf() {
