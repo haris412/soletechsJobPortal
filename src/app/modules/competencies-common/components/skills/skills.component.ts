@@ -28,7 +28,7 @@ export class SkillsComponent implements OnInit{
   ) {
     this.translationService.languageChange.subscribe(x => {
       this.translationService.isTranslate = x;
-      this.SkillListLanguageChanges();
+      //this.SkillListLanguageChanges();
     });
     this.personRecId = Number(localStorage.getItem('applicantPersonRecid'));
   }
@@ -48,7 +48,6 @@ export class SkillsComponent implements OnInit{
       this.skillList = skillsResponse.parmApplicantSkillsList;
       this.sharedService.skillsListCopy = this.sharedService.DeepCopyObject(skillsResponse.parmApplicantSkillsList);
     }
-    this.SkillListLanguageChanges();
   }
 
   OpenSidenav() {
@@ -67,7 +66,7 @@ export class SkillsComponent implements OnInit{
   async SkillAdded(skill:Skills){
     let skillData: Skills = {
       ...skill,
-      RatingLevel: Number(skill.RatingLevel),
+      RatingLevelId: Number(skill.RatingLevelId),
       RecId: skill?.RecId ? skill?.RecId :0,
       AttachmentWeb:skill.Attachment ? 1: 0,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
@@ -117,4 +116,15 @@ export class SkillsComponent implements OnInit{
       }     
     }
   }
-}
+  GetSkillTranslation(selectedSkill:Skills){
+    let skill = this.sharedService?.skillsListCopy?.find((skill:any)=> skill.SkillID === selectedSkill?.SkillID);
+    if(skill){
+      if(this.translationService.isTranslate){
+        return skill.descriptionSkillAr ? skill.descriptionSkillAr : skill.SkillID
+      }else {
+        return skill.SkillID
+      }
+    }
+  }
+ }
+

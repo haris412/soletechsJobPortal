@@ -41,7 +41,7 @@ export class AddEditSkillsComponent implements OnInit {
     public lookupService: AppLookUpService){
     this.skillForm = this._formBuilder.group({
       SkillID: ['',[Validators.required]],
-      RatingLevel: ['', [Validators.required]],
+      RatingLevelId: ['', [Validators.required]],
       RatingLevelDate: ['', [Validators.required]],
       Experience:['', [Validators.required]],
       Attachment:[''],
@@ -56,7 +56,7 @@ export class AddEditSkillsComponent implements OnInit {
       this.GetRatingLevel(this.selectedSkill.SkillID);
       this.skillForm.patchValue({
         ...this.selectedSkill,
-        RatingLevel:this.selectedSkill?.RatingLevel?.toString()
+        RatingLevelId:this.selectedSkill?.RatingLevelId?.toString()
       });
       this.SetSkillValue();
     }
@@ -118,7 +118,7 @@ export class AddEditSkillsComponent implements OnInit {
     async OnSkillsChange(event:any){
       let filteredCountry = this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.find(skill => skill?.value === event?.source.value) : this.competenciesService.skillsList?.find(skill => skill?.value === event?.source.value);
       this.skillsCtrl.setValue(filteredCountry.name);
-      this.selectedSkillPlaceHolder = filteredCountry.value;
+      this.selectedSkillPlaceHolder = filteredCountry.name;
       this.skillForm.controls.SkillID.setValue(filteredCountry.value);
       let res = await this.lookupService.GetRatingLevelLookup(event?.source.value);
       if (res) {
@@ -173,7 +173,7 @@ export class AddEditSkillsComponent implements OnInit {
     SetSkillValue(){
       let filteredSkill = this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.find(skill => skill?.value === this.selectedSkill.SkillID) : this.competenciesService.skillsList?.find(skill => skill?.value === this.selectedSkill.SkillID);
       if(filteredSkill){
-      this.skillsCtrl.setValue(filteredSkill.name);
+       this.skillsCtrl.setValue(filteredSkill.name);
       }
     }
     showPdf() {

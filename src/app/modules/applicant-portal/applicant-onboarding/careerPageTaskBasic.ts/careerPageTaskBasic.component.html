@@ -43,8 +43,7 @@
       <div class="right-detail"
            style="margin-top: 40px;">
         <p class="rounded-pill mb-0 text-midnight-moss font-poppins-medium">
-          {{this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete
-          ? 'Completed' : 'Pending'}}</p>
+          {{ GetStatus(this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete) }}</p>
       </div>
     </div>
   </div>

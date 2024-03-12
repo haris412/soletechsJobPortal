@@ -75,6 +75,9 @@ export class ApplicantOnboardingComponent {
     }
     this.shared.onboardingLanguageChangeData = this.shared.DeepCopyObject(this.shared.durationGroups);
     this.OnboardingJobActionLanguageChanges();
+    if (this.shared.durationGroups.length > 0){
+    this.GoToTab(0,0)
+    }
   }
 
   OpenSidenav() {
@@ -167,7 +170,7 @@ export class ApplicantOnboardingComponent {
         for(let duration of this.shared.durationGroups) {
           for (let task of duration.applicantOnboardingTasks) {
             task.description = task.TaskDescriptionAr ? task.TaskDescriptionAr : task.description;
-            task.taskName = task.TaskNameAr ? task.TaskNameAr : task.taskName;
+            task.taskName = task.description ? task.description : task.taskName;
             task.instructions = task.instructionsAr ? task.instructionsAr : task.instructions;
           }
         }

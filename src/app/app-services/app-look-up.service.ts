@@ -17,6 +17,7 @@ import { userApplicantImage } from "../models/userImageParameters";
 import { UpdateAboutMe } from "../models/update-about-me.model";
 import { Education } from "../modules/competencies-common/components/models/education";
 import { UploadCvsDTO, UploadMedicalDTO } from "../modules/user-profile/user-profile.component";
+import { OfferAcceptanceRejection } from "../models/offer-acceptance-rejection.model";
 
 @Injectable({
     providedIn: 'root',
@@ -781,4 +782,15 @@ export class AppLookUpService {
         ).toPromise();
     }
   
+    async AcceptRejectOffer(
+        acceptAndRejectJobOffer: OfferAcceptanceRejection
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.application.acceptAndRejectJobOffer,
+                acceptAndRejectJobOffer
+            ).toPromise();
+    }
+
+    
 }

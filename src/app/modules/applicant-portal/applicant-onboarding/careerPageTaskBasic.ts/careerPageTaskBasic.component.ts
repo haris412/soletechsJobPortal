@@ -104,4 +104,11 @@ export class CareerPageTaskBasicComponent implements OnInit {
     }
     return this.applicationStatus;
   }
+  GetStatus(status:boolean){
+    if (status) {
+      return this.translationService.isTranslate ? 'مكتمل' : 'completed'
+    } else {
+      return this.translationService.isTranslate ? 'قيد الانتظار' : 'pendinng'
+    }
+  }
 }

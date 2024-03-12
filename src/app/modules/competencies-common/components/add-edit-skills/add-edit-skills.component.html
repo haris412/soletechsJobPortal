@@ -14,7 +14,6 @@
                    matInput
                    [formControl]="skillsCtrl"
                    [matAutocomplete]="autoNationality"
-                   [formControlName]="'SkillID'"
                    >
             <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete" [class]="isTranslate ? 'direction-change':''">
               <mat-option *ngFor="let skill of skillsData | async" (onSelectionChange) = "OnSkillsChange($event)" [value]="skill.value" >
@@ -31,12 +30,12 @@
       <mat-form-field appearance="outline"
                       class="w-100">
         <mat-select name='level'
-                    [formControlName]="'RatingLevel'" [panelClass]="{'direction-change':isTranslate}">
+                    [formControlName]="'RatingLevelId'" [panelClass]="{'direction-change':isTranslate}">
           <mat-option *ngFor="let level of skillLevel"
                       [value]="level.value">{{level.name}}</mat-option>
         </mat-select>
         <mat-error class="error-message"
-                   *ngIf="f.RatingLevel.hasError('required') && (f.RatingLevel.dirty || f.RatingLevel.touched)">Skill
+                   *ngIf="f.RatingLevelId.hasError('required') && (f.RatingLevelId.dirty || f.RatingLevelId.touched)">Skill
           Level is Required</mat-error>
         <img matSuffix
              src="assets/SVG/chevron-down.svg"
