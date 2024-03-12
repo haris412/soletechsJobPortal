@@ -781,4 +781,15 @@ export class AppLookUpService {
         ).toPromise();
     }
   
+    async AcceptRejectOffer(
+        acceptAndRejectJobOffer: offerAcceptance
+    ) {
+        return await this.httpClient
+            .post<any>(
+                apiURLs.application.acceptAndRejectJobOffer,
+                acceptAndRejectJobOffer
+            ).toPromise();
+    }
+
+    
 }

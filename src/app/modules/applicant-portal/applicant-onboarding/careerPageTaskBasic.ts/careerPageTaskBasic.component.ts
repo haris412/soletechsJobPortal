@@ -87,4 +87,11 @@ export class CareerPageTaskBasicComponent implements OnInit {
       }
       });
   }
+  GetStatus(status:boolean){
+    if (status) {
+      return this.translationService.isTranslate ? 'مكتمل' : 'completed'
+    } else {
+      return this.translationService.isTranslate ? 'قيد الانتظار' : 'pendinng'
+    }
+  }
 }
