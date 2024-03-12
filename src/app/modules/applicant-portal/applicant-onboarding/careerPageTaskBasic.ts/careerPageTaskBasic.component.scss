@@ -38,3 +38,21 @@
     opacity: 0.9;
   }
 }
+
+.application-in-progress {
+  &:hover, &:focus {
+    background-color: $feijoa;
+    color: white;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+  }
+}
+
+.application-complete {
+  &:hover, &:focus {
+    background-color: $midnight-moss;
+    color: white;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+}
