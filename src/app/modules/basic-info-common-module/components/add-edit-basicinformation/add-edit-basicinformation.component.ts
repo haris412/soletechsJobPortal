@@ -201,6 +201,7 @@ export class AddEditBasicinformationComponent implements OnInit {
   OnNationlaityChange(event:any){
     let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === event?.source.value);
     this.nationalityCtrl.setValue(filteredCountry.name);
+    this.applicantForm?.controls?.nationality.setValue(filteredCountry.name ?? "");
     this.selectedNationality = filteredCountry.value;
   }
 

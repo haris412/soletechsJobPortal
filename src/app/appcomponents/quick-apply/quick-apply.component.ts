@@ -192,7 +192,6 @@ export class QuickApplyComponent implements OnInit {
   }
 
   OnNationlaityChange(event: any) {
-    console.log(event);
   }
 
   Back() {

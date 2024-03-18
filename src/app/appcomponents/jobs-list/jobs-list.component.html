@@ -91,8 +91,8 @@
                (click)="OpenJob(job)">
             <div class="d-flex flex-column align-items-start listing-detail-inner ps-1">
               <div class="d-flex align-items-center justify-content-between w-100">
-                <h5 *ngIf="!this.translationService.isTranslate" class="mb-0 d-lg-block d-none text-midnight-moss">
-                  {{ job.recruitingId }}
+                <h5 class="mb-0 d-lg-block d-none text-midnight-moss">
+                  {{ job.description }} 
                 </h5>
                 <ng-container *ngIf="this.translationService.isTranslate">
                   <h6 class="mb-0 d-lg-block d-none text-midnight-moss font-poppins-medium fs-5">
@@ -123,12 +123,12 @@
                   </div> -->
                 </div>
               </div>
-              <div class="listing-info mb-1"
+              <!-- <div class="listing-info mb-1"
                    [ngClass]="this.translationService.isTranslate ? 'text-end' : 'text-start'">
                 <p class="mb-0 text-shuttle-grey">
                   {{ job.description }}
                 </p>
-              </div>
+              </div> -->
               <div class="d-flex align-items-center gap-1 listing-time mb-2">
                 <img src="assets/SVG/clock.svg"
                      alt="" />

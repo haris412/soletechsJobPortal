@@ -6,6 +6,7 @@ import { TranslationAlignmentService } from 'src/app/app-services/translation-al
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { OfferAcceptanceRejection } from 'src/app/models/offer-acceptance-rejection.model';
 
 @Component({
   selector: 'app-applied-jobs',
@@ -13,7 +14,7 @@ import * as moment from 'moment';
   styleUrls: ['./applied-jobs.component.scss']
 })
 export class AppliedJobsComponent implements OnInit , OnChanges{
-  @Input() appliedJobs:any = new Object() as any;
+  @Input() appliedJobs:any[] = [];
   @Input() isTranslate:boolean = false;
   @Output() interviewConfirmed: EventEmitter<boolean> = new EventEmitter();
   public receivedStage: boolean = false;
@@ -91,14 +92,12 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     let updatedDate = moment(date).format("DD.MM.YYYY");
     let momentDate = moment(updatedDate, 'DD.MM.YYYY', true);
     return momentDate.format('MMMM');
-    // console.log(moment(updatedDate).format('MM'));
   }
   GetDay(date:any){
     const dateObject = moment(date);
     // Get the day of the month
     const day = dateObject.date();
     return day
-    // console.log(moment(updatedDate).format('MM'));
   }
 
   GetTimeDifference(startDateTime:any, endDateTime:any){
@@ -114,5 +113,16 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     return year;
   }
   OpenReschedule(){}
+  async AcceptOffer(appliedJob:any){
+    let offerAcceptanceData:OfferAcceptanceRejection ={
+       applicationId:appliedJob.applicationId,
+       applicantId: localStorage.getItem('applicantId')?.toString() ?? '',
+       offerId:'',
+       offerStatus:'1'
+    }
+     let response = await this.applicationService.AcceptRejectOffer(offerAcceptanceData);
+     if(response){
+     }
+  }
   
 }

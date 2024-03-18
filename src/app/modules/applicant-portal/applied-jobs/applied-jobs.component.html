@@ -1,7 +1,6 @@
 <ng-container *transloco="let t; scope: 'dashboard';">
   <h4 class="text-midnight-moss">{{t('dashboard.applied-jobs')}}</h4>
-  <ng-template *ngIf="appliedJobs?.length === 0">
-    <div 
+  <div  *ngIf="appliedJobs && appliedJobs.length === 0"
          class="job-detail justify-content-center rounded-3">
       <div class="no-information">
         <img src="assets/SVG/no-applied.svg"
@@ -14,8 +13,7 @@
         </button>
       </div>
     </div>
-  </ng-template>
-  <div *ngIf="appliedJobs?.length > 0">
+  <div *ngIf="appliedJobs && appliedJobs.length > 0">
     <ng-container *ngFor="let appliedJob of appliedJobs">
       <div class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
         <div class="d-flex align-items-center justify-content-between">
@@ -199,7 +197,7 @@
       </div>
       <ng-container *transloco="let t; scope: 'dashboard';">
         <div class="next-actions"
-             *ngIf=" appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6">
+             *ngIf="appliedJob?.applicationStatus === 6 || appliedJob?.applicationStatus > 6">
           <div class="actions rounded-3">
             <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
               <div class="job-details">
@@ -245,7 +243,7 @@
                   {{t('dashboard.reject-offer')}}
                 </button>
                 <button type="button"
-                        class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto">
+                        class="btn text-white bg-pastel-green-dark rounded font-poppins-semi fs-8 w-auto" (click)= "AcceptOffer(appliedJob)">
                   {{t('dashboard.accept-offer')}}
                 </button>
                 <button type="button"
