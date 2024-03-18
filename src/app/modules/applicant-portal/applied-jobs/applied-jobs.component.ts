@@ -6,6 +6,7 @@ import { TranslationAlignmentService } from 'src/app/app-services/translation-al
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { OfferAcceptanceRejection } from 'src/app/models/offer-acceptance-rejection.model';
 
 @Component({
   selector: 'app-applied-jobs',
@@ -13,7 +14,7 @@ import * as moment from 'moment';
   styleUrls: ['./applied-jobs.component.scss']
 })
 export class AppliedJobsComponent implements OnInit , OnChanges{
-  @Input() appliedJobs:any = new Object() as any;
+  @Input() appliedJobs:any[] = [];
   @Input() isTranslate:boolean = false;
   @Output() interviewConfirmed: EventEmitter<boolean> = new EventEmitter();
   public receivedStage: boolean = false;
@@ -35,6 +36,7 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
                   this.translationService.isTranslate = x;
                   this.AppliedJobsLanguageChanges();
                 });
+      console.log(this.appliedJobs);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -43,6 +45,8 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
       this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
     }
     this.AppliedJobsLanguageChanges();
+    console.log(this.appliedJobs);
+
   }
   ngOnInit(): void {
     this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
@@ -71,6 +75,7 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
         this.appliedJobs = this.sharedService.DeepCopyObject(this.sharedService.appliedJobsCopy);
       }     
     }
+    console.log(this.appliedJobs);
   }
   toJobOffer(application:any) {
     localStorage.setItem('applicationId',application.applicationId);
@@ -129,5 +134,16 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
         break;
     }
     return this.applicationStatus;
+  }
+  async AcceptOffer(appliedJob:any){
+    let offerAcceptanceData:OfferAcceptanceRejection ={
+       applicationId:appliedJob.applicationId,
+       applicantId: localStorage.getItem('applicantId')?.toString() ?? '',
+       offerId:'',
+       offerStatus:'1'
+    }
+     let response = await this.applicationService.AcceptRejectOffer(offerAcceptanceData);
+     if(response){
+     }
   }
 }

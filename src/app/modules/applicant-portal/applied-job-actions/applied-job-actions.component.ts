@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
 import { ApplicantDataService } from '../services/applicant-shared.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-applied-job-actions',
@@ -16,6 +18,7 @@ export class AppliedJobActionsComponent implements OnInit{
   jobList:any[]=[];
   selectedJob:any;
   applicationId:string = '';
+  @Output() interviewConfirmed: EventEmitter<boolean> = new EventEmitter();
   public isTranslate: boolean = this.translationService.isTranslate;
   constructor(
     private router: Router,
@@ -24,6 +27,7 @@ export class AppliedJobActionsComponent implements OnInit{
     private lookUpService:AppLookUpService,
     private route: ActivatedRoute,
     public translationService: TranslationAlignmentService,
+    private toastrService: ToastrService,
     public sharedService: SharedService
   ) {
     this.route.params.subscribe(
@@ -76,5 +80,40 @@ export class AppliedJobActionsComponent implements OnInit{
         this.selectedJob = this.sharedService.DeepCopyObject(this.sharedService.selectedJobActions);
       }     
     }
+  }
+  async Confirm(appliedJob:any, interview:any){
+    let res =  await this.lookUpService.GetConfirmInterviewer(appliedJob.applicationId,interview.InterviewerRecid);
+    if(res.Status){
+    this.toastrService.success(res.Message);
+    this.interviewConfirmed.emit(true);
+    }else{
+     this.toastrService.error(res.Message);
+    }
+   }
+   GetMonth(date:any){
+    let updatedDate = moment(date).format("DD.MM.YYYY");
+    let momentDate = moment(updatedDate, 'DD.MM.YYYY', true);
+    return momentDate.format('MMMM');
+    // console.log(moment(updatedDate).format('MM'));
+  }
+  GetDay(date:any){
+    const dateObject = moment(date);
+    // Get the day of the month
+    const day = dateObject.date();
+    return day
+    // console.log(moment(updatedDate).format('MM'));
+  }
+
+  GetTimeDifference(startDateTime:any, endDateTime:any){
+    const startTime = moment(startDateTime);
+    const endTime = moment(endDateTime);
+    const duration = moment.duration(endTime.diff(startTime));
+    const minutes = Math.floor(duration.asMinutes()) % 60;
+    return minutes;
+  }
+  GetYear(date:string){
+    const dateObject = moment(date);
+    const year = dateObject.year();
+    return year;
   }
 }
