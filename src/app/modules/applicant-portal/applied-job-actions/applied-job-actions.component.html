@@ -3,9 +3,10 @@
        [ngClass]="{'direction-change' : translationService.isTranslate}">
     <h4 class="text-midnight-moss">{{t('dashboard.applied-jobs')}}</h4>
     <div class="job-detail rounded-3">
-      <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center justify-content-between w-100 mb-2">
         <h5 class="text-midnight-moss">{{selectedJob?.Title}}</h5>
         <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
+          <span class="rounded-pill bg-warning text-white font-poppins-medium p-2" *ngIf="selectedJob?.approvedApplication == 0">{{t('dashboard.pending-approval')}}</span>
           <!-- <div>
           <img height="26px" src="assets/SVG/saved-job.svg" alt="saved" class="cursor-pointer green-filter" />
         </div>
@@ -29,7 +30,7 @@
              alt="" />
         <p class="text-midnight-moss mb-0">{{selectedJob?.jobType}}</p>
       </div>
-      <div class="stage rounded-pill bg-feijoa">
+      <div class="stage rounded-pill bg-feijoa" *ngIf="selectedJob?.approvedApplication !== 0">
         <p class="mb-0 font-poppins-medium text-midnight-moss"
            *ngIf="selectedJob?.applicationStatus === 0">{{t('dashboard.received')}}</p>
         <p class="mb-0 font-poppins-medium text-midnight-moss"
@@ -47,7 +48,7 @@
         <p class="mb-0 font-poppins-medium text-midnight-moss" *ngIf="selectedJob?.applicationStatus === 7">{{t('dashboard.on-boarding')}}</p>
       </div>
       <div class="stepper-wrapper"
-           [ngClass]="{'reverse-direction' : translationService.isTranslate}">
+           [ngClass]="{'reverse-direction' : translationService.isTranslate}" *ngIf="selectedJob?.approvedApplication !== 0">
         <div class="stepper-item"
              [ngClass]="{ 'completed': selectedJob?.applicationStatus === 0 || selectedJob?.applicationStatus > 0}">
           <div class="step-counter">
