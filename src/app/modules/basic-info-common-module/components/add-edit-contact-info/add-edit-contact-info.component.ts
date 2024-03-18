@@ -45,7 +45,6 @@ export class AddEditContactInfoComponent implements OnInit {
       ...this.userInfo.selectedContact,
       Type:this.userInfo.selectedContact?.Type?.toString(),
     });
-    console.log(this.userInfo.selectedContact);
   } else {
     this.contactForm.reset();
   }

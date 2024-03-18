@@ -139,13 +139,11 @@ export class LoginComponent implements OnInit {
       this.signInWithGoogle();
   }
   async HandleCredentialsResponse(response:CredentialResponse){
-    console.log(response);
     // await this.service.LoginWithGoogle(response.crdentai)
   }
   async signInWithGoogle() {
   }
   GoogleResponse(response:any){
-    console.log(response);
   }
   ViewPassword(){
     if (this.password === 'password') {

@@ -16,6 +16,9 @@ export class CareerPageTaskBasicComponent implements OnInit {
   @Input() activityDurationIndex: number = -1;
   @Input() careerTaskIndex: number = -1;
   instructionsItems: string[] = [];
+  public inProgress: boolean = true;
+  public applicationStatus: string = 'In Progress';
+
 
   onFileUpload(files: any) {
     this.fileList = files.target.files;
@@ -71,9 +74,9 @@ export class CareerPageTaskBasicComponent implements OnInit {
     }
   }
 
-  GoToJobDetail(){
-    this.router.navigate(['/jobs']);
-  }
+  // GoToJobDetail(){
+  //   this.router.navigate(['/jobs']);
+  // }
 
   markAsComplete() {
     Swal.fire({
@@ -83,9 +86,23 @@ export class CareerPageTaskBasicComponent implements OnInit {
       confirmButtonText: 'Ok'
     }).then((result) => {
       if (result['isConfirmed']){
+        this.applicationStatus = 'Completed';
         this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete = true;
       }
       });
+  }
+  OnboardingStatus(status:string) :string {
+    switch(status){
+      case 'in-progress':
+        this.inProgress = true;
+        this.applicationStatus = 'In Progress'
+        break;
+      case 'complete':
+        this.inProgress = false;
+        this.markAsComplete();
+        break;
+    }
+    return this.applicationStatus;
   }
   GetStatus(status:boolean){
     if (status) {

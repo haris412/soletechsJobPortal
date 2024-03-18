@@ -23,9 +23,6 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
   public interviewStage: boolean = false;
   public offerStage: boolean = false;
   public onBoardingStage: boolean = false;
-  public inProgress: boolean = false;
-  public applicationStatus: string = 'Pending Approval';
-
   constructor(private router: Router,
               private applicantService:ApplicantDataService,
               private applicationService:AppLookUpService,
@@ -36,7 +33,6 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
                   this.translationService.isTranslate = x;
                   this.AppliedJobsLanguageChanges();
                 });
-      console.log(this.appliedJobs);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -45,8 +41,6 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
       this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
     }
     this.AppliedJobsLanguageChanges();
-    console.log(this.appliedJobs);
-
   }
   ngOnInit(): void {
     this.sharedService.appliedJobsCopy = this.sharedService.DeepCopyObject(this.appliedJobs);
@@ -75,7 +69,6 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
         this.appliedJobs = this.sharedService.DeepCopyObject(this.sharedService.appliedJobsCopy);
       }     
     }
-    console.log(this.appliedJobs);
   }
   toJobOffer(application:any) {
     localStorage.setItem('applicationId',application.applicationId);
@@ -99,14 +92,12 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     let updatedDate = moment(date).format("DD.MM.YYYY");
     let momentDate = moment(updatedDate, 'DD.MM.YYYY', true);
     return momentDate.format('MMMM');
-    // console.log(moment(updatedDate).format('MM'));
   }
   GetDay(date:any){
     const dateObject = moment(date);
     // Get the day of the month
     const day = dateObject.date();
     return day
-    // console.log(moment(updatedDate).format('MM'));
   }
 
   GetTimeDifference(startDateTime:any, endDateTime:any){
@@ -122,19 +113,6 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     return year;
   }
   OpenReschedule(){}
-  ApplicationStatus(status:string) :string {
-    switch(status){
-      case 'in-progress':
-        this.inProgress = true;
-        this.applicationStatus = 'In Progress'
-        break;
-      case 'pending':
-        this.inProgress = false;
-        this.applicationStatus = 'Pending Approval'
-        break;
-    }
-    return this.applicationStatus;
-  }
   async AcceptOffer(appliedJob:any){
     let offerAcceptanceData:OfferAcceptanceRejection ={
        applicationId:appliedJob.applicationId,
@@ -146,4 +124,5 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
      if(response){
      }
   }
+  
 }

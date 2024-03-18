@@ -1,25 +1,50 @@
 <ng-container *transloco="let t; scope: 'onBoarding';">
-<div class="container-div" [ngClass]="{'direction-change' : translationService.isTranslate}">
-  <div class="inner-detail position-relative">
-    <button 
+  <div class="container-div"
+       [ngClass]="{'direction-change' : translationService.isTranslate}">
+    <div class="inner-detail position-relative">
+      <div class="dropdown position-absolute top-0 cursor-pointer"
+           [ngClass]=" translationService.isTranslate ? 'start-0' : 'end-0'"
+           (click)="$event.stopPropagation()">
+        <div data-bs-toggle="dropdown"
+             data-bs-display="static"
+             aria-expanded="false">
+          <span class="rounded-pill text-white font-poppins-medium p-2 px-3 dropdown-toggle"
+                [ngClass]="{'bg-feijoa':inProgress, 'bg-midnight-moss':!inProgress}">
+            {{applicationStatus}}
+          </span>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end mt-2 p-0">
+          <li><a class="dropdown-item application-in-progress py-2"
+               href="#"
+               (click)="OnboardingStatus('in-progress')">In Progress</a></li>
+          <li><a class="dropdown-item application-complete py-2"
+               href="#"
+               (click)="OnboardingStatus('complete')">Mark as Completed</a></li>
+        </ul>
+      </div>
+      <!-- <button 
             [ngClass]=" translationService.isTranslate ? 'start-0' : 'end-0'"
             class="d-flex align-items-center gap-1 font-poppins-medium fs-8 bg-feijoa border-0 rounded position-absolute  top-0 py-1 px-3 mark__completed text-midnight-moss"
             (click)="markAsComplete()">
             {{t('onBoarding.mark-completed')}}
-    </button>
-    <div class="left-detail">
-      <!-- <h4 class="text-shuttle-grey">{{this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].taskName}}</h4> -->
-      <h4 class="text-shuttle-grey">
-        {{this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].description}}
-      </h4>
-      <br />
-      <h4 class="text-shuttle-grey">{{t('onBoarding.instructions')}}:</h4>
-      <!-- <div *ngFor="let instruction of this.instructionsItems"> -->
-        <div [ngClass]="{'font-family-change' : translationService.isTranslate}" [innerHTML]="shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions"></div>
-    </div>
-    <div class="right-detail" style="margin-top: 40px;">
-      <p class="rounded-pill mb-0 text-midnight-moss font-poppins-medium">{{ GetStatus(this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete) }}</p>
+    </button> -->
+      <div class="left-detail">
+        <!-- <h4 class="text-shuttle-grey">{{this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].taskName}}</h4> -->
+        <h4 class="text-shuttle-grey">
+          {{this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].description}}
+        </h4>
+        <br />
+        <h4 class="text-shuttle-grey">{{t('onBoarding.instructions')}}:</h4>
+        <!-- <div *ngFor="let instruction of this.instructionsItems"> -->
+        <div [ngClass]="{'font-family-change' : translationService.isTranslate}"
+             [innerHTML]="shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].instructions">
+        </div>
+      </div>
+      <div class="right-detail"
+           style="margin-top: 40px;">
+        <p class="rounded-pill mb-0 text-midnight-moss font-poppins-medium">
+          {{ GetStatus(this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete) }}</p>
+      </div>
     </div>
   </div>
-</div>
 </ng-container>

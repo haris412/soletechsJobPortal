@@ -94,14 +94,12 @@ export class AppliedJobActionsComponent implements OnInit{
     let updatedDate = moment(date).format("DD.MM.YYYY");
     let momentDate = moment(updatedDate, 'DD.MM.YYYY', true);
     return momentDate.format('MMMM');
-    // console.log(moment(updatedDate).format('MM'));
   }
   GetDay(date:any){
     const dateObject = moment(date);
     // Get the day of the month
     const day = dateObject.date();
     return day
-    // console.log(moment(updatedDate).format('MM'));
   }
 
   GetTimeDifference(startDateTime:any, endDateTime:any){

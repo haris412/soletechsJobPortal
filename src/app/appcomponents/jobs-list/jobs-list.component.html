@@ -94,6 +94,11 @@
                 <h5 class="mb-0 d-lg-block d-none text-midnight-moss">
                   {{ job.description }} 
                 </h5>
+                <ng-container *ngIf="this.translationService.isTranslate">
+                  <h6 class="mb-0 d-lg-block d-none text-midnight-moss font-poppins-medium fs-5">
+                    {{ job.recruitingId }}
+                  </h6>
+                </ng-container>
                 <!-- <h6 class="mb-0 d-lg-none d-block text-midnight-moss font-poppins-semi">
                 {{ job.description }}
               </h6> -->
