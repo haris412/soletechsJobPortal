@@ -14,12 +14,10 @@
           </span>
         </div>
         <ul class="dropdown-menu dropdown-menu-end mt-2 p-0">
-          <li><a class="dropdown-item application-in-progress py-2"
-               href="#"
-               (click)="OnboardingStatus('in-progress')">In Progress</a></li>
-          <li><a class="dropdown-item application-complete py-2"
-               href="#"
-               (click)="OnboardingStatus('complete')">Mark as Completed</a></li>
+          <li *ngFor="let status of statusList"><a class="dropdown-item application-in-progress py-2"
+               (click)="OnboardingStatus(status.value)">{{status.name}}</a></li>
+          <!-- <li><a class="dropdown-item application-complete py-2"
+               (click)="OnboardingStatus('complete')">status</a></li> -->
         </ul>
       </div>
       <!-- <button 
