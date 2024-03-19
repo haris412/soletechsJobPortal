@@ -21,7 +21,7 @@ export class AddEditAddressComponent implements OnInit{
   @Output() addressData: EventEmitter<Address> = new EventEmitter();
   addressForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
-  identification!: Address
+  address!: Address
   cities:any[]=[];
   citiesArabic:any[]=[];
   nationalityData!: Observable<any[]>;
@@ -69,9 +69,9 @@ export class AddEditAddressComponent implements OnInit{
 
   SaveIdentification: () => void = () => {
     if (this.addressForm.valid) {
-      this.identification = this.addressForm.getRawValue();
-      this.identification.CountryRegionId = this.selectedNationality;
-      this.addressData.emit(this.identification);
+      this.address = this.addressForm.getRawValue();
+      this.address.CountryRegionId = this.selectedNationality;
+      this.addressData.emit(this.address);
     } else {
       this.addressForm.markAllAsTouched();
     }
@@ -113,7 +113,7 @@ export class AddEditAddressComponent implements OnInit{
     let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === event?.source.value);
     this.nationalityCtrl.setValue(filteredCountry.name);
     this.selectedNationality = filteredCountry.value;
-    this.addressForm.controls.SkillID.setValue(filteredCountry.value);
+    this.addressForm.controls.CountryRegionId.setValue(filteredCountry?.name);
     this.changeCountry(this.selectedNationality);
   }
 
