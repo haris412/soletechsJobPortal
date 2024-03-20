@@ -18,5 +18,5 @@ export class Education {
     Description:string = '';
     RecId:number = 0;
     Attachment: string = '';
-    AttachmentWeb: string = '';
+    AttachmentWeb:number = 0;
 }

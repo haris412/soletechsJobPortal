@@ -7,4 +7,5 @@ export class Experience {
     endDate:string | Date= '';
     notes:string = '';
     attachment:any = '';
+    
 }

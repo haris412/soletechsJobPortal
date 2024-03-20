@@ -47,6 +47,7 @@ export class IdentificationComponent implements OnInit {
   async IdentificationAdded(identification:Identification){
     let identificationData :Identification = {
       ...identification,
+      AttachmentWeb:identification.Attachment ? 1:0, 
       recId:identification?.recId ? identification?.recId : 0,
       applicantPersonRecId:Number(localStorage.getItem('applicantPersonRecid'))
     }

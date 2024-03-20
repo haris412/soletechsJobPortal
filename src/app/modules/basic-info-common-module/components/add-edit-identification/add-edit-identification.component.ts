@@ -39,8 +39,8 @@ export class AddEditIdentificationComponent implements OnInit {
       IssueDate: ['', [Validators.required]],
       ExpirationDate: ['', [Validators.required]],
       recId: [this.selectedIdentification?.recId ? this.selectedIdentification?.recId : 0],
-      attachment: ['']
-      //fileName: ['']
+      Attachment: [''],
+      fileName: ['']
     });
     this.translationService.languageChange.subscribe(x => {
       this.isTranslate = x;
@@ -80,7 +80,7 @@ export class AddEditIdentificationComponent implements OnInit {
       reader.readAsDataURL(this.fileCvData);
       reader.onload = () => {
         this.cvData = reader.result;
-        this.identificationForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
+        this.identificationForm.controls.Attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
         this.identificationForm.controls.fileName.setValue(this.fileCvData.name);
       };
       this.fileList.push(files.target.files[0]);

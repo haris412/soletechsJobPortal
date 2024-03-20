@@ -8,6 +8,7 @@ export interface Certificates{
     applicantPersonRecId:number;
     recid:number;
     Attachment:any;
+    AttachmentWeb?:number;
 }
 
 

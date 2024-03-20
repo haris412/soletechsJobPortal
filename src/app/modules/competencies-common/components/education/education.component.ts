@@ -76,6 +76,7 @@ export class EducationComponent implements OnInit{
       ...education,
       CreditBasis: Number(education.CreditBasis) ?? 2,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid')),
+      AttachmentWeb:education?.Attachment ? 1: 0,
       HRMDuration: 4.0,
       RecId: 0,
       PeriodUnit: "Years",

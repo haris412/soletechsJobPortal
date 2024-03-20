@@ -6,4 +6,5 @@ export interface Identification {
     applicantPersonRecId:number;
     recId:number;
     Attachment:any;
+    AttachmentWeb?:number;
 }

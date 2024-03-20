@@ -55,6 +55,7 @@ export class CoursesComponent implements OnInit{
   async CourseAdded(course:Course){
     let courseData: Course = {
       ...course,
+      AttachmentWeb:course?.Attachment ? 1: 0,
       RecId: course?.RecId ? course?.RecId : 0,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
