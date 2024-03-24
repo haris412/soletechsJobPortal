@@ -77,7 +77,7 @@ export class QuickApplyComponent implements OnInit {
       residentIdentity: [0],
       residentIdentityProfessional: [''],
       periodJoin: [''],
-      attachments: [['']],
+      attachments: ['',Validators.required],
       fileNames: [['']]
     });
     this.translationService.languageChange.subscribe(x => {
@@ -219,6 +219,8 @@ export class QuickApplyComponent implements OnInit {
 
   DeleteFile(selectedFile: File) {
     this.fileList = [];
+    this.quickApplyForm.controls.attachments.setValue('');
+          this.quickApplyForm.controls.fileNames.setValue('');
   }
   CloseSidenav() {
     this.closeClicked.emit(true);

@@ -62,6 +62,75 @@
           Required</mat-error>
       </mat-form-field>
     </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.previous-manager')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="PreviousManagerName"
+               [formControlName]="'PreviousManagerName'" />
+        <mat-error class="error-message"
+                   *ngIf="f.PreviousManagerName.hasError('required') && (f.PreviousManagerName.dirty || f.PreviousManagerName.touched)">Previous Manager Name
+          Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.job-title')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="jobTitle"
+               [formControlName]="'jobTitle'" />
+        <mat-error class="error-message"
+                   *ngIf="f.jobTitle.hasError('required') && (f.jobTitle.dirty || f.jobTitle.touched)">Job Title Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.company')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="Company"
+               [formControlName]="'Company'" />
+        <mat-error class="error-message"
+                   *ngIf="f.Company.hasError('required') && (f.Company.dirty || f.Company.touched)">Company Name
+          Required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.mobile')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+      <ngx-mat-intl-tel-input
+        [preferredCountries]="['sa', 'us']"
+        [enablePlaceholder]="true"
+        [enableSearch]="true"
+        name="MobileNo"
+        [formControlName] ="'MobileNo'" 
+        describedBy="phoneInput"
+        (countryChanged) = "OnCountryChanged($event)"
+      ></ngx-mat-intl-tel-input> 
+        <!-- <input matInput
+               name="MobileNo"
+               [formControlName]="'MobileNo'" /> -->
+        <mat-error class="error-message"
+                   *ngIf="f.MobileNo.hasError('required') && (f.MobileNo.dirty || f.MobileNo.touched)">Mobile No
+          Required</mat-error>
+          <mat-error *ngIf="f.MobileNo.errors?.validatePhoneNumber">Invalid Number</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex flex-column col-lg-6 col-12">
+      <p>{{t('competencies.email-address')}}*</p>
+      <mat-form-field appearance="outline"
+                      class="w-100">
+        <input matInput
+               name="EmailAddress"
+               [formControlName]="'EmailAddress'" />
+        <mat-error class="error-message"
+                   *ngIf="f.EmailAddress.hasError('required') && (f.EmailAddress.dirty || f.EmailAddress.touched)">Email Address
+          Required</mat-error>
+      </mat-form-field>
+    </div>
     <div class="d-flex flex-column col-12">
       <p>{{t('competencies.notes')}}</p>
       <mat-form-field appearance="outline"

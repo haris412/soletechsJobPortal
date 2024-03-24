@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
@@ -23,6 +24,7 @@ export class AddEditPositionOfTrustComponent implements OnInit{
   fileFromAttachments = '';
   public isTranslate: boolean = this.translationService.isTranslate;
   attachBase64: any = '';
+  phonePlaceHolder:any;
   get f() { return this.psitionTrustForm.controls; }
   constructor(public translationService: TranslationAlignmentService,
               public lookupService: AppLookUpService){
@@ -32,6 +34,11 @@ export class AddEditPositionOfTrustComponent implements OnInit{
       Position: ['', [Validators.required]],
       StartDate:['', [Validators.required]],
       EndDate:['', [Validators.required]],
+      PreviousManagerName:['', [Validators.required]],
+      jobTitle:['', [Validators.required]],
+      EmailAddress:['',[Validators.required]],
+      Company:['',[Validators.required]],
+      MobileNo:['',[Validators.required]],
       Notes:[''],
       attachment:[''],
 			fileName: ['']
@@ -94,7 +101,9 @@ export class AddEditPositionOfTrustComponent implements OnInit{
     DownloadFile() {
       this.showPdf();
     }
-
+    OnCountryChanged(event:Country){
+      this.phonePlaceHolder = event?.placeHolder;
+      }
     showPdf() {
       const linkSource =
         'data:application/octet-stream;base64,' + this.attachBase64?.value;

@@ -64,6 +64,10 @@
     "skill-type":"Skill Type",
     "major":"Major",
     "skill-placeHolder":"Search skills",
-    "delete-confirmation-message":"Are you sure you want to delete this?"
-    
+    "delete-confirmation-message":"Are you sure you want to delete this?",
+    "previous-manager":"Previous Manager Name",
+    "company":"Company",
+    "email-address":"Email Address",
+    "mobile":"Mobile",
+    "job-title":"Job Title"
 }

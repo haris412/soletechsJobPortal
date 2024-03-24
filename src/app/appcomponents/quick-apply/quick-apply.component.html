@@ -202,6 +202,7 @@
         <p class="upload-text"><span>{{ t("quickApply.click-upload") }}</span>{{ t("quickApply.drag-drop") }}</p>
         <span>{{ t("quickApply.pdf-doc") }} ({{ t("quickApply.max-size") }})</span>
       </div>
+      <mat-error class="error-message" *ngIf="f.attachments.hasError('required') && (f.attachments.dirty || f.attachments.touched)">Attachment is Required</mat-error>
       <div *ngIf="fileList.length > 0" class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3">
         <div class="uploaded-files col-xl-6 col-lg-12 col-md-6 col-12 d-flex align-items-center mb-2"
           *ngFor="let file of fileList">
