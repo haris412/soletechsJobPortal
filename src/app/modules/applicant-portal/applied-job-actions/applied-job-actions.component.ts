@@ -7,6 +7,7 @@ import { TranslationAlignmentService } from 'src/app/app-services/translation-al
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-applied-job-actions',
@@ -21,6 +22,7 @@ export class AppliedJobActionsComponent implements OnInit{
   @Output() interviewConfirmed: EventEmitter<boolean> = new EventEmitter();
   public isTranslate: boolean = this.translationService.isTranslate;
   constructor(
+    private location:Location,
     private router: Router,
     private dialog: RescheduleModalComponentService,
     private applicantService:ApplicantDataService,
@@ -113,5 +115,8 @@ export class AppliedJobActionsComponent implements OnInit{
     const dateObject = moment(date);
     const year = dateObject.year();
     return year;
+  }
+  GoBack() {
+    this.location.back();
   }
 }

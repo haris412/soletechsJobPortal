@@ -33,7 +33,8 @@
     "upload-text":"انقر للتحميل",
     "drag-drop":"أو اسحب الملف",
     "interview-schedule":"مواعيد المقابلة",
-    "pending-approval":"ما زال يحتاج بتصدير",
+    "pending-approval":"تم تقديم الطلب",
     "meeting-with":"لقاء مع",
-    "location":"موقع"
+    "location":"موقع",
+    "back":"رجوع"
 }

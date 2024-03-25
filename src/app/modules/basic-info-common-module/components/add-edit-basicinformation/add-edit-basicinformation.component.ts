@@ -120,7 +120,8 @@ export class AddEditBasicinformationComponent implements OnInit {
       }
       try {
         if (profileData.birthDate != undefined && profileData.birthDate != null) {
-          profileData.birthDate.setDate(profileData.birthDate.getDate() + 1);
+          const originalDate = new Date(profileData?.birthDate);
+          profileData.birthDate.setDate(originalDate?.getDate() + 1 );
         }
         let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);
         if (response?.Status) {

@@ -31,7 +31,8 @@
     "show-offer":"Show offer",
     "congrats-selection":"Congratulations!!!! You Are Selected",
     "interview-schedule":"Interview Schedules",
-    "pending-approval":"Pending Approval",
+    "pending-approval":"Application Submitted",
     "meeting-with":"Meeting with",
-    "location":"Location"
+    "location":"Location",
+    "back":"Back"
 }

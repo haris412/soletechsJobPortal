@@ -1,6 +1,12 @@
 <ng-container *transloco="let t; scope: 'dashboard';">
   <div class="container-fluid mt-5"
        [ngClass]="{'direction-change' : translationService.isTranslate}">
+       <div class="d-flex align-items-center gap-2 px-0 back-button cursor-pointer"
+         (click)="GoBack()">
+      <img src="assets/SVG/Iconback.svg"
+           alt="" />
+      <p class="font-poppins-semi text-gray-600 mb-0"> {{t('dashboard.back')}}</p>
+    </div>
     <h4 class="text-midnight-moss">{{t('dashboard.applied-jobs')}}</h4>
     <div class="job-detail rounded-3">
       <div class="d-flex align-items-center justify-content-between w-100 mb-2">
@@ -165,7 +171,7 @@
       </div>
     </div> -->
     <div class="row">
-      <h5 *ngIf="selectedJob?.InterviewerList?.parmApplicantInterviewList.length > 0"
+      <h5 *ngIf="selectedJob?.approvedApplication !== 0 && selectedJob?.InterviewerList?.parmApplicantInterviewList.length > 0"
           class="text-midnight-moss">{{t('dashboard.interview-schedule')}}</h5>
       <div class="col-lg-4 col-sm-6 col-12 mr-2"
            *ngFor="let interview of selectedJob?.InterviewerList?.parmApplicantInterviewList">
@@ -279,7 +285,7 @@
         </div>
       </div>
     </div>
-    <div class="next-actions" *ngIf="selectedJob?.applicationStatus === 6 || selectedJob?.applicationStatus > 6">
+    <div class="next-actions" *ngIf="selectedJob?.approvedApplication !== 0 && (selectedJob?.applicationStatus === 6 || selectedJob?.applicationStatus > 6)">
       <div class="actions rounded-3">
         <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
           <div class="job-details">
@@ -338,7 +344,7 @@
       </div>
     </div>
     <div class="next-actions"
-         *ngIf="selectedJob?.applicationStatus === 7">
+         *ngIf="selectedJob?.approvedApplication !== 0 && selectedJob?.applicationStatus === 7">
       <div class="actions rounded-3">
         <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
           <div class="job-details">

@@ -18,10 +18,10 @@ export class CareerPageTaskBasicComponent implements OnInit {
   @Input() careerTaskIndex: number = -1;
   instructionsItems: string[] = [];
   public inProgress: boolean = true;
-  public applicationStatus: string = 'In Progress';
+  public applicationStatus: string = 'Change status';
   statusList:LookUpDto[]= [];
-  statusListEng:LookUpDto[] = [{name:'in progress',value:'inprogress'},{name:'Mark as Completed',value:'completed'}]
-  statusarabicList:LookUpDto[] = [{name: 'قيد الانتظار',value:'inprogress'} ,{name:'وضع علامة كمكتمل',value:'completed'}];
+  statusListEng:LookUpDto[] = [{name:'in progress',value:'inprogress'},{name:'Completed',value:'completed'}]
+  statusarabicList:LookUpDto[] = [ {name: 'جاري العمل',value:'inprogress'} ,{name:'تم الإنتهاء',value:'completed'}];
   onFileUpload(files: any) {
     this.fileList = files.target.files;
   }
@@ -88,10 +88,24 @@ export class CareerPageTaskBasicComponent implements OnInit {
         }
       }
     }
-    if(this.translationService.isTranslate){
+    if (this.translationService.isTranslate) {
       this.statusList = this.statusarabicList;
-    }else{
+      if (this.applicationStatus === 'Change status') {
+        this.applicationStatus = 'تغير الحالة';
+      } else if (this.applicationStatus === 'In Progress') {
+        this.applicationStatus = 'جاري العمل';
+      } else if (this.applicationStatus === 'Completed') {
+        this.applicationStatus = 'تم الإنتهاء';
+      }
+    } else {
       this.statusList = this.statusListEng;
+      if (this.applicationStatus === 'تغير الحالة') {
+        this.applicationStatus = 'Change status';
+      } else if (this.applicationStatus === 'جاري العمل') {
+        this.applicationStatus = 'In Progress';
+      } else if (this.applicationStatus === 'تم الإنتهاء') {
+        this.applicationStatus = 'Completed';
+      }
     }
   }
 
@@ -110,13 +124,13 @@ export class CareerPageTaskBasicComponent implements OnInit {
 
   markAsCompleted() {
     Swal.fire({
-      title: 'Alert',
+      title: this.translationService.isTranslate ? 'يُحذًِر':'Alert',
       icon: 'info',
-      text: 'Are you sure you want to complete it?',
-      confirmButtonText: 'Ok',
+      text: this.translationService.isTranslate ? 'هل أنت متأكد أنك تريد إكماله' : 'Are you sure you want to complete it?',
+      confirmButtonText: this.translationService.isTranslate ? 'نعم':'Ok',
     }).then((result) => {
       if (result['isConfirmed']) {
-        this.applicationStatus = this.translationService.isTranslate ?  'مكتمل' : 'Completed' ;
+        this.applicationStatus = this.translationService.isTranslate ?  'تم الإنتهاء' : 'Completed' ;
         this.shared.durationGroups[
           this.activityDurationIndex
         ].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete = true;
@@ -127,7 +141,7 @@ export class CareerPageTaskBasicComponent implements OnInit {
     if (status.toLowerCase() === 'inprogress') {
       this.inProgress = true;
       this.applicationStatus = 
-      this.translationService.isTranslate ?  'قيد الانتظار' : 'In Progress' ;
+      this.translationService.isTranslate ?  'جاري العمل' : 'In Progress' ;
       this.shared.durationGroups[
         this.activityDurationIndex
       ].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete = false;
@@ -138,13 +152,18 @@ export class CareerPageTaskBasicComponent implements OnInit {
     return this.applicationStatus;
   }
   GetStatus(status: boolean) {
+    if(status === undefined && this.applicationStatus !== 'Completed' && this.applicationStatus !== 'In Progress'){
+       this.applicationStatus =  this.translationService.isTranslate ? 'تغير الحالة' : 'Change status'  ;
+       return  '';
+    }
     if (status) {
-      this.applicationStatus = this.translationService.isTranslate ?  'مكتمل' : 'Completed' ;
-      return this.translationService.isTranslate ? 'مكتمل' : 'completed';
+      this.applicationStatus = this.translationService.isTranslate ?  'تم الإنتهاء' : 'Completed' ;
+      return this.translationService.isTranslate ? 'تم الإنتهاء' : 'completed';
     } else {
       this.applicationStatus = 
-      this.translationService.isTranslate ?  'قيد الانتظار' : 'In Progress' ;
+      this.translationService.isTranslate ?  'جاري العمل' : 'In Progress' ;
       return this.translationService.isTranslate ? 'قيد الانتظار' : 'pendinng';
     }
+    
   }
 }

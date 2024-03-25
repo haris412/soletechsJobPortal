@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="right-detail"
-           style="margin-top: 40px;">
+           style="margin-top: 40px;" *ngIf="applicationStatus !== 'Change status' && applicationStatus !== 'تغير الحالة'">
         <p class="rounded-pill mb-0 text-midnight-moss font-poppins-medium">
           {{ GetStatus(this.shared.durationGroups[this.activityDurationIndex].applicantOnboardingTasks[this.careerTaskIndex].markAsComplete) }}</p>
       </div>
