@@ -119,6 +119,9 @@ export class AddEditBasicinformationComponent implements OnInit {
         recid: this.userInfoService?.basicInfo?.recid ? this.userInfoService?.basicInfo?.recid : 0
       }
       try {
+        if (profileData.birthDate != undefined && profileData.birthDate != null) {
+          profileData.birthDate.setDate(profileData.birthDate.getDate() + 1);
+        }
         let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);
         if (response?.Status) {
           await this.userInfoService.GetApplicantProfile();

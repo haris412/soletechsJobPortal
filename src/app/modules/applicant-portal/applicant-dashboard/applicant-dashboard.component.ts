@@ -65,7 +65,16 @@ export class ApplicantDashboardComponent implements OnInit {
     let applicantId = localStorage.getItem('applicantId') ?? '';
     let response = await this.lookUpService.MyApplicationJobList(applicantId);
     if(response){
-      this.appliedJobs = response?.parmRecruitmentApplicationJobList;
+      if(response != null && response.Message != null && response.Message == "Authentication failed.") {
+        response = await this.lookUpService.MyApplicationJobList(applicantId);
+        this.appliedJobs = response?.parmRecruitmentApplicationJobList;
+        if(response != null && response.Message != null && response.Message == "Authentication failed.") {
+          response = await this.lookUpService.MyApplicationJobList(applicantId);
+          this.appliedJobs = response?.parmRecruitmentApplicationJobList;
+        }
+      } else {
+        this.appliedJobs = response?.parmRecruitmentApplicationJobList;
+      }
     }
   }
   async Confirmed(){

@@ -40,6 +40,9 @@ export class ApplicantDataService {
       if (applicantId != undefined && applicantId != '') {
         let response = await this.lookupService.GetApplicantSavedJobsList(applicantId);
         if (response) {
+          if(response != null && response.Message != null && response.Message == "Authentication failed.") {
+            response = await this.lookupService.GetApplicantSavedJobsList(applicantId);
+          }
           this.savedJobs = response?.parmApplicantSavedJobsList;
         }
       }
@@ -50,6 +53,12 @@ export class ApplicantDataService {
       try {
         let response = await this.lookupService.GetUserDetails(applicantId);
         if (response) {
+          if(response != null && response.Message != null && response.Message == "Authentication failed.") {
+            response = await this.lookupService.GetUserDetails(applicantId);
+            if(response != null && response.Message != null && response.Message == "Authentication failed.") {
+              response = await this.lookupService.GetUserDetails(applicantId);
+            }
+          }
           localStorage.setItem('userNameAr', response.firstNameAr);
           localStorage.setItem('userName', response?.firstName);
           this.SetApplicantInfo(response);
