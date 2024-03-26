@@ -60,7 +60,45 @@ export class AddEditExperienceComponent implements OnInit {
 
   SaveExperience: () => void = () => {
     if (this.experienceForm.valid) {
+      let date2:any;
+      if (this.experienceForm.controls.startDate.value != undefined && this.experienceForm.controls.startDate.value != null) {
+        const date1 = new Date(this.experienceForm.controls.startDate.value);
+        if (this.selectedExperience.startDate) {
+          date2 = new Date(this.selectedExperience.startDate);
+        } else {
+          date2 = new Date();
+        }
+        // Parse the birthDate string into a JavaScript Date object
+        const originalDate = new Date(this.experienceForm.controls.startDate.value);
+        // Check if originalDate is a valid Date object
+        if (!isNaN(originalDate.getTime()) && (date1?.toISOString() !== date2?.toISOString())) {
+            // Add one day to the date
+            originalDate.setDate(originalDate.getDate() + 1);
+            let startDateControl = this.experienceForm.controls.startDate as any;
+            startDateControl.setValue(originalDate.toISOString());
+        }
+      }
+    if(this.experienceForm.controls.endDate.value !==undefined  && this.experienceForm.controls.endDate.value !==null) {
+      let  endDate2:any;
+      const endDate1 = new Date(this.experienceForm.controls.endDate.value);
+      if (this.selectedExperience.endDate) {
+        endDate2 = new Date(this.selectedExperience.endDate);
+      } else {
+        endDate2 = new Date();
+      }
+      // Parse the birthDate string into a JavaScript Date object
+      const originalDate = new Date(this.experienceForm.controls.endDate.value);
+      // Check if originalDate is a valid Date object
+      if (!isNaN(originalDate.getTime()) && (endDate1?.toISOString() !== endDate2?.toISOString())) {
+          // Add one day to the date
+          originalDate.setDate(originalDate.getDate() + 1);
+          let endDateControl = this.experienceForm.controls.endDate as any;
+          endDateControl.setValue(originalDate.toISOString());
+      }
+    
+  }
       this.selectedExperience = { ...this.selectedExperience, ...this.experienceForm.getRawValue()};
+
       this.experienceData.emit(this.selectedExperience);
     } else {
       this.experienceForm.markAllAsTouched();

@@ -71,6 +71,58 @@ export class AddEditEducationComponent implements OnInit{
   
     SaveEducation: () => void = () => {
       if (this.educationForm.valid) {
+        let date2: any;
+        if (
+          this.educationForm.controls.StartDate.value != undefined &&
+          this.educationForm.controls.StartDate.value != null
+        ) {
+          const date1 = new Date(this.educationForm.controls.StartDate.value);
+          if (this.selectedEducation.StartDate) {
+            date2 = new Date(this.selectedEducation.StartDate);
+          } else {
+            date2 = new Date();
+          }
+          // Parse the birthDate string into a JavaScript Date object
+          const originalDate = new Date(
+            this.educationForm.controls.StartDate.value
+          );
+          // Check if originalDate is a valid Date object
+          if (
+            !isNaN(originalDate.getTime()) &&
+            date1?.toISOString() !== date2?.toISOString()
+          ) {
+            // Add one day to the date
+            originalDate.setDate(originalDate.getDate() + 1);
+            let startDateControl = this.educationForm.controls.StartDate as any;
+            startDateControl.setValue(originalDate.toISOString());
+          }
+        }
+        if (
+          this.educationForm.controls.EndDate.value !== undefined &&
+          this.educationForm.controls.EndDate.value !== null
+        ) {
+          let endDate2: any;
+          const endDate1 = new Date(this.educationForm.controls.EndDate.value);
+          if (this.selectedEducation.EndDate) {
+            endDate2 = new Date(this.selectedEducation.EndDate);
+          } else {
+            endDate2 = new Date();
+          }
+          // Parse the birthDate string into a JavaScript Date object
+          const originalDate = new Date(
+            this.educationForm.controls.EndDate.value
+          );
+          // Check if originalDate is a valid Date object
+          if (
+            !isNaN(originalDate.getTime()) &&
+            endDate1?.toISOString() !== endDate2?.toISOString()
+          ) {
+            // Add one day to the date
+            originalDate.setDate(originalDate.getDate() + 1);
+            let endDateControl = this.educationForm.controls.EndDate as any;
+            endDateControl.setValue(originalDate.toISOString());
+          }
+        }
         this.selectedEducation = { ...this.selectedEducation, ...this.educationForm.getRawValue()};
         this.educationData.emit(this.selectedEducation);
       } else {

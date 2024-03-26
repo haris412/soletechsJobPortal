@@ -65,6 +65,58 @@ export class AddEditCertificatesComponent implements OnInit {
   
     SaveCertificate: () => void = () => {
       if (this.certiifcateForm.valid) {
+        let date2: any;
+        if (
+          this.certiifcateForm.controls.IssueDate.value != undefined &&
+          this.certiifcateForm.controls.IssueDate.value != null
+        ) {
+          const date1 = new Date(this.certiifcateForm.controls.IssueDate.value);
+          if (this.selectedCertificate.IssueDate) {
+            date2 = new Date(this.selectedCertificate.IssueDate);
+          } else {
+            date2 = new Date();
+          }
+          // Parse the birthDate string into a JavaScript Date object
+          const originalDate = new Date(
+            this.certiifcateForm.controls.IssueDate.value
+          );
+          // Check if originalDate is a valid Date object
+          if (
+            !isNaN(originalDate.getTime()) &&
+            date1?.toISOString() !== date2?.toISOString()
+          ) {
+            // Add one day to the date
+            originalDate.setDate(originalDate.getDate() + 1);
+            let startDateControl = this.certiifcateForm.controls.IssueDate as any;
+            startDateControl.setValue(originalDate.toISOString());
+          }
+        }
+        if (
+          this.certiifcateForm.controls.ExpirationDate.value !== undefined &&
+          this.certiifcateForm.controls.ExpirationDate.value !== null
+        ) {
+          let endDate2: any;
+          const endDate1 = new Date(this.certiifcateForm.controls.ExpirationDate.value);
+          if (this.selectedCertificate.ExpirationDate) {
+            endDate2 = new Date(this.selectedCertificate.ExpirationDate );
+          } else {
+            endDate2 = new Date();
+          }
+          // Parse the birthDate string into a JavaScript Date object
+          const originalDate = new Date(
+            this.certiifcateForm.controls.ExpirationDate.value
+          );
+          // Check if originalDate is a valid Date object
+          if (
+            !isNaN(originalDate.getTime()) &&
+            endDate1?.toISOString() !== endDate2?.toISOString()
+          ) {
+            // Add one day to the date
+            originalDate.setDate(originalDate.getDate() + 1);
+            let endDateControl = this.certiifcateForm.controls.ExpirationDate as any;
+            endDateControl.setValue(originalDate.toISOString());
+          }
+        }
         this.selectedCertificate = this.certiifcateForm.getRawValue();
         this.educationData.emit(this.selectedCertificate);
       } else {

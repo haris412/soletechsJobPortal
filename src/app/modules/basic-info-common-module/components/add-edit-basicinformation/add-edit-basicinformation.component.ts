@@ -120,8 +120,18 @@ export class AddEditBasicinformationComponent implements OnInit {
       }
       try {
         if (profileData.birthDate != undefined && profileData.birthDate != null) {
-          const originalDate = new Date(profileData?.birthDate);
-          profileData.birthDate.setDate(originalDate?.getDate() + 1 );
+            const date1 = new Date(profileData.birthDate);
+            const date2 = new Date(this.userInfoService.basicInfo.birthDate);
+          if (profileData && profileData.birthDate) {
+            // Parse the birthDate string into a JavaScript Date object
+            const originalDate = new Date(profileData.birthDate);
+            // Check if originalDate is a valid Date object
+            if (!isNaN(originalDate.getTime()) && (date1?.toISOString() !== date2?.toISOString())) {
+                // Add one day to the date
+                originalDate.setDate(originalDate.getDate() + 1);
+                profileData.birthDate = originalDate.toISOString();
+            }
+          }
         }
         let response = await this.lookUpService.UpdateApplicantProfileGeneral(profileData);
         if (response?.Status) {
@@ -131,6 +141,7 @@ export class AddEditBasicinformationComponent implements OnInit {
           this.toasterService.error(response?.Message);
         }
       } catch (ex) {
+        console.log(ex)
         console.error();
       }
     }else{
@@ -211,8 +222,9 @@ export class AddEditBasicinformationComponent implements OnInit {
 
   SetNationalityValue(){
     let filteredCountry = this.userInfoService.countryRegions?.find(countries => countries?.value === this.userInfoService.basicInfo.nationality);
-    if(filteredCountry){
-    this.nationalityCtrl.setValue(filteredCountry.name);
+    if (filteredCountry) {
+      this.selectedNationality = filteredCountry?.value;
+      this.nationalityCtrl.setValue(filteredCountry.name);
     }
   }
 }
