@@ -69,7 +69,7 @@ export class QuickApplyComponent implements OnInit {
       nationality: [''],
       email: [this.email, [Validators.required]],
       phone: ['', [Validators.required]],
-      linkedIn: [''],
+      linkedIn: ['', [Validators.required]],
       highestDegree: ['', [Validators.required]],
       address: [''],
       currentAddressOut: [''],
@@ -77,8 +77,8 @@ export class QuickApplyComponent implements OnInit {
       residentIdentity: [0],
       residentIdentityProfessional: [''],
       periodJoin: [''],
-      attachments: ['',Validators.required],
-      fileNames: [['']]
+      attachment: ['',Validators.required],
+      fileName: [['']]
     });
     this.translationService.languageChange.subscribe(x => {
       this.translationService.isTranslate = x;
@@ -201,25 +201,24 @@ export class QuickApplyComponent implements OnInit {
   onFileUpload(files: any) {
     if (files.target.files.length > 0) {
       this.attchments = [];
-			for (let file of files.target.files) {
+      if (files.target.files.length > 0) {
         this.fileCvData = files.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(this.fileCvData);
         reader.onload = () => {
           let cvData: any = reader.result;
-          this.attchments.push(cvData.substring(cvData.indexOf('base64,') + 7, cvData.length));
           this.fileNames.push(this.fileCvData.name);
-          this.quickApplyForm.controls.attachments.setValue(this.attchments);
-          this.quickApplyForm.controls.fileNames.setValue(this.fileNames);
-        };
+          this.quickApplyForm.controls.attachment.setValue(cvData.substring(cvData.indexOf('base64,') + 7, cvData.length));
+          this.quickApplyForm.controls.fileName.setValue(this.fileCvData.name);
       }
+     }
 		}
 		this.fileList = files.target.files;
   }
 
   DeleteFile(selectedFile: File) {
     this.fileList = [];
-    this.quickApplyForm.controls.attachments.setValue('');
+    this.quickApplyForm.controls.attachment.setValue('');
           this.quickApplyForm.controls.fileNames.setValue('');
   }
   CloseSidenav() {
@@ -234,11 +233,14 @@ export class QuickApplyComponent implements OnInit {
     this.quickApplyForm.controls.address.setValue(this.countriesCtrl.value);
     this.quickApplyForm.controls.currentAddressOut.setValue(this.citiesCtrl.value);
     if (this.quickApplyForm.valid) {
+      const concatenatedString = "USMF" + "_" + this.applicant.applicantData?.TableId + "_" + Number(localStorage.getItem('recId')) + "_" + this.fileCvData.name ;
       let applicationData: Application = {
         ...this.quickApplyForm.getRawValue(),
         periodJoin: Number(this.quickApplyForm.controls['periodJoin']?.value),
         applicantIdRecid: Number(localStorage.getItem('recId')),
-        applicantpersonRecid:Number(localStorage.getItem('applicantPersonRecid'))
+        applicantpersonRecid:Number(localStorage.getItem('applicantPersonRecid')),
+        AttachmentWeb:1,
+        fileName:concatenatedString
       }
       try {
         let applicationResponse = await this.applicationService.SaveApplication(applicationData);

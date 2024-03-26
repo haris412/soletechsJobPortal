@@ -62,9 +62,9 @@
     "major":"رئيسي",
     "skill-placeHolder":"مهارات البحث",
     "delete-confirmation-message":"هل انت متأكد من حذف السجل ؟",
-    "previous-manager":"اسم المدير السابق",
-    "company":"شركة",
-    "email-address":"عنوان البريد الإلكتروني",
-    "mobile":"متحرك",
-    "job-title":"مسمى وظيفي"
+    "previous-manager":"أسم المدير السابق",
+    "company":"أسم الشركة",
+    "email-address":"البريد الألكتروني",
+    "mobile":"رقم الهاتف",
+    "job-title":"اللقب الوظيفي"
 }
