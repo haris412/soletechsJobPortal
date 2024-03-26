@@ -74,7 +74,7 @@ export class SkillsComponent implements OnInit{
     let response;
     var isEdit = false;
     if (skill?.RecId > 0) {
-      skillData = skill;
+      //skillData = skill;
       response = await this.lookUpService.EditSkill(skillData);
       isEdit = true;
     } else {
