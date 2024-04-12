@@ -69,7 +69,7 @@ export class QuickApplyComponent implements OnInit {
       nationality: [''],
       email: [this.email, [Validators.required]],
       phone: ['', [Validators.required]],
-      linkedIn: ['', [Validators.required]],
+      linkedIn: [''],
       highestDegree: ['', [Validators.required]],
       address: [''],
       currentAddressOut: [''],

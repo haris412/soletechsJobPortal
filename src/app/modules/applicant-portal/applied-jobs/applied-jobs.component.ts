@@ -104,7 +104,7 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     const startTime = moment(startDateTime);
     const endTime = moment(endDateTime);
     const duration = moment.duration(endTime.diff(startTime));
-    const minutes = Math.floor(duration.asMinutes()) % 60;
+    const minutes = duration.asMinutes();
     return minutes;
   }
   GetYear(date:string){

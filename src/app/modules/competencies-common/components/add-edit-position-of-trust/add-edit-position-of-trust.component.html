@@ -3,27 +3,21 @@
         action=""
         [formGroup]="psitionTrustForm">
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.employer')}}*</p>
+      <p>{{t('competencies.employer')}}</p>
       <mat-form-field appearance="outline"
                       class="w-100">
         <input matInput
                name="employment"
                [formControlName]="'Employment'" />
-        <mat-error class="error-message"
-                   *ngIf="f.Employment.hasError('required') && (f.Employment.dirty || f.Employment.touched)">Employment
-          is Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.position')}}*</p>
+      <p>{{t('competencies.position')}}</p>
       <mat-form-field appearance="outline"
                       class="w-100">
         <input matInput
                name="position"
                [formControlName]="'Position'" />
-        <mat-error class="error-message"
-                   *ngIf="f.Position.hasError('required') && (f.Position.dirty || f.Position.touched)">Position is
-          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">

@@ -30,8 +30,8 @@ export class AddEditPositionOfTrustComponent implements OnInit{
               public lookupService: AppLookUpService){
     this.psitionTrustForm = this._formBuilder.group({
       id: [''],
-      Employment: ['', [Validators.required]],
-      Position: ['', [Validators.required]],
+      Employment: [''],
+      Position: [''],
       StartDate:['', [Validators.required]],
       EndDate:['', [Validators.required]],
       PreviousManagerName:['', [Validators.required]],
@@ -49,7 +49,7 @@ export class AddEditPositionOfTrustComponent implements OnInit{
     
   }
   ngOnInit(){
-    if(this.selectedPositionOfTrust?.Employment !== ''){
+    if(this.selectedPositionOfTrust){
       this.psitionTrustForm.patchValue({
         ...this.selectedPositionOfTrust
       });

@@ -33,7 +33,7 @@ export class AddEditExperienceComponent implements OnInit {
     this.experienceForm = this._formBuilder.group({
       employerName: ['', [Validators.required]],
       qualificationPosition: ['', [Validators.required]],
-      URL: ['', [Validators.required]],
+      URL: [''],
       phone:['',[Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],

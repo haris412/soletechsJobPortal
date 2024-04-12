@@ -34,11 +34,11 @@ export class AddEditAddressComponent implements OnInit{
     public translationService: TranslationAlignmentService
     ) {
     this.addressForm = this._formBuilder.group({
-      Address: ['', [Validators.required]],
+      Address: [''],
       CountryRegionId: ['', [Validators.required]],
       City: [''],
-      streetName: ['',[Validators.required]],
-      zipCode: ['', [Validators.required]],
+      streetName: [''],
+      zipCode: [''],
       recid:[this.selectedAddress?.recid ? this.selectedAddress?.recid : 0],
       PostalCode: [''],
       description:['']

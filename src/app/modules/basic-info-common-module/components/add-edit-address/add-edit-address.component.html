@@ -2,11 +2,9 @@
 
 <form class="row" action="" [formGroup]="addressForm">
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.address')}}*</p>
+    <p>{{t('basicInfo.address')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="nameOfDescription" [formControlName]="'Address'" />
-      <mat-error class="error-message"
-        *ngIf="f.Address.hasError('required') && (f.Address.dirty || f.Address.touched)">Address is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
@@ -50,20 +48,15 @@
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.street')}}*</p>
+    <p>{{t('basicInfo.street')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="street" [formControlName]="'streetName'" />
-      <mat-error class="error-message"
-        *ngIf="f.streetName.hasError('required') && (f.streetName.dirty || f.streetName.touched)">Street Name is
-        Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
-    <p>{{t('basicInfo.zip-postalCode')}}*</p>
+    <p>{{t('basicInfo.zip-postalCode')}}</p>
     <mat-form-field appearance="outline" class="w-100">
       <input matInput name="zipCode" [formControlName]="'zipCode'"/>
-      <mat-error class="error-message"
-        *ngIf="f.zipCode.hasError('required') && (f.zipCode.dirty || f.zipCode.touched)">zipCode is Required</mat-error>
     </mat-form-field>
   </div>
   <div class="d-flex flex-column col-lg-6 col-12">
