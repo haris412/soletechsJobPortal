@@ -53,6 +53,7 @@ export class AppliedJobActionsComponent implements OnInit{
    let response = await this.lookUpService.GetApplicationDetails(this.applicationId);
    if(response){
     this.selectedJob = response;
+    console.log(this.selectedJob);
     this.sharedService.selectedJobActions = this.sharedService.DeepCopyObject(this.selectedJob);
     this.AppliedJobActionsLanguageChanges();
    }
