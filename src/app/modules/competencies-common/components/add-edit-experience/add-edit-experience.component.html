@@ -73,15 +73,12 @@
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-lg-6 col-12">
-      <p>{{t('competencies.phone')}}*</p>
+      <p>{{t('competencies.phone')}}</p>
       <mat-form-field appearance="outline"
                       class="w-100">
         <input matInput
                name="phone"
                [formControlName]="'phone'" />
-        <mat-error class="error-message"
-                   *ngIf="f.phone.hasError('required') && (f.phone.dirty || f.phone.touched)">Phone is
-          Required</mat-error>
       </mat-form-field>
     </div>
     <div class="d-flex flex-column col-12">

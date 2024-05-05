@@ -89,11 +89,11 @@ export class LoginComponent implements OnInit {
     if (this.otpForm.valid) {
       this.otpEntered = false
       let response = await this.lookupService.VerifyOTP(this.otpForm.value)
-      if (response?.Status) {
+      if (response?.status) {
         localStorage.setItem('email', response?.Email);
         localStorage.setItem("applicantId", response?.ApplicantId);
-        localStorage.setItem("applicantPersonRecid", response?.ApplicantPersonRecid);
-        localStorage.setItem("recId", response?.recid);
+        localStorage.setItem("applicantPersonRecid", response?.PersonRecid);
+        localStorage.setItem("recId", response?.Recid);
         this.service.loginEmitter.emit(true);
         this.router.navigate(['/applicant']);
       } else {
