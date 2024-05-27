@@ -150,17 +150,31 @@ export class SignUpComponent implements OnInit {
 		}
 	}
 	onFileUpload(files: any) {
-		if (files.target.files.length > 0) {
-			this.fileCvData = files.target.files[0];
-			const reader = new FileReader();
-			reader.readAsDataURL(this.fileCvData);
-			reader.onload = () => {
-				this.cvData = reader.result;
-				this.userForm.controls.cvAttachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
-				this.userForm.controls.fileName.setValue(this.fileCvData.name);
-			};
-		}
-		this.fileList = files.target.files;
+		const allowedTypes = [
+			'application/pdf',
+			'application/msword',
+			'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+		  ];
+		if (files?.target?.files?.length > 0) {
+       this.fileCvData = files.target.files[0];
+      if (this.fileCvData && allowedTypes.includes(this.fileCvData?.type)) {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.fileCvData);
+        reader.onload = () => {
+          this.cvData = reader.result;
+          this.userForm.controls.cvAttachment.setValue(
+            this.cvData.substring(
+              this.cvData.indexOf('base64,') + 7,
+              this.cvData.length
+            )
+          );
+          this.userForm.controls.fileName.setValue(this.fileCvData.name);
+        };
+        this.fileList = files.target.files;
+      } else {
+		this.toastrService.error('Only PDF and Word files are allowed');
+      }
+    }
 	}
 
 	DeleteFile(selectedFile: File) {

@@ -58,6 +58,7 @@
               <input class="form-control"
                      type="file"
                      id="formFile"
+                     accept=".pdf,.doc,.docx"
                      (change)="uploadCV($event)" />
             </div>
             <div *ngIf="fileList.length > 0"

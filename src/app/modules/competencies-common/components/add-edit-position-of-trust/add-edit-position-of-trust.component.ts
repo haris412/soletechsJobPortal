@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
+import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
@@ -27,7 +28,8 @@ export class AddEditPositionOfTrustComponent implements OnInit{
   phonePlaceHolder:any;
   get f() { return this.psitionTrustForm.controls; }
   constructor(public translationService: TranslationAlignmentService,
-              public lookupService: AppLookUpService){
+              public lookupService: AppLookUpService,
+              private toastrService: ToastrService){
     this.psitionTrustForm = this._formBuilder.group({
       id: [''],
       Employment: [''],
@@ -73,17 +75,33 @@ export class AddEditPositionOfTrustComponent implements OnInit{
       this.fileList = [];
     }
     onFileUpload(files: any) {
-      if (files.target.files.length > 0) {
+      const allowedTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      ];
+      if (files?.target?.files?.length > 0) {
         this.fileCvData = files.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(this.fileCvData);
-        reader.onload = () => {
-          this.cvData = reader.result;
-          this.psitionTrustForm.controls.attachment.setValue(this.cvData.substring(this.cvData.indexOf('base64,') + 7, this.cvData.length));
-          this.psitionTrustForm.controls.fileName.setValue(this.fileCvData.name);
-        };
-      }
-      this.fileList.push(files.target.files[0]);
+        if (this.fileCvData && allowedTypes.includes(this.fileCvData?.type)) {
+          const reader = new FileReader();
+          reader.readAsDataURL(this.fileCvData);
+          reader.onload = () => {
+            this.cvData = reader.result;
+            this.psitionTrustForm.controls.attachment.setValue(
+              this.cvData.substring(
+                this.cvData.indexOf('base64,') + 7,
+                this.cvData.length
+              )
+            );
+            this.psitionTrustForm.controls.fileName.setValue(
+              this.fileCvData.name
+            );
+          };
+          this.fileList.push(files.target.files[0]);
+        }else {
+          this.toastrService.error('Only PDF and Word files are allowed');
+        }
+      } 
     }
   
     DeleteFile: (selectedFile:File) => void = () => {

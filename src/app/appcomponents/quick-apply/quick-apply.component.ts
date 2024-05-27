@@ -199,10 +199,11 @@ export class QuickApplyComponent implements OnInit {
   }
 
   onFileUpload(files: any) {
-    if (files.target.files.length > 0) {
-      this.attchments = [];
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       if (files.target.files.length > 0) {
         this.fileCvData = files.target.files[0];
+        if(this.fileCvData && allowedTypes.includes(this.fileCvData?.type)){
+        this.attchments = [];
         const reader = new FileReader();
         reader.readAsDataURL(this.fileCvData);
         reader.onload = () => {
@@ -211,9 +212,11 @@ export class QuickApplyComponent implements OnInit {
           this.quickApplyForm.controls.attachment.setValue(cvData.substring(cvData.indexOf('base64,') + 7, cvData.length));
           this.quickApplyForm.controls.fileName.setValue(this.fileCvData.name);
       }
+       this.fileList = files.target.files;
+      }else{
+        this.toastrService.error('Only PDF and Word files are allowed');
+      }
      }
-		}
-		this.fileList = files.target.files;
   }
 
   DeleteFile(selectedFile: File) {

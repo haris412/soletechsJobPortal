@@ -198,8 +198,8 @@
     <div class="cv-div">
       <p class="text-midnight-moss font-poppins-bold">{{ t("quickApply.attachment") }}</p>
       <div class="upload-file">
-        <input type="file" (change)="onFileUpload($event)"><img src="assets/SVG/upload.svg" alt="">
-        <p class="upload-text"><span>{{ t("quickApply.click-upload") }}</span>{{ t("quickApply.drag-drop") }}</p>
+        <input type="file" (change)="onFileUpload($event)" accept=".pdf,.doc,.docx"><img src="assets/SVG/upload.svg" alt="">
+        <p class="upload-text"><span>{{ t("quickApply.click-upload") }}</span> {{ t("quickApply.drag-drop") }}</p>
         <span>{{ t("quickApply.pdf-doc") }} ({{ t("quickApply.max-size") }})</span>
       </div>
       <mat-error class="error-message" *ngIf="f.attachment.hasError('required') && (f.attachment.dirty || f.attachment.touched)">Attachment is Required</mat-error>

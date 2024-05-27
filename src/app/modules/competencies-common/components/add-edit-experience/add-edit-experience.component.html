@@ -96,8 +96,8 @@
       <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
       <div class="upload-file">
         <input type="file"
-               (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
-             alt="" />
+               (change)="onFileUpload($event)" accept=".pdf,.doc,.docx"/><img src="assets/SVG/upload.svg"
+             alt=""/>
         <p class="upload-text"><span>{{t('competencies.upload-text')}} </span>{{t('competencies.drag-drop')}}</p>
         <span>PDF or DOC (max. size 6MB)</span>
       </div>
@@ -128,7 +128,7 @@
             <div class="delete p-2 rounded border border-color-alice-blue cursor-pointer">
               <img height="20"
                    src="assets/SVG/delete.svg"
-                   alt="" />
+                   alt="" (click)="DeleteFile(file)"/>
             </div>
           </div>
         </div>

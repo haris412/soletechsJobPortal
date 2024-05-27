@@ -29,7 +29,7 @@
           <img src="assets/SVG/upload.svg" alt="" />
           <p class="upload-text"><span>{{t('signUp.upload-text')}}</span>{{t('signUp.drag-drop')}}</p>
           <span>PDF or DOC (max. size 6MB)</span>
-          <input class="form-control" type="file" id="formFile" (change)="onFileUpload($event)" />
+          <input class="form-control" type="file" id="formFile" (change)="onFileUpload($event)" accept=".pdf,.doc,.docx"/>
         </div>
         <div *ngIf="fileList.length > 0"
           class="p-3 row mx-0 files-div rounded border border-color-whisper mt-3 gap-md-0 gap-2">

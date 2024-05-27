@@ -190,23 +190,32 @@ export class UserProfileComponent {
   }
 
   uploadCV(files: any) {
-    if (files.target.files.length > 0) {
+    const allowedTypes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ];
+    if (files?.target?.files?.length > 0) {
       this.fileCvData = files.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(this.fileCvData);
-      reader.onload = () => {
-        let cvData: any = reader.result;
-        let uploadCVs = new UploadCvsDTO();
-        (uploadCVs.applicantId = localStorage.getItem('applicantId') ?? ''),
-          (uploadCVs.cvAttachment = cvData.substring(
-            cvData.indexOf('base64,') + 7,
-            cvData.length
-          ));
-        uploadCVs.fileName = this.fileCvData.name;
-        this.uploadCvData.push(uploadCVs);
-      };
-      this.fileList.push(files.target.files[0]);
-      this.ref.detectChanges();
+      if (this.fileCvData && allowedTypes.includes(this.fileCvData?.type)) {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.fileCvData);
+        reader.onload = () => {
+          let cvData: any = reader.result;
+          let uploadCVs = new UploadCvsDTO();
+          (uploadCVs.applicantId = localStorage.getItem('applicantId') ?? ''),
+            (uploadCVs.cvAttachment = cvData.substring(
+              cvData.indexOf('base64,') + 7,
+              cvData.length
+            ));
+          uploadCVs.fileName = this.fileCvData.name;
+          this.uploadCvData.push(uploadCVs);
+        };
+        this.fileList.push(files.target.files[0]);
+        this.ref.detectChanges();
+      } else {
+        this.toastrService.error('Only PDF and Word files are allowed');
+      }
     }
   }
   ScrollToTarget(event: any) {

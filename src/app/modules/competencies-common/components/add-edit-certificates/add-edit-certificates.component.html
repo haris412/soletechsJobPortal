@@ -104,7 +104,7 @@
       <p class="text-midnight-moss font-poppins-bold">{{t('competencies.attachment')}}</p>
       <div class="upload-file">
         <input type="file"
-               (change)="onFileUpload($event)" /><img src="assets/SVG/upload.svg"
+               (change)="onFileUpload($event)" accept=".pdf,.doc,.docx"/><img src="assets/SVG/upload.svg"
              alt="" />
         <p class="upload-text"><span>{{t('competencies.upload-text')}}</span><span> {{t('competencies.drag-drop')}}</span></p>
         <span>PDF or DOC (max. size 6MB)</span>
