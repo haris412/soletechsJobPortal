@@ -8,7 +8,7 @@
              alt="" />
         <p class="font-poppins-semi text-gray-600 mb-0">{{t('jobOffer.back')}}</p>
       </div>
-      <div class="d-flex justify-content-end gap-3 btns-container">
+      <div class="d-flex justify-content-end gap-3 btns-container" *ngf="jobOfferAction.showButton">
         <button type="button"
                 class="btn text-white bg-error-600 rounded font-poppins-semi fs-8 w-auto"
                 (click)="RejectOffer()">

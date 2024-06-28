@@ -85,6 +85,9 @@ export class JobsListComponent implements OnInit {
     if (jobsResponseObj) {
       this.jobsList = jobsResponseObj.parmRecruitmentProjectsList ?? [];
       this.jobsListCopy = jobsResponseObj.parmRecruitmentProjectsList ?? [];
+      if(this.jobsList?.length > 0){
+        localStorage.setItem('defenderenabled',this.jobsList[0]?.MicrosoftDefenderAzureBlob?.toString() ? this.jobsList[0]?.MicrosoftDefenderAzureBlob?.toString() : '0')
+      }
     }
   }
 

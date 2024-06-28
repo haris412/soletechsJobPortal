@@ -17,4 +17,5 @@ export interface Job {
     startDate:string;
     status:number;
     webEnabled:number;
+    MicrosoftDefenderAzureBlob?:boolean;
 }

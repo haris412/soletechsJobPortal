@@ -193,7 +193,8 @@ export class SignUpComponent implements OnInit {
 				attachmentForWeb : this.userForm.controls.cvAttachment.value !== ''?  1: 0 
 				//aboutMe:this.aboutMe
 			}
-			this.userData['isDefender'] = true;
+			let isdefenderenable = localStorage.getItem('defenderenabled') ?? 0 ;
+			this.userData['isDefender'] = isdefenderenable == '1' ? true : false;
 			var data = await this.lookupService.CreateApplicant(this.userData);
 			if (data != null && data.Status) {
 				this.userInfo.prepareApplicantFormGroup();

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ApplicantOfferAction } from 'src/app/models/ApplicantOfferAction.model';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class JobOfferComponent implements OnInit{
   finaceInfo:any;
   benefits:any;
   applicationId:string = '';
+  jobOfferAction:any
   constructor(private location: Location,
               private toastrService: ToastrService,
               private router:Router,
@@ -53,6 +55,7 @@ export class JobOfferComponent implements OnInit{
       this.basicInfo = response?.jobOffer_BasicInfo;
       this.finaceInfo = response?.jobOffer_FinanceInfo;
       this.benefits = response?.jobOffer_BenefitInfo; 
+      this.jobOfferAction = response?.jobOffer_ShowActionButton
     }
   }
 
@@ -82,5 +85,15 @@ export class JobOfferComponent implements OnInit{
   RejectOffer(){
     this.toastrService.success("You have rejected the offer");
     this.router.navigate(['/applicant']);
+  }
+  async PerformOfferActoin(){
+    let jobOfferAction:ApplicantOfferAction = {
+      jobOfferId:this.basicInfo?.offerId,
+      outcome:''
+    }
+    let jobOfferActionResponse = await this.service.PerformOfferActoin(jobOfferAction);
+    if(jobOfferActionResponse){
+      console.log(jobOfferActionResponse);
+    }
   }
 }
