@@ -8,6 +8,8 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
+import { OfferModalComponentService } from 'src/app/shared/offer-modal/offer-modal.service';
+import { RejectModalComponentService } from 'src/app/shared/reject-offer/reject-offer.service';
 
 @Component({
   selector: 'app-applied-job-actions',
@@ -19,6 +21,7 @@ export class AppliedJobActionsComponent implements OnInit{
   jobList:any[]=[];
   selectedJob:any;
   applicationId:string = '';
+  dialogRef:any;
   @Output() interviewConfirmed: EventEmitter<boolean> = new EventEmitter();
   public isTranslate: boolean = this.translationService.isTranslate;
   constructor(
@@ -30,7 +33,9 @@ export class AppliedJobActionsComponent implements OnInit{
     private route: ActivatedRoute,
     public translationService: TranslationAlignmentService,
     private toastrService: ToastrService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    public acceptOfferModal: OfferModalComponentService,
+    public rejectModal: RejectModalComponentService
   ) {
     this.route.params.subscribe(
       params => 
@@ -119,5 +124,11 @@ export class AppliedJobActionsComponent implements OnInit{
   }
   GoBack() {
     this.location.back();
+  }
+  acceptOffer() {
+    this.dialogRef = this.acceptOfferModal.openDialog('');
+  }
+  RejectOffer() {
+    this.dialogRef = this.rejectModal.openDialog('');
   }
 }

@@ -447,6 +447,17 @@ form {
   overflow-y: auto;
 }
 
+.offer-modal {
+  width: 300px;
+  height: 220px;
+}
+
+.reject-offer-modal {
+  width: 400px !important;
+  height: 300px !important;
+  border-radius: 0.75rem;
+}
+
 .row-truncate {
   display: -webkit-box;
   -webkit-line-clamp: 2;

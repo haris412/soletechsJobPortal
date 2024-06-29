@@ -17,6 +17,8 @@ import { BlockCopyPasteDirective } from './directives/appBlockCopyPaste.directiv
 import { TranslocoRootModule } from '../transloco-root.module';
 import { PreventArabicDirective } from './directives/arabic.directive';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { OfferModalComponent } from './offer-modal/offer-modal.component';
+import { RejectOfferComponent } from './reject-offer/reject-offer.component';
 
 
 
@@ -35,7 +37,9 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     PasswordStrengthComponent,
     BlockCopyPasteDirective,
     PreventArabicDirective,
-    DeleteModalComponent
+    DeleteModalComponent,
+    OfferModalComponent,
+    RejectOfferComponent
   ],
   imports: [
     MaterialModule,

@@ -1,0 +1,25 @@
+<div>
+    <form class="row m-0" action="">
+        <div class="d-flex flex-column col-12">
+            <p>Comments</p>
+            <mat-form-field appearance="outline" class="w-100 text-area">
+              <textarea matInput rows="3"></textarea>
+              <mat-error class="error-message">Name is Required</mat-error>
+            </mat-form-field>
+          </div>
+    </form>
+    <div class="d-flex justify-content-end px-3 gap-2">
+        <button
+        type="button"
+        class="btn border border-color-gray-300 text-gray-700 rounded font-poppins-medium"
+        (click)="closeDialog()">
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn text-white bg-pastel-green-dark rounded font-poppins-semi w-auto"
+        (click)="Accept()">
+        Accept
+      </button>
+    </div>
+</div>
