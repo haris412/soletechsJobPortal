@@ -1,9 +1,9 @@
 <div>
-    <form class="row m-0" action="">
+    <form class="row m-0 mt-2" action="" [formGroup]="acceptOfferForm">
         <div class="d-flex flex-column col-12">
             <p>Comments</p>
             <mat-form-field appearance="outline" class="w-100 text-area">
-              <textarea matInput rows="3"></textarea>
+              <textarea matInput rows="3" [formControlName]="'comments'"></textarea>
               <mat-error class="error-message">Name is Required</mat-error>
             </mat-form-field>
           </div>

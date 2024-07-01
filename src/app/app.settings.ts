@@ -35,7 +35,7 @@ export const apiURLs = {
         getApplicationInterviewerList:`${environment.apiUrl}/ERPApplication/GetApplicationInterviewerList`,
         getConfirmInterviewer:`${environment.apiUrl}/ERPApplication/GetConfirmInterviewer`,
         acceptAndRejectJobOffer:`${environment.apiUrl}/ERPApplication/AcceptAndRejectJobOffer`,
-        performOfferActoin:`${environment.apiUrl}/ERPApplication/PerfornOfferActoin`
+        performOfferActoin:`${environment.apiUrl}/ERPApplication/PerformOfferActoin`
     },
     applicant:{
         createApplicant: `${environment.apiUrl}/ERPApplicant/CreateApplicant`,

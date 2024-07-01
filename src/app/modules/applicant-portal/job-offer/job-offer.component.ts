@@ -6,6 +6,10 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ApplicantOfferAction } from 'src/app/models/ApplicantOfferAction.model';
+import { RescheduleModalComponentService } from 'src/app/shared/reschedule-modal/reschedule-modal.service';
+import { OfferModalComponentService } from 'src/app/shared/offer-modal/offer-modal.service';
+import { RejectModalComponentService } from 'src/app/shared/reject-offer/reject-offer.service';
+import { OfferAcceptanceRejection } from 'src/app/models/offer-acceptance-rejection.model';
 
 
 @Component({
@@ -18,13 +22,17 @@ export class JobOfferComponent implements OnInit{
   finaceInfo:any;
   benefits:any;
   applicationId:string = '';
-  jobOfferAction:any
+  jobOfferAction:any;
+  dialogRef:any;
   constructor(private location: Location,
               private toastrService: ToastrService,
               private router:Router,
               private service:AppLookUpService,
+              private dialog: RescheduleModalComponentService,
               private route: ActivatedRoute,
               public translationService: TranslationAlignmentService,
+              public acceptOfferModal: OfferModalComponentService,
+              public rejectModal: RejectModalComponentService,
               public shared: SharedService) { 
                 this.route.params.subscribe(
                   params => 
@@ -78,22 +86,86 @@ export class JobOfferComponent implements OnInit{
     }
   }
 
-  AcceptOffer(){
-    this.toastrService.success("Congratulations you have accepted the offer");
-    this.router.navigate(['/applicant']);
+  // AcceptOffer(){
+  //   this.toastrService.success("Congratulations you have accepted the offer");
+  //   this.router.navigate(['/applicant']);
+  // }
+  // RejectOffer(){
+  //   this.toastrService.success("You have rejected the offer");
+  //   this.router.navigate(['/applicant']);
+  // }
+  // async PerformOfferActoin(){
+  //   let jobOfferAction:ApplicantOfferAction = {
+  //     jobOfferId:this.basicInfo?.offerId,
+  //     outcome:''
+  //   }
+  //   let jobOfferActionResponse = await this.service.PerformOfferActoin(jobOfferAction);
+  //   if(jobOfferActionResponse){
+  //     console.log(jobOfferActionResponse);
+  //   }
+  // }
+  acceptOfferComment(outcome:string) {
+    this.dialogRef = this.acceptOfferModal.openDialog('');
+    this.dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let offerAcceptanceData: ApplicantOfferAction = {
+          jobOfferId: this.basicInfo?.offerId,
+          outcome:outcome,
+          comment: dialogResult,
+        };
+        let response: any = await this.service.PerformOfferActoin(
+          offerAcceptanceData
+        );
+        if (response?.Status) {
+          this.toastrService.success(response?.Message);
+          this.router.navigate(['applicant/dashboard']);
+
+        } else {
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
-  RejectOffer(){
-    this.toastrService.success("You have rejected the offer");
-    this.router.navigate(['/applicant']);
+  RejectOfferComment(outcome:string) {
+    this.dialogRef = this.rejectModal.openDialog('');
+    this.dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let offerAcceptanceData: ApplicantOfferAction = {
+          jobOfferId: this.basicInfo?.offerId,
+          outcome:outcome,
+          comment: dialogResult,
+        };
+        let response: any = await this.service.PerformOfferActoin(
+          offerAcceptanceData
+        );
+        if (response?.Status) {
+          this.toastrService.success(response?.Message);
+          this.router.navigate(['applicant/dashboard']);
+        } else {
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
-  async PerformOfferActoin(){
-    let jobOfferAction:ApplicantOfferAction = {
-      jobOfferId:this.basicInfo?.offerId,
-      outcome:''
-    }
-    let jobOfferActionResponse = await this.service.PerformOfferActoin(jobOfferAction);
-    if(jobOfferActionResponse){
-      console.log(jobOfferActionResponse);
-    }
+
+  ClaimOffer(outCome:string){
+    this.dialogRef = this.rejectModal.openDialog('');
+    this.dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let offerAcceptanceData: ApplicantOfferAction = {
+          jobOfferId: this.basicInfo?.offerId,
+          outcome:outCome,
+          comment: dialogResult,
+        };
+        let response: any = await this.service.PerformOfferActoin(
+          offerAcceptanceData
+        );
+        if (response?.Status) {
+          this.toastrService.success(response?.Message);
+        } else {
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
 }

@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import { Location } from '@angular/common';
 import { OfferModalComponentService } from 'src/app/shared/offer-modal/offer-modal.service';
 import { RejectModalComponentService } from 'src/app/shared/reject-offer/reject-offer.service';
+import { OfferAcceptanceRejection } from 'src/app/models/offer-acceptance-rejection.model';
 
 @Component({
   selector: 'app-applied-job-actions',
@@ -58,7 +59,6 @@ export class AppliedJobActionsComponent implements OnInit{
    let response = await this.lookUpService.GetApplicationDetails(this.applicationId);
    if(response){
     this.selectedJob = response;
-    console.log(this.selectedJob);
     this.sharedService.selectedJobActions = this.sharedService.DeepCopyObject(this.selectedJob);
     this.AppliedJobActionsLanguageChanges();
    }
@@ -127,8 +127,48 @@ export class AppliedJobActionsComponent implements OnInit{
   }
   acceptOffer() {
     this.dialogRef = this.acceptOfferModal.openDialog('');
+    this.dialogRef = this.acceptOfferModal.openDialog('');
+    this.dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let offerAcceptanceData: OfferAcceptanceRejection = {
+          applicationId: localStorage.getItem('applicationId')?.toString() ?? '',
+          applicantId: localStorage.getItem('applicantId')?.toString() ?? '',
+          offerId: '',
+          comment: dialogResult,
+        };
+        console.log(dialogResult);
+        let response: any = await this.lookUpService.AcceptRejectOffer(
+          offerAcceptanceData
+        );
+        if (response?.Status) {
+          this.toastrService.success(response?.Message);
+        } else {
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
   RejectOffer() {
     this.dialogRef = this.rejectModal.openDialog('');
+    this.dialogRef = this.acceptOfferModal.openDialog('');
+    this.dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        let offerAcceptanceData: OfferAcceptanceRejection = {
+          applicationId: localStorage.getItem('applicationId')?.toString() ?? '',
+          applicantId: localStorage.getItem('applicantId')?.toString() ?? '',
+          offerId: '',
+          comment: dialogResult,
+        };
+        console.log(dialogResult);
+        let response: any = await this.lookUpService.AcceptRejectOffer(
+          offerAcceptanceData
+        );
+        if (response?.Status) {
+          this.toastrService.success(response?.Message);
+        } else {
+          this.toastrService.error(response?.Message);
+        }
+      }
+    });
   }
 }

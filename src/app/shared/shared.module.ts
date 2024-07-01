@@ -19,6 +19,7 @@ import { PreventArabicDirective } from './directives/arabic.directive';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { OfferModalComponent } from './offer-modal/offer-modal.component';
 import { RejectOfferComponent } from './reject-offer/reject-offer.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 
 
@@ -39,7 +40,8 @@ import { RejectOfferComponent } from './reject-offer/reject-offer.component';
     PreventArabicDirective,
     DeleteModalComponent,
     OfferModalComponent,
-    RejectOfferComponent
+    RejectOfferComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     MaterialModule,
@@ -55,6 +57,7 @@ import { RejectOfferComponent } from './reject-offer/reject-offer.component';
     ResetPasswordComponent,
     PasswordStrengthComponent,
     BlockCopyPasteDirective,
+    ConfirmationModalComponent,
     PreventArabicDirective
   ]
 })

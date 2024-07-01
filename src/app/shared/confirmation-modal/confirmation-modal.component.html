@@ -1,0 +1,24 @@
+<ng-container *transloco="let t; scope: 'basicInfo';">
+<div class="parent-container text-center" [ngClass]="{'direction-change':this.translationService.isTranslate}">
+  <!-- <div class="p-2"><img height="26" width="26" src="assets/SVG/delete.svg" alt="delete" /></div> -->
+  <div>
+    <p class="text-shuttle-grey">
+      {{t('basicInfo.confirmation-message')}}
+    </p>
+  </div>
+  <div class="row mx-0 gap-2">
+    <button
+      type="button"
+      class="btn border border-color-gray-300 text-gray-700 rounded font-poppins-medium col-lg-6"
+      (click)="closeDialog()">
+      {{t('basicInfo.cancel')}}
+    </button>
+    <button
+      type="button"
+      class="btn text-white bg-error-600 rounded font-poppins-medium col-lg-6"
+      (click)="Confirm()">
+      {{t('basicInfo.yes')}}
+    </button>
+  </div>
+</div>
+</ng-container>

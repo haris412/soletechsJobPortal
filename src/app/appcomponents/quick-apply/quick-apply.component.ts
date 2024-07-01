@@ -12,6 +12,8 @@ import { Application } from 'src/app/models/applicatiom.model';
 import { Job } from 'src/app/models/job.model';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
+import { ConfirmationModalComponentService } from 'src/app/shared/confirmation-modal/confirmation-modal.service';
+import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -57,7 +59,8 @@ export class QuickApplyComponent implements OnInit {
     private toastrService: ToastrService,
     public applicant: ApplicantDataService,
     public sharedService: SharedService,
-    public translationService: TranslationAlignmentService
+    public translationService: TranslationAlignmentService,
+    private confrmationModal: ConfirmationModalComponentService
   ) {
     this.name = localStorage.getItem('userName') ?? '';
     this.email = localStorage.getItem('email') ?? '';
@@ -231,36 +234,61 @@ export class QuickApplyComponent implements OnInit {
   }
 
   async QuickApply() {
-    this.quickApplyForm.controls.highestDegree.setValue(this.degreeCtrl.value);
-    this.quickApplyForm.controls.nationality.setValue(this.nationalityCtrl.value);
-    this.quickApplyForm.controls.address.setValue(this.countriesCtrl.value);
-    this.quickApplyForm.controls.currentAddressOut.setValue(this.citiesCtrl.value);
-    if (this.quickApplyForm.valid) {
-      const concatenatedString = "USMF" + "_" + this.applicant.applicantData?.TableId + "_" + Number(localStorage.getItem('recId')) + "_" + this.fileCvData.name ;
-      let applicationData: Application = {
-        ...this.quickApplyForm.getRawValue(),
-        periodJoin: Number(this.quickApplyForm.controls['periodJoin']?.value),
-        applicantIdRecid: Number(localStorage.getItem('recId')),
-        applicantpersonRecid:Number(localStorage.getItem('applicantPersonRecid')),
-        AttachmentWeb:1,
-        fileName:concatenatedString
-      }
-      try {
-        let applicationResponse = await this.applicationService.SaveApplication(applicationData);
-        if (applicationResponse.Status) {
-          this.toastrService.success(applicationResponse?.Message);
-          this.sharedService.applied = true;
-          this.sharedService.GetAppliedJobs();
-          this.closeClicked.emit(true);
+    const data = `Are you sure you want to apply for this Job?`;
+    const dialogRef = this.confrmationModal.openDialog(data);
+    dialogRef.afterClosed().subscribe(async (dialogResult: any) => {
+      if (dialogResult) {
+        this.quickApplyForm.controls.highestDegree.setValue(
+          this.degreeCtrl.value
+        );
+        this.quickApplyForm.controls.nationality.setValue(
+          this.nationalityCtrl.value
+        );
+        this.quickApplyForm.controls.address.setValue(this.countriesCtrl.value);
+        this.quickApplyForm.controls.currentAddressOut.setValue(
+          this.citiesCtrl.value
+        );
+        if (this.quickApplyForm.valid) {
+          const concatenatedString =
+            'USMF' +
+            '_' +
+            this.applicant.applicantData?.TableId +
+            '_' +
+            Number(localStorage.getItem('recId')) +
+            '_' +
+            this.fileCvData.name;
+          let applicationData: Application = {
+            ...this.quickApplyForm.getRawValue(),
+            periodJoin: Number(
+              this.quickApplyForm.controls['periodJoin']?.value
+            ),
+            applicantIdRecid: Number(localStorage.getItem('recId')),
+            applicantpersonRecid: Number(
+              localStorage.getItem('applicantPersonRecid')
+            ),
+            AttachmentWeb: 1,
+            fileName: concatenatedString,
+          };
+          try {
+            let applicationResponse =
+              await this.applicationService.SaveApplication(applicationData);
+            if (applicationResponse.Status) {
+              this.toastrService.success(applicationResponse?.Message);
+              this.sharedService.applied = true;
+              this.sharedService.GetAppliedJobs();
+              this.closeClicked.emit(true);
+            } else {
+              this.toastrService.error(applicationResponse?.Message);
+            }
+          } catch (ex) {
+            console.error();
+          }
         } else {
-          this.toastrService.error(applicationResponse?.Message);
+          this.quickApplyForm.markAllAsTouched();
         }
-      } catch (ex) {
-        console.error();
       }
-    } else {
-      this.quickApplyForm.markAllAsTouched();
-    }
+    });
+    
   }
   OnCountryChanged(event:Country){
 		this.phonePlaceHolder = event?.placeHolder;

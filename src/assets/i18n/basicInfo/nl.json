@@ -56,6 +56,8 @@
      "delete":"يمسح",
       "cancel":"يلغي",
      "delete-entry" :"- حذف السجل",
-     "delete-confirmation-message":"هل انت متأكد من حذف السجل ؟"
+     "delete-confirmation-message":"هل انت متأكد من حذف السجل ؟",
+     "confirmation-message":"Are you sure you want to apply for this job?",
+     "yes":"Yes"
 
 }

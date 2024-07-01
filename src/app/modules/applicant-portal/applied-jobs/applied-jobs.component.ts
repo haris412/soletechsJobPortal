@@ -118,7 +118,7 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
        applicationId:appliedJob.applicationId,
        applicantId: localStorage.getItem('applicantId')?.toString() ?? '',
        offerId:'',
-       offerStatus:'1'
+       comment:''
     }
      let response = await this.applicationService.AcceptRejectOffer(offerAcceptanceData);
      if(response){
