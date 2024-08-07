@@ -6,7 +6,7 @@
       class="d-flex flex-column align-items-start justify-content-center col-lg-4 col-sm-12 px-xl-4rem px-lg-4 px-4 login-container py-5 h-lg-100vh"
         [ngClass]="{'direction-change' : isTranslate}"
       >
-      <img class="mb-4" height="35" width="96" src="assets/Images/SmallLogo 1.png" alt="Section" />
+      <img class="mb-4" height="35" width="96" src="{{this.appInitiatorService.appConfiguration?.appLogo}}" alt="Section" />
       <!-- <img class="mb-4" height="35" width="96" src="assets/Images/SmallLogo 1.png" alt="Section" /> -->
       <div class="login-text">
         <h3 class="lh-38 font-poppins-semi mb-1 mb-lg-4 text-midnight-moss">

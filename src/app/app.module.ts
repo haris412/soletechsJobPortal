@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { AuthInterceptorService } from './app-services/http-interceptor.service'
 import { OtpVerificationComponent } from './appcomponents/otp-verification/otp-verification.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import { AppInitiatorService } from './app-services/app-initiator-service';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    bgsColor: 'white',
@@ -49,6 +50,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    maxTime: -1,
    minTime: 300,
   };
+
+  export function basicLoader(provider: AppInitiatorService){
+    return()=>{
+      return provider.GetCompanyConfiguration();
+    };
+  }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +83,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HttpClientModule,
     NgxMatIntlTelInputComponent
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    AppInitiatorService, 
+    {
+      provide: APP_INITIALIZER, useFactory: basicLoader, deps:[AppInitiatorService], multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

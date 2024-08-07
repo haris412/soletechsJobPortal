@@ -19,12 +19,17 @@ import { Education } from "../modules/competencies-common/components/models/educ
 import { UploadCvsDTO, UploadMedicalDTO } from "../modules/user-profile/user-profile.component";
 import { OfferAcceptanceRejection } from "../models/offer-acceptance-rejection.model";
 import { ApplicantOfferAction } from "../models/ApplicantOfferAction.model";
+import { AppInitiatorService } from "./app-initiator-service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppLookUpService {
-  constructor(private httpClient: HttpClient) {}
+
+  apiUrl: string | undefined = "";
+  constructor(private httpClient: HttpClient, public appInitiatorService: AppInitiatorService) {
+    this.apiUrl = this.appInitiatorService.appConfiguration?.apiUrl;
+  }
 
   async GetRecruitmentLookup(params: LookupParameters) {
     let queryParams = new HttpParams();
@@ -32,7 +37,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.getRecruitmentLookup, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.getRecruitmentLookup, { params: queryParams })
       .toPromise();
   }
 
@@ -42,7 +47,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.getCountryRegionLookup, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.getCountryRegionLookup, { params: queryParams })
       .toPromise();
   }
 
@@ -52,7 +57,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getHighestDegreeLookUp, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getHighestDegreeLookUp, {
         params: queryParams,
       })
       .toPromise();
@@ -64,7 +69,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.GetEthnicOriginLookup, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.GetEthnicOriginLookup, { params: queryParams })
       .toPromise();
   }
 
@@ -74,7 +79,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.GetNativeLanguageCodeLookup, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.GetNativeLanguageCodeLookup, {
         params: queryParams,
       })
       .toPromise();
@@ -86,7 +91,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.GetHighestDegreeLookups, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.GetHighestDegreeLookups, {
         params: queryParams,
       })
       .toPromise();
@@ -98,7 +103,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.GetReasonCodeLookups, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.GetReasonCodeLookups, { params: queryParams })
       .toPromise();
   }
 
@@ -108,7 +113,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.GetIdentificationTypeLookup, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.GetIdentificationTypeLookup, {
         params: queryParams,
       })
       .toPromise();
@@ -121,7 +126,7 @@ export class AppLookUpService {
       .set('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.lookUps.GetCityLookup, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.lookUps.GetCityLookup, { params: queryParams })
       .toPromise();
   }
   async GetSkillLookup(params: LookupParameters) {
@@ -130,7 +135,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getSkillLookupList, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getSkillLookupList, { params: queryParams })
       .toPromise();
   }
 
@@ -140,7 +145,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getRatingLevelLookupList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getRatingLevelLookupList, {
         params: queryParams,
       })
       .toPromise();
@@ -152,7 +157,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getEducationInstitutionLookupList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getEducationInstitutionLookupList, {
         params: queryParams,
       })
       .toPromise();
@@ -164,7 +169,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getEducationDisciplineLookupList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getEducationDisciplineLookupList, {
         params: queryParams,
       })
       .toPromise();
@@ -176,7 +181,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getEducationLevelLookupList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getEducationLevelLookupList, {
         params: queryParams,
       })
       .toPromise();
@@ -188,7 +193,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getCertificateTypeLookUpList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getCertificateTypeLookUpList, {
         params: queryParams,
       })
       .toPromise();
@@ -200,7 +205,7 @@ export class AppLookUpService {
       .append('dataAreaId', params.dataAreaId)
       .set('languageId', params.languageId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getPersonalTitleLookupList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getPersonalTitleLookupList, {
         params: queryParams,
       })
       .toPromise();
@@ -209,78 +214,78 @@ export class AppLookUpService {
 
   async CreateApplicant(applicant: any) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.createApplicant, applicant)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createApplicant, applicant)
       .toPromise();
   }
 
   async CreateSkill(skill: Skills) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.createSkill, skill)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createSkill, skill)
       .toPromise();
   }
 
   async EditSkill(skill: Skills) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.editSkill, skill)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.editSkill, skill)
       .toPromise();
   }
 
   async CreateProfessionalExperience(experience: professionalExperience) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.createProfessionalExperience, experience)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createProfessionalExperience, experience)
       .toPromise();
   }
 
   async EditProfessionalExperience(experience: professionalExperience) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.editExperience, experience)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.editExperience, experience)
       .toPromise();
   }
 
   async CreateEducation(education: Education) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.createEducation, education)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createEducation, education)
       .toPromise();
   }
   async EditEducation(education: Education) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.editEducation, education)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.editEducation, education)
       .toPromise();
   }
 
   async CreateCertificate(certificate: Certificates) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.createCertificate, certificate)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createCertificate, certificate)
       .toPromise();
   }
 
   async EditCertificate(certificate: Certificates) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.editCertificate, certificate)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.editCertificate, certificate)
       .toPromise();
   }
 
   async CreateCourse(course: Course) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.createCourse, course)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createCourse, course)
       .toPromise();
   }
 
   async EditCourse(course: Course) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.editCourse, course)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.editCourse, course)
       .toPromise();
   }
 
   async CreateTrustedPosition(trustedPosition: PositionOfTrust) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.createTrustedPosition, trustedPosition)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createTrustedPosition, trustedPosition)
       .toPromise();
   }
 
   async EditTrustedPosition(trustedPosition: PositionOfTrust) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.editTrustedPosition, trustedPosition)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.editTrustedPosition, trustedPosition)
       .toPromise();
   }
 
@@ -288,14 +293,14 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('personRecId', personRecId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getCertificateList, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getCertificateList, { params: queryParams })
       .toPromise();
   }
   async GetCourseList(personRecId: number) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('personRecId', personRecId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getCourseList, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getCourseList, { params: queryParams })
       .toPromise();
   }
 
@@ -303,7 +308,7 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('applicantId', applicantId);
     return await this.httpClient
-      .get<any>(apiURLs.application.myApplicationJobList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.myApplicationJobList, {
         params: queryParams,
       })
       .toPromise();
@@ -313,7 +318,7 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('personRecId', personRecId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getTrustedPositionList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getTrustedPositionList, {
         params: queryParams,
       })
       .toPromise();
@@ -322,53 +327,53 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('personRecId', personRecId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getProfessionalList, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getProfessionalList, { params: queryParams })
       .toPromise();
   }
   async GetEducationList(personRecId: number) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('personRecId', personRecId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getEducationList, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getEducationList, { params: queryParams })
       .toPromise();
   }
   async GetSkillsList(personRecId: number) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('personRecId', personRecId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getSkillsList, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getSkillsList, { params: queryParams })
       .toPromise();
   }
   async GetPersonalSuffixLookup() {
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getPersonalSuffixLookup)
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getPersonalSuffixLookup)
       .toPromise();
   }
   async GetPersonalTitleLookup() {
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getPersonalTitleLookup)
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getPersonalTitleLookup)
       .toPromise();
   }
   async UpdateApplicantProfileGeneral(profile: any) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.updateApplicantProfileGeneral, profile)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.updateApplicantProfileGeneral, profile)
       .toPromise();
   }
   async GetUpdateApplicantProfileContact(contact: ContactInfo) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.getUpdateApplicantProfileContact, contact)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getUpdateApplicantProfileContact, contact)
       .toPromise();
   }
 
   async GetUpdateApplicantProfileAddress(address: Address) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.getUpdateApplicantProfileAddress, address)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getUpdateApplicantProfileAddress, address)
       .toPromise();
   }
   async UpdateApplicantProfileIdentification(identification: Identification) {
     return await this.httpClient
       .post<any>(
-        apiURLs.applicant.updateApplicantProfileIdentification,
+        this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.updateApplicantProfileIdentification,
         identification
       )
       .toPromise();
@@ -377,7 +382,7 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('applicantId', applicantId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getApplicantProfile, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getApplicantProfile, { params: queryParams })
       .toPromise();
   }
   async DeleteCourse(recId: number, applicantRecId: number) {
@@ -386,7 +391,7 @@ export class AppLookUpService {
       .append('recid', recId)
       .set('applicantRecId', applicantRecId);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.courseDelete, { params: queryParams })
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.courseDelete, { params: queryParams })
       .toPromise();
   }
   async DeleteEducation(recId: number, applicantRecId: number) {
@@ -395,7 +400,7 @@ export class AppLookUpService {
       .append('recid', recId)
       .set('applicantRecId', applicantRecId);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.deleteEducation, { params: queryParams })
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.deleteEducation, { params: queryParams })
       .toPromise();
   }
   async DeleteCertificate(recId: number, applicantRecId: number) {
@@ -404,7 +409,7 @@ export class AppLookUpService {
       .append('recid', recId)
       .set('applicantRecId', applicantRecId);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.deleteCertificate, { params: queryParams })
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.deleteCertificate, { params: queryParams })
       .toPromise();
   }
   async DeleteProfessional(recId: number, applicantRecId: number) {
@@ -413,7 +418,7 @@ export class AppLookUpService {
       .append('recid', recId)
       .set('applicantRecId', applicantRecId);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.professionalDelete, {
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.professionalDelete, {
         params: queryParams,
       })
       .toPromise();
@@ -424,7 +429,7 @@ export class AppLookUpService {
       .append('recid', recId)
       .set('applicantRecId', applicantRecId);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.deleteSkill, { params: queryParams })
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.deleteSkill, { params: queryParams })
       .toPromise();
   }
   async DeletePositionOfTrust(recId: number, applicantRecId: number) {
@@ -433,7 +438,7 @@ export class AppLookUpService {
       .append('recid', recId)
       .set('applicantRecId', applicantRecId);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.deleteTrustedPosition, {
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.deleteTrustedPosition, {
         params: queryParams,
       })
       .toPromise();
@@ -443,7 +448,7 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('personRecid', personRecid);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.deleteAddress, { params: queryParams })
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.deleteAddress, { params: queryParams })
       .toPromise();
   }
   async DeleteContact(
@@ -457,7 +462,7 @@ export class AppLookUpService {
       .set('applicantRecId', applicantRecId)
       .set('contactNo', contactNo);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.deleteContact, { params: queryParams })
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.deleteContact, { params: queryParams })
       .toPromise();
   }
   async DeleteIdentification(recId: number, applicantRecId: number) {
@@ -466,7 +471,7 @@ export class AppLookUpService {
       .append('recid', recId)
       .set('applicantRecId', applicantRecId);
     return await this.httpClient
-      .delete<any>(apiURLs.applicant.deleteIdentification, {
+      .delete<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.deleteIdentification, {
         params: queryParams,
       })
       .toPromise();
@@ -475,21 +480,21 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('email', email);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.validateEmail, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.validateEmail, { params: queryParams })
       .toPromise();
   }
   async JobOfferDetails(applicationId: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('applicationId', applicationId);
     return await this.httpClient
-      .get<any>(apiURLs.application.jobOfferDetails, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.jobOfferDetails, { params: queryParams })
       .toPromise();
   }
   async GetApplicationDetails(applicationId: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('applicationId', applicationId);
     return await this.httpClient
-      .get<any>(apiURLs.application.getApplicationDetails, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.getApplicationDetails, {
         params: queryParams,
       })
       .toPromise();
@@ -497,7 +502,7 @@ export class AppLookUpService {
 
   async SavedApplicantJobs(job: SaveJob) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.savedApplicantJobs, job)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.savedApplicantJobs, job)
       .toPromise();
   }
 
@@ -505,7 +510,7 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('applicantId', applicantId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getApplicantSavedJobsList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getApplicantSavedJobsList, {
         params: queryParams,
       })
       .toPromise();
@@ -513,7 +518,7 @@ export class AppLookUpService {
 
   async ChangePassword(password: ChangePassword) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.changePassword, password)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.changePassword, password)
       .toPromise();
   }
 
@@ -521,56 +526,56 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('email', email);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.resetPassword, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.resetPassword, { params: queryParams })
       .toPromise();
   }
 
   async UploadApplicantImage(parameters: userApplicantImage) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.uploadApplicantImage, parameters)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.uploadApplicantImage, parameters)
       .toPromise();
   }
   async VerifyOTP(otp: number) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.verifyOTP, otp)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.verifyOTP, otp)
       .toPromise();
   }
   async GetUserDetails(applicantId: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('applicantId', applicantId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getUserDetails, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getUserDetails, { params: queryParams })
       .toPromise();
   }
   async ResendOTP(email: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('email', email);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.resendOtp, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.resendOtp, { params: queryParams })
       .toPromise();
   }
   async GetIpAddress() {
     let ipaddress = await this.httpClient
-      .get<any>(apiURLs.applicant.getIpAddress)
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getIpAddress)
       .toPromise();
     return ipaddress?.ip;
   }
 
   async UpdateAboutme(parameters: UpdateAboutMe) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.updateAboutme, parameters)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.updateAboutme, parameters)
       .toPromise();
   }
 
   async uploadCvs(parameters: UploadCvsDTO[]) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.uploadCvs, parameters)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.uploadCvs, parameters)
       .toPromise();
   }
 
   async uploadMedical(parameters: UploadMedicalDTO[]) {
     return await this.httpClient
-      .post<any>(apiURLs.applicant.medicalHistory, parameters)
+      .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.medicalHistory, parameters)
       .toPromise();
   }
 
@@ -585,7 +590,7 @@ export class AppLookUpService {
       .set('applicationId', applicationId)
       .set('personRecId', personRecId);
     return await this.httpClient
-      .get<any>(apiURLs.application.getApplicationOnBoardingList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.getApplicationOnBoardingList, {
         params: queryParams,
       })
       .toPromise();
@@ -595,7 +600,7 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('applicationId', applicationId);
     return await this.httpClient
-      .get<any>(apiURLs.application.getApplicationOnBoardingList, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.getApplicationOnBoardingList, {
         params: queryParams,
       })
       .toPromise();
@@ -607,7 +612,7 @@ export class AppLookUpService {
       .append('applicationId', applicationId)
       .set('interviewRecId', interviewerRecid);
     return await this.httpClient
-      .get<any>(apiURLs.application.getConfirmInterviewer, {
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.getConfirmInterviewer, {
         params: queryParams,
       })
       .toPromise();
@@ -617,7 +622,7 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('attachmentUrl', attachmentUrl);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getAttachmentFile, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getAttachmentFile, { params: queryParams })
       .toPromise();
   }
 
@@ -625,14 +630,14 @@ export class AppLookUpService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('skillId', skillId);
     return await this.httpClient
-      .get<any>(apiURLs.applicant.getRatingLevelLookup, { params: queryParams })
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getRatingLevelLookup, { params: queryParams })
       .toPromise();
   }
 
   async AcceptRejectOffer(acceptAndRejectJobOffer: OfferAcceptanceRejection) {
     return await this.httpClient
       .post<any>(
-        apiURLs.application.acceptAndRejectJobOffer,
+        this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.acceptAndRejectJobOffer,
         acceptAndRejectJobOffer
       )
       .toPromise();
@@ -640,7 +645,7 @@ export class AppLookUpService {
   async PerformOfferActoin(acceptAndRejectJobOffer: ApplicantOfferAction) {
     return await this.httpClient
       .post<any>(
-        apiURLs.application.performOfferActoin,
+        this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.application.performOfferActoin,
         acceptAndRejectJobOffer
       )
       .toPromise();

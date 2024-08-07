@@ -5,12 +5,16 @@ import { PagedResult } from "../shared/models/pages-result.model";
 import { apiURLs } from "../app.settings";
 import { jobsQueryParameters } from "../models/get-jobs-parameters.model";
 import { JobDetailParameter } from "../models/job-detail-parameter";
+import { AppInitiatorService } from "./app-initiator-service";
 
 @Injectable({
     providedIn: 'root',
 })
 export class RecruitmentService {
-    constructor(private httpClient: HttpClient) { }
+    apiUrl: string | undefined = "";
+  constructor(private httpClient: HttpClient, public appInitiatorService: AppInitiatorService) {
+    this.apiUrl = this.appInitiatorService.appConfiguration?.apiUrl;
+  }
 
     async GetRecruitmentInformationList(
         token: string
@@ -19,7 +23,7 @@ export class RecruitmentService {
         queryParams = queryParams.append('accessToken', token);
         return await this.httpClient
             .get<ApiResponse<PagedResult<any>>>(
-                apiURLs.recrutmentProjects.GetRecruitmentInformationListAsync, {
+                this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.recrutmentProjects.GetRecruitmentInformationListAsync, {
                 params: queryParams
             }
             ).toPromise();
@@ -36,7 +40,7 @@ export class RecruitmentService {
             set('languageId', params._languageId)
         return await this.httpClient
             .get<any>(
-                apiURLs.recrutmentProjects.getRecruitmentProjectsList,
+                this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.recrutmentProjects.getRecruitmentProjectsList,
                 { params: queryParams }
             ).toPromise();
     }
@@ -44,7 +48,7 @@ export class RecruitmentService {
     async GetStartedRecruitingList() {
         return await this.httpClient
             .get<any>(
-                apiURLs.recrutmentProjects.getStartedRecruitingList
+                this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.recrutmentProjects.getStartedRecruitingList
             ).toPromise();
     }
 
@@ -55,7 +59,7 @@ export class RecruitmentService {
         queryParams = queryParams.append('companyId', 'a');
         return await this.httpClient
             .get<any>(
-                apiURLs.recrutmentProjects.authenticationByCompanyIdAsync, { params: queryParams },
+                this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.recrutmentProjects.authenticationByCompanyIdAsync, { params: queryParams },
             ).toPromise();
     }
 
@@ -66,7 +70,7 @@ export class RecruitmentService {
             set('languageId', params._languageId)
         return await this.httpClient
             .get<any>(
-                apiURLs.recrutmentProjects.getJobDetails, { params: queryParams },
+                this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.recrutmentProjects.getJobDetails, { params: queryParams },
             ).toPromise();
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
+import { AppInitiatorService } from 'src/app/app-services/app-initiator-service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { LinkedInService } from 'src/app/modules/applicant-portal/services/linkedin.service';
@@ -28,7 +29,7 @@ export class HeaderComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     public translationService: TranslationAlignmentService,
     public linkedInServive: LinkedInService,
-
+    public appInitiatorService: AppInitiatorService
   ) {
     this.applicantDataService.loginEmitter.subscribe(x => this.UserLogin());
     this.translationService.languageChange.subscribe(x => {

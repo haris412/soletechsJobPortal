@@ -9,6 +9,7 @@ import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { CredentialResponse  } from 'google-one-tap';
 import { SocialUser } from 'angularx-social-login';
+import { AppInitiatorService } from 'src/app/app-services/app-initiator-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
     private toastrService: ToastrService,
     private lookupService: AppLookUpService,
     public translationService: TranslationAlignmentService,
-    private _ngZone:NgZone) {
+    private _ngZone:NgZone,
+    public appInitiatorService: AppInitiatorService) {
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
