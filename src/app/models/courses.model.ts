@@ -12,4 +12,5 @@ export interface Course{
     Attachment:any;
     AttachmentWeb?:number;
     RecId:number;
+    isDefender: boolean;
 }

@@ -270,9 +270,13 @@ export class QuickApplyComponent implements OnInit {
             fileName: concatenatedString,
           };
           try {
+            applicationData.isDefender = this.lookUpService.GetIsDefenderEnabled();
             let applicationResponse =
               await this.applicationService.SaveApplication(applicationData);
-            if (applicationResponse.Status) {
+            
+            if (applicationResponse != null && applicationResponse?.isVirus) {
+              this.toastrService.error("File contains virus. Please try with valid attachment.");
+            } else if (applicationResponse.Status) {
               this.toastrService.success(applicationResponse?.Message);
               this.sharedService.applied = true;
               this.sharedService.GetAppliedJobs();

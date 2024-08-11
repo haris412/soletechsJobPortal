@@ -6,7 +6,8 @@ export class Skills {
     applicantPersonRecId:number = 0;
     Attachment:any;
     AttachmentWeb?:number = 0;
-    ratingModelId:string = ''
-    Experience:number = 0
-    RecId:number = 0
+    ratingModelId:string = '';
+    Experience:number = 0;
+    RecId:number = 0;
+    isDefender: boolean = false;
 }

@@ -46,12 +46,15 @@ export class MedicalCheckUpComponent implements OnInit {
 
   async uploadMedical() {
     if(this.uploadMedicalData?.length > 0){
-		let res = await this.lookUpService.uploadMedical(this.uploadMedicalData);
-		if (res != null && res.length > 0) {
-			this.toastrService.success("Files are uploaded");
-		} else {
-			this.toastrService.error(res)
-		}
-  }
+      this.uploadMedicalData.forEach(x => x.isDefender = this.lookUpService.GetIsDefenderEnabled());
+      let res = await this.lookUpService.uploadMedical(this.uploadMedicalData);
+      if (res != null && res.length > 0) {
+        this.toastrService.success("Files are uploaded");
+      } else if (res != null && res.isVirus) {
+        this.toastrService.error("File contains virus. Please try with valid attachment.");
+      } else {
+        this.toastrService.error(res)
+      }
+    }
 	}
 }

@@ -19,4 +19,5 @@ export class Education {
     RecId:number = 0;
     Attachment: string = '';
     AttachmentWeb:number = 0;
+    isDefender: boolean = false;
 }

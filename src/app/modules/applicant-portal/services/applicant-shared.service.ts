@@ -61,6 +61,7 @@ export class ApplicantDataService {
           }
           localStorage.setItem('userNameAr', response.firstNameAr);
           localStorage.setItem('userName', response?.firstName);
+          localStorage.setItem('defenderenabled', response?.MicrosoftDefenderAzureBlob?.toString() ?? "0");
           this.SetApplicantInfo(response);
         }
       } catch (ex) {

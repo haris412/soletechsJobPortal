@@ -84,13 +84,16 @@ export class EducationComponent implements OnInit{
       EndDate: this.datePipe.transform(education.EndDate, "yyyy-MM-dd") ?? ''
     }
     let response;
+    educationData.isDefender = this.lookUpService.GetIsDefenderEnabled();
     if (education?.RecId > 0) {
       educationData = education;
       response = await this.lookUpService.EditEducation(educationData);
     } else {
       response = await this.lookUpService.CreateEducation(educationData);
     }
-    if (response?.Status) {
+    if (response != null && response?.isVirus) {
+      this.toastrService.error("File contains virus. Please try with valid attachment.");
+    } else if (response?.Status) {
       this.toastrService.success(response?.Message);
       await this.GetEducationList();
       this.CloseSidenav();

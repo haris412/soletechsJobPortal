@@ -60,13 +60,17 @@ export class CoursesComponent implements OnInit{
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
+    courseData.isDefender = this.lookUpService.GetIsDefenderEnabled();
     if (course?.RecId > 0) {
       courseData = course;
       response = await this.lookUpService.EditCourse(courseData);
     } else {
       response = await this.lookUpService.CreateCourse(courseData);
     }
-    if (response?.Status) {
+    
+    if (response != null && response?.isVirus) {
+      this.toastrService.error("File contains virus. Please try with valid attachment.");
+    } else if (response?.Status) {
       this.toastrService.success(response?.Message);
       this.GetCourses();
       this.CloseSidenav();

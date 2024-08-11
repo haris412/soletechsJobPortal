@@ -9,4 +9,5 @@ export interface PositionOfTrust{
     Attachment :any;
     AttachmentWeb?:number;
     Recid:number;
+    isDefender: boolean;
 }

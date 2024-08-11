@@ -650,4 +650,9 @@ export class AppLookUpService {
       )
       .toPromise();
   }
+
+  GetIsDefenderEnabled() {
+    let isdefenderenable = localStorage.getItem('defenderenabled') ?? 0 ;
+    return isdefenderenable == '1' ? true : false;
+  }
 }

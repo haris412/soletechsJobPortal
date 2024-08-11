@@ -296,9 +296,12 @@ export class UserProfileComponent {
   }
 
   async uploadCvs() {
+    this.uploadCvData.forEach(x => x.isDefender = this.lookUpService.GetIsDefenderEnabled());
     let res = await this.lookUpService.uploadCvs(this.uploadCvData);
     if (res != null && res?.length > 0) {
       this.toastrService.success('Files are uploaded');
+    }  else if (res != null && res.isVirus) {
+      this.toastrService.error("File contains virus. Please try with valid attachment.");
     } else {
       this.toastrService.error(res);
     }
@@ -365,6 +368,7 @@ export class UploadCvsDTO {
   applicantId: string = '';
   cvAttachment: string = '';
   fileName: string = '';
+  isDefender: boolean = false;
 }
 
 export class UploadMedicalDTO {
@@ -372,4 +376,5 @@ export class UploadMedicalDTO {
   attachment: string = '';
   fileName: string = '';
   _imageBase64: string = '';
+  isDefender: boolean = false;
 }

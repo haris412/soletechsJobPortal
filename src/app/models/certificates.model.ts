@@ -9,6 +9,7 @@ export interface Certificates{
     recid:number;
     Attachment:any;
     AttachmentWeb?:number;
+    isDefender: boolean;
 }
 
 

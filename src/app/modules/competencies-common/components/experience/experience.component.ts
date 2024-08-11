@@ -65,6 +65,7 @@ export class ExperienceComponent implements OnInit {
     }
     let response;
     var isEdit = false;
+    experienceData.isDefender = this.lookUpService.GetIsDefenderEnabled();
     if (experience?.recid > 0) {
       experienceData = experience;
       response = await this.lookUpService.EditProfessionalExperience(experienceData);
@@ -72,7 +73,9 @@ export class ExperienceComponent implements OnInit {
     } else {
       response = await this.lookUpService.CreateProfessionalExperience(experienceData);
     }
-    if (response) {
+    if (response != null && response?.isVirus) {
+      this.toastrService.error("File contains virus. Please try with valid attachment.");
+    } else if (response) {
       if (isEdit) {
         this.toastrService.success('experience Updated Successfully');
       } else {

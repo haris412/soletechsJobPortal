@@ -17,4 +17,5 @@ export interface Application{
     Attachment?:string;
     AttachmentWeb?:number;
     fileName?:string;
+    isDefender: boolean;
 }

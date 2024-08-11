@@ -13,4 +13,5 @@ export interface professionalExperience{
     Attachment: string;
     AttachmentWeb: number;
     fileName:string;
+    isDefender: boolean;
 }

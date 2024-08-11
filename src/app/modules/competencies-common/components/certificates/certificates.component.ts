@@ -77,10 +77,13 @@ export class CertificatesComponent implements OnInit {
       IssueDate: this.datePipe.transform(certificate.IssueDate, "yyyy-MM-dd") ?? '',
       ExpirationDate: this.datePipe.transform(certificate.ExpirationDate, "yyyy-MM-dd") ?? ''
     }
+    certificateData.isDefender = this.service.GetIsDefenderEnabled();
     try {
       if (certificate?.recid === 0) {
         certificateResponse = await this.service.CreateCertificate(certificateData);
-        if (certificateResponse?.Status) {
+        if (certificateResponse != null && certificateResponse?.isVirus) {
+          this.toastrService.error("File contains virus. Please try with valid attachment.");
+        } else if (certificateResponse?.Status) {
           this.toastrService.success(certificateResponse?.Message);
           this.GetCertifiates();
           this.CloseSidenav();
@@ -89,7 +92,9 @@ export class CertificatesComponent implements OnInit {
         }
       } else {
         certificateResponse = await this.service.EditCertificate(certificateData);
-        if (certificateResponse?.Status) {
+        if (certificateResponse != null && certificateResponse?.isVirus) {
+          this.toastrService.error("File contains virus. Please try with valid attachment.");
+        } else if (certificateResponse?.Status) {
           this.toastrService.success(certificateResponse?.Message);
           this.GetCertifiates();
           this.CloseSidenav();

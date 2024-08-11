@@ -63,13 +63,16 @@ export class PositionoftrustComponent implements OnInit{
       applicantPersonRecid: Number(localStorage.getItem('applicantPersonRecid'))
     }
     let response;
+    positionData.isDefender = this.lookUpService.GetIsDefenderEnabled();
     if (positionOfTrust.Recid > 0) {
       positionData = positionOfTrust;
       response = await this.lookUpService.EditTrustedPosition(positionData);
     } else {
       response = await this.lookUpService.CreateTrustedPosition(positionData);
     }
-    if (response?.Status) {
+    if (response != null && response.isVirus) {
+      this.toastrService.error("File contains virus. Please try with valid attachment.");
+    } else if (response?.Status) {
       this.toastrService.success(response?.Message);
       this.GetPositionTrust();
       this.CloseSidenav();

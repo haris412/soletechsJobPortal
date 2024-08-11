@@ -193,8 +193,8 @@ export class SignUpComponent implements OnInit {
 				attachmentForWeb : this.userForm.controls.cvAttachment.value !== ''?  1: 0 
 				//aboutMe:this.aboutMe
 			}
-			let isdefenderenable = localStorage.getItem('defenderenabled') ?? 0 ;
-			this.userData['isDefender'] = isdefenderenable == '1' ? true : false;
+			
+			this.userData['isDefender'] = this.lookupService.GetIsDefenderEnabled();
 			var data = await this.lookupService.CreateApplicant(this.userData);
 			if (data != null && data.Status) {
 				this.userInfo.prepareApplicantFormGroup();
@@ -211,6 +211,13 @@ export class SignUpComponent implements OnInit {
 					  this.router.navigate(['/login'])
 					}
 				  });
+			} else if (data != null && data.isVirus) {
+				Swal.fire({
+					title: 'Error',
+					icon: 'error',
+					text: "File contains virus. Please try with valid attachment.",
+					confirmButtonText: 'Ok'
+				});
 			} else {
 				Swal.fire({
 					title: 'Error',

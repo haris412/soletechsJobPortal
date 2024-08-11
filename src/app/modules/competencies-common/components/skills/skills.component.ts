@@ -73,6 +73,7 @@ export class SkillsComponent implements OnInit{
     }
     let response;
     var isEdit = false;
+    skillData.isDefender = this.lookUpService.GetIsDefenderEnabled();
     if (skill?.RecId > 0) {
       //skillData = skill;
       response = await this.lookUpService.EditSkill(skillData);
@@ -80,7 +81,9 @@ export class SkillsComponent implements OnInit{
     } else {
       response = await this.lookUpService.CreateSkill(skillData);
     }
-    if (response?.Status) {
+    if(response != null && response?.isVirus) {
+      this.toastrService.error("File contains virus. Please try with valid attachment.");
+    } else if (response?.Status) {
       this.toastrService.success(response?.Message);
       this.GetSkillsList();
       this.CloseSidenav();
