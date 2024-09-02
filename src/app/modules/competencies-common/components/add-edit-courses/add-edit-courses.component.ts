@@ -38,9 +38,9 @@ export class AddEditCoursesComponent  implements OnInit{
       StartDate: ['', [Validators.required]],
       EndDate:['', [Validators.required]],
       Location:['', [Validators.required]],
-      NoOfDay:[],
+      NoOfDay:[0],
       HourType:[''],
-      NumberOfHours:[],
+      NumberOfHours:[0],
       attachment:[''],
 			fileName: ['']
     });
