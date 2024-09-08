@@ -1,13 +1,11 @@
-export interface PositionOfTrust{
+export interface ApplicantRefrence{
     id:string;
-    Employment :string;
-    Position :string;
-    StartDate:string | Date;
-    EndDate:string | Date;
+    Company:string;
     Notes:string;
     applicantPersonRecid:number;
     Attachment :any;
+    Employment:string;
     AttachmentWeb?:number;
-    Recid:number;
+    ApplicantRecid:number;
     isDefender: boolean;
 }

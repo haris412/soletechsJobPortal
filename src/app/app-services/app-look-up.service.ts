@@ -7,7 +7,6 @@ import { professionalExperience } from "../models/professional-experience.model"
 
 import { Certificates } from "../models/certificates.model";
 import { Course } from "../models/courses.model";
-import { PositionOfTrust } from "../models/position-of-trust.model";
 import { Address } from "../models/address.model";
 import { ContactInfo } from "../models/contact-info.model";
 import { Identification } from "../models/identification.model";
@@ -20,6 +19,7 @@ import { UploadCvsDTO, UploadMedicalDTO } from "../modules/user-profile/user-pro
 import { OfferAcceptanceRejection } from "../models/offer-acceptance-rejection.model";
 import { ApplicantOfferAction } from "../models/ApplicantOfferAction.model";
 import { AppInitiatorService } from "./app-initiator-service";
+import { ApplicantRefrence } from "../models/position-of-trust.model";
 
 @Injectable({
   providedIn: 'root',
@@ -277,13 +277,13 @@ export class AppLookUpService {
       .toPromise();
   }
 
-  async CreateTrustedPosition(trustedPosition: PositionOfTrust) {
+  async CreateTrustedPosition(trustedPosition: ApplicantRefrence) {
     return await this.httpClient
       .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.createTrustedPosition, trustedPosition)
       .toPromise();
   }
 
-  async EditTrustedPosition(trustedPosition: PositionOfTrust) {
+  async EditTrustedPosition(trustedPosition: ApplicantRefrence) {
     return await this.httpClient
       .post<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.editTrustedPosition, trustedPosition)
       .toPromise();

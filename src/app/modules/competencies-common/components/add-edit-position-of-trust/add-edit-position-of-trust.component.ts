@@ -4,7 +4,7 @@ import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
 import { ToastrService } from 'ngx-toastr';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
-import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
+import { ApplicantRefrence } from 'src/app/models/position-of-trust.model';
 
 @Component({
   selector: 'app-add-edit-position-of-trust',
@@ -12,9 +12,9 @@ import { PositionOfTrust } from 'src/app/models/position-of-trust.model';
   styleUrls: ['./add-edit-position-of-trust.component.scss']
 })
 export class AddEditPositionOfTrustComponent implements OnInit{
-  @Input() selectedPositionOfTrust:PositionOfTrust = new Object() as PositionOfTrust;
+  @Input() selectedPositionOfTrust:ApplicantRefrence = new Object() as ApplicantRefrence;
   @Output() closeSideNav: EventEmitter<any> = new EventEmitter();
-  @Output() positionTrustData: EventEmitter<PositionOfTrust> = new EventEmitter();
+  @Output() positionTrustData: EventEmitter<ApplicantRefrence> = new EventEmitter();
   psitionTrustForm: UntypedFormGroup;
   private _formBuilder = inject(UntypedFormBuilder);
   fileList:any[]=[];
@@ -32,12 +32,8 @@ export class AddEditPositionOfTrustComponent implements OnInit{
               private toastrService: ToastrService){
     this.psitionTrustForm = this._formBuilder.group({
       id: [''],
-      Employment: [''],
-      Position: [''],
-      StartDate:['', [Validators.required]],
-      EndDate:['', [Validators.required]],
-      PreviousManagerName:['', [Validators.required]],
-      jobTitle:['', [Validators.required]],
+      Employment:['',[Validators.required]],
+      Position:['',[Validators.required]],
       EmailAddress:['',[Validators.required]],
       Company:['',[Validators.required]],
       MobileNo:['',[Validators.required]],
