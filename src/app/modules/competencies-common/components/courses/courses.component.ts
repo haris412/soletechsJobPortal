@@ -55,6 +55,8 @@ export class CoursesComponent implements OnInit{
   async CourseAdded(course:Course){
     let courseData: Course = {
       ...course,
+      NumberOfHours:course?.NumberOfHours ? course?.NumberOfHours : 0,
+      NoOfDay:course?.NoOfDay ? course?.NoOfDay : 0,
       AttachmentWeb:course?.Attachment ? 1: 0,
       RecId: course?.RecId ? course?.RecId : 0,
       applicantPersonRecId: Number(localStorage.getItem('applicantPersonRecid'))
@@ -63,6 +65,8 @@ export class CoursesComponent implements OnInit{
     courseData.isDefender = this.lookUpService.GetIsDefenderEnabled();
     if (course?.RecId > 0) {
       courseData = course;
+      courseData.NoOfDay = course.NoOfDay ? course.NoOfDay : 0;
+      courseData.NumberOfHours = course.NumberOfHours ? course.NumberOfHours : 0;
       response = await this.lookUpService.EditCourse(courseData);
     } else {
       response = await this.lookUpService.CreateCourse(courseData);
