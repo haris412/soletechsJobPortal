@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address.model';
 
@@ -11,7 +11,7 @@ import { UserInfoService } from 'src/app/modules/user-info/user-info.service';
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-export class AddressComponent {
+export class AddressComponent implements OnInit {
   public sidenavOpen: boolean = false;
   AddressList: Address[] = [];
   selectedAddress!:Address;
@@ -20,6 +20,13 @@ export class AddressComponent {
               private lookUpService:AppLookUpService,
             public userInfoService: UserInfoService,
             private deleteModal: DeleteModalComponentService){}
+
+  async ngOnInit() {
+    if (this.userInfoService?.identificationList?.parmApplicantProfileIdentificationList == undefined || this.userInfoService?.identificationList?.parmApplicantProfileIdentificationList.length == 0) {
+      await this.userInfoService.GetApplicantProfile();
+    }  
+  }
+
   AddAddress(){
     this.selectedAddress = new Object() as Address;
     this.OpenSidenav();

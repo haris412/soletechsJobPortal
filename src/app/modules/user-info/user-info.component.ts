@@ -53,7 +53,9 @@ export class UserInfoComponent implements OnInit {
 
 	async ngOnInit() {
 		await this.GetLookups();
-		await this.userInfoService.GetApplicantProfile();
+		if (this.userInfoService?.identificationList?.parmApplicantProfileIdentificationList == undefined || this.userInfoService?.identificationList?.parmApplicantProfileIdentificationList.length == 0) {
+			await this.userInfoService.GetApplicantProfile();
+		  }
 		this.index = 1;
 	}
 

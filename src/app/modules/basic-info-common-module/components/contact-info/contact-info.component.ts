@@ -23,8 +23,10 @@ export class ContactInfoComponent implements OnInit {
              private deleteModal: DeleteModalComponentService,
              public translationService: TranslationAlignmentService){}
   
-  ngOnInit(): void {
-    
+  async ngOnInit() {
+    if (this.userInfoService?.identificationList?.parmApplicantProfileIdentificationList == undefined || this.userInfoService?.identificationList?.parmApplicantProfileIdentificationList.length == 0) {
+      await this.userInfoService.GetApplicantProfile();
+    }
   }
   
   async ContactAdded(contact:ContactInfo){
