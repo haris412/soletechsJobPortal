@@ -100,6 +100,7 @@ export const apiURLs = {
         uploadCvs:`/ERPApplicant/UploadCvAttachments`,
         medicalHistory:`/ERPApplicant/UploadMedicalAttachment`,
         getAttachmentFile:`/ERPApplicant/GetAttachFileFromAzure`,
-        getRatingLevelLookup:`/ERPApplicant/GetRatingLevelLookup`
+        getRatingLevelLookup:`/ERPApplicant/GetRatingLevelLookup`,
+        getAttachmentFileFromBlob:`/ERPApplicant/GetAttachmentFileFromDynamic365`
     }
 }
