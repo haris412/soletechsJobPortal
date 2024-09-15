@@ -58,8 +58,8 @@ export class AddEditCertificatesComponent implements OnInit {
         ...this.selectedCertificate
       });
     }
-    
-    this.GetFilesFromAttachment(this.selectedCertificate?.Attachment);
+    if (this.selectedCertificate.fileName)
+      this.GetFilesFromAttachment(this.selectedCertificate?.fileName);
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -168,14 +168,17 @@ export class AddEditCertificatesComponent implements OnInit {
       this.certiifcateForm.controls.Description.disable();
     }
     async GetFilesFromAttachment(attachment: string) {
-      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
-        this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
-        this.fileFromAttachments = attachment;
-      }
+      // this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
+      this.fileFromAttachments = attachment;
     }
 
-    DownloadFile() {
-      this.showPdf();
+    async DownloadFile() {
+      //this.showPdf();
+      await this.DownloadFromBlob();
+    }
+
+    async DownloadFromBlob() {
+      var fileData = await this.lookupService.GetAttachmentFromBlob(this.selectedCertificate?.fileName);
     }
 
     showPdf() {
@@ -188,6 +191,7 @@ export class AddEditCertificatesComponent implements OnInit {
       downloadLink.download = fileName;
       downloadLink.click();
     }
+
     ArabicList() {
       if (this.translationService.isTranslate) {
         this.certificateTypeList = this.competenciesService.certificateTypesArabicList;

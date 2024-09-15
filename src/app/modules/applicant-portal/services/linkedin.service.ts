@@ -16,12 +16,12 @@ export class LinkedInService {
   constructor(private http: HttpClient) { }
 
   public GetAccessToken(url: any): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/Lookup/GetAccessToken?${url}`);
+    return this.http.get(`${environment.apiUrl}/LinkedIn/GetAccessToken?${url}`);
   }
 
   public GetUserInfoLinkedIn(): Observable<any>  {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.accessToken });
-    let url = `${environment.apiUrl}/Lookup/GetUserInfo?accessToken=${this.accessToken}`;
+    let url = `${environment.apiUrl}/LinkedIn/GetUserInfo?accessToken=${this.accessToken}`;
     return this.http.get(url, {headers: headers} );
   }
 }
