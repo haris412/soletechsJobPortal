@@ -626,6 +626,15 @@ export class AppLookUpService {
       .toPromise();
   }
 
+  async GetAttachmentFromBlob(attachmentUrl: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams
+      .append('filename', attachmentUrl);
+    return await this.httpClient
+      .get<any>(this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.getAttachmentFileFromBlob, { params: queryParams })
+      .toPromise();
+  }
+
   async GetRatingLevelLookup(skillId: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('skillId', skillId);

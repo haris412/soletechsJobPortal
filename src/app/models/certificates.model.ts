@@ -10,6 +10,7 @@ export interface Certificates{
     Attachment:any;
     AttachmentWeb?:number;
     isDefender: boolean;
+    fileName: string;
 }
 
 
