@@ -50,8 +50,10 @@ export class AuthInterceptorService implements HttpInterceptor {
             if (accessTokenResponse) {
                 this.sharedService.SetToken(accessTokenResponse.access_token);
             }
-        } else if (body?.access_token != undefined) {
+        } else if (body?.access_token != undefined && body?.id_token == undefined) {
                 this.sharedService.SetToken(body?.access_token);
+        } else if (body?.access_token != undefined && body?.id_token != undefined) {
+            localStorage.setItem("linkedInAccess_token", body?.access_token);
         }
     }
 }
