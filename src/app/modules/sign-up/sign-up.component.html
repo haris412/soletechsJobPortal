@@ -155,6 +155,8 @@
                 [formControlName]="'identificationNumber'" />
                 <mat-error class="error-message"
                 *ngIf="f.identificationNumber.hasError('required') && (f.identificationNumber.dirty || f.identificationNumber.touched)">Identification number is Required</mat-error>
+                <mat-error class="error-message"
+                *ngIf="f.identificationNumber.hasError('maxlength') && (f.identificationNumber.dirty || f.identificationNumber.touched)">Identification number should be 10 characters</mat-error>
             </mat-form-field>
           </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">

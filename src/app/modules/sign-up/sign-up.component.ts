@@ -58,7 +58,7 @@ export class SignUpComponent implements OnInit {
 			lastNameAr: [''],
 			middleNameAr: [''],
 			middleName: [''],
-			identificationNumber: ['', [Validators.required]],
+			identificationNumber: ['', [Validators.required, Validators.maxLength(10)]],
 			lastName: ['', [Validators.required]],
 			mobileNo:['', [Validators.required]],
 			currentJobTitle:['',[Validators.required]],
