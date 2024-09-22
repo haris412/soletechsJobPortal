@@ -179,13 +179,17 @@ export class AddEditCertificatesComponent implements OnInit {
 
     async DownloadFromBlob() {
       var fileData = await this.lookupService.GetAttachmentFromBlob(this.selectedCertificate?.fileName);
+      if (fileData && fileData["parmDocumentList"]) {
+        this.attachBase64 = (fileData["parmDocumentList"])[0];
+        this.showPdf()
+      }
     }
 
     showPdf() {
       const linkSource =
         'data:application/octet-stream;base64,' + this.attachBase64?.value;
       const downloadLink = document.createElement('a');
-      const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('/') + 1, this.fileFromAttachments.length);
+      const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('_') + 1, this.fileFromAttachments.length);
   
       downloadLink.href = linkSource;
       downloadLink.download = fileName;
