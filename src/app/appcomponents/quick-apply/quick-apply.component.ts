@@ -249,14 +249,14 @@ export class QuickApplyComponent implements OnInit {
           this.citiesCtrl.value
         );
         if (this.quickApplyForm.valid) {
-          const concatenatedString =
-            'USMF' +
-            '_' +
-            this.applicant.applicantData?.TableId +
-            '_' +
-            Number(localStorage.getItem('recId')) +
-            '_' +
-            this.fileCvData.name;
+          // const concatenatedString =
+          //   'USMF' +
+          //   '_' +
+          //   this.applicant.applicantData?.TableId +
+          //   '_' +
+          //   Number(localStorage.getItem('recId')) +
+          //   '_' +
+          //   this.fileCvData.name;
           let applicationData: Application = {
             ...this.quickApplyForm.getRawValue(),
             periodJoin: Number(
@@ -267,7 +267,7 @@ export class QuickApplyComponent implements OnInit {
               localStorage.getItem('applicantPersonRecid')
             ),
             AttachmentWeb: 1,
-            fileName: concatenatedString,
+            fileName: this.fileCvData.name,
           };
           try {
             applicationData.isDefender = this.lookUpService.GetIsDefenderEnabled();
