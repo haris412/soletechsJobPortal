@@ -253,21 +253,27 @@
 
 .next-actions {
   .month-date {
-    .month {
-      width: 46px;
-      height: 17px;
-      background-color: $feijoa;
+    max-width: 68px;
+    .month, .day {
+      padding-inline: 0.5rem;
+      padding-block: 0.75rem;
       text-transform: uppercase;
-      font-size: 0.531rem;
-      font-family: $font-poppins-bold;
+      font-size: 0.5rem;
+      font-family: $font-poppins-semi;
+      background-color: $feijoa;
+      line-height: 1px;
     }
     .date {
-      width: 46px;
-      height: 29px;
+      padding-inline: 0.5rem;
+      padding-block: 0.25rem;
       background-color: $white-smoke;
       text-transform: uppercase;
-      font-size: 0.875rem;
+      font-size: 1rem;
       font-family: $font-poppins-bold;
+    }
+    .day {
+      background-color: $white-smoke;
+      padding-top: 0;
     }
   }
   .meeting-with {
@@ -311,28 +317,6 @@
     @include media-breakpoint-up(xxl) {
       margin-bottom: 2.375rem;
     }
-  }
-  .month-date {
-    .month {
-      width: 46px;
-      height: 17px;
-      background-color: $feijoa;
-      text-transform: uppercase;
-      font-size: 0.531rem;
-      font-family: $font-poppins-bold;
-    }
-    .date {
-      width: 46px;
-      height: 29px;
-      background-color: $white-smoke;
-      text-transform: uppercase;
-      font-size: 0.875rem;
-      font-family: $font-poppins-bold;
-    }
-  }
-  .meeting-with {
-    font-size: 0.75rem;
-    font-family: $font-poppins-medium;
   }
   .confirm-reschedule {
     .btn {
