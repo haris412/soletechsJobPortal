@@ -112,6 +112,13 @@ export class AppliedJobsComponent implements OnInit , OnChanges{
     const year = dateObject.year();
     return year;
   }
+  GetDayName(fullDate:string){
+    const date = new Date(fullDate);
+    // Use Intl.DateTimeFormat to get the day name
+    const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
+   
+    return dayName;
+  }
   OpenReschedule(){}
   async AcceptOffer(appliedJob:any){
     let offerAcceptanceData:OfferAcceptanceRejection ={
