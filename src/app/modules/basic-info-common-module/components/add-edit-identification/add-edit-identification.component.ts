@@ -58,7 +58,8 @@ export class AddEditIdentificationComponent implements OnInit {
     } else {
       this.identificationForm.reset();
     }
-    this.GetFilesFromAttachment(this.selectedIdentification?.Attachment);
+    if (this.selectedIdentification?.fileName)
+      this.GetFilesFromAttachment(this.selectedIdentification?.fileName);
   }
   CloseIdentificationNav: () => void = () => {
     this.closeSideNav.emit(true);
@@ -109,13 +110,19 @@ export class AddEditIdentificationComponent implements OnInit {
     this.fileList = [];
   }
   async GetFilesFromAttachment(attachment: string) {
-    if (attachment.includes('soletechsattachmentcontainer')) {
-      this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
-      this.fileFromAttachments = attachment;
-    }
+    this.fileFromAttachments = attachment;
   }
-  DownloadFile() {
-    this.showPdf();
+
+  async DownloadFile() {
+    await this.DownloadFromBlob();
+  }
+
+  async DownloadFromBlob() {
+    var fileData = await this.lookupService.GetAttachmentFromBlob(this.selectedIdentification?.fileName);
+    if (fileData) {
+      this.attachBase64 = fileData;
+      this.showPdf()
+    }
   }
 
   showPdf() {

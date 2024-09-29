@@ -54,7 +54,8 @@ export class AddEditCoursesComponent  implements OnInit{
         ...this.selectedCourse
       });
     }
-    this.GetFilesFromAttachment(this.selectedCourse?.Attachment);
+    if (this.selectedCourse.fileName)
+      this.GetFilesFromAttachment(this.selectedCourse?.fileName);
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -158,14 +159,19 @@ export class AddEditCoursesComponent  implements OnInit{
     }
 
     async GetFilesFromAttachment(attachment: string) {
-      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
-        this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
-        this.fileFromAttachments = attachment;
-      }
+      this.fileFromAttachments = attachment;
     }
 
-    DownloadFile() {
-      this.showPdf();
+    async DownloadFile() {
+      await this.DownloadFromBlob();
+    }
+
+    async DownloadFromBlob() {
+      var fileData = await this.lookupService.GetAttachmentFromBlob(this.selectedCourse?.fileName);
+      if (fileData) {
+        this.attachBase64 = fileData;
+        this.showPdf()
+      }
     }
 
     showPdf() {

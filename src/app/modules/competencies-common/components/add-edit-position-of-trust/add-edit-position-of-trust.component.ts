@@ -52,7 +52,8 @@ export class AddEditPositionOfTrustComponent implements OnInit{
         ...this.selectedPositionOfTrust
       });
     }
-    this.GetFilesFromAttachment(this.selectedPositionOfTrust?.Attachment);
+    if (this.selectedPositionOfTrust?.fileName)
+      this.GetFilesFromAttachment(this.selectedPositionOfTrust?.fileName);
    }
     CloseSideNav: () => void = () => {
       this.closeSideNav.emit(true);
@@ -106,15 +107,21 @@ export class AddEditPositionOfTrustComponent implements OnInit{
     }
 
     async GetFilesFromAttachment(attachment: string) {
-      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
-        this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
-        this.fileFromAttachments = attachment;
+      this.fileFromAttachments = attachment;
+    }
+
+    async DownloadFile() {
+      await this.DownloadFromBlob();
+    }
+
+    async DownloadFromBlob() {
+      var fileData = await this.lookupService.GetAttachmentFromBlob(this.selectedPositionOfTrust?.fileName);
+      if (fileData) {
+        this.attachBase64 = fileData;
+        this.showPdf()
       }
     }
 
-    DownloadFile() {
-      this.showPdf();
-    }
     OnCountryChanged(event:Country){
       this.phonePlaceHolder = event?.placeHolder;
       }

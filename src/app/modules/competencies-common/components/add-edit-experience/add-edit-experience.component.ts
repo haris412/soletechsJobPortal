@@ -54,7 +54,8 @@ export class AddEditExperienceComponent implements OnInit {
         ...this.selectedExperience
       });
     }
-    this.GetFilesFromAttachment(this.selectedExperience?.Attachment);
+    if (this.selectedExperience?.fileName)
+      this.GetFilesFromAttachment(this.selectedExperience?.fileName);
   }
   CloseSideNav: () => void = () => {
     this.closeSideNav.emit(true);
@@ -142,14 +143,19 @@ export class AddEditExperienceComponent implements OnInit {
   }
   
   async GetFilesFromAttachment(attachment: string) {
-    if (attachment && attachment.includes('soletechsattachmentcontainer')) {
-      this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
-      this.fileFromAttachments = attachment;
-    }
+    this.fileFromAttachments = attachment;
   }
 
-  DownloadFile() {
-    this.showPdf();
+  async DownloadFile() {
+    await this.DownloadFromBlob();
+  }
+
+  async DownloadFromBlob() {
+    var fileData = await this.lookupService.GetAttachmentFromBlob(this.selectedExperience?.fileName);
+    if (fileData) {
+      this.attachBase64 = fileData;
+      this.showPdf()
+    }
   }
 
   showPdf() {

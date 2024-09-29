@@ -20,4 +20,5 @@ export class Education {
     Attachment: string = '';
     AttachmentWeb:number = 0;
     isDefender: boolean = false;
+    fileName: string = '';
 }

@@ -63,7 +63,8 @@ export class AddEditSkillsComponent implements OnInit {
       });
       this.SetSkillValue();
     }
-    this.GetFilesFromAttachment(this.selectedSkill?.Attachment);
+    if (this.selectedSkill?.fileName)
+      this.GetFilesFromAttachment(this.selectedSkill?.fileName);
     this.skillsData = this.skillsCtrl.valueChanges.pipe(
       startWith(''),
       map(value => this.__filterSkills(value || '')),
@@ -118,16 +119,21 @@ export class AddEditSkillsComponent implements OnInit {
     }
 
     async GetFilesFromAttachment(attachment: string) {
-      if (attachment && attachment.includes('soletechsattachmentcontainer')) {
-        /// call to get data from Azure
-        this.attachBase64 = await this.lookupService.GetAttachmentFromAzure(attachment);
-        this.fileFromAttachments = attachment;
+      this.fileFromAttachments = attachment;
+    }
+
+    async DownloadFile() {
+      await this.DownloadFromBlob();
+    }
+
+    async DownloadFromBlob() {
+      var fileData = await this.lookupService.GetAttachmentFromBlob(this.selectedSkill?.fileName);
+      if (fileData) {
+        this.attachBase64 = fileData;
+        this.showPdf()
       }
     }
 
-    DownloadFile() {
-      this.showPdf();
-    }
     private __filterSkills(value: string): string[] {
       const filterValue = value?.toLowerCase();
       return this.translationService.isTranslate ? this.competenciesService.skillsArabicList?.filter(skill => skill?.name?.toLowerCase()?.includes(filterValue)) : this.competenciesService.skillsList?.filter(skill => skill?.name?.toLowerCase()?.includes(filterValue));

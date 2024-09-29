@@ -7,4 +7,5 @@ export interface Identification {
     recId:number;
     Attachment:any;
     AttachmentWeb?:number;
+    fileName: string;
 }

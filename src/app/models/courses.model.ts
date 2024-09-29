@@ -13,4 +13,5 @@ export interface Course{
     AttachmentWeb?:number;
     RecId:number;
     isDefender: boolean;
+    fileName: string;
 }

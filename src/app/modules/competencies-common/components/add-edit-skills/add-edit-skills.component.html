@@ -129,7 +129,7 @@
                       alt="" />
                 </div>
                 <div class="file-name-type">
-                  <span class="file-name">{{fileFromAttachments.substring(fileFromAttachments.lastIndexOf('/') + 1, fileFromAttachments.lastIndexOf('.'))}}</span>
+                  <span class="file-name">{{fileFromAttachments.substring(fileFromAttachments.lastIndexOf('_') + 1, fileFromAttachments.lastIndexOf('.'))}}</span>
                   <h6 class="file-type font-poppins-bold"
                       *ngIf="fileFromAttachments.substring(fileFromAttachments.lastIndexOf('.') + 1, fileFromAttachments.length) == 'pdf'">PDF
                   </h6>

@@ -8,4 +8,5 @@ export interface ApplicantRefrence{
     AttachmentWeb?:number;
     ApplicantRecid:number;
     isDefender: boolean;
+    fileName: string;
 }

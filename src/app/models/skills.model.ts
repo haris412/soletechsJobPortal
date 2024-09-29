@@ -10,4 +10,5 @@ export class Skills {
     Experience:number = 0;
     RecId:number = 0;
     isDefender: boolean = false;
+    fileName: string = '';
 }
