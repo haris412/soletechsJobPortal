@@ -44,6 +44,9 @@ export class UserProfileComponent {
   uploadCvData: UploadCvsDTO[] = [];
   isActive: number = 2;
   currentId: string = 'basicInformation';
+  fileFromAttachments = '';
+  attachBase64: any = '';
+
   constructor(
     private router: Router,
     public ref: ChangeDetectorRef,
@@ -68,7 +71,9 @@ export class UserProfileComponent {
 
   async ngOnInit() {
     if (!this.applicantDataService?.applicantData) {
-		await this.applicantDataService.GetUserInfo();;
+		await this.applicantDataService.GetUserInfo();
+    if (this.applicantDataService.applicantData.attachmentFileName)
+      this.GetFilesFromAttachment(this.applicantDataService.applicantData?.attachmentFileName);
     }
     this.isActive = this.applicantDataService?.applicantData?.ApplicationStatus;
     if (
@@ -361,6 +366,34 @@ export class UserProfileComponent {
       data.value = projects.Id;
       this.userInfoService.identificationTypeArabic.push(data);
     });
+  }
+
+  async GetFilesFromAttachment(attachment: string) {
+    this.fileFromAttachments = attachment;
+  }
+
+  async DownloadFile() {
+    //this.showPdf();
+    await this.DownloadFromBlob();
+  }
+
+  async DownloadFromBlob() {
+    var fileData = await this.lookUpService.GetAttachmentFromBlob(this.applicantDataService.applicantData?.attachmentFileName);
+    if (fileData) {
+      this.attachBase64 = fileData;
+      this.showPdf()
+    }
+  }
+
+  showPdf() {
+    const linkSource =
+      'data:application/octet-stream;base64,' + this.attachBase64?.value;
+    const downloadLink = document.createElement('a');
+    const fileName = this.fileFromAttachments.substring(this.fileFromAttachments.lastIndexOf('_') + 1, this.fileFromAttachments.length);
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
   }
 }
 
