@@ -13,6 +13,12 @@
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">
+          <p> {{t('basicInfo.middle-name')}}</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [formControlName]="'middleName'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column col-md-6 col-12">
           <p>{{t('basicInfo.last-name')}}*</p>
           <mat-form-field appearance="outline" class="w-100">
             <input matInput [formControlName]="'lastName'" />
@@ -25,6 +31,12 @@
           <p>{{t('basicInfo.first-name-ar')}}</p>
           <mat-form-field appearance="outline" class="w-100">
             <input matInput [formControlName]="'firstNameAr'" />
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-column col-md-6 col-12">
+          <p> {{t('basicInfo.middle-name-ar')}}</p>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput [formControlName]="'middleNameAr'" />
           </mat-form-field>
         </div>
         <div class="d-flex flex-column col-md-6 col-12">

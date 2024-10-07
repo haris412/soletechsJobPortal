@@ -2,10 +2,11 @@
 
     "profile":"Profile",
      "first-name":"First Name",
-     "first-name-ar":"First Name AR",
+     "first-name-ar":"First Name Arabic",
      "last-name":"Last Name",
-     "last-name-ar":"Last Name AR",
+     "last-name-ar":"Last Name Arabic",
      "middle-name":"Middle Name",
+     "middle-name-ar":"Middle Name Arabic",
      "date-birth":"Date of Birth",
      "nationality":"Nationality",
      "gender":"Gender",

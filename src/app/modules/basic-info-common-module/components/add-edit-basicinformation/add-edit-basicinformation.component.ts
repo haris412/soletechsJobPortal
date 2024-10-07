@@ -57,6 +57,7 @@ export class AddEditBasicinformationComponent implements OnInit {
       firstNameAr:[''],
       lastNameAr:[''],
       middleName: [''],
+      middleNameAr: [''],
       maritalStatus: ['0', [Validators.required]],
       birthDate: ['',[Validators.required]],
       highestDegree: ['', [Validators.required]],
