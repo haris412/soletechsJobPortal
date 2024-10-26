@@ -20,6 +20,7 @@
     "confirm-password":"Confirm Password",
     "about-me":"About Me",
     "save-changes":"Save Changes",
+    "identification-type":"Identification Type",
     "first-name-placeholder":"Enter first name",
     "current-job-title":"Current job title",
     "current-job-title-placeholder":"Enter current job title",
@@ -30,5 +31,8 @@
     "identification-number-placeholder":"Enter identification Number",
     "ipaddress-number-placeholder":"Enter ip address",
     "identification-number":"Identification Number",
-    "ip-address":"Ip Address"
+    "ip-address":"Ip Address",
+    "nationality":"Nationality",
+    "nationality-paceholder":"Select Nationality"
+
 }

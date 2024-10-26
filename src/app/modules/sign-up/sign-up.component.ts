@@ -1,16 +1,18 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { User } from 'src/app/models/user';
 import { UserInfoService } from '../user-info/user-info.service';
 import { AppLookUpService } from 'src/app/app-services/app-look-up.service';
 import Swal from "sweetalert2";
-import { forkJoin } from 'rxjs';
+import { forkJoin, map, Observable, startWith } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { TranslationAlignmentService } from 'src/app/app-services/translation-alignment.service';
 import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
+import { LookupParameters } from 'src/app/models/look-up.model';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 
 @Component({
 	selector: 'app-signup',
@@ -18,7 +20,7 @@ import { Country } from 'ngx-mat-intl-tel-input/lib/model/country.model';
 	styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-
+	@ViewChild(MatAutocompleteTrigger) autocompleteTrigger!: MatAutocompleteTrigger;
 	public completed: boolean = true;
 	public sidenavOpen: boolean = false;
 	title = 'angular';
@@ -45,11 +47,17 @@ export class SignUpComponent implements OnInit {
 	public emailAlreadyExists: boolean = false;
 	public isTranslate: boolean =  this.translationService.isTranslate;
 	phonePlaceHolder :any = "";
+	identificationType:any[]=[];
+	countries:any[]=[];
+	nationalityData!: Observable<any[]>;
+	nationalityCtrl = new FormControl('');
+	selectedNationality:string = '';
 	constructor(private router: Router,
 		public userInfo: UserInfoService,
 		public lookupService: AppLookUpService,
 		private toastrService: ToastrService,
-		public translationService: TranslationAlignmentService
+		public translationService: TranslationAlignmentService,
+
 		) {
 		this.userForm = this._formBuilder.group({
 			applicantImage:[''],
@@ -69,6 +77,8 @@ export class SignUpComponent implements OnInit {
 			aboutMe: [''],
 			cvAttachment: [''],
 			ipAddress: [''],
+			IdentificationType:['',[Validators.required]],
+			nationality:['',[Validators.required]],
 			fileName: ['']
 		});
 		if (this.userInfo.applicantForm == undefined) {
@@ -76,16 +86,51 @@ export class SignUpComponent implements OnInit {
 		}
 		this.translationService.languageChange.subscribe( x=> {
 			this.isTranslate = x;
+			this.ArabicList();
 		});
+		this.nationalityData = this.nationalityCtrl.valueChanges.pipe(
+			startWith(''),
+			map(value => this.__filterCountries(value || '')),
+		  );
 	}
-
+    
 	async ngOnInit() {
+		let params: LookupParameters = {
+			dataAreaId: 'USMF',
+			languageId: 'en-us'
+		}
 		var ipaddress = await this.lookupService.GetIpAddress();
 		this.userForm?.controls?.ipAddress.setValue(ipaddress ?? "");
 		this.userForm?.controls?.ipAddress.disable();
 		//this.GetLookups();
+		this.GetIdentificationTypeLookup()
 	}
+	async GetIdentificationTypeLookup(){
+		let params:LookupParameters = {
+			dataAreaId: 'USMF',
+			languageId: this.translationService.isTranslate ? 'ar': 'en-us'
+		}
+		const lookUps = await forkJoin({
+			countries: this.lookupService.GetCountryRegionLookup(params),
+			identificationType: this.lookupService.GetIdentificationTypeLookup(params),
+		}).toPromise();
+		lookUps?.identificationType?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = this.translationService.isTranslate && projects.Other ? projects.Other : projects.Description;
+			data.value = projects.Id;
+			this.identificationType.push(data);
+		});
+		lookUps?.countries?.parmList?.forEach((projects: any) => {
+			let data = new Object() as any;
+			data.name = projects.Description;
+			data.value = projects.Id;
+			this.countries.push(data);
+		});
+    }
+	PrepopulateNationality(){
 
+	}
+	
 	async GetLookups() {
 		const lookUps = await forkJoin({
 			personalTitle: this.lookupService.GetPersonalTitleLookup(),
@@ -180,6 +225,12 @@ export class SignUpComponent implements OnInit {
 	DeleteFile(selectedFile: File) {
 		this.fileList = [];
 	}
+	nationalityDefaultSearch() {
+		this.nationalityData = this.nationalityCtrl.valueChanges.pipe(
+		  startWith(''),
+		  map(value => this.__filterCountries(value || '')),
+		);
+	  }
 
 	async Signup() {
 		this.userForm?.controls.aboutMe.setValue(this.userForm?.controls.aboutMe.value.replace(/<[^>]*>/g, ''));
@@ -190,6 +241,7 @@ export class SignUpComponent implements OnInit {
 				...this.userForm.getRawValue(),
 				ipAddress: this.userForm?.controls.ipAddress.value,
 				attachmentFileName: this.userForm?.controls.fileName.value,
+				nationality : this.selectedNationality,
 				attachmentForWeb : this.userForm.controls.cvAttachment.value !== ''?  1: 0 
 				//aboutMe:this.aboutMe
 			}
@@ -260,10 +312,15 @@ export class SignUpComponent implements OnInit {
 			});
 		}
 	}
-
+	openDropdown() {
+		// Programmatically open the dropdown only when clicked
+		if (!this.autocompleteTrigger.panelOpen) {
+		  this.autocompleteTrigger.openPanel();
+		}
+	  }
 	async validateEmail() {
 		var validate = await this.lookupService.ValidateEmail(this.userForm.controls.email.value);
-		if (validate != undefined && validate.Status) {
+		if (validate != undefined && validate.status) {
 			this.toastrService.error(validate?.Message);
 			this.emailAlreadyExists = true;
 		} else {
@@ -304,5 +361,20 @@ export class SignUpComponent implements OnInit {
 		  (excludedKeys.includes(keyCode)))) {
 		  event.preventDefault();
 		}
+	  }
+	  ArabicList() {
+		this.countries = [];
+		this.identificationType = [];
+		this.GetIdentificationTypeLookup();
+	  }
+	  private __filterCountries(value: string): string[] {
+		const filterValue = value?.toLowerCase();
+		return this.countries?.filter(countries => countries?.name?.toLowerCase()?.includes(filterValue));
+	  }
+	  OnNationlaityChange(event:any){
+		let filteredCountry = this.countries?.find(countries => countries?.value === event?.source.value);
+		this.nationalityCtrl.setValue(filteredCountry.name);
+		this.userForm?.controls?.nationality.setValue(filteredCountry.name ?? "");
+		this.selectedNationality = filteredCountry.value;
 	  }
 }

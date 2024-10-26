@@ -15,6 +15,7 @@
     "last-name-english":"الاسم الأخير بالإنجليزية",
     "last-name-arabic":"الاسم الأخير ",
     "mobile":"رقم الجوال",
+    "identification-type":"نوع الهوية",
     "email":"البريد إلكتروني",
     "confirm-email":".تأكيد عنوان البريد الإلكتروني",
     "password":"كلمة المرور",
@@ -31,6 +32,8 @@
     "identification-number":"رقم الهوية",
     "identification-number-placeholder":"أدخل رقم الهوية",
     "ip-address":"عنوان الآي بي",
-    "ipaddress-number-placeholder":"أدخل عنوان IP"
+    "ipaddress-number-placeholder":"أدخل عنوان IP",
+    "nationality":"الجنسية",
+    "nationality-paceholder":"برجاء اختيار الجنسية"
     
 }

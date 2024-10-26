@@ -148,6 +148,47 @@
               <mat-error *ngIf="f.mobileNo.errors?.validatePhoneNumber">Invalid Number</mat-error>
             </mat-form-field>
           </div>
+
+          <div class="d-flex flex-column fields-padding col-lg-6 col-12">
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.nationality')}}*</p>
+            <mat-form-field appearance="outline" class="w-100">
+              <img matPrefix height="15" width="15" src="assets/SVG/search.svg" class="ms-2" alt="" />
+              <img matSuffix src="assets/SVG/chevron-down.svg" alt="" />
+              <input type="text"
+                     placeholder="{{ t('signUp.nationality-paceholder') }}"
+                     aria-label="Select Nationality"
+                     matInput
+                     [formControl]="nationalityCtrl"
+                     [matAutocomplete]="autoNationality"
+                     [formControlName]="'nationality'"
+                     (click)="this.nationalityDefaultSearch()"
+                     >
+              <mat-autocomplete autoActiveFirstOption #autoNationality="matAutocomplete" [class]="isTranslate ? 'direction-change':''">
+                <mat-option *ngFor="let nationality of nationalityData | async" (onSelectionChange) = "OnNationlaityChange($event)" [value]="nationality.value" >
+                  {{nationality.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error class="error-message" *ngIf="f.nationality.hasError('required') && (f.nationality.dirty || f.nationality.touched)">Nationality is Required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="d-flex flex-column fields-padding col-lg-6 col-12">
+            <p class="text-midnight-moss font-poppins-medium">{{t('signUp.identification-type')}}*</p>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-select name="identifcationType"
+                          [formControlName]="'IdentificationType'" [panelClass]="{'direction-change':isTranslate}">
+                <mat-option *ngFor="let identification of identificationType"
+                            [value]="identification.value">{{identification.name}}</mat-option>
+              </mat-select>
+              <img matSuffix
+                   src="assets/SVG/chevron-down.svg"
+                   alt="" />
+              <mat-error class="error-message"
+                         *ngIf="f.IdentificationType.hasError('required') && (f.IdentificationType.dirty || f.IdentificationType.touched)">Identification
+                Type is Required</mat-error>
+      
+            </mat-form-field>
+          </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">
             <p class="text-midnight-moss font-poppins-medium">{{t('signUp.identification-number')}}*</p>
             <mat-form-field appearance="outline" class="w-100">
@@ -156,7 +197,7 @@
                 <mat-error class="error-message"
                 *ngIf="f.identificationNumber.hasError('required') && (f.identificationNumber.dirty || f.identificationNumber.touched)">Identification number is Required</mat-error>
                 <mat-error class="error-message"
-                *ngIf="f.identificationNumber.hasError('maxlength') && (f.identificationNumber.dirty || f.identificationNumber.touched)">Identification number should be 10 characters</mat-error>
+                *ngIf="f.identificationNumber.hasError('maxlength') && (f.identificationNumber.dirty || f.identificationNumber.touched)">Identification number should not more than 10 characters</mat-error>
             </mat-form-field>
           </div>
           <div class="d-flex flex-column fields-padding col-md-6 col-12">

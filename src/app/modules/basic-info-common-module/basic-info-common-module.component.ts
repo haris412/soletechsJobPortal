@@ -85,9 +85,5 @@ export class BasicInfoCommonModuleComponent implements OnInit {
 	});
 }
 
-	CountryChanges(){
-		if(this.translationService.isTranslate){
-			
-		}
-	}
+	CountryChanges(){}
 }

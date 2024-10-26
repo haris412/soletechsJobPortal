@@ -37,7 +37,7 @@ export class AddEditIdentificationComponent implements OnInit {
     ) {
     this.identificationForm = this._formBuilder.group({
       IdentificationType: ['', [Validators.required]],
-      IdentificationNumber: ['', [Validators.required]],
+      IdentificationNumber: ['', [Validators.required, Validators.maxLength(10)]],
       IssueDate: ['', [Validators.required]],
       ExpirationDate: ['', [Validators.required]],
       recId: [this.selectedIdentification?.recId ? this.selectedIdentification?.recId : 0],
