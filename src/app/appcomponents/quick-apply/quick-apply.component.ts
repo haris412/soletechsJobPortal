@@ -13,7 +13,6 @@ import { Job } from 'src/app/models/job.model';
 import { LookupParameters } from 'src/app/models/look-up.model';
 import { ApplicantDataService } from 'src/app/modules/applicant-portal/services/applicant-shared.service';
 import { ConfirmationModalComponentService } from 'src/app/shared/confirmation-modal/confirmation-modal.service';
-import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-modal.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -87,7 +86,6 @@ export class QuickApplyComponent implements OnInit {
       this.translationService.isTranslate = x;
     });
   }
-
   async ngOnInit() {
     this.nationalityCtrl.setValue(this.applicant.applicantData?.nationality);
     this.quickApplyForm?.controls?.nameAr.setValue(this.applicant.applicantData?.firstNameAr);
