@@ -15,6 +15,7 @@ export interface Job {
     JobLocation:string;
     JobType:string;
     startDate:string;
+    isCVRequired?:any;
     status:number;
     webEnabled:number;
     MicrosoftDefenderAzureBlob?:boolean;

@@ -42,7 +42,7 @@ export class QuickApplyComponent implements OnInit {
   citiesCtrl = new FormControl('');
   nationalityCtrl = new FormControl('');
   private _formBuilder = inject(UntypedFormBuilder);
-  quickApplyForm: UntypedFormGroup;
+  quickApplyForm!: UntypedFormGroup;
   separateDialCode = false;
   name: string = '';
   email: string = '';
@@ -50,6 +50,7 @@ export class QuickApplyComponent implements OnInit {
   fileCvData: any;
   attchments: any[] = [];
   fileNames: any[] = [];
+  isCvRequired: boolean = true;
   get f() { return this.quickApplyForm.controls; }
   constructor(
     private router: Router,
@@ -63,7 +64,13 @@ export class QuickApplyComponent implements OnInit {
   ) {
     this.name = localStorage.getItem('userName') ?? '';
     this.email = localStorage.getItem('email') ?? '';
-
+    this.translationService.languageChange.subscribe(x => {
+      this.translationService.isTranslate = x;
+    });
+  }
+  async ngOnInit() {
+    const isCvRequiredValue = this.selectedJob?.isCVRequired;
+    this.isCvRequired = isCvRequiredValue == '1' ? true : false;
     this.quickApplyForm = this._formBuilder.group({
       name: [this.name, [Validators.required]],
       nameAr: ['',[Validators.required]],
@@ -79,14 +86,9 @@ export class QuickApplyComponent implements OnInit {
       residentIdentity: [0],
       residentIdentityProfessional: [''],
       periodJoin: [''],
-      attachment: ['',Validators.required],
+      attachment: ['', this.isCvRequired ? [Validators.required] : []],
       fileName: [['']]
     });
-    this.translationService.languageChange.subscribe(x => {
-      this.translationService.isTranslate = x;
-    });
-  }
-  async ngOnInit() {
     this.nationalityCtrl.setValue(this.applicant.applicantData?.nationality);
     this.quickApplyForm?.controls?.nameAr.setValue(this.applicant.applicantData?.firstNameAr);
     this.quickApplyForm?.controls?.recruitmentProject.setValue(this.recruitmentProject?.recruitingId);
@@ -209,9 +211,9 @@ export class QuickApplyComponent implements OnInit {
         reader.readAsDataURL(this.fileCvData);
         reader.onload = () => {
           let cvData: any = reader.result;
-          this.fileNames.push(this.fileCvData.name);
+          this.fileNames.push(this.fileCvData?.name);
           this.quickApplyForm.controls.attachment.setValue(cvData.substring(cvData.indexOf('base64,') + 7, cvData.length));
-          this.quickApplyForm.controls.fileName.setValue(this.fileCvData.name);
+          this.quickApplyForm.controls.fileName.setValue(this.fileCvData?.name);
       }
        this.fileList = files.target.files;
       }else{
@@ -265,7 +267,7 @@ export class QuickApplyComponent implements OnInit {
               localStorage.getItem('applicantPersonRecid')
             ),
             AttachmentWeb: 1,
-            fileName: this.fileCvData.name,
+            fileName: this.fileCvData?.name,
           };
           try {
             applicationData.isDefender = this.lookUpService.GetIsDefenderEnabled();
