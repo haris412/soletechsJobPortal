@@ -20,6 +20,10 @@ import { DeleteModalComponentService } from 'src/app/shared/delete-modal/delete-
 import { UserInfoService } from '../user-info/user-info.service';
 import { forkJoin } from 'rxjs';
 import { LookupParameters } from 'src/app/models/look-up.model';
+import { UploadCvAttachmentResponse } from 'src/app/models/uploadCvAttachmentResponse';
+import { CVReaderData } from 'src/app/models/cVReaderData';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -60,7 +64,8 @@ export class UserProfileComponent {
     public competencies: CompetenciesCommonService,
     public toastrService: ToastrService,
     private deleteModal: DeleteModalComponentService,
-    private userInfoService: UserInfoService
+    private userInfoService: UserInfoService,
+    public dialog: MatDialog
   ) {
     this.translationService.languageChange.subscribe((x) => {
       {
@@ -303,7 +308,8 @@ export class UserProfileComponent {
   async uploadCvs() {
     this.uploadCvData.forEach(x => x.isDefender = this.lookUpService.GetIsDefenderEnabled());
     let res = await this.lookUpService.uploadCvs(this.uploadCvData);
-    if (res != null && res?.length > 0) {
+    if (res != null && res.returnContents != null && res.returnContents?.length > 0) {
+      this.openDialog(res.cvReaderData);
       this.toastrService.success('Files are uploaded');
     }  else if (res != null && res.isVirus) {
       this.toastrService.error("File contains virus. Please try with valid attachment.");
@@ -395,6 +401,15 @@ export class UserProfileComponent {
     downloadLink.download = fileName;
     downloadLink.click();
   }
+
+  openDialog(cvReader: CVReaderData[]) {
+    this.dialog.open(DialogComponent, {
+      width: '800px',
+      height: '500px',
+      data: { defaultValue: cvReader }
+    });
+  }
+
 }
 
 export class UploadCvsDTO {

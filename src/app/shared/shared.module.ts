@@ -20,6 +20,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { OfferModalComponent } from './offer-modal/offer-modal.component';
 import { RejectOfferComponent } from './reject-offer/reject-offer.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 
 
@@ -41,7 +42,8 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
     DeleteModalComponent,
     OfferModalComponent,
     RejectOfferComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    DialogComponent
   ],
   imports: [
     MaterialModule,
@@ -58,7 +60,8 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
     PasswordStrengthComponent,
     BlockCopyPasteDirective,
     ConfirmationModalComponent,
-    PreventArabicDirective
+    PreventArabicDirective,
+    DialogComponent
   ]
 })
 export class SharedModule { }

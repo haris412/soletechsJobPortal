@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Data Read by CV Reader</h2>
+
+<mat-dialog-content class="mat-typography">
+    <div *ngFor="let d of this.data.defaultValue">
+        <span style="font-weight: bold;">Name:</span><span> {{d.data.extractedData?.name}}</span>
+        <br/>
+        <span style="font-weight: bold;">email:</span><span> {{d.data.extractedData?.email}}</span>
+        <br/>
+        <span style="font-weight: bold;">experience:</span><span> {{d.data.extractedData?.experience}}</span>
+        <br/>
+        <br/>
+        <span style="font-weight: bold;">skills:</span><span> {{d.data.extractedData?.skills}}</span>
+        <br/>
+        <br/>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
