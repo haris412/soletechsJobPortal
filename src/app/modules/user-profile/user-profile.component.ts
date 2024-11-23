@@ -405,7 +405,6 @@ export class UserProfileComponent {
   openDialog(cvReader: CVReaderData[]) {
     this.dialog.open(DialogComponent, {
       width: '800px',
-      height: '500px',
       data: { defaultValue: cvReader }
     });
   }
