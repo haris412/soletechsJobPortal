@@ -101,6 +101,7 @@ export const apiURLs = {
         medicalHistory:`/ERPApplicant/UploadMedicalAttachment`,
         getAttachmentFile:`/ERPApplicant/GetAttachFileFromAzure`,
         getRatingLevelLookup:`/ERPApplicant/GetRatingLevelLookup`,
-        getAttachmentFileFromBlob:`/ERPApplicant/GetAttachmentFileFromDynamic365`
+        getAttachmentFileFromBlob:`/ERPApplicant/GetAttachmentFileFromDynamic365`,
+        addSkillMasterList:`/ERPApplicant/AddSkillMasterList`
     }
 }

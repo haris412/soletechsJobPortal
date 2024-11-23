@@ -664,4 +664,12 @@ export class AppLookUpService {
     let isdefenderenable = localStorage.getItem('defenderenabled') ?? 0 ;
     return isdefenderenable == '1' ? true : false;
   }
+  async addSkillMasterList(skillType: ApplicantOfferAction) {
+    return await this.httpClient
+      .post<any>(
+        this.appInitiatorService.appConfiguration?.apiUrl + apiURLs.applicant.addSkillMasterList,
+        skillType
+      )
+      .toPromise();
+  }
 }
