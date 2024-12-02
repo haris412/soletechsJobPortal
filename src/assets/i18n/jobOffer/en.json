@@ -20,6 +20,8 @@
     "offer-date":"Offer Date",
     "vacation-days":"Vacation Days",
     "medical-insurance":"Medical insurance",
-    "probabtion-period":"Probation Period"
-
+    "probabtion-period":"Probation Months",
+    "total-salary":"Total Salary",
+    "department":"Department",
+    "offer-validity-days":"Offer Validity (Days)"
 }

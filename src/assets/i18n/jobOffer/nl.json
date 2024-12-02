@@ -21,5 +21,8 @@
     "offer-date":"تاريخ العرض",
     "vacation-days":"أيام الإجازة",
     "medical-insurance":"التأمين الطبي",
-    "probabtion-period":"فنرة التجربة"
+    "probabtion-period":"فنرة التجربة",
+    "total-salary":"إجمالي الراتب",
+    "department":"قسم",
+    "offer-validity-days":"صلاحية العرض (أيام)"
 }

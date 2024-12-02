@@ -10,7 +10,7 @@
     <h4 class="text-midnight-moss">{{t('dashboard.applied-jobs')}}</h4>
     <div class="job-detail rounded-3">
       <div class="d-flex align-items-center justify-content-between w-100 mb-2">
-        <h5 class="text-midnight-moss">{{selectedJob?.jobId}}</h5>
+        <h5 class="text-midnight-moss">{{selectedJob?.Description}}</h5>
         <div class="d-flex align-items-center header-icons ms-lg-1 ms-0 gap-xl-2 gap-1">
           <span class="rounded-pill bg-warning text-white font-poppins-medium p-2" *ngIf="selectedJob?.approvedApplication == 0">{{t('dashboard.pending-approval')}}</span>
           <!-- <div>
@@ -231,60 +231,7 @@
         </div>
       </div>
     </div>
-    <div class="next-actions"
-         *ngIf="selectedJob?.applicationStatus === 8">
-      <div class="actions rounded-3">
-        <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
-          <div class="job-details">
-            <div class="d-flex align-items-center gap-xxl-3 gap-2">
-              <div>
-                <img src="assets/SVG/book.svg"
-                     alt="book" />
-              </div>
-              <div class="d-flex flex-column action-details">
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Finish the form</h6>
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">Senior UX/UI</h6>
-                <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
-                  <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
-                    <div class="d-flex align-items-center gap-2">
-                      <img class="green-filter"
-                           src="assets/SVG/ic_Location.svg"
-                           alt="" />
-                      <p class="text-midnight-moss font-poppins-medium mb-0">
-                        Dubai, UAE
-                      </p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                      <img class="green-filter"
-                           src="assets/SVG/ic_Job.svg"
-                           alt="" />
-                      <p class="text-midnight-moss font-poppins-medium mb-0">
-                        Job Type
-                      </p>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="assets/SVG/redirect.svg"
-                         alt="" />
-                    <a class="cursor-pointer mb-0">Job details</a>
-                  </div>
-                </div>
-                <div class="d-flex error align-items-center gap-1 badge rounded-pill p-1">
-                  <span class="badge rounded-pill text-white">Error</span>
-                  <span>Missing form</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex flex-sm-row flex-column align-items-sm-center gap-xxl-3 gap-2 btns-container">
-            <button type="button"
-                    class="btn text-white bg-midnight-moss rounded font-poppins-semi fs-8 w-auto">
-              Fill the form
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="next-actions" *ngIf="selectedJob?.approvedApplication !== 0 && (selectedJob?.applicationStatus === 6 || selectedJob?.applicationStatus > 6)">
       <div class="actions rounded-3">
         <div class="d-flex flex-md-row flex-column gap-2 justify-content-sm-between">
@@ -295,8 +242,10 @@
                      alt="book" />
               </div>
               <div class="d-flex flex-column action-details">
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.offer-ready')}}</h6>
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{selectedJob?.Title}}</h6>
+                <!-- <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.offer-ready')}}</h6> -->
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold" *ngIf="selectedJob.offerStatus == 0">{{t('dashboard.offer-processing')}}</h6>
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold" *ngIf="selectedJob.offerStatus == 1">{{t('dashboard.offer-ready')}}</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{selectedJob?.Description}}</h6>
                 <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
                   <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
                     <div class="d-flex align-items-center gap-2">
@@ -355,7 +304,7 @@
               </div>
               <div class="d-flex flex-column action-details">
                 <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.congrats-selection')}}</h6>
-                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{selectedJob?.Title}}</h6>
+                <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{selectedJob?.Description}}</h6>
                 <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
                   <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
                     <div class="d-flex align-items-center gap-2">

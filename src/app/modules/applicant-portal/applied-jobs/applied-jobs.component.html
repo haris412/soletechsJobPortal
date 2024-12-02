@@ -18,7 +18,7 @@
       <div class="job-detail rounded-3 cursor-pointer" (click)="GoToJobActions(appliedJob)">
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center justify-content-between w-100 mb-2">
-            <h5 class="text-midnight-moss">{{appliedJob?.jobId}}</h5>
+            <h5 class="text-midnight-moss">{{appliedJob?.Description}}</h5>
             <span class="rounded-pill bg-warning text-white font-poppins-medium p-2" *ngIf="appliedJob?.approvedApplication == 0">{{t('dashboard.pending-approval')}}</span>
 
           </div>
@@ -207,8 +207,10 @@
                          alt="book" />
                   </div>
                   <div class="d-flex flex-column action-details">
-                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.offer-ready')}}</h6>
-                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
+                    
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold" *ngIf="appliedJob.offerStatus == 0">{{t('dashboard.offer-processing')}}</h6>
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold" *ngIf="appliedJob.offerStatus == 1">{{t('dashboard.offer-ready')}}</h6>
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Description}}</h6>
                     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
                       <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
                         <div class="d-flex align-items-center gap-2">
@@ -267,7 +269,7 @@
                   </div>
                   <div class="d-flex flex-column action-details">
                     <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{t('dashboard.congrats-selection')}}</h6>
-                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Title}}</h6>
+                    <h6 class="mb-1 text-midnight-moss font-poppins-bold">{{appliedJob?.Description}}</h6>
                     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-4 gap-1 mb-1">
                       <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-sm-3 gap-1">
                         <div class="d-flex align-items-center gap-2">

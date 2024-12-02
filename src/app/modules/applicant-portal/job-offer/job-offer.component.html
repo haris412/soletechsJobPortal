@@ -55,6 +55,11 @@
               <h6>{{basicInfo?.offerDate | date : 'd/M/y'}}</h6>
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p class="font-poppins-regular">{{t('jobOffer.offer-validity-days')}}</p>
+              <h6>{{basicInfo?.offerValidity }}</h6>
+            </div>
+            
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.candidate')}}</p>
               <h6>{{basicInfo?.candicateName}}</h6>
             </div>
@@ -63,8 +68,13 @@
               <h6>{{basicInfo?.nationality}}</h6>
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p class="font-poppins-regular">{{t('jobOffer.department')}}</p>
+              <h6>{{basicInfo?.department}}</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.position')}}</p>
-              <h6>{{basicInfo?.positionName}}</h6>
+              <h6 *ngIf="basicInfo?.PositionDescriptionEn">{{basicInfo?.PositionDescriptionEn}}</h6>
+              <h6 *ngIf="basicInfo?.positionName">{{basicInfo?.positionName}}</h6>
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.location')}}</p>
@@ -74,22 +84,7 @@
               <p class="font-poppins-regular">{{t('jobOffer.phone')}}</p>
               <h6>{{basicInfo?.applicantPhone}}</h6>
             </div>
-            <div class="offer-detail col-lg-3 col-md-4 col-6">
-              <p class="font-poppins-regular">{{t('jobOffer.contract-period')}}</p>
-              <h6>{{basicInfo?.contractPeriod}}</h6>
-            </div>
-            <div class="offer-detail col-lg-3 col-md-4 col-6">
-              <p class="font-poppins-regular">{{t('jobOffer.net-salary')}}</p>
-              <h6>{{basicInfo?.netSalary}}</h6>
-            </div>
-            <div class="offer-detail col-lg-3 col-md-4 col-6">
-              <p class="font-poppins-regular">{{t('jobOffer.valid-from')}}</p>
-              <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
-            </div>
-            <div class="offer-detail col-lg-3 col-md-4 col-6">
-              <p class="font-poppins-regular">{{t('jobOffer.valid-to')}}</p>
-              <h6>{{basicInfo?.validFrom | date : 'd/M/y'}}</h6>
-            </div>
+            
             <!-- <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.offer-date')}}</p>
               <h6>{{basicInfo?.offerDate | date : 'd/M/y'}}</h6>
@@ -102,8 +97,8 @@
               <div class="heading py-2">
                 <img src="assets/SVG/coins-stacked.svg"
                      alt="coins-stacked" />
-                <h5>{{t('jobOffer.finance-information')}}</h5>
-              </div>
+                     <h5>{{t('jobOffer.benefits')}}</h5>
+                    </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="row m-0 offer-info">
@@ -111,8 +106,12 @@
                  *ngFor="let financing of finaceInfo?.parmApplicationFinanceInfoList">
               <p *ngIf="!translationService.isTranslate">{{financing?.description}}</p>
               <p *ngIf="translationService.isTranslate">{{financing?.descriptionAr}}</p>
-              <h6 *ngIf="financing.Amount === 0">{{financing?.CalculatedAmount}} SAR</h6>
-              <h6 *ngIf="financing.Amount !== 0">{{financing?.Amount}} SAR</h6>
+              <h6 *ngIf="financing.Amount === 0">{{financing?.CalculatedAmount | number: '1.2-2'}} SAR</h6>
+              <h6 *ngIf="financing.Amount !== 0">{{financing?.Amount | number: '1.2-2'}} SAR</h6>
+            </div>
+            <div class="offer-detail col-lg-3 col-md-4 col-6">
+              <p class="font-poppins-regular">{{t('jobOffer.total-salary')}}</p>
+              <h6>{{basicInfo?.netSalary}}</h6>
             </div>
           </div>
         </mat-expansion-panel>
@@ -122,7 +121,8 @@
               <div class="heading py-2">
                 <img src="assets/SVG/benefits.svg"
                      alt="benefits-icon" />
-                <h5>{{t('jobOffer.benefits')}}</h5>
+                <h5>{{t('jobOffer.finance-information')}}</h5>
+
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
