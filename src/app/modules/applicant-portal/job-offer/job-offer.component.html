@@ -73,7 +73,6 @@
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.position')}}</p>
-              <h6 *ngIf="basicInfo?.PositionDescriptionEn">{{basicInfo?.PositionDescriptionEn}}</h6>
               <h6 *ngIf="basicInfo?.positionName">{{basicInfo?.positionName}}</h6>
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
@@ -133,7 +132,7 @@
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.medical-insurance')}}</p>
-              <h6>{{benefits?.medicalInsuranceID}}</h6>
+              <h6>Provided Per Company Policy</h6>
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.contract-period')}}</p>
@@ -141,7 +140,7 @@
             </div>
             <div class="offer-detail col-lg-3 col-md-4 col-6">
               <p class="font-poppins-regular">{{t('jobOffer.probabtion-period')}}</p>
-              <h6>{{benefits?.probationPeriod}}</h6>
+              <h6 *ngIf="benefits?.probationPeriod > 0">{{benefits?.probationPeriod}} months</h6>
             </div>
           </div>
         </mat-expansion-panel>
